@@ -2,5 +2,18 @@
 <widget version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <access origin="*" />
   
+  <feature name="AppCenterAnalytics">
+    <param name="onload" value="true"/>
+    <param name="android-package" value="com.microsoft.azure.mobile.cordova.AppCenterAnalyticsPlugin"/>
+  </feature>
+
+  <feature name="AppCenterShared">
+    <param name="onload" value="true"/>
+    <param name="android-package" value="com.microsoft.azure.mobile.cordova.AppCenterSharedPlugin"/>
+  </feature>
+
+  <platform name="android">
+    <preference name="APP_SECRET" value="79b85633-1117-4554-bae2-f33cb895fcb8" />
+  </platform>
   
 </widget>

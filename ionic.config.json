@@ -1,0 +1,7 @@
+{
+  "name": "atg-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

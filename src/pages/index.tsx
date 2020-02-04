@@ -1,6 +1,8 @@
-import HomePage from './home';
+import InitialPage from './initial';
+import RegisterPage from './register';
 
 export {
-    HomePage
+    InitialPage,
+    RegisterPage
 }
 

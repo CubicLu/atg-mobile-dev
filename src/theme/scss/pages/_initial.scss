@@ -1,0 +1,15 @@
+.initial-page{ 
+    height: 100%;
+    .title{ 
+        &.album{
+            font-size: 58px;
+        }
+    }
+
+    .subtitle{ 
+        &.album{
+            font-size: 1em;
+            margin-left: 0px;
+        }
+    }
+}

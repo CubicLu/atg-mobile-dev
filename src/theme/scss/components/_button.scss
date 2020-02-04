@@ -1,0 +1,36 @@
+.btn { 
+    border-radius: 2px;
+    text-align: center;
+    text-transform: initial;
+    
+    &.primary { 
+        background: $primary;
+        color: #FFF;
+        &.gradient { 
+            background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
+        }
+    }
+    &.secondary { 
+        background: $secondary;
+        color: #FFF;
+    }
+    &.tertiary { 
+        background: $tertiary;
+        color: #FFF;
+    }
+
+    &.transparent{ 
+        background: transparent;
+        color: #FFF;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    &.full {
+        width: 100%;
+    }
+
+    &.bold{
+        font-weight: bold;
+    }
+}

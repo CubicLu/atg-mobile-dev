@@ -1,0 +1,25 @@
+.background-image{ 
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+
+    &.shadow{ 
+        box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;
+    }
+
+    .legend {
+        writing-mode: vertical-rl;
+        font-size: 12px;
+        color: #707070;
+        position: absolute;
+        right: 10px;
+        top: 100px;
+        transform: rotate(-180deg);
+    }
+}

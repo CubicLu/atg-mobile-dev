@@ -1,0 +1,24 @@
+
+.title{
+    font-size: 60px;
+}
+
+.subtitle {
+    font-size: 30px;
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+.title, .subtitle{  
+    color: white;
+    margin-bottom: 0;
+    &.primary { 
+        color: $primary;
+    }
+    &.secondary { 
+        color: $secondary;
+    }
+    &.tertiary { 
+        color: $tertiary;
+    }
+}

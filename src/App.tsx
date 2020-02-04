@@ -1,10 +1,12 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonContent } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
 
-import { HomePage } from './pages';
+import './theme/scss/_styles.scss';
+
+import { InitialPage, RegisterPage } from './pages';
 
 import { store } from './store';
 
@@ -35,8 +37,16 @@ class App extends React.Component {
         <IonApp>
           <IonReactRouter>
             <IonRouterOutlet>
-              <Route path="/home" component={HomePage} exact={true} />
-              <Route exact path="/" render={() => <Redirect to="/home" />} />
+              <IonContent
+                 scrollEvents={true}
+                 onIonScrollStart={() => {}}
+                 onIonScroll={() => {}}
+                 onIonScrollEnd={() => {}}
+              >
+                <Route path="/initial" component={InitialPage} exact={true} />
+                <Route path="/register" component={RegisterPage} exact={true} />
+                <Route exact path="/" render={() => <Redirect to="/initial" />} />
+              </IonContent>
             </IonRouterOutlet>
           </IonReactRouter>
         </IonApp>

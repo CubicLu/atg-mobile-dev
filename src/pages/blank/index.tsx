@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { } from './../../components';
 import { } from './../../actions';
 
-interface Props{
-  actions: any; //typeof AnyActions 
+interface Props extends RouteComponentProps {
+ 
 }
 
 
@@ -26,6 +27,6 @@ class BlankPage extends React.Component<Props>{
 const mapStateToProps = ({  }) => {
   return {  };
 }
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
 
-})(BlankPage);
+})(BlankPage));

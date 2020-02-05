@@ -4,7 +4,6 @@ import { } from './../';
 import { } from './../../actions';
 
 interface Props{
-  actions?: any; //typeof AnyActions
   onClick: Function;
   label: string;
   color?: "primary" | "secondary" | "tertiary" | "transparent";

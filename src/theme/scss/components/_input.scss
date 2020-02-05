@@ -1,0 +1,38 @@
+
+input:not([type]), 
+input[type=text]:not(.browser-default), 
+input[type=password]:not(.browser-default), 
+input[type=email]:not(.browser-default), 
+input[type=url]:not(.browser-default), 
+input[type=time]:not(.browser-default), 
+input[type=date]:not(.browser-default), 
+input[type=datetime]:not(.browser-default), 
+input[type=datetime-local]:not(.browser-default), 
+input[type=tel]:not(.browser-default), 
+input[type=number]:not(.browser-default), 
+input[type=search]:not(.browser-default) {
+    &.input {
+
+        @include placeholder {
+            color: #707087;
+            font-size: $font-size-input;
+        }
+
+        text-indent: 10px;
+        background: #fff;
+        border-radius: 2px;
+        font-size: $font-size-input;
+        
+        &.text {
+
+        }
+
+        &:focus {
+            border-bottom: none;
+            box-shadow: none;
+        }
+
+       
+    }
+
+}

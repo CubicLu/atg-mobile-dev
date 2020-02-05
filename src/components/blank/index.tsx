@@ -4,7 +4,6 @@ import { } from './../../components';
 import { } from './../../actions';
 
 interface Props{
-  actions: any; //typeof AnyActions 
 }
 
 

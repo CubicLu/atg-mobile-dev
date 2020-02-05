@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Button, BackgroundImage, BackgroundInitialImage } from './../../components';
 import { } from './../../actions';
 
 
-interface Props {
-    actions: any; //typeof AnyActions 
+interface Props extends RouteComponentProps {
+ 
 }
-
 
 class HomePage extends React.Component<Props>{
 
@@ -46,9 +46,11 @@ class HomePage extends React.Component<Props>{
                                 </div>
                                 <div className="row">
                                     <div className="col s12">
-                                        <Button label="Create an account" color="transparent" full onClick={() => {
-
-                                        }} />
+                                        <Button 
+                                            label="Create an account" 
+                                            color="transparent" full 
+                                            onClick={() => this.props.history.push("/register")} 
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -66,6 +68,6 @@ class HomePage extends React.Component<Props>{
 const mapStateToProps = ({ }) => {
     return {};
 }
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
 
-})(HomePage);
+})(HomePage));

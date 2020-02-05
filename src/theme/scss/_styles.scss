@@ -2,6 +2,10 @@
 
 @import './../../../node_modules/materialize-css/sass/materialize.scss';
 
+/* mixins */
+
+@import './mixins';
+
 /* utils */
 
 @import './utils';
@@ -9,14 +13,17 @@
 /* variables */
 
 @import './variables/colors';
+@import './variables/font-size';
 
 /* components */
 
 @import './components/button';
 @import './components/background-image';
 @import './components/typography';
+@import './components/input';
 
 
 /* pages */
 
 @import './pages/initial';
+@import './pages/register';

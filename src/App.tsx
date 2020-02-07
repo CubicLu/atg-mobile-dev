@@ -30,31 +30,32 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 class App extends React.Component {
-
-  render(){
+  render(): React.ReactNode {
     return (
       <Provider store={store}>
         <IonApp>
           <IonReactRouter>
             <IonRouterOutlet>
               <IonContent
-                 scrollEvents={true}
-                 onIonScrollStart={() => {}}
-                 onIonScroll={() => {}}
-                 onIonScrollEnd={() => {}}
+                scrollEvents={true}
+                onIonScrollStart={(): any => {}}
+                onIonScroll={(): any => {}}
+                onIonScrollEnd={(): any => {}}
               >
                 <Route path="/initial" component={InitialPage} exact={true} />
                 <Route path="/register" component={RegisterPage} exact={true} />
-                <Route exact path="/" render={() => <Redirect to="/initial" />} />
+                <Route
+                  exact
+                  path="/"
+                  render={(): any => <Redirect to="/initial" />}
+                />
               </IonContent>
             </IonRouterOutlet>
           </IonReactRouter>
         </IonApp>
       </Provider>
-    )
+    );
   }
-
 }
-
 
 export default App;

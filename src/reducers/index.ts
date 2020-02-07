@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
 
-export interface State {
-   
-}
-  
-export const rootReducers = combineReducers<State>([]);
+export interface ApplitcationState {}
+
+export const rootReducers = combineReducers<ApplitcationState>([]);

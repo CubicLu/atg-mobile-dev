@@ -1,3 +1,1 @@
-export enum ActionType { 
-    
-}
+export enum ActionType {}

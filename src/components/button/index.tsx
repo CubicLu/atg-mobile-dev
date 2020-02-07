@@ -1,47 +1,41 @@
 import React from 'react';
-import { connect } from "react-redux";
-import { } from './../';
-import { } from './../../actions';
+import {} from './../';
+import {} from './../../actions';
 
-interface Props{
+interface Props {
   onClick: Function;
   label: string;
-  color?: "primary" | "secondary" | "tertiary" | "transparent";
-  gradient?: Boolean,
-  full?: Boolean,
-  bold?: Boolean
-};
-
-
-class ButtonComponent extends React.Component<Props>{
-    public static defaultProps = { 
-        onClick: () => {},
-        gradient: false,
-        full: false,
-        bold: false
-    }
-
-    constructor(props: Props){ 
-        super(props)
-    }
-
-    render(){
-        let gradient = this.props.gradient ? "gradient" : ""
-        let full = this.props.full ? "full" : ""
-        let bold = this.props.bold ? "bold" : ""
-        return (
-            <button onClick={this.props.onClick.bind(this)} className={`btn ${this.props.color} ${gradient} ${full} ${bold}`}>
-                {this.props.label}
-            </button>
-        );
-    }
-
+  color?: 'primary' | 'secondary' | 'tertiary' | 'transparent';
+  gradient?: boolean;
+  full?: boolean;
+  bold?: boolean;
 }
 
+class ButtonComponent extends React.Component<Props> {
+  public static defaultProps = {
+    onClick: (): any => {},
+    gradient: false,
+    full: false,
+    bold: false
+  };
 
-const mapStateToProps = ({  }) => {
-  return {  };
+  constructor(props: Props) {
+    super(props);
+  }
+
+  render(): React.ReactNode {
+    let gradient = this.props.gradient ? 'gradient' : '';
+    let full = this.props.full ? 'full' : '';
+    let bold = this.props.bold ? 'bold' : '';
+    return (
+      <button
+        onClick={this.props.onClick.bind(this)}
+        className={`btn ${this.props.color} ${gradient} ${full} ${bold}`}
+      >
+        {this.props.label}
+      </button>
+    );
+  }
 }
-export default connect(mapStateToProps, {
 
-})(ButtonComponent);
+export default ButtonComponent;

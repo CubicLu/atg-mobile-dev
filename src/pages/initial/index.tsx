@@ -49,6 +49,7 @@ class HomePage extends React.Component<Props> {
                       gradient
                       full
                       bold
+                      onClick={(): any => this.props.history.push('/sign-in')}
                     />
                   </div>
                 </div>

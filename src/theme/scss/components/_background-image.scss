@@ -13,6 +13,39 @@
         box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;
     }
 
+    &.with-flex{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+
+        .top, .bottom{ 
+            position: absolute;
+            height: 200px;
+            width: 100%;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            object-fit: cover; 
+        }
+    
+        .top{ 
+            
+            transform: rotate(180deg);
+        }
+    
+        .bottom{ 
+            bottom: 0;
+        }
+    }
+   
+
     .legend {
         writing-mode: vertical-rl;
         font-size: 12px;
@@ -22,4 +55,6 @@
         top: 100px;
         transform: rotate(-180deg);
     }
+
+    
 }

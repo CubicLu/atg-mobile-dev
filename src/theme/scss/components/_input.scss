@@ -12,10 +12,11 @@ input[type=tel]:not(.browser-default),
 input[type=number]:not(.browser-default), 
 input[type=search]:not(.browser-default) {
     &.input {
-
+        font-family: Arial, Helvetica, sans-serif;
         @include placeholder {
             color: #707087;
             font-size: $font-size-input;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         text-indent: 10px;

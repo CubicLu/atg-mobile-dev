@@ -4,12 +4,18 @@
 /node_modules
 /.pnp
 .pnp.js
+/.idea
 
 # testing
 /coverage
 
 # production
 /build
+/platforms/*
+!/platforms/README.md
+/plugins/*
+!/plugins/README.md
+/www
 
 # misc
 .DS_Store

@@ -35,8 +35,8 @@ class RegisterPage extends React.Component<Props> {
           </div>
           <div className="row ">
             <div className="col s12">
-              <h1 className="title secondary center-align">panthr</h1>
-              <h1 className="subtitle">THE ULTIMATE</h1>
+              <h1 className="title brand secondary center-align">panthr</h1>
+              <h1 className="subtitle">THE ULTIMATE DESTINATION FOR ARTIST & FANS</h1>
             </div>
           </div>
 
@@ -73,6 +73,7 @@ class RegisterPage extends React.Component<Props> {
                 label="Sign up"
                 color="primary"
                 full
+                bold
                 gradient
                 onClick={(): any => this.props.history.push('/register')}
               />

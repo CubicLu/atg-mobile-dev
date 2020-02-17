@@ -8,7 +8,7 @@ export {
   InputTextComponent as InputText
 };
 
-import BackgroundInitialImage from './../assets/img/background/initial/1.png';
-import BackgroundCirclesImage from './../assets/img/background/circles/1.png';
+const BackgroundInitialImage = require('./../assets/img/background/initial/1.png');
+const BackgroundCirclesImage = require('./../assets/img/background/circles/1.png');
 
 export { BackgroundInitialImage, BackgroundCirclesImage };

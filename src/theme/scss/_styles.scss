@@ -21,9 +21,11 @@
 @import './components/background-image';
 @import './components/typography';
 @import './components/input';
+@import './components/tabs';
 
 
 /* pages */
 
 @import './pages/initial';
 @import './pages/register';
+@import './pages/sign-in';

@@ -27,9 +27,6 @@ import {
   RadioPage
 } from './../../pages';
 import { TabsInterface } from '../../interfaces';
-import { bindActionCreators } from 'redux';
-
-
 
 interface StateProps {
   active_tab: string

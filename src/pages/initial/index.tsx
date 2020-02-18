@@ -35,7 +35,10 @@ class HomePage extends React.Component<Props> {
               <div className="col s12">
                 <div className="row">
                   <div className="col s12">
-                    <h1 className="title album">THE <br />ULTIMATE</h1>
+                    <h1 className="title album">
+                      THE <br />
+                      ULTIMATE
+                    </h1>
                     <h2 className="subtitle album">
                       DESTINATION FOR ARTIST & FANS
                     </h2>

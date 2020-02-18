@@ -33,7 +33,7 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
       <Provider store={store}>
-        <IonApp >
+        <IonApp>
           <IonReactRouter>
             <IonRouterOutlet>
               <IonContent

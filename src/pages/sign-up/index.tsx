@@ -21,7 +21,8 @@ class SignUpPage extends React.Component<Props> {
     return (
       <BackgroundImage
         gradient="180deg, #230640 0%, #110023 100%"
-        top bottom
+        top
+        bottom
         imageTop={BackgroundCircleBlackImage}
         imageBottom={BackgroundCircleBlackImage}
         unique={false}
@@ -39,7 +40,9 @@ class SignUpPage extends React.Component<Props> {
           <div className="row ">
             <div className="col s12">
               <h1 className="title brand secondary center-align">panthr</h1>
-              <h1 className="subtitle">THE ULTIMATE DESTINATION FOR ARTIST & FANS</h1>
+              <h1 className="subtitle">
+                THE ULTIMATE DESTINATION FOR ARTIST & FANS
+              </h1>
             </div>
           </div>
 

@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
-  BackgroundCircleBrownImage , BackgroundImage, BackgroundSignInImage,
+  BackgroundCircleBrownImage,
+  BackgroundImage,
+  BackgroundSignInImage,
   InputText,
-  Button, ButtonIcon
+  Button,
+  ButtonIcon
 } from './../../components';
 import {} from './../../actions';
 import { ApplitcationState } from './../../reducers';
@@ -26,16 +29,16 @@ class SignInPage extends React.Component<Props> {
         imageBottom={BackgroundCircleBrownImage}
         imageTop={BackgroundSignInImage}
         topStyle={{ 
-          transform: "rotate(0deg)",
-          backgroundRepeat: "no-repeat",
-          backgroundPositionX: "center",
-          backgroundPositionY: "top",
-          backgroundAttachment: "fixed",
-          WebkitBackgroundSize: "cover",
-          MozBackgroundSize: "cover",
-          OBackgroundSize: "cover",
-          backgroundSize: "cover",
-          height: "100%"
+          transform: 'rotate(0deg)',
+          backgroundRepeat: 'no-repeat',
+          backgroundPositionX: 'center',
+          backgroundPositionY: 'top',
+          backgroundAttachment: 'fixed',
+          WebkitBackgroundSize: 'cover',
+          MozBackgroundSize: 'cover',
+          OBackgroundSize: 'cover',
+          backgroundSize: 'cover',
+          height: '100%'
         }}
       >
         <div className="container sign-in-page">

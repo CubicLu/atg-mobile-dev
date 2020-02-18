@@ -26,16 +26,16 @@ class SignInPage extends React.Component<Props> {
         imageBottom={BackgroundCircleBrownImage}
         imageTop={BackgroundSignInImage}
         topStyle={{ 
-          "transform": "rotate(0deg)",
-          "background-repeat": "no-repeat",
-          "background-position-x": "center",
-          "background-position-y": "top",
-          "background-attachment": "fixed",
-          "-webkit-background-size": "cover",
-          "-moz-background-size": "cover",
-          "-o-background-size": "cover",
-          "background-size": "cover",
-          "height": "100%"
+          transform: "rotate(0deg)",
+          backgroundRepeat: "no-repeat",
+          backgroundPositionX: "center",
+          backgroundPositionY: "top",
+          backgroundAttachment: "fixed",
+          WebkitBackgroundSize: "cover",
+          MozBackgroundSize: "cover",
+          OBackgroundSize: "cover",
+          backgroundSize: "cover",
+          height: "100%"
         }}
       >
         <div className="container sign-in-page">

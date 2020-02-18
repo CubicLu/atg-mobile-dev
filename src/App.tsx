@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-
 import { InitialPage, SignUpPage, EnterCodePage, SignInPage } from './pages';
 
 import { store } from './store';

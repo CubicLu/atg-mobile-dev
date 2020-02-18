@@ -1,12 +1,17 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonContent } from '@ionic/react';
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonSplitPane,
+  IonContent
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-import { InitialPage, RegisterPage, SignInPage } from './pages';
+import { InitialPage, RegisterPage, HomePage, SignInPage } from './pages';
 
 import { store } from './store';
 
@@ -33,26 +38,29 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
       <Provider store={store}>
-        <IonApp >
-          <IonReactRouter>
-            <IonRouterOutlet>
-              <IonContent
-                scrollEvents={true}
-                onIonScrollStart={(): any => {}}
-                onIonScroll={(): any => {}}
-                onIonScrollEnd={(): any => {}}
-              >
-                <Route path="/initial" component={InitialPage} exact={true} />
-                <Route path="/register" component={RegisterPage} exact={true} />
-                <Route path="/sign-in" component={SignInPage} exact={true} />
-                <Route
-                  exact
-                  path="/"
-                  render={(): any => <Redirect to="/initial" />}
-                />
-              </IonContent>
-            </IonRouterOutlet>
-          </IonReactRouter>
+        <IonApp>
+          <IonSplitPane contentId="main">
+            <IonReactRouter>
+              <IonRouterOutlet id="main">
+                <IonContent
+                  scrollEvents={true}
+                  onIonScrollStart={(): any => {}}
+                  onIonScroll={(): any => {}}
+                  onIonScrollEnd={(): any => {}}
+                >
+                  <Route path="/initial" component={InitialPage} />
+                  <Route path="/register" component={RegisterPage} />
+                  <Route path="/home" component={HomePage} />
+                  <Route path="/sign-in" component={SignInPage} exact={true} />
+                  <Route
+                    exact
+                    path="/"
+                    render={(): any => <Redirect to="/initial" />}
+                  />
+                </IonContent>
+              </IonRouterOutlet>
+            </IonReactRouter>
+          </IonSplitPane>
         </IonApp>
       </Provider>
     );

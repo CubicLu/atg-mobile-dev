@@ -1,0 +1,11 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "atg-mobile",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {},
+  "server": {
+    "url": "http://localhost:8100"
+  }
+}

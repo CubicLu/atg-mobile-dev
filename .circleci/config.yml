@@ -1,0 +1,54 @@
+# JavaScript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:12.13.1
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: 
+          name: "Install codecov"
+          command: sudo yarn global add codecov
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Check syntax
+          command: npm run lint
+
+      - run:
+          name: Run tests
+          command: npm test
+
+      - run:
+          name: Run audit
+          command: npm audit --audit-level=critical
+
+      - run:
+          name: Run tests coverage
+          command: npm run test -- --coverage && codecov -t 4e31c295-fab4-4d1e-a969-921d7048163b --disable=gcov --yml .codecov.yml

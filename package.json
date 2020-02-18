@@ -1,14 +1,11 @@
 {
-  "name": "atg-mobile",
+  "name": "react-cordova",
   "version": "0.0.1",
   "private": true,
+  "homepage": "./",
   "dependencies": {
-    "@apollo/react-hooks": "^3.1.3",
-    "@capacitor/android": "^1.4.0",
-    "@capacitor/core": "1.4.0",
-    "@capacitor/ios": "^1.4.0",
-    "@ionic/react": "^4.11.8",
-    "@ionic/react-router": "^4.11.8",
+    "@ionic/react": "^5.0.0",
+    "@ionic/react-router": "^5.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^8.0.3",
@@ -19,12 +16,18 @@
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.3",
     "cordova-android": "^8.1.0",
+<<<<<<< HEAD
     "cordova-plugin-appcenter-analytics": "^0.5.1",
     "cordova-plugin-appcenter-shared": "^0.5.1",
     "graphql": "^14.6.0",
     "ionicons": "^4.6.3",
+=======
+    "cordova-ios": "^5.1.1",
+    "cordova-plugin-device": "^2.0.3",
+    "ionicons": "^5.0.0",
+    "lodash": "^4.17.15",
+>>>>>>> 43f0520c31844d65137affd0df36e3c473224e61
     "materialize-css": "^1.0.0",
-    "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
@@ -40,7 +43,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint './src/**/*.{ts,tsx}'"
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "emulator:android": "cordova run android",
+    "emulator:ios": "cordova run ios",
+    "build:ionic": "ionic build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,8 +63,15 @@
       "last 1 safari version"
     ]
   },
+  "description": "An Ionic project",
   "devDependencies": {
-    "@capacitor/cli": "1.4.0",
+    "cordova-plugin-ionic-keyboard": "^2.0.5",
+    "cordova-plugin-ionic-webview": "^4.0.0",
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-whitelist": "^1.3.4",
+    "node-sass": "^4.13.1",
+    "@types/lodash": "^4.14.149",
     "@types/react-redux": "^7.1.7",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
@@ -73,13 +86,17 @@
     "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.16.4"
   },
+<<<<<<< HEAD
   "description": "An Ionic project",
+=======
+>>>>>>> 43f0520c31844d65137affd0df36e3c473224e61
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
+<<<<<<< HEAD
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
@@ -87,6 +104,14 @@
     },
     "platforms": [
       "android"
+=======
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "android",
+      "ios"
+>>>>>>> 43f0520c31844d65137affd0df36e3c473224e61
     ]
   }
 }

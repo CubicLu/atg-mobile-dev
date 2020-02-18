@@ -17,13 +17,12 @@ class ButtonIconComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    
     return (
       <button
         onClick={this.props.onClick.bind(this)}
         className={`btn icon circle`}
       >
-         <i className="material-icons">x</i>
+        <i className="material-icons">x</i>
       </button>
     );
   }

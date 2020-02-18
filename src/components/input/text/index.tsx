@@ -10,10 +10,6 @@ interface Props {
 class InputTextComponent extends React.Component<Props> {
   public static defaultProps = {};
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return <input {...this.props} className="input text" />;
   }

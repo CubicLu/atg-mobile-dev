@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
 import {} from './../../components';
 import {} from './../../actions';
 import { ApplitcationState } from './../../reducers';
+import { IonContent, IonPage } from '@ionic/react';
 
 interface Props extends RouteComponentProps {}
 
-class BlankPage extends React.Component<Props> {
+class MessagesPage extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
   render(): React.ReactNode {
     return (
-      <IonPage id="blank-page">
+      <IonPage id="messages-page">
         <IonContent
           scrollY={true}
           scrollEvents={true}
@@ -24,7 +24,7 @@ class BlankPage extends React.Component<Props> {
           onIonScrollEnd={(): any => {}}
           style={{ overflow: 'auto' }}
         >
-          blank
+          messages
         </IonContent>
       </IonPage>
     );
@@ -35,4 +35,4 @@ const mapStateToProps = ({}: ApplitcationState): object => {
   return {};
 };
 
-export default withRouter(connect(mapStateToProps, {})(BlankPage));
+export default withRouter(connect(mapStateToProps, {})(MessagesPage));

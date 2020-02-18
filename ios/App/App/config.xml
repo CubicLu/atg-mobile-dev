@@ -12,8 +12,5 @@
     <param name="onload" value="true"/>
   </feature>
 
-  <platform name="ios">
-    <preference name="APP_SECRET" value="9a9dc29e-17b2-48ef-b9c2-d63adafe6331" />
-  </platform>
   
 </widget>

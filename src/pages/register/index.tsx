@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
-  BackgroundCirclesImage,
+  BackgroundCircleBlackImage,
   Button,
   InputText
 } from './../../components';
@@ -20,8 +20,11 @@ class RegisterPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <BackgroundImage
-        gradient="180deg, #230640 0%, #230640 100%"
-        image={BackgroundCirclesImage}
+        gradient="180deg, #230640 0%, #110023 100%"
+        top bottom
+        imageTop={BackgroundCircleBlackImage}
+        imageBottom={BackgroundCircleBlackImage}
+        unique={false}
       >
         <div className="container register-page">
           <div className="row ">

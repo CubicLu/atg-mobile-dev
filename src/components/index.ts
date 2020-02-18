@@ -1,14 +1,26 @@
 import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
+import ButtonIconComponent from './button/icon'
 
 export {
   ButtonComponent as Button,
   BackgroundImageComponent as BackgroundImage,
-  InputTextComponent as InputText
+  InputTextComponent as InputText,
+  ButtonIconComponent as ButtonIcon
 };
 
-import BackgroundInitialImage from './../assets/img/background/initial/1.png';
-import BackgroundCirclesImage from './../assets/img/background/circles/1.png';
+const BackgroundInitialImage = require('./../assets/img/background/initial/1.png');
+const BackgroundSignInImage = require('./../assets/img/background/sign-in/1.png');
 
-export { BackgroundInitialImage, BackgroundCirclesImage };
+const BackgroundCircleWhiteImage = require('./../assets/img/background/circles/white.png');
+const BackgroundCircleBrownImage = require('./../assets/img/background/circles/brown.png');
+const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circles/dark-gray.png');
+const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
+const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
+
+export { 
+  BackgroundInitialImage, BackgroundCircleWhiteImage, BackgroundCircleBrownImage,
+  BackgroundCircleDarkGrayImage, BackgroundCircleBlackImage, BackgroundCircleSteelBlueImage,
+  BackgroundSignInImage
+};

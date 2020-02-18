@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-import { InitialPage, RegisterPage } from './pages';
+import { InitialPage, RegisterPage, SignInPage } from './pages';
 
 import { store } from './store';
 
@@ -33,7 +33,7 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
       <Provider store={store}>
-        <IonApp>
+        <IonApp >
           <IonReactRouter>
             <IonRouterOutlet>
               <IonContent
@@ -44,6 +44,7 @@ class App extends React.Component {
               >
                 <Route path="/initial" component={InitialPage} exact={true} />
                 <Route path="/register" component={RegisterPage} exact={true} />
+                <Route path="/sign-in" component={SignInPage} exact={true} />
                 <Route
                   exact
                   path="/"

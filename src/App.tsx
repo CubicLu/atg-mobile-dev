@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-import { InitialPage, SignUpPage, EnterCodePage } from './pages';
+
+import { InitialPage, SignUpPage, EnterCodePage, SignInPage } from './pages';
 
 import { store } from './store';
 
@@ -45,6 +46,7 @@ class App extends React.Component {
                 <Route path="/initial" component={InitialPage} exact={true} />
                 <Route path="/sign-up" component={SignUpPage} exact={true} />
                 <Route path="/enter-code" component={EnterCodePage} exact={true} />
+                <Route path="/sign-in" component={SignInPage} exact={true} />
                 <Route
                   exact
                   path="/"

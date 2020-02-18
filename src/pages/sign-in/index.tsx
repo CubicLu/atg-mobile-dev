@@ -80,7 +80,7 @@ class SignInPage extends React.Component<Props> {
             
             <div className="row header">
               <div className="col s12">
-                <a className="btn transparent rounded-tooltip" onClick={() => this.props.history.push("/register")}>
+                <a className="btn transparent rounded-tooltip" onClick={() => this.props.history.push("/sign-up")}>
                   <div>r</div>
                   <div>Register</div>
                 </a>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
-  BackgroundCirclesImage,
+  BackgroundCircleDarkGrayImage,
   Button,
   InputCode
 } from './../../components';
@@ -23,7 +23,10 @@ class EnterCodePage extends React.Component<Props> {
       <IonPage id="enter-code-page">
         <BackgroundImage
           gradient="180deg, #000 0%, #000 100%"
-          image={BackgroundCirclesImage}
+          top bottom
+          imageTop={BackgroundCircleDarkGrayImage}
+          imageBottom={BackgroundCircleDarkGrayImage}
+          unique={false}
         >
           <div className="container enter-code-page">
             <div className="row ">

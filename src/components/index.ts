@@ -2,12 +2,14 @@ import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
 import InputCodeComponent from './input/code';
+import ButtonIconComponent from './button/icon';
 
 export {
   ButtonComponent as Button,
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
-  InputCodeComponent as InputCode
+  InputCodeComponent as InputCode,
+  ButtonIconComponent as ButtonIcon
 };
 
 const BackgroundInitialImage = require('./../assets/img/background/initial/1.png');

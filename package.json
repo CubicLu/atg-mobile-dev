@@ -60,16 +60,16 @@
     "@types/react-redux": "^7.1.7",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-ionic-keyboard": "^2.0.5",
+    "cordova-plugin-ionic-webview": "^4.0.0",
+    "cordova-plugin-splashscreen": "~5.0.2",
+    "cordova-plugin-statusbar": "~2.4.2",
+    "cordova-plugin-whitelist": "1",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "^1.16.4",
-    "cordova-plugin-whitelist": "1",
-    "cordova-plugin-device": "^2.0.3",
-    "cordova-plugin-statusbar": "~2.4.2",
-    "cordova-plugin-splashscreen": "~5.0.2",
-    "cordova-plugin-ionic-webview": "^4.0.0",
-    "cordova-plugin-ionic-keyboard": "^2.0.5"
+    "prettier": "^1.16.4"
   },
   "description": "An Ionic project",
   "cordova": {

@@ -58,7 +58,7 @@ class HomePage extends React.Component<Props> {
                       label="Create an account"
                       color="transparent"
                       full
-                      onClick={(): any => this.props.history.push('/register')}
+                      onClick={(): any => this.props.history.push('/sign-up')}
                     />
                   </div>
                 </div>

@@ -1,4 +1,5 @@
 import InitialPage from './initial';
-import RegisterPage from './register';
+import SignUpPage from './sign-up';
+import EnterCodePage from './enter-code';
 
-export { InitialPage, RegisterPage };
+export { InitialPage, SignUpPage, EnterCodePage };

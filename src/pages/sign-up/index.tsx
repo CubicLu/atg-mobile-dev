@@ -12,7 +12,7 @@ import { ApplitcationState } from '../../reducers';
 
 interface Props extends RouteComponentProps {}
 
-class RegisterPage extends React.Component<Props> {
+class SignUpPage extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
@@ -75,7 +75,7 @@ class RegisterPage extends React.Component<Props> {
                 full
                 bold
                 gradient
-                onClick={(): any => this.props.history.push('/register')}
+                onClick={(): any => this.props.history.push('/enter-code')}
               />
             </div>
           </div>
@@ -89,4 +89,4 @@ const mapStateToProps = ({}: ApplitcationState): object => {
   return {};
 };
 
-export default withRouter(connect(mapStateToProps, {})(RegisterPage));
+export default withRouter(connect(mapStateToProps, {})(SignUpPage));

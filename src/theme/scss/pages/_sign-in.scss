@@ -1,0 +1,28 @@
+.sign-in-page{
+    height: 100%;
+
+    .form{
+        margin-top: 20%;
+    }
+    
+    .title{
+        font-size: 3em;
+        margin-top: 0;
+    }
+    .link { 
+        font-size: 1em;
+        color: #6F6F6F;
+    }
+
+    .header{
+        margin-top: 2.5em;
+        display: flex;
+        align-items: center;
+        .button{
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+    }
+    
+}

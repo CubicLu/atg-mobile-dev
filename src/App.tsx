@@ -6,7 +6,11 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
+<<<<<<< HEAD
 import { InitialPage, SignUpPage, EnterCodePage } from './pages';
+=======
+import { InitialPage, RegisterPage, SignInPage } from './pages';
+>>>>>>> a62b7e9ec0fdd76c55dd5a9b4ab7a31bec745b06
 
 import { store } from './store';
 
@@ -33,7 +37,7 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
       <Provider store={store}>
-        <IonApp>
+        <IonApp >
           <IonReactRouter>
             <IonRouterOutlet>
               <IonContent
@@ -43,8 +47,13 @@ class App extends React.Component {
                 onIonScrollEnd={(): any => {}}
               >
                 <Route path="/initial" component={InitialPage} exact={true} />
+<<<<<<< HEAD
                 <Route path="/sign-up" component={SignUpPage} exact={true} />
                 <Route path="/enter-code" component={EnterCodePage} exact={true} />
+=======
+                <Route path="/register" component={RegisterPage} exact={true} />
+                <Route path="/sign-in" component={SignInPage} exact={true} />
+>>>>>>> a62b7e9ec0fdd76c55dd5a9b4ab7a31bec745b06
                 <Route
                   exact
                   path="/"

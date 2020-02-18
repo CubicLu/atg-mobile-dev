@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-import {  SettingsReducerType, settingsReducer } from "./settings"
-
+import { SettingsReducerType, settingsReducer } from './settings';
 
 export interface ApplitcationState {
-    settings: SettingsReducerType
+  settings: SettingsReducerType;
 }
 
 export const rootReducers = combineReducers<ApplitcationState>({
-    settings: settingsReducer
+  settings: settingsReducer
 });

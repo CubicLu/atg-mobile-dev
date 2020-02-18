@@ -79,7 +79,9 @@ class SignInPage extends React.Component<Props> {
                           full
                           color="primary"
                           gradient
-                          onClick={(): any => this.props.history.push('/home/feed')}
+                          onClick={(): any => {
+                            this.props.history.push('/home/feed');
+                          }}
                         />
                       </div>
                     </div>

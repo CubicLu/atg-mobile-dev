@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-import { InitialPage, RegisterPage, HomePage, SignInPage } from './pages';
+import { InitialPage, SignUpPage, HomePage, SignInPage } from './pages';
 
 import { store } from './store';
 
@@ -49,7 +49,7 @@ class App extends React.Component {
                   onIonScrollEnd={(): any => {}}
                 >
                   <Route path="/initial" component={InitialPage} />
-                  <Route path="/sign-up" component={RegisterPage} />
+                  <Route path="/sign-up" component={SignUpPage} />
                   <Route path="/home" component={HomePage} />
                   <Route path="/sign-in" component={SignInPage} exact={true} />
                   <Route

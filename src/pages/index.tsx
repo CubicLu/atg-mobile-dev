@@ -1,5 +1,5 @@
 import InitialPage from './initial';
-import RegisterPage from './register';
+import SignUpPage from './sign-up';
 import HomePage from './home';
 import FeedPage from './feed';
 import MessagesPage from './messages';
@@ -10,7 +10,7 @@ import RadioPage from './radio';
 
 export {
   InitialPage,
-  RegisterPage,
+  SignUpPage,
   HomePage,
   FeedPage,
   MessagesPage,

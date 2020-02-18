@@ -2,13 +2,18 @@
     height: 100%;
     .title{ 
         &.album{
-            font-size: 58px;
+            font-size: 80px;
+            line-height: 70px;
+            font-family: "Industria";
+            font-weight: 600;
         }
     }
 
     .subtitle{ 
+        font-family: "Industria";
+        font-weight: 600;
         &.album{
-            font-size: 1em;
+            font-size: 25px;
             margin-left: 0px;
         }
     }

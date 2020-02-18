@@ -88,7 +88,7 @@ class RegisterPage extends React.Component<Props> {
                     color="primary"
                     full
                     gradient
-                    onClick={(): any => this.props.history.push('/register')}
+                    onClick={(): any => this.props.history.push('/sign-up')}
                   />
                 </div>
               </div>

@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import _ from 'lodash';
 import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
+import InputCodeComponent from './input/code';
 import ButtonIconComponent from './button/icon';
 import TabComponent from './tab';
 
@@ -12,7 +14,8 @@ export {
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
   ButtonIconComponent as ButtonIcon,
-  TabComponent as Tab
+  TabComponent as Tab,
+  InputCodeComponent as InputCode
 };
 
 export { _ };

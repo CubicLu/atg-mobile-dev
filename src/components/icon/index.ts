@@ -5,9 +5,9 @@ import ProfileIcon from './profile';
 import SearchIcon from './search';
 
 export {
-    MessageIcon,
-    PhoneWithHeadsetIcon,
-    RadioIcon,
-    ProfileIcon,
-    SearchIcon
-}
+  MessageIcon,
+  PhoneWithHeadsetIcon,
+  RadioIcon,
+  ProfileIcon,
+  SearchIcon
+};

@@ -1,18 +1,26 @@
-import { Action, ActionType } from "./../interfaces";
-import createReducer from "./createReducer";
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { Action, ActionType } from './../interfaces';
+import createReducer from './createReducer';
 
 export interface SettingsReducerType {
-  active_tab: string;
+  activeTab: string;
 }
 
 const defaultState: SettingsReducerType = {
-  active_tab: "feed"
+  activeTab: 'feed'
 };
 
-export const settingsReducer = createReducer<SettingsReducerType>(defaultState, {
-  [ActionType.UPDATE_SETTINGS_PROPERTY](state: SettingsReducerType, action: Action<any>) {
-    return {
-      ...state, [action.payload.property]:  action.payload.value
-    };
+export const settingsReducer = createReducer<SettingsReducerType>(
+  defaultState,
+  {
+    [ActionType.UPDATE_SETTINGS_PROPERTY](
+      state: SettingsReducerType,
+      action: Action<any>
+    ) {
+      return {
+        ...state,
+        [action.payload.property]: action.payload.value
+      };
+    }
   }
-});
+);

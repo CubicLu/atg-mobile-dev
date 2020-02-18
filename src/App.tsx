@@ -7,7 +7,11 @@ import { Provider } from 'react-redux';
 import './theme/scss/_styles.scss';
 
 
+<<<<<<< HEAD
 import { InitialPage, SignUpPage, EnterCodePage, SignInPage } from './pages';
+=======
+import { InitialPage, SignUpPage, EnterCodePage } from './pages';
+>>>>>>> 0a9a45d1450ea34a542404f0cb316898914f055c
 
 import { store } from './store';
 

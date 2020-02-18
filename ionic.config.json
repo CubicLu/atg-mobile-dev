@@ -1,7 +1,11 @@
 {
-  "name": "atg-mobile",
+  "name": "react-cordova",
   "integrations": {
-    "capacitor": {}
+    "cordova": {
+    }
   },
-  "type": "react"
+  "type": "react",
+  "hooks": {
+    "build:after": "./scripts/build-after.js"
+  }
 }

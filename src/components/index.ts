@@ -11,6 +11,16 @@ export {
 };
 
 const BackgroundInitialImage = require('./../assets/img/background/initial/1.png');
-const BackgroundCirclesImage = require('./../assets/img/background/circles/1.png');
+const BackgroundSignInImage = require('./../assets/img/background/sign-in/1.png');
 
-export { BackgroundInitialImage, BackgroundCirclesImage };
+const BackgroundCircleWhiteImage = require('./../assets/img/background/circles/white.png');
+const BackgroundCircleBrownImage = require('./../assets/img/background/circles/brown.png');
+const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circles/dark-gray.png');
+const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
+const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
+
+export { 
+  BackgroundInitialImage, BackgroundCircleWhiteImage, BackgroundCircleBrownImage,
+  BackgroundCircleDarkGrayImage, BackgroundCircleBlackImage, BackgroundCircleSteelBlueImage,
+  BackgroundSignInImage
+};

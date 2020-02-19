@@ -17,7 +17,8 @@
       "@typescript-eslint/explicit-member-accessibility": "off",
       "@typescript-eslint/no-empty-interface": "off",
       "@typescript-eslint/no-explicit-any": "off",
-      "no-empty-pattern": "off"
+      "no-empty-pattern": "off",
+      "jsx-a11y/anchor-is-valid": "off"
     },
     "settings": {
       "react": {

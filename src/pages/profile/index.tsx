@@ -1,18 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { IonPage, IonContent } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {} from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from './../../reducers';
 
 interface Props extends RouteComponentProps {}
 
 class ProfilePage extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <IonPage id="radio-page">
@@ -31,8 +25,4 @@ class ProfilePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplitcationState): object => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, {})(ProfilePage));
+export default withRouter(ProfilePage);

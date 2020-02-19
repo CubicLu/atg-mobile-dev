@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {
@@ -9,15 +8,10 @@ import {
   InputText
 } from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from '../../reducers';
 
 interface Props extends RouteComponentProps {}
 
-class RegisterPage extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+class SignUpPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="register-page">
@@ -100,8 +94,4 @@ class RegisterPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplitcationState): object => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, {})(RegisterPage));
+export default withRouter(SignUpPage);

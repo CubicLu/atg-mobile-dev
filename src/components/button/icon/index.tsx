@@ -12,10 +12,6 @@ class ButtonIconComponent extends React.Component<Props> {
     onClick: (): any => {}
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <button

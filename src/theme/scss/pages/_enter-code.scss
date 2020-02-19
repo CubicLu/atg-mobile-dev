@@ -1,0 +1,29 @@
+.enter-code-page{
+
+    .title{
+        font-size: 48px;
+    }
+    p{
+        color: #FFF;
+        font-size: 15px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+
+        &.didnt-receive{
+            font-size: 13px;
+            color: #9B9C9D;
+        }
+    }
+
+    .input-div{
+        padding-left: 30px;
+        padding-right: 30px;
+
+        input { 
+            color: #757575;
+            letter-spacing: 0.2em;
+            text-align: center;
+        }
+    }
+    
+}

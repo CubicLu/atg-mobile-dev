@@ -1,39 +1,70 @@
-
-input:not([type]), 
-input[type=text]:not(.browser-default), 
-input[type=password]:not(.browser-default), 
-input[type=email]:not(.browser-default), 
-input[type=url]:not(.browser-default), 
-input[type=time]:not(.browser-default), 
-input[type=date]:not(.browser-default), 
-input[type=datetime]:not(.browser-default), 
-input[type=datetime-local]:not(.browser-default), 
-input[type=tel]:not(.browser-default), 
-input[type=number]:not(.browser-default), 
-input[type=search]:not(.browser-default) {
-    &.input {
-        font-family: Arial, Helvetica, sans-serif;
-        @include placeholder {
-            color: #707087;
-            font-size: $font-size-input;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        text-indent: 10px;
-        background: #fff;
-        border-radius: 2px;
-        font-size: $font-size-input;
-        
-        &.text {
-
-        }
-
-        &:focus {
-            border-bottom: none;
-            box-shadow: none;
-        }
-
-       
+input:not([type]),
+input[type="text"]:not(.browser-default),
+input[type="password"]:not(.browser-default),
+input[type="email"]:not(.browser-default),
+input[type="url"]:not(.browser-default),
+input[type="time"]:not(.browser-default),
+input[type="date"]:not(.browser-default),
+input[type="datetime"]:not(.browser-default),
+input[type="datetime-local"]:not(.browser-default),
+input[type="tel"]:not(.browser-default),
+input[type="number"]:not(.browser-default),
+input[type="search"]:not(.browser-default) {
+  &.input {
+    font-family: Arial, Helvetica, sans-serif;
+    @include placeholder {
+      color: #707087;
+      font-size: $font-size-input;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
+    text-indent: 10px;
+    background: #fff;
+    border-radius: 2px;
+    font-size: $font-size-input;
+
+    &.text {
+    }
+
+    &:focus {
+      border-bottom: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.input-group {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 5px;
+  height: 4em;
+  > div {
+    display: table-cell;
+    border: none;
+    vertical-align: middle; /* needed for Safari */
+    border-radius: 0px 5px 5px 0px;
+  }
+
+  input {
+    border: 0;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 35px !important;
+    height: auto;
+    height: 1.6em !important;
+    margin-bottom: 0 !important;
+    border: none !important;
+    border-radius: 5px 0px 0px 5px !important;
+  }
+}
+
+.input-group-icon {
+  background: #FFF;
+  color: #777;
+  padding: 0 12px;
+}
+.input-group-area {
+  width: 100%;
 }

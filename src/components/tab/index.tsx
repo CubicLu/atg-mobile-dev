@@ -47,7 +47,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/feed',
         icon: (
           <PhoneWithHeadsetIcon
-            color={this.props.activeTab == 'feed' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'feed' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'feed',
@@ -58,7 +58,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/messages',
         icon: (
           <MessageIcon
-            color={this.props.activeTab == 'messages' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'messages' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'messages',
@@ -68,7 +68,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/profile',
         icon: (
           <ProfileIcon
-            color={this.props.activeTab == 'profile' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'profile' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'profile',
@@ -78,7 +78,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/search',
         icon: (
           <SearchIcon
-            color={this.props.activeTab == 'search' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'search' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'search',
@@ -88,14 +88,14 @@ class TabComponent extends React.Component<Props> {
         path: '/home/radio',
         icon: (
           <RadioIcon
-            color={this.props.activeTab == 'radio' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'radio' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'radio',
         component: RadioPage
       }
     ];
-    let redirectIndex = _.findIndex(tabs, (x): any => x.redirect == true);
+    let redirectIndex = _.findIndex(tabs, (x): any => x.redirect === true);
 
     return (
       <IonTabs

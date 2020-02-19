@@ -9,10 +9,6 @@ import { IonContent, IonPage } from '@ionic/react';
 interface Props extends RouteComponentProps {}
 
 class FeedPage extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <IonPage id="feed-page">

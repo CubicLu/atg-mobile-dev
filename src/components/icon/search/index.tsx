@@ -15,10 +15,6 @@ class SearchIcon extends React.Component<Props> {
     height: 24
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <svg

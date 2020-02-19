@@ -15,10 +15,6 @@ class ProfileIcon extends React.Component<Props> {
     height: 32
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <svg

@@ -14,9 +14,6 @@ class RadioIcon extends React.Component<Props> {
     width: 35,
     height: 24
   };
-  constructor(props: Props) {
-    super(props);
-  }
 
   render(): React.ReactNode {
     return (

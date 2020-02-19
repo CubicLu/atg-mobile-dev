@@ -68,7 +68,9 @@ class SignInPage extends React.Component<Props> {
                     <div className="row ">
                       <div className="col s12">
                         <InputText type="text" placeholder={'Password'} />
-                        <a className="link">Forgot your password?</a>
+                        <button className="btn transparent link">
+                          Forgot your password?
+                        </button>
                       </div>
                     </div>
 
@@ -89,14 +91,14 @@ class SignInPage extends React.Component<Props> {
                 </div>
 
                 <div className="row header">
-                  <div className="col s12">
-                    <a
+                  <div className="col s12 justify-center">
+                    <button
                       className="btn transparent rounded-tooltip"
                       onClick={(): any => this.props.history.push('/sign-up')}
                     >
                       <div>r</div>
                       <div>Register</div>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

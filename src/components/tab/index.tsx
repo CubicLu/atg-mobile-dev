@@ -37,10 +37,6 @@ interface DispatchProps {
 interface Props extends StateProps, DispatchProps {}
 
 class TabComponent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     let tabs: TabsInterface[] = [
       {

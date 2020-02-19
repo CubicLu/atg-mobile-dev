@@ -19,10 +19,6 @@ class ButtonComponent extends React.Component<Props> {
     bold: false
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     let gradient = this.props.gradient ? 'gradient' : '';
     let full = this.props.full ? 'full' : '';

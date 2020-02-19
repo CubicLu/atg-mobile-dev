@@ -25,10 +25,6 @@ class BackgroundImageComponent extends React.Component<Props> {
     bottom: false
   };
 
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     let shadow = this.props.shadow ? 'shadow' : '';
     let gradient =

@@ -29,3 +29,15 @@
     justify-content: center;    
 }
 
+.message {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    &.warning{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+}
+
+.text-center {
+    text-align: center;
+}

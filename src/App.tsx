@@ -11,7 +11,14 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-import { InitialPage, SignUpPage, HomePage, SignInPage } from './pages';
+import {
+  InitialPage,
+  SignUpPage,
+  HomePage,
+  SignInPage,
+  EnterCodePage,
+  SignUpConfirmPage
+} from './pages';
 
 import { store } from './store';
 
@@ -52,6 +59,11 @@ class App extends React.Component {
                   <Route path="/sign-up" component={SignUpPage} />
                   <Route path="/home" component={HomePage} />
                   <Route path="/sign-in" component={SignInPage} exact={true} />
+                  <Route path="/enter-code" component={EnterCodePage} />
+                  <Route
+                    path="/sign-up-confirm"
+                    component={SignUpConfirmPage}
+                  />
                   <Route
                     exact
                     path="/"

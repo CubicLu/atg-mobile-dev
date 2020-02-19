@@ -11,7 +11,7 @@ class ButtonIconComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {}
   };
-  
+
   render(): React.ReactNode {
     return (
       <button

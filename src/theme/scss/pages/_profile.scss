@@ -1,0 +1,10 @@
+.profile-page{
+    @include page;
+
+    .artist-list{
+        background: transparent;
+        .row{
+            margin-bottom: 0;
+        }
+    }
+}

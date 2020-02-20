@@ -4,21 +4,23 @@ import {} from './../../../actions';
 
 interface Props {
   onClick: Function;
-  icon: string;
+  icon: any;
+  color?: 'transparent' | 'green' | 'transparent-gray' | 'support';
 }
 
 class ButtonIconComponent extends React.Component<Props> {
   public static defaultProps = {
-    onClick: (): any => {}
+    onClick: (): any => {},
+    color: 'transparent-gray'
   };
 
   render(): React.ReactNode {
     return (
       <button
         onClick={this.props.onClick.bind(this)}
-        className={`btn icon circle`}
+        className={`btn icon circle ${this.props.color}`}
       >
-        <i className="material-icons">x</i>
+        {this.props.icon}
       </button>
     );
   }

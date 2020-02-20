@@ -43,8 +43,10 @@ class SignUpPage extends React.Component<Props> {
               </div>
               <div className="row ">
                 <div className="col s12">
-                  <h1 className="title secondary center-align">panthr</h1>
-                  <h1 className="subtitle">THE ULTIMATE</h1>
+                  <h1 className="title secondary center-align brand">panthr</h1>
+                  <h1 className="subtitle">
+                    THE ULTIMATE DESTINATION FOR ARTIST & FANS
+                  </h1>
                 </div>
               </div>
 

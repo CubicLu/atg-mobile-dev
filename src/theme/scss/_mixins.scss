@@ -4,3 +4,9 @@
   &::-moz-placeholder          {@content}
   &:-ms-input-placeholder      {@content}  
 }
+
+@mixin page {
+  z-index: 1;
+  position: relative;
+  height: 100%;
+}

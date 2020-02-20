@@ -31,15 +31,19 @@ class InitialPage extends React.Component<Props> {
               <div className="space-between">
                 <div className="row">
                   <div className="col s12">
-                    <h1 className="title secondary">panthr</h1>
-                    <h2 className="subtitle">ARTIST - </h2>
+                    <h1 className="title secondary brand">panthr</h1>
+                    <h2 className="subtitle">ARTIST-TO-FAN</h2>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col s12">
                     <div className="row">
                       <div className="col s12">
-                        <h1 className="title album">THE ULTIMATE</h1>
+                        <h1 className="title album">
+                          THE
+                          <br />
+                          ULTIMATE
+                        </h1>
                         <h2 className="subtitle album">
                           DESTINATION FOR ARTIST & FANS
                         </h2>

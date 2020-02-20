@@ -14,3 +14,9 @@ export interface TabsInterface {
   component: any;
   redirect?: boolean;
 }
+
+export interface ArtistInterface {
+  cover: string | undefined;
+  name: string;
+  support: boolean;
+}

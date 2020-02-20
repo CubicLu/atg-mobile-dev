@@ -7,7 +7,8 @@ import {
   BackgroundSignInImage,
   InputText,
   Button,
-  ButtonIcon
+  ButtonIcon,
+  CloseIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -53,7 +54,7 @@ class SignInPage extends React.Component<Props> {
                   </div>
                   <div className="col s4 button">
                     <ButtonIcon
-                      icon="close"
+                      icon={<CloseIcon />}
                       onClick={(): any => this.props.history.goBack()}
                     />
                   </div>

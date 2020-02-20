@@ -6,6 +6,10 @@ import InputTextComponent from './input/text';
 import InputCodeComponent from './input/code';
 import ButtonIconComponent from './button/icon';
 import TabComponent from './tab';
+import HeaderProfileComponent from './header/profile';
+import AvatarComponent from './avatar';
+import MenuProfileComponent from './menu/profile';
+import CardArtistComponent from './card/artist';
 
 export * from './icon';
 
@@ -15,7 +19,11 @@ export {
   InputTextComponent as InputText,
   ButtonIconComponent as ButtonIcon,
   TabComponent as Tab,
-  InputCodeComponent as InputCode
+  InputCodeComponent as InputCode,
+  HeaderProfileComponent as HeaderProfile,
+  AvatarComponent as Avatar,
+  MenuProfileComponent as MenuProfile,
+  CardArtistComponent as CardArtist
 };
 
 export { _ };
@@ -29,6 +37,9 @@ const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circle
 const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
 const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
 
+const ArtistLmfaoImage = require('./../assets/img/artists/lmfao.png');
+const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell_williams.png');
+
 export {
   BackgroundInitialImage,
   BackgroundCircleWhiteImage,
@@ -36,5 +47,7 @@ export {
   BackgroundCircleDarkGrayImage,
   BackgroundCircleBlackImage,
   BackgroundCircleSteelBlueImage,
-  BackgroundSignInImage
+  BackgroundSignInImage,
+  ArtistPharrellWilliamsImage,
+  ArtistLmfaoImage
 };

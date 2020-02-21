@@ -92,7 +92,6 @@ class TabComponent extends React.Component<Props> {
       }
     ];
     let redirectIndex = _.findIndex(tabs, (x): any => x.redirect === true);
-
     return (
       <IonTabs
         onIonTabsWillChange={(event): void => {

@@ -10,6 +10,7 @@ input[type="datetime-local"]:not(.browser-default),
 input[type="tel"]:not(.browser-default),
 input[type="number"]:not(.browser-default),
 input[type="search"]:not(.browser-default) {
+  border-bottom: none;
   &.input {
     font-family: Arial, Helvetica, sans-serif;
     @include placeholder {

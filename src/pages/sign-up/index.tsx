@@ -14,7 +14,7 @@ interface Props extends RouteComponentProps {}
 class SignUpPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <IonPage id="register-page">
+      <IonPage id="sign-up-page">
         <IonContent
           scrollY={true}
           scrollEvents={true}
@@ -31,7 +31,7 @@ class SignUpPage extends React.Component<Props> {
             imageBottom={BackgroundCircleBlackImage}
             unique={false}
           >
-            <div className="container register-page">
+            <div className="container sign-up-page">
               <div className="row ">
                 <div className="col s12 right-align mt-20">
                   <Button
@@ -84,7 +84,7 @@ class SignUpPage extends React.Component<Props> {
                     color="primary"
                     full
                     gradient
-                    onClick={(): any => this.props.history.push('/sign-up')}
+                    onClick={(): any => this.props.history.push('/enter-code')}
                   />
                 </div>
               </div>

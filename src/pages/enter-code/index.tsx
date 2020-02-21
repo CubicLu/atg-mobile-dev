@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
@@ -8,14 +7,31 @@ import {
   InputCode
 } from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from '../../reducers';
 import { IonPage } from '@ionic/react';
 
+interface State {
+  isValid: boolean;
+}
 interface Props extends RouteComponentProps {}
 
-class EnterCodePage extends React.Component<Props> {
+class EnterCodePage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.state = {
+      isValid: true
+    };
+  }
+
+  validToken(event: any): void {
+    const token: string = event.target.value;
+    if (this.state.isValid === false) this.setState({ isValid: true });
+    if (token.length === 6) {
+      if (token === '123456') {
+        this.props.history.push('/sign-up-confirm');
+      } else {
+        this.setState({ isValid: false });
+      }
+    }
   }
 
   render(): React.ReactNode {
@@ -52,7 +68,10 @@ class EnterCodePage extends React.Component<Props> {
             <div className="row">
               <div className="col s12  mt-40 input-div">
                 <p>Enter the 6-digit code</p>
-                <InputCode />
+                <InputCode
+                  onKeyUp={this.validToken.bind(this)}
+                  isValid={this.state.isValid}
+                />
               </div>
             </div>
 
@@ -70,8 +89,4 @@ class EnterCodePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplitcationState): object => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, {})(EnterCodePage));
+export default withRouter(EnterCodePage);

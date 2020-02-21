@@ -23,7 +23,11 @@
 @import './components/typography';
 @import './components/input';
 @import './components/tabs';
-
+@import './components/header';
+@import './components/avatar';
+@import './components/list';
+@import './components/menu';
+@import './components/card';
 
 /* pages */
 
@@ -32,3 +36,4 @@
 @import './pages/enter-code';
 @import './pages/sign-in';
 @import './pages/sign-up-confirm';
+@import './pages/profile';

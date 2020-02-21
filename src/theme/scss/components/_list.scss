@@ -1,0 +1,17 @@
+ul{
+    &.list{
+        &.inline{
+            list-style: none;
+            display: inline-flex;
+            margin-top: 0;
+            margin-bottom: 0;
+            &.flex-end{
+                justify-content: flex-end;
+                width: 100%;
+            }
+            li {
+                margin-right: 10px;
+            }
+        }
+    }
+}

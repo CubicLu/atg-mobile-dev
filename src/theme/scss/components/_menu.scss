@@ -1,0 +1,59 @@
+.menu{
+    &.profile{
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 20px;
+        margin-top: 30px !important;
+        
+        li{
+            margin-right: 0 !important;
+            text-align: center;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+
+            .circle{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                span{
+                    border-radius: 50%;
+                    height: 35px;
+                    width: 35px;
+                    align-items: center;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    background-color: #E0E8CB;
+                    font-family: "Industria";
+                    font-weight: 600;
+                    font-size: 30px;
+                }
+            }
+            .title{
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                font-size: 14px;
+                margin-top: 10px !important;
+                font-weight: 400;
+                border-bottom: 2px solid transparent;
+            }
+
+            &.active{
+                .title{
+                    font-weight: bold;
+                    border-bottom: 2px;
+                    border-bottom: 2px solid $tertiary;
+                    color: $tertiary;
+                }
+
+                .circle{
+                    span{
+                        background: $tertiary;
+                    }
+                }
+            }
+        }
+    }
+}

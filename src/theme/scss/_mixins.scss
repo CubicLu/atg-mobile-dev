@@ -5,12 +5,6 @@
   &:-ms-input-placeholder      {@content}  
 }
 
-@mixin page {
-  z-index: 1;
-  position: relative;
-  height: 100%;
-}
-
 @mixin header-with-button {
   margin-top: 2.5em;
   display: flex;
@@ -19,4 +13,10 @@
       display: flex;
       justify-content: flex-end;
   }
+}
+
+@mixin page {
+  z-index: 1;
+  position: relative;
+  height: 100%;
 }

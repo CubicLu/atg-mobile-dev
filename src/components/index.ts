@@ -52,8 +52,8 @@ export {
   BackgroundCircleBlackImage,
   BackgroundCircleSteelBlueImage,
   BackgroundSignInImage,
+  BackgroundSignUpConfirmImage,
   ArtistPharrellWilliamsImage,
   ArtistLmfaoImage,
-  ArtistPharrellWilliamsAlbumNumberOneImage,
-  BackgroundSignUpConfirmImage
+  ArtistPharrellWilliamsAlbumNumberOneImage
 };

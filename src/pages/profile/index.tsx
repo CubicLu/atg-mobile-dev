@@ -1,43 +1,29 @@
 import React from 'react';
-import { IonPage, IonContent, IonList } from '@ionic/react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   BackgroundImage,
   BackgroundCircleDarkGrayImage,
   HeaderProfile,
   MenuProfile,
-  CardArtist,
-  _,
-  ArtistPharrellWilliamsImage,
-  ArtistLmfaoImage
+  _
 } from './../../components';
-import {} from './../../actions';
-import { ArtistInterface } from '../../interfaces';
+import { ApplitcationState } from './../../reducers';
+import { updateSettingsProperty } from './../../actions';
+import { TabsFanInterface } from '../../interfaces';
 
-interface Props extends RouteComponentProps {}
+interface StateProps {
+  activeFanTab: string;
+  fanTabs: TabsFanInterface[];
+}
+
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
+
+interface Props extends StateProps, DispatchProps {}
 
 class ProfilePage extends React.Component<Props> {
-  artists: ArtistInterface[] = [];
-  constructor(props: Props) {
-    super(props);
-    this.artists = [
-      {
-        name: 'Pharrell Williams',
-        cover: ArtistPharrellWilliamsImage,
-        support: true
-      },
-      {
-        name: 'LMFAO',
-        cover: ArtistLmfaoImage,
-        support: false
-      },
-      {
-        name: 'Pharrell Williams',
-        cover: ArtistPharrellWilliamsImage,
-        support: false
-      }
-    ];
-  }
   render(): React.ReactNode {
     return (
       <IonPage id="profile-page">
@@ -58,14 +44,15 @@ class ProfilePage extends React.Component<Props> {
             <div className="profile-page">
               <HeaderProfile />
               <MenuProfile />
-              <IonList className="artist-list">
-                {_.map(
-                  this.artists,
-                  (data, i): React.ReactNode => {
-                    return <CardArtist key={i} artist={data} />;
+              {_.map(
+                this.props.fanTabs,
+                (data, i): React.ReactNode => {
+                  if (data.id === this.props.activeFanTab) {
+                    return React.createElement(data.component, { key: i });
                   }
-                )}
-              </IonList>
+                  return null;
+                }
+              )}
             </div>
           </BackgroundImage>
         </IonContent>
@@ -74,4 +61,11 @@ class ProfilePage extends React.Component<Props> {
   }
 }
 
-export default withRouter(ProfilePage);
+const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+  const { activeFanTab, fanTabs } = settings;
+  return { activeFanTab, fanTabs };
+};
+
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(ProfilePage);

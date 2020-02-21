@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { IonPage, IonContent, IonList } from '@ionic/react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
   BackgroundCircleDarkGrayImage,
@@ -12,9 +12,16 @@ import {
   ArtistLmfaoImage
 } from './../../components';
 import {} from './../../actions';
-import { ArtistInterface } from '../../interfaces';
+import { ArtistInterface } from './../../interfaces';
+import { ApplitcationState } from './../../reducers';
 
-interface Props extends RouteComponentProps {}
+interface StateProps {
+  isPlaying: boolean;
+}
+
+interface DispatchProps {}
+
+interface Props extends DispatchProps, StateProps {}
 
 class ProfilePage extends React.Component<Props> {
   artists: ArtistInterface[] = [];
@@ -54,8 +61,13 @@ class ProfilePage extends React.Component<Props> {
             top
             imageTop={BackgroundCircleDarkGrayImage}
             unique={true}
+            styles={{ height: 'auto' }}
           >
-            <div className="profile-page">
+            <div
+              className={
+                `profile-page` + (this.props.isPlaying && ' is-playing')
+              }
+            >
               <HeaderProfile />
               <MenuProfile />
               <IonList className="artist-list">
@@ -74,4 +86,9 @@ class ProfilePage extends React.Component<Props> {
   }
 }
 
-export default withRouter(ProfilePage);
+const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+  const { isPlaying } = settings;
+  return { isPlaying };
+};
+
+export default connect(mapStateToProps, {})(ProfilePage);

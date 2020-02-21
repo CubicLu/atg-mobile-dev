@@ -7,6 +7,9 @@ import CloseIcon from './close';
 import SettingsIcon from './settings';
 import DotsThreeIcon from './dots-three';
 import SupportIcon from './support';
+import PauseIcon from './pause';
+import StarIcon from './star';
+import NextIcon from './next';
 
 export {
   MessageIcon,
@@ -17,5 +20,8 @@ export {
   CloseIcon,
   SettingsIcon,
   DotsThreeIcon,
-  SupportIcon
+  SupportIcon,
+  PauseIcon,
+  StarIcon,
+  NextIcon
 };

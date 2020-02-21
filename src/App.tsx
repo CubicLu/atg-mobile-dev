@@ -11,13 +11,7 @@ import { Provider } from 'react-redux';
 
 import './theme/scss/_styles.scss';
 
-import {
-  InitialPage,
-  SignUpPage,
-  HomePage,
-  SignInPage,
-  ProfilePage
-} from './pages';
+import { InitialPage, SignUpPage, HomePage, SignInPage } from './pages';
 
 import { store } from './store';
 

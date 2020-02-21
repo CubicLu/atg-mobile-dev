@@ -20,3 +20,8 @@ export interface ArtistInterface {
   name: string;
   support: boolean;
 }
+
+export interface SettingsReducerType {
+  activeTab: string;
+  isPlaying: boolean;
+}

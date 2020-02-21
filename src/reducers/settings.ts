@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Action, ActionType } from './../interfaces';
+import { Action, ActionType, SettingsReducerType } from './../interfaces';
 import createReducer from './createReducer';
 
-export interface SettingsReducerType {
-  activeTab: string;
-}
-
 const defaultState: SettingsReducerType = {
-  activeTab: 'feed'
+  activeTab: 'feed',
+  isPlaying: true
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

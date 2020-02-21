@@ -14,6 +14,7 @@ interface Props {
   imageBottom?: any;
   bottomStyle?: object;
   topStyle?: object;
+  styles?: object;
 }
 
 class BackgroundImageComponent extends React.Component<Props> {
@@ -37,7 +38,10 @@ class BackgroundImageComponent extends React.Component<Props> {
     return (
       <div
         className={`background-image ${shadow} `}
-        style={{ backgroundImage: `${unique} ${comma} ${gradient}` }}
+        style={{
+          backgroundImage: `${unique} ${comma} ${gradient}`,
+          ...this.props.styles
+        }}
       >
         <div className="legend">{this.props.legend}</div>
         {this.props.children}

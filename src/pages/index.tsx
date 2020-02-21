@@ -9,6 +9,10 @@ import SearchPage from './search';
 import RadioPage from './radio';
 import EnterCodePage from './enter-code';
 import SignUpConfirmPage from './sign-up-confirm';
+import ProfileArtistsPage from './profile/artists';
+import ProfileFriendsPage from './profile/friends';
+import ProfileMixtapesPage from './profile/mixtapes';
+import ProfileVaultPage from './profile/vault';
 
 export {
   InitialPage,
@@ -21,5 +25,9 @@ export {
   SearchPage,
   RadioPage,
   EnterCodePage,
-  SignUpConfirmPage
+  SignUpConfirmPage,
+  ProfileArtistsPage,
+  ProfileFriendsPage,
+  ProfileMixtapesPage,
+  ProfileVaultPage
 };

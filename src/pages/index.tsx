@@ -7,6 +7,8 @@ import SignInPage from './sign-in';
 import ProfilePage from './profile';
 import SearchPage from './search';
 import RadioPage from './radio';
+import EnterCodePage from './enter-code';
+import SignUpConfirmPage from './sign-up-confirm';
 
 export {
   InitialPage,
@@ -17,5 +19,7 @@ export {
   SignInPage,
   ProfilePage,
   SearchPage,
-  RadioPage
+  RadioPage,
+  EnterCodePage,
+  SignUpConfirmPage
 };

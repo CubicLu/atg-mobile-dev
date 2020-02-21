@@ -32,6 +32,7 @@ export { _ };
 
 const BackgroundInitialImage = require('./../assets/img/background/initial/1.png');
 const BackgroundSignInImage = require('./../assets/img/background/sign-in/1.png');
+const BackgroundSignUpConfirmImage = require('./../assets/img/background/sign-up-confirm/1.png');
 
 const BackgroundCircleWhiteImage = require('./../assets/img/background/circles/white.png');
 const BackgroundCircleBrownImage = require('./../assets/img/background/circles/brown.png');
@@ -53,5 +54,6 @@ export {
   BackgroundSignInImage,
   ArtistPharrellWilliamsImage,
   ArtistLmfaoImage,
-  ArtistPharrellWilliamsAlbumNumberOneImage
+  ArtistPharrellWilliamsAlbumNumberOneImage,
+  BackgroundSignUpConfirmImage
 };

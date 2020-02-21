@@ -10,3 +10,13 @@
   position: relative;
   height: 100%;
 }
+
+@mixin header-with-button {
+  margin-top: 2.5em;
+  display: flex;
+  align-items: center;
+  .button{
+      display: flex;
+      justify-content: flex-end;
+  }
+}

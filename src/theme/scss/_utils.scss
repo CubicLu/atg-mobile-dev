@@ -29,6 +29,19 @@
     justify-content: center;    
 }
 
+.message {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    &.warning{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+}
+
+.text-center{
+    text-align: center;
+}
+
 .align-items-center{
     height: 100%;
     display: flex;
@@ -49,17 +62,4 @@
 
 .is-playing{
     padding-bottom: $default-height-player + 10;
-}
-
-.message {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    &.warning{
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
-    }
-}
-
-.text-center {
-    text-align: center;
 }

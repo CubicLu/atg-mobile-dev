@@ -6,13 +6,15 @@ interface Props {
   color: string;
   width: number;
   height: number;
+  strokeWidth?: number;
 }
 
 class CloseIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
     width: 30,
-    height: 30
+    height: 30,
+    strokeWidth: 1
   };
 
   render(): React.ReactNode {
@@ -37,7 +39,7 @@ class CloseIcon extends React.Component<Props> {
             fill="none"
             stroke={this.props.color}
             strokeMiterlimit="10"
-            strokeWidth="1"
+            strokeWidth={this.props.strokeWidth}
           />
           <line
             id="Line_30"
@@ -48,7 +50,7 @@ class CloseIcon extends React.Component<Props> {
             fill="none"
             stroke={this.props.color}
             strokeMiterlimit="10"
-            strokeWidth="1"
+            strokeWidth={this.props.strokeWidth}
           />
         </g>
       </svg>

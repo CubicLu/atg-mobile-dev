@@ -17,6 +17,10 @@
     &.tertiary { 
         background: $tertiary;
         color: #FFF;
+        &.gradient { 
+            background: linear-gradient(180deg, $tertiary 0%, $tertiary-gradient 100%);
+        }
+        
     }
 
     &.transparent{ 

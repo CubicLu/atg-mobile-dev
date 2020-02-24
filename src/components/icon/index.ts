@@ -10,6 +10,7 @@ import SupportIcon from './support';
 import CirclesIcon from './circles';
 import AddPlaylistIcon from './add-playlist';
 import MessageBalloonIcon from './message-balloon';
+import PlayIcon from './play';
 
 export {
   MessageIcon,
@@ -23,5 +24,6 @@ export {
   SupportIcon,
   CirclesIcon,
   AddPlaylistIcon,
-  MessageBalloonIcon
+  MessageBalloonIcon,
+  PlayIcon
 };

@@ -27,3 +27,9 @@ export interface TabsFanInterface {
   id: string;
   component: any;
 }
+
+export interface MixtapeInterface {
+  name: string;
+  quantity: number;
+  cover: string | undefined;
+}

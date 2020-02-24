@@ -16,7 +16,7 @@ export interface SettingsReducerType {
 
 const defaultState: SettingsReducerType = {
   activeTab: 'feed',
-  activeFanTab: 'artists',
+  activeFanTab: 'mixtapes',
   fanTabs: [
     {
       id: 'artists',

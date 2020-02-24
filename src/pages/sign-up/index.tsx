@@ -27,7 +27,7 @@ class SignUpPage extends React.Component<Props> {
             gradient="180deg, #230640 0%, #110023 100%"
             top
             bottom
-            imageTop={<CirclesIcon color="#040508" height={250}  />}
+            imageTop={<CirclesIcon color="#040508" height={250} />}
             imageBottom={<CirclesIcon color="#232126" height={250} />}
             unique={false}
             bottomIsSvg

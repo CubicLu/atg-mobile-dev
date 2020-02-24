@@ -20,3 +20,10 @@ export interface ArtistInterface {
   name: string;
   support: boolean;
 }
+
+export interface TabsFanInterface {
+  label: string;
+  icon: any;
+  id: string;
+  component: any;
+}

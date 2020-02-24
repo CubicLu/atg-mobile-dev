@@ -8,6 +8,7 @@ import SettingsIcon from './settings';
 import DotsThreeIcon from './dots-three';
 import SupportIcon from './support';
 import CirclesIcon from './circles';
+import AddPlaylistIcon from './add-playlist';
 
 export {
   MessageIcon,
@@ -19,5 +20,6 @@ export {
   SettingsIcon,
   DotsThreeIcon,
   SupportIcon,
-  CirclesIcon
+  CirclesIcon,
+  AddPlaylistIcon
 };

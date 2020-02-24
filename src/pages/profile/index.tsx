@@ -3,13 +3,13 @@ import { IonPage, IonContent, IonList } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
-  BackgroundCircleDarkGrayImage,
   HeaderProfile,
   MenuProfile,
   CardArtist,
   _,
   ArtistPharrellWilliamsImage,
-  ArtistLmfaoImage
+  ArtistLmfaoImage,
+  CirclesIcon
 } from './../../components';
 import {} from './../../actions';
 import { ArtistInterface } from '../../interfaces';
@@ -52,7 +52,8 @@ class ProfilePage extends React.Component<Props> {
           <BackgroundImage
             gradient="180deg, #691DE3 0%, #20043B 100%"
             top
-            imageTop={BackgroundCircleDarkGrayImage}
+            imageTop={<CirclesIcon opacity={0.25}/>}
+            topIsSvg
             unique={true}
           >
             <div className="profile-page">

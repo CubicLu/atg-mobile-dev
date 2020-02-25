@@ -7,10 +7,15 @@ import CloseIcon from './close';
 import SettingsIcon from './settings';
 import DotsThreeIcon from './dots-three';
 import SupportIcon from './support';
+import PauseIcon from './pause';
+import StarIcon from './star';
+import NextIcon from './next';
 import CirclesIcon from './circles';
 import AddPlaylistIcon from './add-playlist';
 import MessageBalloonIcon from './message-balloon';
 import PlayIcon from './play';
+import TrashIcon from './trash';
+import ShareIcon from './share';
 
 export {
   MessageIcon,
@@ -22,8 +27,13 @@ export {
   SettingsIcon,
   DotsThreeIcon,
   SupportIcon,
+  PauseIcon,
+  StarIcon,
+  NextIcon,
   CirclesIcon,
   AddPlaylistIcon,
   MessageBalloonIcon,
-  PlayIcon
+  PlayIcon,
+  ShareIcon,
+  TrashIcon
 };

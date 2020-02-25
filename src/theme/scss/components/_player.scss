@@ -1,0 +1,103 @@
+
+.player{
+    height: $default-height-player;
+    background: linear-gradient(180deg, #22022f, #070707);
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .row{
+        margin-bottom: 0;
+    }
+    .cover{
+        height: $default-height-player;
+        width: $default-height-player;
+        bottom: 5px;
+        position: relative;
+        
+        .img{
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: $default-height-player - 5;
+            width: $default-height-player - 5;
+            border-radius: 50%;
+        }
+        .icon{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    }
+    .crop{
+        height: 12px;
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(180deg, #0c060e, #070707); 
+        bottom: $default-height-player - 52;
+    }
+    
+    .progress{
+        position: absolute;
+        margin: 0;
+        position: absolute;
+        margin: 0;
+        height: 2px;
+        width: 80%;
+        right: 0;
+        background-color: #363636;
+        bottom: $default-height-player - 40;
+
+        .bar{
+            background: #FFFFFF;
+            height: 2px;
+        }
+    }
+
+    
+    .info{
+        height: $default-height-player - 20;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .song, .artist{
+            display: block;
+            color: #FFF;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 15px;
+        }
+        
+        .song{
+            font-weight: bold;
+            margin-bottom: 0px;
+            margin-top: 5px;
+        }    
+    }
+    
+    .commands{
+        height: $default-height-player - 20;
+        display: flex;
+        align-items: center;
+    
+        ul{
+            &.list{
+                justify-content: space-around;
+                width: 100%;
+                li{
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+    
+}

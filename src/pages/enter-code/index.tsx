@@ -2,9 +2,9 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
-  BackgroundCircleDarkGrayImage,
   Button,
-  InputCode
+  InputCode,
+  CirclesIcon
 } from './../../components';
 import {} from './../../actions';
 import { IonPage } from '@ionic/react';
@@ -41,8 +41,10 @@ class EnterCodePage extends React.Component<Props, State> {
           gradient="180deg, #000 0%, #000 100%"
           top
           bottom
-          imageTop={BackgroundCircleDarkGrayImage}
-          imageBottom={BackgroundCircleDarkGrayImage}
+          topIsSvg
+          bottomIsSvg
+          imageTop={<CirclesIcon color={'#343434'} />}
+          imageBottom={<CirclesIcon color={'#343434'} />}
           unique={false}
         >
           <div className="container enter-code-page">

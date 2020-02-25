@@ -8,11 +8,11 @@ interface Props {
   height: number;
 }
 
-class AddPlaylistIcon extends React.Component<Props> {
+class TrashIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
-    width: 20,
-    height: 14
+    width: 17,
+    height: 20
   };
 
   render(): React.ReactNode {
@@ -21,13 +21,13 @@ class AddPlaylistIcon extends React.Component<Props> {
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox={`0 0 20 14`}
+        viewBox="0 0 17.302 19.981"
       >
         <path
-          id="Path_60543"
-          data-name="Path 60543"
-          d="M14,10H2v2H14Zm0-4H2V8H14Zm4,8V10H16v4H12v2h4v4h2V16h4V14ZM2,16h8V14H2Z"
-          transform="translate(-2 -6)"
+          id="Path_18931"
+          data-name="Path 18931"
+          d="M6.236,20.761a2.363,2.363,0,0,0,2.472,2.22h9.887a2.363,2.363,0,0,0,2.472-2.22V7.44H6.236ZM22.3,4.11H17.976L16.741,3H10.561L9.325,4.11H5V6.33H22.3Z"
+          transform="translate(-5 -3)"
           fill={this.props.color}
         />
       </svg>
@@ -35,4 +35,4 @@ class AddPlaylistIcon extends React.Component<Props> {
   }
 }
 
-export default AddPlaylistIcon;
+export default TrashIcon;

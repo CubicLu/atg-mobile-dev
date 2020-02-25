@@ -3,3 +3,13 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect';
+
+window.matchMedia =
+  window.matchMedia ||
+  function(): any {
+    return {
+      matches: false,
+      addListener: function(): any {},
+      removeListener: function(): any {}
+    };
+  };

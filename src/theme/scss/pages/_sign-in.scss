@@ -17,5 +17,12 @@
     .header{
         @include header-with-button;
     }
+
+    .rounded-tooltip{
+        & div:first-child{
+            font-size: 3.2em;
+            padding-bottom: 6px;
+        }
+    }
     
 }

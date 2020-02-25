@@ -14,7 +14,7 @@ class HeaderProfileComponent extends React.Component<Props> {
           <div className="col s3 h-100">
             <Avatar type="circle" />
           </div>
-          <div className="col s7 button h-100">
+          <div className="col s7 button">
             <ul className="list inline flex-end">
               <li>
                 <ButtonIcon

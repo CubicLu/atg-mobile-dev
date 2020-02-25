@@ -31,7 +31,7 @@ class SignInPage extends React.Component<Props> {
             bottom={true}
             top={true}
             unique={false}
-            imageBottom={<CirclesIcon color="#897A62" />}
+            imageBottom={<CirclesIcon color="#C2AF61" />}
             bottomIsSvg
             imageTop={BackgroundSignInImage}
             topStyle={{
@@ -55,7 +55,9 @@ class SignInPage extends React.Component<Props> {
                   </div>
                   <div className="col s4 button">
                     <ButtonIcon
-                      icon={<CloseIcon />}
+                      icon={
+                        <CloseIcon width={15} height={15} strokeWidth={2} />
+                      }
                       onClick={(): any => this.props.history.goBack()}
                     />
                   </div>
@@ -79,12 +81,13 @@ class SignInPage extends React.Component<Props> {
                     <div className="row ">
                       <div className="col s12">
                         <Button
-                          label="Sign in"
+                          label="Sign In"
                           full
+                          bold
                           color="primary"
                           gradient
                           onClick={(): any => {
-                            this.props.history.push('/home/feed');
+                            this.props.history.push('/home');
                           }}
                         />
                       </div>

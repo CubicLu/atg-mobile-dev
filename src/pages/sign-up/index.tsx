@@ -85,6 +85,7 @@ class SignUpPage extends React.Component<Props> {
                     label="Sign up"
                     color="primary"
                     full
+                    bold
                     gradient
                     onClick={(): any => this.props.history.push('/enter-code')}
                   />

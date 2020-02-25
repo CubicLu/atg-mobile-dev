@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { SettingsReducerType, settingsReducer } from './settings';
+import { settingsReducer } from './settings';
+import { SettingsReducerType } from './../interfaces';
 
 export interface ApplitcationState {
   settings: SettingsReducerType;

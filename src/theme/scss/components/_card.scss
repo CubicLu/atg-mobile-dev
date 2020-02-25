@@ -116,6 +116,19 @@
                 .dots {
     
                 }
+
+                .buttons{
+                    button{
+                        width: 35px;
+                        height: 35px;
+                        padding: 0;
+                    }
+                    button:first-child{
+                        margin-top: 0;
+                    }
+                    @include on-circle($item-count: 4, $circle-size: 100px, $item-size: 35px);    
+                }
+
             }
 
             &::before{
@@ -123,7 +136,7 @@
                 display: inline-block;
                 color: rgba(255, 255, 255, 0.5);  
                 font-family: "Industria";
-                font-size: 42px;
+                font-size: 36px;
                 position: relative;
                 right: 25px;
                 bottom: 10px;

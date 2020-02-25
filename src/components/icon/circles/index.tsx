@@ -9,7 +9,7 @@ interface Props {
   opacity: number;
 }
 
-class BlankIcon extends React.Component<Props> {
+class CirclesIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
     width: 450,
@@ -93,7 +93,7 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_10087" data-name="Path 10087" d="M171.8,300.525a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876,3.263,3.263,0,0,0-3.961,2.346A3.186,3.186,0,0,0,171.8,300.525Z" transform="translate(-6.968 -6.543)" fill={this.props.color} />
           <path id="Path_10088" data-name="Path 10088" d="M177.4,295.425a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876A3.263,3.263,0,0,0,175,291.548,3.186,3.186,0,0,0,177.4,295.425Z" transform="translate(-6.73 -6.646)" fill={this.props.color} />
           <path id="Path_10089" data-name="Path 10089" d="M183.4,290.825a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876A3.263,3.263,0,0,0,181,286.948,3.186,3.186,0,0,0,183.4,290.825Z" transform="translate(-6.476 -6.739)" fill={this.props.color} />
-          <ellipse id="Ellipse_356" data-name="Ellipse 356" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(181.094 273.783)" />
+          <ellipse id="Ellipse_356" data-name="Ellipse 356" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(181.094 273.783)" fill={this.props.color} />
           <path id="Path_10090" data-name="Path 10090" d="M196.4,283.425a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876A3.263,3.263,0,0,0,194,279.548,3.353,3.353,0,0,0,196.4,283.425Z" transform="translate(-5.924 -6.888)" fill={this.props.color} />
           <path id="Path_10091" data-name="Path 10091" d="M203.4,280.625a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876A3.263,3.263,0,0,0,201,276.748,3.353,3.353,0,0,0,203.4,280.625Z" transform="translate(-5.627 -6.944)" fill={this.props.color} />
           <path id="Path_10092" data-name="Path 10092" d="M210.7,278.425a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.877,3.263,3.263,0,0,0-3.961,2.346A3.186,3.186,0,0,0,210.7,278.425Z" transform="translate(-5.32 -6.988)" fill={this.props.color} />
@@ -102,13 +102,13 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_10095" data-name="Path 10095" d="M233.1,275.924a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876,3.263,3.263,0,0,0-3.961,2.346A3.186,3.186,0,0,0,233.1,275.924Z" transform="translate(-4.37 -7.039)" fill={this.props.color} />
           <path id="Path_10096" data-name="Path 10096" d="M240.6,276.425a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876,3.263,3.263,0,0,0-3.961,2.346A3.186,3.186,0,0,0,240.6,276.425Z" transform="translate(-4.053 -7.029)" fill={this.props.color} />
           <path id="Path_10097" data-name="Path 10097" d="M248,277.625a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876,3.263,3.263,0,0,0-3.961,2.346A3.47,3.47,0,0,0,248,277.625Z" transform="translate(-3.738 -7.004)" fill={this.props.color} />
-          <ellipse id="Ellipse_357" data-name="Ellipse 357" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(249.474 266.234)"/>
-          <ellipse id="Ellipse_358" data-name="Ellipse 358" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(256.875 268.784)"/>
+          <ellipse id="Ellipse_357" data-name="Ellipse 357" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(249.474 266.234)" fill={this.props.color} />
+          <ellipse id="Ellipse_358" data-name="Ellipse 358" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(256.875 268.784)" fill={this.props.color} />
           <path id="Path_10098" data-name="Path 10098" d="M269.3,285.025a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876,3.263,3.263,0,0,0-3.961,2.346A3.186,3.186,0,0,0,269.3,285.025Z" transform="translate(-2.837 -6.855)" fill={this.props.color} />
-          <ellipse id="Ellipse_359" data-name="Ellipse 359" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(270.842 275.721)"/>
+          <ellipse id="Ellipse_359" data-name="Ellipse 359" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(270.842 275.721)" fill={this.props.color} />
           <path id="Path_10099" data-name="Path 10099" d="M282.1,293.025a3.263,3.263,0,0,0,3.961-2.346,3.186,3.186,0,0,0-2.4-3.876,3.263,3.263,0,0,0-3.961,2.346A3.186,3.186,0,0,0,282.1,293.025Z" transform="translate(-2.294 -6.694)" fill={this.props.color} />
-          <ellipse id="Ellipse_360" data-name="Ellipse 360" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(283.351 285.004)"/>
-          <ellipse id="Ellipse_361" data-name="Ellipse 361" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(288.98 290.411)"/>
+          <ellipse id="Ellipse_360" data-name="Ellipse 360" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(283.351 285.004)" fill={this.props.color} />
+          <ellipse id="Ellipse_361" data-name="Ellipse 361" cx="3.231" cy="3.162" rx="3.231" ry="3.162" transform="translate(288.98 290.411)" fill={this.props.color} />
           <path id="Path_10100" data-name="Path 10100" d="M3.117,0A3.115,3.115,0,0,1,6.252,3.07,3.073,3.073,0,0,1,3.135,6.123,3.115,3.115,0,0,1,0,3.053,3.073,3.073,0,0,1,3.117,0Z" transform="translate(147.876 295.237) rotate(-7.516)" fill={this.props.color} />
           <path id="Path_10101" data-name="Path 10101" d="M162.8,301.321a3.223,3.223,0,0,0,3.857-2.244,3.143,3.143,0,0,0-2.293-3.774,3.222,3.222,0,0,0-3.857,2.244A3.1,3.1,0,0,0,162.8,301.321Z" transform="translate(-7.345 -6.523)" fill={this.props.color} />
           <path id="Path_10102" data-name="Path 10102" d="M167.9,295.821a3.223,3.223,0,0,0,3.857-2.244,3.143,3.143,0,0,0-2.293-3.774,3.223,3.223,0,0,0-3.857,2.244A3.143,3.143,0,0,0,167.9,295.821Z" transform="translate(-7.129 -6.634)" fill={this.props.color} />
@@ -176,7 +176,7 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_10164" data-name="Path 10164" d="M250.593,259.515a3.02,3.02,0,0,0,3.648-2.142,2.948,2.948,0,0,0-2.189-3.571,2.949,2.949,0,1,0-1.459,5.713Z" transform="translate(-3.62 -7.359)" fill={this.props.color} />
           <path id="Path_10165" data-name="Path 10165" d="M257.993,261.215a3.02,3.02,0,0,0,3.648-2.142,2.948,2.948,0,0,0-2.189-3.57,3.02,3.02,0,0,0-3.648,2.142A2.916,2.916,0,0,0,257.993,261.215Z" transform="translate(-3.307 -7.325)" fill={this.props.color} />
           <path id="Path_10166" data-name="Path 10166" d="M265.193,263.415a3.02,3.02,0,0,0,3.648-2.142,2.948,2.948,0,0,0-2.189-3.57A3.02,3.02,0,0,0,263,259.844,2.83,2.83,0,0,0,265.193,263.415Z" transform="translate(-3.002 -7.28)" fill={this.props.color} />
-          <ellipse id="Ellipse_362" data-name="Ellipse 362" cx="3.023" cy="2.958" rx="3.023" ry="2.958" transform="translate(267.194 253.176)"/>
+          <ellipse id="Ellipse_362" data-name="Ellipse 362" cx="3.023" cy="2.958" rx="3.023" ry="2.958" transform="translate(267.194 253.176)" fill={this.props.color} />
           <path id="Path_10167" data-name="Path 10167" d="M278.993,269.515a3.02,3.02,0,0,0,3.648-2.142,2.948,2.948,0,0,0-2.189-3.57,3.02,3.02,0,0,0-3.648,2.142A2.916,2.916,0,0,0,278.993,269.515Z" transform="translate(-2.417 -7.157)" fill={this.props.color} />
           <path id="Path_10168" data-name="Path 10168" d="M285.493,273.315a3.02,3.02,0,0,0,3.648-2.142,2.948,2.948,0,0,0-2.189-3.57,2.949,2.949,0,1,0-1.459,5.713Z" transform="translate(-2.142 -7.081)" fill={this.props.color} />
           <path id="Path_10169" data-name="Path 10169" d="M291.693,277.514a3.02,3.02,0,0,0,3.648-2.142,2.948,2.948,0,0,0-2.189-3.57,2.949,2.949,0,1,0-1.459,5.713Z" transform="translate(-1.879 -6.996)" fill={this.props.color} />
@@ -1373,7 +1373,7 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_11360" data-name="Path 11360" d="M9.944,282.955a1.518,1.518,0,0,0,1.772-1.02,1.479,1.479,0,0,0-1.042-1.734,1.518,1.518,0,0,0-1.772,1.02A1.479,1.479,0,0,0,9.944,282.955Z" transform="translate(-13.766 -6.826)" fill={this.props.color} />
           <path id="Path_11361" data-name="Path 11361" d="M12.545,275.855a1.518,1.518,0,0,0,1.772-1.02,1.479,1.479,0,0,0-1.042-1.734,1.518,1.518,0,0,0-1.772,1.02A1.356,1.356,0,0,0,12.545,275.855Z" transform="translate(-13.656 -6.969)" fill={this.props.color} />
           <path id="Path_11362" data-name="Path 11362" d="M15.244,268.855a1.518,1.518,0,0,0,1.772-1.02,1.479,1.479,0,0,0-1.042-1.734,1.518,1.518,0,0,0-1.772,1.02A1.429,1.429,0,0,0,15.244,268.855Z" transform="translate(-13.542 -7.11)" fill={this.props.color} />
-          <ellipse id="Ellipse_363" data-name="Ellipse 363" cx="1.459" cy="1.428" rx="1.459" ry="1.428" transform="translate(3.787 251.85)"/>
+          <ellipse id="Ellipse_363" data-name="Ellipse 363" cx="1.459" cy="1.428" rx="1.459" ry="1.428" transform="translate(3.787 251.85)" fill={this.props.color} />
           <path id="Path_11363" data-name="Path 11363" d="M21.444,255.155a1.518,1.518,0,0,0,1.772-1.02,1.479,1.479,0,0,0-1.042-1.734,1.518,1.518,0,0,0-1.772,1.02A1.479,1.479,0,0,0,21.444,255.155Z" transform="translate(-13.279 -7.386)" fill={this.props.color} />
           <path id="Path_11364" data-name="Path 11364" d="M24.945,248.455a1.518,1.518,0,0,0,1.772-1.02,1.479,1.479,0,0,0-1.042-1.734,1.518,1.518,0,0,0-1.772,1.02A1.4,1.4,0,0,0,24.945,248.455Z" transform="translate(-13.131 -7.521)" fill={this.props.color} />
           <path id="Path_11365" data-name="Path 11365" d="M28.544,241.855a1.518,1.518,0,0,0,1.772-1.02,1.479,1.479,0,0,0-1.042-1.734,1.518,1.518,0,0,0-1.772,1.02A1.479,1.479,0,0,0,28.544,241.855Z" transform="translate(-12.978 -7.654)" fill={this.props.color} />
@@ -1760,7 +1760,7 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_11746" data-name="Path 11746" d="M45.635,170.443a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,45.635,170.443Z" transform="translate(-12.244 -9.079)" fill={this.props.color} />
           <path id="Path_11747" data-name="Path 11747" d="M51.035,165.243a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.17,1.17,0,0,0,51.035,165.243Z" transform="translate(-12.015 -9.183)" fill={this.props.color} />
           <path id="Path_11748" data-name="Path 11748" d="M56.635,160.143a1.111,1.111,0,0,0,1.355-.816A1.086,1.086,0,0,0,57.156,158a1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,56.635,160.143Z" transform="translate(-11.778 -9.286)" fill={this.props.color} />
-          <ellipse id="Ellipse_364" data-name="Ellipse 364" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(49.964 143.614)"/>
+          <ellipse id="Ellipse_364" data-name="Ellipse 364" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(49.964 143.614)" fill={this.props.color} />
           <path id="Path_11749" data-name="Path 11749" d="M68.236,150.543a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.1,1.1,0,0,0,68.236,150.543Z" transform="translate(-11.288 -9.479)" fill={this.props.color} />
           <path id="Path_11750" data-name="Path 11750" d="M74.236,145.943a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.1,1.1,0,0,0,74.236,145.943Z" transform="translate(-11.034 -9.572)" fill={this.props.color} />
           <path id="Path_11751" data-name="Path 11751" d="M80.336,141.543a1.111,1.111,0,0,0,1.355-.816,1.087,1.087,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.1,1.1,0,0,0,80.336,141.543Z" transform="translate(-10.775 -9.661)" fill={this.props.color} />
@@ -1785,7 +1785,7 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_11770" data-name="Path 11770" d="M213.735,94.443a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.17,1.17,0,0,0,213.735,94.443Z" transform="translate(-5.122 -10.609)" fill={this.props.color} />
           <path id="Path_11771" data-name="Path 11771" d="M221.336,94.043a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.02,1.02,0,0,0,221.336,94.043Z" transform="translate(-4.801 -10.617)" fill={this.props.color} />
           <path id="Path_11772" data-name="Path 11772" d="M228.835,93.843a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,228.835,93.843Z" transform="translate(-4.482 -10.621)" fill={this.props.color} />
-          <ellipse id="Ellipse_365" data-name="Ellipse 365" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(231.337 81.08)"/>
+          <ellipse id="Ellipse_365" data-name="Ellipse 365" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(231.337 81.08)" fill={this.props.color} />
           <path id="Path_11773" data-name="Path 11773" d="M243.936,94.143a1.111,1.111,0,0,0,1.355-.816A1.086,1.086,0,0,0,244.457,92a1.111,1.111,0,0,0-1.355.816A1.1,1.1,0,0,0,243.936,94.143Z" transform="translate(-3.844 -10.615)" fill={this.props.color} />
           <path id="Path_11774" data-name="Path 11774" d="M251.435,94.543a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,251.435,94.543Z" transform="translate(-3.524 -10.607)" fill={this.props.color} />
           <path id="Path_11775" data-name="Path 11775" d="M258.935,95.243a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,258.935,95.243Z" transform="translate(-3.207 -10.593)" fill={this.props.color} />
@@ -1793,11 +1793,11 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_11777" data-name="Path 11777" d="M273.936,97.243a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.02,1.02,0,0,0,273.936,97.243Z" transform="translate(-2.572 -10.552)" fill={this.props.color} />
           <path id="Path_11778" data-name="Path 11778" d="M281.336,98.543a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.02,1.02,0,0,0,281.336,98.543Z" transform="translate(-2.259 -10.526)" fill={this.props.color} />
           <path id="Path_11779" data-name="Path 11779" d="M288.736,100.043a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.02,1.02,0,0,0,288.736,100.043Z" transform="translate(-1.945 -10.496)" fill={this.props.color} />
-          <ellipse id="Ellipse_366" data-name="Ellipse 366" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(293.566 89.139)"/>
+          <ellipse id="Ellipse_366" data-name="Ellipse 366" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(293.566 89.139)" fill={this.props.color} />
           <path id="Path_11780" data-name="Path 11780" d="M303.335,103.743a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,303.335,103.743Z" transform="translate(-1.325 -10.422)" fill={this.props.color} />
           <path id="Path_11781" data-name="Path 11781" d="M310.535,105.943a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.191,1.191,0,0,0,310.535,105.943Z" transform="translate(-1.02 -10.377)" fill={this.props.color} />
           <path id="Path_11782" data-name="Path 11782" d="M317.736,108.243a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.02,1.02,0,0,0,317.736,108.243Z" transform="translate(-0.717 -10.331)" fill={this.props.color} />
-          <ellipse id="Ellipse_367" data-name="Ellipse 367" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(323.482 98.32)"/>
+          <ellipse id="Ellipse_367" data-name="Ellipse 367" cx="1.147" cy="1.122" rx="1.147" ry="1.122" transform="translate(323.482 98.32)" fill={this.props.color} />
           <path id="Path_11783" data-name="Path 11783" d="M331.836,113.643a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.1,1.1,0,0,0,331.836,113.643Z" transform="translate(-0.119 -10.222)" fill={this.props.color} />
           <path id="Path_11784" data-name="Path 11784" d="M338.735,116.543a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.086,1.086,0,0,0,338.735,116.543Z" transform="translate(0.175 -10.164)" fill={this.props.color} />
           <path id="Path_11785" data-name="Path 11785" d="M345.636,119.743a1.111,1.111,0,0,0,1.355-.816,1.086,1.086,0,0,0-.834-1.326,1.111,1.111,0,0,0-1.355.816A1.1,1.1,0,0,0,345.636,119.743Z" transform="translate(0.466 -10.099)" fill={this.props.color} />
@@ -2578,9 +2578,9 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_12560" data-name="Path 12560" d="M34.218,85.521c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408S33.905,85.419,34.218,85.521Z" transform="translate(-12.71 -10.766)" fill={this.props.color} />
           <path id="Path_12561" data-name="Path 12561" d="M40.313,81.121c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.521.408S40,81.019,40.313,81.121Z" transform="translate(-12.447 -10.855)" fill={this.props.color} />
           <path id="Path_12562" data-name="Path 12562" d="M46.517,76.921c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.838.838,0,0,0,46.517,76.921Z" transform="translate(-12.188 -10.939)" fill={this.props.color} />
-          <ellipse id="Ellipse_368" data-name="Ellipse 368" cx="0.521" cy="0.51" rx="0.521" ry="0.51" transform="translate(40.583 60.779)"/>
+          <ellipse id="Ellipse_368" data-name="Ellipse 368" cx="0.521" cy="0.51" rx="0.521" ry="0.51" transform="translate(40.583 60.779)" fill={this.props.color} />
           <path id="Path_12563" data-name="Path 12563" d="M59.317,68.921c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.634.634,0,0,0,59.317,68.921Z" transform="translate(-11.646 -11.1)" fill={this.props.color} />
-          <ellipse id="Ellipse_369" data-name="Ellipse 369" cx="0.521" cy="0.51" rx="0.521" ry="0.51" transform="translate(54.03 52.924)"/>
+          <ellipse id="Ellipse_369" data-name="Ellipse 369" cx="0.521" cy="0.51" rx="0.521" ry="0.51" transform="translate(54.03 52.924)" fill={this.props.color} />
           <path id="Path_12564" data-name="Path 12564" d="M72.417,61.421c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.689.689,0,0,0,72.417,61.421Z" transform="translate(-11.091 -11.251)" fill={this.props.color} />
           <path id="Path_12565" data-name="Path 12565" d="M79.117,57.919c.313.1.521-.1.625-.408s-.1-.51-.417-.51c-.313-.1-.521.1-.625.408A.523.523,0,0,0,79.117,57.919Z" transform="translate(-10.807 -11.32)" fill={this.props.color} />
           <path id="Path_12566" data-name="Path 12566" d="M85.918,54.521c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.451.451,0,0,0,85.918,54.521Z" transform="translate(-10.52 -11.39)" fill={this.props.color} />
@@ -2598,7 +2598,7 @@ class BlankIcon extends React.Component<Props> {
           <path id="Path_12578" data-name="Path 12578" d="M171.617,26.621c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408C171.2,26.315,171.408,26.621,171.617,26.621Z" transform="translate(-6.888 -11.952)" fill={this.props.color} />
           <path id="Path_12579" data-name="Path 12579" d="M179.117,25.421c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.634.634,0,0,0,179.117,25.421Z" transform="translate(-6.57 -11.976)" fill={this.props.color} />
           <path id="Path_12580" data-name="Path 12580" d="M186.518,24.321c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408S186.309,24.219,186.518,24.321Z" transform="translate(-6.257 -11.998)" fill={this.props.color} />
-          <ellipse id="Ellipse_370" data-name="Ellipse 370" cx="0.521" cy="0.51" rx="0.521" ry="0.51" transform="translate(187.661 10.384)"/>
+          <ellipse id="Ellipse_370" data-name="Ellipse 370" cx="0.521" cy="0.51" rx="0.521" ry="0.51" transform="translate(187.661 10.384)" fill={this.props.color} />
           <path id="Path_12581" data-name="Path 12581" d="M201.517,22.621c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.634.634,0,0,0,201.517,22.621Z" transform="translate(-5.621 -12.032)" fill={this.props.color} />
           <path id="Path_12582" data-name="Path 12582" d="M209.017,22.021c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408A.689.689,0,0,0,209.017,22.021Z" transform="translate(-5.303 -12.044)" fill={this.props.color} />
           <path id="Path_12583" data-name="Path 12583" d="M216.618,21.621c.313.1.521-.1.625-.408s-.1-.51-.417-.612-.521.1-.625.408C216.1,21.213,216.305,21.519,216.618,21.621Z" transform="translate(-4.982 -12.052)" fill={this.props.color} />
@@ -3024,4 +3024,4 @@ class BlankIcon extends React.Component<Props> {
   }
 }
 
-export default BlankIcon;
+export default CirclesIcon;

@@ -1,10 +1,43 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Action, ActionType, SettingsReducerType } from './../interfaces';
 import createReducer from './createReducer';
+import {
+  ProfileArtistsPage,
+  ProfileFriendsPage,
+  ProfileMixtapesPage,
+  ProfileVaultPage
+} from './../pages';
 
 const defaultState: SettingsReducerType = {
   activeTab: 'feed',
-  isPlaying: true
+  activeFanTab: 'artists',
+  isPlaying: true,
+  fanTabs: [
+    {
+      id: 'artists',
+      label: 'Artists',
+      icon: 'a',
+      component: ProfileArtistsPage
+    },
+    {
+      id: 'vault',
+      label: 'Vault',
+      icon: 'v',
+      component: ProfileVaultPage
+    },
+    {
+      id: 'mixtapes',
+      label: 'Mixtapes',
+      icon: 'm',
+      component: ProfileMixtapesPage
+    },
+    {
+      id: 'friends',
+      label: 'Friends',
+      icon: 'f',
+      component: ProfileFriendsPage
+    }
+  ]
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

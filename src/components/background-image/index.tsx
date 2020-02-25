@@ -15,6 +15,8 @@ interface Props {
   bottomStyle?: object;
   topStyle?: object;
   styles?: object;
+  topIsSvg?: boolean;
+  bottomIsSvg?: boolean;
 }
 
 class BackgroundImageComponent extends React.Component<Props> {
@@ -23,7 +25,9 @@ class BackgroundImageComponent extends React.Component<Props> {
     gradient: null,
     unique: true,
     top: false,
-    bottom: false
+    bottom: false,
+    topIsSvg: false,
+    bottomIsSvg: false
   };
 
   render(): React.ReactNode {
@@ -34,7 +38,7 @@ class BackgroundImageComponent extends React.Component<Props> {
         : '';
     let unique = this.props.unique ? `url(${this.props.image})` : '';
     let comma = this.props.unique && this.props.gradient ? ',' : '';
-
+    let bottomSvgStyle = this.props.bottomIsSvg ? 'is-svg' : '';
     return (
       <div
         className={`background-image ${shadow} `}
@@ -54,16 +58,20 @@ class BackgroundImageComponent extends React.Component<Props> {
                 ...this.props.topStyle,
                 backgroundImage: `url(${this.props.imageTop}) `
               }}
-            ></div>
+            >
+              {this.props.topIsSvg && this.props.imageTop}
+            </div>
           )}
           {this.props.bottom && (
             <div
-              className="bottom"
+              className={`bottom ${bottomSvgStyle}`}
               style={{
                 ...this.props.bottomStyle,
                 backgroundImage: `url(${this.props.imageBottom}) `
               }}
-            ></div>
+            >
+              {this.props.bottomIsSvg && this.props.imageBottom}
+            </div>
           )}
         </div>
       </div>

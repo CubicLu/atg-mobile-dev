@@ -2,13 +2,13 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {
-  BackgroundCircleBrownImage,
   BackgroundImage,
   BackgroundSignInImage,
   InputText,
   Button,
   ButtonIcon,
-  CloseIcon
+  CloseIcon,
+  CirclesIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -31,7 +31,8 @@ class SignInPage extends React.Component<Props> {
             bottom={true}
             top={true}
             unique={false}
-            imageBottom={BackgroundCircleBrownImage}
+            imageBottom={<CirclesIcon color="#897A62" />}
+            bottomIsSvg
             imageTop={BackgroundSignInImage}
             topStyle={{
               transform: `rotate(0deg)`,

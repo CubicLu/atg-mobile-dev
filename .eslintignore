@@ -2,3 +2,4 @@ src/serviceWorker.ts
 src/**/__tests__/**
 src/**/*.spec.tsx
 src/**/*.test.tsx
+src/components/icon/circles/index.tsx

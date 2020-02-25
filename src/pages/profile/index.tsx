@@ -1,50 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonPage, IonContent, IonList } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   BackgroundImage,
-  BackgroundCircleDarkGrayImage,
   HeaderProfile,
   MenuProfile,
-  CardArtist,
-  _,
-  ArtistPharrellWilliamsImage,
-  ArtistLmfaoImage
+  CirclesIcon,
+  _
 } from './../../components';
-import {} from './../../actions';
-import { ArtistInterface } from './../../interfaces';
 import { ApplitcationState } from './../../reducers';
+import { updateSettingsProperty } from './../../actions';
+import { TabsFanInterface } from '../../interfaces';
 
 interface StateProps {
+  activeFanTab: string;
+  fanTabs: TabsFanInterface[];
   isPlaying: boolean;
 }
 
-interface DispatchProps {}
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
 
-interface Props extends DispatchProps, StateProps {}
+interface Props extends StateProps, DispatchProps {}
 
 class ProfilePage extends React.Component<Props> {
-  artists: ArtistInterface[] = [];
-  constructor(props: Props) {
-    super(props);
-    this.artists = [
-      {
-        name: 'Pharrell Williams',
-        cover: ArtistPharrellWilliamsImage,
-        support: true
-      },
-      {
-        name: 'LMFAO',
-        cover: ArtistLmfaoImage,
-        support: false
-      },
-      {
-        name: 'Pharrell Williams',
-        cover: ArtistPharrellWilliamsImage,
-        support: false
-      }
-    ];
-  }
   render(): React.ReactNode {
     return (
       <IonPage id="profile-page">
@@ -59,7 +39,8 @@ class ProfilePage extends React.Component<Props> {
           <BackgroundImage
             gradient="180deg, #691DE3 0%, #20043B 100%"
             top
-            imageTop={BackgroundCircleDarkGrayImage}
+            imageTop={<CirclesIcon opacity={0.25} />}
+            topIsSvg
             unique={true}
             styles={{ height: 'auto' }}
           >
@@ -70,14 +51,15 @@ class ProfilePage extends React.Component<Props> {
             >
               <HeaderProfile />
               <MenuProfile />
-              <IonList className="artist-list">
-                {_.map(
-                  this.artists,
-                  (data, i): React.ReactNode => {
-                    return <CardArtist key={i} artist={data} />;
+              {_.map(
+                this.props.fanTabs,
+                (data, i): React.ReactNode => {
+                  if (data.id === this.props.activeFanTab) {
+                    return React.createElement(data.component, { key: i });
                   }
-                )}
-              </IonList>
+                  return null;
+                }
+              )}
             </div>
           </BackgroundImage>
         </IonContent>
@@ -87,8 +69,10 @@ class ProfilePage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
-  const { isPlaying } = settings;
-  return { isPlaying };
+  const { activeFanTab, fanTabs, isPlaying } = settings;
+  return { activeFanTab, fanTabs, isPlaying };
 };
 
-export default connect(mapStateToProps, {})(ProfilePage);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(ProfilePage);

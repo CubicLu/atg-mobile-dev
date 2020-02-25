@@ -24,4 +24,13 @@ export interface ArtistInterface {
 export interface SettingsReducerType {
   activeTab: string;
   isPlaying: boolean;
+  fanTabs: TabsFanInterface[];
+  activeFanTab: string;
+}
+
+export interface TabsFanInterface {
+  label: string;
+  icon: any;
+  id: string;
+  component: any;
 }

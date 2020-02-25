@@ -60,7 +60,7 @@ class EnterCodePage extends React.Component<Props, State> {
                 <div className="col s12 right-align mt-20">
                   <Button
                     color="transparent"
-                    onClick={(): any => this.props.history.push('/')}
+                    onClick={(): any => this.props.history.push('/initial')}
                     label="Skip"
                   />
                 </div>

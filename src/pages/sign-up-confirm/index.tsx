@@ -55,6 +55,7 @@ class SignUpConfirmPage extends React.Component<Props> {
                   </div>
                   <div className="col s4 button">
                     <ButtonIcon
+                      styles={{ width: 35, height: 35 }}
                       icon={
                         <CloseIcon width={12} height={12} strokeWidth={2} />
                       }

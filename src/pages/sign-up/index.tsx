@@ -3,9 +3,9 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {
   BackgroundImage,
-  BackgroundCircleBlackImage,
   Button,
-  InputText
+  InputText,
+  CirclesIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -27,9 +27,11 @@ class SignUpPage extends React.Component<Props> {
             gradient="180deg, #230640 0%, #110023 100%"
             top
             bottom
-            imageTop={BackgroundCircleBlackImage}
-            imageBottom={BackgroundCircleBlackImage}
+            imageTop={<CirclesIcon color="#040508" height={250} />}
+            imageBottom={<CirclesIcon color="#232126" height={250} />}
             unique={false}
+            bottomIsSvg
+            topIsSvg
           >
             <div className="container sign-up-page">
               <div className="row ">

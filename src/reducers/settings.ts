@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Action, ActionType, TabsFanInterface } from './../interfaces';
+import { Action, ActionType, SettingsReducerType } from './../interfaces';
 import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
@@ -8,15 +8,10 @@ import {
   ProfileVaultPage
 } from './../pages';
 
-export interface SettingsReducerType {
-  activeTab: string;
-  activeFanTab: string;
-  fanTabs: TabsFanInterface[];
-}
-
 const defaultState: SettingsReducerType = {
   activeTab: 'feed',
   activeFanTab: 'artists',
+  isPlaying: true,
   fanTabs: [
     {
       id: 'artists',

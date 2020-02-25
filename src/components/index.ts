@@ -10,6 +10,7 @@ import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
 import MenuProfileComponent from './menu/profile';
 import CardArtistComponent from './card/artist';
+import PlayerComponent from './player';
 
 export * from './icon';
 
@@ -23,7 +24,8 @@ export {
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,
   MenuProfileComponent as MenuProfile,
-  CardArtistComponent as CardArtist
+  CardArtistComponent as CardArtist,
+  PlayerComponent as Player
 };
 
 export { _ };
@@ -38,8 +40,9 @@ const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circle
 const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
 const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
 
-const ArtistLmfaoImage = require('./../assets/img/artists/lmfao.png');
-const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell_williams.png');
+const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
+const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
+const ArtistPharrellWilliamsAlbumNumberOneImage = require('./../assets/img/artists/pharrell-williams/album/number_one.png');
 
 export {
   BackgroundInitialImage,
@@ -51,5 +54,6 @@ export {
   BackgroundSignInImage,
   BackgroundSignUpConfirmImage,
   ArtistPharrellWilliamsImage,
-  ArtistLmfaoImage
+  ArtistLmfaoImage,
+  ArtistPharrellWilliamsAlbumNumberOneImage
 };

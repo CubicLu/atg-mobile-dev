@@ -15,6 +15,7 @@ import { TabsFanInterface } from '../../interfaces';
 interface StateProps {
   activeFanTab: string;
   fanTabs: TabsFanInterface[];
+  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -41,8 +42,13 @@ class ProfilePage extends React.Component<Props> {
             imageTop={<CirclesIcon opacity={0.25} />}
             topIsSvg
             unique={true}
+            styles={{ height: 'auto' }}
           >
-            <div className="profile-page">
+            <div
+              className={
+                `profile-page` + (this.props.isPlaying && ' is-playing')
+              }
+            >
               <HeaderProfile />
               <MenuProfile />
               {_.map(
@@ -63,8 +69,8 @@ class ProfilePage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
-  const { activeFanTab, fanTabs } = settings;
-  return { activeFanTab, fanTabs };
+  const { activeFanTab, fanTabs, isPlaying } = settings;
+  return { activeFanTab, fanTabs, isPlaying };
 };
 
 export default connect(mapStateToProps, {

@@ -14,6 +14,7 @@ interface Props {
   imageBottom?: any;
   bottomStyle?: object;
   topStyle?: object;
+  styles?: object;
   topIsSvg?: boolean;
   bottomIsSvg?: boolean;
 }
@@ -41,7 +42,10 @@ class BackgroundImageComponent extends React.Component<Props> {
     return (
       <div
         className={`background-image ${shadow} `}
-        style={{ backgroundImage: `${unique} ${comma} ${gradient}` }}
+        style={{
+          backgroundImage: `${unique} ${comma} ${gradient}`,
+          ...this.props.styles
+        }}
       >
         <div className="legend">{this.props.legend}</div>
         {this.props.children}

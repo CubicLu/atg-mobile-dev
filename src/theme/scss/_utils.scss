@@ -38,7 +38,7 @@
     }
 }
 
-.text-center {
+.text-center{
     text-align: center;
 }
 
@@ -54,6 +54,14 @@
 
 .p-10{
     padding: 10px;
+}
+
+.p-relative{
+    position: relative;
+}
+
+.is-playing{
+    padding-bottom: $default-height-player + 10;
 }
 
 .opacity{

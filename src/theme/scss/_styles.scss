@@ -2,6 +2,12 @@
 
 @import './../../../node_modules/materialize-css/sass/materialize.scss';
 
+/* variables */
+
+@import './variables/colors';
+@import './variables/font-size';
+@import './variables/global';
+
 /* mixins */
 
 @import './mixins';
@@ -10,11 +16,6 @@
 
 @import './utils';
 @import './fonts';
-
-/* variables */
-
-@import './variables/colors';
-@import './variables/font-size';
 
 /* components */
 
@@ -28,6 +29,7 @@
 @import './components/list';
 @import './components/menu';
 @import './components/card';
+@import './components/player';
 
 /* pages */
 
@@ -35,7 +37,7 @@
 @import './pages/sign-up';
 @import './pages/enter-code';
 @import './pages/sign-in';
-@import './pages/sign-up-confirm';
 @import './pages/profile';
+@import './pages/sign-up-confirm';
 @import './pages/profile-vault';
 @import './pages/profile-friends';

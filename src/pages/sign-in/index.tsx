@@ -34,6 +34,9 @@ class SignInPage extends React.Component<Props> {
             imageBottom={<CirclesIcon color="#C2AF61" />}
             bottomIsSvg
             imageTop={BackgroundSignInImage}
+            topGradient={
+              'linear-gradient(rgba(255, 194, 63, 0.2) 0%, rgb(255, 194, 63, 1) 100%)'
+            }
             topStyle={{
               transform: `rotate(0deg)`,
               backgroundRepeat: `no-repeat`,
@@ -54,7 +57,8 @@ class SignInPage extends React.Component<Props> {
                     <h1 className="title">SIGN IN</h1>
                   </div>
                   <div className="col s4 button">
-                    <ButtonIcon
+                    <ButtonIcon              
+                      styles={{ width: 35, height: 35 }}
                       icon={
                         <CloseIcon width={15} height={15} strokeWidth={2} />
                       }

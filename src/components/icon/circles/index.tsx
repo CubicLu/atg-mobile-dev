@@ -35,7 +35,7 @@ class CirclesIcon extends React.Component<Props> {
             />
           </clipPath>
         </defs>
-        <g id="Group_1569" data-name="Group 1569" transform="translate(450.265 200) rotate(180)" opacity={this.props.opacity} clipPath="url(#clip-path)" width={this.props.width} height={this.props.height}>
+        <g id="Group_1569" data-name="Group 1569" transform={`translate(450.265 295) rotate(180)`} opacity={this.props.opacity} clipPath="url(#clip-path)" width={this.props.width} height={this.props.height}>
           <path id="Path_10033" data-name="Path 10033" d="M223.711,306.839a3.728,3.728,0,0,0,4.482-2.55,3.633,3.633,0,0,0-2.606-4.387,3.728,3.728,0,0,0-4.482,2.55A3.553,3.553,0,0,0,223.711,306.839Z" transform="translate(-4.779 -6.431)" fill={this.props.color} />
           <path id="Path_10034" data-name="Path 10034" d="M231.211,306.239a3.728,3.728,0,0,0,4.482-2.55,3.633,3.633,0,0,0-2.606-4.387,3.728,3.728,0,0,0-4.482,2.55A3.539,3.539,0,0,0,231.211,306.239Z" transform="translate(-4.461 -6.443)" fill={this.props.color} />
           <path id="Path_10035" data-name="Path 10035" d="M238.711,306.839a3.728,3.728,0,0,0,4.482-2.55,3.633,3.633,0,0,0-2.606-4.387,3.728,3.728,0,0,0-4.482,2.55A3.633,3.633,0,0,0,238.711,306.839Z" transform="translate(-4.143 -6.431)" fill={this.props.color} />

@@ -1,9 +1,28 @@
 import React from 'react';
-import { DotsThreeIcon, ButtonIcon, SupportIcon } from './../../../components';
-import {} from './../../../actions';
-import { ArtistInterface } from './../../../interfaces';
+import {
+  DotsThreeIcon,
+  ButtonIcon,
+  SupportIcon,
+  MenuFanSupportOptions
+} from './../../../components';
+import { updateSettingsModal } from './../../../actions';
+import { ArtistInterface, ModalSlideInterface } from './../../../interfaces';
+import { ApplitcationState } from '../../../reducers';
+import { connect } from 'react-redux';
 
-interface Props {
+interface StateProps {
+  modal: ModalSlideInterface;
+}
+
+interface DispatchProps {
+  updateSettingsModal: (
+    visible: boolean,
+    content: React.ReactNode,
+    className?: string
+  ) => void;
+}
+
+interface Props extends StateProps, DispatchProps {
   artist: ArtistInterface;
 }
 
@@ -20,11 +39,29 @@ class CardArtistComponent extends React.Component<Props> {
               <div className="col s12 infos p-10">
                 <div className="row">
                   <div className="col s12 button">
-                    <DotsThreeIcon color={'#6a6565'} />
+                    <ButtonIcon
+                      color={'transparent'}
+                      icon={<DotsThreeIcon color={'#6a6565'} />}
+                      onClick={this.props.updateSettingsModal.bind(
+                        this,
+                        true,
+                        React.createElement(MenuFanSupportOptions, {
+                          artist: this.props.artist,
+                          onClick: this.props.updateSettingsModal.bind(
+                            this,
+                            false,
+                            null
+                          )
+                        }),
+                        'background-tertiary-base'
+                      )}
+                    />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s8 name">{this.props.artist.name}</div>
+                  <div className="col s8 name">
+                    <span>{this.props.artist.name}</span>
+                  </div>
                   <div className="col s4 support">
                     {this.props.artist.support && (
                       <ButtonIcon icon={<SupportIcon />} color="support" />
@@ -39,5 +76,11 @@ class CardArtistComponent extends React.Component<Props> {
     );
   }
 }
+const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+  const { modal } = settings;
+  return { modal };
+};
 
-export default CardArtistComponent;
+export default connect(mapStateToProps, {
+  updateSettingsModal
+})(CardArtistComponent);

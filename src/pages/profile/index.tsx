@@ -39,7 +39,9 @@ class ProfilePage extends React.Component<Props> {
           <BackgroundImage
             gradient="180deg, #691DE3 0%, #20043B 100%"
             top
-            imageTop={<CirclesIcon opacity={0.25} />}
+            imageTop={
+              <CirclesIcon opacity={1} color={'#4C14A6'} height={350} />
+            }
             topIsSvg
             unique={true}
             styles={{ height: 'auto' }}

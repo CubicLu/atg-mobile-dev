@@ -8,3 +8,23 @@ $primary-gradient: #2C0C69;
 $secondary-gradient: #00BAFF;
 $tertiary-gradient: #E0850A;
 $quartenary-gradient: #FF9766;
+ 
+
+$colors: (
+    primary: (
+        base: $primary,
+        gradient: $primary-gradient
+    ),
+    secondary: (
+        base: $secondary,
+        gradient: $secondary-gradient
+    ),
+    tertiary: (
+        base: $tertiary,
+        gradient: $tertiary-gradient
+    ),
+    quartnary: (
+        base: $quartenary,
+        gradient: $quartenary-gradient
+    )
+);

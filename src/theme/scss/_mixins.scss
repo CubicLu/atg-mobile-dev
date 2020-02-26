@@ -67,3 +67,15 @@
 @function pxToRem($target, $context: $base-size) {
   @return ($target / $context) * 1rem;
 }
+
+@mixin color-modifiers($attribute: 'color', $prefix: '-', $separator: '-') {
+  @each $name, $color in $colors {
+    &#{$prefix}#{$name} {
+      @each $tone, $hex in $color {
+        &#{$separator}#{$tone} {
+          #{$attribute}: $hex;
+        }
+      }
+    }
+  }
+}

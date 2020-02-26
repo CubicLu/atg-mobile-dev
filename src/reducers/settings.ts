@@ -37,7 +37,11 @@ const defaultState: SettingsReducerType = {
       icon: 'f',
       component: ProfileFriendsPage
     }
-  ]
+  ],
+  modal: {
+    visible: false,
+    content: null
+  }
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(
@@ -50,6 +54,15 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         [action.payload.property]: action.payload.value
+      };
+    },
+    [ActionType.UPDATE_SETTINGS_MODAL](
+      state: SettingsReducerType,
+      action: Action<any>
+    ) {
+      return {
+        ...state,
+        modal: { ...action.payload }
       };
     }
   }

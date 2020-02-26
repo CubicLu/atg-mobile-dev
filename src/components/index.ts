@@ -13,6 +13,7 @@ import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
+import ModalSlideComponent from './ modal/slide';
 
 export * from './icon';
 
@@ -29,7 +30,8 @@ export {
   CardArtistComponent as CardArtist,
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
-  PlayerComponent as Player
+  PlayerComponent as Player,
+  ModalSlideComponent as ModalSlide
 };
 
 export { _ };

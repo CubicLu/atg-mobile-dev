@@ -4,7 +4,8 @@ export interface Action<T> {
 }
 
 export enum ActionType {
-  UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY'
+  UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
+  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL'
 }
 
 export interface TabsInterface {
@@ -26,6 +27,12 @@ export interface SettingsReducerType {
   isPlaying: boolean;
   fanTabs: TabsFanInterface[];
   activeFanTab: string;
+  modal: ModalSlideInterface;
+}
+
+export interface ModalSlideInterface {
+  visible: boolean;
+  content: React.ReactNode;
 }
 
 export interface TabsFanInterface {

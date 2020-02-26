@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Tab, Player } from './../../components';
+import { Tab, Player, ModalSlide } from './../../components';
 import {} from './../../actions';
 import { ApplitcationState } from '../../reducers';
+import { ModalSlideInterface } from '../../interfaces';
 
 interface StateProps {
   isPlaying: boolean;
+  modal: ModalSlideInterface;
 }
 
 interface DispatchProps {}
@@ -18,14 +20,17 @@ class HomePage extends React.Component<Props> {
       <div>
         {this.props.isPlaying && <Player />}
         <Tab />
+        <ModalSlide visible={this.props.modal.visible}>
+          {this.props.modal.content}
+        </ModalSlide>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
-  const { isPlaying } = settings;
-  return { isPlaying };
+  const { isPlaying, modal } = settings;
+  return { isPlaying, modal };
 };
 
 export default connect(mapStateToProps, {})(HomePage);

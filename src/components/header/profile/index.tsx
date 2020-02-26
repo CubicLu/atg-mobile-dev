@@ -35,11 +35,8 @@ class HeaderProfileComponent extends React.Component<Props> {
         </div>
         <div className="row">
           <div className="col s12 infos">
+            <h2 className="subtitle">Rosetta Throp</h2>
             <h1 className="title">Musical Goddess</h1>
-            <h2 className="subtitle">Los Angeles, CA</h2>
-            <h3 className="subtitle">
-              <b>500</b> Followers
-            </h3>
           </div>
         </div>
       </div>

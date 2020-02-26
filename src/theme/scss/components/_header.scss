@@ -30,8 +30,11 @@
             margin-left: 5%;
         }
 
-        .content {
+        .content{
             max-height: 70px;
+            .avatar-col{
+                padding: 0;
+            }
         }
     }
     .btn{

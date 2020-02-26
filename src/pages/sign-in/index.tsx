@@ -57,7 +57,7 @@ class SignInPage extends React.Component<Props> {
                     <h1 className="title">SIGN IN</h1>
                   </div>
                   <div className="col s4 button">
-                    <ButtonIcon              
+                    <ButtonIcon
                       styles={{ width: 35, height: 35 }}
                       icon={
                         <CloseIcon width={15} height={15} strokeWidth={2} />

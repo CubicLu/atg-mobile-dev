@@ -11,7 +11,7 @@ class HeaderProfileComponent extends React.Component<Props> {
     return (
       <div className="header profile">
         <div className="row align-items-center content">
-          <div className="col s3 h-100">
+          <div className="col s3 h-100 avatar-col">
             <Avatar type="circle" />
           </div>
           <div className="col s7 button h-100">

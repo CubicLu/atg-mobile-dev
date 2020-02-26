@@ -2,12 +2,12 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
-  BackgroundCircleDarkGrayImage,
   Button,
-  InputCode
+  InputCode,
+  CirclesIcon
 } from './../../components';
 import {} from './../../actions';
-import { IonPage } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 
 interface State {
   isValid: boolean;
@@ -37,53 +37,66 @@ class EnterCodePage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="enter-code-page">
-        <BackgroundImage
-          gradient="180deg, #000 0%, #000 100%"
-          top
-          bottom
-          imageTop={BackgroundCircleDarkGrayImage}
-          imageBottom={BackgroundCircleDarkGrayImage}
-          unique={false}
+        <IonContent
+          scrollY={true}
+          scrollEvents={true}
+          onIonScrollStart={(): any => {}}
+          onIonScroll={(): any => {}}
+          onIonScrollEnd={(): any => {}}
+          style={{ overflow: 'auto' }}
         >
-          <div className="container enter-code-page">
-            <div className="row ">
-              <div className="col s12 right-align mt-20">
-                <Button
-                  color="transparent"
-                  onClick={(): any => this.props.history.push('/')}
-                  label="Skip"
-                />
+          <BackgroundImage
+            gradient="180deg, #000 0%, #000 100%"
+            top
+            bottom
+            topIsSvg
+            bottomIsSvg
+            imageTop={<CirclesIcon color={'#343434'} />}
+            imageBottom={<CirclesIcon color={'#343434'} />}
+            unique={false}
+          >
+            <div className="container enter-code-page">
+              <div className="row ">
+                <div className="col s12 right-align mt-20">
+                  <Button
+                    color="transparent"
+                    onClick={(): any => this.props.history.push('/initial')}
+                    label="Skip"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="row ">
-              <div className="col s12">
-                <h1 className="title center-align">Enter Verification Code</h1>
-                <p>
-                  We sent a code to: <br />
-                  thesound@music.com
-                </p>
+              <div className="row ">
+                <div className="col s12">
+                  <h1 className="title center-align">
+                    Enter Verification Code
+                  </h1>
+                  <p>
+                    We sent a code to: <br />
+                    thesound@music.com
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="row">
-              <div className="col s12  mt-40 input-div">
-                <p>Enter the 6-digit code</p>
-                <InputCode
-                  onKeyUp={this.validToken.bind(this)}
-                  isValid={this.state.isValid}
-                />
+              <div className="row">
+                <div className="col s12  mt-40 input-div">
+                  <p>Enter the 6-digit code</p>
+                  <InputCode
+                    onKeyUp={this.validToken.bind(this)}
+                    isValid={this.state.isValid}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="row ">
-              <div className="col s12">
-                <p className="didnt-receive">
-                  I didn’t receive an email message
-                </p>
+              <div className="row ">
+                <div className="col s12">
+                  <p className="didnt-receive">
+                    I didn’t receive an email message
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </BackgroundImage>
+          </BackgroundImage>
+        </IonContent>
       </IonPage>
     );
   }

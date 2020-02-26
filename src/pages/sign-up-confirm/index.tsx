@@ -1,14 +1,14 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
-  BackgroundCircleBrownImage,
   BackgroundImage,
   BackgroundSignUpConfirmImage,
   InputText,
   Button,
   ButtonIcon,
-  CloseIcon
+  CloseIcon,
+  CirclesIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -31,7 +31,8 @@ class SignUpConfirmPage extends React.Component<Props> {
             bottom={true}
             top={true}
             unique={false}
-            imageBottom={BackgroundCircleBrownImage}
+            bottomIsSvg
+            imageBottom={<CirclesIcon color={'#127BC7'} />}
             imageTop={BackgroundSignUpConfirmImage}
             topStyle={{
               transform: `rotate(0deg)`,
@@ -54,6 +55,7 @@ class SignUpConfirmPage extends React.Component<Props> {
                   </div>
                   <div className="col s4 button">
                     <ButtonIcon
+                      styles={{ width: 35, height: 35 }}
                       icon={
                         <CloseIcon width={12} height={12} strokeWidth={2} />
                       }

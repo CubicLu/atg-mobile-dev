@@ -1,6 +1,7 @@
 import React from 'react';
-import {} from './../../../components';
+import { LockerIcon } from './../../../components';
 import {} from './../../../actions';
+import {} from '../../icon';
 interface Props {
   onKeyUp: Function;
   isValid: boolean;
@@ -22,7 +23,7 @@ class InputCodeComponent extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <div>
+      <div className="enter-code-component">
         <div className="input-group">
           <div className="input-group-area">
             <input
@@ -33,7 +34,9 @@ class InputCodeComponent extends React.Component<Props, State> {
               onKeyUp={this.props.onKeyUp.bind(this)}
             />
           </div>
-          <div className="input-group-icon">@</div>
+          <div className="input-group-icon">
+            <LockerIcon color={'#949494'} />
+          </div>
         </div>
         {this.props.isValid === false && (
           <p className="message warning">Token is not valid</p>

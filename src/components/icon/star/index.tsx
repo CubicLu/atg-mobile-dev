@@ -21,7 +21,7 @@ class StarIcon extends React.Component<Props> {
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox={`0 0 ${this.props.width} ${this.props.height}`}
+        viewBox={`0 0 20 19`}
       >
         <path
           id="Path_4025"

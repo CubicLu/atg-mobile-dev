@@ -1,0 +1,22 @@
+.profile-mixtapes-page{
+    margin-top: 5%;
+    
+
+    .slick-dots{
+        bottom: -50px;
+    }
+    .slick-dots li{
+        width: 12px;
+        margin: 0 2px;
+    }
+    .slick-dots li.slick-active button:before{
+        color: $tertiary;
+    }
+    .slick-dots li button:before{
+        color: rgba($color: #fff, $alpha: 0.5);
+        font-size: 8px;
+        width: 12px;
+    }
+    
+   
+}

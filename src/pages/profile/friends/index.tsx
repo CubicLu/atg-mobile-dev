@@ -21,7 +21,7 @@ class ProfileFriendsPage extends React.Component<Props> {
           {_.map(
             [{ friend: false }, {}, {}, {}, {}, {}, {}, {}],
             (data, i): React.ReactNode => {
-              let opacity = data.friend == false ? 'opacity' : '';
+              let opacity = data.friend === false ? 'opacity' : '';
               return (
                 <IonItemSliding key={i}>
                   <IonItem>
@@ -33,7 +33,7 @@ class ProfileFriendsPage extends React.Component<Props> {
                         <span className="user">BassmanJeff</span>
                       </div>
                       <div className="col s3 action">
-                        {data.friend == false ? (
+                        {data.friend === false ? (
                           <Button
                             gradient={true}
                             color="tertiary"

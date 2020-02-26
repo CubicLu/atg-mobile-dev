@@ -38,7 +38,7 @@ class SignUpPage extends React.Component<Props> {
                 <div className="col s12 right-align mt-20">
                   <Button
                     color="transparent"
-                    onClick={(): any => this.props.history.push('/')}
+                    onClick={(): any => this.props.history.push('/initial')}
                     label="Skip"
                   />
                 </div>
@@ -85,6 +85,7 @@ class SignUpPage extends React.Component<Props> {
                     label="Sign up"
                     color="primary"
                     full
+                    bold
                     gradient
                     onClick={(): any => this.props.history.push('/enter-code')}
                   />

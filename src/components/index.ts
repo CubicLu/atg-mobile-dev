@@ -10,6 +10,8 @@ import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
 import MenuProfileComponent from './menu/profile';
 import CardArtistComponent from './card/artist';
+import CardMixtapesComponent from './card/mixtapes';
+import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
 
 export * from './icon';
@@ -25,6 +27,8 @@ export {
   AvatarComponent as Avatar,
   MenuProfileComponent as MenuProfile,
   CardArtistComponent as CardArtist,
+  CardMixtapesComponent as CardMixtapes,
+  SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player
 };
 
@@ -44,6 +48,11 @@ const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
 const ArtistPharrellWilliamsAlbumNumberOneImage = require('./../assets/img/artists/pharrell-williams/album/number_one.png');
 
+const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
+const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
+const MixtapeMoonLightImage = require('./../assets/img/mixtapes/moon-light.png');
+const MixtapeRebelRockImage = require('./../assets/img/mixtapes/rebel-rock.png');
+
 export {
   BackgroundInitialImage,
   BackgroundCircleWhiteImage,
@@ -55,5 +64,9 @@ export {
   BackgroundSignUpConfirmImage,
   ArtistPharrellWilliamsImage,
   ArtistLmfaoImage,
+  MixtapeEuroHouseImage,
+  MixtapeKnightImage,
+  MixtapeMoonLightImage,
+  MixtapeRebelRockImage,
   ArtistPharrellWilliamsAlbumNumberOneImage
 };

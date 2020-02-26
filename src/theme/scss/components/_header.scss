@@ -8,8 +8,8 @@
     &.profile{
 
         .title{
-            font-size: 36px;
-            margin-top: 5px;
+            font-size: pxToRem(36);
+            margin-top: pxToRem(2);
         }
         .subtitle{
             margin-left: 0;
@@ -28,6 +28,13 @@
 
         .infos{
             margin-left: 5%;
+        }
+
+        .content{
+            max-height: 70px;
+            .avatar-col{
+                padding: 0;
+            }
         }
     }
     .btn{

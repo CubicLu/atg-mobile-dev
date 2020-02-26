@@ -99,8 +99,14 @@ class TabComponent extends React.Component<Props> {
         }}
       >
         <IonRouterOutlet>
-          {!_.isUndefined(redirectIndex) && (
-            <Redirect exact path="/home" to={tabs[redirectIndex].path} />
+          {redirectIndex !== -1 && (
+            <Route
+              exact
+              path="/home"
+              component={(): any => (
+                <Redirect strict to={tabs[redirectIndex].path} />
+              )}
+            />
           )}
           {_.map(tabs, (data, index): any => {
             return (

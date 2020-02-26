@@ -57,4 +57,104 @@
         }
         
     }
+
+    &.mixtapes{
+        background: transparent;
+        position: relative;
+        margin: 0;
+        transition: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+        .row{
+            margin-bottom: 0 !important;
+        }
+        .cover{
+            padding: 15px 10px;
+        }
+        .tape{
+            position: relative;
+            height: 160px;
+            width: 160px;
+            border-radius: 50%;
+            -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+
+            .background{
+                background-repeat: no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                top: 0;
+                position: absolute;
+                left: 0;
+                right: 0;
+                border: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                button {
+                    padding: 10px;
+                    height: 50px;
+                    width: 50px;
+                }
+
+                button:first-child{
+                    margin-top: 40px;
+                }
+    
+                .dots {
+    
+                }
+
+                .buttons{
+                    button{
+                        width: 35px;
+                        height: 35px;
+                        padding: 0;
+                    }
+                    button:first-child{
+                        margin-top: 0;
+                    }
+                    @include on-circle($item-count: 4, $circle-size: 100px, $item-size: 35px);    
+                }
+
+            }
+
+            &::before{
+                content: attr(data-tapeindex) ".";
+                display: inline-block;
+                color: rgba(255, 255, 255, 0.5);  
+                font-family: "Industria";
+                font-size: 36px;
+                position: relative;
+                right: 40px;
+                bottom: 10px;
+            }
+
+            
+        }
+        .infos{
+            justify-content: center;
+            .playlist, .quantity{
+                color: #FFF;
+                font-family: Arial, Helvetica, sans-serif;
+                display: flex;
+                justify-content: center;
+            }
+            .playlist{
+                font-size: 18px;
+            }
+        }
+    }
 }

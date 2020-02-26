@@ -1,6 +1,6 @@
 .sign-in-page{
     height: 100%;
-
+    
     .form{
         margin-top: 20%;
     }
@@ -12,10 +12,19 @@
     .link { 
         font-size: 1em;
         color: #6F6F6F;
+        font-family: "Montserrat";
+        font-weight: 400;
     }
 
     .header{
         @include header-with-button;
+    }
+
+    .rounded-tooltip{
+        & div:first-child{
+            font-size: 3.2em;
+            padding-bottom: 6px;
+        }
     }
     
 }

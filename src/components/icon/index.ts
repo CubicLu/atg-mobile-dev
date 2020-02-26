@@ -13,6 +13,10 @@ import NextIcon from './next';
 import CirclesIcon from './circles';
 import AddPlaylistIcon from './add-playlist';
 import MessageBalloonIcon from './message-balloon';
+import PlayIcon from './play';
+import TrashIcon from './trash';
+import ShareIcon from './share';
+import LockerIcon from './locker';
 
 export {
   MessageIcon,
@@ -29,5 +33,9 @@ export {
   NextIcon,
   CirclesIcon,
   AddPlaylistIcon,
-  MessageBalloonIcon
+  MessageBalloonIcon,
+  PlayIcon,
+  ShareIcon,
+  TrashIcon,
+  LockerIcon
 };

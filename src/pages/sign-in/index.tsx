@@ -31,9 +31,12 @@ class SignInPage extends React.Component<Props> {
             bottom={true}
             top={true}
             unique={false}
-            imageBottom={<CirclesIcon color="#897A62" />}
+            imageBottom={<CirclesIcon color="#C2AF61" />}
             bottomIsSvg
             imageTop={BackgroundSignInImage}
+            topGradient={
+              'linear-gradient(rgba(255, 194, 63, 0.2) 0%, rgb(255, 194, 63, 1) 100%)'
+            }
             topStyle={{
               transform: `rotate(0deg)`,
               backgroundRepeat: `no-repeat`,
@@ -55,7 +58,10 @@ class SignInPage extends React.Component<Props> {
                   </div>
                   <div className="col s4 button">
                     <ButtonIcon
-                      icon={<CloseIcon />}
+                      styles={{ width: 35, height: 35 }}
+                      icon={
+                        <CloseIcon width={15} height={15} strokeWidth={2} />
+                      }
                       onClick={(): any => this.props.history.goBack()}
                     />
                   </div>
@@ -79,12 +85,13 @@ class SignInPage extends React.Component<Props> {
                     <div className="row ">
                       <div className="col s12">
                         <Button
-                          label="Sign in"
+                          label="Sign In"
                           full
+                          bold
                           color="primary"
                           gradient
                           onClick={(): any => {
-                            this.props.history.push('/home/feed');
+                            this.props.history.push('/home');
                           }}
                         />
                       </div>

@@ -10,8 +10,8 @@ class HeaderProfileComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="header profile">
-        <div className="row align-items-center">
-          <div className="col s3 h-100">
+        <div className="row align-items-center content">
+          <div className="col s3 h-100 avatar-col">
             <Avatar type="circle" />
           </div>
           <div className="col s7 button h-100">

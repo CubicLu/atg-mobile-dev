@@ -5,11 +5,23 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    .header{
+        @include header-with-button;
+        height: 45px;
+        margin-top: 0;
+    }
+
     .subtitle{
         font-size: 21px;
     }
 
     .rounded-tooltip{
         padding-left: 0;
+    }
+
+    .btn {
+        &.icon{
+            padding: 0 10px;
+        }
     }
 }

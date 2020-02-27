@@ -27,12 +27,12 @@ class SignUpConfirmPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #00BDFA 0%, #00BDFA 100%"
+            gradient="180deg, #d53d1d 0%, #a32c16 100%"
             bottom={true}
             top={true}
             unique={false}
             bottomIsSvg
-            imageBottom={<CirclesIcon color={'#127BC7'} />}
+            imageBottom={<CirclesIcon color={'#9b2712'} />}
             imageTop={BackgroundSignUpConfirmImage}
             topStyle={{
               transform: `rotate(0deg)`,
@@ -56,9 +56,7 @@ class SignUpConfirmPage extends React.Component<Props> {
                   <div className="col s4 button">
                     <ButtonIcon
                       styles={{ width: 35, height: 35 }}
-                      icon={
-                        <CloseIcon width={12} height={12} strokeWidth={2} />
-                      }
+                      icon={<CloseIcon width={12} height={12} />}
                       onClick={(): any => this.props.history.goBack()}
                     />
                   </div>

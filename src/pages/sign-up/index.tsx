@@ -5,7 +5,9 @@ import {
   BackgroundImage,
   Button,
   InputText,
-  CirclesIcon
+  CirclesIcon,
+  ButtonIcon,
+  CloseIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -27,19 +29,19 @@ class SignUpPage extends React.Component<Props> {
             gradient="180deg, #230640 0%, #110023 100%"
             top
             bottom
-            imageTop={<CirclesIcon color="#040508" height={250} />}
-            imageBottom={<CirclesIcon color="#232126" height={250} />}
+            imageTop={<CirclesIcon color="#040508" />}
+            imageBottom={<CirclesIcon color="#232126" />}
             unique={false}
             bottomIsSvg
             topIsSvg
           >
             <div className="container sign-up-page">
-              <div className="row ">
-                <div className="col s12 right-align mt-20">
-                  <Button
-                    color="transparent"
+              <div className="row header">
+                <div className="col s10"></div>
+                <div className="col s2 button">
+                  <ButtonIcon
+                    icon={<CloseIcon strokeWidth={2} />}
                     onClick={(): any => this.props.history.push('/initial')}
-                    label="Skip"
                   />
                 </div>
               </div>

@@ -1,58 +1,60 @@
 .menu{
     &.profile{
-        justify-content: space-around;
-        width: 100%;
-        padding: 10px 0;
-        margin-top: 30px !important;
-        padding-left: 30px;
-        padding-right: 30px;
-        li{
-            margin-right: 0 !important;
-            text-align: center;
-            height: 70px;
-            display: flex;
-            flex-direction: column;
-
-            .circle{
-                width: 100%;
+        margin-left: 35px;
+        margin-right: 35px;
+        ul{
+            justify-content: space-around;
+            width: 100%;
+            padding: 10px 0;
+            margin-top: 30px !important;
+            li{
+                margin-right: 0 !important;
+                text-align: center;
+                height: 70px;
                 display: flex;
-                justify-content: center;
-                span{
-                    border-radius: 50%;
-                    height: 35px;
-                    width: 35px;
-                    align-items: center;
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    align-content: center;
-                    background-color: #E0E8CB;
-                    font-family: "Industria";
-                    font-weight: 600;
-                    font-size: 33px;
-                    padding-bottom: 2px;
-                }
-            }
-            .title{
-                font-family: Arial, Helvetica, sans-serif;
-                font-weight: bold !important;
-                font-size: 14px;
-                margin-top: 10px !important;
-                font-weight: 400;
-                border-bottom: 2px solid transparent;
-            }
-
-            &.active{
-                .title{
-                    font-weight: bold;
-                    border-bottom: 2px;
-                    border-bottom: 2px solid $tertiary;
-                    color: $tertiary;
-                }
+                flex-direction: column;
 
                 .circle{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
                     span{
-                        background: $tertiary;
+                        border-radius: 50%;
+                        height: 33px !important;
+                        width: 35px !important;
+                        align-items: center;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        background-color: #E0E8CB;
+                        font-family: "Industria";
+                        font-weight: 600;
+                        font-size: 33px;
+                        padding-bottom: 2px;
+                    }
+                }
+                .title{
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: bold !important;
+                    font-size: 14px;
+                    margin-top: 10px !important;
+                    font-weight: 400;
+                    border-bottom: 2px solid transparent;
+                }
+
+                &.active{
+                    .title{
+                        font-weight: bold;
+                        border-bottom: 2px;
+                        border-bottom: 2px solid $tertiary;
+                        color: $tertiary;
+                    }
+
+                    .circle{
+                        span{
+                            background: $tertiary;
+                        }
                     }
                 }
             }
@@ -60,7 +62,6 @@
     }
 
     &.fan-support-options{
-        padding: 0 5px;
         width: 100%;
         
         .header{
@@ -82,6 +83,8 @@
                 .btn {
                     background: rgba(0, 0, 0, 0.25);
                 }
+                height: 55px;
+                align-items: flex-end;
             }
         }
         .content{
@@ -90,7 +93,7 @@
                     display: inline-flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                     width: 100%;
                     font-family: "Roboto";
                     font-weight: 400;

@@ -26,11 +26,11 @@ class SignUpPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #230640 0%, #110023 100%"
+            gradient="180deg, #000 0%, #000 100%"
             top
             bottom
-            imageTop={<CirclesIcon color="#040508" />}
-            imageBottom={<CirclesIcon color="#232126" />}
+            imageTop={<CirclesIcon color="#343434" />}
+            imageBottom={<CirclesIcon color="#343434" />}
             unique={false}
             bottomIsSvg
             topIsSvg
@@ -75,8 +75,8 @@ class SignUpPage extends React.Component<Props> {
               <div className="row ">
                 <div className="col s12">
                   <p>
-                    By signing up you confirm that you have read and agree to
-                    tr1be’s General terms and Privacy policy.
+                    By signing up you confirm that you have read and agree
+                    <b> General terms</b> and <b>Privacy policy</b>.
                   </p>
                 </div>
               </div>

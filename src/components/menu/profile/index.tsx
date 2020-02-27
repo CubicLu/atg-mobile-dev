@@ -19,29 +19,33 @@ interface Props extends StateProps, DispatchProps {}
 class MenuProfileComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <ul className="list inline menu profile">
-        {_.map(
-          this.props.fanTabs,
-          (data, i): React.ReactNode => {
-            return (
-              <li
-                className={this.props.activeFanTab === data.id ? 'active' : ''}
-                key={i}
-                onClick={this.props.updateSettingsProperty.bind(
-                  this,
-                  'activeFanTab',
-                  data.id
-                )}
-              >
-                <span className="circle">
-                  <span>{data.icon}</span>
-                </span>
-                <span className="title">{data.label}</span>
-              </li>
-            );
-          }
-        )}
-      </ul>
+      <div className={'menu profile'}>
+        <ul className="list inline">
+          {_.map(
+            this.props.fanTabs,
+            (data, i): React.ReactNode => {
+              return (
+                <li
+                  className={
+                    this.props.activeFanTab === data.id ? 'active' : ''
+                  }
+                  key={i}
+                  onClick={this.props.updateSettingsProperty.bind(
+                    this,
+                    'activeFanTab',
+                    data.id
+                  )}
+                >
+                  <span className="circle">
+                    <span>{data.icon}</span>
+                  </span>
+                  <span className="title">{data.label}</span>
+                </li>
+              );
+            }
+          )}
+        </ul>
+      </div>
     );
   }
 }

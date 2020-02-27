@@ -5,15 +5,26 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    .brand-text{
+        position: relative;
+        .brand{
+            font-size: pxToRem(93);
+        }
+        .subtitle{
+            font-size: pxToRem(30);
+            position: absolute;
+            margin-left: 0;
+            left: 70px;
+            bottom: -11px;
+        }
+    }
+
     .header{
         @include header-with-button;
         height: 45px;
         margin-top: 0;
     }
 
-    .subtitle{
-        font-size: 21px;
-    }
 
     .rounded-tooltip{
         padding-left: 0;

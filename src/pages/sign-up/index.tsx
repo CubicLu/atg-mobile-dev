@@ -46,7 +46,7 @@ class SignUpPage extends React.Component<Props> {
                 </div>
               </div>
               <div className="row ">
-                <div className="col s12">
+                <div className="col s12 brand-text">
                   <h1 className="title secondary center-align brand">panthr</h1>
                   <h1 className="subtitle">
                     THE ULTIMATE DESTINATION FOR ARTIST & FANS

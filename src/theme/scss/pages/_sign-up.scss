@@ -36,8 +36,21 @@
         }
     }
 
-
     @media screen and (max-width: 480px) {
+    
+        .brand-text{
+            .brand{
+                margin-top: 0;
+            }
+            .subtitle{
+                left: 48px;
+            }
+        }
+    
+    }
+
+
+    @media screen and (max-width: 360px) {
     
         .brand-text{
             .brand{

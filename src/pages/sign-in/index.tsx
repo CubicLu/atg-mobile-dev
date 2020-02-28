@@ -10,9 +10,9 @@ import {
   CloseIcon,
   CirclesIcon
 } from './../../components';
-import {} from './../../actions';
+import { } from './../../actions';
 
-interface Props extends RouteComponentProps {}
+interface Props extends RouteComponentProps { }
 
 class SignInPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -21,22 +21,19 @@ class SignInPage extends React.Component<Props> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
+          onIonScrollStart={(): any => { }}
+          onIonScroll={(): any => { }}
+          onIonScrollEnd={(): any => { }}
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #FFC23F 0%, #FFC23F 100%"
+            backgroundImage={BackgroundSignInImage}
+            gradient="180deg,#ffc23f00,#ffc23f"
             bottom={true}
             top={true}
-            unique={false}
             imageBottom={<CirclesIcon color="#C2AF61" />}
             bottomIsSvg
-            imageTop={BackgroundSignInImage}
-            topGradient={
-              'linear-gradient(rgba(255, 194, 63, 0.2) 0%, rgb(255, 194, 63, 1) 100%)'
-            }
+
             topStyle={{
               transform: `rotate(0deg)`,
               backgroundRepeat: `no-repeat`,

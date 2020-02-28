@@ -27,13 +27,12 @@ class SignUpConfirmPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #d53d1d 0%, #a32c16 100%"
+            gradient="180deg, #d53d1d00, #a32c16"
             bottom={true}
             top={true}
-            unique={false}
             bottomIsSvg
             imageBottom={<CirclesIcon color={'#9b2712'} />}
-            imageTop={BackgroundSignUpConfirmImage}
+            backgroundImage={BackgroundSignUpConfirmImage}
             topStyle={{
               transform: `rotate(0deg)`,
               backgroundRepeat: `no-repeat`,

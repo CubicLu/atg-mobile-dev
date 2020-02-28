@@ -26,12 +26,11 @@ class SignUpPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #000 0%, #000 100%"
+            gradient="180deg, #00000000, #000000"
             top
             bottom
-            imageTop={<CirclesIcon color="#343434" />}
+            backgroundImage={<CirclesIcon color="#343434" />}
             imageBottom={<CirclesIcon color="#343434" />}
-            unique={false}
             bottomIsSvg
             topIsSvg
           >

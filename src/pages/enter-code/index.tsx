@@ -47,14 +47,13 @@ class EnterCodePage extends React.Component<Props, State> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #000 0%, #000 100%"
+            gradient="180deg, #00000000, #000"
             top
             bottom
             topIsSvg
             bottomIsSvg
-            imageTop={<CirclesIcon color={'#343434'} />}
+            backgroundImage={<CirclesIcon color={'#343434'} />}
             imageBottom={<CirclesIcon color={'#343434'} />}
-            unique={false}
           >
             <div className="container enter-code-page">
               <div className="row header">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { _ } from './../../../components';
-import { ApplitcationState } from './../../../reducers';
+import { ApplicationState } from './../../../reducers';
 import { updateSettingsProperty } from './../../../actions';
 import { TabsFanInterface } from '../../../interfaces';
 
@@ -46,7 +46,7 @@ class MenuProfileComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { activeFanTab, fanTabs } = settings;
   return { activeFanTab, fanTabs };
 };

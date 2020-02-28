@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Tab, Player } from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from '../../reducers';
+import { ApplicationState } from '../../reducers';
 
 interface StateProps {
   isPlaying: boolean;
@@ -23,7 +23,7 @@ class HomePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { isPlaying } = settings;
   return { isPlaying };
 };

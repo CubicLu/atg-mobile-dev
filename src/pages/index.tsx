@@ -13,6 +13,7 @@ import ProfileArtistsPage from './profile/artists';
 import ProfileFriendsPage from './profile/friends';
 import ProfileMixtapesPage from './profile/mixtapes';
 import ProfileVaultPage from './profile/vault';
+import ArtistPage from './artist';
 
 export {
   InitialPage,
@@ -29,5 +30,6 @@ export {
   ProfileArtistsPage,
   ProfileFriendsPage,
   ProfileMixtapesPage,
-  ProfileVaultPage
+  ProfileVaultPage,
+  ArtistPage
 };

@@ -4,7 +4,9 @@ export interface Action<T> {
 }
 
 export enum ActionType {
-  UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY'
+  UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
+  UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
+  UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -16,9 +18,16 @@ export interface TabsInterface {
 }
 
 export interface ArtistInterface {
-  cover: string | undefined;
+  cover: ArtistCoverInterface;
   name: string;
   support: boolean;
+  username: string;
+  backgroundGradient: GradientColorsInterface;
+}
+
+export interface ArtistCoverInterface {
+  main: string | undefined;
+  background: string | undefined;
 }
 
 export interface SettingsReducerType {
@@ -39,4 +48,23 @@ export interface MixtapeInterface {
   name: string;
   quantity: number;
   cover: string | undefined;
+}
+
+export interface ArtistReducerType {
+  artists: ArtistInterface[];
+  currentArtist: ArtistInterface | null;
+}
+
+export interface UserInterface {
+  name: string;
+  email: string;
+}
+
+export interface AuthReducerType {
+  loggedUser: UserInterface;
+}
+
+export interface GradientColorsInterface {
+  color1: string;
+  color2: string;
 }

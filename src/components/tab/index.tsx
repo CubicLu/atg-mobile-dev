@@ -10,7 +10,7 @@ import {
   _
 } from './../../components';
 import { updateSettingsProperty } from './../../actions';
-import { ApplitcationState } from '../../reducers';
+import { ApplicationState } from '../../reducers';
 import {
   IonTabs,
   IonTabBar,
@@ -22,7 +22,8 @@ import {
   MessagesPage,
   ProfilePage,
   SearchPage,
-  RadioPage
+  RadioPage,
+  ArtistPage
 } from './../../pages';
 import { TabsInterface } from '../../interfaces';
 
@@ -113,6 +114,7 @@ class TabComponent extends React.Component<Props> {
               <Route path={data.path} component={data.component} key={index} />
             );
           })}
+          <Route path={'/home/artist/:id'} component={ArtistPage} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom" color="dark">
           {_.map(tabs, (data, index): any => {
@@ -128,7 +130,7 @@ class TabComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { activeTab } = settings;
   return { activeTab };
 };

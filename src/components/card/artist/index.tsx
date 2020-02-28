@@ -1,10 +1,19 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DotsThreeIcon, ButtonIcon, SupportIcon } from './../../../components';
-import {} from './../../../actions';
+import { updateArtistProperty } from './../../../actions';
 import { ArtistInterface } from './../../../interfaces';
+import { connect } from 'react-redux';
 
-interface Props {
+interface StateProps {}
+
+interface DispatchProps {
+  updateArtistProperty: (property: string, value: any) => void;
+}
+
+interface Props extends StateProps, DispatchProps, RouteComponentProps {
   artist: ArtistInterface;
+  key: number;
 }
 
 class CardArtistComponent extends React.Component<Props> {
@@ -14,7 +23,7 @@ class CardArtistComponent extends React.Component<Props> {
         <div className="col s12">
           <div
             className="card artist"
-            style={{ backgroundImage: `url(${this.props.artist.cover})` }}
+            style={{ backgroundImage: `url(${this.props.artist.cover.main})` }}
           >
             <div className="row">
               <div className="col s12 infos p-10">
@@ -24,7 +33,20 @@ class CardArtistComponent extends React.Component<Props> {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s8 name">{this.props.artist.name}</div>
+                  <div
+                    className="col s8 name"
+                    onClick={(): void => {
+                      this.props.updateArtistProperty(
+                        'currentArtist',
+                        this.props.artist
+                      );
+                      this.props.history.push(
+                        `/home/artist/${this.props.artist.username}`
+                      );
+                    }}
+                  >
+                    {this.props.artist.name}
+                  </div>
                   <div className="col s4 support">
                     {this.props.artist.support && (
                       <ButtonIcon icon={<SupportIcon />} color="support" />
@@ -40,4 +62,10 @@ class CardArtistComponent extends React.Component<Props> {
   }
 }
 
-export default CardArtistComponent;
+const mapStateToProps = (): StateProps => {
+  return {};
+};
+
+export default withRouter(
+  connect(mapStateToProps, { updateArtistProperty })(CardArtistComponent)
+);

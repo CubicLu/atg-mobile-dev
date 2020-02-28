@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {} from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from './../../reducers';
+import { ApplicationState } from './../../reducers';
 
 interface Props extends RouteComponentProps {}
 
@@ -31,7 +31,7 @@ class BlankPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplitcationState): object => {
+const mapStateToProps = ({}: ApplicationState): object => {
   return {};
 };
 

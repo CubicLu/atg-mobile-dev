@@ -8,7 +8,7 @@ import {
   CirclesIcon,
   _
 } from './../../components';
-import { ApplitcationState } from './../../reducers';
+import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
 import { TabsFanInterface } from '../../interfaces';
 
@@ -68,7 +68,7 @@ class ProfilePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { activeFanTab, fanTabs, isPlaying } = settings;
   return { activeFanTab, fanTabs, isPlaying };
 };

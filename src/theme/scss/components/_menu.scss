@@ -63,7 +63,7 @@
 
     &.fan-support-options{
         width: 100%;
-        
+        overflow-y: hidden;
         .header{
             @include header-with-button;
             margin-top: 0;
@@ -93,7 +93,7 @@
                     display: inline-flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 15px;
+                    margin-bottom: 10px;
                     width: 100%;
                     font-family: "Roboto";
                     font-weight: 400;

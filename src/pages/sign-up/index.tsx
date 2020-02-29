@@ -5,7 +5,6 @@ import {
   BackgroundImage,
   Button,
   InputText,
-  CirclesIcon,
   ButtonIcon,
   CloseIcon
 } from './../../components';
@@ -26,13 +25,11 @@ class SignUpPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #00000000, #000000"
-            top
-            bottom
-            backgroundImage={<CirclesIcon color="#343434" />}
-            imageBottom={<CirclesIcon color="#343434" />}
-            bottomIsSvg
-            topIsSvg
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundBottom
+            backgroundBottomDark={false}
+            gradient="180deg, #1E073C, #1A0831"
           >
             <div className="container sign-up-page">
               <div className="row header">

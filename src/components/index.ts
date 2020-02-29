@@ -48,6 +48,11 @@ const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circle
 const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
 const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
 
+const BackgroundCircleBubblesImage = require('./../assets/img/background/circles/black-bubbles.png');
+const BackgroundCircleBubblesInverted = require('./../assets/img/background/circles/black-bubbles-inverted.png');
+const BackgroundCircleBubblesLightImage = require('./../assets/img/background/circles/white-bubbles.png');
+const BackgroundCircleBubblesLightInverted = require('./../assets/img/background/circles/white-bubbles-inverted.png');
+
 const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
 const ArtistPharrellWilliamsAlbumNumberOneImage = require('./../assets/img/artists/pharrell-williams/album/number_one.png');
@@ -64,6 +69,10 @@ export {
   BackgroundCircleDarkGrayImage,
   BackgroundCircleBlackImage,
   BackgroundCircleSteelBlueImage,
+  BackgroundCircleBubblesImage,
+  BackgroundCircleBubblesInverted,
+  BackgroundCircleBubblesLightImage,
+  BackgroundCircleBubblesLightInverted,
   BackgroundSignInImage,
   BackgroundSignUpConfirmImage,
   ArtistPharrellWilliamsImage,

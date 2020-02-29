@@ -10,9 +10,9 @@ import {
   CloseIcon,
   CirclesIcon
 } from './../../components';
-import {} from './../../actions';
+import { } from './../../actions';
 
-interface Props extends RouteComponentProps {}
+interface Props extends RouteComponentProps { }
 
 class SignUpConfirmPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -27,25 +27,12 @@ class SignUpConfirmPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #d53d1d00, #a32c16"
-            bottom={true}
-            top={true}
-            bottomIsSvg
-            imageBottom={<CirclesIcon color={'#9b2712'} />}
+            gradient="180deg, #d53d1d, #a32c16"
             backgroundImage={BackgroundSignUpConfirmImage}
-            topStyle={{
-              transform: `rotate(0deg)`,
-              backgroundRepeat: `no-repeat`,
-              backgroundPositionX: `center`,
-              backgroundPositionY: `top`,
-              backgroundAttachment: `fixed`,
-              WebkitBackgroundSize: `cover`,
-              MozBackgroundSize: `cover`,
-              OBackgroundSize: `cover`,
-              backgroundSize: `cover`,
-              height: `100%`
-            }}
+            backgroundTop
+            backgroundBottom
           >
+
             <div className="container sign-up-confirm-page">
               <div className="space-between">
                 <div className="row header">
@@ -107,7 +94,7 @@ class SignUpConfirmPage extends React.Component<Props> {
             </div>
           </BackgroundImage>
         </IonContent>
-      </IonPage>
+      </IonPage >
     );
   }
 }

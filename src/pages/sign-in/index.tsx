@@ -27,25 +27,10 @@ class SignInPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            backgroundImage={BackgroundSignInImage}
             gradient="180deg,#ffc23f00,#ffc23f"
-            bottom={true}
-            top={true}
-            imageBottom={<CirclesIcon color="#C2AF61" />}
-            bottomIsSvg
-
-            topStyle={{
-              transform: `rotate(0deg)`,
-              backgroundRepeat: `no-repeat`,
-              backgroundPositionX: `center`,
-              backgroundPositionY: `top`,
-              backgroundAttachment: `fixed`,
-              WebkitBackgroundSize: `cover`,
-              MozBackgroundSize: `cover`,
-              OBackgroundSize: `cover`,
-              backgroundSize: `cover`,
-              height: `100%`
-            }}
+            backgroundImage={BackgroundSignInImage}
+            backgroundTop={false}
+            backgroundBottom={true}
           >
             <div className="container sign-in-page">
               <div className="space-between">

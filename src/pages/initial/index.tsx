@@ -24,7 +24,6 @@ class InitialPage extends React.Component<Props> {
         >
           <BackgroundImage
             backgroundImage={BackgroundInitialImage}
-            top
             shadow
             legend="Celeste Waite"
           >

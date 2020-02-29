@@ -1,41 +1,39 @@
+.background-top, .background-bottom {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100%;
+    position: fixed;
+    &.rotate{
+        transform: rotate(180deg);        
+    }
+    &.background-bottom{
+        bottom: 0;
+        margin-top: 50%;
+    }
+    &.background-top{
+        top: 0;
+        margin-top: 0;
+    }
+}
 .background-image{ 
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: center;
+    background-position-y: top;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     height: 100%;
+    width: 100%;
+    position: fixed;
+    mix-blend-mode: multiply;
 
+    
     &.shadow{ 
         box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;
-    }
-
-    .top, .bottom{ 
-        position: fixed;
-        height: 200px;
-        width: 100%;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        object-fit: cover; 
-    }
-
-    .top{ 
-        top: 0
-    }
-
-    .bottom{ 
-        bottom: 0;
-        &.is-svg{
-            svg {
-                transform: rotate(180deg);
-            }
-           
-        }
     }
    
     .legend {
@@ -49,6 +47,4 @@
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 400;
     }
-
-    
 }

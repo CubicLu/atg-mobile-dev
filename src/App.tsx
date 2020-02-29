@@ -44,6 +44,7 @@ class App extends React.Component {
           <IonSplitPane contentId="main">
             <IonReactRouter>
               <IonRouterOutlet id="main">
+                <Route path="/initial" component={InitialPage} />
                 <Route path="/sign-up" component={SignUpPage} />
                 <Route path="/home" component={HomePage} />
                 <Route path="/sign-in" component={SignInPage} />

@@ -80,7 +80,7 @@ class BackgroundImageComponent extends React.Component<Props> {
         }
 
         {this.props.legend &&
-          <div className="background-image legend">{this.props.legend}</div>
+          <div className="background-legend">{this.props.legend}</div>
         }
         {this.props.children}
 

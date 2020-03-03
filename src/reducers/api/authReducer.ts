@@ -1,4 +1,3 @@
-
 import { Action, ActionType, AuthReducerType } from './../../interfaces';
 import createReducer from './../createReducer';
 

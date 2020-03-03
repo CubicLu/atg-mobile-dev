@@ -19,8 +19,66 @@ const defaultState: ArtistReducerType = {
       username: 'pharell-williams',
       backgroundGradient: {
         color1: '#079848',
-        color2: '#079848'
-      }
+        color2: '#136137'
+      },
+      featuredTracks: [
+        {
+          image: ArtistPharrellWilliamsImage
+        },
+        {
+          image: ArtistPharrellWilliamsImage
+        }
+      ],
+      newReleases: [
+        {
+          image: ArtistPharrellWilliamsImage,
+          video: ArtistPharrellWilliamsImage,
+          artist: {
+            name: 'H.E.R',
+            cover: ArtistPharrellWilliamsImage,
+            username: 'her'
+          },
+          title: 'Oscar Moments',
+          time: '8:00'
+        },
+        {
+          image: ArtistPharrellWilliamsImage,
+          video: ArtistPharrellWilliamsImage,
+          artist: {
+            name: 'Lizzo',
+            cover: ArtistPharrellWilliamsImage,
+            username: 'lizzo'
+          },
+          title: 'Grammy',
+          time: '30:45'
+        }
+      ],
+      radio: [
+        {
+          label: 'Pharrel Williams',
+          image: ArtistPharrellWilliamsImage
+        },
+        {
+          label: 'R&B',
+          image: ArtistPharrellWilliamsImage
+        },
+        {
+          label: 'Hip Hop',
+          image: ArtistPharrellWilliamsImage
+        },
+        {
+          label: 'Soul',
+          image: ArtistPharrellWilliamsImage
+        }
+      ],
+      events: [
+        {
+          date: '2020-02-21',
+          name: 'The Happy Tour',
+          where: 'Microsoft Theatre',
+          city: 'Los Angeles, CA'
+        }
+      ]
     },
     {
       name: 'LMFAO',
@@ -44,7 +102,6 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     state: ArtistReducerType,
     action: Action<any>
   ) {
-    console.log(action.payload);
     return {
       ...state,
       [action.payload.property]: action.payload.value

@@ -55,7 +55,7 @@ class ArtistPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient={`180deg, ${this.props.currentArtist?.backgroundGradient.color1} 0%, ${this.props.currentArtist?.backgroundGradient.color2} 100%`}
+            gradient={`180deg, ${this.props.currentArtist?.backgroundGradient?.color1} 0%, ${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
             top
             imageTop={this.props.currentArtist?.cover.background}
             unique={true}
@@ -88,6 +88,15 @@ class ArtistPage extends React.Component<Props> {
                   );
                 }}
               />
+              {_.map(
+                this.props.artistTabs,
+                (data, i): React.ReactNode => {
+                  if (data.id === this.props.activeArtistTab) {
+                    return React.createElement(data.component, { key: i });
+                  }
+                  return null;
+                }
+              )}
             </div>
           </BackgroundImage>
         </IonContent>

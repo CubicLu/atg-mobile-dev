@@ -20,9 +20,13 @@ export interface TabsInterface {
 export interface ArtistInterface {
   cover: ArtistCoverInterface;
   name: string;
-  support: boolean;
+  support?: boolean;
   username: string;
-  backgroundGradient: GradientColorsInterface;
+  backgroundGradient?: GradientColorsInterface;
+  featuredTracks?: FeaturedTrackInterface[];
+  newReleases?: NewRealeseInterface[];
+  events?: EventInterface[];
+  radio?: RadioInterface[];
 }
 
 export interface ArtistCoverInterface {
@@ -69,4 +73,28 @@ export interface AuthReducerType {
 export interface GradientColorsInterface {
   color1: string;
   color2: string;
+}
+
+export interface FeaturedTrackInterface {
+  image: string | undefined;
+}
+
+export interface NewRealeseInterface {
+  image: string | undefined;
+  video: string | undefined;
+  time: number | string;
+  title: string;
+  artist: ArtistInterface;
+}
+
+export interface EventInterface {
+  date: string | Date;
+  where: string;
+  name: string;
+  city: string;
+}
+
+export interface RadioInterface {
+  label: string;
+  image: string | undefined;
 }

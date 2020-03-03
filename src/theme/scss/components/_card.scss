@@ -58,6 +58,18 @@
         
     }
 
+    &.image{
+        margin: 0.5rem 0 0.5rem 0 !important;
+        height: 165px;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
     &.mixtapes{
         background: transparent;
         position: relative;
@@ -157,4 +169,185 @@
             }
         }
     }
+
+    &.video{
+        margin: 0.5rem 0 0.5rem 0 !important;
+        height: 170px;
+        width: 280px;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+
+        &::after{
+            content: attr(data-time);
+            background: #000;
+            border-top-left-radius: 10px;
+            height: 25px;
+            width: 100%;
+            font-family: "Helvetica";
+            max-width: 45px;
+            padding: 3px 3px;
+            text-align: center;
+            color: #FFF;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-bottom-right-radius: 10px;
+        }
+    }
+
+    &.rounded{
+        border-radius: 10px;
+    }
+
+    &.circle{
+        border-radius: 50%;
+    }
+
+    &.event{
+        background: transparent;
+        transition: none;
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: 20px;
+
+        .circle {
+            &.calendar{
+                height: 115px;
+                width: 115px;
+                background: #F78429;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+
+                div{
+                    &:first-child{
+                        font-size: pxToRem(25);
+                        color: #FFF;
+                        line-height: 18px;
+                    }
+    
+                    &:last-child{
+                        font-size: pxToRem(45);
+                        color: #FFF;
+                        line-height: 38px;
+                    }
+                }
+                
+            }
+        }
+
+        h1{
+            margin-top: 0px;
+            color: #01AED4;
+            font-size: pxToRem(26);
+            font-weight: bold;
+            font-family: "Helvetica";
+            margin-bottom: 5px;
+        }
+
+        h2, h3{
+            margin-top: 0px;
+            color: #fff;
+            font-size: pxToRem(26);
+            font-weight: 400;
+            font-family: "Helvetica";
+            margin-bottom: 5px;
+        }
+
+        h3{
+            font-size: pxToRem(20);
+        }
+
+        .list {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 7px;
+            li{
+                margin: 0;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                button{
+                    padding: 0;
+                }
+
+                .label{
+                    width: 100%;
+                    font-family: "Helvetica";
+                    color: #fff;
+                    margin-top: 8px;
+                    text-align: center;
+                    font-size: pxToRem(19);
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 360px){
+        &.event{
+            .circle {
+                &.calendar{
+                    height: 100px;
+                    width: 100px;
+                }
+            }
+
+            h1, h2{
+                font-size: pxToRem(20);
+            }
+
+            h3{
+                font-size: pxToRem(14);
+            }
+
+            .list {
+                li{
+                    .label{
+                        font-size: pxToRem(12);
+                    }
+                }
+            }
+        }
+    }
 }
+
+.card-out-content{
+    .col{
+        padding: 0 !important;
+    }
+    
+    h1{
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        &.title, &.artist{
+            font-family: "Helvetica" !important;
+            font-size: pxToRem(30) !important;
+            font-weight: 400 !important;
+            color: #FFF;
+        }
+        &.artist{
+            font-size: pxToRem(24) !important;
+            align-items: center;
+            display: flex;
+        }
+    }
+
+    .button{
+        display: inline-flex;
+        justify-content: space-between;
+        button{
+            padding: 0;
+        }
+    }
+}
+

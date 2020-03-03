@@ -14,6 +14,13 @@ import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
 import HeaderComponent from './header';
 import MenuComponent from './menu';
+import SliderImageComponent from './slider/image';
+import SliderVideoComponent from './slider/video';
+import CardImageComponent from './card/image';
+import CardVideoComponent from './card/video';
+import SliderRadioComponent from './slider/radio';
+import SliderEventsComponent from './slider/events';
+import CardEventComponent from './card/event';
 
 export * from './icon';
 
@@ -31,7 +38,14 @@ export {
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
   HeaderComponent as Header,
-  MenuComponent as Menu
+  MenuComponent as Menu,
+  SliderImageComponent as SliderImage,
+  SliderVideoComponent as SliderVideo,
+  CardImageComponent as CardImage,
+  CardVideoComponent as CardVideo,
+  SliderRadioComponent as SliderRadio,
+  SliderEventsComponent as SliderEvents,
+  CardEventComponent as CardEvent
 };
 
 export { _ };

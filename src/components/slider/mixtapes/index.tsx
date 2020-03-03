@@ -5,7 +5,8 @@ import {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeRebelRockImage,
-  MixtapeMoonLightImage
+  MixtapeMoonLightImage,
+  Button
 } from './../../../components';
 import {} from './../../../actions';
 import 'slick-carousel/slick/slick.css';
@@ -13,7 +14,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { MixtapeInterface } from '../../../interfaces';
 
-interface Props {}
+interface Props {
+  title?: string;
+  viewAll?: boolean;
+}
 
 class SliderMixtapesComponent extends React.Component<Props> {
   settings: any;
@@ -28,7 +32,8 @@ class SliderMixtapesComponent extends React.Component<Props> {
       slidesToShow: 1,
       centerMode: true,
       variableWidth: true,
-      swipe: true
+      swipe: true,
+      arrows: false
     };
 
     this.playlists = [
@@ -57,14 +62,30 @@ class SliderMixtapesComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <Slider {...this.settings}>
-        {_.map(
-          this.playlists,
-          (data, i): React.ReactNode => {
-            return <CardMixtapes mixtape={data} key={i} index={i + 1} />;
-          }
-        )}
-      </Slider>
+      <div className="row slider mixtapes">
+        <div className="col s12">
+          {this.props.title && (
+            <div className={'row content'}>
+              <div className="col s8">
+                <h1 className="title">{this.props.title}</h1>
+              </div>
+              <div className="col s4 view-all">
+                {this.props.viewAll && (
+                  <Button color={'transparent'} label={'View All'} />
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+        <Slider {...this.settings}>
+          {_.map(
+            this.playlists,
+            (data, i): React.ReactNode => {
+              return <CardMixtapes mixtape={data} key={i} index={i + 1} />;
+            }
+          )}
+        </Slider>
+      </div>
     );
   }
 }

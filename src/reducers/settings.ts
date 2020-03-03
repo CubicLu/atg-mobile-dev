@@ -5,7 +5,14 @@ import {
   ProfileArtistsPage,
   ProfileFriendsPage,
   ProfileMixtapesPage,
-  ProfileVaultPage
+  ProfileVaultPage,
+  ArtistDeepPage,
+  ArtistFeaturesPage,
+  ArtistBiographyPage,
+  ArtistDiscographyPage,
+  ArtistGalleryPage,
+  ArtistEventsPage,
+  ArtistVideosPage
 } from './../pages';
 
 const defaultState: SettingsReducerType = {
@@ -43,43 +50,43 @@ const defaultState: SettingsReducerType = {
       id: 'features',
       label: 'Features',
       icon: 'f',
-      component: ProfileArtistsPage
+      component: ArtistFeaturesPage
     },
     {
       id: 'biography',
       label: 'Biography',
       icon: 'b',
-      component: ProfileVaultPage
+      component: ArtistBiographyPage
     },
     {
       id: 'discography',
       label: 'Discography',
       icon: 'd',
-      component: ProfileMixtapesPage
+      component: ArtistDiscographyPage
     },
     {
       id: 'gallery',
       label: 'Gallery',
       icon: 'g',
-      component: ProfileFriendsPage
+      component: ArtistGalleryPage
     },
     {
       id: 'events',
       label: 'Events',
       icon: 'e',
-      component: ProfileFriendsPage
+      component: ArtistEventsPage
     },
     {
       id: 'videos',
       label: 'Videos',
       icon: 'v',
-      component: ProfileFriendsPage
+      component: ArtistVideosPage
     },
     {
       id: 'deep',
       label: 'Deep',
       icon: 'd',
-      component: ProfileFriendsPage
+      component: ArtistDeepPage
     }
   ],
   activeArtistTab: 'features'

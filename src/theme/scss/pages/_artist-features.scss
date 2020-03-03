@@ -1,0 +1,18 @@
+.artist-features-page{
+    
+    .slider {
+        .col{
+            .row {
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+            }
+        }
+    }
+    
+        h1{
+            &.title{
+                font-size: pxToRem(50);
+            }
+        }
+    
+}

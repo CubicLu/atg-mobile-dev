@@ -30,6 +30,7 @@
 @import './components/menu';
 @import './components/card';
 @import './components/player';
+@import './components/slider';
 
 /* pages */
 @import './pages';
@@ -42,3 +43,5 @@
 @import './pages/profile-vault';
 @import './pages/profile-friends';
 @import './pages/profile-mixtapes';
+@import './pages/artist';
+@import './pages/artist-features';

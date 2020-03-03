@@ -8,11 +8,19 @@ import ButtonIconComponent from './button/icon';
 import TabComponent from './tab';
 import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
-import MenuProfileComponent from './menu/profile';
 import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
+import HeaderComponent from './header';
+import MenuComponent from './menu';
+import SliderImageComponent from './slider/image';
+import SliderVideoComponent from './slider/video';
+import CardImageComponent from './card/image';
+import CardVideoComponent from './card/video';
+import SliderRadioComponent from './slider/radio';
+import SliderEventsComponent from './slider/events';
+import CardEventComponent from './card/event';
 
 export * from './icon';
 
@@ -25,11 +33,19 @@ export {
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,
-  MenuProfileComponent as MenuProfile,
   CardArtistComponent as CardArtist,
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
-  PlayerComponent as Player
+  PlayerComponent as Player,
+  HeaderComponent as Header,
+  MenuComponent as Menu,
+  SliderImageComponent as SliderImage,
+  SliderVideoComponent as SliderVideo,
+  CardImageComponent as CardImage,
+  CardVideoComponent as CardVideo,
+  SliderRadioComponent as SliderRadio,
+  SliderEventsComponent as SliderEvents,
+  CardEventComponent as CardEvent
 };
 
 export { _ };
@@ -46,6 +62,7 @@ const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circl
 
 const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
+const ArtistPharrellWilliamsBackgroundImage = require('./../assets/img/artists/pharrell-williams/background.png');
 const ArtistPharrellWilliamsAlbumNumberOneImage = require('./../assets/img/artists/pharrell-williams/album/number_one.png');
 
 const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
@@ -68,5 +85,6 @@ export {
   MixtapeKnightImage,
   MixtapeMoonLightImage,
   MixtapeRebelRockImage,
-  ArtistPharrellWilliamsAlbumNumberOneImage
+  ArtistPharrellWilliamsAlbumNumberOneImage,
+  ArtistPharrellWilliamsBackgroundImage
 };

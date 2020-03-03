@@ -17,6 +17,7 @@ import PlayIcon from './play';
 import TrashIcon from './trash';
 import ShareIcon from './share';
 import LockerIcon from './locker';
+import BackIcon from './back';
 
 export {
   MessageIcon,
@@ -37,5 +38,6 @@ export {
   PlayIcon,
   ShareIcon,
   TrashIcon,
-  LockerIcon
+  LockerIcon,
+  BackIcon
 };

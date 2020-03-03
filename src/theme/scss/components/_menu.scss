@@ -1,5 +1,22 @@
 .menu{
-    &.profile{
+    &.generic{
+
+        &.scroll{
+            justify-content: normal !important;
+            overflow-x: scroll;
+            @include no-scroll-bar();
+            li{
+                margin-left: 10px !important;
+                margin-right: 10px !important;
+                &:first-child{
+                    margin-left: 20px !important;
+                }
+                &:last-child{
+                    padding-right: 20px !important;
+                }
+            }
+        }
+
         justify-content: space-around;
         width: 100%;
         padding: 10px 0;
@@ -33,17 +50,16 @@
                 }
             }
             .title{
-                font-family: Arial, Helvetica, sans-serif;
-                font-weight: bold !important;
+                font-family: "Helvetica";
                 font-size: 14px;
                 margin-top: 10px !important;
-                font-weight: 400;
+                font-weight: 400 !important;
                 border-bottom: 2px solid transparent;
             }
 
             &.active{
                 .title{
-                    font-weight: bold;
+                    font-weight: bold !important;
                     border-bottom: 2px;
                     border-bottom: 2px solid $tertiary;
                     color: $tertiary;

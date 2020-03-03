@@ -8,12 +8,12 @@ import ButtonIconComponent from './button/icon';
 import TabComponent from './tab';
 import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
-import MenuProfileComponent from './menu/profile';
 import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
 import HeaderComponent from './header';
+import MenuComponent from './menu';
 
 export * from './icon';
 
@@ -26,12 +26,12 @@ export {
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,
-  MenuProfileComponent as MenuProfile,
   CardArtistComponent as CardArtist,
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
-  HeaderComponent as Header
+  HeaderComponent as Header,
+  MenuComponent as Menu
 };
 
 export { _ };

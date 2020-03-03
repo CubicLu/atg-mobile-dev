@@ -9,7 +9,7 @@ class HeaderComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="header default">
-        <div className="row align-items-center content">
+        <div className="row content">
           <div className="col s2 h-100 back-col">
             <ButtonIcon icon={<BackIcon />} />
           </div>

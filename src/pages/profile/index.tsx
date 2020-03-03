@@ -4,17 +4,17 @@ import { IonPage, IonContent } from '@ionic/react';
 import {
   BackgroundImage,
   HeaderProfile,
-  MenuProfile,
+  Menu,
   CirclesIcon,
   _
 } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
-import { TabsFanInterface } from '../../interfaces';
+import { MenuInterface } from '../../interfaces';
 
 interface StateProps {
   activeFanTab: string;
-  fanTabs: TabsFanInterface[];
+  fanTabs: MenuInterface[];
   isPlaying: boolean;
 }
 
@@ -50,7 +50,16 @@ class ProfilePage extends React.Component<Props> {
               }
             >
               <HeaderProfile />
-              <MenuProfile />
+              <Menu
+                tabs={this.props.fanTabs}
+                activeId={this.props.activeFanTab}
+                onClick={(event: MenuInterface): void => {
+                  return this.props.updateSettingsProperty(
+                    'activeFanTab',
+                    event.id
+                  );
+                }}
+              />
               {_.map(
                 this.props.fanTabs,
                 (data, i): React.ReactNode => {

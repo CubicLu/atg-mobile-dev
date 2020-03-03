@@ -86,7 +86,7 @@ class SignInPage extends React.Component<Props> {
                       <div className="col s12">
                         <Button
                           label="Sign In"
-                          full
+                          type={'full'}
                           bold
                           color="primary"
                           gradient

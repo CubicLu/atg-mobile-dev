@@ -69,6 +69,10 @@
         }
     }
 
+    &.rounded{
+        border-radius: 10px;
+    }
+
     &.rounded-tooltip{
         display: flex;
         justify-content: center;

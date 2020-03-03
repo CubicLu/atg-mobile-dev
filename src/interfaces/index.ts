@@ -33,11 +33,13 @@ export interface ArtistCoverInterface {
 export interface SettingsReducerType {
   activeTab: string;
   isPlaying: boolean;
-  fanTabs: TabsFanInterface[];
+  fanTabs: MenuInterface[];
   activeFanTab: string;
+  artistTabs: MenuInterface[];
+  activeArtistTab: string;
 }
 
-export interface TabsFanInterface {
+export interface MenuInterface {
   label: string;
   icon: any;
   id: string;

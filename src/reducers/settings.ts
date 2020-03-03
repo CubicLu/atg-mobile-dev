@@ -37,7 +37,52 @@ const defaultState: SettingsReducerType = {
       icon: 'f',
       component: ProfileFriendsPage
     }
-  ]
+  ],
+  artistTabs: [
+    {
+      id: 'features',
+      label: 'Features',
+      icon: 'f',
+      component: ProfileArtistsPage
+    },
+    {
+      id: 'biography',
+      label: 'Biography',
+      icon: 'b',
+      component: ProfileVaultPage
+    },
+    {
+      id: 'discography',
+      label: 'Discography',
+      icon: 'd',
+      component: ProfileMixtapesPage
+    },
+    {
+      id: 'gallery',
+      label: 'Gallery',
+      icon: 'g',
+      component: ProfileFriendsPage
+    },
+    {
+      id: 'events',
+      label: 'Events',
+      icon: 'e',
+      component: ProfileFriendsPage
+    },
+    {
+      id: 'videos',
+      label: 'Videos',
+      icon: 'v',
+      component: ProfileFriendsPage
+    },
+    {
+      id: 'deep',
+      label: 'Deep',
+      icon: 'd',
+      component: ProfileFriendsPage
+    }
+  ],
+  activeArtistTab: 'features'
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

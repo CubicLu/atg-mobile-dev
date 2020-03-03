@@ -2,18 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
-import { _, BackgroundImage, Header } from './../../components';
-import { updateArtistProperty } from './../../actions';
+import { _, BackgroundImage, Header, Button, Menu } from './../../components';
+import { updateArtistProperty, updateSettingsProperty } from './../../actions';
 import { ApplicationState } from './../../reducers';
-import { ArtistInterface } from '../../interfaces';
+import { ArtistInterface, MenuInterface } from '../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   artists: ArtistInterface[];
+  isPlaying: boolean;
+  artistTabs: MenuInterface[];
+  activeArtistTab: string;
 }
 
 interface DispatchProps {
   updateArtistProperty: (property: string, value: any) => void;
+  updateSettingsProperty: (property: string, value: any) => void;
 }
 
 interface MatchParams {
@@ -30,10 +34,10 @@ class ArtistPage extends React.Component<Props> {
     if (this.props.currentArtist == null) {
       let artist = _.find(
         this.props.artists,
-        (x): any => x.username == this.props.match.params.id
+        (x): any => x.username === this.props.match.params.id
       );
 
-      if (artist != undefined) {
+      if (artist !== undefined) {
         this.props.updateArtistProperty('currentArtist', artist);
       }
     }
@@ -41,7 +45,7 @@ class ArtistPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="blank-page">
+      <IonPage id="artist-page">
         <IonContent
           scrollY={true}
           scrollEvents={true}
@@ -57,8 +61,33 @@ class ArtistPage extends React.Component<Props> {
             unique={true}
             topStyle={{ height: '100%' }}
           >
-            <div className={`profile-page`}>
+            <div
+              className={
+                `artist-page` + (this.props.isPlaying && ' is-playing')
+              }
+            >
               <Header />
+              <div className={'row'}>
+                <div className={'col s12 name'}>
+                  <h1 className="title">{this.props.currentArtist?.name}</h1>
+                  <Button
+                    color={'support'}
+                    label={'SUPPORT US'}
+                    type={'rounded'}
+                  />
+                </div>
+              </div>
+
+              <Menu
+                tabs={this.props.artistTabs}
+                activeId={this.props.activeArtistTab}
+                onClick={(event: MenuInterface): void => {
+                  return this.props.updateSettingsProperty(
+                    'activeArtistTab',
+                    event.id
+                  );
+                }}
+              />
             </div>
           </BackgroundImage>
         </IonContent>
@@ -67,13 +96,18 @@ class ArtistPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  artistAPI,
+  settings
+}: ApplicationState): StateProps => {
   const { currentArtist, artists } = artistAPI;
-  return { currentArtist, artists };
+  const { isPlaying, artistTabs, activeArtistTab } = settings;
+  return { currentArtist, artists, isPlaying, artistTabs, activeArtistTab };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    updateArtistProperty
+    updateArtistProperty,
+    updateSettingsProperty
   })(ArtistPage)
 );

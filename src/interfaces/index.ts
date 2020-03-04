@@ -27,6 +27,7 @@ export interface ArtistInterface {
   newReleases?: NewRealeseInterface[];
   events?: EventInterface[];
   radio?: RadioInterface[];
+  supportImages?: ArtistSupportImagesInterface;
 }
 
 export interface ArtistCoverInterface {
@@ -41,6 +42,8 @@ export interface SettingsReducerType {
   activeFanTab: string;
   artistTabs: MenuInterface[];
   activeArtistTab: string;
+  plans: PlanInterface[];
+  selectedPlan: PlanInterface | null;
 }
 
 export interface MenuInterface {
@@ -97,4 +100,28 @@ export interface EventInterface {
 export interface RadioInterface {
   label: string;
   image: string | undefined;
+}
+
+export interface ArtistSupportImagesInterface {
+  background: string | undefined;
+  avatar: string | undefined;
+}
+
+export interface PlanInterface {
+  price: number | string;
+  name: string;
+  color: Colors;
+  id: string | number;
+  description: string;
+}
+
+export enum Colors {
+  support = 'support',
+  transparentGray = 'transparent-gray',
+  transparent = 'transparent',
+  green = 'green',
+  red = 'red',
+  orange = 'orange',
+  yellow = 'yellow',
+  blue = 'blue'
 }

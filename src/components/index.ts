@@ -21,6 +21,7 @@ import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
+import ButtonPlanComponent from './button/plan';
 
 export * from './icon';
 
@@ -45,7 +46,8 @@ export {
   CardVideoComponent as CardVideo,
   SliderRadioComponent as SliderRadio,
   SliderEventsComponent as SliderEvents,
-  CardEventComponent as CardEvent
+  CardEventComponent as CardEvent,
+  ButtonPlanComponent as ButtonPlan
 };
 
 export { _ };
@@ -64,6 +66,8 @@ const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
 const ArtistPharrellWilliamsBackgroundImage = require('./../assets/img/artists/pharrell-williams/background.png');
 const ArtistPharrellWilliamsAlbumNumberOneImage = require('./../assets/img/artists/pharrell-williams/album/number_one.png');
+const ArtistPharrellWilliamsSupportBackgroundImage = require('./../assets/img/artists/pharrell-williams/support-background.png');
+const ArtistPharrellWilliamsSupportAvatarImage = require('./../assets/img/artists/pharrell-williams/support-avatar.png');
 
 const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
 const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
@@ -86,5 +90,7 @@ export {
   MixtapeMoonLightImage,
   MixtapeRebelRockImage,
   ArtistPharrellWilliamsAlbumNumberOneImage,
-  ArtistPharrellWilliamsBackgroundImage
+  ArtistPharrellWilliamsBackgroundImage,
+  ArtistPharrellWilliamsSupportBackgroundImage,
+  ArtistPharrellWilliamsSupportAvatarImage
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
@@ -12,7 +12,8 @@ import {
   HomePage,
   SignInPage,
   EnterCodePage,
-  SignUpConfirmPage
+  SignUpConfirmPage,
+  ArtistSupportPage
 } from './pages';
 
 import { store } from './store';
@@ -44,17 +45,26 @@ class App extends React.Component {
           <IonSplitPane contentId="main">
             <IonReactRouter>
               <IonRouterOutlet id="main">
-                <Route path="/initial" component={InitialPage} />
-                <Route path="/sign-up" component={SignUpPage} />
-                <Route path="/home" component={HomePage} />
-                <Route path="/sign-in" component={SignInPage} />
-                <Route path="/enter-code" component={EnterCodePage} />
-                <Route path="/sign-up-confirm" component={SignUpConfirmPage} />
-                <Route
-                  exact
-                  path="/"
-                  render={(): any => <Redirect to="/initial" />}
-                />
+                <Switch>
+                  <Route path="/initial" component={InitialPage} />
+                  <Route path="/sign-up" component={SignUpPage} />
+                  <Route
+                    path={'/home/artist/:id/support'}
+                    component={ArtistSupportPage}
+                  />
+                  <Route path="/home" component={HomePage} />
+                  <Route path="/sign-in" component={SignInPage} />
+                  <Route path="/enter-code" component={EnterCodePage} />
+                  <Route
+                    path="/sign-up-confirm"
+                    component={SignUpConfirmPage}
+                  />
+                  <Route
+                    exact
+                    path="/"
+                    render={(): any => <Redirect to="/initial" />}
+                  />
+                </Switch>
               </IonRouterOutlet>
             </IonReactRouter>
           </IonSplitPane>

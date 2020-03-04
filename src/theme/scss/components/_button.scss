@@ -73,6 +73,10 @@
         border-radius: 10px;
     }
 
+    &.normal{
+        border-radius: 3px;
+    }
+
     &.rounded-tooltip{
         display: flex;
         justify-content: center;
@@ -101,5 +105,9 @@
             font-size: 20px;
         }
        
+    }
+
+    &.plan{
+        @include plan-detail();
     }
 }

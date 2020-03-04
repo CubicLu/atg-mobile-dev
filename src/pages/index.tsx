@@ -22,6 +22,7 @@ import ArtistDiscographyPage from './artist/discography';
 import ArtistGalleryPage from './artist/gallery';
 import ArtistEventsPage from './artist/events';
 import ArtistVideosPage from './artist/videos';
+import ArtistSupportPage from './artist/support';
 
 export {
   InitialPage,
@@ -46,5 +47,6 @@ export {
   ArtistDiscographyPage,
   ArtistGalleryPage,
   ArtistEventsPage,
-  ArtistVideosPage
+  ArtistVideosPage,
+  ArtistSupportPage
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { ButtonIcon, BackIcon } from './../../components';
 import {} from './../../actions';
 
 interface Props extends RouteComponentProps {

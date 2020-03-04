@@ -49,6 +49,7 @@ class BackgroundImageComponent extends React.Component<Props> {
         className={`background-image ${shadow} `}
         style={{
           backgroundImage: `${unique} ${comma} ${gradient}`,
+          height: this.props.unique ? 'auto' : '100%',
           ...this.props.styles
         }}
       >

@@ -27,6 +27,7 @@ export interface ArtistInterface {
   newReleases?: NewRealeseInterface[];
   events?: EventInterface[];
   radio?: RadioInterface[];
+  discography?: DiscographyInterface[];
 }
 
 export interface ArtistCoverInterface {
@@ -97,4 +98,9 @@ export interface EventInterface {
 export interface RadioInterface {
   label: string;
   image: string | undefined;
+}
+
+export interface DiscographyInterface {
+  cover: string | undefined;
+  name: string;
 }

@@ -24,7 +24,6 @@ class SliderRadioComponent extends React.Component<Props> {
       dots: false,
       infinite: false,
       speed: 500,
-      slidesToShow: 1,
       centerMode: false,
       variableWidth: true,
       swipe: true,
@@ -55,6 +54,7 @@ class SliderRadioComponent extends React.Component<Props> {
                   image={data.image}
                   type={'circle'}
                   key={i}
+                  col={2}
                   label={data.label}
                 />
               );

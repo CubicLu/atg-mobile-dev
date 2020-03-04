@@ -4,7 +4,21 @@ import createReducer from './../createReducer';
 import {
   ArtistPharrellWilliamsImage,
   ArtistLmfaoImage,
-  ArtistPharrellWilliamsBackgroundImage
+  ArtistPharrellWilliamsBackgroundImage,
+  ArtistPharrellWilliamsAlbumNumberOneImage,
+  ArtistPharrellWilliamsAlbumFreedomImage,
+  ArtistPharrellWilliamsAlbumFrontinImage,
+  ArtistPharrellWilliamsAlbumMyGirlImage,
+  ArtistPharrellWilliamsAlbumTheNeptunesImage,
+  ArtistPharrellWilliamsAlbumHappyImage,
+  GenersRebImage,
+  GenersHipHopImage,
+  GenersSoulImage,
+  ArtistPharrellWilliamsPlaylistImage,
+  ArtistPharrellWilliamsFeaturedTracks1Image,
+  ArtistPharrellWilliamsFeaturedTracks2Image,
+  ArtistPharrellWilliamsNewRelease1Image,
+  ArtistPharrellWilliamsNewRelease2Image
 } from './../../components';
 
 const defaultState: ArtistReducerType = {
@@ -23,30 +37,30 @@ const defaultState: ArtistReducerType = {
       },
       featuredTracks: [
         {
-          image: ArtistPharrellWilliamsImage
+          image: ArtistPharrellWilliamsFeaturedTracks1Image
         },
         {
-          image: ArtistPharrellWilliamsImage
+          image: ArtistPharrellWilliamsFeaturedTracks2Image
         }
       ],
       newReleases: [
         {
-          image: ArtistPharrellWilliamsImage,
-          video: ArtistPharrellWilliamsImage,
+          image: ArtistPharrellWilliamsNewRelease1Image,
+          video: ArtistPharrellWilliamsNewRelease1Image,
           artist: {
             name: 'H.E.R',
-            cover: ArtistPharrellWilliamsImage,
+            cover: ArtistPharrellWilliamsNewRelease1Image,
             username: 'her'
           },
           title: 'Oscar Moments',
           time: '8:00'
         },
         {
-          image: ArtistPharrellWilliamsImage,
-          video: ArtistPharrellWilliamsImage,
+          image: ArtistPharrellWilliamsNewRelease2Image,
+          video: ArtistPharrellWilliamsNewRelease2Image,
           artist: {
             name: 'Lizzo',
-            cover: ArtistPharrellWilliamsImage,
+            cover: ArtistPharrellWilliamsNewRelease2Image,
             username: 'lizzo'
           },
           title: 'Grammy',
@@ -56,19 +70,19 @@ const defaultState: ArtistReducerType = {
       radio: [
         {
           label: 'Pharrel Williams',
-          image: ArtistPharrellWilliamsImage
+          image: ArtistPharrellWilliamsPlaylistImage
         },
         {
           label: 'R&B',
-          image: ArtistPharrellWilliamsImage
+          image: GenersRebImage
         },
         {
           label: 'Hip Hop',
-          image: ArtistPharrellWilliamsImage
+          image: GenersHipHopImage
         },
         {
           label: 'Soul',
-          image: ArtistPharrellWilliamsImage
+          image: GenersSoulImage
         }
       ],
       events: [
@@ -77,6 +91,32 @@ const defaultState: ArtistReducerType = {
           name: 'The Happy Tour',
           where: 'Microsoft Theatre',
           city: 'Los Angeles, CA'
+        }
+      ],
+      discography: [
+        {
+          name: 'Happy',
+          cover: ArtistPharrellWilliamsAlbumHappyImage
+        },
+        {
+          name: 'Freedom',
+          cover: ArtistPharrellWilliamsAlbumFreedomImage
+        },
+        {
+          name: 'My Girl',
+          cover: ArtistPharrellWilliamsAlbumMyGirlImage
+        },
+        {
+          name: 'Frontin',
+          cover: ArtistPharrellWilliamsAlbumFrontinImage
+        },
+        {
+          name: 'The Neptunes',
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage
+        },
+        {
+          name: 'Number One',
+          cover: ArtistPharrellWilliamsAlbumNumberOneImage
         }
       ]
     },

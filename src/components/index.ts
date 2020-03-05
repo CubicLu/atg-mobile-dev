@@ -21,6 +21,8 @@ import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
+import ModalSlideComponent from './modal/slide';
+import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 
 export * from './icon';
 
@@ -45,7 +47,9 @@ export {
   CardVideoComponent as CardVideo,
   SliderRadioComponent as SliderRadio,
   SliderEventsComponent as SliderEvents,
-  CardEventComponent as CardEvent
+  CardEventComponent as CardEvent,
+  ModalSlideComponent as ModalSlide,
+  MenuFanSupportOptionsComponent as MenuFanSupportOptions
 };
 
 export { _ };
@@ -59,6 +63,11 @@ const BackgroundCircleBrownImage = require('./../assets/img/background/circles/b
 const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circles/dark-gray.png');
 const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
 const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
+
+const BackgroundCircleBubblesImage = require('./../assets/img/background/circles/black-bubbles.png');
+const BackgroundCircleBubblesInverted = require('./../assets/img/background/circles/black-bubbles-inverted.png');
+const BackgroundCircleBubblesLightImage = require('./../assets/img/background/circles/white-bubbles.png');
+const BackgroundCircleBubblesLightInverted = require('./../assets/img/background/circles/white-bubbles-inverted.png');
 
 const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
@@ -77,6 +86,10 @@ export {
   BackgroundCircleDarkGrayImage,
   BackgroundCircleBlackImage,
   BackgroundCircleSteelBlueImage,
+  BackgroundCircleBubblesImage,
+  BackgroundCircleBubblesInverted,
+  BackgroundCircleBubblesLightImage,
+  BackgroundCircleBubblesLightInverted,
   BackgroundSignInImage,
   BackgroundSignUpConfirmImage,
   ArtistPharrellWilliamsImage,

@@ -50,6 +50,10 @@ const defaultState: SettingsReducerType = {
       component: ProfileFriendsPage
     }
   ],
+  modal: {
+    visible: false,
+    content: null
+  },
   artistTabs: [
     {
       id: 'features',
@@ -142,6 +146,15 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         [action.payload.property]: action.payload.value
+      };
+    },
+    [ActionType.UPDATE_SETTINGS_MODAL](
+      state: SettingsReducerType,
+      action: Action<any>
+    ) {
+      return {
+        ...state,
+        modal: { ...action.payload }
       };
     }
   }

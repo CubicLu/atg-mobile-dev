@@ -8,3 +8,29 @@ $primary-gradient: #2C0C69;
 $secondary-gradient: #00BAFF;
 $tertiary-gradient: #E0850A;
 $quartenary-gradient: #FF9766;
+
+
+ 
+
+$colors: (
+    primary: (
+        base: $primary,
+        gradient: $primary-gradient,
+        opacity95: rbga($primary, 0.95)
+    ),
+    secondary: (
+        base: $secondary,
+        gradient: $secondary-gradient,
+        opacity95: rgba($secondary, 0.95)
+    ),
+    tertiary: (
+        base: $tertiary,
+        gradient: $tertiary-gradient,
+        opacity95: rgba($tertiary, 0.95)
+    ),
+    quartnary: (
+        base: $quartenary,
+        gradient: $quartenary-gradient,
+        opacity95: rbga($quartenary, 0.95)
+    )
+);

@@ -18,6 +18,10 @@
 
     .header{
         @include header-with-button;
+
+        .transparent-gray{
+            background: rgba(0, 0, 0, 0.3);
+        }
     }
 
     .rounded-tooltip{

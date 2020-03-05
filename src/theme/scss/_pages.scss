@@ -1,4 +1,4 @@
-.ion-page{ 
+.1ion-page{ 
 
     &#sign-in-page{
         ion-content{
@@ -7,7 +7,7 @@
     }
     &#sign-up-page{
         ion-content{
-            --background: linear-gradient(rgb(35, 6, 64) 0%, rgb(17, 0, 35) 100%); 
+            --background: linear-gradient(#000 0%, #000 100%); 
         }
     }
     &#enter-code-page{
@@ -17,7 +17,7 @@
     }
     &#sign-up-confirm-page{
         ion-content{
-            --background: linear-gradient(rgb(0, 189, 250) 0%, rgb(0, 189, 250) 100%); 
+            --background: linear-gradient(#d53d1d 0%, #a32c16 100%); 
         }
     }
     &#profile-page{

@@ -7,8 +7,7 @@ import {
   InputText,
   Button,
   ButtonIcon,
-  CloseIcon,
-  CirclesIcon
+  CloseIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -27,28 +26,10 @@ class SignInPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #FFC23F 0%, #FFC23F 100%"
-            bottom={true}
-            top={true}
-            unique={false}
-            imageBottom={<CirclesIcon color="#C2AF61" />}
-            bottomIsSvg
-            imageTop={BackgroundSignInImage}
-            topGradient={
-              'linear-gradient(rgba(255, 194, 63, 0.2) 0%, rgb(255, 194, 63, 1) 100%)'
-            }
-            topStyle={{
-              transform: `rotate(0deg)`,
-              backgroundRepeat: `no-repeat`,
-              backgroundPositionX: `center`,
-              backgroundPositionY: `top`,
-              backgroundAttachment: `fixed`,
-              WebkitBackgroundSize: `cover`,
-              MozBackgroundSize: `cover`,
-              OBackgroundSize: `cover`,
-              backgroundSize: `cover`,
-              height: `100%`
-            }}
+            gradient="180deg,#ffc23f00,#ffc23f"
+            backgroundImage={BackgroundSignInImage}
+            backgroundTop={false}
+            backgroundBottom={true}
           >
             <div className="container sign-in-page">
               <div className="space-between">

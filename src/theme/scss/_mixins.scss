@@ -68,6 +68,23 @@
   @return ($target / $context) * 1rem;
 }
 
+@mixin color-modifiers($attribute: 'color', $prefix: '-', $separator: '-') {
+  @each $name, $color in $colors {
+    &#{$prefix}#{$name} {
+      @each $tone, $hex in $color {
+        &#{$separator}#{$tone} {
+          #{$attribute}: $hex;
+        }
+      }
+    }
+  }
+}
+
+@mixin background-opacity($color, $opacity: 0.5) {
+  background: $color;
+  background: rgba($color, $opacity);
+}
+
 @mixin no-scroll-bar() {
   &::-webkit-scrollbar {
     height: 0;

@@ -2,9 +2,10 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
-  Button,
   InputCode,
-  CirclesIcon
+  CirclesIcon,
+  ButtonIcon,
+  CloseIcon
 } from './../../components';
 import {} from './../../actions';
 import { IonPage, IonContent } from '@ionic/react';
@@ -46,22 +47,19 @@ class EnterCodePage extends React.Component<Props, State> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #000 0%, #000 100%"
-            top
-            bottom
-            topIsSvg
-            bottomIsSvg
-            imageTop={<CirclesIcon color={'#343434'} />}
-            imageBottom={<CirclesIcon color={'#343434'} />}
-            unique={false}
+            gradient="180deg, #000, #0D0711"
+            backgroundTop
+            backgroundTopDark={false}
+            backgroundBottom
+            backgroundBottomDark={false}
           >
             <div className="container enter-code-page">
-              <div className="row ">
-                <div className="col s12 right-align mt-20">
-                  <Button
-                    color="transparent"
+              <div className="row header">
+                <div className="col s10"></div>
+                <div className="col s2 button">
+                  <ButtonIcon
+                    icon={<CloseIcon strokeWidth={2} />}
                     onClick={(): any => this.props.history.push('/initial')}
-                    label="Skip"
                   />
                 </div>
               </div>

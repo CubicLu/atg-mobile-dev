@@ -5,7 +5,8 @@ import {
   BackgroundImage,
   Button,
   InputText,
-  CirclesIcon
+  ButtonIcon,
+  CloseIcon
 } from './../../components';
 import {} from './../../actions';
 
@@ -24,27 +25,24 @@ class SignUpPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #230640 0%, #110023 100%"
-            top
-            bottom
-            imageTop={<CirclesIcon color="#040508" height={250} />}
-            imageBottom={<CirclesIcon color="#232126" height={250} />}
-            unique={false}
-            bottomIsSvg
-            topIsSvg
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundBottom
+            backgroundBottomDark={false}
+            gradient="180deg, #1E073C, #1A0831"
           >
             <div className="container sign-up-page">
-              <div className="row ">
-                <div className="col s12 right-align mt-20">
-                  <Button
-                    color="transparent"
+              <div className="row header">
+                <div className="col s10"></div>
+                <div className="col s2 button">
+                  <ButtonIcon
+                    icon={<CloseIcon strokeWidth={2} />}
                     onClick={(): any => this.props.history.push('/initial')}
-                    label="Skip"
                   />
                 </div>
               </div>
               <div className="row ">
-                <div className="col s12">
+                <div className="col s12 brand-text">
                   <h1 className="title secondary center-align brand">panthr</h1>
                   <h1 className="subtitle">
                     THE ULTIMATE DESTINATION FOR ARTIST & FANS
@@ -73,8 +71,8 @@ class SignUpPage extends React.Component<Props> {
               <div className="row ">
                 <div className="col s12">
                   <p>
-                    By signing up you confirm that you have read and agree to
-                    tr1be’s General terms and Privacy policy.
+                    By signing up you confirm that you have read and agree
+                    <b> General terms</b> and <b>Privacy policy</b>.
                   </p>
                 </div>
               </div>

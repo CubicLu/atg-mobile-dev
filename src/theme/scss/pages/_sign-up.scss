@@ -1,15 +1,67 @@
 .sign-up-page{
     p{
         color: #5E7FB1;
-        font-size: 12px;
+        font-size: pxToRem(16);
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    .subtitle{
-        font-size: 21px;
+    .brand-text{
+        position: relative;
+        .brand{
+            font-size: pxToRem(85);
+        }
+        .subtitle{
+            font-size: pxToRem(30);
+            position: absolute;
+            margin-left: 0;
+            left: 70px;
+            bottom: -11px;
+        }
     }
+
+    .header{
+        @include header-with-button;
+        height: 45px;
+        margin-top: 0;
+    }
+
 
     .rounded-tooltip{
         padding-left: 0;
+    }
+
+    .btn {
+        &.icon{
+            padding: 0 10px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+    
+        .brand-text{
+            .brand{
+                margin-top: 0;
+            }
+            .subtitle{
+                left: 48px;
+            }
+        }
+    
+    }
+
+
+    @media screen and (max-width: 360px) {
+    
+        .brand-text{
+            .brand{
+                font-size: pxToRem(70);
+                margin-top: 0;
+            }
+            .subtitle{
+                font-size: pxToRem(22);
+                left: 56px;
+            }
+        }
+    
     }
 }

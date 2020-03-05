@@ -5,6 +5,7 @@ export interface Action<T> {
 
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
+  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL',
   UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
   UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY'
 }
@@ -44,6 +45,13 @@ export interface SettingsReducerType {
   activeArtistTab: string;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;
+  modal: ModalSlideInterface;
+}
+
+export interface ModalSlideInterface {
+  visible: boolean;
+  content: React.ReactNode;
+  classname?: string;
 }
 
 export interface MenuInterface {

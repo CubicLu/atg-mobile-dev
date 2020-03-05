@@ -62,7 +62,7 @@ class App extends React.Component {
                   <Route
                     exact
                     path="/"
-                    render={(): any => <Redirect to="/initial" />}
+                    render={(): any => <Redirect to="/sign-in" />}
                   />
                 </Switch>
               </IonRouterOutlet>

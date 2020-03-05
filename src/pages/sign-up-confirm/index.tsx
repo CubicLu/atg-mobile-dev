@@ -76,7 +76,7 @@ class SignUpConfirmPage extends React.Component<Props> {
                       <div className="col s12">
                         <Button
                           label="Sign in"
-                          full
+                          type="full"
                           color="primary"
                           gradient
                           bold

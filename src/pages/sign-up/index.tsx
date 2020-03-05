@@ -82,7 +82,7 @@ class SignUpPage extends React.Component<Props> {
                   <Button
                     label="Sign up"
                     color="primary"
-                    full
+                    type={'full'}
                     bold
                     gradient
                     onClick={(): any => this.props.history.push('/enter-code')}

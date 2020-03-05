@@ -5,28 +5,27 @@ import {} from './../../actions';
 interface Props {
   onClick: Function;
   label: string;
-  color?: 'primary' | 'secondary' | 'tertiary' | 'transparent';
+  color?: 'primary' | 'secondary' | 'tertiary' | 'transparent' | 'support';
   gradient?: boolean;
-  full?: boolean;
   bold?: boolean;
+  type?: 'rounded' | 'normal' | 'full';
 }
 
 class ButtonComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {},
     gradient: false,
-    full: false,
+    type: 'normal',
     bold: false
   };
 
   render(): React.ReactNode {
     let gradient = this.props.gradient ? 'gradient' : '';
-    let full = this.props.full ? 'full' : '';
     let bold = this.props.bold ? 'bold' : '';
     return (
       <button
         onClick={this.props.onClick.bind(this)}
-        className={`btn ${this.props.color} ${gradient} ${full} ${bold}`}
+        className={`btn ${this.props.color} ${gradient} ${this.props.type} ${bold}`}
       >
         {this.props.label}
       </button>

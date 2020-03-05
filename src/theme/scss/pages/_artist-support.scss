@@ -1,0 +1,90 @@
+.artist-support-page{
+    
+    @include page;
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-top: 25%;
+        padding: 0 40px;
+
+        .title{
+            font-size: pxToRem(55);
+        }
+        .subtitle{
+            font-size: pxToRem(42);
+            margin-top: -10px;
+        }
+    }
+
+    .buttons{
+        .col{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .dots{
+        height: 16px;
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.detail{
+        .text{
+            font-family: 'Helvetica';
+            padding: 10px;
+        }
+        .title{
+            font-size: pxToRem(50);
+            margin-top: 0;
+            color: #000;
+        }
+    
+        .subtitle{
+            font-size: pxToRem(40);
+            margin-top: -10px;
+            color: #000;
+            margin-left: 0;
+        }
+
+        .plan-detail{
+            @include plan-detail();
+            align-items: flex-start;
+            line-height: 75px;
+            .price{
+                font-size: pxToRem(85);
+                &::after{
+                    top: 0;
+                    line-height: 39px;
+                }
+            }
+            .name{
+                line-height: 14px;
+            }
+        }
+
+        .footer{
+            margin-top: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            .btn{
+                padding-left: 30px;
+                padding-right: 30px;
+                height: 40px;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 3px 1px -2px rgba(0, 0, 0, 0.09), 0 1px 5px 0 rgba(0, 0, 0, 0.09);
+            }
+        }
+    }
+
+    
+    
+    
+}

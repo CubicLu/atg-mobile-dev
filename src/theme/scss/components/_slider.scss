@@ -1,0 +1,69 @@
+.slider{
+    height: auto;
+    &.image, &.video, &.radio{
+        .content{
+            margin-bottom: 0;
+            padding-left: 10px;
+            padding-right: 15px;
+            .view-all{
+                display: inline-flex;
+                justify-content: flex-end;
+                padding-left: 8px;
+                padding-right: 2px;
+                margin-bottom: 0;
+                height: 70px;
+                align-items: flex-end;
+
+                .btn{
+                    font-size: pxToRem(18);
+                    &::after{
+                        content: "\203A";
+                        padding-left: 5px;
+                        font-size: pxToRem(30);
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+
+    &.video{
+        > .slick-slider{
+            > .slick-list{
+                padding-left: 30px !important;
+            }
+        }
+        
+        .slick-slide {
+            margin: 0 10px;
+        }
+    }
+
+    &.radio{
+        .card{
+            &.image{
+                &.circle{
+                    height: 160px;
+                    width: 160px;
+                }
+            }
+        }
+        > .slick-slider{
+            > .slick-list{
+                padding-left: 30px !important;
+            }
+        }
+        
+        .slick-slide {
+            margin: 0 10px;
+            width: 160px;
+        }
+        .label{
+            color: #FFF;
+            font-size: pxToRem(20);
+            text-align: center;
+            width: 100%;
+            margin-top: 12px;
+        }
+    }
+}

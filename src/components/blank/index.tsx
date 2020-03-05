@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {} from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from '../../reducers';
+import { ApplicationState } from '../../reducers';
 
 interface Props {}
 
@@ -16,7 +16,7 @@ class BlankComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplitcationState): object => {
+const mapStateToProps = ({}: ApplicationState): object => {
   return {};
 };
 export default connect(mapStateToProps, {})(BlankComponent);

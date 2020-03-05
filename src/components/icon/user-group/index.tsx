@@ -8,7 +8,7 @@ interface Props {
   height: number;
 }
 
-class BlankIcon extends React.Component<Props> {
+class UserGroupIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
     width: 25,
@@ -94,4 +94,4 @@ class BlankIcon extends React.Component<Props> {
   }
 }
 
-export default BlankIcon;
+export default UserGroupIcon;

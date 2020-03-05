@@ -55,7 +55,7 @@ class InitialPage extends React.Component<Props> {
                           label="Sign In"
                           color="primary"
                           gradient
-                          full
+                          type={'full'}
                           bold
                           onClick={(): any =>
                             this.props.history.push('/sign-in')
@@ -68,7 +68,7 @@ class InitialPage extends React.Component<Props> {
                         <Button
                           label="Create an account"
                           color="transparent"
-                          full
+                          type={'full'}
                           onClick={(): any =>
                             this.props.history.push('/sign-up')
                           }

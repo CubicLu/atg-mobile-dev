@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Tab, Player, ModalSlide } from './../../components';
 import {} from './../../actions';
-import { ApplitcationState } from '../../reducers';
+import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
 
@@ -33,7 +33,7 @@ class HomePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { isPlaying, modal } = settings;
   return { isPlaying, modal };
 };

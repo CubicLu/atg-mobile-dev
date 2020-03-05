@@ -1,11 +1,23 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Action, ActionType, SettingsReducerType } from './../interfaces';
+import {
+  Action,
+  ActionType,
+  SettingsReducerType,
+  Colors
+} from './../interfaces';
 import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
   ProfileFriendsPage,
   ProfileMixtapesPage,
-  ProfileVaultPage
+  ProfileVaultPage,
+  ArtistDeepPage,
+  ArtistFeaturesPage,
+  ArtistBiographyPage,
+  ArtistDiscographyPage,
+  ArtistGalleryPage,
+  ArtistEventsPage,
+  ArtistVideosPage
 } from './../pages';
 
 const defaultState: SettingsReducerType = {
@@ -41,7 +53,87 @@ const defaultState: SettingsReducerType = {
   modal: {
     visible: false,
     content: null
-  }
+  },
+  artistTabs: [
+    {
+      id: 'features',
+      label: 'Features',
+      icon: 'f',
+      component: ArtistFeaturesPage
+    },
+    {
+      id: 'biography',
+      label: 'Biography',
+      icon: 'b',
+      component: ArtistBiographyPage
+    },
+    {
+      id: 'discography',
+      label: 'Discography',
+      icon: 'd',
+      component: ArtistDiscographyPage
+    },
+    {
+      id: 'gallery',
+      label: 'Gallery',
+      icon: 'g',
+      component: ArtistGalleryPage
+    },
+    {
+      id: 'events',
+      label: 'Events',
+      icon: 'e',
+      component: ArtistEventsPage
+    },
+    {
+      id: 'videos',
+      label: 'Videos',
+      icon: 'v',
+      component: ArtistVideosPage
+    },
+    {
+      id: 'deep',
+      label: 'Deep',
+      icon: 'd',
+      component: ArtistDeepPage
+    }
+  ],
+  activeArtistTab: 'features',
+  plans: [
+    {
+      name: 'Basic',
+      price: '.69',
+      color: Colors.orange,
+      id: 1,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    },
+    {
+      name: 'Platinum',
+      price: '.89',
+      color: Colors.yellow,
+      id: 3,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    },
+    {
+      name: 'Gold',
+      price: '.79',
+      color: Colors.blue,
+      id: 2,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    },
+    {
+      name: 'Diamond',
+      price: '.99',
+      color: Colors.green,
+      id: 4,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    }
+  ],
+  selectedPlan: null
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

@@ -16,7 +16,7 @@
 }
 
 @mixin page {
-  z-index: 1;
+  z-index: 2;
   position: relative;
   height: 100%;
 }
@@ -83,4 +83,66 @@
 @mixin background-opacity($color, $opacity: 0.5) {
   background: $color;
   background: rgba($color, $opacity);
+}
+
+@mixin no-scroll-bar() {
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 0;
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    height: 0;
+    width: 0;
+  }
+}
+
+@mixin plan-detail(){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &.circle { 
+    border-radius: 50%;
+    height: 143px;
+    width: 143px;
+    margin-bottom: 15px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: 7px solid transparent;
+    padding-top: 15px;
+    padding-left: 12px;
+    &.active{
+      border: 7px solid #FFF;
+    }
+
+    &.yellow{
+      color: #000;
+    }
+  }
+  .price{
+    font-size: pxToRem(70);
+    font-family: "Industria";
+    position: relative;
+    &::after{
+      content: attr(data-currency);
+      position: absolute;
+      font-size: pxToRem(16);
+      top: -14px;
+      right: -11px;
+    }
+  }
+  .name{
+    font-family: 'Helvetica';
+    font-weight: 500;
+    font-size: pxToRem(18);
+  }
 }

@@ -5,7 +5,9 @@ export interface Action<T> {
 
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
-  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL'
+  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL',
+  UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
+  UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -17,16 +19,32 @@ export interface TabsInterface {
 }
 
 export interface ArtistInterface {
-  cover: string | undefined;
+  cover: ArtistCoverInterface;
   name: string;
-  support: boolean;
+  support?: boolean;
+  username: string;
+  backgroundGradient?: GradientColorsInterface;
+  featuredTracks?: FeaturedTrackInterface[];
+  newReleases?: NewRealeseInterface[];
+  events?: EventInterface[];
+  radio?: RadioInterface[];
+  supportImages?: ArtistSupportImagesInterface;
+}
+
+export interface ArtistCoverInterface {
+  main: string | undefined;
+  background: string | undefined;
 }
 
 export interface SettingsReducerType {
   activeTab: string;
   isPlaying: boolean;
-  fanTabs: TabsFanInterface[];
+  fanTabs: MenuInterface[];
   activeFanTab: string;
+  artistTabs: MenuInterface[];
+  activeArtistTab: string;
+  plans: PlanInterface[];
+  selectedPlan: PlanInterface | null;
   modal: ModalSlideInterface;
 }
 
@@ -36,7 +54,7 @@ export interface ModalSlideInterface {
   classname?: string;
 }
 
-export interface TabsFanInterface {
+export interface MenuInterface {
   label: string;
   icon: any;
   id: string;
@@ -47,4 +65,71 @@ export interface MixtapeInterface {
   name: string;
   quantity: number;
   cover: string | undefined;
+}
+
+export interface ArtistReducerType {
+  artists: ArtistInterface[];
+  currentArtist: ArtistInterface | null;
+}
+
+export interface UserInterface {
+  name: string;
+  email: string;
+}
+
+export interface AuthReducerType {
+  loggedUser: UserInterface;
+}
+
+export interface GradientColorsInterface {
+  color1: string;
+  color2: string;
+}
+
+export interface FeaturedTrackInterface {
+  image: string | undefined;
+}
+
+export interface NewRealeseInterface {
+  image: string | undefined;
+  video: string | undefined;
+  time: number | string;
+  title: string;
+  artist: ArtistInterface;
+}
+
+export interface EventInterface {
+  date: string | Date;
+  where: string;
+  name: string;
+  city: string;
+}
+
+export interface RadioInterface {
+  label: string;
+  image: string | undefined;
+}
+
+export interface ArtistSupportImagesInterface {
+  background: string | undefined;
+  avatar: string | undefined;
+}
+
+export interface PlanInterface {
+  price: number | string;
+  name: string;
+  color: Colors;
+  id: string | number;
+  description: string;
+}
+
+export enum Colors {
+  support = 'support',
+  transparentGray = 'transparent-gray',
+  transparent = 'transparent',
+  green = 'green',
+  red = 'red',
+  orange = 'orange',
+  yellow = 'yellow',
+  blue = 'blue'
 }

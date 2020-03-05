@@ -8,13 +8,22 @@ import ButtonIconComponent from './button/icon';
 import TabComponent from './tab';
 import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
-import MenuProfileComponent from './menu/profile';
 import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
 import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
+import HeaderComponent from './header';
+import MenuComponent from './menu';
+import SliderImageComponent from './slider/image';
+import SliderVideoComponent from './slider/video';
+import CardImageComponent from './card/image';
+import CardVideoComponent from './card/video';
+import SliderRadioComponent from './slider/radio';
+import SliderEventsComponent from './slider/events';
+import CardEventComponent from './card/event';
+import ButtonPlanComponent from './button/plan';
 
 export * from './icon';
 
@@ -27,13 +36,22 @@ export {
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,
-  MenuProfileComponent as MenuProfile,
   CardArtistComponent as CardArtist,
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
   ModalSlideComponent as ModalSlide,
-  MenuFanSupportOptionsComponent as MenuFanSupportOptions
+  MenuFanSupportOptionsComponent as MenuFanSupportOptions,
+  HeaderComponent as Header,
+  MenuComponent as Menu,
+  SliderImageComponent as SliderImage,
+  SliderVideoComponent as SliderVideo,
+  CardImageComponent as CardImage,
+  CardVideoComponent as CardVideo,
+  SliderRadioComponent as SliderRadio,
+  SliderEventsComponent as SliderEvents,
+  CardEventComponent as CardEvent,
+  ButtonPlanComponent as ButtonPlan
 };
 
 export { _ };
@@ -55,7 +73,10 @@ const BackgroundCircleBubblesLightInverted = require('./../assets/img/background
 
 const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
+const ArtistPharrellWilliamsBackgroundImage = require('./../assets/img/artists/pharrell-williams/background.png');
 const ArtistPharrellWilliamsAlbumNumberOneImage = require('./../assets/img/artists/pharrell-williams/album/number_one.png');
+const ArtistPharrellWilliamsSupportBackgroundImage = require('./../assets/img/artists/pharrell-williams/support-background.png');
+const ArtistPharrellWilliamsSupportAvatarImage = require('./../assets/img/artists/pharrell-williams/support-avatar.png');
 
 const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
 const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
@@ -81,5 +102,8 @@ export {
   MixtapeKnightImage,
   MixtapeMoonLightImage,
   MixtapeRebelRockImage,
-  ArtistPharrellWilliamsAlbumNumberOneImage
+  ArtistPharrellWilliamsAlbumNumberOneImage,
+  ArtistPharrellWilliamsBackgroundImage,
+  ArtistPharrellWilliamsSupportBackgroundImage,
+  ArtistPharrellWilliamsSupportAvatarImage
 };

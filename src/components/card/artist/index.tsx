@@ -1,20 +1,20 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   DotsThreeIcon,
   ButtonIcon,
   SupportIcon,
   MenuFanSupportOptions
 } from './../../../components';
-import { updateSettingsModal } from './../../../actions';
-import { ArtistInterface, ModalSlideInterface } from './../../../interfaces';
-import { ApplitcationState } from '../../../reducers';
+import { updateArtistProperty, updateSettingsModal } from './../../../actions';
+import { ArtistInterface } from './../../../interfaces';
 import { connect } from 'react-redux';
+import { ApplicationState } from '../../../reducers';
 
-interface StateProps {
-  modal: ModalSlideInterface;
-}
+interface StateProps {}
 
 interface DispatchProps {
+  updateArtistProperty: (property: string, value: any) => void;
   updateSettingsModal: (
     visible: boolean,
     content: React.ReactNode,
@@ -22,8 +22,9 @@ interface DispatchProps {
   ) => void;
 }
 
-interface Props extends StateProps, DispatchProps {
+interface Props extends StateProps, DispatchProps, RouteComponentProps {
   artist: ArtistInterface;
+  key: number;
 }
 
 class CardArtistComponent extends React.Component<Props> {
@@ -33,7 +34,7 @@ class CardArtistComponent extends React.Component<Props> {
         <div className="col s12">
           <div
             className="card artist"
-            style={{ backgroundImage: `url(${this.props.artist.cover})` }}
+            style={{ backgroundImage: `url(${this.props.artist.cover.main})` }}
           >
             <div className="row">
               <div className="col s12 infos p-10">
@@ -59,7 +60,18 @@ class CardArtistComponent extends React.Component<Props> {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s8 name">
+                  <div
+                    className="col s8 name"
+                    onClick={(): void => {
+                      this.props.updateArtistProperty(
+                        'currentArtist',
+                        this.props.artist
+                      );
+                      this.props.history.push(
+                        `/home/artist/${this.props.artist.username}`
+                      );
+                    }}
+                  >
                     <span>{this.props.artist.name}</span>
                   </div>
                   <div className="col s4 support">
@@ -76,11 +88,13 @@ class CardArtistComponent extends React.Component<Props> {
     );
   }
 }
-const mapStateToProps = ({ settings }: ApplitcationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { modal } = settings;
   return { modal };
 };
 
-export default connect(mapStateToProps, {
-  updateSettingsModal
-})(CardArtistComponent);
+export default withRouter(
+  connect(mapStateToProps, { updateArtistProperty, updateSettingsModal })(
+    CardArtistComponent
+  )
+);

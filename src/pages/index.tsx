@@ -13,6 +13,16 @@ import ProfileArtistsPage from './profile/artists';
 import ProfileFriendsPage from './profile/friends';
 import ProfileMixtapesPage from './profile/mixtapes';
 import ProfileVaultPage from './profile/vault';
+import ArtistPage from './artist';
+
+import ArtistDeepPage from './artist/deep';
+import ArtistFeaturesPage from './artist/features';
+import ArtistBiographyPage from './artist/biography';
+import ArtistDiscographyPage from './artist/discography';
+import ArtistGalleryPage from './artist/gallery';
+import ArtistEventsPage from './artist/events';
+import ArtistVideosPage from './artist/videos';
+import ArtistSupportPage from './artist/support';
 
 export {
   InitialPage,
@@ -29,5 +39,14 @@ export {
   ProfileArtistsPage,
   ProfileFriendsPage,
   ProfileMixtapesPage,
-  ProfileVaultPage
+  ProfileVaultPage,
+  ArtistPage,
+  ArtistDeepPage,
+  ArtistFeaturesPage,
+  ArtistBiographyPage,
+  ArtistDiscographyPage,
+  ArtistGalleryPage,
+  ArtistEventsPage,
+  ArtistVideosPage,
+  ArtistSupportPage
 };

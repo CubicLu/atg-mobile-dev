@@ -1,46 +1,23 @@
 import React from 'react';
 import { IonList } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  CardArtist,
-  _,
-  ArtistPharrellWilliamsImage,
-  ArtistLmfaoImage
-} from './../../../components';
+import { CardArtist, _ } from './../../../components';
 import {} from './../../../actions';
 import { ArtistInterface } from '../../../interfaces';
+import { ApplicationState } from '../../../reducers';
+import { connect } from 'react-redux';
 
-interface Props extends RouteComponentProps {}
+interface Props extends RouteComponentProps {
+  artists: ArtistInterface[];
+}
 
 class ProfileArtistsPage extends React.Component<Props> {
-  artists: ArtistInterface[] = [];
-  constructor(props: Props) {
-    super(props);
-    this.artists = [
-      {
-        name: 'Pharrell Williams',
-        cover: ArtistPharrellWilliamsImage,
-        support: true
-      },
-      {
-        name: 'LMFAO',
-        cover: ArtistLmfaoImage,
-        support: false
-      },
-      {
-        name: 'Pharrell Williams',
-        cover: ArtistPharrellWilliamsImage,
-        support: false
-      }
-    ];
-  }
-
   render(): React.ReactNode {
     return (
       <div className="profile-artists-page">
         <IonList className="artist-list">
           {_.map(
-            this.artists,
+            this.props.artists,
             (data, i): React.ReactNode => {
               return <CardArtist key={i} artist={data} />;
             }
@@ -51,4 +28,9 @@ class ProfileArtistsPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(ProfileArtistsPage);
+const mapStateToProps = ({ artistAPI }: ApplicationState): object => {
+  const { artists } = artistAPI;
+  return { artists };
+};
+
+export default withRouter(connect(mapStateToProps, {})(ProfileArtistsPage));

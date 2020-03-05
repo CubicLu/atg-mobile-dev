@@ -5,7 +5,6 @@ export interface Action<T> {
 
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
-  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL',
   UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
   UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY'
 }
@@ -29,6 +28,7 @@ export interface ArtistInterface {
   events?: EventInterface[];
   radio?: RadioInterface[];
   supportImages?: ArtistSupportImagesInterface;
+  discography?: DiscographyInterface[];
 }
 
 export interface ArtistCoverInterface {
@@ -43,15 +43,6 @@ export interface SettingsReducerType {
   activeFanTab: string;
   artistTabs: MenuInterface[];
   activeArtistTab: string;
-  plans: PlanInterface[];
-  selectedPlan: PlanInterface | null;
-  modal: ModalSlideInterface;
-}
-
-export interface ModalSlideInterface {
-  visible: boolean;
-  content: React.ReactNode;
-  classname?: string;
 }
 
 export interface MenuInterface {
@@ -132,4 +123,9 @@ export enum Colors {
   orange = 'orange',
   yellow = 'yellow',
   blue = 'blue'
+}
+
+export interface DiscographyInterface {
+  cover: string | undefined;
+  name: string;
 }

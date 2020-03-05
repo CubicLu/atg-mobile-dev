@@ -67,3 +67,7 @@
 .opacity{
     opacity: 0.5;
 }
+
+.background{
+    @include color-modifiers($attribute: 'background-color');
+}

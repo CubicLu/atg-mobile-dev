@@ -18,7 +18,9 @@ import {
   ArtistPharrellWilliamsFeaturedTracks1Image,
   ArtistPharrellWilliamsFeaturedTracks2Image,
   ArtistPharrellWilliamsNewRelease1Image,
-  ArtistPharrellWilliamsNewRelease2Image
+  ArtistPharrellWilliamsNewRelease2Image,
+  ArtistPharrellWilliamsSupportBackgroundImage,
+  ArtistPharrellWilliamsSupportAvatarImage
 } from './../../components';
 
 const defaultState: ArtistReducerType = {
@@ -30,6 +32,10 @@ const defaultState: ArtistReducerType = {
         background: ArtistPharrellWilliamsBackgroundImage
       },
       support: true,
+      supportImages: {
+        background: ArtistPharrellWilliamsSupportBackgroundImage,
+        avatar: ArtistPharrellWilliamsSupportAvatarImage
+      },
       username: 'pharell-williams',
       backgroundGradient: {
         color1: '#079848',

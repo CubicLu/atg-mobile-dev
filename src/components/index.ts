@@ -12,6 +12,8 @@ import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
+import ModalSlideComponent from './modal/slide';
+import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import HeaderComponent from './header';
 import MenuComponent from './menu';
 import SliderImageComponent from './slider/image';
@@ -21,6 +23,7 @@ import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
+import ButtonPlanComponent from './button/plan';
 
 export * from './icon';
 
@@ -37,6 +40,8 @@ export {
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
+  ModalSlideComponent as ModalSlide,
+  MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   HeaderComponent as Header,
   MenuComponent as Menu,
   SliderImageComponent as SliderImage,
@@ -45,7 +50,8 @@ export {
   CardVideoComponent as CardVideo,
   SliderRadioComponent as SliderRadio,
   SliderEventsComponent as SliderEvents,
-  CardEventComponent as CardEvent
+  CardEventComponent as CardEvent,
+  ButtonPlanComponent as ButtonPlan
 };
 
 export { _ };
@@ -59,6 +65,11 @@ const BackgroundCircleBrownImage = require('./../assets/img/background/circles/b
 const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circles/dark-gray.png');
 const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
 const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
+
+const BackgroundCircleBubblesImage = require('./../assets/img/background/circles/black-bubbles.png');
+const BackgroundCircleBubblesInverted = require('./../assets/img/background/circles/black-bubbles-inverted.png');
+const BackgroundCircleBubblesLightImage = require('./../assets/img/background/circles/white-bubbles.png');
+const BackgroundCircleBubblesLightInverted = require('./../assets/img/background/circles/white-bubbles-inverted.png');
 
 const ArtistLmfaoImage = require('./../assets/img/artists/lmfao/artist.png');
 const ArtistPharrellWilliamsImage = require('./../assets/img/artists/pharrell-williams/artist.png');
@@ -74,6 +85,8 @@ const ArtistPharrellWilliamsFeaturedTracks1Image = require('./../assets/img/arti
 const ArtistPharrellWilliamsFeaturedTracks2Image = require('./../assets/img/artists/pharrell-williams/featured-tracks/2.png');
 const ArtistPharrellWilliamsNewRelease1Image = require('./../assets/img/artists/pharrell-williams/new-release/1.png');
 const ArtistPharrellWilliamsNewRelease2Image = require('./../assets/img/artists/pharrell-williams/new-release/2.png');
+const ArtistPharrellWilliamsSupportBackgroundImage = require('./../assets/img/artists/pharrell-williams/support-background.png');
+const ArtistPharrellWilliamsSupportAvatarImage = require('./../assets/img/artists/pharrell-williams/support-avatar.png');
 
 const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
 const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
@@ -91,6 +104,10 @@ export {
   BackgroundCircleDarkGrayImage,
   BackgroundCircleBlackImage,
   BackgroundCircleSteelBlueImage,
+  BackgroundCircleBubblesImage,
+  BackgroundCircleBubblesInverted,
+  BackgroundCircleBubblesLightImage,
+  BackgroundCircleBubblesLightInverted,
   BackgroundSignInImage,
   BackgroundSignUpConfirmImage,
   ArtistPharrellWilliamsImage,
@@ -113,5 +130,7 @@ export {
   ArtistPharrellWilliamsFeaturedTracks1Image,
   ArtistPharrellWilliamsFeaturedTracks2Image,
   ArtistPharrellWilliamsNewRelease1Image,
-  ArtistPharrellWilliamsNewRelease2Image
+  ArtistPharrellWilliamsNewRelease2Image,
+  ArtistPharrellWilliamsSupportBackgroundImage,
+  ArtistPharrellWilliamsSupportAvatarImage
 };

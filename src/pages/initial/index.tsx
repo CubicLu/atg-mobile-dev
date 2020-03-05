@@ -23,7 +23,7 @@ class InitialPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            image={BackgroundInitialImage}
+            backgroundImage={BackgroundInitialImage}
             shadow
             legend="Celeste Waite"
           >

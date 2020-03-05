@@ -1,14 +1,25 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { DotsThreeIcon, ButtonIcon, SupportIcon } from './../../../components';
-import { updateArtistProperty } from './../../../actions';
+import {
+  DotsThreeIcon,
+  ButtonIcon,
+  SupportIcon,
+  MenuFanSupportOptions
+} from './../../../components';
+import { updateArtistProperty, updateSettingsModal } from './../../../actions';
 import { ArtistInterface } from './../../../interfaces';
 import { connect } from 'react-redux';
+import { ApplicationState } from '../../../reducers';
 
 interface StateProps {}
 
 interface DispatchProps {
   updateArtistProperty: (property: string, value: any) => void;
+  updateSettingsModal: (
+    visible: boolean,
+    content: React.ReactNode,
+    className?: string
+  ) => void;
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps {
@@ -29,7 +40,23 @@ class CardArtistComponent extends React.Component<Props> {
               <div className="col s12 infos p-10">
                 <div className="row">
                   <div className="col s12 button">
-                    <DotsThreeIcon color={'#6a6565'} />
+                    <ButtonIcon
+                      color={'transparent'}
+                      icon={<DotsThreeIcon color={'#6a6565'} />}
+                      onClick={this.props.updateSettingsModal.bind(
+                        this,
+                        true,
+                        React.createElement(MenuFanSupportOptions, {
+                          artist: this.props.artist,
+                          onClick: this.props.updateSettingsModal.bind(
+                            this,
+                            false,
+                            null
+                          )
+                        }),
+                        'background-tertiary-opacity95'
+                      )}
+                    />
                   </div>
                 </div>
                 <div className="row">
@@ -45,7 +72,7 @@ class CardArtistComponent extends React.Component<Props> {
                       );
                     }}
                   >
-                    {this.props.artist.name}
+                    <span>{this.props.artist.name}</span>
                   </div>
                   <div className="col s4 support">
                     {this.props.artist.support && (
@@ -61,11 +88,13 @@ class CardArtistComponent extends React.Component<Props> {
     );
   }
 }
-
-const mapStateToProps = (): StateProps => {
-  return {};
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+  const { modal } = settings;
+  return { modal };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { updateArtistProperty })(CardArtistComponent)
+  connect(mapStateToProps, { updateArtistProperty, updateSettingsModal })(
+    CardArtistComponent
+  )
 );

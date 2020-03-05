@@ -1,69 +1,49 @@
+.background-top, .background-bottom {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100%;
+    position: fixed;
+    &.rotate{
+        transform: rotate(180deg);        
+    }
+    &.background-bottom{
+        bottom: 0;
+        margin-top: 50%;
+    }
+    &.background-top{
+        top: 0;
+        margin-top: 0;
+    }
+}
+.background-legend {
+    writing-mode: vertical-rl;
+    font-size: 12px;
+    color: #707070;
+    position: absolute;
+    right: 10px;
+    top: 100px;
+    transform: rotate(-180deg);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
 .background-image{ 
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: center;
+    background-position-y: top;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     height: 100%;
+    width: 100%;
+    position: fixed;
+    mix-blend-mode: multiply;
 
+    
     &.shadow{ 
         box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;
     }
-
-    &.with-flex{
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        justify-content: space-between;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-
-        .top, .bottom{ 
-            position: absolute;
-            height: 200px;
-            width: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            object-fit: cover; 
-        }
-    
-        .top{ 
-    
-        }
-    
-        .bottom{ 
-            bottom: 0;
-            &.is-svg{
-                svg {
-                    transform: rotate(180deg);
-                    bottom: 5px;
-                    position: absolute;
-                }
-               
-            }
-        }
-    }
-   
-
-    .legend {
-        writing-mode: vertical-rl;
-        font-size: 12px;
-        color: #707070;
-        position: absolute;
-        right: 10px;
-        top: 100px;
-        transform: rotate(-180deg);
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 400;
-    }
-
-    
 }

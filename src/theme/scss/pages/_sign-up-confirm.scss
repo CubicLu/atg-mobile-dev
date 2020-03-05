@@ -12,6 +12,15 @@
 
     .header{
         @include header-with-button;
+        margin-top: 0;
+        .transparent-gray{
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .button{
+            height: 100%;
+            align-items: flex-end;
+            max-height: 50px;
+        }
         
     }
     .subtitle{
@@ -19,6 +28,17 @@
         margin-left: 0;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 400;
+    }
+    .form {
+        margin-top: 25%;
+        .title{
+            font-size: pxToRem(70);
+            line-height: pxToRem(60);
+            margin-bottom: pxToRem(10);
+        }
+        .subtitle{
+            font-size: pxToRem(17);
+        }
     }
     
 }

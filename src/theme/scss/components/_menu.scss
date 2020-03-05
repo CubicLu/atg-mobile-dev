@@ -32,42 +32,96 @@
             .circle{
                 width: 100%;
                 display: flex;
-                justify-content: center;
-                span{
-                    border-radius: 50%;
-                    height: 35px;
-                    width: 35px;
-                    align-items: center;
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    align-content: center;
-                    background-color: #E0E8CB;
-                    font-family: "Industria";
-                    font-weight: 600;
-                    font-size: 33px;
-                    padding-bottom: 2px;
-                }
-            }
-            .title{
-                font-family: "Helvetica";
-                font-size: 14px;
-                margin-top: 10px !important;
-                font-weight: 400 !important;
-                border-bottom: 2px solid transparent;
-            }
-
-            &.active{
-                .title{
-                    font-weight: bold !important;
-                    border-bottom: 2px;
-                    border-bottom: 2px solid $tertiary;
-                    color: $tertiary;
-                }
+                flex-direction: column;
 
                 .circle{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
                     span{
-                        background: $tertiary;
+                        border-radius: 50%;
+                        height: 33px !important;
+                        width: 35px !important;
+                        align-items: center;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        background-color: #E0E8CB;
+                        font-family: "Industria";
+                        font-weight: 600;
+                        font-size: 33px;
+                        padding-bottom: 2px;
+                    }
+                }
+                .title{
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: bold !important;
+                    font-size: 14px;
+                    margin-top: 10px !important;
+                    font-weight: 400;
+                    border-bottom: 2px solid transparent;
+                }
+
+                &.active{
+                    .title{
+                        font-weight: bold;
+                        border-bottom: 2px;
+                        border-bottom: 2px solid $tertiary;
+                        color: $tertiary;
+                    }
+
+                    .circle{
+                        span{
+                            background: $tertiary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.fan-support-options{
+        width: 100%;
+        overflow-y: hidden;
+        .header{
+            @include header-with-button;
+            margin-top: 0;
+            padding-top: 0;
+            height: 80px;
+            .title{
+                font-size: pxToRem(50);
+                margin-top: 0;
+                padding-top: pxToRem(50);
+            }
+            .subtitle{
+                font-size: pxToRem(30);
+                margin-left: 0;
+                margin-top: pxToRem(-10);
+            }
+            .button{
+                .btn {
+                    background: rgba(0, 0, 0, 0.25);
+                }
+                height: 55px;
+                align-items: flex-end;
+            }
+        }
+        .content{
+            ul{
+                li{
+                    display: inline-flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 10px;
+                    width: 100%;
+                    font-family: "Roboto";
+                    font-weight: 400;
+                    color: #333;
+
+                    button{ 
+                        padding: 5px 10px;
+                        
                     }
                 }
             }

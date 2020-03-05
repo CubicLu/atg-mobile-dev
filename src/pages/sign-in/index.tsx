@@ -7,12 +7,11 @@ import {
   InputText,
   Button,
   ButtonIcon,
-  CloseIcon,
-  CirclesIcon
+  CloseIcon
 } from './../../components';
-import { } from './../../actions';
+import {} from './../../actions';
 
-interface Props extends RouteComponentProps { }
+interface Props extends RouteComponentProps {}
 
 class SignInPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -21,9 +20,9 @@ class SignInPage extends React.Component<Props> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScrollStart={(): any => { }}
-          onIonScroll={(): any => { }}
-          onIonScrollEnd={(): any => { }}
+          onIonScrollStart={(): any => {}}
+          onIonScroll={(): any => {}}
+          onIonScrollEnd={(): any => {}}
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage

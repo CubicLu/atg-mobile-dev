@@ -7,13 +7,11 @@ import {
   MenuFanSupportOptions
 } from './../../../components';
 import { updateArtistProperty, updateSettingsModal } from './../../../actions';
-import { ArtistInterface, ModalSlideInterface } from './../../../interfaces';
+import { ArtistInterface } from './../../../interfaces';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 
-interface StateProps {
-  modal: ModalSlideInterface;
-}
+interface StateProps {}
 
 interface DispatchProps {
   updateArtistProperty: (property: string, value: any) => void;

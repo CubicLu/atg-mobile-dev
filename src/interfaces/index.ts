@@ -28,6 +28,8 @@ export interface ArtistInterface {
   newReleases?: NewRealeseInterface[];
   events?: EventInterface[];
   radio?: RadioInterface[];
+  supportImages?: ArtistSupportImagesInterface;
+  discography?: DiscographyInterface[];
 }
 
 export interface ArtistCoverInterface {
@@ -43,6 +45,8 @@ export interface SettingsReducerType {
   artistTabs: MenuInterface[];
   activeArtistTab: string;
   modal: ModalSlideInterface;
+  plans: PlanInterface[];
+  selectedPlan: PlanInterface | null;
 }
 
 export interface ModalSlideInterface {
@@ -106,4 +110,33 @@ export interface EventInterface {
 export interface RadioInterface {
   label: string;
   image: string | undefined;
+}
+
+export interface ArtistSupportImagesInterface {
+  background: string | undefined;
+  avatar: string | undefined;
+}
+
+export interface PlanInterface {
+  price: number | string;
+  name: string;
+  color: Colors;
+  id: string | number;
+  description: string;
+}
+
+export enum Colors {
+  support = 'support',
+  transparentGray = 'transparent-gray',
+  transparent = 'transparent',
+  green = 'green',
+  red = 'red',
+  orange = 'orange',
+  yellow = 'yellow',
+  blue = 'blue'
+}
+
+export interface DiscographyInterface {
+  cover: string | undefined;
+  name: string;
 }

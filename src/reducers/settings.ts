@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Action, ActionType, SettingsReducerType } from './../interfaces';
+import {
+  Action,
+  ActionType,
+  SettingsReducerType,
+  Colors
+} from './../interfaces';
 import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
@@ -45,6 +50,10 @@ const defaultState: SettingsReducerType = {
       component: ProfileFriendsPage
     }
   ],
+  modal: {
+    visible: false,
+    content: null
+  },
   artistTabs: [
     {
       id: 'features',
@@ -90,10 +99,41 @@ const defaultState: SettingsReducerType = {
     }
   ],
   activeArtistTab: 'features',
-  modal: {
-    visible: false,
-    content: null
-  }
+  plans: [
+    {
+      name: 'Basic',
+      price: '.69',
+      color: Colors.orange,
+      id: 1,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    },
+    {
+      name: 'Platinum',
+      price: '.89',
+      color: Colors.yellow,
+      id: 3,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    },
+    {
+      name: 'Gold',
+      price: '.79',
+      color: Colors.blue,
+      id: 2,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    },
+    {
+      name: 'Diamond',
+      price: '.99',
+      color: Colors.green,
+      id: 4,
+      description:
+        'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
+    }
+  ],
+  selectedPlan: null
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

@@ -2,7 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
-import { _, BackgroundImage, Header, Button, Menu } from './../../components';
+import {
+  _,
+  BackgroundImage,
+  Header,
+  Button,
+  Menu,
+  ButtonIcon,
+  BackIcon
+} from './../../components';
 import { updateArtistProperty, updateSettingsProperty } from './../../actions';
 import { ApplicationState } from './../../reducers';
 import { ArtistInterface, MenuInterface } from '../../interfaces';
@@ -63,11 +71,23 @@ class ArtistPage extends React.Component<Props> {
                 `artist-page` + (this.props.isPlaying && ' is-playing')
               }
             >
-              <Header />
+              <Header
+                leftContent={
+                  <ButtonIcon
+                    icon={<BackIcon />}
+                    onClick={(): void => this.props.history.goBack()}
+                  />
+                }
+              />
               <div className={'row'}>
                 <div className={'col s12 name'}>
                   <h1 className="title">{this.props.currentArtist?.name}</h1>
                   <Button
+                    onClick={(): void =>
+                      this.props.history.push(
+                        `${this.props.history.location.pathname}/support`
+                      )
+                    }
                     color={'support'}
                     label={'SUPPORT US'}
                     type={'rounded'}

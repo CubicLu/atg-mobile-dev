@@ -20,8 +20,8 @@
         .card{
             &.image{
                 &.circle{
-                    height: 160px;
-                    width: 160px;
+                    height: 110px;
+                    width: 110px;
                 }
             }
         }
@@ -33,11 +33,18 @@
         
         .slick-slide {
             margin: 0 10px;
-            width: 160px;
+            width: 130px;
+
+            .col{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
         }
         .label{
             color: #FFF;
-            font-size: pxToRem(20);
+            font-size: pxToRem(18);
             text-align: center;
             width: 100%;
             margin-top: 12px;

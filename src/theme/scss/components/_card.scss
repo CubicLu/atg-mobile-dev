@@ -344,12 +344,12 @@
         margin-bottom: 0 !important;
         &.title, &.artist{
             font-family: "Helvetica" !important;
-            font-size: pxToRem(30) !important;
+            font-size: pxToRem(24) !important;
             font-weight: 400 !important;
             color: #FFF;
         }
         &.artist{
-            font-size: pxToRem(24) !important;
+            font-size: pxToRem(18) !important;
             align-items: center;
             display: flex;
         }
@@ -358,6 +358,7 @@
     .button{
         display: inline-flex;
         justify-content: space-between;
+        margin-top: -14px;
         button{
             padding: 0;
         }

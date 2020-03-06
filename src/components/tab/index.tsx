@@ -114,6 +114,7 @@ class TabComponent extends React.Component<Props> {
               <Route path={data.path} component={data.component} key={index} />
             );
           })}
+
           <Route path={'/home/artist/:id'} component={ArtistPage} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom" color="dark">

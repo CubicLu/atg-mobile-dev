@@ -101,3 +101,31 @@
   background: $color;
   background: rgba($color, $opacity);
 }
+
+@mixin title-view-all{
+  .content{
+    margin-bottom: 0;
+    padding-left: 10px;
+    padding-right: 15px;
+    .view-all{
+        display: inline-flex;
+        justify-content: flex-end;
+        padding-left: 8px;
+        padding-right: 2px;
+        margin-bottom: 0;
+        height: 70px;
+        align-items: flex-end;
+
+        .btn{
+            font-size: pxToRem(18);
+            margin-right: 17px;
+            &::after{
+                content: "\203A";
+                padding-left: 5px;
+                font-size: pxToRem(30);
+                position: absolute;
+            }
+        }
+    }
+}
+}

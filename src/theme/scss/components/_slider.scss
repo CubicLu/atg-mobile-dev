@@ -1,36 +1,13 @@
 .slider{
     height: auto;
     &.image, &.video, &.radio{
-        .content{
-            margin-bottom: 0;
-            padding-left: 10px;
-            padding-right: 15px;
-            .view-all{
-                display: inline-flex;
-                justify-content: flex-end;
-                padding-left: 8px;
-                padding-right: 2px;
-                margin-bottom: 0;
-                height: 70px;
-                align-items: flex-end;
-
-                .btn{
-                    font-size: pxToRem(18);
-                    &::after{
-                        content: "\203A";
-                        padding-left: 5px;
-                        font-size: pxToRem(30);
-                        position: absolute;
-                    }
-                }
-            }
-        }
+        @include title-view-all;
     }
 
     &.video{
         > .slick-slider{
             > .slick-list{
-                padding-left: 30px !important;
+                padding-left: 20px !important;
             }
         }
         

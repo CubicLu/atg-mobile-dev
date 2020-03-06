@@ -17,7 +17,7 @@ class SliderEventsComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="row slider image">
-        <div className="col s12">
+        
           <div className={'row content'}>
             <div className="col s8">
               <h1 className="title">{this.props.title}</h1>
@@ -29,6 +29,7 @@ class SliderEventsComponent extends React.Component<Props> {
             </div>
           </div>
           <div className="row">
+            <div className="col s12">
             {_.map(
               this.props.data,
               (data, i): React.ReactNode => {

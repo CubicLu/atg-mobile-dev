@@ -1,13 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IonPage, IonContent } from '@ionic/react';
-import {
-  BackgroundImage,
-  HeaderProfile,
-  Menu,
-  CirclesIcon,
-  _
-} from './../../components';
+import { BackgroundImage, HeaderProfile, Menu, _ } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
 import { MenuInterface } from '../../interfaces';

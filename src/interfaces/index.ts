@@ -84,7 +84,8 @@ export interface GradientColorsInterface {
 }
 
 export interface FeaturedTrackInterface {
-  image: string | undefined;
+  song: string;
+  id: number;
 }
 
 export interface NewRealeseInterface {

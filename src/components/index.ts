@@ -23,6 +23,7 @@ import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
 import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
+import ListComponent from './list';
 
 export * from './icon';
 
@@ -49,7 +50,8 @@ export {
   SliderEventsComponent as SliderEvents,
   CardEventComponent as CardEvent,
   ModalSlideComponent as ModalSlide,
-  MenuFanSupportOptionsComponent as MenuFanSupportOptions
+  MenuFanSupportOptionsComponent as MenuFanSupportOptions,
+  ListComponent as List
 };
 
 export { _ };

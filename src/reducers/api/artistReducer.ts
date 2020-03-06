@@ -23,10 +23,16 @@ const defaultState: ArtistReducerType = {
       },
       featuredTracks: [
         {
-          image: ArtistPharrellWilliamsImage
+          song: 'Marilyn Monroe',
+          id: 1
         },
         {
-          image: ArtistPharrellWilliamsImage
+          song: 'Brand New',
+          id: 2
+        },
+        {
+          song: 'Hunter',
+          id: 3
         }
       ],
       newReleases: [

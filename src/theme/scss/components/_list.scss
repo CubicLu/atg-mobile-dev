@@ -15,3 +15,26 @@ ul{
         }
     }
 }
+
+.list-component{
+    @include title-view-all;
+    .list{
+        --background: transparent;
+        background: transparent;
+        .item{
+            background: transparent;
+            --background: transparent;
+        }
+    
+        .action{
+            display: flex;
+            justify-content: flex-end;
+        }
+    
+        .text{
+            font-family: 'Helvetica';
+            color: #FFF;
+            padding-left: 5px;
+        }
+    }
+}

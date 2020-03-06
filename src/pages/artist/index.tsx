@@ -56,10 +56,7 @@ class ArtistPage extends React.Component<Props> {
         >
           <BackgroundImage
             gradient={`180deg, ${this.props.currentArtist?.backgroundGradient?.color1} 0%, ${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
-            top
-            imageTop={this.props.currentArtist?.cover.background}
-            unique={true}
-            topStyle={{ height: '100%' }}
+            backgroundImage={this.props.currentArtist?.cover.background}
           >
             <div
               className={

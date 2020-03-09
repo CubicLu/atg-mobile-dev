@@ -5,7 +5,6 @@ import {
   BackgroundImage,
   HeaderProfile,
   Menu,
-  CirclesIcon,
   _
 } from './../../components';
 import { ApplicationState } from './../../reducers';

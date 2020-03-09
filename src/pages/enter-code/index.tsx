@@ -3,7 +3,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
   InputCode,
-  CirclesIcon,
   ButtonIcon,
   CloseIcon
 } from './../../components';

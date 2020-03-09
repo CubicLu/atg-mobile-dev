@@ -31,28 +31,9 @@
 
             .circle{
                 width: 100%;
-            }
-        }
-    }
-    &.profile{
-        margin-left: 35px;
-        margin-right: 35px;
-        ul{
-            justify-content: space-around;
-            width: 100%;
-            padding: 10px 0;
-            margin-top: 30px !important;
-            li{
-                margin-right: 0 !important;
-                text-align: center;
-                height: 70px;
                 display: flex;
                 flex-direction: column;
 
-                .circle{
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
                     span{
                         border-radius: 50%;
                         height: 33px !important;
@@ -94,7 +75,7 @@
                 }
             }
         }
-    }
+    
 
     &.fan-support-options{
         width: 100%;

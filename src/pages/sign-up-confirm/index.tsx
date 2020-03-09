@@ -7,12 +7,11 @@ import {
   InputText,
   Button,
   ButtonIcon,
-  CloseIcon,
-  CirclesIcon
+  CloseIcon
 } from './../../components';
-import { } from './../../actions';
+import {} from './../../actions';
 
-interface Props extends RouteComponentProps { }
+interface Props extends RouteComponentProps {}
 
 class SignUpConfirmPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -32,7 +31,6 @@ class SignUpConfirmPage extends React.Component<Props> {
             backgroundTop
             backgroundBottom
           >
-
             <div className="container sign-up-confirm-page">
               <div className="space-between">
                 <div className="row header">
@@ -94,7 +92,7 @@ class SignUpConfirmPage extends React.Component<Props> {
             </div>
           </BackgroundImage>
         </IonContent>
-      </IonPage >
+      </IonPage>
     );
   }
 }

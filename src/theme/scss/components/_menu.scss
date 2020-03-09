@@ -28,17 +28,14 @@
             display: flex;
             flex-direction: column;
 
-            .circle{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
+                .circle{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
                     span{
                         border-radius: 50%;
-                        height: 33px !important;
-                        width: 35px !important;
+                        height: 40px !important;
+                        width: 40px !important;
                         align-items: center;
                         text-align: center;
                         display: flex;
@@ -51,9 +48,9 @@
                         padding-bottom: 2px;
                     }
                 }
+            
                 .title{
-                    font-family: Arial, Helvetica, sans-serif;
-                    font-weight: bold !important;
+                    font-family: 'Helvetica';
                     font-size: 14px;
                     margin-top: 10px !important;
                     font-weight: 400;
@@ -75,8 +72,8 @@
                     }
                 }
             }
-        }
-    
+        
+    }
 
     &.fan-support-options{
         width: 100%;

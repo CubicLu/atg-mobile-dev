@@ -20,6 +20,7 @@ import LockerIcon from './locker';
 import NetworkIcon from './network';
 import UserGroupIcon from './user-group';
 import BackIcon from './back';
+import ArrowRightIcon from './arrow-right';
 
 export {
   MessageIcon,
@@ -43,5 +44,6 @@ export {
   LockerIcon,
   NetworkIcon,
   UserGroupIcon,
-  BackIcon
+  BackIcon,
+  ArrowRightIcon
 };

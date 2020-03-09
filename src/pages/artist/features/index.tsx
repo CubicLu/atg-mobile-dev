@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
-  SliderImage,
+  List,
   SliderVideo,
   SliderMixtapes,
   SliderRadio,
@@ -24,13 +24,16 @@ class ArtistFeaturesPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="artist-features-page">
-        <SliderImage
+        <List
           data={this.props.currentArtist?.featuredTracks}
-          title={'FEATURED TRACKS'}
+          title={'TRACKS'}
+          viewAll
+          label={'song'}
+          id={'id'}
         />
         <SliderVideo
           data={this.props.currentArtist?.newReleases}
-          title={'NEW RELEASES'}
+          title={'VIDEOS'}
         />
         <SliderMixtapes title={'FEATURED MIXTAPES'} />
         <SliderRadio

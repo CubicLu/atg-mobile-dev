@@ -44,8 +44,8 @@ class App extends React.Component {
       <Provider store={store}>
         <IonApp>
           <IonSplitPane contentId="main">
-            <IonReactRouter>
-              <IonRouterOutlet id="main">
+            <IonRouterOutlet id="main">
+              <IonReactRouter>
                 <Switch>
                   <Route path="/initial" component={InitialPage} />
                   <Route path="/sign-up" component={SignUpPage} />
@@ -70,8 +70,8 @@ class App extends React.Component {
                     render={(): any => <Redirect to="/sign-in" />}
                   />
                 </Switch>
-              </IonRouterOutlet>
-            </IonReactRouter>
+              </IonReactRouter>
+            </IonRouterOutlet>
           </IonSplitPane>
         </IonApp>
       </Provider>

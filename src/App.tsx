@@ -13,7 +13,8 @@ import {
   SignInPage,
   EnterCodePage,
   SignUpConfirmPage,
-  ArtistSupportPage
+  ArtistSupportPage,
+  ArtistEventsPage
 } from './pages';
 
 import { store } from './store';
@@ -51,6 +52,10 @@ class App extends React.Component {
                   <Route
                     path={'/home/artist/:id/support'}
                     component={ArtistSupportPage}
+                  />
+                  <Route
+                    path={'/home/artist/:id/event'}
+                    component={ArtistEventsPage}
                   />
                   <Route path="/home" component={HomePage} />
                   <Route path="/sign-in" component={SignInPage} />

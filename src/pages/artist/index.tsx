@@ -99,10 +99,18 @@ class ArtistPage extends React.Component<Props> {
                 tabs={this.props.artistTabs}
                 activeId={this.props.activeArtistTab}
                 onClick={(event: MenuInterface): void => {
-                  return this.props.updateSettingsProperty(
-                    'activeArtistTab',
-                    event.id
-                  );
+                  if (event.isPage === true) {
+                    let route =
+                      event.route != undefined
+                        ? event.route.replace(':id', this.props.match.params.id)
+                        : '';
+                    this.props.history.push(route);
+                  } else {
+                    this.props.updateSettingsProperty(
+                      'activeArtistTab',
+                      event.id
+                    );
+                  }
                 }}
               />
               {_.map(

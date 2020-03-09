@@ -1,0 +1,23 @@
+.artist-events-page{
+    
+    @include page;
+    
+    .background{
+        @include background-style();
+        height: 40%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .header{
+        position: absolute;
+    }
+
+    .content-list{
+        background: #000;
+        position: relative;
+        top: 40%;
+    }
+}

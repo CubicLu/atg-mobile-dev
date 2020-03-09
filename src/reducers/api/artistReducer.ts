@@ -20,7 +20,8 @@ import {
   ArtistPharrellWilliamsNewRelease1Image,
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
-  ArtistPharrellWilliamsSupportAvatarImage
+  ArtistPharrellWilliamsSupportAvatarImage,
+  ArtistPharrellWilliamsEventBackgroundImage
 } from './../../components';
 
 const defaultState: ArtistReducerType = {
@@ -29,7 +30,8 @@ const defaultState: ArtistReducerType = {
       name: 'Pharrell Williams',
       cover: {
         main: ArtistPharrellWilliamsImage,
-        background: ArtistPharrellWilliamsBackgroundImage
+        background: ArtistPharrellWilliamsBackgroundImage,
+        event: ArtistPharrellWilliamsEventBackgroundImage
       },
       support: true,
       supportImages: {
@@ -130,7 +132,8 @@ const defaultState: ArtistReducerType = {
       name: 'LMFAO',
       cover: {
         main: ArtistLmfaoImage,
-        background: ArtistLmfaoImage
+        background: ArtistLmfaoImage,
+        event: ArtistLmfaoImage
       },
       support: false,
       username: 'lmfao',

@@ -16,7 +16,6 @@ import {
   ArtistBiographyPage,
   ArtistDiscographyPage,
   ArtistGalleryPage,
-  ArtistEventsPage,
   ArtistVideosPage
 } from './../pages';
 
@@ -79,7 +78,8 @@ const defaultState: SettingsReducerType = {
       id: 'events',
       label: 'Events',
       icon: 'e',
-      component: ArtistEventsPage
+      isPage: true,
+      route: '/home/artist/:id/event'
     },
     {
       id: 'videos',

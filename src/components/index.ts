@@ -87,6 +87,7 @@ const ArtistPharrellWilliamsNewRelease1Image = require('./../assets/img/artists/
 const ArtistPharrellWilliamsNewRelease2Image = require('./../assets/img/artists/pharrell-williams/new-release/2.png');
 const ArtistPharrellWilliamsSupportBackgroundImage = require('./../assets/img/artists/pharrell-williams/support-background.png');
 const ArtistPharrellWilliamsSupportAvatarImage = require('./../assets/img/artists/pharrell-williams/support-avatar.png');
+const ArtistPharrellWilliamsEventBackgroundImage = require('./../assets/img/artists/pharrell-williams/event-background.png');
 
 const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
 const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
@@ -132,5 +133,6 @@ export {
   ArtistPharrellWilliamsNewRelease1Image,
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
-  ArtistPharrellWilliamsSupportAvatarImage
+  ArtistPharrellWilliamsSupportAvatarImage,
+  ArtistPharrellWilliamsEventBackgroundImage
 };

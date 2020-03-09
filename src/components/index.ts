@@ -24,6 +24,7 @@ import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
 import ButtonPlanComponent from './button/plan';
+import ListComponent from './list';
 
 export * from './icon';
 
@@ -51,7 +52,8 @@ export {
   SliderRadioComponent as SliderRadio,
   SliderEventsComponent as SliderEvents,
   CardEventComponent as CardEvent,
-  ButtonPlanComponent as ButtonPlan
+  ButtonPlanComponent as ButtonPlan,
+  ListComponent as List
 };
 
 export { _ };

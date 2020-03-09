@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ButtonIcon, CloseIcon } from './../../../components';
 import {} from './../../../actions';
-import { ApplitcationState } from './../../../reducers';
+import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
 import {
   SupportIcon,
@@ -82,7 +82,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplitcationState): object => {
+const mapStateToProps = ({}: ApplicationState): object => {
   return {};
 };
 export default connect(mapStateToProps, {})(MenuFanSupportOptionsComponent);

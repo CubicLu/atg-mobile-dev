@@ -94,7 +94,8 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { updateArtistProperty, updateSettingsModal })(
-    CardArtistComponent
-  )
+  connect(mapStateToProps, {
+    updateSettingsModal,
+    updateArtistProperty
+  })(CardArtistComponent)
 );

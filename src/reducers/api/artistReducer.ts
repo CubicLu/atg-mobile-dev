@@ -15,8 +15,6 @@ import {
   GenersHipHopImage,
   GenersSoulImage,
   ArtistPharrellWilliamsPlaylistImage,
-  ArtistPharrellWilliamsFeaturedTracks1Image,
-  ArtistPharrellWilliamsFeaturedTracks2Image,
   ArtistPharrellWilliamsNewRelease1Image,
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
@@ -43,10 +41,16 @@ const defaultState: ArtistReducerType = {
       },
       featuredTracks: [
         {
-          image: ArtistPharrellWilliamsFeaturedTracks1Image
+          song: 'Marilyn Monroe',
+          id: 1
         },
         {
-          image: ArtistPharrellWilliamsFeaturedTracks2Image
+          song: 'Brand New',
+          id: 2
+        },
+        {
+          song: 'Hunter',
+          id: 3
         }
       ],
       newReleases: [

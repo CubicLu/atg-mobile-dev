@@ -68,6 +68,23 @@
   @return ($target / $context) * 1rem;
 }
 
+@mixin no-scroll-bar() {
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 0;
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    height: 0;
+    width: 0;
+  }
+}
+
 @mixin color-modifiers($attribute: 'color', $prefix: '-', $separator: '-') {
   @each $name, $color in $colors {
     &#{$prefix}#{$name} {
@@ -85,20 +102,31 @@
   background: rgba($color, $opacity);
 }
 
-@mixin no-scroll-bar() {
-  &::-webkit-scrollbar {
-    height: 0;
-    width: 0;
-  }
+@mixin title-view-all{
+  .content{
+    margin-bottom: 0;
+    padding-left: 10px;
+    padding-right: 15px;
+    .view-all{
+        display: inline-flex;
+        justify-content: flex-end;
+        padding-left: 8px;
+        padding-right: 2px;
+        margin-bottom: 0;
+        height: 70px;
+        align-items: flex-end;
 
-  &::-webkit-scrollbar-thumb {
-    height: 0;
-    width: 0;
-  }
-
-  &::-webkit-scrollbar-track {
-    height: 0;
-    width: 0;
+        .btn{
+            font-size: pxToRem(18);
+            margin-right: 17px;
+            &::after{
+                content: "\203A";
+                padding-left: 5px;
+                font-size: pxToRem(30);
+                position: absolute;
+            }
+        }
+    }
   }
 }
 

@@ -6,7 +6,8 @@ export interface Action<T> {
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
   UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
-  UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY'
+  UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY',
+  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL'
 }
 
 export interface TabsInterface {
@@ -43,6 +44,15 @@ export interface SettingsReducerType {
   activeFanTab: string;
   artistTabs: MenuInterface[];
   activeArtistTab: string;
+  modal: ModalSlideInterface;
+  plans: PlanInterface[];
+  selectedPlan: PlanInterface | null;
+}
+
+export interface ModalSlideInterface {
+  visible: boolean;
+  content: React.ReactNode;
+  classname?: string;
 }
 
 export interface MenuInterface {
@@ -78,7 +88,8 @@ export interface GradientColorsInterface {
 }
 
 export interface FeaturedTrackInterface {
-  image: string | undefined;
+  song: string;
+  id: number;
 }
 
 export interface NewRealeseInterface {

@@ -12,8 +12,6 @@ import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
-import ModalSlideComponent from './modal/slide';
-import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import HeaderComponent from './header';
 import MenuComponent from './menu';
 import SliderImageComponent from './slider/image';
@@ -23,6 +21,8 @@ import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
+import ModalSlideComponent from './modal/slide';
+import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
 
@@ -41,8 +41,6 @@ export {
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
-  ModalSlideComponent as ModalSlide,
-  MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   HeaderComponent as Header,
   MenuComponent as Menu,
   SliderImageComponent as SliderImage,
@@ -52,6 +50,8 @@ export {
   SliderRadioComponent as SliderRadio,
   SliderEventsComponent as SliderEvents,
   CardEventComponent as CardEvent,
+  ModalSlideComponent as ModalSlide,
+  MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   ButtonPlanComponent as ButtonPlan,
   ListComponent as List
 };
@@ -89,6 +89,7 @@ const ArtistPharrellWilliamsNewRelease1Image = require('./../assets/img/artists/
 const ArtistPharrellWilliamsNewRelease2Image = require('./../assets/img/artists/pharrell-williams/new-release/2.png');
 const ArtistPharrellWilliamsSupportBackgroundImage = require('./../assets/img/artists/pharrell-williams/support-background.png');
 const ArtistPharrellWilliamsSupportAvatarImage = require('./../assets/img/artists/pharrell-williams/support-avatar.png');
+const ArtistPharrellWilliamsEventBackgroundImage = require('./../assets/img/artists/pharrell-williams/event-background.png');
 
 const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
 const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
@@ -134,5 +135,6 @@ export {
   ArtistPharrellWilliamsNewRelease1Image,
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
-  ArtistPharrellWilliamsSupportAvatarImage
+  ArtistPharrellWilliamsSupportAvatarImage,
+  ArtistPharrellWilliamsEventBackgroundImage
 };

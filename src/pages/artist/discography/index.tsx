@@ -15,10 +15,6 @@ interface DispatchProps {}
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class ArtistDiscographyPage extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <div className="artist-discography-page">

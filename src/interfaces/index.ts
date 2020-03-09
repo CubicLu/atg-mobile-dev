@@ -35,6 +35,7 @@ export interface ArtistInterface {
 export interface ArtistCoverInterface {
   main: string | undefined;
   background: string | undefined;
+  event: string | undefined;
 }
 
 export interface SettingsReducerType {
@@ -59,7 +60,9 @@ export interface MenuInterface {
   label: string;
   icon: any;
   id: string;
-  component: any;
+  component?: any;
+  isPage?: boolean;
+  route?: string | null;
 }
 
 export interface MixtapeInterface {

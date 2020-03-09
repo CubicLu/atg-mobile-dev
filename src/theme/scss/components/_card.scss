@@ -231,14 +231,20 @@
 
         .circle {
             &.calendar{
-                height: 115px;
-                width: 115px;
-                background: #F78429;
+                height: 105px;
+                width: 105px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
 
+                &.color{
+                    @include color-modifiers($attribute: 'background-color');
+                }
+                &.color-green-base{
+                    background-color: #89C832;
+                }
+               
 
                 div{
                     &:first-child{
@@ -310,8 +316,8 @@
         &.event{
             .circle {
                 &.calendar{
-                    height: 100px;
-                    width: 100px;
+                    height: 80px;
+                    width: 80px;
                 }
             }
 

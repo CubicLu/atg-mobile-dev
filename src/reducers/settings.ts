@@ -16,7 +16,6 @@ import {
   ArtistBiographyPage,
   ArtistDiscographyPage,
   ArtistGalleryPage,
-  ArtistEventsPage,
   ArtistVideosPage
 } from './../pages';
 
@@ -50,10 +49,6 @@ const defaultState: SettingsReducerType = {
       component: ProfileFriendsPage
     }
   ],
-  modal: {
-    visible: false,
-    content: null
-  },
   artistTabs: [
     {
       id: 'features',
@@ -83,7 +78,8 @@ const defaultState: SettingsReducerType = {
       id: 'events',
       label: 'Events',
       icon: 'e',
-      component: ArtistEventsPage
+      isPage: true,
+      route: '/home/artist/:id/event'
     },
     {
       id: 'videos',
@@ -99,6 +95,10 @@ const defaultState: SettingsReducerType = {
     }
   ],
   activeArtistTab: 'features',
+  modal: {
+    visible: false,
+    content: null
+  },
   plans: [
     {
       name: 'Basic',

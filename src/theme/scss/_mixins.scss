@@ -174,3 +174,13 @@
     font-size: pxToRem(18);
   }
 }
+
+@mixin background-style(){
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

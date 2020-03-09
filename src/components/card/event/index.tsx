@@ -1,9 +1,9 @@
 import React from 'react';
 import { EventInterface } from '../../../interfaces';
-import { ShareIcon } from '../../icon';
+import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
 
 interface Props {
-  key: number;
+  id: number;
   data: EventInterface;
 }
 
@@ -12,12 +12,25 @@ class CardEventComponent extends React.Component<Props> {
     type: 'normal'
   };
 
+  getColor(): any {
+    if (this.props.id === 0) {
+      return 'color-quartenary-base';
+    } else if (this.props.id === 1) {
+      return 'color-secondary-base';
+    } else if (this.props.id % 2 === 0 && this.props.id !== 0) {
+      return 'color-green-base';
+    } else if (this.props.id % 3 === 0 && this.props.id !== 0) {
+      return 'color-quartenary-base';
+    } else {
+      return 'color-quartenary-base';
+    }
+  }
   render(): React.ReactNode {
     return (
       <div className="card event">
         <div className="row">
           <div className="col s4">
-            <div className="circle calendar">
+            <div className={`circle calendar ${this.getColor()}`}>
               <div>FEB</div>
               <div>21</div>
             </div>
@@ -34,15 +47,15 @@ class CardEventComponent extends React.Component<Props> {
               <div className="col s12">
                 <ul className="list inline">
                   <li>
-                    <ShareIcon width={25} height={35} />
+                    <ShareIcon width={20} height={35} />
                     <div className="label">Share</div>
                   </li>
                   <li>
-                    <ShareIcon width={25} height={35} />
+                    <UserGroupIcon width={25} height={35} />
                     <div className="label">{`Who's Going`}</div>
                   </li>
                   <li>
-                    <ShareIcon width={25} height={35} />
+                    <TicketIcon height={35} />
                     <div className="label">Buy</div>
                   </li>
                 </ul>

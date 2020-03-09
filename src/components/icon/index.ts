@@ -21,6 +21,7 @@ import NetworkIcon from './network';
 import UserGroupIcon from './user-group';
 import BackIcon from './back';
 import ArrowRightIcon from './arrow-right';
+import TicketIcon from './ticket';
 
 export {
   MessageIcon,
@@ -45,5 +46,6 @@ export {
   NetworkIcon,
   UserGroupIcon,
   BackIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  TicketIcon
 };

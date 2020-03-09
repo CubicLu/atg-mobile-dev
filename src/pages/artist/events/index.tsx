@@ -1,6 +1,12 @@
 import React from 'react';
-import { Header, ButtonIcon, BackIcon, _ } from './../../../components';
-import { IonContent } from '@ionic/react';
+import {
+  Header,
+  ButtonIcon,
+  BackIcon,
+  _,
+  CardEvent
+} from './../../../components';
+import { IonContent, IonList, IonItem } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
 import {
@@ -63,14 +69,28 @@ class ArtistEventsPage extends React.Component<Props> {
           />
           <Header
             leftContent={
-              <ButtonIcon icon={<BackIcon />} onClick={(): void => {}} />
+              <ButtonIcon
+                icon={<BackIcon />}
+                onClick={(): void => {
+                  this.props.history.goBack();
+                }}
+              />
             }
             centerContent={<h1 className="title">Events</h1>}
           />
-          <div className="row">
-            <div className="col s12 content-list">
-            
-            </div>
+          <div className="content-list">
+            <IonList lines="none" className="list">
+              {_.map(
+                this.props.currentArtist?.events,
+                (data, i): React.ReactNode => {
+                  return (
+                    <IonItem key={i}>
+                      <CardEvent data={data} id={i} />
+                    </IonItem>
+                  );
+                }
+              )}
+            </IonList>
           </div>
         </div>
       </IonContent>

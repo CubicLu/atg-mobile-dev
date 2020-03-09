@@ -103,6 +103,24 @@ const defaultState: ArtistReducerType = {
           name: 'The Happy Tour',
           where: 'Microsoft Theatre',
           city: 'Los Angeles, CA'
+        },
+        {
+          date: '2020-02-21',
+          name: 'The Happy Tour',
+          where: 'Microsoft Theatre',
+          city: 'Los Angeles, CA'
+        },
+        {
+          date: '2020-02-21',
+          name: 'The Happy Tour',
+          where: 'Microsoft Theatre',
+          city: 'Los Angeles, CA'
+        },
+        {
+          date: '2020-02-21',
+          name: 'The Happy Tour',
+          where: 'Microsoft Theatre',
+          city: 'Los Angeles, CA'
         }
       ],
       discography: [

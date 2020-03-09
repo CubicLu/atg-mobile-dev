@@ -1,6 +1,7 @@
 .artist-events-page{
     
     @include page;
+    background: #000;
     
     .background{
         @include background-style();
@@ -19,5 +20,35 @@
         background: #000;
         position: relative;
         top: 40%;
+        .list{
+            background: #000;   
+            .item{
+                background: black;
+                --background: #000;
+                border-bottom: 1px solid #426193;
+                margin-bottom: 10px;
+                &:last-child{
+                    border-bottom: 0 solid #426193 !important;
+                }
+                .card{
+                    width: 100%;
+                    &.event{
+                        .row{
+                            margin-bottom: 0;
+                        }
+                        margin-top: 0;
+                        .circle{
+                            &.calendar{
+                                margin-top: 7px;
+                            }
+                        }
+
+                        .list{
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

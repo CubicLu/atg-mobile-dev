@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { _, Button, ArrowRightIcon } from './../../components';
 import {} from './../../actions';
-import { ApplicationState } from '../../reducers';
 import { IonList, IonItem } from '@ionic/react';
 
 interface Props {
@@ -19,10 +17,6 @@ class ListComponent extends React.Component<Props> {
     label: 'label',
     id: 'id'
   };
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     let self = this;
     return (
@@ -61,7 +55,4 @@ class ListComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplicationState): object => {
-  return {};
-};
-export default connect(mapStateToProps, {})(ListComponent);
+export default ListComponent;

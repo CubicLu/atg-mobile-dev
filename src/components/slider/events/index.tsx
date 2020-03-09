@@ -32,7 +32,7 @@ class SliderEventsComponent extends React.Component<Props> {
             {_.map(
               this.props.data,
               (data, i): React.ReactNode => {
-                return <CardEvent data={data} key={i} />;
+                return <CardEvent data={data} id={i} key={i} />;
               }
             )}
           </div>

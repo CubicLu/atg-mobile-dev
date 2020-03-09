@@ -8,7 +8,6 @@ import {
   ButtonIcon,
   CloseIcon,
   ButtonPlan,
-  CirclesIcon,
   Avatar,
   Button
 } from './../../../components';
@@ -87,14 +86,8 @@ class ArtistSupportPage extends React.Component<Props, State> {
       >
         <BackgroundImage
           gradient="180deg, #FCC505 0%, #C16509 100%"
-          top
-          bottom
-          topIsSvg
-          bottomIsSvg
-          imageTop={<CirclesIcon color={'#DA9307'} />}
-          imageBottom={<CirclesIcon color={'#DA9307'} />}
-          unique={false}
-          styles={{ height: '100%', backgroundPositionY: 'top' }}
+          backgroundBottom
+          backgroundTop
         >
           <div className="artist-support-page detail">
             <Header
@@ -172,9 +165,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
       >
         <BackgroundImage
           gradient="180deg, #281448 0%, #281448 100%"
-          image={this.props.currentArtist?.supportImages?.background}
-          unique={true}
-          styles={{ height: '100%', backgroundPositionY: 'top' }}
+          backgroundImage={this.props.currentArtist?.supportImages?.background}
         >
           <div className="artist-support-page">
             <Header

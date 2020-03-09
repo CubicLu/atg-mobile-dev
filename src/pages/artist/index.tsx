@@ -63,7 +63,7 @@ class ArtistPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient={`180deg, ${this.props.currentArtist?.backgroundGradient?.color1} 0%, ${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
+            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00,${this.props.currentArtist?.backgroundGradient?.color2}`}
             backgroundImage={this.props.currentArtist?.cover.background}
           >
             <div

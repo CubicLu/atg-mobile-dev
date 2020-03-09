@@ -41,7 +41,11 @@ class ArtistFeaturesPage extends React.Component<Props> {
           data={this.props.currentArtist?.radio}
         />
         <SliderEvents
-          data={this.props.currentArtist?.events}
+          data={[
+            this.props.currentArtist?.events !== undefined
+              ? this.props.currentArtist?.events[0]
+              : {}
+          ]}
           viewAll
           title={'UPCOMING EVENTS'}
         />

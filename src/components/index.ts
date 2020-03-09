@@ -25,6 +25,7 @@ import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
+import CardAlbumGalleryComponent from './card/album-gallery';
 
 export * from './icon';
 
@@ -53,7 +54,8 @@ export {
   ModalSlideComponent as ModalSlide,
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   ButtonPlanComponent as ButtonPlan,
-  ListComponent as List
+  ListComponent as List,
+  CardAlbumGalleryComponent as CardAlbumGallery
 };
 
 export { _ };

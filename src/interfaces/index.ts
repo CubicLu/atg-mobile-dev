@@ -30,6 +30,7 @@ export interface ArtistInterface {
   radio?: RadioInterface[];
   supportImages?: ArtistSupportImagesInterface;
   discography?: DiscographyInterface[];
+  gallery?: GalleryInterface[];
 }
 
 export interface ArtistCoverInterface {
@@ -142,4 +143,14 @@ export enum Colors {
 export interface DiscographyInterface {
   cover: string | undefined;
   name: string;
+}
+
+export interface GalleryInterface {
+  cover: string | undefined;
+  name: string;
+  items: AlbumInterface[];
+}
+
+export interface AlbumInterface {
+  image: string | undefined;
 }

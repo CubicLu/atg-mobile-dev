@@ -17,16 +17,22 @@ import { MixtapeInterface } from '../../../interfaces';
 interface Props {
   title?: string;
   viewAll?: boolean;
+  menu?: boolean;
+  dots?: boolean;
 }
 
 class SliderMixtapesComponent extends React.Component<Props> {
   settings: any;
   playlists: MixtapeInterface[];
+  public static defaultProps = {
+    menu: true,
+    dots: true
+  };
   constructor(props: Props) {
     super(props);
 
     this.settings = {
-      dots: true,
+      dots: this.props.dots,
       infinite: false,
       speed: 500,
       slidesToShow: 1,
@@ -81,7 +87,14 @@ class SliderMixtapesComponent extends React.Component<Props> {
           {_.map(
             this.playlists,
             (data, i): React.ReactNode => {
-              return <CardMixtapes mixtape={data} key={i} index={i + 1} />;
+              return (
+                <CardMixtapes
+                  mixtape={data}
+                  key={i}
+                  index={i + 1}
+                  menu={this.props.menu}
+                />
+              );
             }
           )}
         </Slider>

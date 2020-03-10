@@ -133,6 +133,11 @@
                     width: 50px;
                 }
 
+                &.without-menu{
+                    button:first-child{
+                        margin-top: 0px;
+                    }
+                }
                 button:first-child{
                     margin-top: 40px;
                 }

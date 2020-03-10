@@ -35,7 +35,7 @@ class ArtistFeaturesPage extends React.Component<Props> {
           data={this.props.currentArtist?.newReleases}
           title={'VIDEOS'}
         />
-        <SliderMixtapes title={'FEATURED MIXTAPES'} />
+        <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
         <SliderRadio
           title={'PANTHR RADIO'}
           data={this.props.currentArtist?.radio}

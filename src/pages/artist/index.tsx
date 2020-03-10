@@ -39,6 +39,18 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistPage extends React.Component<Props> {
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      let artist = _.find(
+        this.props.artists,
+        (x): any => x.username === nextProps.match.params.id
+      );
+      if (artist !== undefined) {
+        this.props.updateArtistProperty('currentArtist', artist);
+      }
+    }
+  }
+
   UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
       let artist = _.find(
@@ -64,7 +76,7 @@ class ArtistPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient={`180deg, ${this.props.currentArtist?.backgroundGradient?.color1} 0%, ${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
+            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00,${this.props.currentArtist?.backgroundGradient?.color1}d1,${this.props.currentArtist?.backgroundGradient?.color2}`}
             backgroundImage={this.props.currentArtist?.cover.background}
           >
             <div

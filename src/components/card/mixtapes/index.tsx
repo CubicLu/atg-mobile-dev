@@ -15,6 +15,7 @@ import {
 interface Props {
   mixtape: MixtapeInterface;
   index: number;
+  menu?: boolean;
 }
 
 interface State {
@@ -22,6 +23,9 @@ interface State {
 }
 
 class CardMixtapesComponent extends React.Component<Props, State> {
+  public static defaultProps = {
+    menu: true
+  };
   constructor(props: Props) {
     super(props);
 
@@ -42,23 +46,26 @@ class CardMixtapesComponent extends React.Component<Props, State> {
         <div className="row">
           <div className="col s12 cover">
             <div
-              className="tape"
+              className={`tape`}
               data-tapeindex={String(this.props.index).padStart(2, '0')}
             >
               {this.state.openMenu === false && (
                 <div
-                  className="background"
+                  className={`background ${
+                    this.props.menu === true ? '' : 'without-menu'
+                  }`}
                   style={{
                     backgroundImage: `url(${this.props.mixtape.cover})`
                   }}
                 >
                   <ButtonIcon icon={<PlayIcon />} />
-
-                  <ButtonIcon
-                    icon={<DotsThreeIcon />}
-                    color="transparent"
-                    onClick={this.setMenu.bind(this)}
-                  />
+                  {this.props.menu === true && (
+                    <ButtonIcon
+                      icon={<DotsThreeIcon />}
+                      color="transparent"
+                      onClick={this.setMenu.bind(this)}
+                    />
+                  )}
                 </div>
               )}
 

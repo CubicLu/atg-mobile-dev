@@ -164,6 +164,65 @@ const defaultState: ArtistReducerType = {
           name: 'Mick Jagger',
           username: 'mick-jagger'
         }
+      ],
+      gallery: [
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'New York Fashion Week',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'My baby Pictures',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'Los Angeles Tour',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'Miami Night',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        }
       ]
     },
     {
@@ -178,6 +237,20 @@ const defaultState: ArtistReducerType = {
       backgroundGradient: {
         color1: '#079848',
         color2: '#079848'
+      }
+    },
+    {
+      name: 'Bono Vox',
+      cover: {
+        main: ArtistBonoVoxImage,
+        background: ArtistBonoVoxImage,
+        event: ArtistBonoVoxImage
+      },
+      support: false,
+      username: 'bono-vox',
+      backgroundGradient: {
+        color1: '#bb3821',
+        color2: '#501005'
       }
     }
   ],

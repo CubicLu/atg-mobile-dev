@@ -71,3 +71,9 @@
 .background{
     @include color-modifiers($attribute: 'background-color');
 }
+
+.sliding-panel-container{
+    .background-bottom{
+        height: 30vh;
+    }
+}

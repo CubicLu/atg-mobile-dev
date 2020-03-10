@@ -30,6 +30,7 @@ export interface ArtistInterface {
   radio?: RadioInterface[];
   supportImages?: ArtistSupportImagesInterface;
   discography?: DiscographyInterface[];
+  supportArtistFans?: ArtistInterface[];
   gallery?: GalleryInterface[];
 }
 

@@ -3,7 +3,8 @@ import {
   BackgroundCircleBubblesImage,
   BackgroundCircleBubblesInverted,
   BackgroundCircleBubblesLightImage,
-  BackgroundCircleBubblesLightInverted
+  BackgroundCircleBubblesLightInverted,
+  BackgroundCircleBubblesOrangeImage
 } from './../../components';
 import {} from './../../actions';
 
@@ -22,6 +23,7 @@ interface Props {
   backgroundBottom: boolean;
   backgroundBottomDark: boolean;
   backgroundBottomOpacity: number;
+  backgroundBottomOrange: boolean;
   topRotate: boolean;
   bottomRotate: boolean;
 }
@@ -33,6 +35,7 @@ class BackgroundImageComponent extends React.Component<Props> {
     backgroundTop: false,
     backgroundBottom: false,
     topRotate: false,
+    backgroundBottomOrange: false,
     bottomRotate: false,
     backgroundTopDark: true,
     backgroundBottomDark: true,
@@ -64,6 +67,8 @@ class BackgroundImageComponent extends React.Component<Props> {
           backgroundImage: `url(${
             this.props.backgroundBottomDark
               ? BackgroundCircleBubblesImage
+              : this.props.backgroundBottomOrange
+              ? BackgroundCircleBubblesOrangeImage
               : BackgroundCircleBubblesLightImage
           })`,
           opacity: this.props.backgroundBottomOpacity

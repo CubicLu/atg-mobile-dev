@@ -19,7 +19,10 @@ import {
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
   ArtistPharrellWilliamsSupportAvatarImage,
-  ArtistPharrellWilliamsEventBackgroundImage
+  ArtistPharrellWilliamsEventBackgroundImage,
+  ArtistRobinThickeImage,
+  ArtistBonoVoxImage,
+  ArtistMickJaggerImage
 } from './../../components';
 
 const defaultState: ArtistReducerType = {
@@ -149,6 +152,19 @@ const defaultState: ArtistReducerType = {
           cover: ArtistPharrellWilliamsAlbumNumberOneImage
         }
       ],
+      supportArtistFans: [
+        {
+          cover: ArtistRobinThickeImage,
+          name: 'Robin Thicke',
+          username: 'robin-thicke'
+        },
+        { cover: ArtistBonoVoxImage, name: 'Bono Vox', username: 'bono-vox' },
+        {
+          cover: ArtistMickJaggerImage,
+          name: 'Mick Jagger',
+          username: 'mick-jagger'
+        }
+      ],
       gallery: [
         {
           cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
@@ -221,6 +237,20 @@ const defaultState: ArtistReducerType = {
       backgroundGradient: {
         color1: '#079848',
         color2: '#079848'
+      }
+    },
+    {
+      name: 'Bono Vox',
+      cover: {
+        main: ArtistBonoVoxImage,
+        background: ArtistBonoVoxImage,
+        event: ArtistBonoVoxImage
+      },
+      support: false,
+      username: 'bono-vox',
+      backgroundGradient: {
+        color1: '#bb3821',
+        color2: '#501005'
       }
     }
   ],

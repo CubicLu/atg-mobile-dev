@@ -179,7 +179,6 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       state: SettingsReducerType,
       action: Action<any>
     ) {
-      console.log('chega aqui');
       return {
         ...state,
         modal: { ...action.payload }

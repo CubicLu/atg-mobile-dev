@@ -124,7 +124,6 @@ class ArtistPage extends React.Component<Props> {
                         : '';
                     this.props.history.push(route);
                   } else if (event.onClick !== undefined) {
-                    console.log(event)
                     event.onClick();
                   } else {
                     this.props.updateSettingsProperty(

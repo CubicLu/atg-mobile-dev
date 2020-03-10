@@ -26,6 +26,7 @@ interface Props {
   backgroundBottomOrange: boolean;
   topRotate: boolean;
   bottomRotate: boolean;
+  blur: boolean;
 }
 
 class BackgroundImageComponent extends React.Component<Props> {
@@ -40,7 +41,8 @@ class BackgroundImageComponent extends React.Component<Props> {
     backgroundTopDark: true,
     backgroundBottomDark: true,
     backgroundTopOpacity: 0.07,
-    backgroundBottomOpacity: 0.07
+    backgroundBottomOpacity: 0.07,
+    blur: false
   };
 
   render(): React.ReactNode {
@@ -74,24 +76,18 @@ class BackgroundImageComponent extends React.Component<Props> {
           opacity: this.props.backgroundBottomOpacity
         };
 
-    const hasGradient =
-      this.props.gradient && `linear-gradient(${this.props.gradient}) `;
-    const hasImage =
-      this.props.backgroundImage && `url(${this.props.backgroundImage}) `;
-    const backgroundImage =
-      hasGradient && hasImage
-        ? `${hasGradient},${hasImage}`
-        : hasGradient
-        ? hasGradient
-        : hasImage
-        ? hasImage
-        : null;
+    let backgroundImageArray: string[] = [];
+    backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
+    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
+    const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
 
     return (
       <Fragment>
         {backgroundImage && (
           <div
-            className={`background-image ${this.props.shadow ? 'shadow' : ''}`}
+            className={`background-image ${this.props.shadow ? 'shadow' : ''} ${
+              this.props.blur ? 'blur' : ''
+            }`}
             style={{ backgroundImage: backgroundImage }}
           />
         )}

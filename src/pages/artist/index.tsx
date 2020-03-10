@@ -123,6 +123,8 @@ class ArtistPage extends React.Component<Props> {
                         ? event.route.replace(':id', this.props.match.params.id)
                         : '';
                     this.props.history.push(route);
+                  } else if (event.onClick !== undefined) {
+                    event.onClick();
                   } else {
                     this.props.updateSettingsProperty(
                       'activeArtistTab',

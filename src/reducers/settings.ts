@@ -17,6 +17,9 @@ import {
   ArtistDiscographyPage,
   ArtistVideosPage
 } from './../pages';
+import { MenuArtistList } from './../components';
+import React from 'react';
+import { store } from '../store';
 
 const defaultState: SettingsReducerType = {
   activeTab: 'feed',
@@ -92,6 +95,30 @@ const defaultState: SettingsReducerType = {
       label: 'Deep',
       icon: 'd',
       component: ArtistDeepPage
+    },
+    {
+      id: 'similar',
+      label: 'Similar',
+      icon: 'S',
+      onClick: (): void => {
+        store.dispatch({
+          type: ActionType.UPDATE_SETTINGS_MODAL,
+          payload: {
+            visible: true,
+            content: React.createElement(MenuArtistList, {
+              title: 'Similar Artist',
+              isSimilar: true,
+              onClick: (): void => {
+                store.dispatch({
+                  type: ActionType.UPDATE_SETTINGS_MODAL,
+                  payload: { visible: false, content: null }
+                });
+              }
+            }),
+            classname: 'background-white-base'
+          }
+        });
+      }
     }
   ],
   activeArtistTab: 'features',

@@ -165,6 +165,14 @@ const defaultState: ArtistReducerType = {
           username: 'mick-jagger'
         }
       ],
+      similarArtist: [
+        {
+          cover: ArtistRobinThickeImage,
+          name: 'Robin Thicke',
+          username: 'robin-thicke'
+        },
+        { cover: ArtistBonoVoxImage, name: 'Bono Vox', username: 'bono-vox' }
+      ],
       gallery: [
         {
           cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,

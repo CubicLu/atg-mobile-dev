@@ -87,6 +87,7 @@ class ArtistPage extends React.Component<Props> {
               <Header
                 leftContent={
                   <ButtonIcon
+                    fixed={true}
                     icon={<BackIcon />}
                     onClick={(): void => this.props.history.goBack()}
                   />

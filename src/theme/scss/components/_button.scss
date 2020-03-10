@@ -2,6 +2,10 @@
     border-radius: 2px;
     text-align: center;
     text-transform: initial;
+
+    &.fixed{
+        position: fixed;
+    }
     
     &.primary { 
         background: $primary;

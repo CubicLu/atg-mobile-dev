@@ -75,7 +75,7 @@
         
     }
 
-    &.fan-support-options{
+    &.fan-support-options, &.artists-supporting{
         width: 100%;
         overflow-y: hidden;
         .header{
@@ -116,6 +116,46 @@
                     button{ 
                         padding: 5px 10px;
                         
+                    }
+                }
+            }
+        }
+    }
+
+    &.artists-supporting{
+        .header{
+            .title{
+                color: #000;
+                font-family: 'Baskerville Regular';
+                font-weight: 400;
+                font-size: pxToRem(36);
+            }
+            .subtitle{
+                color: rgba($color: #000, $alpha: 0.65);
+                font-family: 'Helvetica';
+                font-weight: 400;
+                font-size: pxToRem(20);
+                margin-top: 0px;
+            }
+        }
+        .content{
+            ul{
+                li{
+                    .artist{
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        .avatar{
+                            height: 40px;
+                            width: 40px;
+                            border-radius: 50%;
+                        }
+                        .name{
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            font-family: 'Helvetica';
+                            font-size: pxToRem(18);
+                        }
                     }
                 }
             }

@@ -32,5 +32,10 @@ $colors: (
         base: $quartenary,
         gradient: $quartenary-gradient,
         opacity95: rbga($quartenary, 0.95)
+    ),
+    white: (
+        base: #FFF,
+        gradient: #FFF,
+        opacity95: rbga(#FFF, 0.95)
     )
 );

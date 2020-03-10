@@ -179,6 +179,20 @@ const defaultState: ArtistReducerType = {
         color1: '#079848',
         color2: '#079848'
       }
+    },
+    {
+      name: 'Bono Vox',
+      cover: {
+        main: ArtistBonoVoxImage,
+        background: ArtistBonoVoxImage,
+        event: ArtistBonoVoxImage
+      },
+      support: false,
+      username: 'bono-vox',
+      backgroundGradient: {
+        color1: '#bb3821',
+        color2: '#501005'
+      }
     }
   ],
   currentArtist: null

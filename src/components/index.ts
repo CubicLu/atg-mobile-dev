@@ -26,7 +26,7 @@ import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
 import SupportByComponent from './support-by';
-import MenuArtistsSupportingComponent from './menu/artists-supporting';
+import MenuArtistListComponent from './menu/artist-list';
 
 export * from './icon';
 
@@ -57,7 +57,7 @@ export {
   ButtonPlanComponent as ButtonPlan,
   ListComponent as List,
   SupportByComponent as SupportBy,
-  MenuArtistsSupportingComponent as MenuArtistsSupporting
+  MenuArtistListComponent as MenuArtistList
 };
 
 export { _ };

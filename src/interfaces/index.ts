@@ -31,6 +31,7 @@ export interface ArtistInterface {
   supportImages?: ArtistSupportImagesInterface;
   discography?: DiscographyInterface[];
   supportArtistFans?: ArtistInterface[];
+  similarArtist?: ArtistInterface[];
 }
 
 export interface ArtistCoverInterface {
@@ -64,6 +65,7 @@ export interface MenuInterface {
   component?: any;
   isPage?: boolean;
   route?: string | null;
+  onClick?: Function;
 }
 
 export interface MixtapeInterface {

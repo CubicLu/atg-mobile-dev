@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { DotsThreeIcon, _, MenuArtistsSupporting } from './../../components';
+import { DotsThreeIcon, _, MenuArtistList } from './../../components';
 import { updateSettingsModal } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import { ArtistInterface } from '../../interfaces';
@@ -32,7 +32,8 @@ class SupportByComponent extends React.Component<Props> {
           onClick={(): void =>
             this.props.updateSettingsModal(
               true,
-              React.createElement(MenuArtistsSupporting, {
+              React.createElement(MenuArtistList, {
+                title: 'Artists Supporting',
                 onClick: this.props.updateSettingsModal.bind(this, false, null)
               }),
               'background-white-base'

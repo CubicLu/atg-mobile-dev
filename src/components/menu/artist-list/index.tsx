@@ -26,13 +26,18 @@ interface DispatchProps {
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps {
   onClick: Function;
+  title: string;
+  isSimilar?: boolean;
 }
 
-class MenuArtistsSupporting extends React.Component<Props> {
+class MenuArtistList extends React.Component<Props> {
   public static defaultProps = {
-    onClick: (): void => {}
+    onClick: (): void => {},
+    isSimilar: false
   };
+
   render(): React.ReactNode {
+    let data = this.props.isSimilar ? this.props.currentArtist?.similarArtist : this.props.currentArtist?.supportArtistFans;
     return (
       <BackgroundImage
         backgroundBottom
@@ -40,11 +45,13 @@ class MenuArtistsSupporting extends React.Component<Props> {
         backgroundBottomOrange
         backgroundBottomOpacity={1}
       >
-        <div className="container menu artists-supporting">
+        <div className="container menu artist-list">
           <div className="row header">
             <div className="col s10">
-              <h1 className="title">Artists Supporting</h1>
-              <h2 className="subtitle">{this.props.currentArtist?.name}</h2>
+              <h1 className="title">{this.props.title}</h1>
+              <h2 className="subtitle">
+                {this.props.isSimilar && 'To'} {this.props.currentArtist?.name}
+              </h2>
             </div>
             <div className="col s2 button">
               <ButtonIcon
@@ -60,7 +67,7 @@ class MenuArtistsSupporting extends React.Component<Props> {
             <div className="col s12">
               <ul>
                 {_.map(
-                  this.props.currentArtist?.supportArtistFans,
+                  data,
                   (data, i): React.ReactNode => {
                     return (
                       <li key={i}>
@@ -102,5 +109,5 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
 export default withRouter(
   connect(mapStateToProps, {
     updateSettingsModal
-  })(MenuArtistsSupporting)
+  })(MenuArtistList)
 );

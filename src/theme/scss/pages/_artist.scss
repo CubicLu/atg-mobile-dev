@@ -26,4 +26,52 @@
             }
         }
     }
+    
+    .content-absolute {
+        z-index: 2;
+        position: absolute;
+        top: 160px;
+        bottom: 0;
+        width: 100%;
+        overflow: auto;
+        height: 1000px;
+    }
+    .content-fixed{
+        background: inherit;
+        position: fixed;
+        z-index: 4;
+        height: 160px;
+        top: 0;
+
+        .support-by-component{
+            display: none;
+        }
+
+        .header.default{
+            position: fixed;
+            height: auto;
+        }
+        .name{
+            padding-top: pxToRem(32);
+            padding-right: pxToRem(15);
+            padding-left: pxToRem(55);
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+    
+            h1{
+                margin: 0;
+                font-size: pxToRem(30);
+                &.title{
+                    text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
+                }
+            }
+        }
+    
+        .menu.generic.scroll{
+            margin-top: 0px;
+        }
+    }    
 }

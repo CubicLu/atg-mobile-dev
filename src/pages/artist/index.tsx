@@ -32,13 +32,22 @@ interface DispatchProps {
 interface MatchParams {
   id: string;
 }
+interface State {
+  blur: boolean;
+}
 
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistPage extends React.Component<Props> {
+class ArtistPage extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      blur: false
+    };
+  }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       let artist = _.find(
@@ -64,6 +73,14 @@ class ArtistPage extends React.Component<Props> {
     }
   }
 
+  handleScroll(event: any): void {
+    const { blur } = this.state;
+    const eventBlur = event.detail.currentY > 100;
+    if (blur === eventBlur) return;
+    this.setState({ blur: eventBlur });
+    console.log('blur changed to ', eventBlur, ' from ', blur);
+  }
+
   render(): React.ReactNode {
     return (
       <IonPage id="artist-page">
@@ -71,34 +88,38 @@ class ArtistPage extends React.Component<Props> {
           scrollY={true}
           scrollEvents={true}
           onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
+          onIonScroll={this.handleScroll.bind(this)}
           onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
         >
           <BackgroundImage
             gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00,${this.props.currentArtist?.backgroundGradient?.color1}d1,${this.props.currentArtist?.backgroundGradient?.color2}`}
             backgroundImage={this.props.currentArtist?.cover.background}
+            blur={this.state.blur}
           >
             <div
               className={
                 `artist-page` + (this.props.isPlaying && ' is-playing')
               }
             >
-              <Header
-                leftContent={
-                  <ButtonIcon
-                    fixed={true}
-                    icon={<BackIcon />}
-                    onClick={(): void => this.props.history.goBack()}
-                  />
+              <div
+                className={
+                  this.state.blur ? 'row content-fixed' : 'row not-fixed'
                 }
-                rightContent={
-                  <SupportBy
-                    data={this.props.currentArtist?.supportArtistFans}
-                  />
-                }
-              />
-              <div className={'row'}>
+              >
+                <Header
+                  leftContent={
+                    <ButtonIcon
+                      fixed={true}
+                      icon={<BackIcon />}
+                      onClick={(): void => this.props.history.goBack()}
+                    />
+                  }
+                  rightContent={
+                    <SupportBy
+                      data={this.props.currentArtist?.supportArtistFans}
+                    />
+                  }
+                />
                 <div className={'col s12 name'}>
                   <h1 className="title">{this.props.currentArtist?.name}</h1>
                   <Button
@@ -112,36 +133,33 @@ class ArtistPage extends React.Component<Props> {
                     type={'rounded'}
                   />
                 </div>
-              </div>
 
-              <Menu
-                tabs={this.props.artistTabs}
-                activeId={this.props.activeArtistTab}
-                onClick={(event: MenuInterface): void => {
-                  if (event.isPage === true) {
-                    let route =
-                      event.route != undefined
-                        ? event.route.replace(':id', this.props.match.params.id)
-                        : '';
-                    this.props.history.push(route);
-                  } else if (event.onClick !== undefined) {
-                    event.onClick();
-                  } else {
-                    this.props.updateSettingsProperty(
-                      'activeArtistTab',
-                      event.id
-                    );
-                  }
-                }}
-              />
+                <Menu
+                  tabs={this.props.artistTabs}
+                  activeId={this.props.activeArtistTab}
+                  onClick={(event: MenuInterface): void => {
+                    if (event.isPage === true) {
+                      let route =
+                        event.route != null
+                          ? event.route.replace(':id', this.props.match.params.id)
+                          : '';
+                      this.props.history.push(route);
+                    } else if (event.onClick !== undefined) {
+                      event.onClick();
+                    } else {
+                      this.props.updateSettingsProperty(
+                        'activeArtistTab',
+                        event.id
+                      );
+                    }
+                  }}
+                />
+              </div>
               {_.map(
                 this.props.artistTabs,
-                (data, i): React.ReactNode => {
-                  if (data.id === this.props.activeArtistTab) {
-                    return React.createElement(data.component, { key: i });
-                  }
-                  return null;
-                }
+                (data, i): React.ReactNode =>
+                  data.id === this.props.activeArtistTab &&
+                  React.createElement(data.component, { key: i })
               )}
             </div>
           </BackgroundImage>

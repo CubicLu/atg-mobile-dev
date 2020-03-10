@@ -74,14 +74,23 @@
             width: 30px;
             padding-left: 2px;
             padding-right: 2px;
+            svg{
+                z-index: 1;
+            }
         }
     }
 
     .center-col{
         text-align: center;
-        .title{
-            font-size: pxToRem(40);
-            margin-top: 0;
+        z-index: 1;
+        h1{
+            &.title{
+                margin-top: 0;
+                font-size: pxToRem(40);
+                position: relative;
+                width: 100%;
+                text-align: center;
+            }
         }
        
     }

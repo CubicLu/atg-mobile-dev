@@ -15,7 +15,6 @@ import {
   ArtistFeaturesPage,
   ArtistBiographyPage,
   ArtistDiscographyPage,
-  ArtistGalleryPage,
   ArtistVideosPage
 } from './../pages';
 
@@ -72,7 +71,8 @@ const defaultState: SettingsReducerType = {
       id: 'gallery',
       label: 'Gallery',
       icon: 'g',
-      component: ArtistGalleryPage
+      isPage: true,
+      route: '/home/artist/:id/gallery'
     },
     {
       id: 'events',

@@ -8,6 +8,7 @@ import { ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
+  isPlaying: boolean;
 }
 
 interface DispatchProps {}
@@ -17,7 +18,11 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 class ArtistDiscographyPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <div className="artist-discography-page">
+      <div
+        className={
+          `artist-discography-page ` + (this.props.isPlaying && ' is-playing')
+        }
+      >
         <div className="row">
           {_.map(
             this.props.currentArtist?.discography,
@@ -31,9 +36,13 @@ class ArtistDiscographyPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  artistAPI,
+  settings
+}: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  return { currentArtist };
+  const { isPlaying } = settings;
+  return { currentArtist, isPlaying };
 };
 
 export default withRouter(connect(mapStateToProps, {})(ArtistDiscographyPage));

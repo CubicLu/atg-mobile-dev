@@ -37,7 +37,9 @@ class MenuArtistList extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    let data = this.props.isSimilar ? this.props.currentArtist?.similarArtist : this.props.currentArtist?.supportArtistFans;
+    let data = this.props.isSimilar
+      ? this.props.currentArtist?.similarArtist
+      : this.props.currentArtist?.supportArtistFans;
     return (
       <BackgroundImage
         backgroundBottom

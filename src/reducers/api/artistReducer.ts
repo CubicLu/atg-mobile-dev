@@ -164,6 +164,65 @@ const defaultState: ArtistReducerType = {
           name: 'Mick Jagger',
           username: 'mick-jagger'
         }
+      ],
+      gallery: [
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'New York Fashion Week',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'My baby Pictures',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'Los Angeles Tour',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'Miami Night',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        }
       ]
     },
     {

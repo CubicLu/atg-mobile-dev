@@ -1,16 +1,27 @@
 import React from 'react';
 import { EventInterface } from '../../../interfaces';
 import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
+import { IonAlert } from '@ionic/react';
+
+interface State {
+  show: boolean;
+}
 
 interface Props {
   id: number;
   data: EventInterface;
 }
 
-class CardEventComponent extends React.Component<Props> {
+class CardEventComponent extends React.Component<Props, State> {
   public static defaultProps = {
     type: 'normal'
   };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      show: false
+    };
+  }
 
   getColor(): any {
     if (this.props.id === 0) {
@@ -25,6 +36,13 @@ class CardEventComponent extends React.Component<Props> {
       return 'color-quartenary-base';
     }
   }
+
+  showMessage(condition = false): void {
+    this.setState({
+      show: condition
+    });
+  }
+
   render(): React.ReactNode {
     return (
       <div className="card event">
@@ -54,7 +72,11 @@ class CardEventComponent extends React.Component<Props> {
                     <UserGroupIcon width={25} height={35} />
                     <div className="label">{`Who's Going`}</div>
                   </li>
-                  <li>
+                  <li
+                    onClick={(): void => {
+                      this.showMessage(true);
+                    }}
+                  >
                     <TicketIcon height={35} />
                     <div className="label">Buy</div>
                   </li>
@@ -63,6 +85,29 @@ class CardEventComponent extends React.Component<Props> {
             </div>
           </div>
         </div>
+        <IonAlert
+          isOpen={this.state.show}
+          onDidDismiss={(): void => this.showMessage(false)}
+          header={'Atention!'}
+          message={`You'll be redirect to external link, are you sure?`}
+          buttons={[
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (): void => {
+                this.showMessage();
+              }
+            },
+            {
+              text: 'Yes',
+              handler: (): void => {
+                window.open('https://google.com', '_blank');
+                this.showMessage();
+              }
+            }
+          ]}
+        />
       </div>
     );
   }

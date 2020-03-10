@@ -25,6 +25,8 @@ import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
+import SupportByComponent from './support-by';
+import MenuArtistsSupportingComponent from './menu/artists-supporting';
 
 export * from './icon';
 
@@ -53,7 +55,9 @@ export {
   ModalSlideComponent as ModalSlide,
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   ButtonPlanComponent as ButtonPlan,
-  ListComponent as List
+  ListComponent as List,
+  SupportByComponent as SupportBy,
+  MenuArtistsSupportingComponent as MenuArtistsSupporting
 };
 
 export { _ };
@@ -67,6 +71,7 @@ const BackgroundCircleBrownImage = require('./../assets/img/background/circles/b
 const BackgroundCircleDarkGrayImage = require('./../assets/img/background/circles/dark-gray.png');
 const BackgroundCircleBlackImage = require('./../assets/img/background/circles/black.png');
 const BackgroundCircleSteelBlueImage = require('./../assets/img/background/circles/steel-blue.png');
+const BackgroundCircleBubblesOrangeImage = require('./../assets/img/background/circles/orange-bubbles.png');
 
 const BackgroundCircleBubblesImage = require('./../assets/img/background/circles/black-bubbles.png');
 const BackgroundCircleBubblesInverted = require('./../assets/img/background/circles/black-bubbles-inverted.png');
@@ -99,6 +104,10 @@ const MixtapeRebelRockImage = require('./../assets/img/mixtapes/rebel-rock.png')
 const GenersRebImage = require('./../assets/img/geners/reb.png');
 const GenersHipHopImage = require('./../assets/img/geners/hip-hop.png');
 const GenersSoulImage = require('./../assets/img/geners/soul.png');
+
+const ArtistMickJaggerImage = require('./../assets/img/artists/mick-jagger/artist.png');
+const ArtistBonoVoxImage = require('./../assets/img/artists/bono-vox/artist.png');
+const ArtistRobinThickeImage = require('./../assets/img/artists/robin-thicke/artist.png');
 
 export {
   BackgroundInitialImage,
@@ -136,5 +145,9 @@ export {
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
   ArtistPharrellWilliamsSupportAvatarImage,
-  ArtistPharrellWilliamsEventBackgroundImage
+  ArtistPharrellWilliamsEventBackgroundImage,
+  ArtistMickJaggerImage,
+  ArtistBonoVoxImage,
+  ArtistRobinThickeImage,
+  BackgroundCircleBubblesOrangeImage
 };

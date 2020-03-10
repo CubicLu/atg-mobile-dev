@@ -9,7 +9,8 @@ import {
   Button,
   Menu,
   ButtonIcon,
-  BackIcon
+  BackIcon,
+  SupportBy
 } from './../../components';
 import { updateArtistProperty, updateSettingsProperty } from './../../actions';
 import { ApplicationState } from './../../reducers';
@@ -76,6 +77,11 @@ class ArtistPage extends React.Component<Props> {
                   <ButtonIcon
                     icon={<BackIcon />}
                     onClick={(): void => this.props.history.goBack()}
+                  />
+                }
+                rightContent={
+                  <SupportBy
+                    data={this.props.currentArtist?.supportArtistFans}
                   />
                 }
               />

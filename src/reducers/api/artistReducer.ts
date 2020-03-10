@@ -19,7 +19,10 @@ import {
   ArtistPharrellWilliamsNewRelease2Image,
   ArtistPharrellWilliamsSupportBackgroundImage,
   ArtistPharrellWilliamsSupportAvatarImage,
-  ArtistPharrellWilliamsEventBackgroundImage
+  ArtistPharrellWilliamsEventBackgroundImage,
+  ArtistRobinThickeImage,
+  ArtistBonoVoxImage,
+  ArtistMickJaggerImage
 } from './../../components';
 
 const defaultState: ArtistReducerType = {
@@ -147,6 +150,19 @@ const defaultState: ArtistReducerType = {
         {
           name: 'Number One',
           cover: ArtistPharrellWilliamsAlbumNumberOneImage
+        }
+      ],
+      supportArtistFans: [
+        {
+          cover: ArtistRobinThickeImage,
+          name: 'Robin Thicke',
+          username: 'robin-thicke'
+        },
+        { cover: ArtistBonoVoxImage, name: 'Bono Vox', username: 'bono-vox' },
+        {
+          cover: ArtistMickJaggerImage,
+          name: 'Mick Jagger',
+          username: 'mick-jagger'
         }
       ]
     },

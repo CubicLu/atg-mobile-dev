@@ -172,6 +172,65 @@ const defaultState: ArtistReducerType = {
           username: 'robin-thicke'
         },
         { cover: ArtistBonoVoxImage, name: 'Bono Vox', username: 'bono-vox' }
+      ],
+      gallery: [
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'New York Fashion Week',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'My baby Pictures',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'Los Angeles Tour',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        },
+        {
+          cover: ArtistPharrellWilliamsAlbumTheNeptunesImage,
+          name: 'Miami Night',
+          items: [
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            },
+            {
+              image: ArtistPharrellWilliamsAlbumTheNeptunesImage
+            }
+          ]
+        }
       ]
     },
     {

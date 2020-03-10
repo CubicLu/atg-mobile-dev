@@ -27,6 +27,7 @@ import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
+import CardAlbumGalleryComponent from './card/album-gallery';
 
 export * from './icon';
 
@@ -57,7 +58,8 @@ export {
   ButtonPlanComponent as ButtonPlan,
   ListComponent as List,
   SupportByComponent as SupportBy,
-  MenuArtistListComponent as MenuArtistList
+  MenuArtistListComponent as MenuArtistList,
+  CardAlbumGalleryComponent as CardAlbumGallery
 };
 
 export { _ };

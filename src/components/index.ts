@@ -70,7 +70,6 @@ const BackgroundInitialImage = require('./../assets/img/background/initial/1.png
 const BackgroundSignInImage = require('./../assets/img/background/sign-in/1.png');
 const BackgroundSignUpConfirmImage = require('./../assets/img/background/sign-up-confirm/1.png');
 
-
 const BackgroundCircleBubblesOrangeImage = require('./../assets/img/background/circles/orange-bubbles.png');
 const BackgroundCircleBubblesImage = require('./../assets/img/background/circles/black-bubbles.png');
 const BackgroundCircleBubblesInverted = require('./../assets/img/background/circles/black-bubbles-inverted.png');
@@ -81,10 +80,6 @@ const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png')
 const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
 const MixtapeMoonLightImage = require('./../assets/img/mixtapes/moon-light.png');
 const MixtapeRebelRockImage = require('./../assets/img/mixtapes/rebel-rock.png');
-
-const GenersRebImage = require('./../assets/img/geners/reb.png');
-const GenersHipHopImage = require('./../assets/img/geners/hip-hop.png');
-const GenersSoulImage = require('./../assets/img/geners/soul.png');
 
 export {
   BackgroundInitialImage,
@@ -98,8 +93,5 @@ export {
   MixtapeKnightImage,
   MixtapeMoonLightImage,
   MixtapeRebelRockImage,
-  GenersRebImage,
-  GenersHipHopImage,
-  GenersSoulImage,
   BackgroundCircleBubblesOrangeImage
 };

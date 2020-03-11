@@ -20,10 +20,6 @@ interface Props extends StateProps, DispatchProps {
 }
 
 class SupportByComponent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     if (this.props.data !== undefined && this.props.data?.length > 0) {
       return (

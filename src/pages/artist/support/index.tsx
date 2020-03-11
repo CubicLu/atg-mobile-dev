@@ -22,10 +22,10 @@ interface State {
 }
 
 interface StateProps {
-  current_artist: ArtistInterface | null;
+  currentArtist: ArtistInterface | null;
   artists: ArtistInterface[];
   plans: PlanInterface[];
-  selected_plan: PlanInterface | null;
+  selectedPlan: PlanInterface | null;
 }
 
 interface DispatchProps {
@@ -54,14 +54,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.current_artist == null
+      nextProps.currentArtist == null
     ) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
 
   componentDidMount(): void {
-    if (this.props.current_artist == null) {
+    if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
@@ -107,12 +107,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       type={'circle'}
                       width={100}
                       height={100}
-                      image={this.props.current_artist?.support_images?.avatar}
+                      image={this.props.currentArtist?.supportImages?.avatar}
                     />
                   </div>
                   <div className="col s8">
                     <h1 className={'title'}>
-                      {this.props.current_artist?.name}
+                      {this.props.currentArtist?.name}
                     </h1>
                     <h2 className={'subtitle'}>Support Level</h2>
                     <div className="plan-detail">
@@ -165,7 +165,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
         <BackgroundImage
           gradient="180deg, #28144800 30%, #281448bf 50%, #281448 100%"
           backgroundImage={
-            this.props.current_artist?.support_images?.background
+            this.props.currentArtist?.supportImages?.background
           }
         >
           <div className="artist-support-page">
@@ -181,7 +181,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             />
             <div className="row">
               <div className="col s12 info">
-                <h1 className={'title'}>{this.props.current_artist?.name}</h1>
+                <h1 className={'title'}>{this.props.currentArtist?.name}</h1>
                 <h2 className={'subtitle'}>Select A Support Level</h2>
               </div>
             </div>
@@ -193,14 +193,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   return (
                     <div className="col s6" key={i}>
                       <ButtonPlan
-                        active={this.props.selected_plan?.id === data.id}
+                        active={this.props.selectedPlan?.id === data.id}
                         plan={data}
                         onClickDetail={(event: PlanInterface): void => {
                           this.showDetail(true, event);
                         }}
                         onClick={(event: PlanInterface): void => {
                           this.props.updateSettingsProperty(
-                            'selected_plan',
+                            'selectedPlan',
                             event
                           );
                         }}
@@ -229,9 +229,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { current_artist, artists } = artistAPI;
-  const { plans, selected_plan } = settings;
-  return { current_artist, artists, plans, selected_plan };
+  const { currentArtist, artists } = artistAPI;
+  const { plans, selectedPlan } = settings;
+  return { currentArtist, artists, plans, selectedPlan };
 };
 
 export default withRouter(

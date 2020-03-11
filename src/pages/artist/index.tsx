@@ -22,11 +22,11 @@ import { ApplicationState } from './../../reducers';
 import { ArtistInterface, MenuInterface } from '../../interfaces';
 
 interface StateProps {
-  current_artist: ArtistInterface | null;
+  currentArtist: ArtistInterface | null;
   artists: ArtistInterface[];
-  is_playing: boolean;
-  artist_tabs: MenuInterface[];
-  active_artist_tab: string;
+  isPlaying: boolean;
+  artistTabs: MenuInterface[];
+  activeArtistTab: string;
   loading: boolean;
 }
 
@@ -64,13 +64,13 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillMount(): void {
-    if (this.props.current_artist == null) {
+    if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 
   componentWillUnmount(): void {
-    this.props.updateArtistProperty('current_artist', null);
+    this.props.updateArtistProperty('currentArtist', null);
   }
 
   handleScroll(event: any): void {
@@ -81,7 +81,7 @@ class ArtistPage extends React.Component<Props, State> {
     this.setState({ blur: eventBlur, scrolling: false });
   }
   handleMenu(event: MenuInterface): void {
-    if (event.is_page === true) {
+    if (event.isPage === true) {
       let route =
         event.route != null
           ? event.route.replace(':id', this.props.match.params.id)
@@ -90,7 +90,7 @@ class ArtistPage extends React.Component<Props, State> {
     } else if (event.onClick !== undefined) {
       event.onClick();
     } else {
-      this.props.updateSettingsProperty('active_artist_tab', event.id);
+      this.props.updateSettingsProperty('activeArtistTab', event.id);
     }
   }
 
@@ -106,8 +106,8 @@ class ArtistPage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
         >
           <BackgroundImage
-            gradient={`180deg,${this.props.current_artist?.background_gradient?.color1}00,${this.props.current_artist?.background_gradient?.color1}d1,${this.props.current_artist?.background_gradient?.color2}`}
-            backgroundImage={this.props.current_artist?.cover.background}
+            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00,${this.props.currentArtist?.backgroundGradient?.color1}d1,${this.props.currentArtist?.backgroundGradient?.color2}`}
+            backgroundImage={this.props.currentArtist?.cover.background}
             blur={this.state.blur}
           >
             <div className={`artist-page`}>
@@ -122,12 +122,12 @@ class ArtistPage extends React.Component<Props, State> {
                   }
                   rightContent={
                     <SupportBy
-                      data={this.props.current_artist?.support_artist_fans}
+                      data={this.props.currentArtist?.supportArtistFans}
                     />
                   }
                 />
                 <div className={'col s12 name'}>
-                  <h1 className="title">{this.props.current_artist?.name}</h1>
+                  <h1 className="title">{this.props.currentArtist?.name}</h1>
                   <Button
                     onClick={(): void =>
                       this.props.history.push(
@@ -141,8 +141,8 @@ class ArtistPage extends React.Component<Props, State> {
                 </div>
 
                 <Menu
-                  tabs={this.props.artist_tabs}
-                  activeId={this.props.active_artist_tab}
+                  tabs={this.props.artistTabs}
+                  activeId={this.props.activeArtistTab}
                   onClick={this.handleMenu.bind(this)}
                 />
               </div>
@@ -150,9 +150,9 @@ class ArtistPage extends React.Component<Props, State> {
 
             <div className={`artist-page bottom` + (fixed ? ' absolute' : '')}>
               {_.map(
-                this.props.artist_tabs,
+                this.props.artistTabs,
                 (data, i): React.ReactNode =>
-                  data.id === this.props.active_artist_tab &&
+                  data.id === this.props.activeArtistTab &&
                   React.createElement(data.component, { key: i })
               )}
             </div>
@@ -168,14 +168,14 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { current_artist, artists, loading } = artistAPI;
-  const { is_playing, artist_tabs, active_artist_tab } = settings;
+  const { currentArtist, artists, loading } = artistAPI;
+  const { isPlaying, artistTabs, activeArtistTab } = settings;
   return {
-    current_artist,
+    currentArtist,
     artists,
-    is_playing,
-    artist_tabs,
-    active_artist_tab,
+    isPlaying,
+    artistTabs,
+    activeArtistTab,
     loading
   };
 };

@@ -15,7 +15,7 @@ import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 
 interface StateProps {
-  current_artist: ArtistInterface | null;
+  currentArtist: ArtistInterface | null;
   loading: boolean;
 }
 
@@ -37,14 +37,14 @@ class ArtistEventsPage extends React.Component<Props> {
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.current_artist == null
+      nextProps.currentArtist == null
     ) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
 
   componentDidMount(): void {
-    if (this.props.current_artist == null) {
+    if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
@@ -61,7 +61,7 @@ class ArtistEventsPage extends React.Component<Props> {
         <div className="artist-events-page">
           <div
             style={{
-              backgroundImage: `url(${this.props.current_artist?.cover.event})`
+              backgroundImage: `url(${this.props.currentArtist?.cover.event})`
             }}
             className="background"
           />
@@ -79,7 +79,7 @@ class ArtistEventsPage extends React.Component<Props> {
           <div className="content-list">
             <IonList lines="none" className="list">
               {_.map(
-                this.props.current_artist?.events,
+                this.props.currentArtist?.events,
                 (data, i): React.ReactNode => {
                   return (
                     <IonItem key={i}>
@@ -98,8 +98,8 @@ class ArtistEventsPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { current_artist, loading } = artistAPI;
-  return { current_artist, loading };
+  const { currentArtist, loading } = artistAPI;
+  return { currentArtist, loading };
 };
 
 export default withRouter(

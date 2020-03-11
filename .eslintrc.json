@@ -19,8 +19,7 @@
       "@typescript-eslint/no-explicit-any": "off",
       "no-empty-pattern": "off",
       "jsx-a11y/anchor-is-valid": "off",
-      "camelcase": "off",
-      "@typescript-eslint/camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }]
+      "@typescript-eslint/no-empty-pattern": "off"
     },
     "settings": {
       "react": {

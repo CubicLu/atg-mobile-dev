@@ -7,8 +7,8 @@ import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
-  current_artist: ArtistInterface | null;
-  is_playing: boolean;
+  currentArtist: ArtistInterface | null;
+  isPlaying: boolean;
 }
 
 interface DispatchProps {}
@@ -20,12 +20,12 @@ class ArtistDiscographyPage extends React.Component<Props> {
     return (
       <div
         className={
-          `artist-discography-page ` + (this.props.is_playing && ' is-playing')
+          `artist-discography-page ` + (this.props.isPlaying && ' is-playing')
         }
       >
         <div className="row">
           {_.map(
-            this.props.current_artist?.discography,
+            this.props.currentArtist?.discography,
             (data, i): React.ReactNode => {
               return <CardImage image={data.cover} key={i} />;
             }
@@ -40,9 +40,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { current_artist } = artistAPI;
-  const { is_playing } = settings;
-  return { current_artist, is_playing };
+  const { currentArtist } = artistAPI;
+  const { isPlaying } = settings;
+  return { currentArtist, isPlaying };
 };
 
 export default withRouter(connect(mapStateToProps, {})(ArtistDiscographyPage));

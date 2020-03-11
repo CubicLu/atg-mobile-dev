@@ -4,10 +4,10 @@ import {} from './../../components';
 
 const defaultState: ArtistReducerType = {
   artists: [],
-  current_artist: null,
+  currentArtist: null,
   loading: false,
-  success_message: null,
-  error_message: null
+  successMessage: null,
+  errorMessage: null
 };
 
 export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
@@ -64,7 +64,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      current_artist: action.payload.data
+      currentArtist: action.payload.data
     };
   },
 

@@ -13,9 +13,9 @@ import { updateSettingsProperty } from './../../actions';
 import { MenuInterface } from '../../interfaces';
 
 interface StateProps {
-  active_fan_tab: string;
-  fan_tabs: MenuInterface[];
-  is_playing: boolean;
+  activeFanTab: string;
+  fanTabs: MenuInterface[];
+  isPlaying: boolean;
   loading: boolean;
 }
 
@@ -45,24 +45,24 @@ class ProfilePage extends React.Component<Props> {
           >
             <div
               className={
-                `profile-page` + (this.props.is_playing && ' is-playing')
+                `profile-page` + (this.props.isPlaying && ' is-playing')
               }
             >
               <HeaderProfile />
               <Menu
-                tabs={this.props.fan_tabs}
-                activeId={this.props.active_fan_tab}
+                tabs={this.props.fanTabs}
+                activeId={this.props.activeFanTab}
                 onClick={(event: MenuInterface): void => {
                   return this.props.updateSettingsProperty(
-                    'active_fan_tab',
+                    'activeFanTab',
                     event.id
                   );
                 }}
               />
               {_.map(
-                this.props.fan_tabs,
+                this.props.fanTabs,
                 (data, i): React.ReactNode => {
-                  if (data.id === this.props.active_fan_tab) {
+                  if (data.id === this.props.activeFanTab) {
                     return React.createElement(data.component, { key: i });
                   }
                   return null;
@@ -81,9 +81,9 @@ const mapStateToProps = ({
   settings,
   artistAPI
 }: ApplicationState): StateProps => {
-  const { active_fan_tab, fan_tabs, is_playing } = settings;
+  const { activeFanTab, fanTabs, isPlaying } = settings;
   const { loading } = artistAPI;
-  return { active_fan_tab, fan_tabs, is_playing, loading };
+  return { activeFanTab, fanTabs, isPlaying, loading };
 };
 
 export default connect(mapStateToProps, {

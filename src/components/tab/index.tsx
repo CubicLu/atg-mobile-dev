@@ -28,7 +28,7 @@ import {
 import { TabsInterface } from '../../interfaces';
 
 interface StateProps {
-  active_tab: string;
+  activeTab: string;
 }
 
 interface DispatchProps {
@@ -44,7 +44,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/feed',
         icon: (
           <PhoneWithHeadsetIcon
-            color={this.props.active_tab === 'feed' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'feed' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'feed',
@@ -55,7 +55,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/messages',
         icon: (
           <MessageIcon
-            color={this.props.active_tab === 'messages' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'messages' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'messages',
@@ -65,7 +65,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/profile',
         icon: (
           <ProfileIcon
-            color={this.props.active_tab === 'profile' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'profile' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'profile',
@@ -75,7 +75,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/search',
         icon: (
           <SearchIcon
-            color={this.props.active_tab === 'search' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'search' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'search',
@@ -85,7 +85,7 @@ class TabComponent extends React.Component<Props> {
         path: '/home/radio',
         icon: (
           <RadioIcon
-            color={this.props.active_tab === 'radio' ? '#00BAFF' : '#FFF'}
+            color={this.props.activeTab === 'radio' ? '#00BAFF' : '#FFF'}
           />
         ),
         id: 'radio',
@@ -96,7 +96,7 @@ class TabComponent extends React.Component<Props> {
     return (
       <IonTabs
         onIonTabsWillChange={(event): void => {
-          this.props.updateSettingsProperty('active_tab', event.detail.tab);
+          this.props.updateSettingsProperty('activeTab', event.detail.tab);
         }}
       >
         <IonRouterOutlet>
@@ -132,8 +132,8 @@ class TabComponent extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { active_tab } = settings;
-  return { active_tab };
+  const { activeTab } = settings;
+  return { activeTab };
 };
 
 export default connect(mapStateToProps, {

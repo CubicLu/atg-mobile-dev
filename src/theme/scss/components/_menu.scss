@@ -7,13 +7,16 @@
             margin-top: 30px;
             @include no-scroll-bar();
             li{
-                margin-left: 10px !important;
-                margin-right: 10px !important;
+                margin-left: 3px !important;
+                margin-right: 3px !important;
+                min-width: 65px;
+                overflow: hidden;
+
                 &:first-child{
-                    margin-left: 20px !important;
+                    margin-left: 10px !important;
                 }
                 &:last-child{
-                    padding-right: 20px !important;
+                    padding-right: 10px !important;
                 }
             }
         }
@@ -53,7 +56,7 @@
                 .title{
                     font-family: 'Helvetica';
                     font-size: 14px;
-                    margin-top: 10px !important;
+                    margin-top: 10px;
                     font-weight: 400;
                     border-bottom: 2px solid transparent;
                 }
@@ -64,6 +67,8 @@
                         border-bottom: 2px;
                         border-bottom: 2px solid $tertiary;
                         color: $tertiary;
+                        margin-top: 9px;
+                        overflow: auto;
                     }
 
                     .circle{

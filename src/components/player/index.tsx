@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  PauseIcon,
-  StarIcon,
-  NextIcon,
-  ArtistPharrellWilliamsAlbumNumberOneImage
-} from './../../components';
+import { PauseIcon, StarIcon, NextIcon } from './../../components';
 import {} from './../../actions';
 
 interface Props {}
@@ -20,7 +15,7 @@ class PlayerComponent extends React.Component<Props> {
                 <div
                   className="img"
                   style={{
-                    backgroundImage: `url(${ArtistPharrellWilliamsAlbumNumberOneImage})`
+                    backgroundImage: `url(https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png)`
                   }}
                 >
                   <div className="icon">

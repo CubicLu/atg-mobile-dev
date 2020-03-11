@@ -14,7 +14,7 @@ describe('HomePage render', () => {
   
     beforeEach(() => {
         store = mockStore({
-          settings: { activeTab: 'home '},
+          settings: { active_tab: 'home '},
         });
 
         const history = createMemoryHistory()

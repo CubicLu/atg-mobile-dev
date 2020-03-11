@@ -5,27 +5,23 @@ import {
   BackIcon,
   _,
   BackgroundImage,
-  CardAlbumGallery
+  CardAlbumGallery,
+  LoaderFullscreen
 } from './../../../components';
 import { IonContent } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
-import {
-  updateArtistProperty,
-  updateSettingsProperty
-} from './../../../actions';
+import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 
-interface State {}
-
 interface StateProps {
-  currentArtist: ArtistInterface | null;
-  artists: ArtistInterface[];
+  current_artist: ArtistInterface | null;
+  loading: boolean;
 }
 
 interface DispatchProps {
-  updateArtistProperty: (property: string, value: any) => void;
+  getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
 }
 
@@ -39,16 +35,18 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistGalleryPage extends React.Component<Props> {
-  UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      let artist = _.find(
-        this.props.artists,
-        (x): any => x.username === this.props.match.params.id
-      );
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (
+      nextProps.match.params.id !== this.props.match.params.id ||
+      nextProps.current_artist == null
+    ) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    }
+  }
 
-      if (artist !== undefined) {
-        this.props.updateArtistProperty('currentArtist', artist);
-      }
+  componentDidMount(): void {
+    if (this.props.current_artist == null) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
   }
   render(): React.ReactNode {
@@ -85,7 +83,7 @@ class ArtistGalleryPage extends React.Component<Props> {
 
             <div className="row">
               {_.map(
-                this.props.currentArtist?.gallery,
+                this.props.current_artist?.gallery,
                 (data, index): React.ReactNode => {
                   return (
                     <CardAlbumGallery
@@ -101,19 +99,20 @@ class ArtistGalleryPage extends React.Component<Props> {
             </div>
           </div>
         </BackgroundImage>
+        <LoaderFullscreen visible={this.props.loading} />
       </IonContent>
     );
   }
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist, artists } = artistAPI;
-  return { currentArtist, artists };
+  const { current_artist, loading } = artistAPI;
+  return { current_artist, loading };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    updateArtistProperty,
+    getArtistAPI,
     updateSettingsProperty
   })(ArtistGalleryPage)
 );

@@ -12,7 +12,7 @@ import {
   Button
 } from './../../../components';
 import {
-  updateArtistProperty,
+  getArtistAPI,
   updateSettingsProperty
 } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
@@ -25,14 +25,14 @@ interface State {
 }
 
 interface StateProps {
-  currentArtist: ArtistInterface | null;
+  current_artist: ArtistInterface | null;
   artists: ArtistInterface[];
   plans: PlanInterface[];
-  selectedPlan: PlanInterface | null;
+  selected_plan: PlanInterface | null;
 }
 
 interface DispatchProps {
-  updateArtistProperty: (property: string, value: any) => void;
+  getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
 }
 
@@ -54,16 +54,18 @@ class ArtistSupportPage extends React.Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      let artist = _.find(
-        this.props.artists,
-        (x): any => x.username === this.props.match.params.id
-      );
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (
+      nextProps.match.params.id !== this.props.match.params.id ||
+      nextProps.current_artist == null
+    ) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    }
+  }
 
-      if (artist !== undefined) {
-        this.props.updateArtistProperty('currentArtist', artist);
-      }
+  componentDidMount(): void {
+    if (this.props.current_artist == null) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 
@@ -108,12 +110,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       type={'circle'}
                       width={100}
                       height={100}
-                      image={this.props.currentArtist?.supportImages?.avatar}
+                      image={this.props.current_artist?.support_images?.avatar}
                     />
                   </div>
                   <div className="col s8">
                     <h1 className={'title'}>
-                      {this.props.currentArtist?.name}
+                      {this.props.current_artist?.name}
                     </h1>
                     <h2 className={'subtitle'}>Support Level</h2>
                     <div className="plan-detail">
@@ -164,8 +166,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
         style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#281448' }}
       >
         <BackgroundImage
-          gradient="180deg, #281448 0%, #281448 100%"
-          backgroundImage={this.props.currentArtist?.supportImages?.background}
+          gradient="180deg, #28144800 30%, #281448bf 50%, #281448 100%"
+          backgroundImage={
+            this.props.current_artist?.support_images?.background
+          }
         >
           <div className="artist-support-page">
             <Header
@@ -180,7 +184,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             />
             <div className="row">
               <div className="col s12 info">
-                <h1 className={'title'}>{this.props.currentArtist?.name}</h1>
+                <h1 className={'title'}>{this.props.current_artist?.name}</h1>
                 <h2 className={'subtitle'}>Select A Support Level</h2>
               </div>
             </div>
@@ -192,14 +196,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   return (
                     <div className="col s6" key={i}>
                       <ButtonPlan
-                        active={this.props.selectedPlan?.id === data.id}
+                        active={this.props.selected_plan?.id === data.id}
                         plan={data}
                         onClickDetail={(event: PlanInterface): void => {
                           this.showDetail(true, event);
                         }}
                         onClick={(event: PlanInterface): void => {
                           this.props.updateSettingsProperty(
-                            'selectedPlan',
+                            'selected_plan',
                             event
                           );
                         }}
@@ -228,14 +232,14 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists } = artistAPI;
-  const { plans, selectedPlan } = settings;
-  return { currentArtist, artists, plans, selectedPlan };
+  const { current_artist, artists } = artistAPI;
+  const { plans, selected_plan } = settings;
+  return { current_artist, artists, plans, selected_plan };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    updateArtistProperty,
+    getArtistAPI,
     updateSettingsProperty
   })(ArtistSupportPage)
 );

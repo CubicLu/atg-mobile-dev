@@ -1,15 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IonPage, IonContent } from '@ionic/react';
-import { BackgroundImage, HeaderProfile, Menu, _ } from './../../components';
+import {
+  BackgroundImage,
+  HeaderProfile,
+  Menu,
+  _,
+  LoaderFullscreen
+} from './../../components';
 import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
 import { MenuInterface } from '../../interfaces';
 
 interface StateProps {
-  activeFanTab: string;
-  fanTabs: MenuInterface[];
-  isPlaying: boolean;
+  active_fan_tab: string;
+  fan_tabs: MenuInterface[];
+  is_playing: boolean;
+  loading: boolean;
 }
 
 interface DispatchProps {
@@ -38,24 +45,24 @@ class ProfilePage extends React.Component<Props> {
           >
             <div
               className={
-                `profile-page` + (this.props.isPlaying && ' is-playing')
+                `profile-page` + (this.props.is_playing && ' is-playing')
               }
             >
               <HeaderProfile />
               <Menu
-                tabs={this.props.fanTabs}
-                activeId={this.props.activeFanTab}
+                tabs={this.props.fan_tabs}
+                activeId={this.props.active_fan_tab}
                 onClick={(event: MenuInterface): void => {
                   return this.props.updateSettingsProperty(
-                    'activeFanTab',
+                    'active_fan_tab',
                     event.id
                   );
                 }}
               />
               {_.map(
-                this.props.fanTabs,
+                this.props.fan_tabs,
                 (data, i): React.ReactNode => {
-                  if (data.id === this.props.activeFanTab) {
+                  if (data.id === this.props.active_fan_tab) {
                     return React.createElement(data.component, { key: i });
                   }
                   return null;
@@ -64,14 +71,19 @@ class ProfilePage extends React.Component<Props> {
             </div>
           </BackgroundImage>
         </IonContent>
+        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { activeFanTab, fanTabs, isPlaying } = settings;
-  return { activeFanTab, fanTabs, isPlaying };
+const mapStateToProps = ({
+  settings,
+  artistAPI
+}: ApplicationState): StateProps => {
+  const { active_fan_tab, fan_tabs, is_playing } = settings;
+  const { loading } = artistAPI;
+  return { active_fan_tab, fan_tabs, is_playing, loading };
 };
 
 export default connect(mapStateToProps, {

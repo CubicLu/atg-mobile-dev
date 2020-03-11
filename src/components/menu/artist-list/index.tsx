@@ -13,7 +13,7 @@ import { ApplicationState } from '../../../reducers';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 interface StateProps {
-  currentArtist: ArtistInterface | null;
+  current_artist: ArtistInterface | null;
 }
 
 interface DispatchProps {
@@ -27,19 +27,19 @@ interface DispatchProps {
 interface Props extends StateProps, DispatchProps, RouteComponentProps {
   onClick: Function;
   title: string;
-  isSimilar?: boolean;
+  is_similar?: boolean;
 }
 
 class MenuArtistList extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): void => {},
-    isSimilar: false
+    is_similar: false
   };
 
   render(): React.ReactNode {
-    let data = this.props.isSimilar
-      ? this.props.currentArtist?.similarArtist
-      : this.props.currentArtist?.supportArtistFans;
+    let data = this.props.is_similar
+      ? this.props.current_artist?.similar_artist
+      : this.props.current_artist?.support_artist_fans;
     return (
       <BackgroundImage
         backgroundBottom
@@ -52,7 +52,8 @@ class MenuArtistList extends React.Component<Props> {
             <div className="col s10">
               <h1 className="title">{this.props.title}</h1>
               <h2 className="subtitle">
-                {this.props.isSimilar && 'To'} {this.props.currentArtist?.name}
+                {this.props.is_similar && 'To'}{' '}
+                {this.props.current_artist?.name}
               </h2>
             </div>
             <div className="col s2 button">
@@ -104,8 +105,8 @@ class MenuArtistList extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
+  const { current_artist } = artistAPI;
+  return { current_artist };
 };
 
 export default withRouter(

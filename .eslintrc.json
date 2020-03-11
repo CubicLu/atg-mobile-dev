@@ -18,7 +18,9 @@
       "@typescript-eslint/no-empty-interface": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "no-empty-pattern": "off",
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      "camelcase": "off",
+      "@typescript-eslint/camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }]
     },
     "settings": {
       "react": {

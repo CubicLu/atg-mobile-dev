@@ -30,6 +30,7 @@ class ModalSlideComponent extends React.Component<Props> {
         isOpen={this.props.visible}
         size={this.props.height}
         panelClassName={` ${this.props.type} ${this.props.classname}`}
+        panelContainerClassName={` ${this.props.classname}`}
       >
         {this.props.children}
       </SlidingPanel>

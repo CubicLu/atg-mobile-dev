@@ -2,7 +2,7 @@ import { Action, ActionType, AuthReducerType } from './../../interfaces';
 import createReducer from './../createReducer';
 
 const defaultState: AuthReducerType = {
-  loggedUser: {
+  logged_user: {
     name: 'Débora',
     email: 'debora.goncalves@vigil365.com'
   }

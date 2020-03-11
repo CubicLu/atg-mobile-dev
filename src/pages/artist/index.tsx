@@ -10,23 +10,30 @@ import {
   Menu,
   ButtonIcon,
   BackIcon,
-  SupportBy
+  SupportBy,
+  LoaderFullscreen
 } from './../../components';
-import { updateArtistProperty, updateSettingsProperty } from './../../actions';
+import {
+  updateArtistProperty,
+  updateSettingsProperty,
+  getArtistAPI
+} from './../../actions';
 import { ApplicationState } from './../../reducers';
 import { ArtistInterface, MenuInterface } from '../../interfaces';
 
 interface StateProps {
-  currentArtist: ArtistInterface | null;
+  current_artist: ArtistInterface | null;
   artists: ArtistInterface[];
-  isPlaying: boolean;
-  artistTabs: MenuInterface[];
-  activeArtistTab: string;
+  is_playing: boolean;
+  artist_tabs: MenuInterface[];
+  active_artist_tab: string;
+  loading: boolean;
 }
 
 interface DispatchProps {
   updateArtistProperty: (property: string, value: any) => void;
   updateSettingsProperty: (property: string, value: any) => void;
+  getArtistAPI: (username: string) => void;
 }
 
 interface MatchParams {
@@ -52,27 +59,18 @@ class ArtistPage extends React.Component<Props, State> {
   }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.match.params.id !== this.props.match.params.id) {
-      let artist = _.find(
-        this.props.artists,
-        (x): any => x.username === nextProps.match.params.id
-      );
-      if (artist !== undefined) {
-        this.props.updateArtistProperty('currentArtist', artist);
-      }
+      this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
 
   UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      let artist = _.find(
-        this.props.artists,
-        (x): any => x.username === this.props.match.params.id
-      );
-
-      if (artist !== undefined) {
-        this.props.updateArtistProperty('currentArtist', artist);
-      }
+    if (this.props.current_artist == null) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
+  }
+
+  componentWillUnmount(): void {
+    this.props.updateArtistProperty('current_artist', null);
   }
 
   handleScroll(event: any): void {
@@ -83,7 +81,7 @@ class ArtistPage extends React.Component<Props, State> {
     this.setState({ blur: eventBlur, scrolling: false });
   }
   handleMenu(event: MenuInterface): void {
-    if (event.isPage === true) {
+    if (event.is_page === true) {
       let route =
         event.route != null
           ? event.route.replace(':id', this.props.match.params.id)
@@ -92,7 +90,7 @@ class ArtistPage extends React.Component<Props, State> {
     } else if (event.onClick !== undefined) {
       event.onClick();
     } else {
-      this.props.updateSettingsProperty('activeArtistTab', event.id);
+      this.props.updateSettingsProperty('active_artist_tab', event.id);
     }
   }
 
@@ -108,8 +106,8 @@ class ArtistPage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
         >
           <BackgroundImage
-            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00,${this.props.currentArtist?.backgroundGradient?.color1}d1,${this.props.currentArtist?.backgroundGradient?.color2}`}
-            backgroundImage={this.props.currentArtist?.cover.background}
+            gradient={`180deg,${this.props.current_artist?.background_gradient?.color1}00,${this.props.current_artist?.background_gradient?.color1}d1,${this.props.current_artist?.background_gradient?.color2}`}
+            backgroundImage={this.props.current_artist?.cover.background}
             blur={this.state.blur}
           >
             <div className={`artist-page`}>
@@ -124,12 +122,12 @@ class ArtistPage extends React.Component<Props, State> {
                   }
                   rightContent={
                     <SupportBy
-                      data={this.props.currentArtist?.supportArtistFans}
+                      data={this.props.current_artist?.support_artist_fans}
                     />
                   }
                 />
                 <div className={'col s12 name'}>
-                  <h1 className="title">{this.props.currentArtist?.name}</h1>
+                  <h1 className="title">{this.props.current_artist?.name}</h1>
                   <Button
                     onClick={(): void =>
                       this.props.history.push(
@@ -143,8 +141,8 @@ class ArtistPage extends React.Component<Props, State> {
                 </div>
 
                 <Menu
-                  tabs={this.props.artistTabs}
-                  activeId={this.props.activeArtistTab}
+                  tabs={this.props.artist_tabs}
+                  activeId={this.props.active_artist_tab}
                   onClick={this.handleMenu.bind(this)}
                 />
               </div>
@@ -152,14 +150,15 @@ class ArtistPage extends React.Component<Props, State> {
 
             <div className={`artist-page bottom` + (fixed ? ' absolute' : '')}>
               {_.map(
-                this.props.artistTabs,
+                this.props.artist_tabs,
                 (data, i): React.ReactNode =>
-                  data.id === this.props.activeArtistTab &&
+                  data.id === this.props.active_artist_tab &&
                   React.createElement(data.component, { key: i })
               )}
             </div>
           </BackgroundImage>
         </IonContent>
+        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
@@ -169,14 +168,22 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists } = artistAPI;
-  const { isPlaying, artistTabs, activeArtistTab } = settings;
-  return { currentArtist, artists, isPlaying, artistTabs, activeArtistTab };
+  const { current_artist, artists, loading } = artistAPI;
+  const { is_playing, artist_tabs, active_artist_tab } = settings;
+  return {
+    current_artist,
+    artists,
+    is_playing,
+    artist_tabs,
+    active_artist_tab,
+    loading
+  };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
     updateArtistProperty,
-    updateSettingsProperty
+    updateSettingsProperty,
+    getArtistAPI
   })(ArtistPage)
 );

@@ -7,7 +7,13 @@ export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
   UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
   UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY',
-  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL'
+  UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL',
+  GET_ARTISTS_API = 'GET_ARTISTS_API',
+  GET_ARTISTS_API_FAILURE = 'GET_ARTISTS_API_FAILURE',
+  GET_ARTISTS_API_SUCCESS = 'GET_ARTISTS_API_SUCCESS',
+  GET_ARTIST_API = 'GET_ARTIST_API',
+  GET_ARTIST_API_FAILURE = 'GET_ARTIST_API_FAILURE',
+  GET_ARTIST_API_SUCCESS = 'GET_ARTIST_API_SUCCESS'
 }
 
 export interface TabsInterface {
@@ -23,15 +29,15 @@ export interface ArtistInterface {
   name: string;
   support?: boolean;
   username: string;
-  backgroundGradient?: GradientColorsInterface;
-  featuredTracks?: FeaturedTrackInterface[];
-  newReleases?: NewRealeseInterface[];
+  background_gradient?: GradientColorsInterface;
+  featured_tracks?: FeaturedTrackInterface[];
+  new_releases?: NewRealeseInterface[];
   events?: EventInterface[];
   radio?: RadioInterface[];
-  supportImages?: ArtistSupportImagesInterface;
+  support_images?: ArtistSupportImagesInterface;
   discography?: DiscographyInterface[];
-  supportArtistFans?: ArtistInterface[];
-  similarArtist?: ArtistInterface[];
+  support_artist_fans?: ArtistInterface[];
+  similar_artist?: ArtistInterface[];
   gallery?: GalleryInterface[];
 }
 
@@ -42,15 +48,15 @@ export interface ArtistCoverInterface {
 }
 
 export interface SettingsReducerType {
-  activeTab: string;
-  isPlaying: boolean;
-  fanTabs: MenuInterface[];
-  activeFanTab: string;
-  artistTabs: MenuInterface[];
-  activeArtistTab: string;
+  active_tab: string;
+  is_playing: boolean;
+  fan_tabs: MenuInterface[];
+  active_fan_tab: string;
+  artist_tabs: MenuInterface[];
+  active_artist_tab: string;
   modal: ModalSlideInterface;
   plans: PlanInterface[];
-  selectedPlan: PlanInterface | null;
+  selected_plan: PlanInterface | null;
 }
 
 export interface ModalSlideInterface {
@@ -64,7 +70,7 @@ export interface MenuInterface {
   icon: any;
   id: string;
   component?: any;
-  isPage?: boolean;
+  is_page?: boolean;
   route?: string | null;
   onClick?: Function;
 }
@@ -77,7 +83,10 @@ export interface MixtapeInterface {
 
 export interface ArtistReducerType {
   artists: ArtistInterface[];
-  currentArtist: ArtistInterface | null;
+  current_artist: ArtistInterface | null;
+  loading: boolean;
+  success_message: string | null;
+  error_message: string | null;
 }
 
 export interface UserInterface {
@@ -86,7 +95,7 @@ export interface UserInterface {
 }
 
 export interface AuthReducerType {
-  loggedUser: UserInterface;
+  logged_user: UserInterface;
 }
 
 export interface GradientColorsInterface {

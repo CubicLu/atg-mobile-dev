@@ -13,8 +13,8 @@ import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
-  currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
+  current_artist: ArtistInterface | null;
+  is_playing: boolean;
 }
 
 interface DispatchProps {}
@@ -26,29 +26,29 @@ class ArtistFeaturesPage extends React.Component<Props> {
     return (
       <div
         className={
-          `artist-features-page` + (this.props.isPlaying && ' is-playing')
+          `artist-features-page` + (this.props.is_playing && ' is-playing')
         }
       >
         <List
-          data={this.props.currentArtist?.featuredTracks}
+          data={this.props.current_artist?.featured_tracks}
           title={'TRACKS'}
           viewAll
           label={'song'}
           id={'id'}
         />
         <SliderVideo
-          data={this.props.currentArtist?.newReleases}
+          data={this.props.current_artist?.new_releases}
           title={'VIDEOS'}
         />
         <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
         <SliderRadio
           title={'PANTHR RADIO'}
-          data={this.props.currentArtist?.radio}
+          data={this.props.current_artist?.radio}
         />
         <SliderEvents
           data={[
-            this.props.currentArtist?.events !== undefined
-              ? this.props.currentArtist?.events[0]
+            this.props.current_artist?.events !== undefined
+              ? this.props.current_artist?.events[0]
               : {}
           ]}
           viewAll
@@ -63,9 +63,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  const { current_artist } = artistAPI;
+  const { is_playing } = settings;
+  return { current_artist, is_playing };
 };
 
 export default withRouter(connect(mapStateToProps, {})(ArtistFeaturesPage));

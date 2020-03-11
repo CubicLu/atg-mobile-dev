@@ -63,10 +63,6 @@ class CardArtistComponent extends React.Component<Props> {
                   <div
                     className="col s8 name"
                     onClick={(): void => {
-                      this.props.updateArtistProperty(
-                        'currentArtist',
-                        this.props.artist
-                      );
                       this.props.history.push(
                         `/home/artist/${this.props.artist.username}`
                       );

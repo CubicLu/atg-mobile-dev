@@ -2,19 +2,34 @@ import React from 'react';
 import { IonList } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { CardArtist, _ } from './../../../components';
-import {} from './../../../actions';
+import { getArtistsAPI } from './../../../actions';
 import { ArtistInterface } from '../../../interfaces';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 
-interface Props extends RouteComponentProps {
+interface StateProps {
   artists: ArtistInterface[];
+  is_playing: boolean;
 }
 
+interface DispatchProps {
+  getArtistsAPI: () => any;
+}
+
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
+
 class ProfileArtistsPage extends React.Component<Props> {
+  componentDidMount(): void {
+    this.props.getArtistsAPI();
+  }
+
   render(): React.ReactNode {
     return (
-      <div className="profile-artists-page">
+      <div
+        className={
+          `profile-artists-page` + (this.props.is_playing && ' is-playing')
+        }
+      >
         <IonList className="artist-list">
           {_.map(
             this.props.artists,
@@ -28,9 +43,12 @@ class ProfileArtistsPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): object => {
+const mapStateToProps = ({ artistAPI, settings }: ApplicationState): object => {
   const { artists } = artistAPI;
-  return { artists };
+  const { is_playing } = settings;
+  return { artists, is_playing };
 };
 
-export default withRouter(connect(mapStateToProps, {})(ProfileArtistsPage));
+export default withRouter(
+  connect(mapStateToProps, { getArtistsAPI })(ProfileArtistsPage)
+);

@@ -11,10 +11,7 @@ import {
   Avatar,
   Button
 } from './../../../components';
-import {
-  getArtistAPI,
-  updateSettingsProperty
-} from './../../../actions';
+import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonContent } from '@ionic/react';
 import { ArtistInterface, PlanInterface } from '../../../interfaces';

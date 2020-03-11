@@ -1,22 +1,23 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
 import {} from './../../actions';
 
-interface Props extends RouteComponentProps {
+interface Props {
   rightContent?: React.ReactNode | null;
   leftContent?: React.ReactNode | null;
   centerContent?: React.ReactNode | null;
+  type?: 'default' | 'fixed';
 }
 
 class HeaderComponent extends React.Component<Props> {
   public static defaultProps = {
     buttonRight: null,
     leftContent: null,
-    centerContent: null
+    centerContent: null,
+    type: 'default'
   };
   render(): React.ReactNode {
     return (
-      <div className="header default">
+      <div className={`header ${this.props.type}`}>
         <div className="row content">
           <div className="col s2 h-100 left-col">{this.props.leftContent}</div>
           <div className="col s8 h-100 center-col">
@@ -30,4 +31,4 @@ class HeaderComponent extends React.Component<Props> {
     );
   }
 }
-export default withRouter(HeaderComponent);
+export default HeaderComponent;

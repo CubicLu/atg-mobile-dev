@@ -26,9 +26,8 @@ class SignUpConfirmPage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #d53d1d, #a32c16"
+            gradient="180deg, #d53d1d00 20%, #d53d1d 50%, #a32c16 100%"
             backgroundImage={BackgroundSignUpConfirmImage}
-            backgroundTop
             backgroundBottom
           >
             <div className="container sign-up-confirm-page">

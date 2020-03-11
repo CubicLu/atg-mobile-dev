@@ -22,10 +22,10 @@ import React from 'react';
 import { store } from '../store';
 
 const defaultState: SettingsReducerType = {
-  active_tab: 'feed',
-  active_fan_tab: 'artists',
-  is_playing: true,
-  fan_tabs: [
+  activeTab: 'feed',
+  activeFanTab: 'artists',
+  isPlaying: true,
+  fanTabs: [
     {
       id: 'artists',
       label: 'Artists',
@@ -51,7 +51,7 @@ const defaultState: SettingsReducerType = {
       component: ProfileFriendsPage
     }
   ],
-  artist_tabs: [
+  artistTabs: [
     {
       id: 'features',
       label: 'Features',
@@ -74,14 +74,14 @@ const defaultState: SettingsReducerType = {
       id: 'gallery',
       label: 'Gallery',
       icon: 'g',
-      is_page: true,
+      isPage: true,
       route: '/home/artist/:id/gallery'
     },
     {
       id: 'events',
       label: 'Events',
       icon: 'e',
-      is_page: true,
+      isPage: true,
       route: '/home/artist/:id/event'
     },
     {
@@ -107,7 +107,7 @@ const defaultState: SettingsReducerType = {
             visible: true,
             content: React.createElement(MenuArtistList, {
               title: 'Similar Artist',
-              is_similar: true,
+              isSimilar: true,
               onClick: (): void => {
                 store.dispatch({
                   type: ActionType.UPDATE_SETTINGS_MODAL,
@@ -121,7 +121,7 @@ const defaultState: SettingsReducerType = {
       }
     }
   ],
-  active_artist_tab: 'features',
+  activeArtistTab: 'features',
   modal: {
     visible: false,
     content: null
@@ -160,7 +160,7 @@ const defaultState: SettingsReducerType = {
         'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
     }
   ],
-  selected_plan: null
+  selectedPlan: null
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

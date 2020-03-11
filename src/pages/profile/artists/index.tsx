@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 interface StateProps {
   artists: ArtistInterface[];
-  is_playing: boolean;
+  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -27,7 +27,7 @@ class ProfileArtistsPage extends React.Component<Props> {
     return (
       <div
         className={
-          `profile-artists-page` + (this.props.is_playing && ' is-playing')
+          `profile-artists-page` + (this.props.isPlaying && ' is-playing')
         }
       >
         <IonList className="artist-list">
@@ -45,8 +45,8 @@ class ProfileArtistsPage extends React.Component<Props> {
 
 const mapStateToProps = ({ artistAPI, settings }: ApplicationState): object => {
   const { artists } = artistAPI;
-  const { is_playing } = settings;
-  return { artists, is_playing };
+  const { isPlaying } = settings;
+  return { artists, isPlaying };
 };
 
 export default withRouter(

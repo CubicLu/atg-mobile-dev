@@ -29,15 +29,15 @@ export interface ArtistInterface {
   name: string;
   support?: boolean;
   username: string;
-  background_gradient?: GradientColorsInterface;
-  featured_tracks?: FeaturedTrackInterface[];
-  new_releases?: NewRealeseInterface[];
+  backgroundGradient?: GradientColorsInterface;
+  featuredTracks?: FeaturedTrackInterface[];
+  newReleases?: NewRealeseInterface[];
   events?: EventInterface[];
   radio?: RadioInterface[];
-  support_images?: ArtistSupportImagesInterface;
+  supportImages?: ArtistSupportImagesInterface;
   discography?: DiscographyInterface[];
-  support_artist_fans?: ArtistInterface[];
-  similar_artist?: ArtistInterface[];
+  supportArtistFans?: ArtistInterface[];
+  similarArtist?: ArtistInterface[];
   gallery?: GalleryInterface[];
 }
 
@@ -48,15 +48,15 @@ export interface ArtistCoverInterface {
 }
 
 export interface SettingsReducerType {
-  active_tab: string;
-  is_playing: boolean;
-  fan_tabs: MenuInterface[];
-  active_fan_tab: string;
-  artist_tabs: MenuInterface[];
-  active_artist_tab: string;
+  activeTab: string;
+  isPlaying: boolean;
+  fanTabs: MenuInterface[];
+  activeFanTab: string;
+  artistTabs: MenuInterface[];
+  activeArtistTab: string;
   modal: ModalSlideInterface;
   plans: PlanInterface[];
-  selected_plan: PlanInterface | null;
+  selectedPlan: PlanInterface | null;
 }
 
 export interface ModalSlideInterface {
@@ -70,7 +70,7 @@ export interface MenuInterface {
   icon: any;
   id: string;
   component?: any;
-  is_page?: boolean;
+  isPage?: boolean;
   route?: string | null;
   onClick?: Function;
 }
@@ -83,10 +83,10 @@ export interface MixtapeInterface {
 
 export interface ArtistReducerType {
   artists: ArtistInterface[];
-  current_artist: ArtistInterface | null;
+  currentArtist: ArtistInterface | null;
   loading: boolean;
-  success_message: string | null;
-  error_message: string | null;
+  successMessage: string | null;
+  errorMessage: string | null;
 }
 
 export interface UserInterface {
@@ -95,7 +95,7 @@ export interface UserInterface {
 }
 
 export interface AuthReducerType {
-  logged_user: UserInterface;
+  loggedUser: UserInterface;
 }
 
 export interface GradientColorsInterface {

@@ -42,8 +42,35 @@
     position: fixed;
     mix-blend-mode: multiply;
 
+    &.blur{
+        animation: blur 0.5s ease forwards;
+    }
     
     &.shadow{ 
         box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;
     }
+}
+
+@include keyframes(blur) {
+    0% {
+        -webkit-filter: blur(0px);
+        -moz-filter: blur(0px);
+        -o-filter: blur(0px);
+        -ms-filter: blur(0px);
+        filter: blur(0px);
+    }
+    50% {
+        -webkit-filter: blur(3.5px);
+        -moz-filter: blur(3.5px);
+        -o-filter: blur(3.5px);
+        -ms-filter: blur(3.5px);
+        filter: blur(3.5px);
+    }
+    100% {
+        -webkit-filter: blur(7px);
+        -moz-filter: blur(7px);
+        -o-filter: blur(7px);
+        -ms-filter: blur(7px);
+        filter: blur(7px);
+    } 
 }

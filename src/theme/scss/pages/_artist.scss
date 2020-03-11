@@ -1,18 +1,23 @@
 .artist-page{
-    @include page;
-
+    position: relative;
+    z-index: 2;
+    &.absolute{
+        position: absolute;
+        bottom: 0; 
+        top: 155px;
+        width: 100%;
+        overflow: auto;
+    }
     .row {
         width: 100%;
         margin-bottom: 5px;
-        margin-top: 5px;
+        margin-top: 0;
         margin-left: 0;
         margin-right: 0;
     }
-
     &.is-playing {
         padding-bottom: 60px;
     }
-
     .name{
         height: 280px;
         display: flex;
@@ -26,4 +31,40 @@
             }
         }
     }
+    .header.default{
+        height: 0px;
+        position: fixed;
+    }
+    .header-fixed{
+        position: fixed;
+        z-index: 4;
+
+        .support-by-component{
+            display: none;
+        }
+
+        .header.default{
+            position: fixed;
+            height: auto;
+        }
+        .name{
+            padding-top: pxToRem(31);
+            padding-right: pxToRem(15);
+            padding-left: pxToRem(55);
+            height: 64px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+    
+            h1{
+                margin: 0;
+                font-size: pxToRem(30);
+            }
+        }
+    
+        .menu.generic.scroll{
+            margin-top: 0px;
+        }
+    }    
 }

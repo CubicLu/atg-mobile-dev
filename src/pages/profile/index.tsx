@@ -38,10 +38,10 @@ class ProfilePage extends React.Component<Props> {
           style={{ overflow: 'auto' }}
         >
           <BackgroundImage
-            gradient="180deg, #691de3, #20043b"
+            gradient="180deg,#6A1EE4,#20123B"
+            backgroundTopDark
             backgroundTop
             backgroundTopOpacity={0.05}
-            backgroundStyle={{ height: 'auto' }}
           >
             <div
               className={

@@ -14,7 +14,8 @@ import {
   SignUpConfirmPage,
   ArtistSupportPage,
   ArtistEventsPage,
-  ArtistGalleryPage
+  ArtistGalleryPage,
+  ArtistBiographyPage
 } from './pages';
 
 import { store } from './store';
@@ -56,6 +57,10 @@ class App extends React.Component {
                   <Route
                     path={'/home/artist/:id/gallery'}
                     component={ArtistGalleryPage}
+                  />
+                  <Route
+                    path={'/home/artist/:id/biography'}
+                    component={ArtistBiographyPage}
                   />
                   <Route
                     path={'/home/artist/:id/event'}

@@ -1,16 +1,15 @@
 .menu{
     &.generic{
-
         &.scroll{
             justify-content: normal !important;
             overflow-x: scroll;
             margin-top: 30px;
             @include no-scroll-bar();
             li{
-                margin-left: 3px !important;
-                margin-right: 3px !important;
-                min-width: 65px;
-                overflow: hidden;
+                margin-left: 10px !important;
+                margin-right: 10px !important;
+                // min-width: 65px;
+                // overflow: hidden;
 
                 &:first-child{
                     margin-left: 10px !important;
@@ -81,7 +80,7 @@
         
     }
 
-    &.fan-support-options, &.artist-list{
+    &.fan-support-options, &.artist-list, &.generic-list{
         width: 100%;
         overflow-y: hidden;
         .header{
@@ -135,12 +134,38 @@
             }
         }
     }
+    &.generic-list{
+        .title{
+            color: #000;
+            font-family: 'Baskerville';
+            font-weight: 600;
+            font-size: pxToRem(36);
+            padding-top: pxToRem(24) !important;
+        }
+        .content{
+            ul{
+                li{
+                    .artist{
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        .name{
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            font-family: 'Helvetica';
+                            font-size: pxToRem(18);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     &.artist-list{
         .header{
             .title{
                 color: #000;
-                font-family: 'Baskerville Regular';
+                font-family: 'Baskerville';
                 font-weight: 400;
                 font-size: pxToRem(36);
             }

@@ -16,7 +16,8 @@ import MessageBalloonIcon from './message-balloon';
 import PlayIcon from './play';
 import TrashIcon from './trash';
 import ShareIcon from './share';
-import LockerIcon from './locker';
+import UnlockedIcon from './locker';
+import LockedIcon from './locked';
 import NetworkIcon from './network';
 import UserGroupIcon from './user-group';
 import BackIcon from './back';
@@ -42,7 +43,8 @@ export {
   PlayIcon,
   ShareIcon,
   TrashIcon,
-  LockerIcon,
+  UnlockedIcon,
+  LockedIcon,
   NetworkIcon,
   UserGroupIcon,
   BackIcon,

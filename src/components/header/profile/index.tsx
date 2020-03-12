@@ -8,10 +8,41 @@ import {
   BackIcon
 } from './../../../components';
 import {} from './../../../actions';
+import { IonActionSheet, ActionSheetButton } from '@ionic/react';
 
 interface Props extends RouteComponentProps {}
+interface State {
+  showActionSheet: boolean;
+}
+class HeaderProfileComponent extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      showActionSheet: false
+    };
+  }
 
-class HeaderProfileComponent extends React.Component<Props> {
+  buttons: ActionSheetButton[] = [
+    {
+      text: 'My Public Profile',
+      role: 'destructive',
+      handler: () => { console.log('Delete clicked') }
+    },
+    {
+      text: 'Edit Profile',
+      handler: () => {  console.log('Share clicked') }
+    },
+    {
+      text: 'Improve Profile',
+      handler: () => {  console.log('Play clicked')  }
+    },
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => { console.log('Cancel clicked') }
+    }
+  ];
+
   render(): React.ReactNode {
     return (
       <div className="header profile">
@@ -22,13 +53,22 @@ class HeaderProfileComponent extends React.Component<Props> {
               onClick={(): any => this.props.history.goBack()}
             />
           </div>
-          <div className="col s4 h-100 avatar-col">
+
+          <div
+            className="col s4 h-100 avatar-col"
+            onClick={(): any => this.setState({ showActionSheet: true })}
+          >
             <Avatar type="circle" />
-            <ul>
-              <li>Edit Profile</li>
-              <li>Improve Profile</li>
-            </ul>
+
+            <IonActionSheet
+              onDidDismiss={(): any =>
+                this.setState({ showActionSheet: false })
+              }
+              isOpen={this.state.showActionSheet}
+              buttons={this.buttons}
+            />
           </div>
+
           <div className="col s6 button h-100">
             <ul className="list inline flex-end">
               <li>

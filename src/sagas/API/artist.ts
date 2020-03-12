@@ -9,7 +9,7 @@ import {
 } from './../../actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
-  await API.get('artist');
+  await API.get('artist/all.json');
 
 function* getArtistsAPI(): any {
   try {
@@ -25,7 +25,7 @@ export function* getArtists(): any {
 }
 
 export const getArtistRequest = async (username): Promise<ArtistInterface> =>
-  await API.get(`artist/${username}`);
+  await API.get(`artist/${username}.json`);
 
 function* getArtistAPI({ payload }: any): ReturnType<any> {
   try {

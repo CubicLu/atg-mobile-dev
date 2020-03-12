@@ -23,6 +23,7 @@ import SliderEventsComponent from './slider/events';
 import CardEventComponent from './card/event';
 import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
+import BiographyListComponent from './menu/biography-list';
 import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
 import SupportByComponent from './support-by';
@@ -56,6 +57,7 @@ export {
   CardEventComponent as CardEvent,
   ModalSlideComponent as ModalSlide,
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
+  BiographyListComponent as BiographyList,
   ButtonPlanComponent as ButtonPlan,
   ListComponent as List,
   SupportByComponent as SupportBy,

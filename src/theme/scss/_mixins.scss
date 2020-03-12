@@ -160,6 +160,7 @@
     font-size: pxToRem(70);
     font-family: "Industria";
     position: relative;
+    font-weight: bold;
     &::after{
       content: attr(data-currency);
       position: absolute;

@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom';
 import {
   MessageIcon,
   RadioIcon,
-  PhoneWithHeadsetIcon,
   ProfileIcon,
   SearchIcon,
   _
@@ -26,6 +25,7 @@ import {
   ArtistPage
 } from './../../pages';
 import { TabsInterface } from '../../interfaces';
+import LogoIcon from '../icon/logo';
 
 interface StateProps {
   activeTab: string;
@@ -43,7 +43,7 @@ class TabComponent extends React.Component<Props> {
       {
         path: '/home/feed',
         icon: (
-          <PhoneWithHeadsetIcon
+          <LogoIcon
             color={this.props.activeTab === 'feed' ? '#00BAFF' : '#FFF'}
           />
         ),

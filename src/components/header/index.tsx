@@ -23,7 +23,7 @@ class HeaderComponent extends React.Component<Props> {
           <div className="col s8 h-100 center-col">
             {this.props.centerContent}
           </div>
-          <div className="col s2 h-100 right-col" style={{ direction: 'rtl' }}>
+          <div className="col s2 h-100 right-col">
             {this.props.rightContent}
           </div>
         </div>

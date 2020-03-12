@@ -68,11 +68,10 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    const activeBio =
-      this.props.currentArtist &&
-      this.props.currentArtist.biography &&
-      this.props.currentArtist.biography[this.state.currentPage];
-    console.log(activeBio);
+    // const activeBio =
+    //   this.props.currentArtist &&
+    //   this.props.currentArtist.biography &&
+    //   this.props.currentArtist.biography[this.state.currentPage];
     return (
       <IonPage id="artist-biography">
         <IonContent>
@@ -102,9 +101,10 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                         this,
                         false,
                         null
-                      )
+                      ),
+                      background: 'background-white-base'
                     }),
-                    'white'
+                    'background-white-base'
                   )}
                 />
               )

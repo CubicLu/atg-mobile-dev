@@ -3,19 +3,18 @@
     &.fixed {
         margin-top: 55px;
         padding-top: 0;
-        
+
         .biography{
-            position: fixed;
             color: white;
-            width: 100%;
             top: 0;
-            margin-top: 55px;
             text-align: center;
             font-family: "Baskerville Regular";
-            font-size: pxToRem(63);
-            line-height: pxToRem(28);
             left: 0px;
             z-index: 1;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: pxToRem(63);
+            line-height: pxToRem(36);
         }
     
     }

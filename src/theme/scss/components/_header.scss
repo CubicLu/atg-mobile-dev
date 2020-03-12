@@ -100,4 +100,14 @@
         }
        
     }
+
+    .right-col{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .left-col{
+        display: flex;
+        justify-content: flex-start;
+    }
 }

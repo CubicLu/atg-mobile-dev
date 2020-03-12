@@ -30,7 +30,8 @@ class SupportByComponent extends React.Component<Props> {
               true,
               React.createElement(MenuArtistList, {
                 title: 'Artists Supporting',
-                onClick: this.props.updateSettingsModal.bind(this, false, null)
+                onClick: this.props.updateSettingsModal.bind(this, false, null),
+                background: 'background-white-base'
               }),
               'background-white-base'
             )

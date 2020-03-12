@@ -40,10 +40,9 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    mix-blend-mode: multiply;
-
     &.blur{
         animation: blur 0.5s ease forwards;
+        background-color: rgb(0, 0, 0);
     }
     
     &.shadow{ 

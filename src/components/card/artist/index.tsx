@@ -52,7 +52,8 @@ class CardArtistComponent extends React.Component<Props> {
                             this,
                             false,
                             null
-                          )
+                          ),
+                          background: 'background-tertiary-opacity95'
                         }),
                         'background-tertiary-opacity95'
                       )}

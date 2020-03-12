@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import './theme/scss/_styles.scss';
 
 import {
-  InitialPage,
   SignUpPage,
   HomePage,
   SignInPage,
@@ -49,7 +48,7 @@ class App extends React.Component {
             <IonRouterOutlet id="main">
               <IonReactRouter>
                 <Switch>
-                  <Route path="/initial" component={InitialPage} />
+                  <Route path="/initial" component={SignInPage} />
                   <Route path="/sign-up" component={SignUpPage} />
                   <Route
                     path={'/home/artist/:id/support'}

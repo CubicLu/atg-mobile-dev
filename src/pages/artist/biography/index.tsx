@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonSlides, IonSlide, IonImg } from '@ionic/react';
@@ -45,7 +45,7 @@ interface State {
 interface Props
   extends StateProps,
     DispatchProps,
-    RouteComponentProps<MatchParams> { }
+    RouteComponentProps<MatchParams> {}
 
 class ArtistBiographyPage extends React.Component<Props, State> {
   constructor(props: Props) {

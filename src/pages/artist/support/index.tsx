@@ -164,9 +164,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
       >
         <BackgroundImage
           gradient="180deg, #28144800 30%, #281448bf 50%, #281448 100%"
-          backgroundImage={
-            this.props.currentArtist?.supportImages?.background
-          }
+          backgroundImage={this.props.currentArtist?.supportImages?.background}
         >
           <div className="artist-support-page">
             <Header

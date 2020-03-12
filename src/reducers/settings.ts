@@ -13,7 +13,6 @@ import {
   ProfileVaultPage,
   ArtistDeepPage,
   ArtistFeaturesPage,
-  ArtistBiographyPage,
   ArtistDiscographyPage,
   ArtistVideosPage
 } from './../pages';

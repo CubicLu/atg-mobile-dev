@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Tab, Player, ModalSlide } from './../../components';
-import {} from './../../actions';
+import { updateSettingsModal } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
@@ -11,7 +11,13 @@ interface StateProps {
   modal: ModalSlideInterface;
 }
 
-interface DispatchProps {}
+interface DispatchProps {
+  updateSettingsModal: (
+    visible: boolean,
+    content: React.ReactNode,
+    className?: string
+  ) => void;
+}
 
 interface Props extends DispatchProps, StateProps {}
 
@@ -22,6 +28,9 @@ class HomePage extends React.Component<Props> {
         {this.props.isPlaying && <Player />}
         <Tab />
         <ModalSlide
+          onClose={(): void => {
+            this.props.updateSettingsModal(false, null);
+          }}
           visible={this.props.modal.visible}
           height={setHeight(40)}
           classname={this.props.modal.classname}
@@ -38,4 +47,4 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   return { isPlaying, modal };
 };
 
-export default connect(mapStateToProps, {})(HomePage);
+export default connect(mapStateToProps, { updateSettingsModal })(HomePage);

@@ -79,9 +79,10 @@ class ArtistGalleryPage extends React.Component<Props> {
                 />
               }
               centerContent={<h1 className="title">Gallery</h1>}
+              type={'fixed'}
             />
 
-            <div className="row">
+            <div className="row content-container">
               {_.map(
                 this.props.currentArtist?.gallery,
                 (data, index): React.ReactNode => {

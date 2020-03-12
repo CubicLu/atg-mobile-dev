@@ -59,23 +59,26 @@ class ArtistEventsPage extends React.Component<Props> {
         style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
       >
         <div className="artist-events-page">
-          <div
-            style={{
-              backgroundImage: `url(${this.props.currentArtist?.cover.event})`
-            }}
-            className="background"
-          />
-          <Header
-            leftContent={
-              <ButtonIcon
-                icon={<BackIcon />}
-                onClick={(): void => {
-                  this.props.history.goBack();
-                }}
-              />
-            }
-            centerContent={<h1 className="title">Events</h1>}
-          />
+          <div className="fixed-content">
+            <div
+              style={{
+                backgroundImage: `url(${this.props.currentArtist?.cover.event})`
+              }}
+              className="background"
+            />
+            <Header
+              leftContent={
+                <ButtonIcon
+                  icon={<BackIcon />}
+                  onClick={(): void => {
+                    this.props.history.goBack();
+                  }}
+                />
+              }
+              centerContent={<h1 className="title">Events</h1>}
+            />
+          </div>
+
           <div className="content-list">
             <IonList lines="none" className="list">
               {_.map(

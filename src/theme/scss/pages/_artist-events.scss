@@ -16,10 +16,18 @@
         position: absolute;
     }
 
+    .fixed-content{
+        height: 40%;
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+    }
+
     .content-list{
         background: #000;
         position: relative;
         top: 40%;
+        padding-top: 10px;
         .list{
             background: #000;   
             .item{

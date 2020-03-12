@@ -99,7 +99,7 @@ class TabComponent extends React.Component<Props> {
           this.props.updateSettingsProperty('activeTab', event.detail.tab);
         }}
       >
-        <IonRouterOutlet>
+        <IonRouterOutlet id="tabs-home">
           {redirectIndex !== -1 && (
             <Route
               exact

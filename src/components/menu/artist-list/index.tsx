@@ -72,7 +72,15 @@ class MenuArtistList extends React.Component<Props> {
                   data,
                   (data, i): React.ReactNode => {
                     return (
-                      <li key={i}>
+                      <li
+                        key={i}
+                        onClick={(): void => {
+                          this.props.history.push(
+                            `/home/artist/${data.username}`
+                          );
+                          this.props.onClick();
+                        }}
+                      >
                         <div className="artist">
                           <div
                             className="avatar"
@@ -83,12 +91,6 @@ class MenuArtistList extends React.Component<Props> {
                         <ButtonIcon
                           icon={<ArrowRightIcon color={'#000'} />}
                           color={'transparent'}
-                          onClick={(): void => {
-                            this.props.history.push(
-                              `/home/artist/${data.username}`
-                            );
-                            this.props.onClick();
-                          }}
                         />
                       </li>
                     );

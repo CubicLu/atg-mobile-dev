@@ -1,4 +1,4 @@
-.1ion-page{ 
+.ion-page{ 
 
     &#sign-in-page{
         ion-content{
@@ -28,11 +28,6 @@
     &#initial-page{
         ion-content{
             --background: #000;
-        }
-    }
-    &#sign-in-page{
-        ion-content{
-            --background: linear-gradient(180deg, #FFC23F 0%, #FFC23F 100%); 
         }
     }
 }

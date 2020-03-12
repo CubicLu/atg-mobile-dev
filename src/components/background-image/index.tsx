@@ -76,8 +76,14 @@ class BackgroundImageComponent extends React.Component<Props> {
           opacity: this.props.backgroundBottomOpacity
         };
 
+    const backgroundClass = `background-image ${
+      this.props.shadow ? 'shadow' : ''
+    } ${this.props.blur ? 'blur' : ''}`;
+
     let backgroundImageArray: string[] = [];
-    backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
+    if (this.props.gradient) {
+      backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
+    }
     backgroundImageArray.push(`url(${this.props.backgroundImage})`);
     const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
 
@@ -85,10 +91,9 @@ class BackgroundImageComponent extends React.Component<Props> {
       <Fragment>
         {backgroundImage && (
           <div
-            className={`background-image ${this.props.shadow ? 'shadow' : ''} ${
-              this.props.blur ? 'blur' : ''
-            }`}
-            style={{ backgroundImage: backgroundImage }}
+            id="backgroundImage"
+            className={backgroundClass}
+            style={{ backgroundImage }}
           />
         )}
 

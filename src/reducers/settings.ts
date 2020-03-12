@@ -62,7 +62,8 @@ const defaultState: SettingsReducerType = {
       id: 'biography',
       label: 'Biography',
       icon: 'b',
-      component: ArtistBiographyPage
+      isPage: true,
+      route: '/home/artist/:id/biography'
     },
     {
       id: 'discography',

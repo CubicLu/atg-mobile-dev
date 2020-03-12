@@ -8,7 +8,7 @@ interface Props {
   height: number;
 }
 
-class UnlockedIcon extends React.Component<Props> {
+class LockedIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
     width: 38,
@@ -19,25 +19,20 @@ class UnlockedIcon extends React.Component<Props> {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={this.props.width}
-        height={this.props.height}
-        viewBox="0 0 38 35.75"
+        width="29"
+        height="35.75"
+        viewBox="0 0 29 35.75"
       >
-        <g
-          id="Group_1819"
-          data-name="Group 1819"
-          transform="translate(-173 -160)"
-          opacity="0.25"
-        >
+        <g id="lock-black" transform="translate(1 1)">
           <rect
             id="Rectangle_599"
             data-name="Rectangle 599"
             width="27"
             height="21"
             rx="2"
-            transform="translate(183 173.75)"
+            transform="translate(0 12.75)"
             fill="none"
-            stroke={this.props.color}
+            stroke="#000"
             strokeLinecap="round"
             strokeMiterlimit="10"
             strokeWidth="2"
@@ -46,8 +41,9 @@ class UnlockedIcon extends React.Component<Props> {
             id="Path_51626"
             data-name="Path 51626"
             d="M190.5,173.75v-4.5a8.25,8.25,0,0,0-16.5,0v4.5"
+            transform="translate(-169 -161)"
             fill="none"
-            stroke={this.props.color}
+            stroke="#000"
             strokeLinecap="round"
             strokeMiterlimit="10"
             strokeWidth="2"
@@ -58,4 +54,4 @@ class UnlockedIcon extends React.Component<Props> {
   }
 }
 
-export default UnlockedIcon;
+export default LockedIcon;

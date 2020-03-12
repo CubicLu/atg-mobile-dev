@@ -39,12 +39,14 @@ export interface ArtistInterface {
   supportArtistFans?: ArtistInterface[];
   similarArtist?: ArtistInterface[];
   gallery?: GalleryInterface[];
+  biography?: BiographyInterface[];
 }
 
 export interface ArtistCoverInterface {
   main: string | undefined;
   background: string | undefined;
   event: string | undefined;
+  biography: string | undefined;
 }
 
 export interface SettingsReducerType {
@@ -165,4 +167,16 @@ export interface GalleryInterface {
 
 export interface AlbumInterface {
   image: string | undefined;
+}
+
+export interface BiographyInterface {
+  skyline?: string | undefined;
+  name: string;
+  chapter: number;
+  accessLevel?: number;
+  headline?: string;
+  byline?: string;
+  leadParagraph?: string;
+  fullText?: string;
+  items?: AlbumInterface[];
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LockerIcon } from './../../../components';
+import { UnlockedIcon } from './../../../components';
 import {} from './../../../actions';
 import {} from '../../icon';
 interface Props {
@@ -35,7 +35,7 @@ class InputCodeComponent extends React.Component<Props, State> {
             />
           </div>
           <div className="input-group-icon">
-            <LockerIcon color={'#949494'} />
+            <UnlockedIcon color={'#949494'} />
           </div>
         </div>
         {this.props.isValid === false && (

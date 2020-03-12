@@ -106,7 +106,7 @@ class ArtistPage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
         >
           <BackgroundImage
-            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00,${this.props.currentArtist?.backgroundGradient?.color1}d1,${this.props.currentArtist?.backgroundGradient?.color2}`}
+            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
             backgroundImage={this.props.currentArtist?.cover.background}
             blur={this.state.blur}
           >
@@ -125,6 +125,7 @@ class ArtistPage extends React.Component<Props, State> {
                       data={this.props.currentArtist?.supportArtistFans}
                     />
                   }
+                  type={'default'}
                 />
                 <div className={'col s12 name'}>
                   <h1 className="title">{this.props.currentArtist?.name}</h1>

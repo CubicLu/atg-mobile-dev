@@ -1,0 +1,9 @@
+.artist-gallery-page{
+    
+    @include page;
+    
+    .content-container{
+        position: relative;
+        top: 92px;
+    }
+}

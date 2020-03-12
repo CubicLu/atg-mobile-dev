@@ -28,6 +28,7 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {
   onClick: Function;
   title: string;
   isSimilar?: boolean;
+  background?: string;
 }
 
 class MenuArtistList extends React.Component<Props> {
@@ -48,7 +49,7 @@ class MenuArtistList extends React.Component<Props> {
         backgroundBottomOpacity={1}
       >
         <div className="container menu artist-list">
-          <div className="row header">
+          <div className={`row header ${this.props.background}`}>
             <div className="col s10">
               <h1 className="title">{this.props.title}</h1>
               <h2 className="subtitle">

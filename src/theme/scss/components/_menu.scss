@@ -88,11 +88,16 @@
             @include header-with-button;
             margin-top: 0;
             padding-top: 0;
-            height: 80px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            height: 100px;
+            margin-top: 0;
+            position: fixed;
+            z-index: 1;
             .title{
                 font-size: pxToRem(50);
                 margin-top: 0;
-                padding-top: pxToRem(50);
+                padding-top: pxToRem(20);
             }
             .subtitle{
                 font-size: pxToRem(30);
@@ -103,11 +108,14 @@
                 .btn {
                     background: rgba(0, 0, 0, 0.25);
                 }
-                height: 55px;
+                height: 35px;
                 align-items: flex-end;
             }
         }
         .content{
+            position: relative;
+            top: 100px;
+            margin-bottom: 100px;
             ul{
                 li{
                     display: inline-flex;

@@ -12,6 +12,7 @@ import {
 interface Props {
   artist: ArtistInterface;
   onClick: Function;
+  background?: string;
 }
 
 class MenuFanSupportOptionsComponent extends React.Component<Props> {
@@ -21,8 +22,8 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <div className="container menu fan-support-options">
-        <div className="row header">
+      <div className={`container menu fan-support-options`}>
+        <div className={`row header ${this.props.background}`}>
           <div className="col s10">
             <h1 className="title">MY {this.props.artist.name}</h1>
             <h2 className="subtitle">FAN SUPPORT OPTIONS</h2>

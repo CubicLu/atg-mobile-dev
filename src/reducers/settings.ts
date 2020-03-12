@@ -113,7 +113,8 @@ const defaultState: SettingsReducerType = {
                   type: ActionType.UPDATE_SETTINGS_MODAL,
                   payload: { visible: false, content: null }
                 });
-              }
+              },
+              background: 'background-white-base'
             }),
             classname: 'background-white-base'
           }

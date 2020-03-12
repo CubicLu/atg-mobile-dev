@@ -26,20 +26,28 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     {
       text: 'My Public Profile',
       role: 'destructive',
-      handler: () => { console.log('Delete clicked') }
+      handler: (): void => {
+        console.log('Delete clicked');
+      }
     },
     {
       text: 'Edit Profile',
-      handler: () => {  console.log('Share clicked') }
+      handler: (): void => {
+        console.log('Share clicked');
+      }
     },
     {
       text: 'Improve Profile',
-      handler: () => {  console.log('Play clicked')  }
+      handler: (): void => {
+        console.log('Play clicked');
+      }
     },
     {
       text: 'Cancel',
       role: 'cancel',
-      handler: () => { console.log('Cancel clicked') }
+      handler: (): void => {
+        console.log('Cancel clicked');
+      }
     }
   ];
 

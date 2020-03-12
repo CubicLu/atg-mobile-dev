@@ -46,7 +46,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      error_message: action.payload
+      errorMessage: action.payload
     };
   },
 
@@ -75,7 +75,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      error_message: action.payload
+      errorMessage: action.payload
     };
   }
 });

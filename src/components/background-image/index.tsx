@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, CSSProperties } from 'react';
 import {
   BackgroundCircleBubblesImage,
   BackgroundCircleBubblesInverted,
@@ -27,9 +27,10 @@ interface Props {
   topRotate: boolean;
   bottomRotate: boolean;
   blur: boolean;
+  styles?: CSSProperties;
 }
 
-class BackgroundImageComponent extends React.Component<Props> {
+export default class BackgroundImageComponent extends React.Component<Props> {
   public static defaultProps = {
     legend: null,
     shadow: false,
@@ -47,9 +48,9 @@ class BackgroundImageComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const topClass = 'background-top' + (this.props.topRotate ? ' rotate' : '');
-    const bottomClass =
-      'background-bottom' +
-      (this.props.svgBottom || this.props.bottomRotate ? ' rotate' : '');
+    const bottomClass = `background-bottom${
+      this.props.svgBottom || this.props.bottomRotate ? ' rotate' : ''
+    }`;
     const hasTop = this.props.backgroundTop || !!this.props.svgTop;
     const hasBottom = this.props.backgroundBottom || !!this.props.svgBottom;
 
@@ -81,20 +82,16 @@ class BackgroundImageComponent extends React.Component<Props> {
     } ${this.props.blur ? 'blur' : ''}`;
 
     let backgroundImageArray: string[] = [];
+    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
     if (this.props.gradient) {
       backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
     }
-    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
     const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
 
     return (
-      <Fragment>
+      <div id="backgroundImage" style={this.props.styles}>
         {backgroundImage && (
-          <div
-            id="backgroundImage"
-            className={backgroundClass}
-            style={{ backgroundImage }}
-          />
+          <div className={backgroundClass} style={{ backgroundImage }} />
         )}
 
         {hasTop && (
@@ -113,8 +110,7 @@ class BackgroundImageComponent extends React.Component<Props> {
           <div className="background-legend">{this.props.legend}</div>
         )}
         {this.props.children}
-      </Fragment>
+      </div>
     );
   }
 }
-export default BackgroundImageComponent;

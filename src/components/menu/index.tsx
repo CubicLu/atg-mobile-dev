@@ -10,6 +10,7 @@ interface Props extends StateProps, DispatchProps {
   tabs: MenuInterface[];
   activeId: string | number;
   onClick: Function;
+  className?: string;
 }
 
 class MenuComponent extends React.Component<Props> {
@@ -19,7 +20,13 @@ class MenuComponent extends React.Component<Props> {
   render(): React.ReactNode {
     let scroll = this.props.tabs.length > 4;
     return (
-      <ul className={'list inline menu generic' + (scroll ? ' scroll' : '')}>
+      <ul
+        className={
+          (this.props.className ? this.props.className : '') +
+          'list inline menu generic' +
+          (scroll ? ' scroll' : '')
+        }
+      >
         {_.map(
           this.props.tabs,
           (data, i): React.ReactNode => {

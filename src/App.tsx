@@ -11,11 +11,7 @@ import {
   HomePage,
   SignInPage,
   EnterCodePage,
-  SignUpConfirmPage,
-  ArtistSupportPage,
-  ArtistEventsPage,
-  ArtistGalleryPage,
-  ArtistBiographyPage
+  SignUpConfirmPage
 } from './pages';
 
 import { store } from './store';
@@ -50,22 +46,6 @@ class App extends React.Component {
                 <Switch>
                   <Route path="/initial" component={SignInPage} />
                   <Route path="/sign-up" component={SignUpPage} />
-                  <Route
-                    path={'/home/artist/:id/support'}
-                    component={ArtistSupportPage}
-                  />
-                  <Route
-                    path={'/home/artist/:id/gallery'}
-                    component={ArtistGalleryPage}
-                  />
-                  <Route
-                    path={'/home/artist/:id/biography'}
-                    component={ArtistBiographyPage}
-                  />
-                  <Route
-                    path={'/home/artist/:id/event'}
-                    component={ArtistEventsPage}
-                  />
                   <Route path="/home" component={HomePage} />
                   <Route path="/sign-in" component={SignInPage} />
                   <Route path="/enter-code" component={EnterCodePage} />

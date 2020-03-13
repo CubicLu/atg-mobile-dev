@@ -65,7 +65,7 @@
 }
 
 @function pxToRem($target, $context: $base-size) {
-  @return ($target / $context) * 1em;
+  @return ($target / $context) * 1rem;
 }
 
 @mixin no-scroll-bar() {

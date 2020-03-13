@@ -18,10 +18,11 @@ export enum ActionType {
 
 export interface TabsInterface {
   path: string;
-  icon: any;
+  icon?: any;
   id: string;
-  component: any;
+  component?: any;
   redirect?: boolean;
+  show?: boolean;
 }
 
 export interface ArtistInterface {
@@ -51,6 +52,7 @@ export interface ArtistCoverInterface {
 
 export interface SettingsReducerType {
   activeTab: string;
+  tabs: TabsInterface[];
   isPlaying: boolean;
   fanTabs: MenuInterface[];
   activeFanTab: string;

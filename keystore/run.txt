@@ -1,0 +1,1 @@
+cordova build android --release -- --keystore=./keystore/my-release-key.keystore --storePassword=atg2020 --alias=atg --password=atg2020

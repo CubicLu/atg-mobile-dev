@@ -14,11 +14,28 @@ import {
   ArtistDeepPage,
   ArtistFeaturesPage,
   ArtistDiscographyPage,
-  ArtistVideosPage
+  ArtistVideosPage,
+  ArtistSupportPage,
+  ArtistGalleryPage,
+  ArtistBiographyPage,
+  ArtistEventsPage,
+  ArtistPage,
+  FeedPage,
+  MessagesPage,
+  ProfilePage,
+  SearchPage,
+  RadioPage
 } from './../pages';
-import { MenuArtistList } from './../components';
+import {
+  MenuArtistList,
+  MessageIcon,
+  ProfileIcon,
+  SearchIcon,
+  RadioIcon
+} from './../components';
 import React from 'react';
 import { store } from '../store';
+import LogoIcon from '../components/icon/logo';
 
 const defaultState: SettingsReducerType = {
   activeTab: 'feed',
@@ -161,7 +178,75 @@ const defaultState: SettingsReducerType = {
         'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
     }
   ],
-  selectedPlan: null
+  selectedPlan: null,
+  tabs: [
+    {
+      path: '/home/artist/:id/support',
+      id: 'profile',
+      component: ArtistSupportPage,
+      redirect: true,
+      show: false
+    },
+    {
+      path: '/home/artist/:id/gallery',
+      id: 'profile',
+      component: ArtistGalleryPage,
+      redirect: true,
+      show: false
+    },
+    {
+      path: '/home/artist/:id/biography',
+      id: 'profile',
+      component: ArtistBiographyPage,
+      redirect: true,
+      show: false
+    },
+    {
+      path: '/home/artist/:id/event',
+      id: 'profile',
+      component: ArtistEventsPage,
+      redirect: true,
+      show: false
+    },
+    {
+      path: '/home/artist/:id',
+      id: 'profile',
+      component: ArtistPage,
+      redirect: true,
+      show: false
+    },
+    {
+      path: '/home/feed',
+      icon: LogoIcon,
+      id: 'feed',
+      component: FeedPage,
+      redirect: true
+    },
+    {
+      path: '/home/messages',
+      icon: MessageIcon,
+      id: 'messages',
+      component: MessagesPage
+    },
+    {
+      path: '/home/profile',
+      icon: ProfileIcon,
+      id: 'profile',
+      component: ProfilePage
+    },
+    {
+      path: '/home/search',
+      icon: SearchIcon,
+      id: 'search',
+      component: SearchPage
+    },
+    {
+      path: '/home/radio',
+      icon: RadioIcon,
+      id: 'radio',
+      component: RadioPage
+    }
+  ]
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

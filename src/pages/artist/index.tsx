@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, createAnimation } from '@ionic/react';
+import { IonContent, IonPage, createAnimation, IonHeader } from '@ionic/react';
 import {
   _,
   BackgroundImage,
@@ -73,9 +73,8 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   handleScroll(event: any): void {
-    console.log(event.detail.scrollTop);
     const { blur } = this.state;
-    const eventBlur = event.detail.scrollTop > 230;
+    const eventBlur = event.detail.scrollTop > 140;
     if (blur === eventBlur) return;
     this.setState({ blur: eventBlur });
   }
@@ -103,7 +102,7 @@ class ArtistPage extends React.Component<Props, State> {
     const topPx = 45;
     const marginRight = Math.floor(leftPx - titleLeft);
     const marginTop = Math.floor(topPx - titleTop);
-    console.log(`${marginRight}px, ${marginTop}px`);
+    // console.log(`${marginRight}px, ${marginTop}px`);
 
     const supportAnimation = createAnimation()
       .addElement(title)
@@ -126,7 +125,7 @@ class ArtistPage extends React.Component<Props, State> {
     const topPx = 55;
     const marginRight = window.innerWidth - rightPx - width - buttonLeft;
     const marginTop = topPx - buttonTop;
-    console.log(`${marginRight}px, ${marginTop}px`);
+    // console.log(`${marginRight}px, ${marginTop}px`);
 
     const supportAnimation = createAnimation()
       .addElement(btn)
@@ -140,9 +139,8 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    console.log('RE-RENDER');
     const hasArtist = this.props.currentArtist;
-    if (!hasArtist) return null;
+    if (!hasArtist) return <IonPage id="artist-page" />; //to render only once, no construct again
 
     const scrolled = this.state.blur;
     const supportFans = this.props.currentArtist?.supportArtistFans;
@@ -161,17 +159,21 @@ class ArtistPage extends React.Component<Props, State> {
           backgroundImage={backgroundImage}
           blur={this.state.blur}
         />
+        <IonHeader>
+          <Header //will come from position top 160 to top 55 and center to left and from 60px to 24 (250%)
+            type="fixed"
+            centerContent={
+              scrolled && <h4 className="artist-page name title">{name}</h4>
+            }
+            rightContent={
+              <div className={scrolled ? 'hide' : ''}>
+                <SupportBy data={supportFans} />
+              </div>
+            }
+            leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
+          />
+        </IonHeader>
 
-        <Header //will come from position top 160 to top 55 and center to left and from 60px to 24 (250%)
-          type="fixed"
-          centerContent={scrolled && <h4 className="artist title">{name}</h4>}
-          rightContent={
-            <div className={scrolled ? 'hide' : ''}>
-              <SupportBy data={supportFans} />
-            </div>
-          }
-          leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
-        />
         <div className="artist-page glassPanel" />
         <div className="artist-page content">
           <IonContent
@@ -180,7 +182,7 @@ class ArtistPage extends React.Component<Props, State> {
             onIonScroll={this.handleScroll.bind(this)}
           >
             <div className="emptySpace" />
-            <div className="supportBtn center">
+            <div className="artistName center">
               <h2
                 style={{ visibility: scrolled ? 'hidden' : 'visible' }}
                 id="artistName"

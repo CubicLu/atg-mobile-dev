@@ -1,24 +1,23 @@
-.hide{
-    display: none;
-}
-.menuFixed{
-    top: 62px;
-    position: fixed;
-    width: 100%;
-    z-index: 2;
-    bottom: 0;
-}
-.artist{
-    font-size: pxToRem(30);
-    font-family: "Industria";
-    font-weight: 600;
-    color: white;
-    text-align: left;
-    margin-left: -16px;
-    margin-top: 0;
-    text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
-}
 .artist-page{
+    .menuFixed{
+        top: 62px;
+        position: fixed;
+        width: 100%;
+        z-index: 2;
+        bottom: 0;
+        height: 0;
+    }
+    .hide{
+        display: none;
+    }
+    .menu{
+        &.generic{
+            &.scroll {
+                margin-top: 0px;
+                padding: 16px;
+            }
+        }
+    }
     position: relative;
     z-index: 2;
     &.glassPanel{
@@ -47,16 +46,33 @@
         margin-left: 0;
         margin-right: 0;
     }
+    &.name{
+        font-size: pxToRem(30);
+        font-family: "Industria";
+        font-weight: 600;
+        color: white;
+        text-align: left;
+        margin-left: -16px;
+        margin-top: 0;
+        text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+    }
     .emptySpace{
-        height: 224px;
+        height: 130px;
+    }
+    .artistName{
+        display: flex;
+        &.center{
+            justify-content: center;
+        }
     }
     .supportBtn{
         display: flex;
         &.center{
             justify-content: center;
+            margin-bottom: 20px;
         }
         &.right{
-            top: 55px;
+            top: 30px;
             position: fixed;
             right: 16px;
             display: block;
@@ -76,7 +92,7 @@
             text-align: center;
             margin-bottom: 6px;
             &.left{
-                top: 55px;
+                top: 30px;
                 position: fixed;
                 left: 16px;
                 display: block;

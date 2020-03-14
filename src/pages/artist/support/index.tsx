@@ -53,10 +53,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist == null
-    ) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }

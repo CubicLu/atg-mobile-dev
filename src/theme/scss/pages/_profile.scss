@@ -1,6 +1,12 @@
 .profile-page{
     @include page;
 
+    ion-item-sliding.item-sliding-active-slide {
+        ion-item{
+            --ion-background-color: #1e053b;
+        }
+    }
+
     .artist-list{
         background: transparent;
         .row{

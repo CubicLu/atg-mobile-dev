@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonHeader } from '@ionic/react';
 import {
   BackgroundImage,
   HeaderProfile,
@@ -29,25 +29,20 @@ class ProfilePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="profile-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
+        <BackgroundImage
+          gradient="180deg,#6A1EE4,#1e053b"
+          backgroundTopDark
+          backgroundTop
+          backgroundTopOpacity={0.15}
+          backgroundBottom
+          backgroundBottomDark={false}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.3}
         >
-          <BackgroundImage
-            gradient="180deg,#6A1EE4,#20123B"
-            backgroundTopDark
-            backgroundTop
-            backgroundTopOpacity={0.05}
+          <div
+            className={`profile-page` + (this.props.isPlaying && ' is-playing')}
           >
-            <div
-              className={
-                `profile-page` + (this.props.isPlaying && ' is-playing')
-              }
-            >
+            <IonHeader>
               <HeaderProfile />
               <Menu
                 tabs={this.props.fanTabs}
@@ -59,18 +54,18 @@ class ProfilePage extends React.Component<Props> {
                   );
                 }}
               />
-              {_.map(
-                this.props.fanTabs,
-                (data, i): React.ReactNode => {
-                  if (data.id === this.props.activeFanTab) {
-                    return React.createElement(data.component, { key: i });
-                  }
-                  return null;
+            </IonHeader>
+            {_.map(
+              this.props.fanTabs,
+              (data, i): React.ReactNode => {
+                if (data.id === this.props.activeFanTab) {
+                  return React.createElement(data.component, { key: i });
                 }
-              )}
-            </div>
-          </BackgroundImage>
-        </IonContent>
+                return null;
+              }
+            )}
+          </div>
+        </BackgroundImage>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

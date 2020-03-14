@@ -14,23 +14,25 @@ interface Props {
   legend?: string;
   shadow?: boolean;
   gradient?: string;
-
+  styles?: CSSProperties;
   svgTop?: any;
   svgBottom?: any;
   backgroundTop: boolean;
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;
+  backgroundTopHeight: number;
   backgroundBottom: boolean;
   backgroundBottomDark: boolean;
   backgroundBottomOpacity: number;
+  backgroundBottomHeight: number;
   backgroundBottomOrange: boolean;
   topRotate: boolean;
   bottomRotate: boolean;
   blur: boolean;
-  styles?: CSSProperties;
+  className: string;
 }
 
-export default class BackgroundImageComponent extends React.Component<Props> {
+class BackgroundImageComponent extends React.Component<Props> {
   public static defaultProps = {
     legend: null,
     shadow: false,
@@ -43,14 +45,17 @@ export default class BackgroundImageComponent extends React.Component<Props> {
     backgroundBottomDark: true,
     backgroundTopOpacity: 0.07,
     backgroundBottomOpacity: 0.07,
-    blur: false
+    backgroundTopHeight: 300,
+    backgroundBottomHeight: 180,
+    blur: false,
+    className: ''
   };
 
   render(): React.ReactNode {
     const topClass = 'background-top' + (this.props.topRotate ? ' rotate' : '');
-    const bottomClass = `background-bottom${
-      this.props.svgBottom || this.props.bottomRotate ? ' rotate' : ''
-    }`;
+    const bottomClass =
+      'background-bottom' +
+      (this.props.svgBottom || this.props.bottomRotate ? ' rotate' : '');
     const hasTop = this.props.backgroundTop || !!this.props.svgTop;
     const hasBottom = this.props.backgroundBottom || !!this.props.svgBottom;
 
@@ -62,7 +67,8 @@ export default class BackgroundImageComponent extends React.Component<Props> {
               ? BackgroundCircleBubblesInverted
               : BackgroundCircleBubblesLightInverted
           })`,
-          opacity: this.props.backgroundTopOpacity
+          opacity: this.props.backgroundTopOpacity,
+          height: this.props.backgroundTopHeight
         };
     const bottomCircleStyle = this.props.svgBottom
       ? {}
@@ -74,25 +80,24 @@ export default class BackgroundImageComponent extends React.Component<Props> {
               ? BackgroundCircleBubblesOrangeImage
               : BackgroundCircleBubblesLightImage
           })`,
-          opacity: this.props.backgroundBottomOpacity
+          opacity: this.props.backgroundBottomOpacity,
+          height: this.props.backgroundBottomHeight
         };
 
-    const backgroundClass = `background-image ${
-      this.props.shadow ? 'shadow' : ''
-    } ${this.props.blur ? 'blur' : ''}`;
+    const backgroundClass =
+      `background-image ${this.props.shadow ? 'shadow' : ''} ${
+        this.props.blur ? 'blur' : ''
+      }` + this.props.className;
 
     let backgroundImageArray: string[] = [];
-    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
     if (this.props.gradient) {
       backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
     }
+    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
     const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
-
     return (
-      <div id="backgroundImage" style={this.props.styles}>
-        {backgroundImage && (
-          <div className={backgroundClass} style={{ backgroundImage }} />
-        )}
+      <React.Fragment>
+        <div className={backgroundClass} style={{ backgroundImage }} />
 
         {hasTop && (
           <div className={topClass} style={topCircleStyle}>
@@ -110,7 +115,8 @@ export default class BackgroundImageComponent extends React.Component<Props> {
           <div className="background-legend">{this.props.legend}</div>
         )}
         {this.props.children}
-      </div>
+      </React.Fragment>
     );
   }
 }
+export default BackgroundImageComponent;

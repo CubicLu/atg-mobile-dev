@@ -30,44 +30,42 @@ class ProfilePage extends React.Component<Props> {
     return (
       <IonPage id="profile-page">
         <BackgroundImage
-            gradient="180deg,#6A1EE4,#1e053b"
-            backgroundTopDark
-            backgroundTop
-            backgroundTopOpacity={0.15}
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundBottomOrange={true}
-            backgroundBottomOpacity={0.3}
+          gradient="180deg,#6A1EE4,#1e053b"
+          backgroundTopDark
+          backgroundTop
+          backgroundTopOpacity={0.15}
+          backgroundBottom
+          backgroundBottomDark={false}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.3}
+        >
+          <div
+            className={`profile-page` + (this.props.isPlaying && ' is-playing')}
           >
-            <div
-              className={
-                `profile-page` + (this.props.isPlaying && ' is-playing')
-              }
-            >
-              <IonHeader>
-                <HeaderProfile />
-                  <Menu
-                    tabs={this.props.fanTabs}
-                    activeId={this.props.activeFanTab}
-                    onClick={(event: MenuInterface): void => {
-                      return this.props.updateSettingsProperty(
-                        'activeFanTab',
-                        event.id
-                      );
-                    }}
-                  />
-              </IonHeader>
-              {_.map(
-                this.props.fanTabs,
-                (data, i): React.ReactNode => {
-                  if (data.id === this.props.activeFanTab) {
-                    return React.createElement(data.component, { key: i });
-                  }
-                  return null;
+            <IonHeader>
+              <HeaderProfile />
+              <Menu
+                tabs={this.props.fanTabs}
+                activeId={this.props.activeFanTab}
+                onClick={(event: MenuInterface): void => {
+                  return this.props.updateSettingsProperty(
+                    'activeFanTab',
+                    event.id
+                  );
+                }}
+              />
+            </IonHeader>
+            {_.map(
+              this.props.fanTabs,
+              (data, i): React.ReactNode => {
+                if (data.id === this.props.activeFanTab) {
+                  return React.createElement(data.component, { key: i });
                 }
-              )}
-            </div>
-          </BackgroundImage>
+                return null;
+              }
+            )}
+          </div>
+        </BackgroundImage>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

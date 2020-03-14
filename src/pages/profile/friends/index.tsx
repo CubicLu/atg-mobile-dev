@@ -9,7 +9,13 @@ import {
   Button
 } from './../../../components';
 import {} from './../../../actions';
-import { IonList, IonItemSliding, IonItemOptions, IonItem, IonContent } from '@ionic/react';
+import {
+  IonList,
+  IonItemSliding,
+  IonItemOptions,
+  IonItem,
+  IonContent
+} from '@ionic/react';
 
 interface Props extends RouteComponentProps {}
 

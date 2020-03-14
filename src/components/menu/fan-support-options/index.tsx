@@ -9,10 +9,6 @@ import {
   NetworkIcon
 } from '../../icon';
 
-
-
-
-
 interface Props {
   artist: ArtistInterface;
   onClick: Function;

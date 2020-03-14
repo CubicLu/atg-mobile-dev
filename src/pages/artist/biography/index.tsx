@@ -1,7 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonSlides, IonSlide, IonImg, IonGrid, IonRow, IonPage, IonHeader, CreateAnimation } from '@ionic/react';
+import {
+  IonContent,
+  IonSlides,
+  IonSlide,
+  IonImg,
+  IonGrid,
+  IonRow,
+  IonPage,
+  IonHeader,
+  CreateAnimation
+} from '@ionic/react';
 import {
   BackgroundImage,
   LoaderFullscreen,
@@ -74,17 +84,17 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   async handleScroll(event: any): Promise<void> {
     const parentAnimation = this.headerRef.current!.animation;
     const headerTitleAnimation = this.headerTitleRef.current!.animation;
-    if (parentAnimation.childAnimations.length === 0){
+
+    if (parentAnimation.childAnimations.length === 0) {
       parentAnimation.addAnimation([headerTitleAnimation]);
     }
     const { blur } = this.state;
-    const eventBlur = event.detail.currentY >= 250
+    const eventBlur = event.detail.currentY >= 250;
     if (blur && !eventBlur) {
-      parentAnimation.direction("reverse")
+      parentAnimation.direction('reverse');
       await parentAnimation.play();
-    }
-    else if (eventBlur && !blur) {
-      parentAnimation.direction("normal")
+    } else if (eventBlur && !blur) {
+      parentAnimation.direction('normal');
       await parentAnimation.play();
     }
 
@@ -102,68 +112,66 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           ref={this.headerRef}
           duration={300}
           fromTo={{
-              property: 'background',
-              toValue: 'var(--background)',
-              fromValue: 'transparent'
+            property: 'background',
+            toValue: 'var(--background)',
+            fromValue: 'transparent'
           }}
         >
           <IonHeader className="fixed">
             <Header
-                leftContent={
+              leftContent={
+                <ButtonIcon
+                  icon={<BackIcon color={'#FFF'} />}
+                  onClick={(): void => {
+                    this.props.history.goBack();
+                  }}
+                />
+              }
+              centerContent={
+                <CreateAnimation
+                  duration={300}
+                  ref={this.headerTitleRef}
+                  fromTo={{
+                    property: 'color',
+                    toValue: 'var(--color)',
+                    fromValue: 'white'
+                  }}
+                >
+                  <h1 className="biography">Biography</h1>
+                </CreateAnimation>
+              }
+              rightContent={
+                this.props.currentArtist && (
                   <ButtonIcon
-                    icon={<BackIcon color={'#FFF'} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
+                    icon={<DotsThreeIcon color={'#FFF'} />}
+                    onClick={this.props.updateSettingsModal.bind(
+                      this,
+                      true,
+                      React.createElement(BiographyList, {
+                        items: this.props.currentArtist.biography,
+                        title: 'Biography',
+                        username: this.props.currentArtist.username,
+                        onClick: this.props.updateSettingsModal.bind(
+                          this,
+                          false,
+                          null
+                        ),
+                        background: 'background-white-base'
+                      }),
+                      'background-white-base'
+                    )}
                   />
-                }
-                centerContent={
-                  <CreateAnimation
-                    duration={300}
-                    ref={this.headerTitleRef}
-                    fromTo={{
-                        property: 'color',
-                        toValue: 'var(--color)',
-                        fromValue: 'white'
-                    }}
-                  >
-                    <h1 className="biography">Biography</h1>
-                  </CreateAnimation>
-                }
-                rightContent={
-                  this.props.currentArtist && (
-                    <ButtonIcon
-                      icon={<DotsThreeIcon color={'#FFF'} />}
-                      onClick={this.props.updateSettingsModal.bind(
-                        this,
-                        true,
-                        React.createElement(BiographyList, {
-                          items: this.props.currentArtist.biography,
-                          title: 'Biography',
-                          username: this.props.currentArtist.username,
-                          onClick: this.props.updateSettingsModal.bind(
-                            this,
-                            false,
-                            null
-                          ),
-                          background: 'background-white-base'
-                        }),
-                        'background-white-base'
-                      )}
-                    />
-                  )
-                }
-              />
+                )
+              }
+            />
           </IonHeader>
-
         </CreateAnimation>
         <IonContent
           scrollEvents={true}
           onIonScroll={this.handleScroll.bind(this)}
-          className="artist-biography-content">
-          <IonSlides
-            options={{autoHeight: true}}
-          >
+          className="artist-biography-content"
+        >
+          <IonSlides options={{ autoHeight: true }}>
             <IonSlide>
               <BackgroundImage
                 className="cover"

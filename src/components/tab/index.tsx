@@ -61,7 +61,11 @@ class TabComponent extends React.Component<Props> {
             )}
             {_.map(this.props.tabs, (data, index): any => {
               return (
-                <Route path={data.path} component={data.component} key={index} />
+                <Route
+                  path={data.path}
+                  component={data.component}
+                  key={index}
+                />
               );
             })}
           </IonRouterOutlet>
@@ -71,7 +75,8 @@ class TabComponent extends React.Component<Props> {
                 return (
                   <IonTabButton tab={data.id} href={data.path} key={index}>
                     {React.createElement(data.icon, {
-                      color: this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
+                      color:
+                        this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
                     })}
                   </IonTabButton>
                 );

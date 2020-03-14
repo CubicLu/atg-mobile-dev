@@ -20,11 +20,11 @@ interface Props {
   backgroundTop: boolean;
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;
-  backgroundTopHeight: number,
+  backgroundTopHeight: number;
   backgroundBottom: boolean;
   backgroundBottomDark: boolean;
   backgroundBottomOpacity: number;
-  backgroundBottomHeight: number,
+  backgroundBottomHeight: number;
   backgroundBottomOrange: boolean;
   topRotate: boolean;
   bottomRotate: boolean;
@@ -48,7 +48,7 @@ class BackgroundImageComponent extends React.Component<Props> {
     backgroundTopHeight: 300,
     backgroundBottomHeight: 180,
     blur: false,
-    className: ""
+    className: ''
   };
 
   render(): React.ReactNode {
@@ -68,7 +68,7 @@ class BackgroundImageComponent extends React.Component<Props> {
               : BackgroundCircleBubblesLightInverted
           })`,
           opacity: this.props.backgroundTopOpacity,
-          height: this.props.backgroundTopHeight,
+          height: this.props.backgroundTopHeight
         };
     const bottomCircleStyle = this.props.svgBottom
       ? {}
@@ -81,12 +81,13 @@ class BackgroundImageComponent extends React.Component<Props> {
               : BackgroundCircleBubblesLightImage
           })`,
           opacity: this.props.backgroundBottomOpacity,
-          height: this.props.backgroundBottomHeight,
+          height: this.props.backgroundBottomHeight
         };
 
-    const backgroundClass = `background-image ${
-      this.props.shadow ? 'shadow' : ''
-    } ${this.props.blur ? 'blur' : ''}` + this.props.className;
+    const backgroundClass =
+      `background-image ${this.props.shadow ? 'shadow' : ''} ${
+        this.props.blur ? 'blur' : ''
+      }` + this.props.className;
 
     let backgroundImageArray: string[] = [];
     if (this.props.gradient) {

@@ -2,7 +2,7 @@
   &::-webkit-input-placeholder {@content}
   &:-moz-placeholder           {@content}
   &::-moz-placeholder          {@content}
-  &:-ms-input-placeholder      {@content}  
+  &:-ms-input-placeholder      {@content}
 }
 
 @mixin header-with-button {
@@ -36,26 +36,26 @@
   width:  $circle-size;
   height: $circle-size;
   padding: 0;
-  border-radius: 50%; 
-  list-style: none;       
-  
+  border-radius: 50%;
+  list-style: none;
+
   > * {
     display: block;
     position: absolute;
-    top:  50%; 
+    top:  50%;
     left: 50%;
     width:  $item-size;
     height: $item-size;
     margin: -($item-size / 2);
-  
+
     $angle: (360 / $item-count);
     $rot: 0;
 
     @for $i from 1 through $item-count {
       &:nth-of-type(#{$i}) {
-        transform: 
-          rotate($rot * 1deg) 
-          translate($circle-size / 2) 
+        transform:
+          rotate($rot * 1deg)
+          translate($circle-size / 2)
           rotate($rot * -1deg);
       }
 
@@ -136,7 +136,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  &.circle { 
+  &.circle {
     border-radius: 50%;
     height: 143px;
     width: 143px;
@@ -189,7 +189,7 @@
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
-    @content; 
+    @content;
   }
   @-moz-keyframes #{$name} {
     @content;
@@ -199,5 +199,5 @@
   }
   @keyframes #{$name} {
     @content;
-  } 
+  }
 }

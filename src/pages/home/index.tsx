@@ -7,7 +7,6 @@ import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
 
 interface StateProps {
-  isPlaying: boolean;
   modal: ModalSlideInterface;
 }
 
@@ -25,7 +24,6 @@ class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div>
-        {this.props.isPlaying && <Player />}
         <Tab />
         <ModalSlide
           onClose={(): void => {
@@ -43,8 +41,8 @@ class HomePage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { isPlaying, modal } = settings;
-  return { isPlaying, modal };
+  const { modal } = settings;
+  return { modal };
 };
 
 export default connect(mapStateToProps, { updateSettingsModal })(HomePage);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar } from '@ionic/react';
 import {
   BackgroundImage,
   HeaderProfile,
@@ -29,36 +29,34 @@ class ProfilePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="profile-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
-        >
-          <BackgroundImage
-            gradient="180deg,#6A1EE4,#20123B"
+        <BackgroundImage
+            gradient="180deg,#6A1EE4,#1e053b"
             backgroundTopDark
             backgroundTop
-            backgroundTopOpacity={0.05}
+            backgroundTopOpacity={0.15}
+            backgroundBottom
+            backgroundBottomDark={false}
+            backgroundBottomOrange={true}
+            backgroundBottomOpacity={0.3}
           >
             <div
               className={
                 `profile-page` + (this.props.isPlaying && ' is-playing')
               }
             >
-              <HeaderProfile />
-              <Menu
-                tabs={this.props.fanTabs}
-                activeId={this.props.activeFanTab}
-                onClick={(event: MenuInterface): void => {
-                  return this.props.updateSettingsProperty(
-                    'activeFanTab',
-                    event.id
-                  );
-                }}
-              />
+              <IonHeader>
+                <HeaderProfile />
+                  <Menu
+                    tabs={this.props.fanTabs}
+                    activeId={this.props.activeFanTab}
+                    onClick={(event: MenuInterface): void => {
+                      return this.props.updateSettingsProperty(
+                        'activeFanTab',
+                        event.id
+                      );
+                    }}
+                  />
+              </IonHeader>
               {_.map(
                 this.props.fanTabs,
                 (data, i): React.ReactNode => {
@@ -70,7 +68,6 @@ class ProfilePage extends React.Component<Props> {
               )}
             </div>
           </BackgroundImage>
-        </IonContent>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

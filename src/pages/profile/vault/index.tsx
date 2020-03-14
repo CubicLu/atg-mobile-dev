@@ -9,15 +9,16 @@ import {
   CloseIcon
 } from './../../../components';
 import {} from './../../../actions';
-import { IonList, IonItemSliding, IonItemOptions, IonItem } from '@ionic/react';
+import { IonList, IonItemSliding, IonItemOptions, IonItem, IonContent } from '@ionic/react';
 
 interface Props extends RouteComponentProps {}
 
 class ProfileVaultPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <div className="profile-vault-page">
-        <IonList lines="none">
+      <IonContent>
+        <div className="profile-vault-page">
+          <IonList lines="none">
           {_.map(
             [{}, {}, {}, {}, {}, {}, {}, {}],
             (data, i): React.ReactNode => {
@@ -56,7 +57,8 @@ class ProfileVaultPage extends React.Component<Props> {
             }
           )}
         </IonList>
-      </div>
+        </div>
+      </IonContent>
     );
   }
 }

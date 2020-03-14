@@ -20,9 +20,11 @@ interface Props {
   backgroundTop: boolean;
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;
+  backgroundTopHeight: number,
   backgroundBottom: boolean;
   backgroundBottomDark: boolean;
   backgroundBottomOpacity: number;
+  backgroundBottomHeight: number,
   backgroundBottomOrange: boolean;
   topRotate: boolean;
   bottomRotate: boolean;
@@ -42,6 +44,8 @@ class BackgroundImageComponent extends React.Component<Props> {
     backgroundBottomDark: true,
     backgroundTopOpacity: 0.07,
     backgroundBottomOpacity: 0.07,
+    backgroundTopHeight: 300,
+    backgroundBottomHeight: 180,
     blur: false
   };
 
@@ -61,7 +65,8 @@ class BackgroundImageComponent extends React.Component<Props> {
               ? BackgroundCircleBubblesInverted
               : BackgroundCircleBubblesLightInverted
           })`,
-          opacity: this.props.backgroundTopOpacity
+          opacity: this.props.backgroundTopOpacity,
+          height: this.props.backgroundTopHeight,
         };
     const bottomCircleStyle = this.props.svgBottom
       ? {}
@@ -73,7 +78,8 @@ class BackgroundImageComponent extends React.Component<Props> {
               ? BackgroundCircleBubblesOrangeImage
               : BackgroundCircleBubblesLightImage
           })`,
-          opacity: this.props.backgroundBottomOpacity
+          opacity: this.props.backgroundBottomOpacity,
+          height: this.props.backgroundBottomHeight,
         };
 
     const backgroundClass = `background-image ${

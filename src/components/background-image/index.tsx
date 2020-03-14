@@ -29,6 +29,7 @@ interface Props {
   topRotate: boolean;
   bottomRotate: boolean;
   blur: boolean;
+  className: string;
 }
 
 class BackgroundImageComponent extends React.Component<Props> {
@@ -46,7 +47,8 @@ class BackgroundImageComponent extends React.Component<Props> {
     backgroundBottomOpacity: 0.07,
     backgroundTopHeight: 300,
     backgroundBottomHeight: 180,
-    blur: false
+    blur: false,
+    className: ""
   };
 
   render(): React.ReactNode {
@@ -84,7 +86,7 @@ class BackgroundImageComponent extends React.Component<Props> {
 
     const backgroundClass = `background-image ${
       this.props.shadow ? 'shadow' : ''
-    } ${this.props.blur ? 'blur' : ''}`;
+    } ${this.props.blur ? 'blur' : ''}` + this.props.className;
 
     let backgroundImageArray: string[] = [];
     if (this.props.gradient) {

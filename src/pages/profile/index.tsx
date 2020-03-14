@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonPage, IonHeader, IonToolbar } from '@ionic/react';
+import { IonPage, IonHeader } from '@ionic/react';
 import {
   BackgroundImage,
   HeaderProfile,

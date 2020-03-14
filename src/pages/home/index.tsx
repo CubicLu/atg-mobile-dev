@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Tab, Player, ModalSlide } from './../../components';
+import { Tab, ModalSlide } from './../../components';
 import { updateSettingsModal } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';

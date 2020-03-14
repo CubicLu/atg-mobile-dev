@@ -1,5 +1,9 @@
 .ion-page{
 
+    .fixed {
+        position: fixed;
+    }
+
     &#sign-in-page{
         ion-content{
             --background: linear-gradient(180deg, #FFC23F 0%, #FFC23F 100%);

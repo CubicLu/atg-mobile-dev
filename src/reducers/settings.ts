@@ -181,6 +181,13 @@ const defaultState: SettingsReducerType = {
   selectedPlan: null,
   tabs: [
     {
+      path: '/home/artist/:id',
+      id: 'profile',
+      component: ArtistPage,
+      redirect: true,
+      show: false
+    },
+    {
       path: '/home/artist/:id/support',
       id: 'profile',
       component: ArtistSupportPage,
@@ -205,13 +212,6 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/event',
       id: 'profile',
       component: ArtistEventsPage,
-      redirect: true,
-      show: false
-    },
-    {
-      path: '/home/artist/:id',
-      id: 'profile',
-      component: ArtistPage,
       redirect: true,
       show: false
     },

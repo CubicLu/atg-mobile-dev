@@ -11,7 +11,8 @@ import {
   HomePage,
   SignInPage,
   EnterCodePage,
-  SignUpConfirmPage
+  SignUpConfirmPage,
+  InitialPage
 } from './pages';
 
 import { store } from './store';
@@ -44,10 +45,10 @@ class App extends React.Component {
             <IonRouterOutlet id="main">
               <IonReactRouter>
                 <Switch>
-                  <Route path="/initial" component={SignInPage} />
+                  <Route path="/initial" component={InitialPage} />
+                  <Route path="/sign-in" component={SignInPage} />
                   <Route path="/sign-up" component={SignUpPage} />
                   <Route path="/home" component={HomePage} />
-                  <Route path="/sign-in" component={SignInPage} />
                   <Route path="/enter-code" component={EnterCodePage} />
                   <Route
                     path="/sign-up-confirm"
@@ -56,7 +57,7 @@ class App extends React.Component {
                   <Route
                     exact
                     path="/"
-                    render={(): any => <Redirect to="/sign-in" />}
+                    render={(): any => <Redirect to="/initial" />}
                   />
                 </Switch>
               </IonReactRouter>

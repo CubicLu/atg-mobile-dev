@@ -10,16 +10,7 @@ class RadioPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="radio-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
-        >
-          radio
-        </IonContent>
+        <IonContent>radio</IonContent>
       </IonPage>
     );
   }

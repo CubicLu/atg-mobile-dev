@@ -25,6 +25,7 @@ class HomePage extends React.Component<Props> {
     return (
       <div>
         <Tab />
+
         <ModalSlide
           onClose={(): void => {
             this.props.updateSettingsModal(false, null);

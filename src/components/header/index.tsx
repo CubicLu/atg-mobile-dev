@@ -17,13 +17,17 @@ class HeaderComponent extends React.Component<Props> {
   };
   render(): React.ReactNode {
     return (
-      <div className={`header ${this.props.type}`}>
+      <div id="header" className={`header ${this.props.type}`}>
         <div className="row content">
-          <div className="col s2 h-100 left-col">{this.props.leftContent}</div>
-          <div className="col s8 h-100 center-col">
+          <div id="header-left" className="col s2 h-100 left-col">
+            {this.props.leftContent}
+          </div>
+
+          <div id="header-center" className="col s8 h-100 center-col">
             {this.props.centerContent}
           </div>
-          <div className="col s2 h-100 right-col">
+
+          <div id="header-right" className="col s2 h-100 right-col">
             {this.props.rightContent}
           </div>
         </div>

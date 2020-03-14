@@ -5,6 +5,7 @@ import {} from './../../actions';
 interface Props {
   onClick: Function;
   label: string;
+  id?: string;
   color?: 'primary' | 'secondary' | 'tertiary' | 'transparent' | 'support';
   gradient?: boolean;
   bold?: boolean;
@@ -24,6 +25,7 @@ class ButtonComponent extends React.Component<Props> {
     let bold = this.props.bold ? 'bold' : '';
     return (
       <button
+        id={this.props.id}
         onClick={this.props.onClick.bind(this)}
         className={`btn ${this.props.color} ${gradient} ${this.props.type} ${bold}`}
       >

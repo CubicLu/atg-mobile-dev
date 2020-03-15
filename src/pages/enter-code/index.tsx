@@ -43,6 +43,7 @@ class EnterCodePage extends React.Component<Props, State> {
           backgroundTopDark={false}
           backgroundBottom
           backgroundBottomDark={false}
+          bottomRotate={true}
         />
         <div className="container enter-code-page">
           <div className="row header">

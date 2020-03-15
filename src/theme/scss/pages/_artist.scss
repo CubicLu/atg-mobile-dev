@@ -5,7 +5,7 @@
         width: 100%;
         z-index: 2;
         bottom: 0;
-        height: 0;
+        height: 102px;
     }
     .hide{
         display: none;
@@ -30,8 +30,8 @@
     }
     //hack for positioning behind - top = glasspanel
     &.content{
-        position: absolute; 
-        top: 170px; 
+        position: absolute;
+        top: 170px;
         bottom: 0;
         z-index: 1;
         height: auto;

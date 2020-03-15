@@ -1,15 +1,20 @@
+.scroll-x{
+    overflow-x: auto;
+}
+.list-fit{
+    .menu{
+        width: 100%;
+    }
+}
 .menu{
     &.generic{
         &.scroll{
             justify-content: normal !important;
-            overflow-x: scroll;
             margin-top: 30px;
             @include no-scroll-bar();
             li{
                 margin-left: 10px !important;
                 margin-right: 10px !important;
-                // min-width: 65px;
-                // overflow: hidden;
 
                 &:first-child{
                     margin-left: 10px !important;
@@ -21,7 +26,6 @@
         }
 
         justify-content: space-around;
-        width: 100%;
         padding: 10px 0;
         margin-top: 30px;
         li{
@@ -51,7 +55,7 @@
                         padding-bottom: 2px;
                     }
                 }
-            
+
                 .title{
                     font-family: 'Helvetica';
                     font-size: 14px;
@@ -76,7 +80,7 @@
                     }
                 }
             }
-        
+
     }
 
     &.fan-support-options, &.artist-list, &.generic-list{
@@ -88,7 +92,6 @@
             padding-top: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
-            height: 100px;
             margin-top: 0;
             position: fixed;
             z-index: 1;
@@ -125,9 +128,9 @@
                     font-weight: 400;
                     color: #333;
 
-                    button{ 
+                    button{
                         padding: 5px 10px;
-                        
+
                     }
                 }
             }

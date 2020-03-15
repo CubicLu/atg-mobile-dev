@@ -1,7 +1,15 @@
 .artist-gallery-page{
-    
+
     @include page;
-    
+
+    ion-header{
+        .header{
+            height: 100px;
+        }
+        -webkit-backdrop-filter: blur(9.5px);
+        backdrop-filter: blur(9.5px);
+        --background: rgba(255,255,255,0.2);
+    }
     .content-container{
         position: relative;
         top: 92px;

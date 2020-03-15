@@ -27,9 +27,7 @@ class HomePage extends React.Component<Props> {
         <Tab />
 
         <ModalSlide
-          onClose={(): void => {
-            this.props.updateSettingsModal(false, null);
-          }}
+          onClose={(): void => this.props.updateSettingsModal(false, null)}
           visible={this.props.modal.visible}
           height={setHeight(40)}
           classname={this.props.modal.classname}

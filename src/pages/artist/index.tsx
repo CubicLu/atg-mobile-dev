@@ -65,11 +65,9 @@ class ArtistPage extends React.Component<Props, State> {
 
   UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
+      console.log('no current Artist', this.props.match.params.id);
       this.props.getArtistAPI(this.props.match.params.id);
     }
-  }
-  componentWillUnmount(): void {
-    document.removeEventListener('touchmove', this.handleScroll, false);
   }
 
   handleScroll(event: any): void {
@@ -79,6 +77,8 @@ class ArtistPage extends React.Component<Props, State> {
     this.setState({ blur: eventBlur });
   }
   handleMenu(event: MenuInterface): void {
+    console.log(event.route);
+
     if (event.isPage === true) {
       let route =
         event.route != null
@@ -163,10 +163,14 @@ class ArtistPage extends React.Component<Props, State> {
           <Header //will come from position top 160 to top 55 and center to left and from 60px to 24 (250%)
             type="fixed"
             centerContent={
-              scrolled && <h4 className="artist-page name title">{name}</h4>
+              <h4
+                className={`artist-page name title ${scrolled ? '' : ' hide'}`}
+              >
+                {name}
+              </h4>
             }
             rightContent={
-              <div className={scrolled ? 'hide' : ''}>
+              <div className={scrolled ? 'supportByHide' : 'supportByShow'}>
                 <SupportBy data={supportFans} />
               </div>
             }
@@ -184,9 +188,8 @@ class ArtistPage extends React.Component<Props, State> {
             <div className="emptySpace" />
             <div className="artistName center">
               <h2
-                style={{ visibility: scrolled ? 'hidden' : 'visible' }}
                 id="artistName"
-                className="title"
+                className={`title ${scrolled ? 'left' : 'center'}`}
               >
                 {name}
               </h2>
@@ -202,13 +205,14 @@ class ArtistPage extends React.Component<Props, State> {
               />
             </div>
 
-            <div id="menu" className={scrolled ? 'menuFixed ' : ''}>
+            <div id="menu" className={scrolled ? 'menuFixed ' : 'notFixed'}>
               <Menu
                 tabs={this.props.artistTabs}
                 activeId={this.props.activeArtistTab}
                 onClick={this.handleMenu.bind(this)}
               />
             </div>
+
             {hasArtist &&
               _.map(
                 this.props.artistTabs,

@@ -21,11 +21,9 @@ class MenuComponent extends React.Component<Props> {
     let scroll = this.props.tabs.length > 4;
     return (
       <ul
-        className={
-          (this.props.className ? this.props.className : '') +
-          'list inline menu generic' +
-          (scroll ? ' scroll' : '')
-        }
+        className={`${
+          this.props.className ? this.props.className : ''
+        }list inline menu generic${scroll ? ' scroll' : ''}`}
       >
         {_.map(
           this.props.tabs,

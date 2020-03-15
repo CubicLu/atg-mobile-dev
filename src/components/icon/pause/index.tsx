@@ -26,14 +26,8 @@ class BlankIcon extends React.Component<Props> {
         height={this.props.height}
         viewBox={`0 0 ${this.props.width} ${this.props.height}`}
       >
-        <g
-          id="Group_2265"
-          data-name="Group 2265"
-          transform="translate(-527 4470)"
-        >
+        <g transform="translate(-527 4470)">
           <rect
-            id="Rectangle_554"
-            data-name="Rectangle 554"
             width={size}
             height={this.props.height}
             rx="3"
@@ -41,8 +35,6 @@ class BlankIcon extends React.Component<Props> {
             opacity={this.props.opacity}
           />
           <rect
-            id="Rectangle_555"
-            data-name="Rectangle 555"
             width={size}
             height={this.props.height}
             rx="3"

@@ -179,6 +179,7 @@ const defaultState: SettingsReducerType = {
     }
   ],
   selectedPlan: null,
+
   links: [
     {
       path: '/home/artist/:id',
@@ -206,6 +207,7 @@ const defaultState: SettingsReducerType = {
       component: ArtistEventsPage
     }
   ],
+
   tabs: [
     {
       path: '/home/feed',

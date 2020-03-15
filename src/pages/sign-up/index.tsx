@@ -17,10 +17,11 @@ class SignUpPage extends React.Component<Props> {
     return (
       <IonPage id="sign-up-page">
         <BackgroundImage
-          backgroundTop
+          backgroundTop={true}
           backgroundTopDark={true}
-          backgroundBottom
+          backgroundBottom={true}
           backgroundBottomDark={false}
+          bottomRotate={true}
           gradient="180deg, #1E073C, #1A0831"
         />
         <div className="container sign-up-page">

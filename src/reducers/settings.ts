@@ -179,48 +179,39 @@ const defaultState: SettingsReducerType = {
     }
   ],
   selectedPlan: null,
-  tabs: [
+  links: [
     {
       path: '/home/artist/:id',
       id: 'profile',
-      component: ArtistPage,
-      redirect: true,
-      show: false
+      component: ArtistPage
     },
     {
       path: '/home/artist/:id/support',
       id: 'profile',
-      component: ArtistSupportPage,
-      redirect: true,
-      show: false
+      component: ArtistSupportPage
     },
     {
       path: '/home/artist/:id/gallery',
       id: 'profile',
-      component: ArtistGalleryPage,
-      redirect: true,
-      show: false
+      component: ArtistGalleryPage
     },
     {
       path: '/home/artist/:id/biography',
       id: 'profile',
-      component: ArtistBiographyPage,
-      redirect: true,
-      show: false
+      component: ArtistBiographyPage
     },
     {
       path: '/home/artist/:id/event',
       id: 'profile',
-      component: ArtistEventsPage,
-      redirect: true,
-      show: false
-    },
+      component: ArtistEventsPage
+    }
+  ],
+  tabs: [
     {
       path: '/home/feed',
       icon: LogoIcon,
       id: 'feed',
-      component: FeedPage,
-      redirect: true
+      component: FeedPage
     },
     {
       path: '/home/messages',

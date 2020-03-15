@@ -9,7 +9,8 @@ import {
   CloseIcon,
   ButtonPlan,
   Avatar,
-  Button
+  Button,
+  BackIcon
 } from './../../../components';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
@@ -81,6 +82,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
               backgroundTopDark
             />
             <Header
+              leftContent={
+                <ButtonIcon
+                  onClick={(): void => this.showDetail(false)}
+                  icon={<BackIcon />}
+                />
+              }
               rightContent={
                 <ButtonIcon
                   icon={<CloseIcon width={14} height={14} />}
@@ -142,6 +149,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
   }
 
   renderPlans(): React.ReactNode {
+    const clickBack = (): void => this.props.history.goBack();
     return (
       <IonPage id="support-plans-page">
         <BackgroundImage
@@ -150,6 +158,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
         >
           <Header
             type="fixed"
+            leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
             rightContent={
               <ButtonIcon
                 icon={<CloseIcon width={14} height={14} />}
@@ -178,16 +187,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       return (
                         <div className="col s6" key={i}>
                           <ButtonPlan
-                            active={this.props.selectedPlan?.id === data.id}
+                            active={false}
                             plan={data}
-                            onClickDetail={(event: PlanInterface): void => {
-                              this.showDetail(true, event);
-                            }}
                             onClick={(event: PlanInterface): void => {
-                              this.props.updateSettingsProperty(
-                                'selectedPlan',
-                                event
-                              );
+                              this.showDetail(true, event);
                             }}
                           />
                         </div>

@@ -23,7 +23,7 @@ interface Props extends DispatchProps, StateProps {}
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <div>
+      <React.Fragment>
         <Tab />
 
         <ModalSlide
@@ -36,7 +36,7 @@ class HomePage extends React.Component<Props> {
         >
           {this.props.modal.content}
         </ModalSlide>
-      </div>
+      </React.Fragment>
     );
   }
 }

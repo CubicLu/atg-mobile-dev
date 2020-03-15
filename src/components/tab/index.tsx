@@ -1,11 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Route,
-  Redirect,
-  RouteComponentProps,
-  withRouter
-} from 'react-router-dom';
+import { Route, RouteComponentProps, withRouter } from 'react-router-dom';
 import { _, Player } from './../../components';
 import { updateSettingsProperty } from './../../actions';
 import { ApplicationState } from '../../reducers';
@@ -15,7 +10,8 @@ import {
   IonTabButton,
   IonRouterOutlet
 } from '@ionic/react';
-import { TabsInterface } from '../../interfaces';
+import { TabsInterface, LinksInterface } from '../../interfaces';
+import { ProfilePage } from '../../pages';
 
 interface MatchParams {
   id: string;
@@ -24,6 +20,7 @@ interface MatchParams {
 interface StateProps {
   activeTab: string;
   tabs: TabsInterface[];
+  links: LinksInterface[];
   isPlaying: boolean;
 }
 
@@ -38,29 +35,25 @@ interface Props
 
 class TabComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    let redirectIndex = _.findIndex(
-      this.props.tabs,
-      (x): any => x.redirect === true
-    );
-
+    console.log(this.props.links, this.props.match.params);
     return (
       <React.Fragment>
         <IonTabs
-          onIonTabsWillChange={(event): void => {
+          onIonTabsDidChange={(event): void => {
             this.props.updateSettingsProperty('activeTab', event.detail.tab);
           }}
         >
           <IonRouterOutlet id="tabs-home">
-            {redirectIndex !== -1 && (
-              <Route
-                exact
-                path="/home/profile"
-                component={(): any => (
-                  // <Redirect strict to={this.props.tabs[redirectIndex].path} />
-                  <Redirect strict to={'/home/profile'} />
-                )}
-              />
-            )}
+            {_.map(this.props.links, (data, index): any => {
+              return (
+                <Route
+                  exact
+                  path={data.path}
+                  component={data.component}
+                  key={index}
+                />
+              );
+            })}
             {_.map(this.props.tabs, (data, index): any => {
               return (
                 <Route
@@ -70,11 +63,11 @@ class TabComponent extends React.Component<Props> {
                 />
               );
             })}
+            <Route path="/home" component={ProfilePage} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">
             {_.map(this.props.tabs, (data, index): any => {
-              if (data.show === false) return null;
               return (
                 <IonTabButton tab={data.id} href={data.path} key={index}>
                   {React.createElement(data.icon, {
@@ -93,8 +86,8 @@ class TabComponent extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { activeTab, tabs, isPlaying } = settings;
-  return { activeTab, tabs, isPlaying };
+  const { activeTab, tabs, links, isPlaying } = settings;
+  return { activeTab, tabs, links, isPlaying };
 };
 
 export default withRouter(

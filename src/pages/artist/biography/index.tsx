@@ -117,7 +117,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             fromValue: 'transparent'
           }}
         >
-          <IonHeader className="fixed">
+          <IonHeader className="fixed ion-no-border">
             <Header
               leftContent={
                 <ButtonIcon

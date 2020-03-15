@@ -1,19 +1,23 @@
 .artist-events-page{
-    
+
     @include page;
     background: #000;
-    
-    .background{
-        @include background-style();
-        height: 40%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+
+    ion-header{
+        .header{
+            height: 100px;
+        }
+        --background: rgba(255,255,255,0.2);
+        &.blur{
+            -webkit-backdrop-filter: blur(9.5px);
+            backdrop-filter: blur(9.5px);
+        }
     }
 
-    .header{
-        position: absolute;
+
+
+    .background-image {
+        background-size: contain;
     }
 
     .fixed-content{
@@ -26,10 +30,10 @@
     .content-list{
         background: #000;
         position: relative;
-        top: 40%;
         padding-top: 10px;
+        top: 100px;
         .list{
-            background: #000;   
+            background: #000;
             .item{
                 background: black;
                 --background: #000;

@@ -42,9 +42,10 @@ class ProfilePage extends React.Component<Props> {
           <div
             className={`profile-page` + (this.props.isPlaying && ' is-playing')}
           >
-            <IonHeader>
+            <IonHeader className="ion-no-border">
               <HeaderProfile />
               <Menu
+                className="scroll-x list-fit"
                 tabs={this.props.fanTabs}
                 activeId={this.props.activeFanTab}
                 onClick={(event: MenuInterface): void => {

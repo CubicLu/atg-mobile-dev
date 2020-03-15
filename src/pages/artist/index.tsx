@@ -159,7 +159,7 @@ class ArtistPage extends React.Component<Props, State> {
           backgroundImage={backgroundImage}
           blur={this.state.blur}
         />
-        <IonHeader>
+        <IonHeader className="ion-no-border">
           <Header //will come from position top 160 to top 55 and center to left and from 60px to 24 (250%)
             type="fixed"
             centerContent={
@@ -210,6 +210,7 @@ class ArtistPage extends React.Component<Props, State> {
                 tabs={this.props.artistTabs}
                 activeId={this.props.activeArtistTab}
                 onClick={this.handleMenu.bind(this)}
+                className={scrolled ? 'menuFixed scroll-x' : 'scroll-x'}
               />
             </div>
 

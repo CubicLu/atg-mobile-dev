@@ -90,10 +90,12 @@ class BackgroundImageComponent extends React.Component<Props> {
       }` + this.props.className;
 
     let backgroundImageArray: string[] = [];
+    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
+
     if (this.props.gradient) {
       backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
     }
-    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
+
     const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
     return (
       <React.Fragment>

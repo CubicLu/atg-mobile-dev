@@ -1,7 +1,7 @@
 .artist-support-page{
-    
     @include page;
-
+    padding-bottom: 100px;
+    overflow: auto;
     .info{
         display: flex;
         flex-direction: column;

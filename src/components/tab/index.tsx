@@ -35,7 +35,6 @@ interface Props
 
 class TabComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    console.log(this.props.links, this.props.match.params);
     return (
       <React.Fragment>
         <IonTabs

@@ -64,11 +64,15 @@ class ArtistGalleryPage extends React.Component<Props, State> {
     const parentAnimation = this.headerRef.current!.animation;
     const { blur } = this.state;
     const eventBlur = event.detail.currentY >= 20;
+    const header = document.getElementById('ionHeader');
+
     if (blur && !eventBlur) {
       parentAnimation.direction('reverse');
+      header?.classList.remove("blur");
       await parentAnimation.play();
     } else if (eventBlur && !blur) {
       parentAnimation.direction('normal');
+      header?.classList.add("blur");
       await parentAnimation.play();
     }
 
@@ -88,7 +92,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
               fromValue: 'transparent'
             }}
           >
-            <IonHeader className="fixed ion-no-border">
+            <IonHeader id="ionHeader" className="fixed ion-no-border">
               <Header
                 leftContent={
                   <ButtonIcon

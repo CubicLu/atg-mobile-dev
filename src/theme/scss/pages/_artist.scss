@@ -1,75 +1,102 @@
 .artist-page{
+    .menuFixed{
+        top: 62px;
+        position: fixed;
+        width: 100%;
+        z-index: 2;
+        bottom: 0;
+        height: 0;
+    }
+    .hide{
+        display: none;
+    }
+    .menu{
+        &.generic{
+            &.scroll {
+                margin-top: 0px;
+                padding: 16px;
+            }
+        }
+    }
     position: relative;
     z-index: 2;
-    &.absolute{
-        position: absolute;
-        bottom: 0; 
-        top: 155px;
+    &.glassPanel{
+        position: fixed;
+        top: 0px;
+        // background-color: #0000004a;
+        height: 170px;
         width: 100%;
-        overflow: auto;
+        z-index: 1;
+        bottom: 0;
     }
-    .row {
+    //hack for positioning behind - top = glasspanel
+    &.content{
+        position: absolute; 
+        top: 170px; 
+        bottom: 0;
+        overflow: auto;
+        z-index: 1;
+        height: auto;
+        width: 100%;
+    }
+    .row{
         width: 100%;
         margin-bottom: 5px;
         margin-top: 0;
         margin-left: 0;
         margin-right: 0;
     }
+    &.name{
+        font-size: pxToRem(30);
+        font-family: "Industria";
+        font-weight: 600;
+        color: white;
+        text-align: left;
+        margin-left: -16px;
+        margin-top: 0;
+        text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+    }
+    .emptySpace{
+        height: 130px;
+    }
+    .artistName{
+        display: flex;
+        &.center{
+            justify-content: center;
+        }
+    }
+    .supportBtn{
+        display: flex;
+        &.center{
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        &.right{
+            top: 30px;
+            position: fixed;
+            right: 16px;
+            display: block;
+        }
+    }
     &.is-playing {
         padding-bottom: 60px;
     }
-    .name{
-        height: 280px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-
-        h1{
-            &.title{
-                text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
+    h2{
+        margin: 0;
+        text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
+        &.title {
+            font-size: pxToRem(48);
+            font-family: "Industria";
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            margin-bottom: 6px;
+            &.left{
+                top: 30px;
+                position: fixed;
+                left: 16px;
+                display: block;
             }
         }
     }
-    .header.default{
-        height: 0px;
-        position: fixed;
-    }
-    .header-fixed{
-        position: fixed;
-        z-index: 4;
-
-        .support-by-component{
-            display: none;
-        }
-
-        .header.default{
-            position: fixed;
-            height: auto;
-        }
-        .name{
-            padding-top: pxToRem(31);
-            padding-right: pxToRem(15);
-            padding-left: pxToRem(55);
-            height: 64px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-end;
-    
-            h1{
-                margin: 0;
-                font-size: pxToRem(30);
-                text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
-                font-weight: 600 !important;
-                font-stretch: normal;
-                font-style: normal;
-                letter-spacing: normal;
-            }
-        }
-    
-        .menu.generic.scroll{
-            margin-top: 0px;
-        }
-    }    
 }

@@ -16,19 +16,19 @@ interface StateProps {
   currentArtist: ArtistInterface | null;
   isPlaying: boolean;
 }
-
 interface DispatchProps {}
-
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class ArtistFeaturesPage extends React.Component<Props> {
   render(): React.ReactNode {
+    if (!this.props.currentArtist) return null;
+
+    const featureClass = `artist-features-page${
+      this.props.isPlaying ? ' is-playing' : ''
+    }`;
+
     return (
-      <div
-        className={
-          `artist-features-page` + (this.props.isPlaying && ' is-playing')
-        }
-      >
+      <div className={featureClass}>
         <List
           data={this.props.currentArtist?.featuredTracks}
           title={'TRACKS'}

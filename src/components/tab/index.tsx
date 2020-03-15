@@ -42,8 +42,9 @@ class TabComponent extends React.Component<Props> {
       this.props.tabs,
       (x): any => x.redirect === true
     );
+
     return (
-      <div>
+      <React.Fragment>
         <IonTabs
           onIonTabsWillChange={(event): void => {
             this.props.updateSettingsProperty('activeTab', event.detail.tab);
@@ -53,9 +54,10 @@ class TabComponent extends React.Component<Props> {
             {redirectIndex !== -1 && (
               <Route
                 exact
-                path="/home"
+                path="/home/profile"
                 component={(): any => (
-                  <Redirect strict to={this.props.tabs[redirectIndex].path} />
+                  // <Redirect strict to={this.props.tabs[redirectIndex].path} />
+                  <Redirect strict to={'/home/profile'} />
                 )}
               />
             )}
@@ -69,24 +71,23 @@ class TabComponent extends React.Component<Props> {
               );
             })}
           </IonRouterOutlet>
+
           <IonTabBar slot="bottom" color="dark">
             {_.map(this.props.tabs, (data, index): any => {
-              if (data.show !== false) {
-                return (
-                  <IonTabButton tab={data.id} href={data.path} key={index}>
-                    {React.createElement(data.icon, {
-                      color:
-                        this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
-                    })}
-                  </IonTabButton>
-                );
-              }
-              return null;
+              if (data.show === false) return null;
+              return (
+                <IonTabButton tab={data.id} href={data.path} key={index}>
+                  {React.createElement(data.icon, {
+                    color: this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
+                  })}
+                </IonTabButton>
+              );
             })}
           </IonTabBar>
         </IonTabs>
+
         <Player />
-      </div>
+      </React.Fragment>
     );
   }
 }

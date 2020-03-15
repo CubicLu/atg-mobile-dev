@@ -7,7 +7,7 @@ import {
   CloseIcon
 } from './../../components';
 import {} from './../../actions';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 
 interface State {
   isValid: boolean;
@@ -37,63 +37,49 @@ class EnterCodePage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="enter-code-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
-        >
-          <BackgroundImage
-            gradient="180deg, #000, #0D0711"
-            backgroundTop
-            backgroundTopDark={false}
-            backgroundBottom
-            backgroundBottomDark={false}
-          >
-            <div className="container enter-code-page">
-              <div className="row header">
-                <div className="col s10"></div>
-                <div className="col s2 button">
-                  <ButtonIcon
-                    icon={<CloseIcon strokeWidth={2} />}
-                    onClick={(): any => this.props.history.push('/initial')}
-                  />
-                </div>
-              </div>
-              <div className="row ">
-                <div className="col s12">
-                  <h1 className="title center-align">
-                    Enter Verification Code
-                  </h1>
-                  <p>
-                    We sent a code to: <br />
-                    thesound@music.com
-                  </p>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col s12  mt-40 input-div">
-                  <p>Enter the 6-digit code</p>
-                  <InputCode
-                    onKeyUp={this.validToken.bind(this)}
-                    isValid={this.state.isValid}
-                  />
-                </div>
-              </div>
-
-              <div className="row ">
-                <div className="col s12">
-                  <p className="didnt-receive">
-                    I didn’t receive an email message
-                  </p>
-                </div>
-              </div>
+        <BackgroundImage
+          gradient="180deg, #000, #0D0711"
+          backgroundTop
+          backgroundTopDark={false}
+          backgroundBottom
+          backgroundBottomDark={false}
+        />
+        <div className="container enter-code-page">
+          <div className="row header">
+            <div className="col s10"></div>
+            <div className="col s2 button">
+              <ButtonIcon
+                icon={<CloseIcon strokeWidth={2} />}
+                onClick={(): any => this.props.history.push('/initial')}
+              />
             </div>
-          </BackgroundImage>
-        </IonContent>
+          </div>
+          <div className="row ">
+            <div className="col s12">
+              <h1 className="title center-align">Enter Verification Code</h1>
+              <p>
+                We sent a code to: <br />
+                thesound@music.com
+              </p>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col s12  mt-40 input-div">
+              <p>Enter the 6-digit code</p>
+              <InputCode
+                onKeyUp={this.validToken.bind(this)}
+                isValid={this.state.isValid}
+              />
+            </div>
+          </div>
+
+          <div className="row ">
+            <div className="col s12">
+              <p className="didnt-receive">I didn’t receive an email message</p>
+            </div>
+          </div>
+        </div>
       </IonPage>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { CSSProperties } from 'react';
 import {
   BackgroundCircleBubblesImage,
   BackgroundCircleBubblesInverted,
@@ -14,7 +14,7 @@ interface Props {
   legend?: string;
   shadow?: boolean;
   gradient?: string;
-
+  styles?: CSSProperties;
   svgTop?: any;
   svgBottom?: any;
   backgroundTop: boolean;
@@ -95,16 +95,9 @@ class BackgroundImageComponent extends React.Component<Props> {
     }
     backgroundImageArray.push(`url(${this.props.backgroundImage})`);
     const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
-
     return (
-      <Fragment>
-        {backgroundImage && (
-          <div
-            id="backgroundImage"
-            className={backgroundClass}
-            style={{ backgroundImage }}
-          />
-        )}
+      <React.Fragment>
+        <div className={backgroundClass} style={{ backgroundImage }} />
 
         {hasTop && (
           <div className={topClass} style={topCircleStyle}>
@@ -122,7 +115,7 @@ class BackgroundImageComponent extends React.Component<Props> {
           <div className="background-legend">{this.props.legend}</div>
         )}
         {this.props.children}
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

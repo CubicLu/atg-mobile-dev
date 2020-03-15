@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, createAnimation, IonHeader } from '@ionic/react';
 import {
   _,
   BackgroundImage,
@@ -68,17 +68,15 @@ class ArtistPage extends React.Component<Props, State> {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
-
   componentWillUnmount(): void {
-    this.props.updateArtistProperty('currentArtist', null);
+    document.removeEventListener('touchmove', this.handleScroll, false);
   }
 
   handleScroll(event: any): void {
-    const { blur, scrolling } = this.state;
-    if (!scrolling) return;
-    const eventBlur = event.detail.currentY > 100;
+    const { blur } = this.state;
+    const eventBlur = event.detail.scrollTop > 140;
     if (blur === eventBlur) return;
-    this.setState({ blur: eventBlur, scrolling: false });
+    this.setState({ blur: eventBlur });
   }
   handleMenu(event: MenuInterface): void {
     if (event.isPage === true) {
@@ -94,71 +92,132 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
+  animateTitle(): void {
+    const title = document.getElementById('artistName');
+    if (title == null) return;
+    const titleLeft = title.getBoundingClientRect().left;
+    const titleTop = title.getBoundingClientRect().top;
+    // const width = title.getBoundingClientRect().width;
+    const leftPx = 16;
+    const topPx = 45;
+    const marginRight = Math.floor(leftPx - titleLeft);
+    const marginTop = Math.floor(topPx - titleTop);
+    // console.log(`${marginRight}px, ${marginTop}px`);
+
+    const supportAnimation = createAnimation()
+      .addElement(title)
+      .duration(500)
+      .fromTo(
+        'transform',
+        'translate(0, 0) scale(1)',
+        `translate(${marginRight}px, ${marginTop}px) scale(0.48)`
+      ); // .afterAddClass('left');
+    supportAnimation.play();
+  }
+
+  animateSupport(): void {
+    const btn = document.getElementById('supportBtn');
+    if (btn == null) return;
+    const buttonLeft = btn.getBoundingClientRect().left;
+    const buttonTop = btn.getBoundingClientRect().top;
+    const width = btn.getBoundingClientRect().width;
+    const rightPx = 16;
+    const topPx = 55;
+    const marginRight = window.innerWidth - rightPx - width - buttonLeft;
+    const marginTop = topPx - buttonTop;
+    // console.log(`${marginRight}px, ${marginTop}px`);
+
+    const supportAnimation = createAnimation()
+      .addElement(btn)
+      .duration(500)
+      .fromTo(
+        'transform',
+        'translate(0, 0)',
+        `translate(${Math.floor(marginRight)}px, ${Math.floor(marginTop)}px)`
+      ); //.afterAddClass('right');
+    supportAnimation.play();
+  }
+
   render(): React.ReactNode {
-    const fixed = this.state.blur;
+    const hasArtist = this.props.currentArtist;
+    if (!hasArtist) return <IonPage id="artist-page" />; //to render only once, no construct again
+
+    const scrolled = this.state.blur;
+    const supportFans = this.props.currentArtist?.supportArtistFans;
+    const name = this.props.currentArtist?.name;
+    const gradient = `180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`;
+    const backgroundImage = this.props.currentArtist?.cover.background;
+    const clickBack = (): void => this.props.history.goBack();
+    const clickSupport = (): void =>
+      this.props.history.push(
+        `${this.props.history.location.pathname}/support`
+      );
     return (
       <IonPage id="artist-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => this.setState({ scrolling: true })}
-          onIonScrollEnd={(): any => this.setState({ scrolling: false })}
-          onIonScroll={this.handleScroll.bind(this)}
-        >
-          <BackgroundImage
-            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
-            backgroundImage={this.props.currentArtist?.cover.background}
-            blur={this.state.blur}
-          >
-            <div className={`artist-page`}>
-              <div className={fixed ? 'row header-fixed' : 'row'}>
-                <Header
-                  leftContent={
-                    <ButtonIcon
-                      fixed={true}
-                      icon={<BackIcon />}
-                      onClick={(): void => this.props.history.goBack()}
-                    />
-                  }
-                  rightContent={
-                    <SupportBy
-                      data={this.props.currentArtist?.supportArtistFans}
-                    />
-                  }
-                  type={'default'}
-                />
-                <div className={'col s12 name'}>
-                  <h1 className="title">{this.props.currentArtist?.name}</h1>
-                  <Button
-                    onClick={(): void =>
-                      this.props.history.push(
-                        `${this.props.history.location.pathname}/support`
-                      )
-                    }
-                    color={'support'}
-                    label={'SUPPORT US'}
-                    type={'rounded'}
-                  />
-                </div>
-
-                <Menu
-                  tabs={this.props.artistTabs}
-                  activeId={this.props.activeArtistTab}
-                  onClick={this.handleMenu.bind(this)}
-                />
+        <BackgroundImage
+          gradient={gradient}
+          backgroundImage={backgroundImage}
+          blur={this.state.blur}
+        />
+        <IonHeader>
+          <Header //will come from position top 160 to top 55 and center to left and from 60px to 24 (250%)
+            type="fixed"
+            centerContent={
+              scrolled && <h4 className="artist-page name title">{name}</h4>
+            }
+            rightContent={
+              <div className={scrolled ? 'hide' : ''}>
+                <SupportBy data={supportFans} />
               </div>
+            }
+            leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
+          />
+        </IonHeader>
+
+        <div className="artist-page glassPanel" />
+        <div className="artist-page content">
+          <IonContent
+            scrollY={true}
+            scrollEvents={true}
+            onIonScroll={this.handleScroll.bind(this)}
+          >
+            <div className="emptySpace" />
+            <div className="artistName center">
+              <h2
+                style={{ visibility: scrolled ? 'hidden' : 'visible' }}
+                id="artistName"
+                className="title"
+              >
+                {name}
+              </h2>
             </div>
 
-            <div className={`artist-page bottom` + (fixed ? ' absolute' : '')}>
-              {_.map(
+            <div className={`supportBtn ${scrolled ? 'right' : 'center'}`}>
+              <Button
+                id="supportBtn"
+                onClick={clickSupport}
+                color={'support'}
+                label={'SUPPORT US'}
+                type={'rounded'}
+              />
+            </div>
+
+            <div id="menu" className={scrolled ? 'menuFixed ' : ''}>
+              <Menu
+                tabs={this.props.artistTabs}
+                activeId={this.props.activeArtistTab}
+                onClick={this.handleMenu.bind(this)}
+              />
+            </div>
+            {hasArtist &&
+              _.map(
                 this.props.artistTabs,
                 (data, i): React.ReactNode =>
                   data.id === this.props.activeArtistTab &&
                   React.createElement(data.component, { key: i })
               )}
-            </div>
-          </BackgroundImage>
-        </IonContent>
+          </IonContent>
+        </div>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

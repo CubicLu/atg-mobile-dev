@@ -210,7 +210,6 @@ class ArtistPage extends React.Component<Props, State> {
                 tabs={this.props.artistTabs}
                 activeId={this.props.activeArtistTab}
                 onClick={this.handleMenu.bind(this)}
-                className={scrolled ? 'menuFixed scroll-x' : 'scroll-x'}
               />
             </div>
 

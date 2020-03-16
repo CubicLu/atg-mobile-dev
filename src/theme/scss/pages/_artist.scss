@@ -2,14 +2,14 @@
     .support-by-component{
         opacity: 0;
         transform: translateX(120%);
-        transition: transform 500ms, opacity 500ms;
+        transition: transform 200ms, opacity 200ms;
     }
 }
 .supportByShow{
     .support-by-component{
         transform: translateX(0);
         opacity: 1;
-        transition: opacity 500ms, transform 500ms;
+        transition: opacity 200ms, transform 200ms;
     }
 }
 .artist-page{
@@ -89,6 +89,20 @@
             position: fixed;
             right: 16px;
             display: block;
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 200ms;
+        }
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
     }
     &.is-playing {
@@ -126,3 +140,4 @@
         margin-bottom: 100px;
     }
 }
+

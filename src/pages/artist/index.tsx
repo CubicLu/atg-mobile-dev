@@ -83,11 +83,6 @@ class ArtistPage extends React.Component<Props, State> {
 
   async handleScroll(event: any): Promise<void> {
     const menuAnimation = this.menuRef.current!.animation;
-    const nameAnimation = this.nameRef.current!.animation;
-
-    if (menuAnimation.childAnimations.length === 0) {
-      menuAnimation.addAnimation([nameAnimation])
-    }
 
     const { blur } = this.state;
     const eventBlur = event.detail.scrollTop >= 140;
@@ -98,7 +93,7 @@ class ArtistPage extends React.Component<Props, State> {
     menuAnimation.direction(direction);
     this.animation = true;
     this.setState({ blur: eventBlur });
-    await menuAnimation.play();
+    menuAnimation.play();
     this.animation = false;
   }
   handleMenu(event: MenuInterface): void {
@@ -162,7 +157,7 @@ class ArtistPage extends React.Component<Props, State> {
             <div className="artistName center">
               <CreateAnimation
                 ref={this.nameRef}
-                duration={300}
+                duration={200}
                 fromTo={{
                   property: 'transform',
                   fromValue: 'translate(0, 0)',
@@ -200,7 +195,7 @@ class ArtistPage extends React.Component<Props, State> {
 
             <CreateAnimation
               ref={this.menuRef}
-              duration={300}
+              duration={200}
               fromTo={{
                 property: 'transform',
                 fromValue: 'translateY(0px)',

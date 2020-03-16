@@ -22,9 +22,8 @@ interface Props extends RouteComponentProps {}
 class ProfileFriendsPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <IonContent>
-        <div className="profile-friends-page">
-          <IonList lines="none">
+      <IonContent className="profile-friends-page">
+           <IonList lines="none">
             {_.map(
               [{ friend: false }, {}, {}, {}, {}, {}, {}, {}],
               (data, i): React.ReactNode => {
@@ -69,8 +68,7 @@ class ProfileFriendsPage extends React.Component<Props> {
               }
             )}
           </IonList>
-        </div>
-      </IonContent>
+       </IonContent>
     );
   }
 }

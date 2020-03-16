@@ -81,32 +81,6 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
-  supportCoordinates(): string {
-    const btn = this.supportRef.current?.nodes.values().next().value;
-    if (btn == null) return 'translate(0)';
-
-    const buttonLeft = btn.getBoundingClientRect().left;
-    const buttonTop = btn.getBoundingClientRect().top;
-    const width = btn.getBoundingClientRect().width;
-    const rightPx = 16;
-    const topPx = 55;
-    const marginRight = window.innerWidth - rightPx - width - buttonLeft;
-    const marginTop = Math.floor(topPx - buttonTop);
-    return `translate(${Math.floor(marginRight)}px, ${marginTop}px)`;
-  }
-  supportTitle(): string {
-    const btn = this.nameRef.current?.nodes.values().next().value;
-    if (btn == null) return 'translate(0)';
-
-    const titleLeft = btn.getBoundingClientRect().left;
-    const titleTop = btn.getBoundingClientRect().top;
-    const leftPx = 0;
-    const topPx = 445;
-    const marginRight = Math.floor(leftPx - titleLeft);
-    const marginTop = Math.floor(topPx - titleTop);
-    return `translate(${Math.floor(marginRight)}px, ${marginTop}px)`;
-  }
-
   async handleScroll(event: any): Promise<void> {
     const menuAnimation = this.menuRef.current!.animation;
     const supportAnimation = this.supportRef.current!.animation;

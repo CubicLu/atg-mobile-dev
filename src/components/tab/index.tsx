@@ -55,6 +55,7 @@ class TabComponent extends React.Component<Props> {
           })}
           <Redirect
             strict
+            exact
             from={'/home'}
             to={this.props.tabs[redirectIndex].path}
           />

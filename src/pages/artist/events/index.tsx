@@ -91,7 +91,11 @@ class ArtistEventsPage extends React.Component<Props> {
                   (data, i): React.ReactNode => {
                     return (
                       <IonItem key={i}>
-                        <CardEvent data={data} id={i} />
+                        <CardEvent
+                          data={data}
+                          id={i}
+                          artistUsername={this.props.currentArtist?.username}
+                        />
                       </IonItem>
                     );
                   }

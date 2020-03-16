@@ -184,35 +184,30 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/support',
       id: 'profile',
       component: ArtistSupportPage,
-      redirect: true,
       show: false
     },
     {
       path: '/home/artist/:id/gallery',
       id: 'profile',
       component: ArtistGalleryPage,
-      redirect: true,
       show: false
     },
     {
       path: '/home/artist/:id/biography',
       id: 'profile',
       component: ArtistBiographyPage,
-      redirect: true,
       show: false
     },
     {
       path: '/home/artist/:id/event',
       id: 'profile',
       component: ArtistEventsPage,
-      redirect: true,
       show: false
     },
     {
       path: '/home/artist/:id',
       id: 'profile',
       component: ArtistPage,
-      redirect: true,
       show: false
     },
     {

@@ -48,20 +48,16 @@ class TabComponent extends React.Component<Props> {
         }}
       >
         <IonRouterOutlet id="tabs-home">
-          {redirectIndex !== -1 && (
-            <Route
-              exact
-              path="/home"
-              component={(): any => (
-                <Redirect strict to={this.props.tabs[redirectIndex].path} />
-              )}
-            />
-          )}
           {_.map(this.props.tabs, (data, index): any => {
             return (
               <Route path={data.path} component={data.component} key={index} />
             );
           })}
+          <Redirect
+            strict
+            from={'/home'}
+            to={this.props.tabs[redirectIndex].path}
+          />
         </IonRouterOutlet>
         <IonTabBar slot="bottom" color="dark">
           {_.map(this.props.tabs, (data, index): any => {

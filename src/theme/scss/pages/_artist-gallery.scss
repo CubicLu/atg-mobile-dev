@@ -3,12 +3,12 @@
     @include page;
 
     .background-top {
-        top: -100px;
+        top: #{-$default-height-header};
         position: absolute;
     }
     ion-header{
         .header{
-            height: 100px;
+            height: $default-height-header;
         }
         &.blur {
             -webkit-backdrop-filter: blur(9.5px);

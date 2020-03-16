@@ -54,7 +54,7 @@ class TabComponent extends React.Component<Props> {
             {_.map(this.props.tabs, (data, index): any => (
               <Route path={data.path} component={data.component} key={index} />
             ))}
-            <Route path="/home" component={ProfilePage} />
+            <Route exact path="/home" component={ProfilePage} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">

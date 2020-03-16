@@ -42,7 +42,7 @@ class InitialPage extends React.Component<Props> {
                     <div className="col s12">
                       <IonButton
                         className="primary gradient"
-                        routerDirection="forward"
+                        routerDirection="root"
                         size="default"
                         routerLink="/home/profile"
                         expand="full"

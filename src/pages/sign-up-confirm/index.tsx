@@ -69,7 +69,7 @@ class SignUpConfirmPage extends React.Component<Props> {
                       gradient
                       bold
                       onClick={(): any => {
-                        this.props.history.push('/home/feed');
+                        this.props.history.push('/home/profile');
                       }}
                     />
                   </div>

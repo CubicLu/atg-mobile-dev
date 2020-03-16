@@ -38,7 +38,7 @@ import { store } from '../store';
 import LogoIcon from '../components/icon/logo';
 
 const defaultState: SettingsReducerType = {
-  activeTab: 'feed',
+  activeTab: 'profile',
   activeFanTab: 'artists',
   isPlaying: true,
   fanTabs: [

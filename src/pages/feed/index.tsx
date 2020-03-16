@@ -8,7 +8,7 @@ interface Props extends RouteComponentProps {}
 
 class FeedPage extends React.Component<Props> {
   render(): React.ReactNode {
-    return <IonPage id="feed-page">home</IonPage>;
+    return <IonPage id="feed-page">feed</IonPage>;
   }
 }
 

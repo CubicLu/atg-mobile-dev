@@ -65,7 +65,6 @@ class ArtistPage extends React.Component<Props, State> {
 
   UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
-      console.log('no current Artist', this.props.match.params.id);
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }

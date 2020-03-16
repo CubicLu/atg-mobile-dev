@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { Redirect, Route } from 'react-router-dom';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
 
@@ -41,28 +41,21 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <IonApp>
-          <IonSplitPane contentId="main">
+          <IonReactRouter>
             <IonRouterOutlet id="main">
-              <IonReactRouter>
-                <Switch>
-                  <Route path="/initial" component={InitialPage} />
-                  <Route path="/sign-in" component={SignInPage} />
-                  <Route path="/sign-up" component={SignUpPage} />
-                  <Route path="/home" component={HomePage} />
-                  <Route path="/enter-code" component={EnterCodePage} />
-                  <Route
-                    path="/sign-up-confirm"
-                    component={SignUpConfirmPage}
-                  />
-                  <Route
-                    exact
-                    path="/"
-                    render={(): any => <Redirect to="/initial" />}
-                  />
-                </Switch>
-              </IonReactRouter>
+              <Route path="/initial" component={InitialPage} />
+              <Route path="/sign-in" component={SignInPage} />
+              <Route path="/sign-up" component={SignUpPage} />
+              <Route path="/home" component={HomePage} />
+              <Route path="/enter-code" component={EnterCodePage} />
+              <Route path="/sign-up-confirm" component={SignUpConfirmPage} />
+              <Route
+                exact
+                path="/"
+                render={(): any => <Redirect to="/initial" />}
+              />
             </IonRouterOutlet>
-          </IonSplitPane>
+          </IonReactRouter>
         </IonApp>
       </Provider>
     );

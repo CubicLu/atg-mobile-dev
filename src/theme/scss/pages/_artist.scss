@@ -21,6 +21,8 @@
                 padding-bottom: 4px;
                 margin-bottom: 12px;
                 transition: transform 500ms;
+                display: flex;
+                overflow: scroll;
             }
         }
     }
@@ -38,13 +40,6 @@
         transition: transform 500ms;
     }
     position: relative;
-    &.glassPanel{
-        position: fixed;
-        top: 0px;
-        height: 160px;
-        width: 100%;
-        bottom: 0;
-    }
     //hack for positioning behind - top = glasspanel
     &.content{
         position: absolute; 
@@ -139,5 +134,9 @@
                 transition: transform 500ms, opacity 1000ms;
             }
         }
+    }
+
+    .artist-discography-page{
+        margin-bottom: 100px;
     }
 }

@@ -178,7 +178,6 @@ class ArtistPage extends React.Component<Props, State> {
           />
         </IonHeader>
 
-        <div className="artist-page glassPanel" />
         <div className="artist-page content">
           <IonContent
             scrollY={true}

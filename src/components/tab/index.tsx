@@ -43,38 +43,28 @@ class TabComponent extends React.Component<Props> {
           }}
         >
           <IonRouterOutlet id="tabs-home">
-            {_.map(this.props.links, (data, index): any => {
-              return (
-                <Route
-                  exact
-                  path={data.path}
-                  component={data.component}
-                  key={index}
-                />
-              );
-            })}
-            {_.map(this.props.tabs, (data, index): any => {
-              return (
-                <Route
-                  path={data.path}
-                  component={data.component}
-                  key={index}
-                />
-              );
-            })}
+            {_.map(this.props.links, (data, index): any => (
+              <Route
+                exact
+                path={data.path}
+                component={data.component}
+                key={index}
+              />
+            ))}
+            {_.map(this.props.tabs, (data, index): any => (
+              <Route path={data.path} component={data.component} key={index} />
+            ))}
             <Route path="/home" component={ProfilePage} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">
-            {_.map(this.props.tabs, (data, index): any => {
-              return (
-                <IonTabButton tab={data.id} href={data.path} key={index}>
-                  {React.createElement(data.icon, {
-                    color: this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
-                  })}
-                </IonTabButton>
-              );
-            })}
+            {_.map(this.props.tabs, (data, index): any => (
+              <IonTabButton tab={data.id} href={data.path} key={index}>
+                {React.createElement(data.icon, {
+                  color: this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
+                })}
+              </IonTabButton>
+            ))}
           </IonTabBar>
         </IonTabs>
 

@@ -9,7 +9,6 @@
         width: 100%;
     }
 }
-
 .container{
     z-index: 1;
     position: relative;
@@ -76,4 +75,8 @@
     .background-bottom{
         height: 30vh;
     }
+}
+
+ion-tabbar {
+    --ion-safe-area-bottom: 0px;
 }

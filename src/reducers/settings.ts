@@ -24,7 +24,8 @@ import {
   MessagesPage,
   ProfilePage,
   SearchPage,
-  RadioPage
+  RadioPage,
+  ArtistEventDetailPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -196,6 +197,12 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/biography',
       id: 'profile',
       component: ArtistBiographyPage,
+      show: false
+    },
+    {
+      path: '/home/artist/:id/event/:eventId',
+      id: 'profile',
+      component: ArtistEventDetailPage,
       show: false
     },
     {

@@ -4,7 +4,10 @@ import createReducer from './../createReducer';
 const defaultState: AuthReducerType = {
   loggedUser: {
     name: 'Débora',
-    email: 'debora.goncalves@vigil365.com'
+    email: 'debora.goncalves@vigil365.com',
+    username: 'debora_cgs',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg'
   }
 };
 

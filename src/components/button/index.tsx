@@ -5,7 +5,13 @@ import {} from './../../actions';
 interface Props {
   onClick: Function;
   label: string;
-  color?: 'primary' | 'secondary' | 'tertiary' | 'transparent' | 'support';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'transparent'
+    | 'support'
+    | 'disable';
   gradient?: boolean;
   bold?: boolean;
   type?: 'rounded' | 'normal' | 'full';

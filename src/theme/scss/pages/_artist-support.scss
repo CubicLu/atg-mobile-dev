@@ -1,22 +1,34 @@
 .artist-support-page{
-    @include page;
-    padding-bottom: 100px;
+    position: relative;
     overflow: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+
     .info{
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        align-items: flex-end;
-        margin-top: 40%;
-        padding: 0 40px;
+        align-items: center;
+        margin-top: 140px;
+        padding-top: 0;
+        padding-bottom: 16px;
+        
 
         .title{
-            font-size: pxToRem(55);
+            font-size: pxToRem(48);
+            line-height: pxToRem(48);
+            text-align: center;
         }
         .subtitle{
-            font-size: pxToRem(42);
-            margin-top: -10px;
+            font-size: pxToRem(18);
         }
+    }
+    h5{
+        color: #ffffff;
+        text-align: center;
+        font-weight: normal;
     }
 
     .buttons{
@@ -40,6 +52,7 @@
         .text{
             font-family: 'Helvetica';
             padding: 10px;
+            text-align: justify;
         }
         .title{
             font-size: pxToRem(50);
@@ -60,10 +73,6 @@
             line-height: 75px;
             .price{
                 font-size: pxToRem(85);
-                &::after{
-                    top: 0;
-                    line-height: 39px;
-                }
             }
             .name{
                 line-height: 14px;
@@ -72,6 +81,7 @@
 
         .footer{
             margin-top: 30%;
+            padding: 16px;
             display: flex;
             justify-content: center;
             align-items: flex-end;

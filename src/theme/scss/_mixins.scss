@@ -137,9 +137,9 @@
   flex-direction: column;
   &.circle {
     border-radius: 50%;
-    height: 143px;
-    width: 143px;
-    margin-bottom: 15px;
+    height: 130px;
+    width: 130px;
+    margin-bottom: 16px;
     align-items: center;
     text-align: center;
     display: flex;
@@ -161,12 +161,12 @@
     font-family: "Industria";
     position: relative;
     font-weight: bold;
+    margin-left: 14px;
     &::after{
       content: attr(data-currency);
       position: absolute;
-      font-size: pxToRem(16);
-      top: -14px;
-      right: -11px;
+      font-size: pxToRem(48);
+      left: -13px;
     }
   }
   .name{

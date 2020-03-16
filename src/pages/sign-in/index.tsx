@@ -56,22 +56,14 @@ class SignInPage extends React.Component<Props> {
                 <div className="row ">
                   <div className="col s12">
                     <IonButton
-                      routerDirection="forward"
-                      color="primary"
-                      href="/home/profile"
+                      className="primary gradient"
+                      routerDirection="root"
+                      size="default"
+                      routerLink="/home/profile"
+                      expand="full"
                     >
                       Sign In
                     </IonButton>
-                    <Button
-                      label="Sign In"
-                      type={'full'}
-                      bold
-                      color="primary"
-                      gradient
-                      onClick={(): any => {
-                        this.props.history.push('/home/profile');
-                      }}
-                    />
                   </div>
                 </div>
               </div>

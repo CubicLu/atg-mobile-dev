@@ -147,7 +147,7 @@ const defaultState: SettingsReducerType = {
   plans: [
     {
       name: 'Basic',
-      price: '.69',
+      price: '0.69',
       color: Colors.orange,
       id: 1,
       description:
@@ -155,7 +155,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       name: 'Platinum',
-      price: '.89',
+      price: '0.89',
       color: Colors.yellow,
       id: 3,
       description:
@@ -163,7 +163,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       name: 'Gold',
-      price: '.79',
+      price: '0.79',
       color: Colors.blue,
       id: 2,
       description:
@@ -171,7 +171,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       name: 'Diamond',
-      price: '.99',
+      price: '0.99',
       color: Colors.green,
       id: 4,
       description:

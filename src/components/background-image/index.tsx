@@ -99,7 +99,10 @@ class BackgroundImageComponent extends React.Component<Props> {
     const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
     return (
       <React.Fragment>
-        <div className={backgroundClass} style={{ backgroundImage }} />
+        <div
+          className={backgroundClass}
+          style={{ backgroundImage, ...this.props.styles }}
+        />
 
         {hasTop && (
           <div className={topClass} style={topCircleStyle}>

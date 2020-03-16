@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, createAnimation, IonHeader } from '@ionic/react';
+import {
+  IonContent,
+  IonPage,
+  createAnimation,
+  IonHeader,
+  IonButton
+} from '@ionic/react';
 import {
   _,
   BackgroundImage,
   Header,
-  Button,
   Menu,
   ButtonIcon,
   BackIcon,
@@ -147,10 +152,7 @@ class ArtistPage extends React.Component<Props, State> {
     const gradient = `180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`;
     const backgroundImage = this.props.currentArtist?.cover.background;
     const clickBack = (): void => this.props.history.goBack();
-    const clickSupport = (): void =>
-      this.props.history.push(
-        `${this.props.history.location.pathname}/support`
-      );
+
     return (
       <IonPage id="artist-page">
         <BackgroundImage
@@ -194,13 +196,14 @@ class ArtistPage extends React.Component<Props, State> {
             </div>
 
             <div className={`supportBtn ${scrolled ? 'right' : 'center'}`}>
-              <Button
+              <IonButton
                 id="supportBtn"
-                onClick={clickSupport}
-                color={'support'}
-                label={'SUPPORT US'}
-                type={'rounded'}
-              />
+                className="support rounded"
+                routerDirection="forward"
+                routerLink={`${this.props.history.location.pathname}/support`}
+              >
+                SUPPORT US
+              </IonButton>
             </div>
 
             <div id="menu" className={scrolled ? 'menuFixed ' : 'notFixed'}>

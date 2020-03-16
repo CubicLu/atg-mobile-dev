@@ -83,27 +83,22 @@ class ArtistPage extends React.Component<Props, State> {
 
   async handleScroll(event: any): Promise<void> {
     const menuAnimation = this.menuRef.current!.animation;
-    const supportAnimation = this.supportRef.current!.animation;
     const nameAnimation = this.nameRef.current!.animation;
 
+    if (menuAnimation.childAnimations.length === 0) {
+      menuAnimation.addAnimation([nameAnimation])
+    }
+
     const { blur } = this.state;
-    const eventBlur = event.detail.scrollTop > 140;
+    const eventBlur = event.detail.scrollTop >= 140;
     if (blur === eventBlur) return;
-    this.setState({ blur: eventBlur });
     const direction = eventBlur ? 'normal' : 'reverse';
 
     if (this.animation) return;
     menuAnimation.direction(direction);
-    supportAnimation.direction(direction);
-    nameAnimation.direction(direction);
-    nameAnimation.direction(direction);
     this.animation = true;
-    // eslint-disable-next-line no-undef
-    await Promise.all([
-      menuAnimation.play(),
-      supportAnimation.play(),
-      nameAnimation.play()
-    ]);
+    this.setState({ blur: eventBlur });
+    await menuAnimation.play();
     this.animation = false;
   }
   handleMenu(event: MenuInterface): void {
@@ -149,19 +144,9 @@ class ArtistPage extends React.Component<Props, State> {
               </h4>
             }
             rightContent={
-              // <CreateAnimation
-              //   ref={this.supRef}
-              //   duration={500}
-              //   fromTo={{
-              //     property: 'transform',
-              //     fromValue: 'translateX(0)',
-              //     toValue: 'translateX(300px)'
-              //   }}
-              // >
               <div className={scrolled ? 'supportByHide' : 'supportByShow'}>
                 <SupportBy data={supportFans} />
               </div>
-              // </CreateAnimation>
             }
             leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
           />
@@ -177,11 +162,11 @@ class ArtistPage extends React.Component<Props, State> {
             <div className="artistName center">
               <CreateAnimation
                 ref={this.nameRef}
-                duration={500}
+                duration={300}
                 fromTo={{
                   property: 'transform',
                   fromValue: 'translate(0, 0)',
-                  toValue: 'translate(-100px, -150px)'
+                  toValue: 'translate(-60px, -120px)'
                 }}
               >
                 <h2
@@ -196,7 +181,7 @@ class ArtistPage extends React.Component<Props, State> {
             <div className={`supportBtn ${scrolled ? 'right' : 'center'}`}>
               <CreateAnimation
                 ref={this.supportRef}
-                duration={500}
+                duration={200}
                 fromTo={{
                   property: 'transform',
                   fromValue: 'translate(0, 0)',
@@ -215,7 +200,7 @@ class ArtistPage extends React.Component<Props, State> {
 
             <CreateAnimation
               ref={this.menuRef}
-              duration={500}
+              duration={300}
               fromTo={{
                 property: 'transform',
                 fromValue: 'translateY(0px)',

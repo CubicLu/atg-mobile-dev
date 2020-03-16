@@ -26,7 +26,7 @@ class PlayerComponent extends React.Component<Props> {
         </div>
 
         <div className="row">
-          <div className="col s3"/>
+          <div className="col s3" />
           <div className="col s9">
             <div className="row">
               <div className="col s7 info">

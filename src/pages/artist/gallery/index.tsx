@@ -68,11 +68,11 @@ class ArtistGalleryPage extends React.Component<Props, State> {
 
     if (blur && !eventBlur) {
       parentAnimation.direction('reverse');
-      header?.classList.remove("blur");
+      header?.classList.remove('blur');
       await parentAnimation.play();
     } else if (eventBlur && !blur) {
       parentAnimation.direction('normal');
-      header?.classList.add("blur");
+      header?.classList.add('blur');
       await parentAnimation.play();
     }
 
@@ -106,44 +106,44 @@ class ArtistGalleryPage extends React.Component<Props, State> {
               />
             </IonHeader>
           </CreateAnimation>
-            <IonContent
-              fullscreen={true}
-              scrollY={true}
-              scrollEvents={true}
-              onIonScroll={this.handleScroll.bind(this)}
-              style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
+          <IonContent
+            fullscreen={true}
+            scrollY={true}
+            scrollEvents={true}
+            onIonScroll={this.handleScroll.bind(this)}
+            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
+          >
+            <BackgroundImage
+              gradient={`180deg,#1F0739,#1F0739`}
+              backgroundTop
+              backgroundBottom
+              backgroundBottomDark={false}
+              bottomRotate
+              backgroundTopDark
+              backgroundTopOpacity={0.7}
             >
-              <BackgroundImage
-                gradient={`180deg,#1F0739,#1F0739`}
-                backgroundTop
-                backgroundBottom
-                backgroundBottomDark={false}
-                bottomRotate
-                backgroundTopDark
-                backgroundTopOpacity={0.7}
+              <div
+                className={`row content-container ${this.props.isPlaying &&
+                  ' is-playing'}`}
               >
-                <div
-                  className={`row content-container ${this.props.isPlaying &&
-                    ' is-playing'}`}
-                >
-                  {_.map(
-                    this.props.currentArtist?.gallery,
-                    (data, index): React.ReactNode => {
-                      return (
-                        <CardAlbumGallery
-                          key={index}
-                          image={data.cover}
-                          label={data.name}
-                          quantity={data.items.length}
-                          col={6}
-                        />
-                      );
-                    }
-                  )}
-                </div>
-              </BackgroundImage>
-            </IonContent>
-          </div>
+                {_.map(
+                  this.props.currentArtist?.gallery,
+                  (data, index): React.ReactNode => {
+                    return (
+                      <CardAlbumGallery
+                        key={index}
+                        image={data.cover}
+                        label={data.name}
+                        quantity={data.items.length}
+                        col={6}
+                      />
+                    );
+                  }
+                )}
+              </div>
+            </BackgroundImage>
+          </IonContent>
+        </div>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

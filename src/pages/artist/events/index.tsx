@@ -8,7 +8,14 @@ import {
   LoaderFullscreen,
   BackgroundImage
 } from './../../../components';
-import { IonContent, IonList, IonItem, IonPage, IonHeader, CreateAnimation } from '@ionic/react';
+import {
+  IonContent,
+  IonList,
+  IonItem,
+  IonPage,
+  IonHeader,
+  CreateAnimation
+} from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
@@ -69,11 +76,11 @@ class ArtistEventsPage extends React.Component<Props, State> {
     const eventBlur = event.detail.currentY >= 250;
     if (blur && !eventBlur) {
       parentAnimation.direction('reverse');
-      header?.classList.remove("blur");
+      header?.classList.remove('blur');
       await parentAnimation.play();
     } else if (eventBlur && !blur) {
       parentAnimation.direction('normal');
-      header?.classList.add("blur");
+      header?.classList.add('blur');
       await parentAnimation.play();
     }
 
@@ -113,7 +120,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
             onIonScroll={this.handleScroll.bind(this)}
             style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
           >
-          <BackgroundImage
+            <BackgroundImage
               backgroundImage={this.props.currentArtist?.cover.event}
             >
               <h1 className="feature">
@@ -121,23 +128,23 @@ class ArtistEventsPage extends React.Component<Props, State> {
                   this.props.currentArtist?.biography[0].headline}
               </h1>
             </BackgroundImage>
-          <div
-            className={`content-list ${this.props.isPlaying &&
-              ' is-playing'}`}
-          >
-            <IonList lines="none" className="list">
-              {_.map(
-                this.props.currentArtist?.events,
-                (data, i): React.ReactNode => {
-                  return (
-                    <IonItem key={i}>
-                      <CardEvent data={data} id={i} />
-                    </IonItem>
-                  );
-                }
-              )}
-            </IonList>
-          </div>
+            <div
+              className={`content-list ${this.props.isPlaying &&
+                ' is-playing'}`}
+            >
+              <IonList lines="none" className="list">
+                {_.map(
+                  this.props.currentArtist?.events,
+                  (data, i): React.ReactNode => {
+                    return (
+                      <IonItem key={i}>
+                        <CardEvent data={data} id={i} />
+                      </IonItem>
+                    );
+                  }
+                )}
+              </IonList>
+            </div>
           </IonContent>
         </div>
         <LoaderFullscreen visible={this.props.loading} />

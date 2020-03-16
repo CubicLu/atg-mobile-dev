@@ -65,7 +65,7 @@
             text-align: left;
         }
         .cover{
-            height: calc(100vh - 100px);
+            height: calc(100vh - #{$default-height-header});
         }
         .background-image{
             position: relative;

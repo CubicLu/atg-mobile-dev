@@ -73,7 +73,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
     const header = document.getElementById('ionHeader');
 
     const { blur } = this.state;
-    const eventBlur = event.detail.currentY >= 250;
+    const eventBlur = event.detail.currentY >= 100;
     if (blur && !eventBlur) {
       parentAnimation.direction('reverse');
       header?.classList.remove('blur');

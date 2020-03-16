@@ -1,6 +1,8 @@
 .profile-page{
     @include page;
 
+    height: 100%;
+
     ion-item-sliding.item-sliding-active-slide {
         ion-item{
             --ion-background-color: #1e053b;
@@ -9,7 +11,6 @@
 
     .artist-list{
         background: transparent;
-        padding-bottom: 150px;
         .row{
             margin-bottom: 0;
         }
@@ -18,6 +19,9 @@
     &.is-playing{
         .profile-mixtapes-page{
             padding-bottom: 60px;
+        }
+        ion-content{
+            --padding-bottom: #{$default-height-player + $default-height-tabs + 220};
         }
     }
 }

@@ -42,8 +42,8 @@
     position: relative;
     //hack for positioning behind - top = glasspanel
     &.content{
-        position: absolute; 
-        top: 160px; 
+        position: absolute;
+        top: 160px;
         bottom: 0;
         height: auto;
         width: 100%;
@@ -70,7 +70,7 @@
             transition: opacity 1000ms;
         }
     }
-    
+
     .emptySpace{
         height: 130px;
     }
@@ -106,7 +106,9 @@
         }
     }
     &.is-playing {
-        padding-bottom: 60px;
+        ion-content{
+            --padding-bottom: #{$default-height-player + $default-height-tabs + 251};
+        }
     }
     h2{
         margin: 0;

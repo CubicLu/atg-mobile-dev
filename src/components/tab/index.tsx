@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, RouteComponentProps, withRouter, Redirect } from 'react-router-dom';
-import { _, Player } from './../../components';
+import {
+  Route,
+  RouteComponentProps,
+  withRouter,
+  Redirect
+} from 'react-router-dom';
+import { _ } from './../../components';
 import { updateSettingsProperty } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import {
@@ -36,41 +41,37 @@ interface Props
 class TabComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <React.Fragment>
-        <IonTabs
-          onIonTabsDidChange={(event): void => {
-            this.props.updateSettingsProperty('activeTab', event.detail.tab);
-          }}
-        >
-          <IonRouterOutlet id="tabs-home">
-            {_.map(this.props.links, (data, index): any => (
-              <Route
-                exact
-                path={data.path}
-                component={data.component}
-                key={index}
-              />
-            ))}
-            {_.map(this.props.tabs, (data, index): any => (
-              <Route path={data.path} component={data.component} key={index} />
-            ))}
-            <Route exact path="/home" component={ProfilePage} />
-            <Route path="/" render={(): any => <Redirect to="/home" />} />
-          </IonRouterOutlet>
+      <IonTabs
+        onIonTabsDidChange={(event): void => {
+          this.props.updateSettingsProperty('activeTab', event.detail.tab);
+        }}
+      >
+        <IonRouterOutlet id="tabs-home">
+          {_.map(this.props.links, (data, index): any => (
+            <Route
+              exact
+              path={data.path}
+              component={data.component}
+              key={index}
+            />
+          ))}
+          {_.map(this.props.tabs, (data, index): any => (
+            <Route path={data.path} component={data.component} key={index} />
+          ))}
+          <Route exact path="/home" component={ProfilePage} />
+          <Route path="/" render={(): any => <Redirect to="/home" />} />
+        </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" color="dark">
-            {_.map(this.props.tabs, (data, index): any => (
-              <IonTabButton tab={data.id} href={data.path} key={index}>
-                {React.createElement(data.icon, {
-                  color: this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
-                })}
-              </IonTabButton>
-            ))}
-          </IonTabBar>
-        </IonTabs>
-
-        <Player />
-      </React.Fragment>
+        <IonTabBar slot="bottom" color="dark">
+          {_.map(this.props.tabs, (data, index): any => (
+            <IonTabButton tab={data.id} href={data.path} key={index}>
+              {React.createElement(data.icon, {
+                color: this.props.activeTab === data.id ? '#00BAFF' : '#FFF'
+              })}
+            </IonTabButton>
+          ))}
+        </IonTabBar>
+      </IonTabs>
     );
   }
 }

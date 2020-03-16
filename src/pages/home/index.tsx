@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Tab, ModalSlide } from './../../components';
+import { Tab, ModalSlide, Player } from './../../components';
 import { updateSettingsModal } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
@@ -26,7 +26,7 @@ class HomePage extends React.Component<Props> {
     return (
       <IonReactRouter>
         <Tab />
-
+        <Player />
         <ModalSlide
           onClose={(): void => this.props.updateSettingsModal(false, null)}
           visible={this.props.modal.visible}

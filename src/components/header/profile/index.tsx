@@ -10,11 +10,26 @@ import {
 import {} from './../../../actions';
 import { IonActionSheet, ActionSheetButton } from '@ionic/react';
 
-interface Props extends RouteComponentProps {}
+import { connect } from 'react-redux';
+import { updateAuthProperty } from '../../../actions';
+import { ApplicationState } from '../../../reducers';
+
+interface StateProps {}
+
+interface DispatchProps {
+  updateAuthProperty: (property: string, value: any) => void;
+}
+
+interface Props extends RouteComponentProps, DispatchProps {}
 interface State {
   showProfileActions: boolean;
 }
 class HeaderProfileComponent extends React.Component<Props, State> {
+  handleLogout(): void {
+    this.props.updateAuthProperty('loggedUser', undefined);
+    this.props.history.push('/initial');
+  }
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -43,6 +58,10 @@ class HeaderProfileComponent extends React.Component<Props, State> {
       }
     },
     {
+      text: 'Log out',
+      handler: this.handleLogout.bind(this)
+    },
+    {
       text: 'Cancel',
       role: 'cancel',
       handler: (): void => {
@@ -51,7 +70,7 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     }
   ];
 
-  toggleProfileActions(option: boolean):void {
+  toggleProfileActions(option: boolean): void {
     this.setState({ showProfileActions: option });
   }
 
@@ -112,4 +131,10 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     );
   }
 }
-export default withRouter(HeaderProfileComponent);
+const mapStateToProps = ({}: ApplicationState): StateProps => {
+  return {};
+};
+
+export default withRouter(
+  connect(mapStateToProps, { updateAuthProperty })(HeaderProfileComponent)
+);

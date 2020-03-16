@@ -3,10 +3,28 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonButton } from '@ionic/react';
 import { BackgroundImage, BackgroundInitialImage } from './../../components';
 import {} from './../../actions';
+import { connect } from 'react-redux';
+import { updateAuthProperty } from './../../actions';
+import { ApplicationState } from '../../reducers';
 
-interface Props extends RouteComponentProps {}
+interface Props extends RouteComponentProps, DispatchProps {}
+
+interface StateProps {}
+
+interface DispatchProps {
+  updateAuthProperty: (property: string, value: any) => void;
+}
 
 class InitialPage extends React.Component<Props> {
+  handleLogin(): void {
+    console.log('new logged');
+    this.props.updateAuthProperty('loggedUser', {
+      name: 'Débora',
+      email: 'debora.goncalves@vigil365.com'
+    });
+    this.props.history.push('/home');
+  }
+
   render(): React.ReactNode {
     return (
       <IonPage id="initial-page">
@@ -44,7 +62,7 @@ class InitialPage extends React.Component<Props> {
                         className="primary gradient"
                         routerDirection="root"
                         size="default"
-                        routerLink="/home/profile"
+                        onClick={this.handleLogin.bind(this)}
                         expand="full"
                       >
                         Sign In
@@ -75,4 +93,10 @@ class InitialPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(InitialPage);
+const mapStateToProps = ({}: ApplicationState): StateProps => {
+  return {};
+};
+
+export default withRouter(
+  connect(mapStateToProps, { updateAuthProperty })(InitialPage)
+);

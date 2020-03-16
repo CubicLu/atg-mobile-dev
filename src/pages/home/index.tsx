@@ -5,6 +5,7 @@ import { updateSettingsModal } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
+import { IonReactRouter } from '@ionic/react-router';
 
 interface StateProps {
   modal: ModalSlideInterface;
@@ -23,7 +24,7 @@ interface Props extends DispatchProps, StateProps {}
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <React.Fragment>
+      <IonReactRouter>
         <Tab />
 
         <ModalSlide
@@ -34,7 +35,7 @@ class HomePage extends React.Component<Props> {
         >
           {this.props.modal.content}
         </ModalSlide>
-      </React.Fragment>
+      </IonReactRouter>
     );
   }
 }

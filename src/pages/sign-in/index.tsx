@@ -5,15 +5,32 @@ import {
   BackgroundImage,
   BackgroundSignInImage,
   InputText,
-  Button,
   ButtonIcon,
   CloseIcon
 } from './../../components';
 import {} from './../../actions';
+import { ApplicationState } from '../../reducers';
+import { connect } from 'react-redux';
+import { updateAuthProperty } from './../../actions';
 
-interface Props extends RouteComponentProps {}
+interface StateProps {}
+
+interface DispatchProps {
+  updateAuthProperty: (property: string, value: any) => void;
+}
+
+interface Props extends RouteComponentProps, DispatchProps {}
 
 class SignInPage extends React.Component<Props> {
+  handleLogin(): void {
+    console.log('new logged');
+    this.props.updateAuthProperty('loggedUser', {
+      name: 'Débora',
+      email: 'debora.goncalves@vigil365.com'
+    });
+    this.props.history.push('/home');
+  }
+
   render(): React.ReactNode {
     return (
       <IonPage id="sign-in-page">
@@ -59,7 +76,7 @@ class SignInPage extends React.Component<Props> {
                       className="primary gradient"
                       routerDirection="root"
                       size="default"
-                      routerLink="/home/profile"
+                      onClick={this.handleLogin.bind(this)}
                       expand="full"
                     >
                       Sign In
@@ -87,4 +104,10 @@ class SignInPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(SignInPage);
+const mapStateToProps = ({}: ApplicationState): StateProps => {
+  return {};
+};
+
+export default withRouter(
+  connect(mapStateToProps, { updateAuthProperty })(SignInPage)
+);

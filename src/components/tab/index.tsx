@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, RouteComponentProps, withRouter } from 'react-router-dom';
+import { Route, RouteComponentProps, withRouter, Redirect } from 'react-router-dom';
 import { _, Player } from './../../components';
 import { updateSettingsProperty } from './../../actions';
 import { ApplicationState } from '../../reducers';
@@ -55,6 +55,7 @@ class TabComponent extends React.Component<Props> {
               <Route path={data.path} component={data.component} key={index} />
             ))}
             <Route exact path="/home" component={ProfilePage} />
+            <Route path="/" render={(): any => <Redirect to="/home" />} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">

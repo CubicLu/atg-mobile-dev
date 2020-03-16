@@ -104,7 +104,7 @@ export interface UserInterface {
 }
 
 export interface AuthReducerType {
-  loggedUser: UserInterface;
+  loggedUser: UserInterface | undefined;
 }
 
 export interface GradientColorsInterface {

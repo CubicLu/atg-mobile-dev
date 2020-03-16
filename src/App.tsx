@@ -1,9 +1,8 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Router } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
-
 import './theme/scss/_styles.scss';
 
 import {
@@ -35,27 +34,38 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
 class App extends React.Component {
+  authenticated: boolean = false;
+
   render(): React.ReactNode {
+    store.subscribe((): void => {
+      const { loggedUser } = store.getState().authAPI;
+      if (this.authenticated == !!loggedUser) return;
+
+      this.authenticated = !!loggedUser;
+      this.forceUpdate();
+    });
+
     return (
       <Provider store={store}>
         <IonApp>
-          <IonReactRouter>
-            <IonRouterOutlet id="main">
-              <Route path="/initial" component={InitialPage} />
-              <Route path="/sign-in" component={SignInPage} />
-              <Route path="/sign-up" component={SignUpPage} />
-              <Route path="/home" component={HomePage} />
-              <Route path="/enter-code" component={EnterCodePage} />
-              <Route path="/sign-up-confirm" component={SignUpConfirmPage} />
-              <Route
-                exact
-                path="/"
-                render={(): any => <Redirect to="/initial" />}
-              />
-            </IonRouterOutlet>
-          </IonReactRouter>
+          {this.authenticated ? (
+            <HomePage />
+          ) : (
+            <IonReactRouter>
+              <IonRouterOutlet id="main">
+                <Route path="/initial" component={InitialPage} />
+                <Route path="/sign-in" component={SignInPage} />
+                <Route path="/sign-up" component={SignUpPage} />
+                <Route path="/enter-code" component={EnterCodePage} />
+                <Route path="/sign-up-confirm" component={SignUpConfirmPage} />
+                <Route
+                  path="/"
+                  render={(): any => <Redirect to="/initial" />}
+                />
+              </IonRouterOutlet>
+            </IonReactRouter>
+          )}
         </IonApp>
       </Provider>
     );

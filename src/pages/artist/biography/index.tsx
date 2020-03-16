@@ -110,7 +110,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
       <IonPage id="artist-biography" className="artist-biography-page">
         <CreateAnimation
           ref={this.headerRef}
-          duration={300}
+          duration={0}
           fromTo={{
             property: 'background',
             toValue: 'var(--background)',
@@ -129,7 +129,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               }
               centerContent={
                 <CreateAnimation
-                  duration={300}
+                  duration={500}
                   ref={this.headerTitleRef}
                   fromTo={{
                     property: 'color',

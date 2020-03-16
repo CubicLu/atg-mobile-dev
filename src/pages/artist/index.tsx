@@ -6,7 +6,8 @@ import {
   IonPage,
   createAnimation,
   IonHeader,
-  IonButton
+  IonButton,
+  CreateAnimation
 } from '@ionic/react';
 import {
   _,
@@ -55,6 +56,12 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistPage extends React.Component<Props, State> {
+  private animation: boolean = false;
+  private menuRef: React.RefObject<CreateAnimation> = React.createRef();
+  private nameRef: React.RefObject<CreateAnimation> = React.createRef();
+  private supRef: React.RefObject<CreateAnimation> = React.createRef();
+  private supportRef: React.RefObject<CreateAnimation> = React.createRef();
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -74,15 +81,58 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
-  handleScroll(event: any): void {
+  supportCoordinates(): string {
+    const btn = this.supportRef.current?.nodes.values().next().value;
+    if (btn == null) return 'translate(0)';
+
+    const buttonLeft = btn.getBoundingClientRect().left;
+    const buttonTop = btn.getBoundingClientRect().top;
+    const width = btn.getBoundingClientRect().width;
+    const rightPx = 16;
+    const topPx = 55;
+    const marginRight = window.innerWidth - rightPx - width - buttonLeft;
+    const marginTop = Math.floor(topPx - buttonTop);
+    return `translate(${Math.floor(marginRight)}px, ${marginTop}px)`;
+  }
+  supportTitle(): string {
+    const btn = this.nameRef.current?.nodes.values().next().value;
+    if (btn == null) return 'translate(0)';
+
+    const titleLeft = btn.getBoundingClientRect().left;
+    const titleTop = btn.getBoundingClientRect().top;
+    const leftPx = 0;
+    const topPx = 445;
+    const marginRight = Math.floor(leftPx - titleLeft);
+    const marginTop = Math.floor(topPx - titleTop);
+    return `translate(${Math.floor(marginRight)}px, ${marginTop}px)`;
+  }
+
+  async handleScroll(event: any): Promise<void> {
+    const menuAnimation = this.menuRef.current!.animation;
+    const supportAnimation = this.supportRef.current!.animation;
+    const nameAnimation = this.nameRef.current!.animation;
+
     const { blur } = this.state;
     const eventBlur = event.detail.scrollTop > 140;
     if (blur === eventBlur) return;
     this.setState({ blur: eventBlur });
+    const direction = eventBlur ? 'normal' : 'reverse';
+
+    if (this.animation) return;
+    menuAnimation.direction(direction);
+    supportAnimation.direction(direction);
+    nameAnimation.direction(direction);
+    nameAnimation.direction(direction);
+    this.animation = true;
+    // eslint-disable-next-line no-undef
+    await Promise.all([
+      menuAnimation.play(),
+      supportAnimation.play(),
+      nameAnimation.play()
+    ]);
+    this.animation = false;
   }
   handleMenu(event: MenuInterface): void {
-    console.log(event.route);
-
     if (event.isPage === true) {
       let route =
         event.route != null
@@ -94,52 +144,6 @@ class ArtistPage extends React.Component<Props, State> {
     } else {
       this.props.updateSettingsProperty('activeArtistTab', event.id);
     }
-  }
-
-  animateTitle(): void {
-    const title = document.getElementById('artistName');
-    if (title == null) return;
-    const titleLeft = title.getBoundingClientRect().left;
-    const titleTop = title.getBoundingClientRect().top;
-    // const width = title.getBoundingClientRect().width;
-    const leftPx = 16;
-    const topPx = 45;
-    const marginRight = Math.floor(leftPx - titleLeft);
-    const marginTop = Math.floor(topPx - titleTop);
-    // console.log(`${marginRight}px, ${marginTop}px`);
-
-    const supportAnimation = createAnimation()
-      .addElement(title)
-      .duration(500)
-      .fromTo(
-        'transform',
-        'translate(0, 0) scale(1)',
-        `translate(${marginRight}px, ${marginTop}px) scale(0.48)`
-      ); // .afterAddClass('left');
-    supportAnimation.play();
-  }
-
-  animateSupport(): void {
-    const btn = document.getElementById('supportBtn');
-    if (btn == null) return;
-    const buttonLeft = btn.getBoundingClientRect().left;
-    const buttonTop = btn.getBoundingClientRect().top;
-    const width = btn.getBoundingClientRect().width;
-    const rightPx = 16;
-    const topPx = 55;
-    const marginRight = window.innerWidth - rightPx - width - buttonLeft;
-    const marginTop = topPx - buttonTop;
-    // console.log(`${marginRight}px, ${marginTop}px`);
-
-    const supportAnimation = createAnimation()
-      .addElement(btn)
-      .duration(500)
-      .fromTo(
-        'transform',
-        'translate(0, 0)',
-        `translate(${Math.floor(marginRight)}px, ${Math.floor(marginTop)}px)`
-      ); //.afterAddClass('right');
-    supportAnimation.play();
   }
 
   render(): React.ReactNode {
@@ -161,7 +165,7 @@ class ArtistPage extends React.Component<Props, State> {
           blur={this.state.blur}
         />
         <IonHeader className="ion-no-border">
-          <Header //will come from position top 160 to top 55 and center to left and from 60px to 24 (250%)
+          <Header
             type="fixed"
             centerContent={
               <h4
@@ -171,9 +175,19 @@ class ArtistPage extends React.Component<Props, State> {
               </h4>
             }
             rightContent={
+              // <CreateAnimation
+              //   ref={this.supRef}
+              //   duration={500}
+              //   fromTo={{
+              //     property: 'transform',
+              //     fromValue: 'translateX(0)',
+              //     toValue: 'translateX(300px)'
+              //   }}
+              // >
               <div className={scrolled ? 'supportByHide' : 'supportByShow'}>
                 <SupportBy data={supportFans} />
               </div>
+              // </CreateAnimation>
             }
             leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
           />
@@ -187,32 +201,61 @@ class ArtistPage extends React.Component<Props, State> {
           >
             <div className="emptySpace" />
             <div className="artistName center">
-              <h2
-                id="artistName"
-                className={`title ${scrolled ? 'left' : 'center'}`}
+              <CreateAnimation
+                ref={this.nameRef}
+                duration={500}
+                fromTo={{
+                  property: 'transform',
+                  fromValue: 'translate(0, 0)',
+                  toValue: 'translate(-100px, -150px)'
+                }}
               >
-                {name}
-              </h2>
+                <h2
+                  id="artistName"
+                  className={`title ${scrolled ? 'left' : 'center'}`}
+                >
+                  {name}
+                </h2>
+              </CreateAnimation>
             </div>
 
             <div className={`supportBtn ${scrolled ? 'right' : 'center'}`}>
-              <IonButton
-                id="supportBtn"
-                className="support rounded"
-                routerDirection="forward"
-                routerLink={`${this.props.history.location.pathname}/support`}
+              <CreateAnimation
+                ref={this.supportRef}
+                duration={500}
+                fromTo={{
+                  property: 'transform',
+                  fromValue: 'translate(0, 0)',
+                  toValue: 'translate(0px, -176px)'
+                }}
               >
-                SUPPORT US
-              </IonButton>
+                <IonButton
+                  className="support rounded"
+                  routerDirection="forward"
+                  routerLink={`${this.props.history.location.pathname}/support`}
+                >
+                  SUPPORT US
+                </IonButton>
+              </CreateAnimation>
             </div>
 
-            <div id="menu" className={scrolled ? 'menuFixed ' : 'notFixed'}>
-              <Menu
-                tabs={this.props.artistTabs}
-                activeId={this.props.activeArtistTab}
-                onClick={this.handleMenu.bind(this)}
-              />
-            </div>
+            <CreateAnimation
+              ref={this.menuRef}
+              duration={500}
+              fromTo={{
+                property: 'transform',
+                fromValue: 'translateY(0px)',
+                toValue: 'translateY(-204px)'
+              }}
+            >
+              <div className={scrolled ? 'menuFixed ' : 'notFixed'}>
+                <Menu
+                  tabs={this.props.artistTabs}
+                  activeId={this.props.activeArtistTab}
+                  onClick={this.handleMenu.bind(this)}
+                />
+              </div>
+            </CreateAnimation>
 
             {hasArtist &&
               _.map(

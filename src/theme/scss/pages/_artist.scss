@@ -32,12 +32,10 @@
         position: fixed;
         width: 100%;
         bottom: 0;
-        transform: translateY(-204px);
-        transition: transform 500ms;
+        opacity: 1;
     }
     .notFixed{
-        transform: translateY(0);
-        transition: transform 500ms;
+        opacity: 1;
     }
     position: relative;
     //hack for positioning behind - top = glasspanel
@@ -85,24 +83,12 @@
         &.center{
             justify-content: center;
             margin-bottom: 20px;
-            .support{
-                transform: translate(0, 0);
-                transition: transform 500ms;
-            }
         }
         &.right{
             top: 206px;
             position: fixed;
             right: 16px;
             display: block;
-            .support{
-                top: 206px;
-                position: fixed;
-                left: calc(50% - 48px);
-                display: block;
-                transform: translate(calc(100% - 24px), -176px);
-                transition: transform 500ms;
-            }
         }
     }
     &.is-playing {
@@ -121,11 +107,9 @@
             text-align: center;
             margin-bottom: 6px;
             &.left{
-                // top: 30px;
                 opacity: 0;
+                transition: opacity 1000ms;
                 top: 150px;
-                transform: translate(calc(100px - 50vw), -120px);
-                transition: transform 500ms, opacity 1000ms;
                 position: fixed;
                 display: block;
                 font-size: pxToRem(30);
@@ -133,7 +117,7 @@
             &.center{
                 opacity: 1;
                 transform: translate(0,0);
-                transition: transform 500ms, opacity 1000ms;
+                transition: opacity 1000ms;
             }
         }
     }

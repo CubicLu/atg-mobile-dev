@@ -1,11 +1,7 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
-import {
-  Button,
-  BackgroundImage,
-  BackgroundInitialImage
-} from './../../components';
+import { IonContent, IonPage, IonButton } from '@ionic/react';
+import { BackgroundImage, BackgroundInitialImage } from './../../components';
 import {} from './../../actions';
 
 interface Props extends RouteComponentProps {}
@@ -44,24 +40,29 @@ class InitialPage extends React.Component<Props> {
                   </div>
                   <div className="row">
                     <div className="col s12">
-                      <Button
-                        label="Sign In"
-                        color="primary"
-                        gradient
-                        type={'full'}
-                        bold
-                        onClick={(): any => this.props.history.push('/sign-in')}
-                      />
+                      <IonButton
+                        className="primary gradient"
+                        routerDirection="forward"
+                        size="default"
+                        routerLink="/home/profile"
+                        expand="full"
+                      >
+                        Sign In
+                      </IonButton>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col s12">
-                      <Button
-                        label="Create an account"
-                        color="transparent"
-                        type={'full'}
-                        onClick={(): any => this.props.history.push('/sign-up')}
-                      />
+                      <IonButton
+                        color="white"
+                        fill="clear"
+                        size="large"
+                        expand="full"
+                        routerDirection="forward"
+                        routerLink="/sign-up"
+                      >
+                        Create an account
+                      </IonButton>
                     </div>
                   </div>
                 </div>

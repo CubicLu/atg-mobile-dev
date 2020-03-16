@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonPage } from '@ionic/react';
+import { IonPage, IonButton } from '@ionic/react';
 import {
   BackgroundImage,
   BackgroundSignInImage,
@@ -55,6 +55,13 @@ class SignInPage extends React.Component<Props> {
 
                 <div className="row ">
                   <div className="col s12">
+                    <IonButton
+                      routerDirection="forward"
+                      color="primary"
+                      href="/home/profile"
+                    >
+                      Sign In
+                    </IonButton>
                     <Button
                       label="Sign In"
                       type={'full'}

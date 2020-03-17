@@ -38,14 +38,16 @@ class EnterCodePage extends React.Component<Props, State> {
     return (
       <IonPage id="enter-code-page">
         <BackgroundImage
-          gradient="180deg, #000, #0D0711"
+          gradient="180deg, #000000, #100914"
           backgroundTop
           backgroundTopDark={false}
-          backgroundBottom
+          backgroundTopOpacity={0.13}
+          backgroundBottom={true}
           backgroundBottomDark={false}
+          backgroundBottomOpacity={0.13}
           bottomRotate={true}
         />
-        <div className="container enter-code-page">
+        <div className="enter-code-page">
           <div className="row header">
             <div className="col s10"></div>
             <div className="col s2 button">
@@ -55,9 +57,12 @@ class EnterCodePage extends React.Component<Props, State> {
               />
             </div>
           </div>
-          <div className="row ">
+          <div className="row">
             <div className="col s12">
-              <h1 className="title center-align">Enter Verification Code</h1>
+              <h1 className="mt-40 title center-align">
+                Enter Verification Code
+              </h1>
+
               <p>
                 We sent a code to: <br />
                 thesound@music.com
@@ -66,7 +71,7 @@ class EnterCodePage extends React.Component<Props, State> {
           </div>
 
           <div className="row">
-            <div className="col s12  mt-40 input-div">
+            <div className="col s12 mt-40 input-div">
               <p>Enter the 6-digit code</p>
               <InputCode
                 onKeyUp={this.validToken.bind(this)}

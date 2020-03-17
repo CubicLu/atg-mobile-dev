@@ -18,7 +18,7 @@
 
         .title{
             font-size: pxToRem(48);
-            line-height: pxToRem(48);
+            line-height: 48px;
             text-align: center;
         }
         .subtitle{
@@ -29,6 +29,9 @@
         color: #ffffff;
         text-align: center;
         font-weight: normal;
+        font-size: pxToRem(18);
+        font-family: "Helvetica Neue";
+
     }
 
     .buttons{

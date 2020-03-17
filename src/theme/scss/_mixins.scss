@@ -65,7 +65,7 @@
 }
 
 @function pxToRem($target, $context: $base-size) {
-  @return ($target / $context) * 1rem;
+  @return ($target / $context) * 1em;
 }
 
 @mixin no-scroll-bar() {
@@ -118,7 +118,7 @@
 
         .btn{
             font-size: pxToRem(18);
-            padding-top: pxToRem(8);
+            padding-top: 8px;
             &::after{
                 content: "\203A";
                 padding-left: 4px;
@@ -161,11 +161,11 @@
     font-family: "Industria";
     position: relative;
     font-weight: bold;
-    margin-left: 14px;
+    margin-left: 16px;
     &::after{
       content: attr(data-currency);
       position: absolute;
-      font-size: pxToRem(48);
+      font-size: 40px;
       left: -13px;
     }
   }

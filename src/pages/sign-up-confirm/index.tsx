@@ -22,7 +22,7 @@ class SignUpConfirmPage extends React.Component<Props> {
           backgroundImage={BackgroundSignUpConfirmImage}
           backgroundBottom
         />
-        <div className="container sign-up-confirm-page">
+        <div className="sign-up-confirm-page">
           <div className="space-between">
             <div className="row header">
               <div className="col s8">
@@ -30,7 +30,7 @@ class SignUpConfirmPage extends React.Component<Props> {
               </div>
               <div className="col s4 button">
                 <ButtonIcon
-                  styles={{ width: 35, height: 35 }}
+                  styles={{ width: 35, height: 35, minWidth: 35 }}
                   icon={<CloseIcon width={12} height={12} />}
                   onClick={(): any => this.props.history.goBack()}
                 />

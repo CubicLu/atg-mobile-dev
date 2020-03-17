@@ -9,11 +9,6 @@
         width: 100%;
     }
 }
-.container{
-    z-index: 1;
-    position: relative;
-}
-
 
 .mt-20{
     margin-top: 20px;
@@ -53,6 +48,10 @@
 
 .p-10{
     padding: 10px;
+}
+.px-20{
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .p-relative{

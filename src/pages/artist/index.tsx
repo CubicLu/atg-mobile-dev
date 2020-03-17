@@ -4,7 +4,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   IonContent,
   IonPage,
-  createAnimation,
   IonHeader,
   IonButton,
   CreateAnimation
@@ -70,7 +69,9 @@ class ArtistPage extends React.Component<Props, State> {
     };
   }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
+    if (nextProps.match.params.id !== this.props.currentArtist?.username) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
@@ -119,7 +120,7 @@ class ArtistPage extends React.Component<Props, State> {
     const name = this.props.currentArtist?.name;
     const gradient = `180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`;
     const backgroundImage = this.props.currentArtist?.cover.background;
-    const clickBack = (): void => this.props.history.goBack();
+    const clickBack = (): void => this.props.history.push('/home/profile');
 
     return (
       <IonPage id="artist-page">

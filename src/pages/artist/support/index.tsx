@@ -136,6 +136,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       <br />
                       want to support us!
                     </h1>
+
                     <h5>Tap an option below for more details</h5>
                   </div>
 

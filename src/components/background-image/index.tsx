@@ -6,7 +6,6 @@ import {
   BackgroundCircleBubblesLightInverted,
   BackgroundCircleBubblesOrangeImage
 } from './../../components';
-import {} from './../../actions';
 
 interface Props {
   backgroundImage?: any;
@@ -43,10 +42,10 @@ class BackgroundImageComponent extends React.Component<Props> {
     bottomRotate: false,
     backgroundTopDark: true,
     backgroundBottomDark: true,
-    backgroundTopOpacity: 0.07,
-    backgroundBottomOpacity: 0.07,
+    backgroundTopOpacity: 0.12,
+    backgroundBottomOpacity: 0.12,
     backgroundTopHeight: 300,
-    backgroundBottomHeight: 180,
+    backgroundBottomHeight: 300,
     blur: false,
     className: ''
   };
@@ -84,10 +83,9 @@ class BackgroundImageComponent extends React.Component<Props> {
           height: this.props.backgroundBottomHeight
         };
 
-    const backgroundClass =
-      `background-image ${this.props.shadow ? 'shadow' : ''} ${
-        this.props.blur ? 'blur' : ''
-      }` + this.props.className;
+    const backgroundClass = `background-image ${
+      this.props.shadow ? 'shadow' : ''
+    } ${this.props.className}`;
 
     let backgroundImageArray: string[] = [];
     backgroundImageArray.push(`url(${this.props.backgroundImage})`);

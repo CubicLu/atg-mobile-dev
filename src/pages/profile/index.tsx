@@ -29,19 +29,19 @@ class ProfilePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="profile-page">
+        <BackgroundImage
+          gradient="180deg,#6A1EE4,#1e053b"
+          backgroundTopDark
+          backgroundTop
+          backgroundTopOpacity={0.15}
+          backgroundBottom
+          backgroundBottomDark={false}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.3}
+        />
         <div
           className={`profile-page` + (this.props.isPlaying && ' is-playing')}
         >
-          <BackgroundImage
-            gradient="180deg,#6A1EE4,#1e053b"
-            backgroundTopDark
-            backgroundTop
-            backgroundTopOpacity={0.15}
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundBottomOrange={true}
-            backgroundBottomOpacity={0.3}
-          />
           <IonHeader className="ion-no-border">
             <HeaderProfile />
             <Menu

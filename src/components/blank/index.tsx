@@ -15,7 +15,7 @@ class BlankComponent extends React.Component<Props> {
     return <div></div>;
   }
 }
-
+// eslint-disable-next-line
 const mapStateToProps = ({}: ApplicationState): object => {
   return {};
 };

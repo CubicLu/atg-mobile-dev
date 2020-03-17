@@ -7,14 +7,10 @@ import {
   UserGroupIcon,
   BackIcon
 } from './../../../components';
-import {} from './../../../actions';
 import { IonActionSheet, ActionSheetButton } from '@ionic/react';
-
 import { connect } from 'react-redux';
 import { updateAuthProperty } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
-
-interface StateProps {}
 
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
@@ -131,6 +127,9 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     );
   }
 }
+
+interface StateProps {}
+// eslint-disable-next-line
 const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };

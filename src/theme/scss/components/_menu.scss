@@ -86,24 +86,30 @@
     &.fan-support-options, &.artist-list, &.generic-list{
         width: 100%;
         overflow-y: hidden;
+        .col{
+            &.s12{
+                padding: 0 20px; 
+            }
+            
+        }
         .header{
             @include header-with-button;
-            margin-top: 0;
             padding-top: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             margin-top: 0;
+            margin-bottom: 0;
             position: fixed;
             z-index: 1;
             .title{
                 font-size: pxToRem(50);
                 margin-top: 0;
-                padding-top: pxToRem(20);
+                padding-top: 20px;
             }
             .subtitle{
                 font-size: pxToRem(30);
                 margin-left: 0;
-                margin-top: pxToRem(-10);
+                margin-top: -10px;
             }
             .button{
                 .btn {
@@ -112,11 +118,19 @@
                 height: 35px;
                 align-items: flex-end;
             }
+            .col{
+                &.s10{
+                    padding-left:20px; 
+                }
+                &.s2{
+                    padding-right:20px; 
+                }
+            }
         }
         .content{
             position: relative;
-            top: 100px;
-            margin-bottom: 100px;
+            top: 80px;
+            margin-bottom: 80px;
             ul{
                 li{
                     display: inline-flex;
@@ -124,7 +138,8 @@
                     align-items: center;
                     margin-bottom: 10px;
                     width: 100%;
-                    font-family: "Roboto";
+                    font-family: "Helvetica Neue";
+                    font-size: pxToRem(18);
                     font-weight: 400;
                     color: #333;
 

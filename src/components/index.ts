@@ -5,7 +5,6 @@ import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
 import InputCodeComponent from './input/code';
 import ButtonIconComponent from './button/icon';
-import TabComponent from './tab';
 import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
 import CardArtistComponent from './card/artist';
@@ -38,7 +37,6 @@ export {
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
   ButtonIconComponent as ButtonIcon,
-  TabComponent as Tab,
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,

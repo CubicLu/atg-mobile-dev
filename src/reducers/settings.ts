@@ -183,27 +183,27 @@ const defaultState: SettingsReducerType = {
   links: [
     {
       path: '/home/artist/:id',
-      id: 'profile',
+      id: 'artistPage',
       component: ArtistPage
     },
     {
       path: '/home/artist/:id/support',
-      id: 'profile',
+      id: 'artistSupport',
       component: ArtistSupportPage
     },
     {
       path: '/home/artist/:id/gallery',
-      id: 'profile',
+      id: 'artistGallery',
       component: ArtistGalleryPage
     },
     {
       path: '/home/artist/:id/biography',
-      id: 'profile',
+      id: 'artistBiography',
       component: ArtistBiographyPage
     },
     {
       path: '/home/artist/:id/event',
-      id: 'profile',
+      id: 'artistEvents',
       component: ArtistEventsPage
     }
   ],

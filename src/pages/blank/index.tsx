@@ -21,7 +21,7 @@ class BlankPage extends React.Component<Props> {
     );
   }
 }
-
+// eslint-disable-next-line
 const mapStateToProps = ({}: ApplicationState): object => {
   return {};
 };

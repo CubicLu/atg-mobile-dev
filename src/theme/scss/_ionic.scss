@@ -3,26 +3,6 @@ ion-tabbar {
 }
 ion-button {
     margin: 0;
-    &.button-solid{
-        --background: transparent;
-    } 
-    .button-clear{
-        --color: #ffffff;
-    }
-    .button-inner{
-        height: pxToRem(36);
-    }
-    .button-large{
-        height: pxToRem(48);
-        &.button-inner{
-        }
-    }
-    .button-small{
-        height: pxToRem(30);
-    }
-    &.ion-color-white{
-        color: white;
-    }
     font-family: "Helvetica Neue";
     font-size: 16px;;
     font-stretch: normal;
@@ -32,11 +12,28 @@ ion-button {
     text-align: center;
     text-transform: initial;
 
+    &.button-solid{
+        --background: transparent;
+    } 
+    .button-clear{
+        --color: #ffffff;
+    }
+    .button-inner{
+        height: pxToRem(36);
+    }
+    &.button-large{
+        height: pxToRem(48);
+    }
+    &.button-small{
+        height: pxToRem(30);
+    }
+    &.ion-color-white{
+        color: white;
+    }
     &.fixed{
         position: fixed;
         z-index: 10;
     }
-    
     &.primary{ 
         background: $primary;
         color: #FFF;
@@ -85,7 +82,6 @@ ion-button {
     }
 
     &.icon { 
-        
         &.circle { 
            border-radius: 50%;
            height: 35px;

@@ -47,6 +47,7 @@
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "emulator:android": "cordova run android",
     "emulator:ios": "cordova run ios",
+    "build ios": "ionic build && cordova build ios --prod --release",
     "build:ionic": "ionic build"
   },
   "eslintConfig": {

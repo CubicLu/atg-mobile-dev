@@ -5,6 +5,11 @@ export const updateArtistProperty = (property: string, value: any): any => ({
   payload: { property, value }
 });
 
+export const updateArtistSetInitialProperty = (property: string): any => ({
+  type: ActionType.UPDATE_ARTIST_SET_INITIAL_PROPERTY,
+  payload: property
+});
+
 export const getArtistsAPI = (): any => ({
   type: ActionType.GET_ARTISTS_API
 });
@@ -31,5 +36,20 @@ export const getArtistAPIFailure = (error): any => ({
 
 export const getArtistAPISuccess = (response): any => ({
   type: ActionType.GET_ARTIST_API_SUCCESS,
+  payload: response
+});
+
+export const getArtistEventAPI = (username: string, eventId: string): any => ({
+  type: ActionType.GET_ARTIST_EVENT_API,
+  payload: { username, eventId }
+});
+
+export const getArtistEventAPIFailure = (error): any => ({
+  type: ActionType.GET_ARTIST_EVENT_API_FAILURE,
+  payload: error
+});
+
+export const getArtistEventAPISuccess = (response): any => ({
+  type: ActionType.GET_ARTIST_EVENT_API_SUCCESS,
   payload: response
 });

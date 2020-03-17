@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { EventInterface } from '../../../interfaces';
 import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
 import { IonAlert } from '@ionic/react';
@@ -7,15 +8,13 @@ interface State {
   show: boolean;
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
   id: number;
-  data: EventInterface;
+  data: EventInterface | null;
+  artistUsername: string | undefined;
 }
 
 class CardEventComponent extends React.Component<Props, State> {
-  public static defaultProps = {
-    type: 'normal'
-  };
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -68,7 +67,13 @@ class CardEventComponent extends React.Component<Props, State> {
                     <ShareIcon width={20} height={35} />
                     <div className="label">Share</div>
                   </li>
-                  <li>
+                  <li
+                    onClick={(): void => {
+                      this.props.history.push(
+                        `/home/artist/${this.props.artistUsername}/event/${this.props.id}`
+                      );
+                    }}
+                  >
                     <UserGroupIcon width={25} height={35} />
                     <div className="label">{`Who's Going`}</div>
                   </li>
@@ -113,4 +118,4 @@ class CardEventComponent extends React.Component<Props, State> {
   }
 }
 
-export default CardEventComponent;
+export default withRouter(CardEventComponent);

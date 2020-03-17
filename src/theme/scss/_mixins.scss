@@ -198,5 +198,72 @@
   }
   @keyframes #{$name} {
     @content;
+  } 
+}
+
+@mixin list-user{
+  @include list-transparent;
+
+  .row {
+      width: 100%;
+      margin-bottom: 5px;
+      margin-top: 5px;
+  }
+
+  .image{
+      display: flex;
+      justify-content: center;
+  }
+
+  .info{ 
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     height: 50px;
+      .user{
+          display: block;
+          color: #FFF;
+          font-family: Arial, Helvetica, sans-serif;
+          line-height: 20px;
+          &::before{
+            content: "@";
+          }
+      }
+  }
+
+  .btn{
+      &.normal{
+          border-radius: 0;
+          height: 100%;
+          padding-left: 5px;
+          padding-right: 5px;
+          width: 70px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+  }
+  
+
+   .action { 
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 35px;
+      button {
+          display: flex;
+          justify-content: center;
+          
+          &.gradient{
+              border-radius: 8px;
+              color: #000;
+              font-family: Arial, Helvetica, sans-serif;
+              font-weight: bold;
+          }
+          &.circle{
+              padding: 0;
+          }
+      }
   }
 }

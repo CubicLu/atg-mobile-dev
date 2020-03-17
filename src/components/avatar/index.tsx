@@ -2,7 +2,6 @@
 import React from 'react';
 import {} from './../../components';
 import {} from './../../actions';
-const AvatarDefaultImage = require('./../../assets/img/avatar/default.jpg');
 
 interface Props {
   image: string | undefined;
@@ -13,7 +12,8 @@ interface Props {
 
 class AvatarComponent extends React.Component<Props> {
   public static defaultProps = {
-    image: AvatarDefaultImage,
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg',
     type: 'normal',
     width: 60,
     height: 60

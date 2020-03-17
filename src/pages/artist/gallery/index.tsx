@@ -94,6 +94,11 @@ class ArtistGalleryPage extends React.Component<Props> {
                     return (
                       <CardAlbumGallery
                         key={index}
+                        onClick={(): void => {
+                          this.props.history.push(
+                            `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
+                          );
+                        }}
                         image={data.cover}
                         label={data.name}
                         quantity={data.items.length}

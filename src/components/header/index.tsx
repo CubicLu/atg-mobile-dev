@@ -13,6 +13,7 @@ class HeaderComponent extends React.Component<Props> {
     buttonRight: null,
     leftContent: null,
     centerContent: null,
+    rightContent: null,
     type: 'default'
   };
   render(): React.ReactNode {

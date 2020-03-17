@@ -24,7 +24,9 @@ import {
   MessagesPage,
   ProfilePage,
   SearchPage,
-  RadioPage
+  RadioPage,
+  ArtistGalleryPhotoPage,
+  ArtistGalleryGridPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -184,6 +186,18 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/support',
       id: 'profile',
       component: ArtistSupportPage,
+      show: false
+    },
+    {
+      path: '/home/artist/:id/gallery/:galleryId/:photoId',
+      id: 'profile',
+      component: ArtistGalleryPhotoPage,
+      show: false
+    },
+    {
+      path: '/home/artist/:id/gallery/:galleryId',
+      id: 'profile',
+      component: ArtistGalleryGridPage,
       show: false
     },
     {

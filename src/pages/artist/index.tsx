@@ -113,7 +113,13 @@ class ArtistPage extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const hasArtist = this.props.currentArtist;
-    if (!hasArtist) return <IonPage id="artist-page" />; //to render only once, no construct again
+    if (!hasArtist) {
+      return (
+        <IonPage id="artist-page">
+          <LoaderFullscreen visible={true} />
+        </IonPage>
+      );
+    }
 
     const scrolled = this.state.blur;
     const supportFans = this.props.currentArtist?.supportArtistFans;

@@ -148,10 +148,6 @@
                     margin-top: 40px;
                 }
 
-                .dots {
-
-                }
-
                 .buttons{
                     button{
                         width: 35px;
@@ -273,6 +269,9 @@
 
             }
         }
+        .p-0{
+            padding: 0;
+        }
 
         h1{
             margin-top: 0px;
@@ -292,8 +291,29 @@
             margin-bottom: 5px;
         }
 
-        h3{
-            font-size: pxToRem(20);
+        h5{
+            font-size: pxToRem(24);
+        }
+        h6{
+            font-weight: bold;
+            font-family: "Helvetica";
+            color: #01AED4;
+            font-size: pxToRem(18);
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .h7{
+            font-weight: normal;
+            font-family: "Helvetica";
+            color: #ffffff;
+            font-size: pxToRem(16);
+        }
+        .h9{
+            font-weight: normal;
+            font-family: "Helvetica";
+            color: #ffffff;
+            font-size: pxToRem(13);
         }
 
         .list {

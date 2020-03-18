@@ -1,6 +1,5 @@
 .header {
-    height: 100px;
-    padding-top: pxToRem(35);
+    padding-top: pxToRem(32);
     width: 100%;
     .row{
         margin-bottom: 0px;
@@ -16,13 +15,13 @@
         width: 100%;
         margin-top: 0;
         top: 0;
+        z-index: 4;
     }
 
     &.profile{
-
         .title{
             font-size: pxToRem(45);
-            margin-top: pxToRem(2);
+            margin-top: 2px;
         }
         .subtitle{
             margin-left: 0;
@@ -98,7 +97,6 @@
                 text-align: center;
             }
         }
-       
     }
 
     .right-col{

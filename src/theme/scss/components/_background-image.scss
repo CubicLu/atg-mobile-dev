@@ -1,34 +1,12 @@
-.background-top, .background-bottom {
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 50vh;
-    width: 100%;
-    position: fixed;
-    &.rotate{
-        transform: rotate(180deg);        
-    }
-    &.background-bottom{
-        bottom: 0;
-        margin-top: 50%;
-    }
-    &.background-top{
-        top: 0;
-        margin-top: 0;
-    }
+ion-content{
+    --background: transparent;
 }
-.background-legend {
-    writing-mode: vertical-rl;
-    font-size: 12px;
-    color: #707070;
-    position: absolute;
-    right: 10px;
-    top: 100px;
-    transform: rotate(-180deg);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400;
+ion-page{
+    --background: transparent;
 }
-.background-image{ 
+.background-image{
+    z-index: -3;
+    filter: saturate(1.2);
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
@@ -44,10 +22,41 @@
         animation: blur 0.5s ease forwards;
         background-color: rgb(0, 0, 0);
     }
-    
-    &.shadow{ 
+    &.shadow{
         box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;
     }
+}
+.background-top, .background-bottom {
+    z-index: -2;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100%;
+    position: fixed;
+    &.rotate{
+        transform: rotate(180deg);
+    }
+    &.background-bottom{
+        bottom: -50px;
+        margin-top: 50%;
+    }
+    &.background-top{
+        top: 0;
+        margin-top: 0;
+    }
+}
+.background-legend {
+    z-index: -2;
+    writing-mode: vertical-rl;
+    font-size: 12px;
+    color: #707070;
+    position: absolute;
+    right: 10px;
+    top: 100px;
+    transform: rotate(-180deg);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
 }
 
 @include keyframes(blur) {
@@ -71,5 +80,5 @@
         -o-filter: blur(7px);
         -ms-filter: blur(7px);
         filter: blur(7px);
-    } 
+    }
 }

@@ -22,11 +22,15 @@ export enum ActionType {
 
 export interface TabsInterface {
   path: string;
+  icon: any;
+  id: string;
+  component: any;
+}
+export interface LinksInterface {
+  path: string;
   icon?: any;
   id: string;
   component?: any;
-  redirect?: boolean;
-  show?: boolean;
 }
 
 export interface ArtistInterface {
@@ -57,6 +61,7 @@ export interface ArtistCoverInterface {
 export interface SettingsReducerType {
   activeTab: string;
   tabs: TabsInterface[];
+  links: LinksInterface[];
   isPlaying: boolean;
   fanTabs: MenuInterface[];
   activeFanTab: string;
@@ -107,7 +112,7 @@ export interface UserInterface {
 }
 
 export interface AuthReducerType {
-  loggedUser: UserInterface;
+  loggedUser: UserInterface | undefined;
 }
 
 export interface GradientColorsInterface {

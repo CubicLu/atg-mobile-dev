@@ -16,21 +16,12 @@ class BlankPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="blank-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
-        >
-          blank
-        </IonContent>
+        <IonContent>blank</IonContent>
       </IonPage>
     );
   }
 }
-
+// eslint-disable-next-line
 const mapStateToProps = ({}: ApplicationState): object => {
   return {};
 };

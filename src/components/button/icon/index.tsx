@@ -11,7 +11,8 @@ interface Props {
     | 'transparent-gray'
     | 'support'
     | 'red'
-    | 'supported';
+    | 'supported'
+    | 'orange';
   type?: 'rounded' | 'circle' | 'normal' | 'full';
   styles?: object;
   fixed: boolean;

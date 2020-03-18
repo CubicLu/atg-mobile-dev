@@ -51,4 +51,4 @@ jobs:
 
       - run:
           name: Run tests coverage
-          command: npm run test -- --coverage && codecov -t 4e31c295-fab4-4d1e-a969-921d7048163b --disable=gcov --yml .codecov.yml
+          command: npm run test -- --coverage && codecov -t 43f25114-d20b-4807-bff5-85bd795663b3 --disable=gcov --yml .codecov.yml

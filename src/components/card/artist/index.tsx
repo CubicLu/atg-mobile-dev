@@ -37,6 +37,14 @@ class CardArtistComponent extends React.Component<Props> {
             style={{ backgroundImage: `url(${this.props.artist.cover.main})` }}
           >
             <div className="row">
+              <div
+                className="card-area"
+                onClick={(): void => {
+                  this.props.history.push(
+                    `/home/artist/${this.props.artist.username}`
+                  );
+                }}
+              ></div>
               <div className="col s12 infos p-10">
                 <div className="row">
                   <div className="col s12 button">
@@ -77,6 +85,11 @@ class CardArtistComponent extends React.Component<Props> {
                     <ButtonSupport
                       buttonType={'icon'}
                       supported={this.props.artist.support}
+                      onClick={(): void => {
+                        this.props.history.push(
+                          `/home/artist/${this.props.artist?.username}/support`
+                        );
+                      }}
                     />
                   </div>
                 </div>

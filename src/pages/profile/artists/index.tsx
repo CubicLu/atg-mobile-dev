@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonList } from '@ionic/react';
+import { IonList, IonContent } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { CardArtist, _ } from './../../../components';
 import { getArtistsAPI } from './../../../actions';
@@ -25,20 +25,22 @@ class ProfileArtistsPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <div
-        className={
-          `profile-artists-page` + (this.props.isPlaying && ' is-playing')
-        }
-      >
-        <IonList className="artist-list">
-          {_.map(
-            this.props.artists,
-            (data, i): React.ReactNode => {
-              return <CardArtist key={i} artist={data} />;
-            }
-          )}
-        </IonList>
-      </div>
+      <IonContent>
+        <div
+          className={
+            `profile-artists-page` + (this.props.isPlaying && ' is-playing')
+          }
+        >
+          <IonList className="artist-list">
+            {_.map(
+              this.props.artists,
+              (data, i): React.ReactNode => {
+                return <CardArtist key={i} artist={data} />;
+              }
+            )}
+          </IonList>
+        </div>
+      </IonContent>
     );
   }
 }

@@ -1,27 +1,31 @@
+.scroll-x{
+    overflow-x: auto;
+}
+.list-fit{
+    .menu{
+        width: 100%;
+    }
+}
 .menu{
     &.generic{
         &.scroll{
             justify-content: normal !important;
-            overflow-x: scroll;
             margin-top: 30px;
             @include no-scroll-bar();
             li{
-                margin-left: 10px !important;
-                margin-right: 10px !important;
-                // min-width: 65px;
-                // overflow: hidden;
+                margin-left: 8px !important;
+                margin-right: 8px !important;
 
                 &:first-child{
-                    margin-left: 10px !important;
+                    margin-left: 8px !important;
                 }
                 &:last-child{
-                    padding-right: 10px !important;
+                    padding-right: 8px !important;
                 }
             }
         }
 
         justify-content: space-around;
-        width: 100%;
         padding: 10px 0;
         margin-top: 30px;
         li{
@@ -51,7 +55,7 @@
                         padding-bottom: 2px;
                     }
                 }
-            
+
                 .title{
                     font-family: 'Helvetica';
                     font-size: 14px;
@@ -67,7 +71,6 @@
                         border-bottom: 2px solid $tertiary;
                         color: $tertiary;
                         margin-top: 9px;
-                        overflow: auto;
                     }
 
                     .circle{
@@ -77,31 +80,36 @@
                     }
                 }
             }
-        
+
     }
 
     &.fan-support-options, &.artist-list, &.generic-list{
         width: 100%;
         overflow-y: hidden;
+        .col{
+            &.s12{
+                padding: 0 20px; 
+            }
+            
+        }
         .header{
             @include header-with-button;
-            margin-top: 0;
             padding-top: 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
-            height: 100px;
             margin-top: 0;
+            margin-bottom: 0;
             position: fixed;
             z-index: 1;
             .title{
                 font-size: pxToRem(50);
                 margin-top: 0;
-                padding-top: pxToRem(20);
+                padding-top: 20px;
             }
             .subtitle{
                 font-size: pxToRem(30);
                 margin-left: 0;
-                margin-top: pxToRem(-10);
+                margin-top: -10px;
             }
             .button{
                 .btn {
@@ -110,11 +118,19 @@
                 height: 35px;
                 align-items: flex-end;
             }
+            .col{
+                &.s10{
+                    padding-left:20px; 
+                }
+                &.s2{
+                    padding-right:20px; 
+                }
+            }
         }
         .content{
             position: relative;
-            top: 100px;
-            margin-bottom: 100px;
+            top: 80px;
+            margin-bottom: 80px;
             ul{
                 li{
                     display: inline-flex;
@@ -122,13 +138,14 @@
                     align-items: center;
                     margin-bottom: 10px;
                     width: 100%;
-                    font-family: "Roboto";
+                    font-family: "Helvetica Neue";
+                    font-size: pxToRem(18);
                     font-weight: 400;
                     color: #333;
 
-                    button{ 
+                    button{
                         padding: 5px 10px;
-                        
+
                     }
                 }
             }

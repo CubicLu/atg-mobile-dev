@@ -30,7 +30,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
           </div>
           <div className="col s2 button">
             <ButtonIcon
-              styles={{ width: 30, height: 30 }}
+              styles={{ width: 30, height: 30, minWidth: 30 }}
               icon={<CloseIcon width={12} height={12} strokeWidth={2} />}
               onClick={(): any => {
                 this.props.onClick();

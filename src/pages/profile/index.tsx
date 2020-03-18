@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonHeader } from '@ionic/react';
 import {
   BackgroundImage,
   HeaderProfile,
@@ -29,48 +29,43 @@ class ProfilePage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="profile-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
+        <BackgroundImage
+          gradient="180deg,#6A1EE4,#1e053b"
+          backgroundTopDark
+          backgroundTop
+          backgroundTopOpacity={0.15}
+          backgroundBottom
+          backgroundBottomDark={false}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.3}
+        />
+        <div
+          className={`profile-page` + (this.props.isPlaying && ' is-playing')}
         >
-          <BackgroundImage
-            gradient="180deg,#6A1EE4,#20123B"
-            backgroundTopDark
-            backgroundTop
-            backgroundTopOpacity={0.05}
-          >
-            <div
-              className={
-                `profile-page` + (this.props.isPlaying && ' is-playing')
+          <IonHeader className="ion-no-border">
+            <HeaderProfile />
+            <Menu
+              className="scroll-x list-fit"
+              tabs={this.props.fanTabs}
+              activeId={this.props.activeFanTab}
+              onClick={(event: MenuInterface): void => {
+                return this.props.updateSettingsProperty(
+                  'activeFanTab',
+                  event.id
+                );
+              }}
+            />
+          </IonHeader>
+          {_.map(
+            this.props.fanTabs,
+            (data, i): React.ReactNode => {
+              if (data.id === this.props.activeFanTab) {
+                return React.createElement(data.component, { key: i });
               }
-            >
-              <HeaderProfile />
-              <Menu
-                tabs={this.props.fanTabs}
-                activeId={this.props.activeFanTab}
-                onClick={(event: MenuInterface): void => {
-                  return this.props.updateSettingsProperty(
-                    'activeFanTab',
-                    event.id
-                  );
-                }}
-              />
-              {_.map(
-                this.props.fanTabs,
-                (data, i): React.ReactNode => {
-                  if (data.id === this.props.activeFanTab) {
-                    return React.createElement(data.component, { key: i });
-                  }
-                  return null;
-                }
-              )}
-            </div>
-          </BackgroundImage>
-        </IonContent>
+              return null;
+            }
+          )}
+        </div>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

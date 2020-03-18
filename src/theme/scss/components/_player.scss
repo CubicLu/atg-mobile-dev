@@ -3,7 +3,7 @@
     height: $default-height-player;
     background: linear-gradient(180deg, #22022f, #070707);
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     right: 0;
     bottom: 50px;
@@ -14,10 +14,11 @@
         margin-bottom: 0;
     }
     .cover{
-        height: $default-height-player;
-        width: $default-height-player;
-        bottom: 5px;
-        position: relative;
+        position: absolute;
+        left: 24px;
+        height: $default-height-player + 15;
+        clip-path: inset(0 0 5px 0);
+        bottom: -5px;
         
         .img{
             background-repeat: no-repeat;
@@ -27,8 +28,8 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            height: $default-height-player - 5;
-            width: $default-height-player - 5;
+            height: $default-height-player + 15;
+            width: $default-height-player + 15;
             border-radius: 50%;
         }
         .icon{
@@ -39,34 +40,25 @@
             height: 100%;
         }
     }
-    .crop{
-        height: 12px;
-        position: relative;
-        z-index: 2;
-        background: linear-gradient(180deg, #0c060e, #070707); 
-        bottom: $default-height-player - 52;
-    }
     
     .progress{
         position: absolute;
         margin: 0;
-        position: absolute;
-        margin: 0;
-        height: 2px;
+        height: 3px;
         width: 80%;
         right: 0;
         background-color: #363636;
-        bottom: $default-height-player - 40;
+        bottom: 0;
 
         .bar{
             background: #FFFFFF;
-            height: 2px;
+            height: 3px;
         }
     }
 
     
     .info{
-        height: $default-height-player - 20;
+        height: $default-height-player;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -85,7 +77,7 @@
     }
     
     .commands{
-        height: $default-height-player - 20;
+        height: $default-height-player;
         display: flex;
         align-items: center;
     

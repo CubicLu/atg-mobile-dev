@@ -9,15 +9,16 @@ import {
   CloseIcon,
   ButtonPlan,
   Avatar,
-  ButtonSupport
+  ButtonSupport,
+  BackIcon
 } from './../../../components';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import { ArtistInterface, PlanInterface } from '../../../interfaces';
 
 interface State {
-  condition: boolean;
+  planDetail: boolean;
   plan: PlanInterface | null;
 }
 
@@ -47,16 +48,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      condition: false,
+      planDetail: false,
       plan: null
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist == null
-    ) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
@@ -67,44 +65,105 @@ class ArtistSupportPage extends React.Component<Props, State> {
     }
   }
 
-  showDetail(condition = false, plan: PlanInterface | null = null): void {
-    this.setState({
-      condition,
-      plan
-    });
+  showDetail(planDetail = false, plan: PlanInterface | null = null): void {
+    this.setState({ planDetail, plan });
   }
+  render(): React.ReactNode {
+    const hasArtist = this.props.currentArtist;
+    if (!hasArtist) return <IonPage />; //to render only once, no construct again
+    const { planDetail } = this.state;
+    const supportClassName = `artist-support-page ${
+      planDetail ? 'detail' : ''
+    }`;
 
-  renderDetail(): React.ReactNode {
     return (
-      <IonPage id="support-plan-detail-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#281448' }}
-        >
-          <BackgroundImage
-            gradient="180deg, #FCC505 0%, #C16509 100%"
-            backgroundBottomDark
-            backgroundTopDark
-          >
-            <div className={`artist-support-page detail`}>
-              <Header
-                rightContent={
+      <IonPage>
+        {hasArtist && (
+          <React.Fragment>
+            {planDetail ? (
+              <BackgroundImage
+                gradient="180deg, #FCC505 0%, #C16509 100%"
+                backgroundBottomDark={true}
+                backgroundTopDark={true}
+              />
+            ) : (
+              <BackgroundImage
+                gradient="180deg, #28144800 30%, #281448bf 50%, #281448 100%"
+                backgroundImage={
+                  this.props.currentArtist?.supportImages?.background
+                }
+              />
+            )}
+
+            <Header
+              type="fixed"
+              leftContent={
+                planDetail ? (
+                  <ButtonIcon
+                    onClick={(): void => this.showDetail(false)}
+                    icon={<BackIcon />}
+                  />
+                ) : (
+                  <ButtonIcon
+                    onClick={(): void =>
+                      this.props.history.push(
+                        `/home/artist/${this.props.currentArtist?.username}`
+                      )
+                    }
+                    icon={<BackIcon />}
+                  />
+                )
+              }
+              rightContent={
+                !planDetail && (
                   <ButtonIcon
                     icon={<CloseIcon width={14} height={14} />}
                     onClick={(): void => {
-                      this.showDetail();
+                      this.props.history.push(
+                        `/home/artist/${this.props.currentArtist?.username}`
+                      );
                     }}
                   />
-                }
-              />
-              <div
-                className={`row p-10 ${this.props.isPlaying && 'is-playing'}`}
-              >
-                <div className="col s12">
+                )
+              }
+            />
+
+            <div className={supportClassName}>
+              {!planDetail && (
+                <React.Fragment>
+                  <div className="col s12 info">
+                    <h1 className={'title'}>
+                      Yeah buddy! So stoked you
+                      <br />
+                      want to support us!
+                    </h1>
+
+                    <h5>Tap an option below for more details</h5>
+                  </div>
+
+                  <div className="row buttons">
+                    {_.map(
+                      this.props.plans,
+                      (data, i): React.ReactNode => {
+                        return (
+                          <div className="col s6" key={i}>
+                            <ButtonPlan
+                              active={false}
+                              plan={data}
+                              onClick={(event: PlanInterface): void => {
+                                this.showDetail(true, event);
+                              }}
+                            />
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                </React.Fragment>
+              )}
+
+              {planDetail && (
+                <React.Fragment>
                   <div className="row">
                     <div className="col s4">
                       <Avatar
@@ -120,122 +179,36 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       </h1>
                       <h2 className={'subtitle'}>Support Level</h2>
                       <div className="plan-detail">
-                        <div
-                          className="price"
-                          data-currency={
-                            this.state.plan?.price !== undefined &&
-                            (this.state.plan?.price < 1 ? '₵' : '$')
-                          }
-                        >
+                        <div className="price" data-currency={'$'}>
                           {this.state.plan?.price}
                         </div>
                         <div className="name">{this.state.plan?.name}</div>
                       </div>
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col s12 text">
-                      {this.state.plan?.description}
-                    </div>
+
+                  <div className="col s12 text">
+                    {this.state.plan?.description}
                   </div>
-                </div>
-                <div className="row p-10">
+
                   <div className="col s12 footer">
                     <ButtonSupport
-                      supported={false}
                       type={'normal'}
                       buttonType={'text'}
-                      bold
+                      onClick={(): void =>
+                        this.props.history.push(
+                          `/home/artist/${this.props.currentArtist?.username}`
+                        )
+                      }
                     />
                   </div>
-                </div>
-              </div>
+                </React.Fragment>
+              )}
             </div>
-          </BackgroundImage>
-        </IonContent>
+          </React.Fragment>
+        )}
       </IonPage>
     );
-  }
-
-  renderPlans(): React.ReactNode {
-    return (
-      <IonPage id="support-plans-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#281448' }}
-        >
-          <BackgroundImage
-            gradient="180deg, #28144800 30%, #281448bf 50%, #281448 100%"
-            backgroundImage={
-              this.props.currentArtist?.supportImages?.background
-            }
-          >
-            <div className={`artist-support-page`}>
-              <Header
-                type="fixed"
-                rightContent={
-                  <ButtonIcon
-                    icon={<CloseIcon width={14} height={14} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
-              />
-              <div className={`row ${this.props.isPlaying && 'is-playing'}`}>
-                <div className={'col s12'}>
-                  <div className="row">
-                    <div className="col s12 info">
-                      <h1 className={'title'}>
-                        {this.props.currentArtist?.name}
-                      </h1>
-                      <h2 className={'subtitle'}>Select A Support Level</h2>
-                    </div>
-                  </div>
-
-                  <div className="row buttons">
-                    {_.map(
-                      this.props.plans,
-                      (data, i): React.ReactNode => {
-                        return (
-                          <div className="col s6" key={i}>
-                            <ButtonPlan
-                              active={this.props.selectedPlan?.id === data.id}
-                              plan={data}
-                              onClickDetail={(event: PlanInterface): void => {
-                                this.showDetail(true, event);
-                              }}
-                              onClick={(event: PlanInterface): void => {
-                                this.props.updateSettingsProperty(
-                                  'selectedPlan',
-                                  event
-                                );
-                              }}
-                            />
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </BackgroundImage>
-        </IonContent>
-      </IonPage>
-    );
-  }
-
-  render(): React.ReactNode {
-    if (this.state.condition) {
-      return this.renderDetail();
-    } else {
-      return this.renderPlans();
-    }
   }
 }
 

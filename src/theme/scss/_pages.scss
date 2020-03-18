@@ -1,31 +1,9 @@
-.ion-page{ 
+.ion-page{
+    .fixed {
+        position: fixed;
+    }
 
-    &#sign-in-page{
-        ion-content{
-            --background: linear-gradient(180deg, #FFC23F 0%, #FFC23F 100%); 
-        }
-    }
-    &#sign-up-page{
-        ion-content{
-            --background: linear-gradient(#000 0%, #000 100%); 
-        }
-    }
-    &#enter-code-page{
-        ion-content{
-            --background: linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%); 
-        }
-    }
-    &#sign-up-confirm-page{
-        ion-content{
-            --background: linear-gradient(#d53d1d 0%, #a32c16 100%); 
-        }
-    }
-    &#profile-page{
-        ion-content{
-            --background: linear-gradient(rgb(105, 29, 227) 0%, rgb(32, 4, 59) 100%);
-        }
-    }
-    &#initial-page{
+    &#gallery-photo-page{
         ion-content{
             --background: #000;
         }

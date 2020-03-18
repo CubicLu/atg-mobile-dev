@@ -10,16 +10,7 @@ class SearchPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="search-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto' }}
-        >
-          search
-        </IonContent>
+        <IonContent>search</IonContent>
       </IonPage>
     );
   }

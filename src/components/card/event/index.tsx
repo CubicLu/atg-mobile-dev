@@ -46,8 +46,8 @@ class CardEventComponent extends React.Component<Props, State> {
     return (
       <div className="card event">
         <div className="row">
-          <div className="col s4">
-            <div className={`circle calendar ${this.getColor()}`}>
+          <div className="col s4 p-0">
+            <div className={`circle calendar ${this.getColor()} p-0`}>
               <div>FEB</div>
               <div>21</div>
             </div>
@@ -55,9 +55,9 @@ class CardEventComponent extends React.Component<Props, State> {
           <div className="col s8">
             <div className="row">
               <div className="col s12">
-                <h1>The Happy Tour</h1>
-                <h2>Microsoft Theatre</h2>
-                <h3>Los Angeles, CA</h3>
+                <h6>The Happy Tour</h6>
+                <h6 className="h7 bold">Microsoft Theatre</h6>
+                <h6 className="h7">Los Angeles, CA</h6>
               </div>
             </div>
             <div className="row">
@@ -65,7 +65,7 @@ class CardEventComponent extends React.Component<Props, State> {
                 <ul className="list inline">
                   <li>
                     <ShareIcon width={20} height={35} />
-                    <div className="label">Share</div>
+                    <div className="h9">Share</div>
                   </li>
                   <li
                     onClick={(): void => {
@@ -75,7 +75,7 @@ class CardEventComponent extends React.Component<Props, State> {
                     }}
                   >
                     <UserGroupIcon width={25} height={35} />
-                    <div className="label">{`Who's Going`}</div>
+                    <div className="h9">{`Who's Going`}</div>
                   </li>
                   <li
                     onClick={(): void => {
@@ -83,7 +83,7 @@ class CardEventComponent extends React.Component<Props, State> {
                     }}
                   >
                     <TicketIcon height={35} />
-                    <div className="label">Buy</div>
+                    <div className="h9">Buy</div>
                   </li>
                 </ul>
               </div>

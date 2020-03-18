@@ -18,16 +18,18 @@ class SliderEventsComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="row slider image">
-        <div className={'row content'}>
-          <div className="col s8">
+
+         <div className="list-view-all">
+          <div>
             <h1 className="title">{this.props.title}</h1>
           </div>
-          <div className="col s4 view-all">
+          <div className="action">
             {this.props.viewAll && (
               <Button color={'transparent'} label={'View All'} />
             )}
           </div>
         </div>
+
         <div className="row">
           <div className="col s12">
             {_.map(

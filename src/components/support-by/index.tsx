@@ -17,6 +17,7 @@ interface DispatchProps {
 
 interface Props extends StateProps, DispatchProps {
   data?: ArtistInterface[];
+  className?: string;
 }
 
 class SupportByComponent extends React.Component<Props> {
@@ -24,7 +25,7 @@ class SupportByComponent extends React.Component<Props> {
     if (this.props.data !== undefined && this.props.data?.length > 0) {
       return (
         <ul
-          className="support-by-component"
+          className={`support-by-component ${this.props.className}`}
           onClick={(): void =>
             this.props.updateSettingsModal(
               true,
@@ -57,7 +58,6 @@ class SupportByComponent extends React.Component<Props> {
         </ul>
       );
     }
-    return null;
   }
 }
 // eslint-disable-next-line

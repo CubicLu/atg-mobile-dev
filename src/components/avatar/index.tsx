@@ -8,6 +8,7 @@ interface Props {
   type?: 'rounded' | 'circle' | 'normal';
   width?: number;
   height?: number;
+  onClick?: any;
 }
 
 class AvatarComponent extends React.Component<Props> {
@@ -21,6 +22,7 @@ class AvatarComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div
+        onClick={this.props.onClick}
         style={{
           backgroundImage: `url(${this.props.image})`,
           width: this.props.width,

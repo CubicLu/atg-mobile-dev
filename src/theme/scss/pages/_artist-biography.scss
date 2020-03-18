@@ -1,13 +1,10 @@
 .artist-biography-page{
-    .header{
-        height: 100px;
-    }
-    ion-header{
+    .atg-header{
         background: transparent;
         --background: #ffd102;
         .biography{
             color: white;
-            --color: #5e7fb1;;
+            --color: #5e7fb1;
             top: 0;
             text-align: center;
             font-family: "Baskerville" !important;
@@ -20,14 +17,12 @@
         }
     }
     .artist-biography-content{
-
         .square {
             width: 100px;
             height: 100px;
             opacity: 0.5;
             background: blue;
             margin: 10px;
-
             --background: red;
           }
 
@@ -83,6 +78,19 @@
                 line-height: 1;
                 bottom: 120px;
                 position: absolute;
+            }
+            .read{
+                font-size: 18px;
+                font-weight: normal;
+                text-transform: capitalize;
+                color: #ffffff;
+                font-family: "Helvetica Neue";
+            }
+            .read::after{
+                content: "\203A";
+                padding-left: 4px;
+                padding-right: 4px;
+                font-size: 24px;
             }
         }
     }

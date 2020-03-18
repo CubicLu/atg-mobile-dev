@@ -1,6 +1,12 @@
+#enter-code-page{
+    .atg-header{
+        margin: $initial-margin-top;
+        margin-top: $header-margin-top;
+    }
+}
 .enter-code-page{
     height: 100%;
-    margin: pxToRem(28);
+    margin: $initial-margin-top;
     .col{
         padding: 0;
     }
@@ -20,7 +26,6 @@
     }
 
     .header{
-        @include header-with-button;
         height: 60px;
         margin-top: 0;
         .btn {

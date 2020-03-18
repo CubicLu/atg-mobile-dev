@@ -5,8 +5,7 @@ import {
   BackgroundImage,
   BackgroundSignInImage,
   InputText,
-  ButtonIcon,
-  CloseIcon
+  Header
 } from './../../components';
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
@@ -36,20 +35,13 @@ class SignInPage extends React.Component<Props> {
           backgroundTop={false}
           backgroundBottom={true}
         />
-
+        <Header
+          leftBackButton={false}
+          rightCloseButton={true}
+          leftContent={<h4 className="sign-in-title">SIGN IN</h4>}
+          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+        />
         <div className="sign-in-page">
-          <div className="row header">
-            <div className="col s10">
-              <h1 className="title">SIGN IN</h1>
-            </div>
-            <div className="col s2 button">
-              <ButtonIcon
-                icon={<CloseIcon strokeWidth={2} />}
-                onClick={(): any => this.props.history.push('/initial')}
-              />
-            </div>
-          </div>
-
           <div className="form" />
           <div className="row" />
           <div className="col s12">

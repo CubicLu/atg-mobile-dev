@@ -9,7 +9,7 @@ import {
   CloseIcon,
   ButtonPlan,
   Avatar,
-  Button
+  ButtonSupport
 } from './../../../components';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
@@ -141,10 +141,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
                 </div>
                 <div className="row p-10">
                   <div className="col s12 footer">
-                    <Button
-                      color={'support'}
+                    <ButtonSupport
+                      supported={false}
                       type={'normal'}
-                      label={'Support Us'}
+                      buttonType={'text'}
                       bold
                     />
                   </div>

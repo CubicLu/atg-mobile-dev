@@ -6,12 +6,12 @@ import {
   _,
   BackgroundImage,
   Header,
-  Button,
   Menu,
   ButtonIcon,
   BackIcon,
   SupportBy,
-  LoaderFullscreen
+  LoaderFullscreen,
+  ButtonSupport
 } from './../../components';
 import {
   updateArtistProperty,
@@ -129,15 +129,16 @@ class ArtistPage extends React.Component<Props, State> {
                 />
                 <div className={'col s12 name'}>
                   <h1 className="title">{this.props.currentArtist?.name}</h1>
-                  <Button
+                  <ButtonSupport
+                    supported={this.props.currentArtist?.support}
                     onClick={(): void =>
                       this.props.history.push(
                         `${this.props.history.location.pathname}/support`
                       )
                     }
-                    color={'support'}
-                    label={'SUPPORT US'}
                     type={'rounded'}
+                    buttonType={'text'}
+                    uppercase
                   />
                 </div>
 

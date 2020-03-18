@@ -1,0 +1,149 @@
+.artist-deep-dive-page{
+    position: relative;
+    z-index: 2;
+    &.absolute{
+        position: absolute;
+        bottom: 0; 
+        top: 155px;
+        width: 100%;
+        overflow: auto;
+    }
+    .row {
+        width: 100%;
+        margin-bottom: 5px;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    &.is-playing {
+        padding-bottom: 60px;
+    }
+    .name{
+        height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+        h1{
+            &.title{
+                text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
+            }
+        }
+    }
+    .header{
+        .default{
+            height: 0px;
+            position: fixed;
+        }
+        .center-col{
+            position: relative;
+            top: -10px;
+            .title-page{
+                font-family: "Industria";
+                font-size: pxToRem(30);
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.4;
+                letter-spacing: normal;
+                text-align: center;
+                color: #ffffff;
+            }
+    
+            .artist-name{
+                font-family: "Helvetica";
+                font-size: pxToRem(14);
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.21;
+                letter-spacing: normal;
+                text-align: center;
+                color: #ffffff;
+            }
+        }
+    }
+
+    .title-container{
+        height: 250px;
+        max-height: 250px;    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        .title-page{
+            font-family: "Industria";
+            font-size: pxToRem(54);
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: pxToRem(48);
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .artist-name{
+            font-family: "Helvetica";
+            font-size: pxToRem(24);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.21;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+        }   
+    }
+
+    .header-fixed{
+        position: fixed;
+        z-index: 4;
+
+        .support-by-component{
+            display: none;
+        }
+
+        .header{
+            .default{
+                position: fixed;
+                height: auto;
+            }
+        }
+        .name{
+            padding-top: pxToRem(31);
+            padding-right: pxToRem(15);
+            padding-left: pxToRem(55);
+            height: 64px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+    
+            h1{
+                margin: 0;
+                font-size: pxToRem(30);
+                text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+                font-weight: 600 !important;
+                font-stretch: normal;
+                font-style: normal;
+                letter-spacing: normal;
+            }
+        }
+    }    
+    .menu{
+        &.generic{
+            max-width: 250px !important;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            .scroll{
+                margin-top: 0px;
+            }
+        }
+    }
+}

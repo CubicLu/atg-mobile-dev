@@ -15,7 +15,7 @@ import ProfileMixtapesPage from './profile/mixtapes';
 import ProfileVaultPage from './profile/vault';
 import ArtistPage from './artist';
 
-import ArtistDeepPage from './artist/deep';
+import ArtistDeepDivePage from './artist/deep-dive';
 import ArtistFeaturesPage from './artist/features';
 import ArtistBiographyPage from './artist/biography';
 import ArtistDiscographyPage from './artist/discography';
@@ -24,6 +24,10 @@ import ArtistEventsPage from './artist/events';
 import ArtistVideosPage from './artist/videos';
 import ArtistSupportPage from './artist/support';
 import ArtistEventDetailPage from './artist/event-detail';
+
+import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
+import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
+import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
 
 export {
   InitialPage,
@@ -42,7 +46,7 @@ export {
   ProfileMixtapesPage,
   ProfileVaultPage,
   ArtistPage,
-  ArtistDeepPage,
+  ArtistDeepDivePage,
   ArtistFeaturesPage,
   ArtistBiographyPage,
   ArtistDiscographyPage,
@@ -50,5 +54,8 @@ export {
   ArtistEventsPage,
   ArtistVideosPage,
   ArtistSupportPage,
-  ArtistEventDetailPage
+  ArtistEventDetailPage,
+  ArtistDeepDiveLyricsPage,
+  ArtistDeepDivePedigreePage,
+  ArtistDeepDiveCataloguePage
 };

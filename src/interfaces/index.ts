@@ -52,6 +52,7 @@ export interface ArtistCoverInterface {
   background: string | undefined;
   event: string | undefined;
   biography: string | undefined;
+  deepDive: string | undefined;
 }
 
 export interface SettingsReducerType {
@@ -65,6 +66,8 @@ export interface SettingsReducerType {
   modal: ModalSlideInterface;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;
+  activeDeepDiveTab: string;
+  deepDiveTabs: MenuInterface[];
 }
 
 export interface ModalSlideInterface {

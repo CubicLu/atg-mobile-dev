@@ -24,7 +24,8 @@ import {
   MessagesPage,
   ProfilePage,
   SearchPage,
-  RadioPage
+  RadioPage,
+  ArtistEventDetailPage
 } from './../pages';
 import {
   MenuArtistList,

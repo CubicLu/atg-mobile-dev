@@ -5,7 +5,9 @@ import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,
   getArtistAPISuccess,
-  getArtistAPIFailure
+  getArtistAPIFailure,
+  getArtistEventAPISuccess,
+  getArtistEventAPIFailure
 } from './../../actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
@@ -41,6 +43,29 @@ export function* getArtist(): any {
   yield takeEvery(ActionType.GET_ARTIST_API, getArtistAPI);
 }
 
+export const getArtistEventRequest = async (
+  username,
+  eventId
+): Promise<ArtistInterface> =>
+  await API.get(`artist/${username}/event/${eventId}.json`);
+
+function* getArtistEventAPI({ payload }: any): ReturnType<any> {
+  try {
+    const request = yield call(
+      getArtistEventRequest,
+      payload.username,
+      payload.eventId
+    );
+    yield put(getArtistEventAPISuccess(request));
+  } catch (error) {
+    yield put(getArtistEventAPIFailure(error));
+  }
+}
+
+export function* getArtistEvent(): any {
+  yield takeEvery(ActionType.GET_ARTIST_EVENT_API, getArtistEventAPI);
+}
+
 export default function* rootSaga(): any {
-  yield all([fork(getArtists), fork(getArtist)]);
+  yield all([fork(getArtists), fork(getArtist), fork(getArtistEvent)]);
 }

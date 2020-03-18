@@ -88,17 +88,17 @@ class ArtistEventsPage extends React.Component<Props, State> {
     return (
       <IonPage id="events-page">
         <div className="artist-events-page">
-          <CreateAnimation
-            ref={this.headerRef}
-            duration={300}
-            fromTo={{
-              property: 'background',
-              toValue: 'var(--background)',
-              fromValue: 'transparent'
-            }}
-          >
-            <Header title="Events" titleClassName="events" />
-          </CreateAnimation>
+          <Header title="Events" titleClassName="events">
+            <CreateAnimation
+              ref={this.headerRef}
+              duration={300}
+              fromTo={{
+                property: 'background',
+                toValue: 'var(--background)',
+                fromValue: 'transparent'
+              }}
+            />
+          </Header>
           <IonContent
             scrollY={true}
             scrollEvents={true}

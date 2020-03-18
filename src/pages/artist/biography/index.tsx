@@ -111,44 +111,44 @@ class ArtistBiographyPage extends React.Component<Props, State> {
 
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
-        <CreateAnimation
-          ref={this.headerRef}
-          duration={0}
-          fromTo={{
-            property: 'background',
-            toValue: 'var(--background)',
-            fromValue: 'transparent'
-          }}
+        <Header
+          rightActionButton={true}
+          rightActionOnClick={this.props.updateSettingsModal.bind(
+            this,
+            true,
+            React.createElement(BiographyList, {
+              items: this.props.currentArtist!.biography,
+              title: 'Biography',
+              username: this.props.currentArtist!.username,
+              onClick: this.props.updateSettingsModal.bind(this, false, null),
+              background: 'background-white-base'
+            }),
+            'background-white-base'
+          )}
+          centerContent={
+            <CreateAnimation
+              duration={500}
+              ref={this.headerTitleRef}
+              fromTo={{
+                property: 'color',
+                toValue: 'var(--color)',
+                fromValue: 'white'
+              }}
+            >
+              <span className="biography">Biography</span>
+            </CreateAnimation>
+          }
         >
-          <Header
-            rightActionButton={true}
-            rightActionOnClick={this.props.updateSettingsModal.bind(
-              this,
-              true,
-              React.createElement(BiographyList, {
-                items: this.props.currentArtist!.biography,
-                title: 'Biography',
-                username: this.props.currentArtist!.username,
-                onClick: this.props.updateSettingsModal.bind(this, false, null),
-                background: 'background-white-base'
-              }),
-              'background-white-base'
-            )}
-            centerContent={
-              <CreateAnimation
-                duration={500}
-                ref={this.headerTitleRef}
-                fromTo={{
-                  property: 'color',
-                  toValue: 'var(--color)',
-                  fromValue: 'white'
-                }}
-              >
-                <span className="biography">Biography</span>
-              </CreateAnimation>
-            }
+          <CreateAnimation
+            ref={this.headerRef}
+            duration={0}
+            fromTo={{
+              property: 'background',
+              toValue: 'var(--background)',
+              fromValue: 'transparent'
+            }}
           />
-        </CreateAnimation>
+        </Header>
 
         <IonContent
           scrollEvents={true}

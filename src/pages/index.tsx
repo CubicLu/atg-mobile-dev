@@ -24,6 +24,8 @@ import ArtistEventsPage from './artist/events';
 import ArtistVideosPage from './artist/videos';
 import ArtistSupportPage from './artist/support';
 import ArtistEventDetailPage from './artist/event-detail';
+import ArtistGalleryGridPage from './artist/gallery-grid';
+import ArtistGalleryPhotoPage from './artist/gallery-photo';
 
 export {
   InitialPage,
@@ -50,5 +52,7 @@ export {
   ArtistEventsPage,
   ArtistVideosPage,
   ArtistSupportPage,
-  ArtistEventDetailPage
+  ArtistEventDetailPage,
+  ArtistGalleryGridPage,
+  ArtistGalleryPhotoPage
 };

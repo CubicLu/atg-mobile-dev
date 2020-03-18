@@ -31,6 +31,7 @@ export const getArtistRequest = async (username): Promise<ArtistInterface> =>
 
 function* getArtistAPI({ payload }: any): ReturnType<any> {
   try {
+    if (payload === ':id') throw new Error();
     const request = yield call(getArtistRequest, payload);
     yield put(getArtistAPISuccess(request));
   } catch (error) {

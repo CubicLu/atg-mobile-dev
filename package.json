@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "@ionic/react": "^5.0.0",
+    "@ionic/react": "^5.0.5",
     "@ionic/react-router": "^5.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -47,6 +47,7 @@
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "emulator:android": "cordova run android",
     "emulator:ios": "cordova run ios",
+    "build ios": "ionic build && cordova build ios --prod --release",
     "build:ionic": "ionic build"
   },
   "eslintConfig": {

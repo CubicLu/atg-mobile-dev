@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
+import {
+  IonContent,
+  IonPage,
+  IonHeader,
+  IonButton,
+  CreateAnimation
+} from '@ionic/react';
 import {
   _,
   BackgroundImage,
   Header,
-  Button,
   Menu,
   ButtonIcon,
   BackIcon,
@@ -50,6 +55,12 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistPage extends React.Component<Props, State> {
+  private animation: boolean = false;
+  private menuRef: React.RefObject<CreateAnimation> = React.createRef();
+  private nameRef: React.RefObject<CreateAnimation> = React.createRef();
+  private supRef: React.RefObject<CreateAnimation> = React.createRef();
+  private supportRef: React.RefObject<CreateAnimation> = React.createRef();
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -58,7 +69,9 @@ class ArtistPage extends React.Component<Props, State> {
     };
   }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
+    if (nextProps.match.params.id !== this.props.currentArtist?.username) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
@@ -69,16 +82,20 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
-  componentWillUnmount(): void {
-    this.props.updateArtistProperty('currentArtist', null);
-  }
+  async handleScroll(event: any): Promise<void> {
+    const menuAnimation = this.menuRef.current!.animation;
 
-  handleScroll(event: any): void {
-    const { blur, scrolling } = this.state;
-    if (!scrolling) return;
-    const eventBlur = event.detail.currentY > 100;
+    const { blur } = this.state;
+    const eventBlur = event.detail.scrollTop >= 140;
     if (blur === eventBlur) return;
-    this.setState({ blur: eventBlur, scrolling: false });
+    const direction = eventBlur ? 'normal' : 'reverse';
+
+    if (this.animation) return;
+    menuAnimation.direction(direction);
+    this.animation = true;
+    this.setState({ blur: eventBlur });
+    menuAnimation.play();
+    this.animation = false;
   }
   handleMenu(event: MenuInterface): void {
     if (event.isPage === true) {
@@ -95,70 +112,121 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    const fixed = this.state.blur;
+    const hasArtist = this.props.currentArtist;
+    if (!hasArtist) {
+      return (
+        <IonPage id="artist-page">
+          <LoaderFullscreen visible={true} />
+        </IonPage>
+      );
+    }
+
+    const scrolled = this.state.blur;
+    const supportFans = this.props.currentArtist?.supportArtistFans;
+    const name = this.props.currentArtist?.name;
+    const gradient = `180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`;
+    const backgroundImage = this.props.currentArtist?.cover.background;
+    const clickBack = (): void => this.props.history.push('/home/profile');
+
     return (
       <IonPage id="artist-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => this.setState({ scrolling: true })}
-          onIonScrollEnd={(): any => this.setState({ scrolling: false })}
-          onIonScroll={this.handleScroll.bind(this)}
-        >
-          <BackgroundImage
-            gradient={`180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`}
-            backgroundImage={this.props.currentArtist?.cover.background}
-            blur={this.state.blur}
-          >
-            <div className={`artist-page`}>
-              <div className={fixed ? 'row header-fixed' : 'row'}>
-                <Header
-                  leftContent={
-                    <ButtonIcon
-                      fixed={true}
-                      icon={<BackIcon />}
-                      onClick={(): void => this.props.history.goBack()}
-                    />
-                  }
-                  rightContent={
-                    <SupportBy
-                      data={this.props.currentArtist?.supportArtistFans}
-                    />
-                  }
-                  type={'default'}
-                />
-                <div className={'col s12 name'}>
-                  <h1 className="title">{this.props.currentArtist?.name}</h1>
-                  <Button
-                    onClick={(): void =>
-                      this.props.history.push(
-                        `${this.props.history.location.pathname}/support`
-                      )
-                    }
-                    color={'support'}
-                    label={'SUPPORT US'}
-                    type={'rounded'}
-                  />
-                </div>
+        <BackgroundImage
+          gradient={gradient}
+          backgroundImage={backgroundImage}
+          blur={this.state.blur}
+        />
+        <IonHeader className="ion-no-border">
+          <Header
+            type="fixed"
+            centerContent={
+              <h4
+                className={`artist-page name title ${scrolled ? '' : ' hide'}`}
+              >
+                {name}
+              </h4>
+            }
+            rightContent={
+              <div className={scrolled ? 'supportByHide' : 'supportByShow'}>
+                <SupportBy data={supportFans} />
+              </div>
+            }
+            leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
+          />
+        </IonHeader>
 
+        <div className="artist-page content">
+          <IonContent
+            scrollY={true}
+            scrollEvents={true}
+            onIonScroll={this.handleScroll.bind(this)}
+          >
+            <div className="emptySpace" />
+            <div className="artistName center">
+              <CreateAnimation
+                ref={this.nameRef}
+                duration={200}
+                fromTo={{
+                  property: 'transform',
+                  fromValue: 'translate(0, 0)',
+                  toValue: 'translate(-60px, -120px)'
+                }}
+              >
+                <h2
+                  id="artistName"
+                  className={`title ${scrolled ? 'left' : 'center'}`}
+                >
+                  {name}
+                </h2>
+              </CreateAnimation>
+            </div>
+
+            <div className={`supportBtn ${scrolled ? 'right' : 'center'}`}>
+              <CreateAnimation
+                ref={this.supportRef}
+                duration={200}
+                fromTo={{
+                  property: 'transform',
+                  fromValue: 'translate(0, 0)',
+                  toValue: 'translate(0px, -176px)'
+                }}
+              >
+                <IonButton
+                  className="support rounded"
+                  routerDirection="forward"
+                  routerLink={`${this.props.history.location.pathname}/support`}
+                >
+                  SUPPORT US
+                </IonButton>
+              </CreateAnimation>
+            </div>
+
+            <CreateAnimation
+              ref={this.menuRef}
+              duration={200}
+              fromTo={{
+                property: 'transform',
+                fromValue: 'translateY(0px)',
+                toValue: 'translateY(-204px)'
+              }}
+            >
+              <div className={scrolled ? 'menuFixed ' : 'notFixed'}>
                 <Menu
                   tabs={this.props.artistTabs}
                   activeId={this.props.activeArtistTab}
                   onClick={this.handleMenu.bind(this)}
                 />
               </div>
-            </div>
+            </CreateAnimation>
 
-            <div className={`artist-page bottom` + (fixed ? ' absolute' : '')}>
-              {_.map(
+            {hasArtist &&
+              _.map(
                 this.props.artistTabs,
                 (data, i): React.ReactNode =>
                   data.id === this.props.activeArtistTab &&
                   React.createElement(data.component, { key: i })
               )}
-            </div>
-          </BackgroundImage>
-        </IonContent>
+          </IonContent>
+        </div>
         <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );

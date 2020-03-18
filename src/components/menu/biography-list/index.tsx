@@ -39,14 +39,14 @@ class BiographyListComponent extends React.Component<Props> {
         backgroundBottomOrange={true}
         backgroundBottomOpacity={1}
       >
-        <div className="container menu generic-list">
+        <div className="menu generic-list">
           <div className={`row header ${this.props.background}`}>
             <div className="col s10">
               <h1 className="title">{this.props.title}</h1>
             </div>
             <div className="col s2 button">
               <ButtonIcon
-                styles={{ width: 30, height: 30 }}
+                styles={{ width: 30, height: 30, minWidth: 30 }}
                 icon={<CloseIcon width={12} height={12} strokeWidth={2} />}
                 onClick={(): any => {
                   this.props.onClick();

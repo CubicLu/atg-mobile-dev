@@ -8,6 +8,7 @@ interface Props {
   visible: boolean;
   height?: number;
   onClose: Function;
+  onClosing?: Function;
   onOpen: Function;
   classname?: string;
 }
@@ -29,7 +30,7 @@ class ModalSlideComponent extends React.Component<Props> {
         type={this.props.type}
         isOpen={this.props.visible}
         size={this.props.height}
-        panelClassName={` ${this.props.type} ${this.props.classname}`}
+        panelClassName={`${this.props.type} ${this.props.classname}`}
         panelContainerClassName={` ${this.props.classname}`}
         backdropClicked={this.props.onClose.bind(this)}
       >

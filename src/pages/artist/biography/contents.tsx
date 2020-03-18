@@ -59,7 +59,7 @@ class BiographyContentComponent extends React.Component<Props> {
     return null;
   }
 }
-
+// eslint-disable-next-line
 const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };

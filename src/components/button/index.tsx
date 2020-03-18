@@ -5,6 +5,7 @@ import {} from './../../actions';
 interface Props {
   onClick: Function;
   label: string;
+  id?: string;
   color?:
     | 'primary'
     | 'secondary'

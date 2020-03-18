@@ -1,20 +1,14 @@
-.space-between{ 
+.space-between{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     justify-content: space-between;
 
-    > .row{ 
+    > .row{
         width: 100%;
     }
 }
-
-.container{
-    z-index: 1;
-    position: relative;
-}
-
 
 .mt-20{
     margin-top: 20px;
@@ -26,7 +20,7 @@
 
 .justify-center{
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 }
 
 .message {
@@ -55,13 +49,19 @@
 .p-10{
     padding: 10px;
 }
+.px-20{
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 .p-relative{
     position: relative;
 }
 
 .is-playing{
-    padding-bottom: $default-height-player + 10;
+    ion-content{
+        --padding-bottom: #{$default-height-player + $default-height-tabs + 10};
+    }
 }
 
 .opacity{

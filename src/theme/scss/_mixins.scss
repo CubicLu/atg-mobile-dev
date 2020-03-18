@@ -2,7 +2,7 @@
   &::-webkit-input-placeholder {@content}
   &:-moz-placeholder           {@content}
   &::-moz-placeholder          {@content}
-  &:-ms-input-placeholder      {@content}  
+  &:-ms-input-placeholder      {@content}
 }
 
 @mixin header-with-button {
@@ -36,26 +36,26 @@
   width:  $circle-size;
   height: $circle-size;
   padding: 0;
-  border-radius: 50%; 
-  list-style: none;       
-  
+  border-radius: 50%;
+  list-style: none;
+
   > * {
     display: block;
     position: absolute;
-    top:  50%; 
+    top:  50%;
     left: 50%;
     width:  $item-size;
     height: $item-size;
     margin: -($item-size / 2);
-  
+
     $angle: (360 / $item-count);
     $rot: 0;
 
     @for $i from 1 through $item-count {
       &:nth-of-type(#{$i}) {
-        transform: 
-          rotate($rot * 1deg) 
-          translate($circle-size / 2) 
+        transform:
+          rotate($rot * 1deg)
+          translate($circle-size / 2)
           rotate($rot * -1deg);
       }
 
@@ -106,24 +106,23 @@
   .content{
     margin-bottom: 0;
     padding-left: 10px;
-    padding-right: 15px;
+    padding-right: 10px;
     .view-all{
         display: inline-flex;
         justify-content: flex-end;
         padding-left: 8px;
-        padding-right: 2px;
+        padding-right: 10px;
         margin-bottom: 0;
-        height: 70px;
+        height: 66px;
         align-items: flex-end;
 
         .btn{
             font-size: pxToRem(18);
-            margin-right: 20px !important;
-            padding-top: 21px;
+            padding-top: 8px;
             &::after{
                 content: "\203A";
-                padding-left: 5px;
-                font-size: pxToRem(30);
+                padding-left: 4px;
+                font-size: pxToRem(45);
                 position: absolute;
             }
         }
@@ -136,11 +135,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  &.circle { 
+  &.circle {
     border-radius: 50%;
-    height: 143px;
-    width: 143px;
-    margin-bottom: 15px;
+    height: 130px;
+    width: 130px;
+    margin-bottom: 16px;
     align-items: center;
     text-align: center;
     display: flex;
@@ -162,12 +161,12 @@
     font-family: "Industria";
     position: relative;
     font-weight: bold;
+    margin-left: 16px;
     &::after{
       content: attr(data-currency);
       position: absolute;
-      font-size: pxToRem(16);
-      top: -14px;
-      right: -11px;
+      font-size: 40px;
+      left: -13px;
     }
   }
   .name{
@@ -189,7 +188,7 @@
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
-    @content; 
+    @content;
   }
   @-moz-keyframes #{$name} {
     @content;

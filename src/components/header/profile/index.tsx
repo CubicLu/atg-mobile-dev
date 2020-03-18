@@ -7,22 +7,33 @@ import {
   UserGroupIcon,
   BackIcon
 } from './../../../components';
-import {} from './../../../actions';
 import { IonActionSheet, ActionSheetButton } from '@ionic/react';
+import { connect } from 'react-redux';
+import { updateAuthProperty } from '../../../actions';
+import { ApplicationState } from '../../../reducers';
 
-interface Props extends RouteComponentProps {}
+interface DispatchProps {
+  updateAuthProperty: (property: string, value: any) => void;
+}
+
+interface Props extends RouteComponentProps, DispatchProps {}
 interface State {
-  showActionSheet: boolean;
+  showProfileActions: boolean;
 }
 class HeaderProfileComponent extends React.Component<Props, State> {
+  handleLogout(): void {
+    this.props.updateAuthProperty('loggedUser', undefined);
+    this.props.history.push('/initial');
+  }
+
   constructor(props: Props) {
     super(props);
     this.state = {
-      showActionSheet: false
+      showProfileActions: false
     };
   }
 
-  buttons: ActionSheetButton[] = [
+  profileActions: ActionSheetButton[] = [
     {
       text: 'My Public Profile',
       role: 'destructive',
@@ -43,6 +54,10 @@ class HeaderProfileComponent extends React.Component<Props, State> {
       }
     },
     {
+      text: 'Log out',
+      handler: this.handleLogout.bind(this)
+    },
+    {
       text: 'Cancel',
       role: 'cancel',
       handler: (): void => {
@@ -50,6 +65,10 @@ class HeaderProfileComponent extends React.Component<Props, State> {
       }
     }
   ];
+
+  toggleProfileActions(option: boolean): void {
+    this.setState({ showProfileActions: option });
+  }
 
   render(): React.ReactNode {
     return (
@@ -64,16 +83,14 @@ class HeaderProfileComponent extends React.Component<Props, State> {
 
           <div
             className="col s4 h-100 avatar-col"
-            onClick={(): any => this.setState({ showActionSheet: true })}
+            onClick={(): any => this.toggleProfileActions(true)}
           >
             <Avatar type="circle" />
 
             <IonActionSheet
-              onDidDismiss={(): any =>
-                this.setState({ showActionSheet: false })
-              }
-              isOpen={this.state.showActionSheet}
-              buttons={this.buttons}
+              onDidDismiss={(): any => this.toggleProfileActions(false)}
+              isOpen={this.state.showProfileActions}
+              buttons={this.profileActions}
             />
           </div>
 
@@ -83,7 +100,7 @@ class HeaderProfileComponent extends React.Component<Props, State> {
                 <ButtonIcon
                   color="transparent"
                   icon={<UserGroupIcon color={'#FFF'} height={23} width={23} />}
-                  onClick={(): any => this.props.history.goBack()}
+                  onClick={(): any => this.props.history.push('/home/feed')}
                 />
               </li>
 
@@ -91,7 +108,7 @@ class HeaderProfileComponent extends React.Component<Props, State> {
                 <ButtonIcon
                   color="transparent"
                   icon={<SettingsIcon height={22} width={22} />}
-                  onClick={(): any => this.props.history.goBack()}
+                  onClick={(): any => this.toggleProfileActions(true)}
                 />
               </li>
             </ul>
@@ -110,4 +127,13 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     );
   }
 }
-export default withRouter(HeaderProfileComponent);
+
+interface StateProps {}
+// eslint-disable-next-line
+const mapStateToProps = ({}: ApplicationState): StateProps => {
+  return {};
+};
+
+export default withRouter(
+  connect(mapStateToProps, { updateAuthProperty })(HeaderProfileComponent)
+);

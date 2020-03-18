@@ -1,11 +1,13 @@
-.header {
-    z-index: 4;
-    &.fixed {
-        margin-top: 55px;
-        padding-top: 0;
-
+.artist-biography-page{
+    .header{
+        height: 100px;
+    }
+    ion-header{
+        background: transparent;
+        --background: #ffd102;
         .biography{
             color: white;
+            --color: #5e7fb1;;
             top: 0;
             text-align: center;
             font-family: "Baskerville" !important;
@@ -14,75 +16,74 @@
             margin-top: 0;
             margin-bottom: 0;
             font-size: pxToRem(50);
-            line-height: pxToRem(36);
+            line-height: 36px;
         }
-    
     }
-}
-.artist-biography-page{
-    position: relative;
-    height: 100%;
-    z-index: 2;
-    .slider {
-        .col{
-            .row {
-                margin-right: 0 !important;
-                margin-left: 0 !important;
+    .artist-biography-content{
+
+        .square {
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+            background: blue;
+            margin: 10px;
+
+            --background: red;
+          }
+
+          @media (prefers-color-scheme: dark) {
+            .square {
+              --background: green;
+            }
+          }
+        ion-grid {
+            --ion-grid-padding: 0
+        }
+        .headline{
+            color: #F78429;
+            margin: 32px;
+            font-family: "Industria";
+            font-weight: 600;
+            font-size: pxToRem(55);
+            text-align: left;
+        }
+        .byline{
+            margin: 8px 32px 16px 32px;
+            font-family: "Baskerville Italic";
+            font-style: italic;
+            font-weight: 400;
+            font-size: pxToRem(18);
+            text-align: left;
+        }
+        .article{
+            margin: 8px 32px 32px 32px;
+            color: #5A5A5A;
+            font-family: "Baskerville";
+            font-weight: 600;
+            font-size: pxToRem(28);
+            line-height: 36px;
+            text-align: left;
+        }
+        .cover{
+            height: calc(100vh - #{$default-height-header});
+        }
+        .background-image{
+            position: relative;
+        }
+        h1{
+            &.feature{
+                font-size: pxToRem(66);
+                right: 26px;
+                text-align: right;
+                text-transform: uppercase;
+                color: #F78429;
+                white-space: pre;
+                font-family: "Industria";
+                font-weight: 600;
+                line-height: 1;
+                bottom: 120px;
+                position: absolute;
             }
         }
     }
-    .transparent {
-        background: #ffffff00;
-    }
-    .slides{
-        height: 100%;
-        overflow-y: scroll
-    }
-    .skyline{
-        z-index: 2;
-    }
-    .headline{
-        color: #F78429;
-        margin: 32px;
-        font-family: "Industria";
-        font-weight: 600;
-        font-size: pxToRem(55);
-        text-align: left;
-    }
-    .byline{
-        margin: 8px 32px 16px 32px;
-        font-family: "Baskerville Italic";
-        font-style: italic;
-        font-weight: 400;
-        font-size: pxToRem(18);
-        text-align: left;
-    }
-    .article{
-        margin: 8px 32px 32px 32px;
-        color: #5A5A5A;
-        font-family: "Baskerville";
-        font-weight: 600;
-        font-size: pxToRem(28);
-        line-height: pxToRem(36);
-        text-align: left;
-    }
-    .fullscreen{
-        display: block;
-        width: 100%;
-    }
-    h1{
-        &.feature{
-            font-size: pxToRem(66);
-            position: fixed;
-            right: 32px;
-            text-align: right;
-            width: 50%;
-            text-transform: uppercase;
-            color: #F78429;
-            white-space: pre;
-            font-family: "Industria";
-            font-weight: 600;
-        }
-    }
-    
 }

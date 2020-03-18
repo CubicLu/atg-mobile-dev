@@ -31,7 +31,6 @@ class ButtonComponent extends React.Component<Props> {
     let bold = this.props.bold ? 'bold' : '';
     return (
       <button
-        id={this.props.id}
         onClick={this.props.onClick.bind(this)}
         className={`btn ${this.props.color} ${gradient} ${this.props.type} ${bold}`}
       >

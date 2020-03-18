@@ -33,8 +33,8 @@ class SliderMixtapesComponent extends React.Component<Props> {
 
     this.settings = {
       dots: this.props.dots,
-      infinite: true,
-      speed: 300,
+      infinite: false,
+      speed: 500,
       slidesToShow: 1,
       centerMode: true,
       variableWidth: false,

@@ -14,8 +14,6 @@
         }
     }
 
-
-
     .background-image {
         background-size: contain;
     }
@@ -31,7 +29,8 @@
         background: #000;
         position: relative;
         padding-top: 10px;
-        top: 100px;
+        padding-bottom: 60px;
+        top: 320px;
         .list{
             background: #000;
             .item{
@@ -54,7 +53,6 @@
                                 margin-top: 7px;
                             }
                         }
-
                         .list{
                             margin-top: 10px;
                         }

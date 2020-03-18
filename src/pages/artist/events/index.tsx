@@ -122,12 +122,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
           >
             <BackgroundImage
               backgroundImage={this.props.currentArtist?.cover.event}
-            >
-              <h1 className="feature">
-                {this.props.currentArtist?.biography &&
-                  this.props.currentArtist?.biography[0].headline}
-              </h1>
-            </BackgroundImage>
+            />
             <div
               className={`content-list ${this.props.isPlaying &&
                 ' is-playing'}`}

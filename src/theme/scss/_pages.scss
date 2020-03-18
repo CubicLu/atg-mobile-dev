@@ -2,4 +2,10 @@
     .fixed {
         position: fixed;
     }
+
+    &#gallery-photo-page{
+        ion-content{
+            --background: #000;
+        }
+    }
 }

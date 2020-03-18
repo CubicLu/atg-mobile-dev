@@ -1,0 +1,13 @@
+.artist-gallery-grid-page{
+    
+    @include page;
+    
+    .images{
+       .col{
+           position: relative;
+           ion-img{
+                position: relative;
+           }
+       }
+    }
+}

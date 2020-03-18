@@ -3,10 +3,11 @@ import React from 'react';
 interface Props {
   image: string | undefined;
   key: number;
-  type: 'normal' | 'rounded' | 'circle';
+  type?: 'normal' | 'rounded' | 'circle' | string;
   col: number;
   label?: string;
   quantity?: number;
+  onClick: () => void;
 }
 
 class CardAlbumGalleryComponent extends React.Component<Props> {
@@ -17,7 +18,10 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
   };
   render(): React.ReactNode {
     return (
-      <div className={`col s${this.props.col} card album-gallery`}>
+      <div
+        className={`col s${this.props.col} card album-gallery`}
+        onClick={this.props.onClick.bind(this)}
+      >
         <div
           className={`image ${this.props.type}`}
           style={{ backgroundImage: `url(${this.props.image})` }}

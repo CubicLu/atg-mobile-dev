@@ -2,12 +2,87 @@
     
     @include page;
     
+    .background-top {
+        top: #{-$default-height-header};
+        position: absolute;
+    }
+    
+    ion-header{
+        .header{
+            height: $default-height-header;
+        }
+        &.blur {
+            -webkit-backdrop-filter: blur(9.5px);
+            backdrop-filter: blur(9.5px);
+        }
+
+        --background: rgba(255,255,255,0.2);
+    }
+
     .images{
-       .col{
-           position: relative;
-           ion-img{
+        .row{
+            margin-top: 3px;
+            margin-bottom: 0;
+            .col{
                 position: relative;
-           }
-       }
+                padding: 0;
+                &:last-child{
+                    padding-left: 3px;
+                }
+                &:first-child{
+                    padding-right: 3px;
+                }
+                &.img{
+                    div{
+                        position: relative;
+                        @include background-style;
+                        height: 100%;
+                    }
+                }
+            }
+
+            &.row1-col3{
+                .img{
+                    height: 125px;
+                }
+            }
+
+            &.row2-col2{
+                height: 250px;
+                .col1{
+                    height: 100%;
+                    .row{
+                        &:first-child{
+                            margin-top: 0;
+                        }
+                        .col{
+                            &:first-child{
+                                padding-right: 10px;
+                            }
+                            &.img{
+                                height: 100%;
+                            }
+                        }
+                        height: 49.3%;
+                    }
+                }
+                .col2{
+                    height: 100%;
+                    padding-left: 0 !important;
+                }
+            }
+
+            &.row1-col2{
+                height: 250px;
+                .img{
+                    height: 100%;
+                    &:first-child{
+                        padding-right: 0px;
+                    }
+                }
+            }
+
+
+        }
     }
 }

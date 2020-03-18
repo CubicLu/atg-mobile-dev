@@ -139,7 +139,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
                         }}
                         image={data.cover}
                         label={data.name}
-                        quantity={data.items.length}
+                        quantity={data.quantity}
                         col={6}
                       />
                     );

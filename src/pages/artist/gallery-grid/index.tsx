@@ -4,21 +4,29 @@ import {
   ButtonIcon,
   BackIcon,
   _,
-  BackgroundImage,
   DotsThreeIcon
 } from './../../../components';
-import { IonContent, IonPage, IonImg } from '@ionic/react';
+import {
+  IonContent,
+  IonPage,
+  IonImg,
+  IonHeader,
+  CreateAnimation
+} from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 import { GalleryInterface, ArtistInterface } from '../../../interfaces';
-import Masonry from 'react-masonry-css';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   loading: boolean;
   isPlaying: boolean;
+}
+
+interface State {
+  blur: boolean;
 }
 
 interface DispatchProps {
@@ -38,7 +46,13 @@ interface Props
   album: GalleryInterface;
 }
 
-class ArtistGalleryGridPage extends React.Component<Props> {
+class ArtistGalleryGridPage extends React.Component<Props, State> {
+  private headerRef: React.RefObject<CreateAnimation> = React.createRef();
+  constructor(props: Props) {
+    super(props);
+    this.state = { blur: false };
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.id !== this.props.match.params.id ||
@@ -54,10 +68,143 @@ class ArtistGalleryGridPage extends React.Component<Props> {
     }
   }
 
-  onOpenImage(imageId: number): void {
-    this.props.history.push(
-      `/home/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/${imageId}`
+  onOpenImage(image: string): void {
+    this.props.history.push({
+      pathname: `/home/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/image`,
+      state: { image: image }
+    });
+  }
+
+  renderRow1Col3(data, i): React.ReactNode {
+    return (
+      <div className="row row1-col3" key={`row1-col3-${i}`}>
+        {_.map(
+          data,
+          (item, i): React.ReactNode => {
+            return (
+              <div
+                className="col s4 img"
+                key={i}
+                onClick={this.onOpenImage.bind(this, item.image)}
+              >
+                <div
+                  style={{
+                    backgroundImage: `url(${item.image})`
+                  }}
+                ></div>
+              </div>
+            );
+          }
+        )}
+      </div>
     );
+  }
+
+  renderRow2Col2(data, i): React.ReactNode {
+    let image0 = data[0] !== undefined ? data[0].image : null;
+    let image1 = data[1] !== undefined ? data[1].image : null;
+    let image2 = data[2] !== undefined ? data[2].image : null;
+    return (
+      <div className="row row2-col2" key={`row2-col2-${i}`}>
+        <div className="col s4 col1">
+          <div className="row">
+            <div
+              className="col s12 img"
+              onClick={this.onOpenImage.bind(this, image0)}
+            >
+              <div
+                style={{
+                  backgroundImage: `url(${image0})`
+                }}
+              ></div>
+            </div>
+          </div>
+          <div className="row">
+            <div
+              className="col s12 img"
+              onClick={this.onOpenImage.bind(this, image1)}
+            >
+              <div
+                style={{
+                  backgroundImage: `url(${image1})`
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col s8 col2 img"
+          onClick={this.onOpenImage.bind(this, image2)}
+        >
+          <div
+            style={{
+              backgroundImage: `url(${image2})`
+            }}
+          ></div>
+        </div>
+      </div>
+    );
+  }
+
+  renderRow1Col2(data, i): React.ReactNode {
+    let image0 = data[0] !== undefined ? data[0].image : null;
+    let image1 = data[1] !== undefined ? data[1].image : null;
+    return (
+      <div className="row row1-col2" key={`row1-col2-${i}`}>
+        <div
+          className="col s8 img"
+          onClick={this.onOpenImage.bind(this, image0)}
+        >
+          <div
+            style={{
+              backgroundImage: `url(${image0})`
+            }}
+          ></div>
+        </div>
+        <div
+          className="col s4 img"
+          onClick={this.onOpenImage.bind(this, image1)}
+        >
+          <div
+            style={{
+              backgroundImage: `url(${image1})`
+            }}
+          ></div>
+        </div>
+      </div>
+    );
+  }
+
+  renderTemplate(key, data, i): React.ReactNode {
+    switch (key) {
+      case 'row-1-col-3':
+        return this.renderRow1Col3(data, i);
+      case 'row-2-col-2':
+        return this.renderRow2Col2(data, i);
+      case 'row-1-col-2':
+        return this.renderRow1Col2(data, i);
+      default:
+        return null;
+    }
+  }
+
+  async handleScroll(event: any): Promise<void> {
+    const parentAnimation = this.headerRef.current!.animation;
+    const { blur } = this.state;
+    const eventBlur = event.detail.currentY >= 20;
+    const header = document.getElementById('ionHeader');
+
+    if (blur && !eventBlur) {
+      parentAnimation.direction('reverse');
+      header?.classList.remove('blur');
+      await parentAnimation.play();
+    } else if (eventBlur && !blur) {
+      parentAnimation.direction('normal');
+      header?.classList.add('blur');
+      await parentAnimation.play();
+    }
+
+    this.setState({ blur: eventBlur });
   }
 
   render(): React.ReactNode {
@@ -92,24 +239,20 @@ class ArtistGalleryGridPage extends React.Component<Props> {
         : undefined;
     return (
       <IonPage id="gallery-grid-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
-          style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
+        <div
+          className={`artist-gallery-grid-page ${this.props.isPlaying &&
+            'is-playing'}`}
         >
-          <BackgroundImage
-            gradient={`180deg,#1F0739,#1F0739`}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            bottomRotate
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
+          <CreateAnimation
+            ref={this.headerRef}
+            duration={300}
+            fromTo={{
+              property: 'background',
+              toValue: 'var(--background)',
+              fromValue: 'transparent'
+            }}
           >
-            <div className={`artist-gallery-grid-page`}>
+            <IonHeader id="ionHeader" className="fixed ion-no-border">
               <Header
                 leftContent={
                   <ButtonIcon
@@ -130,48 +273,36 @@ class ArtistGalleryGridPage extends React.Component<Props> {
                   />
                 }
               />
+            </IonHeader>
+          </CreateAnimation>
 
-              <div
-                className={`${this.props.isPlaying && ' is-playing'} images`}
-              >
-                <Masonry
-                  breakpointCols={{
-                    default: 1
-                  }}
-                  className="my-masonry-grid"
-                  columnClassName="my-masonry-grid_column"
-                >
-                  {cover !== undefined && (
-                    <div key={0} onClick={this.onOpenImage.bind(this, 0)}>
-                      <IonImg src={cover} />
-                    </div>
-                  )}
-                </Masonry>
-                <Masonry
-                  breakpointCols={{
-                    default: 2
-                  }}
-                  className="my-masonry-grid"
-                  columnClassName="my-masonry-grid_column"
-                >
-                  {_.map(
-                    items,
-                    (data, i): React.ReactNode => {
-                      return (
-                        <div
-                          key={i + 1}
-                          onClick={this.onOpenImage.bind(this, Number(i + 1))}
-                        >
-                          <IonImg src={data.image} />
-                        </div>
-                      );
-                    }
-                  )}
-                </Masonry>
-              </div>
+          <IonContent
+            fullscreen={true}
+            scrollY={true}
+            scrollEvents={true}
+            onIonScroll={this.handleScroll.bind(this)}
+            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#FFF' }}
+          >
+            <div className={`images`}>
+              {cover !== undefined && (
+                <div key={0} onClick={this.onOpenImage.bind(this, cover)}>
+                  <IonImg src={cover} />
+                </div>
+              )}
+
+              {_.map(
+                items,
+                (data, i): React.ReactNode => {
+                  let key = Object.keys(data)[0];
+                  if (!_.isUndefined(key)) {
+                    return this.renderTemplate(key, data[key], i);
+                  }
+                  return null;
+                }
+              )}
             </div>
-          </BackgroundImage>
-        </IonContent>
+          </IonContent>
+        </div>
       </IonPage>
     );
   }

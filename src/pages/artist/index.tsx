@@ -1,13 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  IonContent,
-  IonPage,
-  IonHeader,
-  IonButton,
-  CreateAnimation
-} from '@ionic/react';
+import { IonContent, IonPage, IonHeader, CreateAnimation } from '@ionic/react';
 import {
   _,
   BackgroundImage,

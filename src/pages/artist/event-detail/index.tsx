@@ -105,7 +105,7 @@ class EventDetailPage extends React.Component<Props, State> {
                       }}
                     />
                   }
-                  centerContent={<h1 className="title">Who's going</h1>}
+                  centerContent={<h1 className="title">{`Who's going`}</h1>}
                 />
                 <div className="row">
                   <div className="col s12 justify-center">

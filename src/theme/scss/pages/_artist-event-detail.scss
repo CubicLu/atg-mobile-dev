@@ -1,0 +1,44 @@
+.artist-event-detail-page{
+    
+    @include page;
+
+    .fixed{
+        height: 370px;
+        z-index: 2;
+        position: fixed;
+        width: 100%;
+        background: linear-gradient(180deg, #000,#0e0819);
+        top: 0;
+    }
+    
+    .content-list{
+        position: relative;
+        top: 380px;
+        @include list-user;
+        ion-item{
+            border-bottom: none;
+            padding-bottom: 5px;
+        }
+        .item-native{
+            padding: 0 !important;
+            .item-inner{
+                padding: 0 !important;
+            }
+        }
+    }
+
+
+    .action{
+        padding: 0 !important;
+        .btn{
+        
+            &.gradient { 
+                color: #FFF !important;
+                width: 85px !important;
+            }
+        }
+    }
+   
+
+    
+}

@@ -7,6 +7,7 @@ interface Props {
   viewAll?: boolean;
   scroll?: boolean;
   data?: any[];
+  artistUsername: string | undefined;
 }
 
 class SliderEventsComponent extends React.Component<Props> {
@@ -32,7 +33,14 @@ class SliderEventsComponent extends React.Component<Props> {
             {_.map(
               this.props.data?.slice(0, 1),
               (data, i): React.ReactNode => {
-                return <CardEvent data={data} id={i} key={i} />;
+                return (
+                  <CardEvent
+                    data={data}
+                    id={i}
+                    key={i}
+                    artistUsername={this.props.artistUsername}
+                  />
+                );
               }
             )}
           </div>

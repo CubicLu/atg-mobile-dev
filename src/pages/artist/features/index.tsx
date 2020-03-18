@@ -52,6 +52,7 @@ class ArtistFeaturesPage extends React.Component<Props> {
               : {}
           ]}
           viewAll
+          artistUsername={this.props.currentArtist?.username}
           title={'UPCOMING EVENTS'}
         />
       </div>

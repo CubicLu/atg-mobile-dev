@@ -7,7 +7,8 @@ const defaultState: ArtistReducerType = {
   currentArtist: null,
   loading: false,
   successMessage: null,
-  errorMessage: null
+  errorMessage: null,
+  event: null
 };
 
 export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
@@ -18,6 +19,16 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       [action.payload.property]: action.payload.value
+    };
+  },
+
+  [ActionType.UPDATE_ARTIST_SET_INITIAL_PROPERTY](
+    state: ArtistReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      [action.payload]: defaultState[action.payload]
     };
   },
 
@@ -69,6 +80,35 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   },
 
   [ActionType.GET_ARTIST_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload
+    };
+  },
+
+  [ActionType.GET_ARTIST_EVENT_API](state: ArtistReducerType): any {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+
+  [ActionType.GET_ARTIST_EVENT_API_SUCCESS](
+    state: ArtistReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      loading: false,
+      event: action.payload.data
+    };
+  },
+
+  [ActionType.GET_ARTIST_EVENT_API_FAILURE](
     state: ArtistReducerType,
     action: Action<any>
   ): any {

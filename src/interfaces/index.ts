@@ -13,7 +13,11 @@ export enum ActionType {
   GET_ARTISTS_API_SUCCESS = 'GET_ARTISTS_API_SUCCESS',
   GET_ARTIST_API = 'GET_ARTIST_API',
   GET_ARTIST_API_FAILURE = 'GET_ARTIST_API_FAILURE',
-  GET_ARTIST_API_SUCCESS = 'GET_ARTIST_API_SUCCESS'
+  GET_ARTIST_API_SUCCESS = 'GET_ARTIST_API_SUCCESS',
+  GET_ARTIST_EVENT_API = 'GET_ARTIST_EVENT_API',
+  GET_ARTIST_EVENT_API_FAILURE = 'GET_ARTIST_EVENT_API_FAILURE',
+  GET_ARTIST_EVENT_API_SUCCESS = 'GET_ARTIST_EVENT_API_SUCCESS',
+  UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -92,6 +96,7 @@ export interface MixtapeInterface {
 
 export interface ArtistReducerType {
   artists: ArtistInterface[];
+  event: EventInterface | null;
   currentArtist: ArtistInterface | null;
   loading: boolean;
   successMessage: string | null;
@@ -100,7 +105,10 @@ export interface ArtistReducerType {
 
 export interface UserInterface {
   name: string;
-  email: string;
+  email?: string;
+  avatar?: string | undefined;
+  username: string;
+  isFriend?: boolean;
 }
 
 export interface AuthReducerType {
@@ -130,6 +138,7 @@ export interface EventInterface {
   where: string;
   name: string;
   city: string;
+  whoIsGoing?: EventWhoIsGoingInterface[];
 }
 
 export interface RadioInterface {
@@ -187,3 +196,5 @@ export interface BiographyInterface {
   fullText?: string;
   items?: AlbumInterface[];
 }
+
+export interface EventWhoIsGoingInterface extends UserInterface {}

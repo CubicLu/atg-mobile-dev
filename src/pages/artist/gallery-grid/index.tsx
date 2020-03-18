@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Header,
-  ButtonIcon,
-  BackIcon,
-  _,
-  BackgroundImage,
-  DotsThreeIcon
-} from './../../../components';
+import { Header, _, BackgroundImage } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
@@ -111,24 +104,8 @@ class ArtistGalleryGridPage extends React.Component<Props> {
           >
             <div className={`artist-gallery-grid-page`}>
               <Header
-                leftContent={
-                  <ButtonIcon
-                    icon={<BackIcon color={'#FFF'} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
                 centerContent={<h1 className="title">{title}</h1>}
-                type={'fixed'}
-                rightContent={
-                  <ButtonIcon
-                    icon={<DotsThreeIcon color={'#FFF'} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
+                rightActionButton={true}
               />
 
               <div

@@ -62,13 +62,13 @@ class HeaderComponent extends React.Component<Props> {
         <div id="header" className={`atg-header fixed${top} ${color}`}>
           <div className="start">
             {this.props.leftBackButton && (
-              <div className="default-button" onClick={this.goBackClick}>
+              <div className="default-button dark" onClick={this.goBackClick}>
                 <BackIcon />
               </div>
             )}
 
             {this.props.leftMinimizeButton && (
-              <div className="default-button">
+              <div className="default-button dark">
                 <BackIcon />
               </div>
             )}
@@ -88,13 +88,13 @@ class HeaderComponent extends React.Component<Props> {
             {this.props.rightContent}
 
             {this.props.rightSupportButton && (
-              <div className="default-button">
+              <div className="default-button dark">
                 <SupportIcon />
               </div>
             )}
             {this.props.rightActionButton && (
               <div
-                className="default-button"
+                className="default-button dark"
                 onClick={this.props.rightActionOnClick}
               >
                 <DotsThreeIcon />
@@ -118,7 +118,7 @@ class HeaderComponent extends React.Component<Props> {
             )}
             {this.props.rightCloseButton && (
               <div
-                className="default-button"
+                className="default-button dark"
                 onClick={this.props.rightCloseOnClick}
               >
                 <CloseIcon />

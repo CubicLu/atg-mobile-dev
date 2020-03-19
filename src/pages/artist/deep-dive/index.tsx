@@ -59,10 +59,6 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
     }
   }
 
-  componentWillUnmount(): void {
-    this.props.updateArtistProperty('currentArtist', null);
-  }
-
   handleScroll(event: any): void {
     const { fixed, scrolling } = this.state;
     if (!scrolling) return;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import {
   IonContent,
   IonSlides,
@@ -67,6 +67,7 @@ interface Props
 
 class ArtistBiographyPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<CreateAnimation> = React.createRef();
+  slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
   private headerTitleRef: React.RefObject<CreateAnimation> = React.createRef();
   constructor(props: Props) {
     super(props);
@@ -102,6 +103,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.setState({ blur: eventBlur });
   }
 
+  changeChapter(chapter?: number): void {
+    const slides = this.slides?.current;
+    if (!slides) return;
+    chapter ? slides.slideTo(chapter) : slides.slideNext();
+    this.props.updateSettingsModal(false, null);
+  }
+
   render(): React.ReactNode {
     const hasArtist = this.props.currentArtist;
     if (!hasArtist) {
@@ -120,7 +128,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
         items: this.props.currentArtist!.biography,
         title: 'Biography',
         username: this.props.currentArtist!.username,
-        onClick: this.props.updateSettingsModal.bind(this, false, null),
+        onClick: (a: number): any => this.changeChapter(a),
         background: 'background-white-base'
       }),
       'background-white-base'
@@ -170,7 +178,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
           className="artist-biography-content"
         >
-          <IonSlides options={{ autoHeight: true }}>
+          <IonSlides ref={this.slides} options={{ autoHeight: true }}>
             {this.props.currentArtist?.biography &&
               this.props.currentArtist?.biography.map(
                 (bio: BiographyInterface): any => (
@@ -247,7 +255,10 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                             />
                           </div>
 
-                          <div className="col s3 next">
+                          <div
+                            onClick={(): void => this.changeChapter()}
+                            className="col s3 next"
+                          >
                             <span>NEXT</span>
                           </div>
                           <div className="col s1 arrow">
@@ -327,10 +338,8 @@ const mapStateToProps = ({
   return { currentArtist, loading, modal };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty,
-    updateSettingsModal,
-    getArtistAPI
-  })(ArtistBiographyPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty,
+  updateSettingsModal,
+  getArtistAPI
+})(ArtistBiographyPage);

@@ -33,7 +33,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 export default class App extends React.Component {
-  authenticated: boolean = true;
+  authenticated: boolean = false;
 
   render(): React.ReactNode {
     store.subscribe((): void => {

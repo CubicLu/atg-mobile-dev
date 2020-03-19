@@ -6,8 +6,7 @@ import {
   BackgroundSignUpConfirmImage,
   InputText,
   Button,
-  ButtonIcon,
-  CloseIcon
+  Header
 } from './../../components';
 import {} from './../../actions';
 
@@ -22,20 +21,14 @@ class SignUpConfirmPage extends React.Component<Props> {
           backgroundImage={BackgroundSignUpConfirmImage}
           backgroundBottom
         />
+        <Header
+          leftBackButton={false}
+          rightCloseButton={true}
+          leftContent={<h4 className="sign-in-title">CONFIRM</h4>}
+          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+        />
         <div className="sign-up-confirm-page">
           <div className="space-between">
-            <div className="row header">
-              <div className="col s8">
-                <h1 className="title">CONFIRM</h1>
-              </div>
-              <div className="col s4 button">
-                <ButtonIcon
-                  styles={{ width: 35, height: 35, minWidth: 35 }}
-                  icon={<CloseIcon width={12} height={12} />}
-                  onClick={(): any => this.props.history.goBack()}
-                />
-              </div>
-            </div>
             <div className="row form">
               <div className="col s12  mt-40">
                 <div className="row ">

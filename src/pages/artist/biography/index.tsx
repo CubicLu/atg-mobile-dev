@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import {
   IonContent,
   IonSlides,
@@ -67,6 +67,7 @@ interface Props
 
 class ArtistBiographyPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<CreateAnimation> = React.createRef();
+  slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
   private headerTitleRef: React.RefObject<CreateAnimation> = React.createRef();
   constructor(props: Props) {
     super(props);
@@ -102,10 +103,16 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.setState({ blur: eventBlur });
   }
 
+  changeChapter(chapter?: number): void {
+    const slides = this.slides?.current;
+    if (!slides) return;
+    chapter ? slides.slideTo(chapter) : slides.slideNext();
+    this.props.updateSettingsModal(false, null);
+  }
+
   render(): React.ReactNode {
     const hasArtist = this.props.currentArtist;
     if (!hasArtist) {
-      //ensures not fire a lot of times (ex. once called render instead of four)
       return (
         <IonPage id="artist-biography" className="artist-biography-page">
           <LoaderFullscreen visible={true} />
@@ -120,7 +127,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
         items: this.props.currentArtist!.biography,
         title: 'Biography',
         username: this.props.currentArtist!.username,
-        onClick: this.props.updateSettingsModal.bind(this, false, null),
+        onClick: (a: number): any => this.changeChapter(a),
         background: 'background-white-base'
       }),
       'background-white-base'
@@ -157,10 +164,17 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           fromTo={{
             property: 'opacity',
             fromValue: '0',
-            toValue: '0.9'
+            toValue: '1'
           }}
         >
-          <div className="top-header">{this.props.currentArtist!.name}</div>
+          <div className="top-header biography">
+            <br />
+            <span className="biography-header">
+              {this.props.currentArtist!.name}
+            </span>
+            <br />
+            <span className="biography-subheader">Biography</span>
+          </div>
         </CreateAnimation>
 
         <IonContent
@@ -170,7 +184,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
           className="artist-biography-content"
         >
-          <IonSlides options={{ autoHeight: true }}>
+          <IonSlides ref={this.slides} options={{ autoHeight: true }}>
             {this.props.currentArtist?.biography &&
               this.props.currentArtist?.biography.map(
                 (bio: BiographyInterface): any => (
@@ -233,7 +247,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                           )}
                         </IonRow>
                         <IonRow className="row footer">
-                          <div className="col s2" />
+                          <div className="col s1" />
                           <div className="col s2">
                             <ButtonIcon
                               color={'orange'}
@@ -246,8 +260,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                               icon={<ShareIcon width={22} height={20} />}
                             />
                           </div>
+                          <div className="col s1" />
 
-                          <div className="col s3 next">
+                          <div className="col s1" />
+                          <div
+                            onClick={(): void => this.changeChapter()}
+                            className="col s3 next"
+                          >
                             <span>NEXT</span>
                           </div>
                           <div className="col s1 arrow">
@@ -257,7 +276,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                               color={'#000'}
                             />
                           </div>
-                          <div className="col s2" />
+                          <div className="col s1" />
                         </IonRow>
                       </IonGrid>
                     </div>
@@ -327,10 +346,8 @@ const mapStateToProps = ({
   return { currentArtist, loading, modal };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty,
-    updateSettingsModal,
-    getArtistAPI
-  })(ArtistBiographyPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty,
+  updateSettingsModal,
+  getArtistAPI
+})(ArtistBiographyPage);

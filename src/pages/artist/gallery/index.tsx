@@ -58,22 +58,20 @@ class ArtistGalleryPage extends React.Component<Props, State> {
     }
   }
 
-  async handleScroll(event: any): Promise<void> {
+  handleScroll(event: any): void {
     const parentAnimation = this.headerRef.current!.animation;
+
     const { blur } = this.state;
-    const eventBlur = event.detail.currentY >= 20;
-    const header = document.getElementById('ionHeader');
-
+    const eventBlur = event.detail.currentY > 30;
     if (blur && !eventBlur) {
+      parentAnimation.duration(1500);
       parentAnimation.direction('reverse');
-      header?.classList.remove('blur');
-      await parentAnimation.play();
+      parentAnimation.play();
     } else if (eventBlur && !blur) {
+      parentAnimation.duration(500);
       parentAnimation.direction('normal');
-      header?.classList.add('blur');
-      await parentAnimation.play();
+      parentAnimation.play();
     }
-
     this.setState({ blur: eventBlur });
   }
 
@@ -81,17 +79,20 @@ class ArtistGalleryPage extends React.Component<Props, State> {
     return (
       <IonPage id="gallery-page">
         <div className={`artist-gallery-page`}>
+          <Header title="Gallery" />
+
           <CreateAnimation
             ref={this.headerRef}
-            duration={300}
+            duration={500}
             fromTo={{
-              property: 'background',
-              toValue: 'var(--background)',
-              fromValue: 'transparent'
+              property: 'opacity',
+              fromValue: '0',
+              toValue: '1'
             }}
           >
-            <Header title="Gallery" />
+            <div className="top-header"></div>
           </CreateAnimation>
+
           <IonContent
             fullscreen={true}
             scrollY={true}

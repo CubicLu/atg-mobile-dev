@@ -10,16 +10,38 @@
         margin: $initial-margin-top;
         margin-top: $header-margin-top;
     }
+    .bottom{
+        margin-bottom: 60px;
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .rounded-tooltip{
+            & div:first-child{
+                font-size: 3.2em;
+                padding-bottom: 6px;
+            }
+        }
+        .register{
+            font-family: "Helvetica Neue";
+            font-size: 16px !important;
+            font-weight: 500;
+            line-height: 24px;
+            padding-bottom: 2px !important;
+        }
+    }
 }
 .sign-in-page{
     height: 100%;
+    display: flex;
+    flex-direction: column;
     overflow: auto;
     margin: $initial-margin-top;
     .col{
         padding: 0;
     }
     .form{
-        margin-top: 150px;
+        margin-top: auto;
     }
     .title{
         font-size: 3em;
@@ -39,27 +61,6 @@
             &.icon{
                 padding: 0 10px;
             }
-        }
-    }
-    .bottom{
-        height: auto;
-        margin: 0;
-        margin-top: 100px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        .rounded-tooltip{
-            & div:first-child{
-                font-size: 3.2em;
-                padding-bottom: 6px;
-            }
-        }
-        .register{
-            font-family: "Helvetica Neue";
-            font-size: 16px !important;
-            font-weight: 500;
-            line-height: 24px;
-            padding-bottom: 2px !important;
         }
     }
 }

@@ -123,7 +123,7 @@ const defaultState: SettingsReducerType = {
     {
       id: 'similar',
       label: 'Similar',
-      icon: 'S',
+      icon: 's',
       onClick: (): void => {
         store.dispatch({
           type: ActionType.UPDATE_SETTINGS_MODAL,

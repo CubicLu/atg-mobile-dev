@@ -1,12 +1,6 @@
 import React from 'react';
 import { Header, _ } from './../../../components';
-import {
-  IonContent,
-  IonPage,
-  IonImg,
-  IonHeader,
-  CreateAnimation
-} from '@ionic/react';
+import { IonContent, IonPage, IonImg, CreateAnimation } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
@@ -182,22 +176,20 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
     }
   }
 
-  async handleScroll(event: any): Promise<void> {
+  handleScroll(event: any): void {
     const parentAnimation = this.headerRef.current!.animation;
+
     const { blur } = this.state;
-    const eventBlur = event.detail.currentY >= 20;
-    const header = document.getElementById('ionHeader');
-
+    const eventBlur = event.detail.currentY > 30;
     if (blur && !eventBlur) {
+      parentAnimation.duration(1500);
       parentAnimation.direction('reverse');
-      header?.classList.remove('blur');
-      await parentAnimation.play();
+      parentAnimation.play();
     } else if (eventBlur && !blur) {
+      parentAnimation.duration(500);
       parentAnimation.direction('normal');
-      header?.classList.add('blur');
-      await parentAnimation.play();
+      parentAnimation.play();
     }
-
     this.setState({ blur: eventBlur });
   }
 
@@ -237,21 +229,21 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
           className={`artist-gallery-grid-page ${this.props.isPlaying &&
             'is-playing'}`}
         >
+          <Header
+            centerContent={<h1 className="title">{title}</h1>}
+            rightActionButton={true}
+          />
+
           <CreateAnimation
             ref={this.headerRef}
-            duration={300}
+            duration={500}
             fromTo={{
-              property: 'background',
-              toValue: 'var(--background)',
-              fromValue: 'transparent'
+              property: 'opacity',
+              fromValue: '0',
+              toValue: '1'
             }}
           >
-            <IonHeader id="ionHeader" className="fixed ion-no-border">
-              <Header
-                centerContent={<h1 className="title">{title}</h1>}
-                rightActionButton={true}
-              />
-            </IonHeader>
+            <div className="top-header"></div>
           </CreateAnimation>
 
           <IonContent

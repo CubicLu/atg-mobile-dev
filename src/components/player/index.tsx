@@ -5,7 +5,8 @@ import {
   StarIcon,
   NextIcon,
   Header,
-  BackgroundImage
+  BackgroundImage,
+  ButtonSupport
 } from './../../components';
 import {} from './../../actions';
 import {
@@ -13,7 +14,6 @@ import {
   GestureConfig,
   Gesture,
   createAnimation,
-  IonButton,
   IonImg
 } from '@ionic/react';
 import { connect } from 'react-redux';
@@ -106,7 +106,7 @@ class PlayerComponent extends React.Component<Props> {
     this.animation = createAnimation()
       .addElement(player)
       .duration(250)
-      .fromTo('minHeight', '0%', 'calc(100% - 60px)')
+      .fromTo('minHeight', '0%', 'calc(100% - 58px)')
       .fromTo(
         'background',
         'linear-gradient(180deg, #22022f, #070707)',
@@ -197,13 +197,7 @@ class PlayerComponent extends React.Component<Props> {
             <Header
               leftBackButton={false}
               centerContent={
-                <IonButton
-                  className="support rounded"
-                  routerDirection="forward"
-                  routerLink={``}
-                >
-                  SUPPORT US
-                </IonButton>
+                <ButtonSupport buttonType={'text'} uppercase type={'rounded'} />
               }
               leftMinimizeButton={true}
               leftMinimizeOnClick={this.togglePlayer.bind(this)}

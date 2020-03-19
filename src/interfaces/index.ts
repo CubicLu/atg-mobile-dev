@@ -225,7 +225,8 @@ export interface DiscographyInterface {
 export interface GalleryInterface {
   cover: string | undefined;
   name: string;
-  items: AlbumInterface[];
+  quantity: number;
+  items: AlbumInterface[][];
 }
 
 export interface AlbumInterface {

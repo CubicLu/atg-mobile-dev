@@ -21,7 +21,6 @@ interface DispatchProps {
 interface MatchParams {
   id: string;
   galleryId: string;
-  photoId: string;
 }
 
 interface Props
@@ -49,16 +48,12 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
     if (this.props.currentArtist?.gallery !== undefined) {
       let gallery = this.props.currentArtist?.gallery;
       if (gallery[this.props.match.params.galleryId] !== undefined) {
-        if (Number(this.props.match.params.photoId) === 0) {
-          return gallery[this.props.match.params.galleryId].cover;
-        } else if (
-          gallery[this.props.match.params.galleryId].items[
-            this.props.match.params.photoId
-          ] !== undefined
-        ) {
-          return gallery[this.props.match.params.galleryId].items[
-            this.props.match.params.photoId
-          ].image;
+        const state = this.props.history.location.state;
+        const image = (state as any)?.image;
+        if (image !== undefined) {
+          return image;
+        } else {
+          return;
         }
       }
     }

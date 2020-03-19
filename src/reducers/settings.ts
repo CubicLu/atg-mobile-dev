@@ -195,7 +195,7 @@ const defaultState: SettingsReducerType = {
       component: ArtistSupportPage
     },
     {
-      path: '/home/artist/:id/gallery/:galleryId/:photoId',
+      path: '/home/artist/:id/gallery/:galleryId/image',
       id: 'profile',
       component: ArtistGalleryPhotoPage
     },

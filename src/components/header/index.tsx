@@ -3,6 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router';
 import { BackIcon, DotsThreeIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
+import MinimizeIcon from '../icon/minimize';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -24,6 +25,7 @@ interface Props extends RouteComponentProps {
   rightContent?: React.ReactNode | null;
   rightActionOnClick?: any | undefined;
   rightCloseOnClick?: any | undefined;
+  leftMinimizeOnClick?: any | undefined;
   rightSettingsOnClick?: any | undefined;
   leftBackOnClick?: any | undefined;
   leftBackHref?: string | undefined;
@@ -70,8 +72,8 @@ class HeaderComponent extends React.Component<Props> {
             )}
 
             {this.props.leftMinimizeButton && (
-              <div className="default-button dark">
-                <BackIcon />
+              <div className="" onClick={this.props.leftMinimizeOnClick}>
+                <MinimizeIcon />
               </div>
             )}
 

@@ -18,8 +18,7 @@ class SliderEventsComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="row slider image">
-
-         <div className="list-view-all">
+        <div className="list-view-all">
           <div>
             <h1 className="title">{this.props.title}</h1>
           </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  _,
   BackgroundImage,
   Header
 } from './../../../components';
@@ -53,19 +52,10 @@ class BiographyListComponent extends React.Component<Props> {
         <div className={`row header ${this.props.background}`} />
         <div className="row content">
           <ul>
-            {_.map(
-              this.props.items,
-              (data, i): React.ReactNode => {
-                return (
-                  <li
-                    key={i}
-                    onClick={(): void => {
-                      this.props.history.push(
-                        `/home/artist/${this.props.username}`
-                      );
-                      this.props.onClick();
-                    }}
-                  >
+            {this.props.items &&
+              this.props.items.map(
+                (data, i): React.ReactNode => (
+                  <li key={i} onClick={(): number => this.props.onClick(i)}>
                     <div className="artist">
                       <div className="name">{data.name}</div>
                     </div>
@@ -82,9 +72,8 @@ class BiographyListComponent extends React.Component<Props> {
                       />
                     )}
                   </li>
-                );
-              }
-            )}
+                )
+              )}
           </ul>
         </div>
       </div>

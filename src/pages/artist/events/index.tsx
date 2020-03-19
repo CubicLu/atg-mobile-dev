@@ -65,22 +65,20 @@ class ArtistEventsPage extends React.Component<Props, State> {
     }
   }
 
-  async handleScroll(event: any): Promise<void> {
+  handleScroll(event: any): void {
     const parentAnimation = this.headerRef.current!.animation;
-    const header = document.getElementById('ionHeader');
 
     const { blur } = this.state;
-    const eventBlur = event.detail.currentY >= 100;
+    const eventBlur = event.detail.currentY > 30;
     if (blur && !eventBlur) {
+      parentAnimation.duration(1500);
       parentAnimation.direction('reverse');
-      header?.classList.remove('blur');
-      await parentAnimation.play();
+      parentAnimation.play();
     } else if (eventBlur && !blur) {
+      parentAnimation.duration(500);
       parentAnimation.direction('normal');
-      header?.classList.add('blur');
-      await parentAnimation.play();
+      parentAnimation.play();
     }
-
     this.setState({ blur: eventBlur });
   }
 
@@ -88,17 +86,20 @@ class ArtistEventsPage extends React.Component<Props, State> {
     return (
       <IonPage id="events-page">
         <div className="artist-events-page">
-          <Header title="Events" titleClassName="events">
-            <CreateAnimation
-              ref={this.headerRef}
-              duration={300}
-              fromTo={{
-                property: 'background',
-                toValue: 'var(--background)',
-                fromValue: 'transparent'
-              }}
-            />
-          </Header>
+          <Header title="Events" titleClassName="events" />
+
+          <CreateAnimation
+            ref={this.headerRef}
+            duration={500}
+            fromTo={{
+              property: 'opacity',
+              fromValue: '0',
+              toValue: '0.9'
+            }}
+          >
+            <div className="top-header"></div>
+          </CreateAnimation>
+
           <IonContent
             scrollY={true}
             scrollEvents={true}

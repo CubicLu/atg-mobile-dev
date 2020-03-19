@@ -12,6 +12,9 @@ interface Props extends RouteComponentProps {
   leftBackButton?: boolean;
   top?: boolean;
   color?: string | undefined;
+  overlayHeader?: string;
+  overlayColor?: string;
+  overlayPlay?: Function;
   leftMinimizeButton?: boolean;
   rightActionButton?: boolean;
   rightCloseButton?: boolean;
@@ -56,6 +59,7 @@ class HeaderComponent extends React.Component<Props> {
     }
     return this.props.history.goBack();
   };
+  ref?: React.ForwardRefExoticComponent<HTMLIonHeaderElement>;
 
   render(): React.ReactNode {
     const top = this.props.top ? ' header-top' : '';

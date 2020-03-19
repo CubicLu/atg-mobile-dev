@@ -183,18 +183,32 @@ export interface GalleryInterface {
 
 export interface AlbumInterface {
   image: string | undefined;
+  name?: string;
+  redirectUrl?: string;
+}
+
+export interface ReadMoreInterface {
+  title?: string;
+  items: AlbumInterface[];
 }
 
 export interface BiographyInterface {
-  skyline?: string | undefined;
+  template: string;
+  title: string;
   name: string;
+  subtitle?: string;
+
   chapter: number;
-  accessLevel?: number;
-  headline?: string;
+  accessLevel: number;
+
+  headline: string;
+  nameHeadline: string;
+  cover: string;
+  skyline?: string;
   byline?: string;
   leadParagraph?: string;
-  fullText?: string;
   items?: AlbumInterface[];
+  readMore?: ReadMoreInterface;
 }
 
 export interface EventWhoIsGoingInterface extends UserInterface {}

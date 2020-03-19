@@ -5,6 +5,7 @@ import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 
 interface Props extends RouteComponentProps {
+  className?: string;
   title?: string | null;
   titleClassName?: string | null;
   leftBackButton?: boolean;
@@ -57,9 +58,10 @@ class HeaderComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const top = this.props.top ? ' header-top' : '';
     const color = this.props.color;
+    const className = this.props.className;
     return (
       <IonHeader id="ionHeader" className="ion-no-border">
-        <div id="header" className={`atg-header fixed${top} ${color}`}>
+        <div className={`atg-header fixed${top} ${color} ${className}`}>
           <div className="start">
             {this.props.leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>

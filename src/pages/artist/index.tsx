@@ -179,6 +179,7 @@ class ArtistPage extends React.Component<Props, State> {
                   buttonType={'text'}
                   type={'rounded'}
                   uppercase
+                  supported={this.props.currentArtist?.support}
                   onClick={(): void => {
                     this.props.history.push(
                       `/home/artist/${this.props.currentArtist?.username}/support`

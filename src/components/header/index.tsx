@@ -128,7 +128,7 @@ class HeaderComponent extends React.Component<Props> {
                 className="default-button"
                 onClick={this.props.rightSettingsOnClick}
               >
-                <SettingsIcon height={22} width={22} />
+                <SettingsIcon height={24} width={24} />
               </div>
             )}
             {this.props.rightCloseButton && (

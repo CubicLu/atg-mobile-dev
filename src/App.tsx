@@ -33,7 +33,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 export default class App extends React.Component {
-  authenticated: boolean = true;
+  authenticated: boolean = false;
 
   render(): React.ReactNode {
     store.subscribe((): void => {
@@ -49,7 +49,7 @@ export default class App extends React.Component {
       <IonReactRouter>
         <IonRouterOutlet id="notLogged">
           <Switch>
-            <Route exact path="/initial" component={SignInPage} />
+            <Route exact path="/initial" component={InitialPage} />
             <Route exact path="/sign-in" component={SignInPage} />
             <Route exact path="/sign-up" component={SignUpPage} />
             <Route exact path="/enter-code" component={EnterCodePage} />

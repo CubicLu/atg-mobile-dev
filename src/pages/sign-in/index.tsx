@@ -38,39 +38,44 @@ class SignInPage extends React.Component<Props> {
           backgroundTop={false}
           backgroundBottom={true}
         />
+
         <Header
           leftBackButton={false}
           rightCloseButton={true}
           leftContent={<h4 className="sign-in-title">SIGN IN</h4>}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
-        <div className="sign-in-page">
-          <div className="form" />
-          <div className="row" />
-          <div className="col s12">
-            <InputText type="text" placeholder={'User Name'} />
+
+        <div className="space-between">
+          <div className="sign-in-page">
+            <div className="form" />
+            <div className="row" />
+            <div className="col s12">
+              <InputText type="text" placeholder={'User Name'} />
+            </div>
+
+            <div className="row" />
+            <div className="col s12">
+              <InputText type="text" placeholder={'Password'} />
+              <button className="btn transparent link">
+                Forgot your password?
+              </button>
+            </div>
+
+            <div className="row" />
+            <div className="col s12 mt-40">
+              <IonButton
+                className="primary gradient"
+                routerDirection="root"
+                size="default"
+                onClick={this.handleLogin.bind(this)}
+                expand="full"
+              >
+                Sign In
+              </IonButton>
+            </div>
           </div>
 
-          <div className="row" />
-          <div className="col s12">
-            <InputText type="text" placeholder={'Password'} />
-            <button className="btn transparent link">
-              Forgot your password?
-            </button>
-          </div>
-
-          <div className="row" />
-          <div className="col s12 mt-40">
-            <IonButton
-              className="primary gradient"
-              routerDirection="root"
-              size="default"
-              onClick={this.handleLogin.bind(this)}
-              expand="full"
-            >
-              Sign In
-            </IonButton>
-          </div>
           <div className="bottom">
             <button
               className="btn transparent rounded-tooltip"

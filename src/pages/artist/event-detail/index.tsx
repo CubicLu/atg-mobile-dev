@@ -100,10 +100,10 @@ class EventDetailPage extends React.Component<Props, State> {
               <div className="top-fixed">
                 <Header
                   rightCloseButton
-                      rightCloseOnClick={(): void => {
-                        this.props.updateArtistSetInitialProperty('event');
-                        this.props.history.goBack();
-                      }}
+                  rightCloseOnClick={(): void => {
+                    this.props.updateArtistSetInitialProperty('event');
+                    this.props.history.goBack();
+                  }}
                   centerContent={<h1 className="title">{`Who's going`}</h1>}
                 />
                 <div className="content-fixed">
@@ -132,7 +132,10 @@ class EventDetailPage extends React.Component<Props, State> {
                   </div>
                 </div>
               </div>
-              <div className={`content-list`}>
+              <div
+                className={`content-list ${this.props.isPlaying &&
+                  'is-playing'}`}
+              >
                 <div className="row">
                   <div className="col s12 ">
                     <IonList lines="none" className="list users">

@@ -65,6 +65,13 @@
         line-height: 30px;    
     }
 
+    &.supported{
+        background: linear-gradient(120deg, #fff, #fff);
+        height: 30px;
+        line-height: 30px;
+        color: #FC5F62;
+    }
+
     &.disable{
         background: #717274;
         color: #FFF;
@@ -77,8 +84,8 @@
         
         &.circle { 
            border-radius: 50%;
-           height: 35px;
-           width: 35px;
+           height: 40px;
+           width: 40px;
            align-items: center;
            text-align: center;
            display: flex;

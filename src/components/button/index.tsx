@@ -12,7 +12,8 @@ interface Props {
     | 'tertiary'
     | 'transparent'
     | 'support'
-    | 'disable';
+    | 'disable'
+    | 'supported';
   gradient?: boolean;
   bold?: boolean;
   type?: 'rounded' | 'normal' | 'full';

@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, IonButton, CreateAnimation } from '@ionic/react';
+import { IonContent, IonPage, CreateAnimation } from '@ionic/react';
 import {
   _,
   BackgroundImage,
   Header,
   Menu,
   SupportBy,
-  LoaderFullscreen
+  LoaderFullscreen,
+  ButtonSupport
 } from './../../components';
 import {
   updateArtistProperty,
@@ -174,13 +175,16 @@ class ArtistPage extends React.Component<Props, State> {
                   toValue: 'translate(0px, -162px)'
                 }}
               >
-                <IonButton
-                  className="support rounded"
-                  routerDirection="forward"
-                  routerLink={`${this.props.history.location.pathname}/support`}
-                >
-                  SUPPORT US
-                </IonButton>
+                <ButtonSupport
+                  buttonType={'text'}
+                  type={'rounded'}
+                  uppercase
+                  onClick={(): void => {
+                    this.props.history.push(
+                      `/home/artist/${this.props.currentArtist?.username}/support`
+                    );
+                  }}
+                />
               </CreateAnimation>
             </div>
 

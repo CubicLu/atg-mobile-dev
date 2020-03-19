@@ -3,8 +3,8 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   DotsThreeIcon,
   ButtonIcon,
-  SupportIcon,
-  MenuFanSupportOptions
+  MenuFanSupportOptions,
+  ButtonSupport
 } from './../../../components';
 import { updateArtistProperty, updateSettingsModal } from './../../../actions';
 import { ArtistInterface } from './../../../interfaces';
@@ -69,13 +69,28 @@ class CardArtistComponent extends React.Component<Props> {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s8 name">
-                    <span>{this.props.artist.name}</span>
+                  <div
+                    className="col s8 align-items-end"
+                    onClick={(): void => {
+                      this.props.history.push(
+                        `/home/artist/${this.props.artist.username}`
+                      );
+                    }}
+                  >
+                    <div className="name">
+                      <span>{this.props.artist.name}</span>
+                    </div>
                   </div>
                   <div className="col s4 support">
-                    {this.props.artist.support && (
-                      <ButtonIcon icon={<SupportIcon />} color="support" />
-                    )}
+                    <ButtonSupport
+                      buttonType={'icon'}
+                      supported={this.props.artist.support}
+                      onClick={(): void => {
+                        this.props.history.push(
+                          `/home/artist/${this.props.artist?.username}/support`
+                        );
+                      }}
+                    />
                   </div>
                 </div>
               </div>

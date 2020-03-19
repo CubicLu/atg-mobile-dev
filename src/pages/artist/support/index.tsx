@@ -6,11 +6,12 @@ import {
   BackgroundImage,
   Header,
   ButtonPlan,
-  Avatar
+  Avatar,
+  ButtonSupport
 } from './../../../components';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonPage, IonButton } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import { ArtistInterface, PlanInterface } from '../../../interfaces';
 
 interface State {
@@ -168,14 +169,15 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   </div>
 
                   <div className="col s12 footer">
-                    <IonButton
-                      id="supportBtn"
-                      className="support rounded"
-                      routerDirection="forward"
-                      routerLink={`/home/artist/${this.props.currentArtist?.username}`}
-                    >
-                      SUPPORT US
-                    </IonButton>
+                    <ButtonSupport
+                      type={'normal'}
+                      buttonType={'text'}
+                      onClick={(): void =>
+                        this.props.history.push(
+                          `/home/artist/${this.props.currentArtist?.username}`
+                        )
+                      }
+                    />
                   </div>
                 </React.Fragment>
               )}

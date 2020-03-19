@@ -62,7 +62,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
     const parentAnimation = this.headerRef.current!.animation;
 
     const { blur } = this.state;
-    const eventBlur = event.detail.currentY > 30;
+    const eventBlur = event.detail.scrollTop > 30;
     if (blur && !eventBlur) {
       parentAnimation.duration(1500);
       parentAnimation.direction('reverse');

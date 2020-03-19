@@ -66,7 +66,6 @@ class SignInPage extends React.Component<Props> {
             <div className="col s12 mt-40">
               <IonButton
                 className="primary gradient"
-                routerDirection="root"
                 size="default"
                 onClick={this.handleLogin.bind(this)}
                 expand="full"

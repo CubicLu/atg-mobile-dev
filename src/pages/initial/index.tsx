@@ -48,7 +48,6 @@ class InitialPage extends React.Component<Props> {
                     <IonButton
                       className="primary gradient"
                       size="large"
-                      routerDirection="forward"
                       routerLink="/sign-in"
                       expand="full"
                     >
@@ -61,7 +60,6 @@ class InitialPage extends React.Component<Props> {
                     color="white"
                     fill="clear"
                     expand="full"
-                    routerDirection="forward"
                     routerLink="/sign-up"
                   >
                     Create an account

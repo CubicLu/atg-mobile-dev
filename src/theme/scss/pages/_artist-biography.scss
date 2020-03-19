@@ -14,6 +14,13 @@
             font-size: pxToRem(50);
             line-height: 36px;
         }
+        .biography-subheader{
+            opacity: 0;
+            font-size: 14px;
+        }
+    }
+    .biography-subheader{
+        font-size: 14px;
     }
     .footer{
         margin-top:50px;       
@@ -254,6 +261,15 @@
         }
         .byline{
             margin: 0;
+        }
+        .readmore{
+            color: #5A5A5A;
+            margin: 16px;
+            text-transform: uppercase;
+            font-family: "Helvetica";
+            font-weight: 600;
+            font-size: 24px;
+            text-align: center;
         }
         .headline{
             display: block;

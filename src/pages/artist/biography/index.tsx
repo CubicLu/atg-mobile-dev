@@ -164,11 +164,16 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           fromTo={{
             property: 'opacity',
             fromValue: '0',
-            toValue: '0.9'
+            toValue: '1'
           }}
         >
-          <div className="top-header yellow">
-            {this.props.currentArtist!.name}
+          <div className="top-header biography">
+            <br />
+            <span className="biography-header">
+              {this.props.currentArtist!.name}
+            </span>
+            <br />
+            <span className="biography-subheader">Biography</span>
           </div>
         </CreateAnimation>
 
@@ -242,7 +247,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                           )}
                         </IonRow>
                         <IonRow className="row footer">
-                          <div className="col s2" />
+                          <div className="col s1" />
                           <div className="col s2">
                             <ButtonIcon
                               color={'orange'}
@@ -255,7 +260,9 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                               icon={<ShareIcon width={22} height={20} />}
                             />
                           </div>
+                          <div className="col s1" />
 
+                          <div className="col s1" />
                           <div
                             onClick={(): void => this.changeChapter()}
                             className="col s3 next"
@@ -269,7 +276,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                               color={'#000'}
                             />
                           </div>
-                          <div className="col s2" />
+                          <div className="col s1" />
                         </IonRow>
                       </IonGrid>
                     </div>

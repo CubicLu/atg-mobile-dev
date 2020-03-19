@@ -94,7 +94,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
             fromTo={{
               property: 'opacity',
               fromValue: '0',
-              toValue: '0.9'
+              toValue: '1'
             }}
           >
             <div className="top-header"></div>

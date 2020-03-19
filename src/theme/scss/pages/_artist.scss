@@ -1,75 +1,114 @@
 .artist-page{
-    position: relative;
-    z-index: 2;
-    &.absolute{
-        position: absolute;
-        bottom: 0; 
-        top: 155px;
-        width: 100%;
-        overflow: auto;
+    .menu{
+        &.generic{
+            &.scroll {
+                margin-top: 0px;
+                padding: 16px;
+                padding-bottom: 4px;
+                margin-bottom: 12px;
+                transition: transform 500ms;
+                display: flex;
+                overflow: scroll;
+            }
+        }
     }
-    .row {
+    .menuFixed{
+        // originally 266 goes to 62px;
+        top: 276px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        opacity: 1;
+    }
+    .notFixed{
+        opacity: 1;
+    }
+    position: relative;
+    //hack for positioning behind - top = glasspanel
+    &.content{
+        position: absolute;
+        top: 160px;
+        bottom: 0;
+        height: auto;
+        width: 100%;
+    }
+    .row{
         width: 100%;
         margin-bottom: 5px;
         margin-top: 0;
         margin-left: 0;
         margin-right: 0;
     }
-    &.is-playing {
-        padding-bottom: 60px;
+    .emptySpace{
+        height: 130px;
     }
-    .name{
-        height: 280px;
+    .artistName{
         display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-
-        h1{
-            &.title{
-                text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
-            }
+        &.center{
+            justify-content: center;
         }
     }
-    .header.default{
-        height: 0px;
-        position: fixed;
-    }
-    .header-fixed{
-        position: fixed;
-        z-index: 4;
-
-        .support-by-component{
-            display: none;
+    .supportBtn{
+        z-index: 11;
+        display: flex;
+        &.center{
+            justify-content: center;
+            margin-bottom: 20px;
         }
-
-        .header.default{
+        &.right{
+            top: 44px;
             position: fixed;
-            height: auto;
+            right: 16px;
+            display: block;
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 200ms;
         }
-        .name{
-            padding-top: pxToRem(31);
-            padding-right: pxToRem(15);
-            padding-left: pxToRem(55);
-            height: 64px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-end;
-    
-            h1{
-                margin: 0;
-                font-size: pxToRem(30);
-                text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
-                font-weight: 600 !important;
-                font-stretch: normal;
-                font-style: normal;
-                letter-spacing: normal;
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
             }
         }
-    
-        .menu.generic.scroll{
-            margin-top: 0px;
+    }
+    &.is-playing {
+        ion-content{
+            --padding-bottom: #{$default-height-player + $default-height-tabs + 251};
         }
-    }    
+    }
+    h2{
+        margin: 0;
+        text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
+        &.title {
+            font-size: pxToRem(48);
+            font-family: "Industria";
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            margin-bottom: 6px;
+            &.left{
+                opacity: 0;
+                transition: opacity 1000ms;
+                top: 150px;
+                position: fixed;
+                display: block;
+                font-size: pxToRem(30);
+            }
+            &.center{
+                opacity: 1;
+                transform: translate(0,0);
+                transition: opacity 1000ms;
+            }
+        }
+    }
+
+    .artist-discography-page{
+        margin-bottom: 100px;
+    }
 }
+

@@ -12,6 +12,10 @@
 
 @import './mixins';
 
+/* ionic */
+
+@import './ionic';
+
 /* utils */
 
 @import './utils';
@@ -34,6 +38,7 @@
 @import './components/modal';
 @import './components/support-by';
 @import './components/loader';
+@import './components/button-support';
 
 /* pages */
 @import './pages';
@@ -54,3 +59,6 @@
 @import './pages/artist-biography';
 @import './pages/artist-event-detail';
 @import './pages/artist-deep-dive';
+@import './pages/artist-gallery-photo';
+@import './pages/artist-gallery-grid';
+

@@ -37,7 +37,7 @@ class SliderMixtapesComponent extends React.Component<Props> {
       speed: 500,
       slidesToShow: 1,
       centerMode: true,
-      variableWidth: true,
+      variableWidth: false,
       swipe: true,
       arrows: false
     };
@@ -69,20 +69,17 @@ class SliderMixtapesComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="row slider mixtapes">
-        <div className="col s12">
-          {this.props.title && (
-            <div className={'row content'}>
-              <div className="col s8">
-                <h1 className="title">{this.props.title}</h1>
-              </div>
-              <div className="col s4 view-all">
-                {this.props.viewAll && (
-                  <Button color={'transparent'} label={'View All'} />
-                )}
-              </div>
-            </div>
-          )}
+        <div className="list-view-all">
+          <div>
+            <h1 className="title">{this.props.title}</h1>
+          </div>
+          <div className="action">
+            {this.props.viewAll && (
+              <Button color={'transparent'} label={'View All'} />
+            )}
+          </div>
         </div>
+
         <Slider {...this.settings}>
           {_.map(
             this.playlists,

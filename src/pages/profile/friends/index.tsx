@@ -9,14 +9,20 @@ import {
   Button
 } from './../../../components';
 import {} from './../../../actions';
-import { IonList, IonItemSliding, IonItemOptions, IonItem } from '@ionic/react';
+import {
+  IonList,
+  IonItemSliding,
+  IonItemOptions,
+  IonItem,
+  IonContent
+} from '@ionic/react';
 
 interface Props extends RouteComponentProps {}
 
 class ProfileFriendsPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <div className="profile-friends-page">
+      <IonContent className="profile-friends-page">
         <IonList lines="none">
           {_.map(
             [{ friend: false }, {}, {}, {}, {}, {}, {}, {}],
@@ -37,7 +43,7 @@ class ProfileFriendsPage extends React.Component<Props> {
                           <Button
                             gradient={true}
                             color="tertiary"
-                            label="Pending"
+                            label="PENDING"
                           />
                         ) : (
                           <ButtonIcon
@@ -62,7 +68,7 @@ class ProfileFriendsPage extends React.Component<Props> {
             }
           )}
         </IonList>
-      </div>
+      </IonContent>
     );
   }
 }

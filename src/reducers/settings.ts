@@ -28,7 +28,9 @@ import {
   ArtistDeepDiveLyricsPage,
   ArtistDeepDivePedigreePage,
   ArtistDeepDiveCataloguePage,
-  ArtistDeepDivePage
+  ArtistDeepDivePage,
+  ArtistGalleryPhotoPage,
+  ArtistGalleryGridPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -42,7 +44,7 @@ import { store } from '../store';
 import LogoIcon from '../components/icon/logo';
 
 const defaultState: SettingsReducerType = {
-  activeTab: 'feed',
+  activeTab: 'profile',
   activeFanTab: 'artists',
   isPlaying: true,
   fanTabs: [
@@ -152,7 +154,7 @@ const defaultState: SettingsReducerType = {
   plans: [
     {
       name: 'Basic',
-      price: '.69',
+      price: '0.69',
       color: Colors.orange,
       id: 1,
       description:
@@ -160,7 +162,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       name: 'Platinum',
-      price: '.89',
+      price: '0.89',
       color: Colors.yellow,
       id: 3,
       description:
@@ -168,7 +170,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       name: 'Gold',
-      price: '.79',
+      price: '0.79',
       color: Colors.blue,
       id: 2,
       description:
@@ -176,7 +178,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       name: 'Diamond',
-      price: '.99',
+      price: '0.99',
       color: Colors.green,
       id: 4,
       description:
@@ -184,55 +186,66 @@ const defaultState: SettingsReducerType = {
     }
   ],
   selectedPlan: null,
-  tabs: [
+
+  links: [
+    {
+      path: '/home/artist/:id',
+      id: 'artistPage',
+      component: ArtistPage
+    },
     {
       path: '/home/artist/:id/support',
-      id: 'profile',
-      component: ArtistSupportPage,
-      show: false
+      id: 'artistSupport',
+      component: ArtistSupportPage
     },
     {
-      path: '/home/artist/:id/gallery',
+      path: '/home/artist/:id/gallery/:galleryId/image',
       id: 'profile',
-      component: ArtistGalleryPage,
-      show: false
+      component: ArtistGalleryPhotoPage
     },
     {
-      path: '/home/artist/:id/biography',
+      path: '/home/artist/:id/gallery/:galleryId',
       id: 'profile',
-      component: ArtistBiographyPage,
-      show: false
+      component: ArtistGalleryGridPage
     },
     {
       path: '/home/artist/:id/deep-dive',
       id: 'profile',
-      component: ArtistDeepDivePage,
-      show: false
+      component: ArtistDeepDivePage
     },
     {
       path: '/home/artist/:id/event/:eventId',
       id: 'profile',
-      component: ArtistEventDetailPage,
-      show: false
+      component: ArtistEventDetailPage
+    },
+    {
+      path: '/home/artist/:id/gallery',
+      id: 'artistGallery',
+      component: ArtistGalleryPage
+    },
+    {
+      path: '/home/artist/:id/biography',
+      id: 'artistBiography',
+      component: ArtistBiographyPage
+    },
+    {
+      path: '/home/artist/:id/event/:eventId',
+      id: 'artistEventDetail',
+      component: ArtistEventDetailPage
     },
     {
       path: '/home/artist/:id/event',
-      id: 'profile',
-      component: ArtistEventsPage,
-      show: false
-    },
-    {
-      path: '/home/artist/:id',
-      id: 'profile',
-      component: ArtistPage,
-      show: false
-    },
+      id: 'artistEvents',
+      component: ArtistEventsPage
+    }
+  ],
+
+  tabs: [
     {
       path: '/home/feed',
       icon: LogoIcon,
       id: 'feed',
-      component: FeedPage,
-      redirect: true
+      component: FeedPage
     },
     {
       path: '/home/messages',

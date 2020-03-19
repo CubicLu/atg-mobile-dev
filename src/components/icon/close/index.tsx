@@ -12,8 +12,8 @@ interface Props {
 class CloseIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
-    width: 30,
-    height: 30,
+    width: 15,
+    height: 15,
     strokeWidth: 1
   };
 
@@ -24,33 +24,26 @@ class CloseIcon extends React.Component<Props> {
         width={this.props.width}
         height={this.props.height}
         viewBox={`0 0 ${this.props.width} ${this.props.height}`}
+        fill="#ffffff"
       >
-        <g
-          id="Group_44"
-          data-name="Group 44"
-          transform="translate(0.354 0.354)"
-        >
+        <g transform="translate(0.354 0.354)">
           <line
-            id="Line_29"
-            data-name="Line 29"
-            y1={this.props.width}
-            x2={this.props.height}
-            transform="translate(0 0)"
+            y1="13.105"
+            x2="13.105"
+            transform="translate(0.354 0.354)"
             fill="none"
-            stroke={this.props.color}
+            stroke="#fff"
             strokeMiterlimit="10"
-            strokeWidth={this.props.strokeWidth}
+            strokeWidth="2"
           />
           <line
-            id="Line_30"
-            data-name="Line 30"
-            x1={this.props.width}
-            y1={this.props.height}
-            transform="translate(0 0)"
+            x1="13.105"
+            y1="13.105"
+            transform="translate(0.354 0.354)"
             fill="none"
-            stroke={this.props.color}
+            stroke="#fff"
             strokeMiterlimit="10"
-            strokeWidth={this.props.strokeWidth}
+            strokeWidth="2"
           />
         </g>
       </svg>

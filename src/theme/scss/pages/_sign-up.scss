@@ -1,4 +1,15 @@
+#sign-up-page{
+    .atg-header{
+        margin: $initial-margin-top;
+        margin-top: $header-margin-top;
+    }
+}
 .sign-up-page{
+    height: 100%;
+    margin: $initial-margin-top;
+    .col{
+        padding: 0;
+    }
     p{
         color: #5E7FB1;
         font-size: pxToRem(16);
@@ -20,9 +31,13 @@
     }
 
     .header{
-        @include header-with-button;
-        height: 45px;
+        height: 60px;
         margin-top: 0;
+        .btn {
+            &.icon{
+                padding: 0 10px;
+            }
+        }
     }
 
 

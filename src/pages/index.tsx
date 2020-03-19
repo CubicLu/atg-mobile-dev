@@ -24,6 +24,8 @@ import ArtistEventsPage from './artist/events';
 import ArtistVideosPage from './artist/videos';
 import ArtistSupportPage from './artist/support';
 import ArtistEventDetailPage from './artist/event-detail';
+import ArtistGalleryGridPage from './artist/gallery-grid';
+import ArtistGalleryPhotoPage from './artist/gallery-photo';
 
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
@@ -57,5 +59,7 @@ export {
   ArtistEventDetailPage,
   ArtistDeepDiveLyricsPage,
   ArtistDeepDivePedigreePage,
-  ArtistDeepDiveCataloguePage
+  ArtistDeepDiveCataloguePage,
+  ArtistGalleryGridPage,
+  ArtistGalleryPhotoPage
 };

@@ -1,34 +1,139 @@
 
 .player{
+    button[disabled]{
+    pointer-events: none;
+    opacity: 0.5;
+    }
     height: $default-height-player;
     background: linear-gradient(180deg, #22022f, #070707);
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     right: 0;
     bottom: 50px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
+    .background-image, .background-top, .background-bottom{
+        position: absolute;
+        top: 2;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .background-bottom{
+        bottom: 0;
+        z-index: -1;
+    }
+    .player-button{
+        background: transparent;
+    }
+    .expanded{
+        .cover-title{
+            margin-top: 90px;
+            margin-left: 32px;
+            margin-right: 32px;
+            margin-bottom: 48px;
+            max-height: 250px;
+            text-align: center;
+            font-family: "Helvetica Neue";
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.91;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
+            .main-song{
+                font-size: 20px;
+            }
+            .main-artist{
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            .main-source{
+                font-size: 16px;
+            }
+        }
+        .main-player{
+            margin: 32px;
+            max-height: 128px;
+            text-align: center;
+            .player-progress{
+                width: 100%;
+                height: 3px;
+                background-color: #363636;
+                margin-bottom: 44px;
+                position: relative;
+                border-left: 4px solid #ff00ff;
+                border-right: 4px solid #fcc505;
+                .bar{
+                    background: #FFFFFF;
+                    height: 3px;
+                }
+                .elapsed{
+                    font-size: 14px;
+                    color: #ffffff;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 8px;
+                }
+            }
+            .player-three-buttons{
+                display: flex;
+                justify-content: center;
+            }
+            .player-button{
+                width: 64px;
+            }
+        }
+        .image{
+            margin: 0 auto;
+            width: 160px;
+            height: 160px;
+        }
+        .see-more{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            max-height: 125px;
+            .tile{
+                width: 33.333vw;
+                height: 33.333vw;
+            }
+            .tile-label{
+                width: 33.333vw;
+                margin-bottom: 8px;
+                font-size: 14px;
+                color: #ffffff;
+                z-index: 1;
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+    }
     .row{
         margin-bottom: 0;
     }
     .cover{
-        height: $default-height-player;
-        width: $default-height-player;
-        bottom: 5px;
-        position: relative;
+        position: absolute;
+        left: 24px;
+        height: $default-height-player + 15;
+        clip-path: inset(0 0 5px 0);
+        bottom: -5px;
         
         .img{
             background-repeat: no-repeat;
             background-position-x: center;
             background-position-y: center;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            height: $default-height-player - 5;
-            width: $default-height-player - 5;
+            -webkit-background-size: cover !important;;
+            -moz-background-size: cover !important;;
+            -o-background-size: cover !important;;
+            background-size: cover !important;;
+            height: $default-height-player + 15;
+            width: $default-height-player + 15;
             border-radius: 50%;
         }
         .icon{
@@ -39,42 +144,40 @@
             height: 100%;
         }
     }
-    .crop{
-        height: 12px;
-        position: relative;
-        z-index: 2;
-        background: linear-gradient(180deg, #0c060e, #070707); 
-        bottom: $default-height-player - 52;
-    }
     
     .progress{
         position: absolute;
         margin: 0;
-        position: absolute;
-        margin: 0;
-        height: 2px;
+        height: 3px;
         width: 80%;
         right: 0;
         background-color: #363636;
-        bottom: $default-height-player - 40;
+        bottom: 0;
 
         .bar{
             background: #FFFFFF;
-            height: 2px;
+            height: 3px;
         }
     }
 
     
     .info{
-        height: $default-height-player - 20;
+        height: $default-height-player;
         display: flex;
         justify-content: center;
         flex-direction: column;
+        padding-right: 0;
+        padding-left: 4px;
         .song, .artist{
             display: block;
             color: #FFF;
             font-family: Arial, Helvetica, sans-serif;
-            line-height: 15px;
+            line-height: 16px;
+            font-size: 13px;
+            overflow: hidden;
+            display: block;
+            white-space: pre;
+            text-overflow: ellipsis;
         }
         
         .song{
@@ -85,7 +188,7 @@
     }
     
     .commands{
-        height: $default-height-player - 20;
+        height: $default-height-player;
         display: flex;
         align-items: center;
     
@@ -93,8 +196,12 @@
             &.list{
                 justify-content: space-around;
                 width: 100%;
+                align-items: center;
                 li{
                     margin-left: 10px;
+                }
+                button{
+                    background: transparent;
                 }
             }
         }

@@ -5,7 +5,14 @@ import {} from './../../../actions';
 interface Props {
   onClick: Function;
   icon: any;
-  color?: 'transparent' | 'green' | 'transparent-gray' | 'support' | 'red';
+  color?:
+    | 'transparent'
+    | 'green'
+    | 'transparent-gray'
+    | 'support'
+    | 'red'
+    | 'supported'
+    | 'orange';
   type?: 'rounded' | 'circle' | 'normal' | 'full';
   styles?: object;
   fixed: boolean;

@@ -7,9 +7,26 @@
     }
 }
 .sliding-panel-container{
+    .atg-header {
+        padding-top: 16px;
+        overflow: hidden;
+        background: white;
+        margin-top: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 24px;
+        margin-left: 24px;
+    }
+    .leaving{
+        opacity: 0;
+        transform: translateY(100%);
+        transition: transform 500ms, opacity 500ms;
+    }
     .panel{
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-
+        .background-bottom{
+            z-index: 0;
+        }
     }
 }

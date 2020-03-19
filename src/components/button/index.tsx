@@ -5,13 +5,15 @@ import {} from './../../actions';
 interface Props {
   onClick: Function;
   label: string;
+  id?: string;
   color?:
     | 'primary'
     | 'secondary'
     | 'tertiary'
     | 'transparent'
     | 'support'
-    | 'disable';
+    | 'disable'
+    | 'supported';
   gradient?: boolean;
   bold?: boolean;
   type?: 'rounded' | 'normal' | 'full';

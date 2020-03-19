@@ -5,7 +5,6 @@ import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
 import InputCodeComponent from './input/code';
 import ButtonIconComponent from './button/icon';
-import TabComponent from './tab';
 import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
 import CardArtistComponent from './card/artist';
@@ -30,6 +29,7 @@ import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
+import ButtonSupportComponent from './button/support';
 
 export * from './icon';
 
@@ -38,7 +38,6 @@ export {
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
   ButtonIconComponent as ButtonIcon,
-  TabComponent as Tab,
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,
@@ -63,7 +62,8 @@ export {
   SupportByComponent as SupportBy,
   MenuArtistListComponent as MenuArtistList,
   CardAlbumGalleryComponent as CardAlbumGallery,
-  LoaderFullscreenComponent as LoaderFullscreen
+  LoaderFullscreenComponent as LoaderFullscreen,
+  ButtonSupportComponent as ButtonSupport
 };
 
 export { _ };

@@ -1,28 +1,32 @@
+.scroll-x{
+    overflow-x: auto;
+}
+.list-fit{
+    .menu{
+        width: 100%;
+    }
+}
 .menu{
     &.generic{
         &.scroll{
             justify-content: normal !important;
-            overflow-x: scroll;
             margin-top: 30px;
             @include no-scroll-bar();
             li{
-                margin-left: 10px !important;
-                margin-right: 10px !important;
-                // min-width: 65px;
-                // overflow: hidden;
+                margin-left: 8px !important;
+                margin-right: 8px !important;
 
                 &:first-child{
-                    margin-left: 10px !important;
+                    margin-left: 8px !important;
                 }
                 &:last-child{
-                    padding-right: 10px !important;
+                    padding-right: 8px !important;
                 }
             }
         }
 
         justify-content: space-around;
-        width: 100%;
-        padding: 10px 0;
+        padding: $menu-padding/2 0;
         margin-top: 30px;
         li{
             margin-right: 0 !important;
@@ -51,11 +55,11 @@
                         padding-bottom: 2px;
                     }
                 }
-            
+
                 .title{
                     font-family: 'Helvetica';
                     font-size: 14px;
-                    margin-top: 10px;
+                    margin-top: $menu-padding/2;
                     font-weight: 400;
                     border-bottom: 2px solid transparent;
                 }
@@ -66,8 +70,7 @@
                         border-bottom: 2px;
                         border-bottom: 2px solid $tertiary;
                         color: $tertiary;
-                        margin-top: 9px;
-                        overflow: auto;
+                        margin-top: $menu-padding/2;
                     }
 
                     .circle{
@@ -77,31 +80,30 @@
                     }
                 }
             }
-        
+
     }
 
     &.fan-support-options, &.artist-list, &.generic-list{
         width: 100%;
         overflow-y: hidden;
         .header{
-            @include header-with-button;
+            width: 100%;
+            padding-top: $menu-padding;
+            border-top-left-radius: $menu-padding;
+            border-top-right-radius: $menu-padding;
             margin-top: 0;
-            padding-top: 0;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            height: 100px;
-            margin-top: 0;
+            margin-bottom: 0;
             position: fixed;
             z-index: 1;
             .title{
                 font-size: pxToRem(50);
-                margin-top: 0;
-                padding-top: pxToRem(20);
+                margin-top: 8px;
+                margin-left: $menu-padding;
+                line-height: 28px;
             }
             .subtitle{
                 font-size: pxToRem(30);
-                margin-left: 0;
-                margin-top: pxToRem(-10);
+                margin-left: $menu-padding;
             }
             .button{
                 .btn {
@@ -111,24 +113,29 @@
                 align-items: flex-end;
             }
         }
+        .header{
+            position: fixed;
+            height: 75px;
+        }
         .content{
             position: relative;
-            top: 100px;
-            margin-bottom: 100px;
+            top: 75px;
+            margin-bottom: 80px;
+            padding-left:$menu-padding; 
+            padding-right:$menu-padding; 
             ul{
                 li{
                     display: inline-flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin-bottom: 10px;
+                    margin-bottom: $menu-padding/2;
                     width: 100%;
-                    font-family: "Roboto";
+                    font-family: "Helvetica Neue";
+                    font-size: pxToRem(18);
                     font-weight: 400;
                     color: #333;
-
-                    button{ 
+                    button{
                         padding: 5px 10px;
-                        
                     }
                 }
             }
@@ -140,23 +147,7 @@
             font-family: 'Baskerville';
             font-weight: 600;
             font-size: pxToRem(36);
-        }
-        .content{
-            ul{
-                li{
-                    .artist{
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        .name{
-                            margin-left: 10px;
-                            margin-right: 10px;
-                            font-family: 'Helvetica';
-                            font-size: pxToRem(18);
-                        }
-                    }
-                }
-            }
+            line-height: 36px;
         }
     }
 
@@ -172,30 +163,24 @@
                 color: rgba($color: #000, $alpha: 0.65);
                 font-family: 'Helvetica';
                 font-weight: 400;
-                font-size: pxToRem(20);
+                font-size: pxToRem(18);
                 margin-top: 0px;
             }
         }
-        .content{
-            ul{
-                li{
-                    .artist{
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        .avatar{
-                            height: 40px;
-                            width: 40px;
-                            border-radius: 50%;
-                        }
-                        .name{
-                            margin-left: 10px;
-                            margin-right: 10px;
-                            font-family: 'Helvetica';
-                            font-size: pxToRem(18);
-                        }
-                    }
-                }
+        .artist{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            .avatar{
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+            }
+            .name{
+                margin-left: 10px;
+                margin-right: 10px;
+                font-family: 'Helvetica';
+                font-size: pxToRem(18);
             }
         }
     }

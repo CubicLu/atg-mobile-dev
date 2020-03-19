@@ -1,5 +1,9 @@
 .initial-page{ 
     height: 100%;
+    margin: $initial-margin-top;
+    .col{
+        padding: 0;
+    }
     .title{ 
         &.album{
             font-size: 80px;

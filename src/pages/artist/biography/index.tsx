@@ -9,7 +9,6 @@ import {
   IonGrid,
   IonRow,
   IonPage,
-  IonHeader,
   CreateAnimation
 } from '@ionic/react';
 import {
@@ -17,9 +16,6 @@ import {
   LoaderFullscreen,
   ModalSlide,
   Header,
-  ButtonIcon,
-  BackIcon,
-  DotsThreeIcon,
   BiographyList
 } from './../../../components';
 import {
@@ -67,18 +63,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.state = { currentPage: 0, blur: false };
   }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist == null
-    ) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
 
-  async componentDidMount(): Promise<void> {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
+  UNSAFE_componentWillMount(): void {
+    this.props.getArtistAPI(this.props.match.params.id);
   }
 
   async handleScroll(event: any): Promise<void> {
@@ -102,10 +93,22 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const hasArtist = this.props.currentArtist;
+    if (!hasArtist) {
+      //ensures not fire a lot of times (ex. once called render instead of four)
+      return (
+        <IonPage id="artist-biography" className="artist-biography-page">
+          <LoaderFullscreen visible={true} />
+        </IonPage>
+      );
+    }
+
     // const activeBio =
-    //   this.props.currentArtist &&
-    //   this.props.currentArtist.biography &&
-    //   this.props.currentArtist.biography[this.state.currentPage];
+    //   hasArtist &&
+    //   hasArtist.biography &&
+    //   hasArtist?.biography[this.state.currentPage];
+    // console.log(activeBio, hasArtist?.biography);
+
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
         <CreateAnimation
@@ -117,72 +120,56 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             fromValue: 'transparent'
           }}
         >
-          <IonHeader className="fixed ion-no-border">
-            <Header
-              leftContent={
-                <ButtonIcon
-                  icon={<BackIcon color={'#FFF'} />}
-                  onClick={(): void => {
-                    this.props.history.goBack();
-                  }}
-                />
-              }
-              centerContent={
-                <CreateAnimation
-                  duration={500}
-                  ref={this.headerTitleRef}
-                  fromTo={{
-                    property: 'color',
-                    toValue: 'var(--color)',
-                    fromValue: 'white'
-                  }}
-                >
-                  <h1 className="biography">Biography</h1>
-                </CreateAnimation>
-              }
-              rightContent={
-                this.props.currentArtist && (
-                  <ButtonIcon
-                    icon={<DotsThreeIcon color={'#FFF'} />}
-                    onClick={this.props.updateSettingsModal.bind(
-                      this,
-                      true,
-                      React.createElement(BiographyList, {
-                        items: this.props.currentArtist.biography,
-                        title: 'Biography',
-                        username: this.props.currentArtist.username,
-                        onClick: this.props.updateSettingsModal.bind(
-                          this,
-                          false,
-                          null
-                        ),
-                        background: 'background-white-base'
-                      }),
-                      'background-white-base'
-                    )}
-                  />
-                )
-              }
-            />
-          </IonHeader>
+          <Header
+            rightActionButton={true}
+            rightActionOnClick={this.props.updateSettingsModal.bind(
+              this,
+              true,
+              React.createElement(BiographyList, {
+                items: this.props.currentArtist!.biography,
+                title: 'Biography',
+                username: this.props.currentArtist!.username,
+                onClick: this.props.updateSettingsModal.bind(this, false, null),
+                background: 'background-white-base'
+              }),
+              'background-white-base'
+            )}
+            centerContent={
+              <CreateAnimation
+                duration={500}
+                ref={this.headerTitleRef}
+                fromTo={{
+                  property: 'color',
+                  toValue: 'var(--color)',
+                  fromValue: 'white'
+                }}
+              >
+                <span className="biography">Biography</span>
+              </CreateAnimation>
+            }
+          />
         </CreateAnimation>
+
         <IonContent
           scrollEvents={true}
+          scrollY={true}
           onIonScroll={this.handleScroll.bind(this)}
           className="artist-biography-content"
         >
           <IonSlides options={{ autoHeight: true }}>
+            {/* Template 1 */}
             <IonSlide>
               <BackgroundImage
                 className="cover"
                 backgroundImage={this.props.currentArtist?.cover.biography}
-              >
-                <h1 className="feature">
-                  {this.props.currentArtist?.biography &&
-                    this.props.currentArtist?.biography[0].headline}
-                </h1>
-              </BackgroundImage>
+              />
+              <h1 className="feature">
+                {this.props.currentArtist?.biography &&
+                  this.props.currentArtist?.biography[0].headline}
+                <p className="read">Read </p>
+              </h1>
             </IonSlide>
+            {/* Template 2 */}
             <IonSlide>
               <IonGrid>
                 {this.props.currentArtist?.biography && (
@@ -228,10 +215,9 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             </IonSlide>
           </IonSlides>
           <LoaderFullscreen visible={this.props.loading} />
+
           <ModalSlide
-            onClose={(): void => {
-              this.props.updateSettingsModal(false, null);
-            }}
+            onClose={(): void => this.props.updateSettingsModal(false, null)}
             visible={this.props.modal.visible}
             height={setHeight(40)}
             classname={this.props.modal.classname}

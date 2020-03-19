@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   Header,
-  ButtonIcon,
-  BackIcon,
   _,
   CardEvent,
   LoaderFullscreen,
@@ -13,7 +11,6 @@ import {
   IonList,
   IonItem,
   IonPage,
-  IonHeader,
   CreateAnimation
 } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -100,19 +97,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
               fromValue: 'transparent'
             }}
           >
-            <IonHeader id="ionHeader" className="fixed ion-no-border">
-              <Header
-                leftContent={
-                  <ButtonIcon
-                    icon={<BackIcon />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
-                centerContent={<h1 className="title">Events</h1>}
-              />
-            </IonHeader>
+            <Header title="Events" titleClassName="events" />
           </CreateAnimation>
           <IonContent
             scrollY={true}

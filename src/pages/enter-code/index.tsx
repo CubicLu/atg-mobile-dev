@@ -1,11 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  BackgroundImage,
-  InputCode,
-  ButtonIcon,
-  CloseIcon
-} from './../../components';
+import { BackgroundImage, InputCode, Header } from './../../components';
 import {} from './../../actions';
 import { IonPage } from '@ionic/react';
 
@@ -47,16 +42,12 @@ class EnterCodePage extends React.Component<Props, State> {
           backgroundBottomOpacity={0.13}
           bottomRotate={true}
         />
+        <Header
+          leftBackButton={true}
+          rightCloseButton={true}
+          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+        />
         <div className="enter-code-page">
-          <div className="row header">
-            <div className="col s10"></div>
-            <div className="col s2 button">
-              <ButtonIcon
-                icon={<CloseIcon strokeWidth={2} />}
-                onClick={(): any => this.props.history.push('/initial')}
-              />
-            </div>
-          </div>
           <div className="row">
             <div className="col s12">
               <h1 className="mt-40 title center-align">

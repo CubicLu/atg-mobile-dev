@@ -1,24 +1,38 @@
 .support-by-component{
     list-style: none;
     position: absolute;
+    bottom: 0;
+    right: 0;
     display: inline-flex;
     width: 100%;
-    right: 10px;
+    right: 0;
     margin-top: 0;
-    height: 37px;
-    max-width: 230px;
-    background: rgba(0, 0, 0, 0.65);
+    margin-bottom: 0;
+    height: 32px;
+    max-width: 200px;
+    background: #000000a6;
     border-radius: 40px;
     padding: 5px 8px;
     justify-content: space-around;
     align-items: center;
+    .hide{
+        opacity: 0;
+        transform: translateX(120%);
+        transition: transform 200ms, opacity 200ms;
+    }
+    .show{
+        transform: translateX(0);
+        opacity: 1;
+        transition: opacity 200ms, transform 200ms;
+    }
     li{
         &:first-child{
             text-align: right;
-            line-height: 14px;
+            line-height: 10px;
+            font-size: 11px;
             color: #fff;
             font-family: 'Helvetica';
-            width: 75px;
+            width: 65px;
         }
 
         &:last-child{

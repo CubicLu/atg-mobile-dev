@@ -16,26 +16,47 @@ ul{
     }
 }
 
+.list-view-all{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0;
+    margin-left: $list-padding;
+    margin-right: $list-padding;
+    margin-top: 30px;
+    h1{
+      margin-top: 0;
+    }
+    .btn{
+        font-size: 16px;
+        padding-top: 0px;
+        &::after{
+            content: "\203A";
+            padding-left: 6px;
+            font-size: 48px;
+            position: absolute;
+        }
+    }
+}
+
 .list-component{
     box-sizing: border-box;
-    @include title-view-all;
     .list{
+        padding-left: $list-padding - 20px;
+        padding-right: $list-padding - 10px;
         --background: transparent;
         background: transparent;
         .item{
             background: transparent;
             --background: transparent;
         }
-    
         .action{
             display: flex;
             justify-content: flex-end;
         }
-    
         .text{
             font-family: 'Helvetica';
             color: #FFF;
-            padding-left: 4px;
         }
     }
 }

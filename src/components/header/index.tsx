@@ -1,39 +1,135 @@
 import React from 'react';
-import {} from './../../actions';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { BackIcon, DotsThreeIcon } from '..';
+import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
+import { IonHeader } from '@ionic/react';
 
-interface Props {
-  rightContent?: React.ReactNode | null;
+interface Props extends RouteComponentProps {
+  title?: string | null;
+  titleClassName?: string | null;
+  leftBackButton?: boolean;
+  top?: boolean;
+  color?: string | undefined;
+  leftMinimizeButton?: boolean;
+  rightActionButton?: boolean;
+  rightCloseButton?: boolean;
+  rightSettingsButton?: boolean;
+  rightSupportButton?: boolean;
+  rightAddButton?: boolean;
+  rightFilterButton?: boolean;
+  rightUserGroupButton?: boolean;
   leftContent?: React.ReactNode | null;
   centerContent?: React.ReactNode | null;
-  type?: 'default' | 'fixed';
+  rightContent?: React.ReactNode | null;
+  rightActionOnClick?: any | undefined;
+  rightCloseOnClick?: any | undefined;
+  rightSettingsOnClick?: any | undefined;
+  leftBackOnClick?: any | undefined;
+  leftBackHref?: string | undefined;
 }
 
 class HeaderComponent extends React.Component<Props> {
   public static defaultProps = {
-    buttonRight: null,
+    title: null,
+    titleAlign: 'center',
+    leftBackButton: true,
     leftContent: null,
+    rightActionButton: false,
+    top: false,
+    rightSettingsButton: false,
+    rightSupportButton: false,
+    rightAddButton: false,
+    rightFilterButton: false,
+    rightUserGroupButton: false,
     centerContent: null,
-    rightContent: null,
-    type: 'default'
+    rightContent: null
   };
+
+  goBackClick = (ev: any): any => {
+    if (this.props.leftBackOnClick) {
+      return this.props.leftBackOnClick(ev);
+    } else if (this.props.leftBackHref) {
+      return this.props.history.push(this.props.leftBackHref);
+    }
+    return this.props.history.goBack();
+  };
+
   render(): React.ReactNode {
+    const top = this.props.top ? ' header-top' : '';
+    const color = this.props.color;
     return (
-      <div id="header" className={`header ${this.props.type}`}>
-        <div className="row content">
-          <div id="header-left" className="col s2 h-100 left-col">
+      <IonHeader id="ionHeader" className="ion-no-border">
+        <div id="header" className={`atg-header fixed${top} ${color}`}>
+          <div className="start">
+            {this.props.leftBackButton && (
+              <div className="default-button dark" onClick={this.goBackClick}>
+                <BackIcon />
+              </div>
+            )}
+
+            {this.props.leftMinimizeButton && (
+              <div className="default-button dark">
+                <BackIcon />
+              </div>
+            )}
+
             {this.props.leftContent}
           </div>
 
-          <div id="header-center" className="col s8 h-100 center-col">
-            {this.props.centerContent}
-          </div>
+          {this.props.centerContent}
 
-          <div id="header-right" className="col s2 h-100 right-col">
+          {this.props.title && (
+            <div className={`title ${this.props.titleClassName}`}>
+              <span>{this.props.title}</span>
+            </div>
+          )}
+
+          <div className="end">
             {this.props.rightContent}
+
+            {this.props.rightSupportButton && (
+              <div className="default-button dark">
+                <SupportIcon />
+              </div>
+            )}
+            {this.props.rightActionButton && (
+              <div
+                className="default-button dark"
+                onClick={this.props.rightActionOnClick}
+              >
+                <DotsThreeIcon />
+              </div>
+            )}
+            {this.props.rightUserGroupButton && (
+              <div
+                className="default-button"
+                onClick={(): any => this.props.history.push('/home/feed')}
+              >
+                <UserGroupIcon color={'#FFF'} height={23} width={23} />
+              </div>
+            )}
+            {this.props.rightSettingsButton && (
+              <div
+                className="default-button"
+                onClick={this.props.rightSettingsOnClick}
+              >
+                <SettingsIcon height={22} width={22} />
+              </div>
+            )}
+            {this.props.rightCloseButton && (
+              <div
+                className="default-button dark"
+                onClick={this.props.rightCloseOnClick}
+              >
+                <CloseIcon />
+              </div>
+            )}
           </div>
         </div>
-      </div>
+
+        <div>{this.props.children}</div>
+      </IonHeader>
     );
   }
 }
-export default HeaderComponent;
+export default withRouter(HeaderComponent);

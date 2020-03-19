@@ -1,12 +1,25 @@
+.sign-in-title{
+    font-size: 36px;
+    color: #fff;
+    font-family: "Industria";
+    margin: 0;
+    line-height: 0.75;
+}
+#sign-in-page{
+    .atg-header{
+        margin: $initial-margin-top;
+        margin-top: $header-margin-top;
+    }
+}
 .sign-in-page{
     height: 100%;
     overflow: auto;
-    margin: pxToRem(28);
+    margin: $initial-margin-top;
     .col{
         padding: 0;
     }
     .form{
-        margin-top: 200px;
+        margin-top: 150px;
     }
     .title{
         font-size: 3em;
@@ -20,7 +33,6 @@
     }
 
     .header{
-        @include header-with-button;
         height: 60px;
         margin-top: 0;
         .btn {

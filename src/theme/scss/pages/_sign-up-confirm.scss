@@ -1,17 +1,24 @@
-.sign-up-confirm-page{
-    .title{
-        font-size: 3em;
-        margin-top: 10%;
-    
+.sign-in-title{
+    font-size: 36px;
+    color: #fff;
+    font-family: "Industria";
+    margin: 0;
+    line-height: 0.75;
+}
+#sign-up-confim-page{
+    .atg-header{
+        margin: $initial-margin-top;
+        margin-top: $header-margin-top;
     }
-    
+}
+
+.sign-up-confirm-page{
     .link { 
         font-size: 1em;
         color: #6F6F6F;
     }
 
     .header{
-        @include header-with-button;
         margin-top: 0;
         .transparent-gray{
             background: rgba(0, 0, 0, 0.3);

@@ -5,11 +5,8 @@ import {
   _,
   BackgroundImage,
   Header,
-  ButtonIcon,
-  CloseIcon,
   ButtonPlan,
-  Avatar,
-  BackIcon
+  Avatar
 } from './../../../components';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
@@ -75,6 +72,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
       planDetail ? 'detail' : ''
     }`;
 
+    const backButton = (): void => this.showDetail(false);
+    const closeButton = (): void =>
+      this.props.history.push(
+        `/home/artist/${this.props.currentArtist?.username}`
+      );
+    const leftButton = planDetail ? backButton : closeButton;
+
     return (
       <IonPage>
         {hasArtist && (
@@ -95,36 +99,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
             )}
 
             <Header
-              type="fixed"
-              leftContent={
-                planDetail ? (
-                  <ButtonIcon
-                    onClick={(): void => this.showDetail(false)}
-                    icon={<BackIcon />}
-                  />
-                ) : (
-                  <ButtonIcon
-                    onClick={(): void =>
-                      this.props.history.push(
-                        `/home/artist/${this.props.currentArtist?.username}`
-                      )
-                    }
-                    icon={<BackIcon />}
-                  />
-                )
-              }
-              rightContent={
-                !planDetail && (
-                  <ButtonIcon
-                    icon={<CloseIcon width={14} height={14} />}
-                    onClick={(): void => {
-                      this.props.history.push(
-                        `/home/artist/${this.props.currentArtist?.username}`
-                      );
-                    }}
-                  />
-                )
-              }
+              leftBackOnClick={leftButton}
+              rightCloseButton={!planDetail}
+              rightCloseOnClick={closeButton}
             />
 
             <div className={supportClassName}>

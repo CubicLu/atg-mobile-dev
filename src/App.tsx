@@ -59,7 +59,7 @@ export default class App extends React.Component {
               component={SignUpConfirmPage}
             />
             <Route path="/" render={(): any => <Redirect to="/initial" />} />
-          </Switch>{' '}
+          </Switch>
         </IonReactRouter>
       </IonRouterOutlet>
     );

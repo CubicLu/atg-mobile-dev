@@ -1,14 +1,12 @@
 import React from 'react';
 import {
   Header,
-  ButtonIcon,
-  BackIcon,
   _,
   BackgroundImage,
   CardAlbumGallery,
   LoaderFullscreen
 } from './../../../components';
-import { IonContent, IonPage, IonHeader, CreateAnimation } from '@ionic/react';
+import { IonContent, IonPage, CreateAnimation } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
@@ -92,19 +90,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
               fromValue: 'transparent'
             }}
           >
-            <IonHeader id="ionHeader" className="fixed ion-no-border">
-              <Header
-                leftContent={
-                  <ButtonIcon
-                    icon={<BackIcon color={'#FFF'} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
-                centerContent={<h1 className="title">Gallery</h1>}
-              />
-            </IonHeader>
+            <Header title="Gallery" />
           </CreateAnimation>
           <IonContent
             fullscreen={true}

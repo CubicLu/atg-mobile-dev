@@ -259,13 +259,13 @@
 
                 div{
                     &:first-child{
-                        font-size: pxToRem(25);
+                        font-size: 25px;
                         color: #FFF;
                         line-height: 18px;
                     }
 
                     &:last-child{
-                        font-size: pxToRem(45);
+                        font-size: 45px;
                         color: #FFF;
                         line-height: 38px;
                     }
@@ -280,7 +280,7 @@
         h1{
             margin-top: 0px;
             color: #01AED4;
-            font-size: pxToRem(26);
+            font-size: 26px;
             font-weight: bold;
             font-family: "Helvetica";
             margin-bottom: 5px;
@@ -289,35 +289,39 @@
         h2, h3{
             margin-top: 0px;
             color: #fff;
-            font-size: pxToRem(26);
+            font-size: 26px;
             font-weight: 400;
             font-family: "Helvetica";
             margin-bottom: 5px;
         }
 
         h5{
-            font-size: pxToRem(24);
+            font-size: 24px;
         }
         h6{
             font-weight: bold;
             font-family: "Helvetica";
             color: #01AED4;
-            font-size: pxToRem(18);
-        }
-        .bold{
-            font-weight: bold;
+            font-size: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
         .h7{
             font-weight: normal;
             font-family: "Helvetica";
             color: #ffffff;
-            font-size: pxToRem(16);
+            font-size: 16px;
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
         .h9{
             font-weight: normal;
             font-family: "Helvetica";
             color: #ffffff;
-            font-size: pxToRem(13);
+            font-size: 13px;
+        }
+        .bold{
+            font-weight: bold;
         }
 
         .list {
@@ -341,7 +345,7 @@
                     color: #fff;
                     margin-top: 8px;
                     text-align: center;
-                    font-size: pxToRem(19);
+                    font-size: 19px;
                 }
             }
         }
@@ -371,11 +375,11 @@
            color: #FFF;
            font-weight: bold;
            font-family: 'Helvetica';
-           font-size: pxToRem(17);
+           font-size: 17px;
        }
        span{
             font-family: 'Helvetica';
-            font-size: pxToRem(15);
+            font-size: 15px;
             color: #919397;
        }
     }
@@ -389,17 +393,17 @@
             }
 
             h1, h2{
-                font-size: pxToRem(20);
+                font-size: 20px;
             }
 
             h3{
-                font-size: pxToRem(14);
+                font-size: 14px;
             }
 
             .list {
                 li{
                     .label{
-                        font-size: pxToRem(12);
+                        font-size: 12px;
                     }
                 }
             }
@@ -417,12 +421,12 @@
         margin-bottom: 0 !important;
         &.title, &.artist{
             font-family: "Helvetica" !important;
-            font-size: pxToRem(24) !important;
+            font-size: 24px !important;
             font-weight: 400 !important;
             color: #FFF;
         }
         &.artist{
-            font-size: pxToRem(18) !important;
+            font-size: 18px !important;
             align-items: center;
             display: flex;
         }

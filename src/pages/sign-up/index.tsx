@@ -1,12 +1,7 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonPage, IonButton } from '@ionic/react';
-import {
-  BackgroundImage,
-  InputText,
-  ButtonIcon,
-  CloseIcon
-} from './../../components';
+import { BackgroundImage, InputText, Header } from './../../components';
 import {} from './../../actions';
 
 interface Props extends RouteComponentProps {}
@@ -24,17 +19,12 @@ class SignUpPage extends React.Component<Props> {
           bottomRotate={true}
           gradient="180deg, #231441, #080709"
         />
+        <Header
+          leftBackButton={false}
+          rightCloseButton={true}
+          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+        />
         <div className="sign-up-page">
-          <div className="row header">
-            <div className="col s10"></div>
-            <div className="col s2 button">
-              <ButtonIcon
-                icon={<CloseIcon strokeWidth={2} />}
-                onClick={(): any => this.props.history.push('/initial')}
-              />
-            </div>
-          </div>
-
           <div className="col s12 brand-text mt-40">
             <h1 className="title secondary center-align brand">panthr</h1>
             <h1 className="subtitle">

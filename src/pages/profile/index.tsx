@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonPage, IonHeader } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import {
   BackgroundImage,
   HeaderProfile,
@@ -42,20 +42,18 @@ class ProfilePage extends React.Component<Props> {
         <div
           className={`profile-page` + (this.props.isPlaying && ' is-playing')}
         >
-          <IonHeader className="ion-no-border">
-            <HeaderProfile />
-            <Menu
-              className="scroll-x list-fit"
-              tabs={this.props.fanTabs}
-              activeId={this.props.activeFanTab}
-              onClick={(event: MenuInterface): void => {
-                return this.props.updateSettingsProperty(
-                  'activeFanTab',
-                  event.id
-                );
-              }}
-            />
-          </IonHeader>
+          <HeaderProfile />
+          <Menu
+            className="scroll-x list-fit"
+            tabs={this.props.fanTabs}
+            activeId={this.props.activeFanTab}
+            onClick={(event: MenuInterface): void => {
+              return this.props.updateSettingsProperty(
+                'activeFanTab',
+                event.id
+              );
+            }}
+          />
           {_.map(
             this.props.fanTabs,
             (data, i): React.ReactNode => {

@@ -1,111 +1,107 @@
-.header {
-    padding-top: pxToRem(32);
-    width: 100%;
-    .row{
-        margin-bottom: 0px;
-        height: 100%;
-    }
-    &.default{
-        .transparent-gray{
-            background: rgba(0, 0, 0, 0.3);
-        }
-    }
+.atg-header {
+    --ion-safe-area-top: $header-margin-top;
+    margin-top: $header-margin-top;
+    margin-left: $header-margin-left;
+    margin-right: $header-margin-right;
+    margin-bottom: $header-margin-bottom;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    min-height: 44px;
     &.fixed{
         position: fixed;
-        width: 100%;
-        margin-top: 0;
-        top: 0;
-        z-index: 4;
+        left: 0;
+        right: 0;
     }
-
-    &.profile{
-        .title{
-            font-size: pxToRem(45);
-            margin-top: 2px;
-        }
-        .subtitle{
-            margin-left: 0;
-            font-size: pxToRem(20);
-            color: #FFF;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: 400;
-            margin-top: pxToRem(4);
-        }
-
-        h3{
-            &.subtitle{
-                margin-top: pxToRem(15);
-            }
-        }
-
-
-        .infos{
-            margin-left: 5%;
-        }
-
-        .content{
-            max-height: 70px;
-            .avatar-col{
-                padding: 0;
-                position: relative;
-
-                ul{
-                    position: absolute;
-                    left: 70px;
-                    width: 100%;
-                    top: 30px;
-                    margin: 0;
-                    li{
-                        color: #FFF;
-                        text-decoration: underline;
-                        font-size: 11px;
-                        font-weight: bold;
-                    }
-                }
-            }
-
-            .back-col{
-                display: flex;
-                justify-content: center;
-                button{
-                    background: rgba(0, 0, 0, 0.3);
-                }
-            }
-        }
+    &.header-top{
+        top: $header-top;
     }
-    .btn{
-        &.icon{
-            height: 30px;
-            width: 30px;
-            padding-left: 2px;
-            padding-right: 2px;
-            svg{
-                z-index: 1;
-            }
-        }
-    }
-
-    .center-col{
-        text-align: center;
-        z-index: 1;
-        h1{
-            &.title{
-                margin-top: 0;
-                font-size: pxToRem(40);
-                position: relative;
-                width: 100%;
-                text-align: center;
-            }
-        }
-    }
-
-    .right-col{
+    .default-button{
+        margin-top: $button-margin-top;
+        border-radius: 50%;
+        height: $header-button;
+        width: $header-button;
+        color: #FFF;
+        cursor: pointer;
+        text-decoration: none;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
+        &.dark{
+            background: #0000004d;
+        }
     }
-
-    .left-col{
+    .start{
+        float: left;
         display: flex;
         justify-content: flex-start;
+        min-width: 50px;
+        .default-button{
+            margin-left: 0;
+            margin-right: $button-margin-right;
+        }
+    }
+    .center{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    .end{
+        float: right;
+        display: flex;
+        justify-content: flex-end;
+        min-width: 50px;
+        .default-button{
+            margin-right: 0;
+            margin-left: $button-margin-right;
+        }
+    }
+    svg{
+        z-index: 1;
+    }
+
+    .title{
+        font-size: 30px;
+        line-height: 34px;
+        font-family: "Industria";
+        color: white;
+        width: 100%;
+        text-align: center;
+        &.left{
+            text-align: left;
+        }
+        &.artist-name{
+            font-size: 30px;
+            line-height: 34px;
+            font-family: "Industria";
+            margin-left: 8px;
+            font-weight: 600;
+            color: white;
+            text-align: left;
+            text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+            width: 100%;
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-timing-function: ease-in;
+            animation-duration: 400ms;
+            &.hide{
+                opacity: 0;
+            }
+        }
+        &.biography{
+            color: white;
+            --color: #5e7fb1;;
+            top: 0;
+            text-align: center;
+            font-family: "Baskerville" !important;
+            left: 0px;
+            z-index: 1;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: pxToRem(50);
+            line-height: 36px;
+        }
     }
 }

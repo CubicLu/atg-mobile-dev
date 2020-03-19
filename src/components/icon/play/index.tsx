@@ -23,12 +23,7 @@ class PlayIcon extends React.Component<Props> {
         height={this.props.height}
         viewBox={`0 0 22 24`}
       >
-        <g
-          id="Path_60565"
-          data-name="Path 60565"
-          transform="translate(25 -2.204) rotate(90)"
-          fill="none"
-        >
+        <g transform="translate(25 -2.204) rotate(90)" fill="none">
           <path
             d="M11.9,4.474a3,3,0,0,1,5.19,0l9.292,16.021A3,3,0,0,1,23.792,25H5.208a3,3,0,0,1-2.6-4.505Z"
             stroke="none"

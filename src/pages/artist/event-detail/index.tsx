@@ -80,62 +80,59 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
+        <BackgroundImage
+          gradient={`180deg,#000,#20123a`}
+          backgroundBottom
+          bottomRotate
+          backgroundBottomOrange={true}
         >
-          <BackgroundImage
-            gradient={`180deg,#000,#20123a`}
-            backgroundBottom
-            bottomRotate
-            backgroundBottomOrange={true}
+          <div
+            className={`artist-event-detail-page ${this.props.isPlaying &&
+              'is-playing'}`}
           >
-            <div className="artist-event-detail-page">
-              <div className="fixed">
+            <IonContent
+              scrollY={true}
+              scrollEvents={true}
+              onIonScrollStart={(): any => {}}
+              onIonScroll={(): any => {}}
+              onIonScrollEnd={(): any => {}}
+            >
+              <div className="top-fixed">
                 <Header
-                  rightContent={
-                    <ButtonIcon
-                      icon={<CloseIcon width={12} height={12} />}
-                      onClick={(): void => {
+                  rightCloseButton
+                      rightCloseOnClick={(): void => {
                         this.props.updateArtistSetInitialProperty('event');
                         this.props.history.goBack();
                       }}
-                    />
-                  }
                   centerContent={<h1 className="title">{`Who's going`}</h1>}
                 />
-                <div className="row">
-                  <div className="col s12 justify-center">
-                    <Button
-                      label={this.state.willGo ? "Can't go" : "I'm going"}
-                      color={this.state.willGo ? 'disable' : 'secondary'}
-                      gradient={true}
-                      bold
-                      onClick={(): void => {
-                        this.setState({ willGo: !this.state.willGo });
-                      }}
-                    />
+                <div className="content-fixed">
+                  <div className="row">
+                    <div className="col s12 justify-center">
+                      <Button
+                        label={this.state.willGo ? "Can't go" : "I'm going"}
+                        color={this.state.willGo ? 'disable' : 'secondary'}
+                        gradient={true}
+                        bold
+                        onClick={(): void => {
+                          this.setState({ willGo: !this.state.willGo });
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div className="row border-bottom">
-                  <div className="col s12">
-                    <CardEvent
-                      id={Number(this.props.match.params.eventId)}
-                      artistUsername={this.props.match.params.id}
-                      data={this.props.event}
-                    />
+                  <div className="row border-bottom">
+                    <div className="col s12">
+                      <CardEvent
+                        id={Number(this.props.match.params.eventId)}
+                        artistUsername={this.props.match.params.id}
+                        data={this.props.event}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div
-                className={`content-list ${this.props.isPlaying &&
-                  ' is-playing'}`}
-              >
+              <div className={`content-list`}>
                 <div className="row">
                   <div className="col s12 ">
                     <IonList lines="none" className="list users">
@@ -173,9 +170,9 @@ class EventDetailPage extends React.Component<Props, State> {
                   </div>
                 </div>
               </div>
-            </div>
-          </BackgroundImage>
-        </IonContent>
+            </IonContent>
+          </div>
+        </BackgroundImage>
       </IonPage>
     );
   }

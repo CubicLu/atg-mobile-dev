@@ -1,66 +1,57 @@
 .artist-event-detail-page{
-
+    
     @include page;
-    background: #000;
 
-    ion-header{
-        .header{
-            height: $default-height-header;
-        }
-        --background: rgba(255,255,255,0.2);
-        &.blur{
-            -webkit-backdrop-filter: blur(9.5px);
-            backdrop-filter: blur(9.5px);
-        }
-    }
-
-
-
-    .background-image {
-        background-size: contain;
-    }
-
-    .fixed-content{
-        height: 40%;
-        position: fixed;
+    .top-fixed{
         width: 100%;
-        z-index: 1;
-    }
-
-    .content-list{
-        background: #000;
-        position: relative;
-        padding-top: 10px;
-        top: 100px;
-        .list{
-            background: #000;
-            .item{
-                background: black;
-                --background: #000;
-                border-bottom: 1px solid #426193;
-                margin-bottom: 10px;
-                &:last-child{
-                    border-bottom: 0 solid #426193 !important;
-                }
-                .card{
-                    width: 100%;
-                    &.event{
-                        .row{
-                            margin-bottom: 0;
-                        }
-                        margin-top: 0;
-                        .circle{
-                            &.calendar{
-                                margin-top: 7px;
-                            }
-                        }
-
-                        .list{
-                            margin-top: 10px;
-                        }
+        height: 370px;
+        
+        .content-fixed{
+            height: 270px;
+            z-index: 2;
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(180deg, #000,#0e0819);
+            top: 100px;
+            padding-left: 20px;
+            padding-right: 20px;
+            .card{
+                &.event{
+                    .row{
+                        margin-bottom: 0;
                     }
                 }
             }
         }
     }
+    
+    .content-list{
+        position: relative;
+        @include list-user;
+        ion-item{
+            border-bottom: none;
+            padding-bottom: 5px;
+        }
+        .item-native{
+            padding: 0 !important;
+            .item-inner{
+                padding: 0 !important;
+            }
+        }
+    }
+
+
+    .action{
+        padding: 0 !important;
+        .btn{
+        
+            &.gradient { 
+                color: #FFF !important;
+                width: 85px !important;
+            }
+        }
+    }
+   
+
+    
 }

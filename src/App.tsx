@@ -46,8 +46,8 @@ export default class App extends React.Component {
 
     const authenticated = <HomePage />;
     const notAuthenticated = (
-      <IonReactRouter>
-        <IonRouterOutlet id="notLogged">
+      <IonRouterOutlet id="notLogged">
+        <IonReactRouter>
           <Switch>
             <Route exact path="/initial" component={InitialPage} />
             <Route exact path="/sign-in" component={SignInPage} />
@@ -59,9 +59,9 @@ export default class App extends React.Component {
               component={SignUpConfirmPage}
             />
             <Route path="/" render={(): any => <Redirect to="/initial" />} />
-          </Switch>
-        </IonRouterOutlet>
-      </IonReactRouter>
+          </Switch>{' '}
+        </IonReactRouter>
+      </IonRouterOutlet>
     );
 
     return (

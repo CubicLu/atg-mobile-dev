@@ -65,6 +65,11 @@ class ArtistPage extends React.Component<Props, State> {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (
+      nextProps.currentArtist == null &&
+      nextProps.match.params.id !== undefined
+    ) {
+      this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
 

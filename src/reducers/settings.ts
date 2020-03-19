@@ -11,7 +11,6 @@ import {
   ProfileFriendsPage,
   ProfileMixtapesPage,
   ProfileVaultPage,
-  ArtistDeepPage,
   ArtistFeaturesPage,
   ArtistDiscographyPage,
   ArtistVideosPage,
@@ -26,6 +25,10 @@ import {
   SearchPage,
   RadioPage,
   ArtistEventDetailPage,
+  ArtistDeepDiveLyricsPage,
+  ArtistDeepDivePedigreePage,
+  ArtistDeepDiveCataloguePage,
+  ArtistDeepDivePage,
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage
 } from './../pages';
@@ -114,7 +117,8 @@ const defaultState: SettingsReducerType = {
       id: 'deep',
       label: 'Deep',
       icon: 'd',
-      component: ArtistDeepPage
+      isPage: true,
+      route: '/home/artist/:id/deep-dive'
     },
     {
       id: 'similar',
@@ -205,6 +209,16 @@ const defaultState: SettingsReducerType = {
       component: ArtistGalleryGridPage
     },
     {
+      path: '/home/artist/:id/deep-dive',
+      id: 'profile',
+      component: ArtistDeepDivePage
+    },
+    {
+      path: '/home/artist/:id/event/:eventId',
+      id: 'profile',
+      component: ArtistEventDetailPage
+    },
+    {
       path: '/home/artist/:id/gallery',
       id: 'artistGallery',
       component: ArtistGalleryPage
@@ -256,6 +270,27 @@ const defaultState: SettingsReducerType = {
       icon: RadioIcon,
       id: 'radio',
       component: RadioPage
+    }
+  ],
+  activeDeepDiveTab: 'lyrics',
+  deepDiveTabs: [
+    {
+      id: 'lyrics',
+      label: 'Lyrics',
+      icon: 'l',
+      component: ArtistDeepDiveLyricsPage
+    },
+    {
+      id: 'pedigree',
+      label: 'Pedigree',
+      icon: 'p',
+      component: ArtistDeepDivePedigreePage
+    },
+    {
+      id: 'catalogue',
+      label: 'Catalogue',
+      icon: 'c',
+      component: ArtistDeepDiveCataloguePage
     }
   ]
 };

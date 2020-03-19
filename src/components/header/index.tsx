@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { BackIcon, DotsThreeIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
-import { IonHeader, CreateAnimation } from '@ionic/react';
+import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 
 interface Props extends RouteComponentProps {
@@ -59,14 +59,7 @@ class HeaderComponent extends React.Component<Props> {
     }
     return this.props.history.goBack();
   };
-  private headerRef: React.RefObject<CreateAnimation> = React.createRef();
   ref?: React.ForwardRefExoticComponent<HTMLIonHeaderElement>;
-
-  async overlayHeaderPlay(reverse: boolean = false): Promise<void> {
-    const parentAnimation = this.headerRef.current!.animation;
-    parentAnimation.direction(reverse ? 'reverse' : 'normal');
-    await parentAnimation.play();
-  }
 
   render(): React.ReactNode {
     const top = this.props.top ? ' header-top' : '';
@@ -143,23 +136,6 @@ class HeaderComponent extends React.Component<Props> {
         </div>
 
         <div>{this.props.children}</div>
-
-        {/* <CreateAnimation
-          ref={this.headerRef}
-          duration={500}
-          fromTo={{
-            property: 'opacity',
-            fromValue: '0',
-            toValue: '0.9'
-          }}
-        >
-          <div
-            style={{ backgroundColor: this.props.overlayColor }}
-            className="top-header"
-          >
-            {this.props.overlayHeader}
-          </div>
-        </CreateAnimation> */}
       </IonHeader>
     );
   }

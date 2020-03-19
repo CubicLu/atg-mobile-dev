@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonList, IonItem } from '@ionic/react';
 import {
-  CloseIcon,
-  ButtonIcon,
   Header,
   _,
   BackgroundImage,

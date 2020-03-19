@@ -113,7 +113,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     const hasArtist = this.props.currentArtist;
     if (!hasArtist) {
-      //ensures not fire a lot of times (ex. once called render instead of four)
       return (
         <IonPage id="artist-biography" className="artist-biography-page">
           <LoaderFullscreen visible={true} />
@@ -168,7 +167,9 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             toValue: '0.9'
           }}
         >
-          <div className="top-header">{this.props.currentArtist!.name}</div>
+          <div className="top-header yellow">
+            {this.props.currentArtist!.name}
+          </div>
         </CreateAnimation>
 
         <IonContent

@@ -106,7 +106,7 @@ class PlayerComponent extends React.Component<Props> {
     this.animation = createAnimation()
       .addElement(player)
       .duration(250)
-      .fromTo('minHeight', '0%', 'calc(100% - 60px)')
+      .fromTo('minHeight', '0%', 'calc(100% - 58px)')
       .fromTo(
         'background',
         'linear-gradient(180deg, #22022f, #070707)',

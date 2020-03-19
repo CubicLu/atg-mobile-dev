@@ -93,12 +93,13 @@
             height: 160px;
         }
         .see-more{
-            display: flex;
-            flex-wrap: wrap;
+            display: inline-flex;
+            flex-wrap: wrap-reverse;
             align-items: center;
             position: absolute;
             bottom: 0;
             max-height: 125px;
+            overflow: hidden;
             .tile{
                 width: 33.333vw;
                 height: 33.333vw;

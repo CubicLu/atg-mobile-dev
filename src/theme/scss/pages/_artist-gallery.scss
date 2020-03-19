@@ -1,6 +1,7 @@
 .artist-gallery-page{
 
     @include page;
+    @include top-header;
 
     .background-top {
         top: #{-$default-height-header};

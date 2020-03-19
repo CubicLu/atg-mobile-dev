@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  BackgroundImage,
-  Header,
-  ButtonIcon,
-  BackIcon,
-  Menu,
-  _,
-  DotsThreeIcon
-} from './../../../components';
+import { BackgroundImage, Header, Menu, _ } from './../../../components';
 import {
   updateArtistProperty,
   updateSettingsProperty,

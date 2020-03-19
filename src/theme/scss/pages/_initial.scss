@@ -1,6 +1,6 @@
 .initial-page{ 
     height: 100%;
-    margin: pxToRem(28);
+    margin: $initial-margin-top;
     .col{
         padding: 0;
     }

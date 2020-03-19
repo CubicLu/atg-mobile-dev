@@ -1,9 +1,5 @@
 .slider{
     height: auto;
-    &.image, &.video, &.radio{
-        @include title-view-all;
-    }
-
     &.video{
         > .slick-slider{
             > .slick-list{

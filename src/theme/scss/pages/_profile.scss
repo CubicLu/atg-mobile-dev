@@ -1,8 +1,5 @@
 .profile-page{
-    @include page;
-
     height: 100%;
-
     ion-item-sliding.item-sliding-active-slide {
         ion-item{
             --ion-background-color: #1e053b;
@@ -22,6 +19,36 @@
         }
         ion-content{
             --padding-bottom: #{$default-height-player + $default-height-tabs + 220};
+        }
+    }
+}
+.profile-center{
+    padding-top: $header-margin-top + $button-margin-top;
+    padding-bottom: $header-margin-top/2;
+    padding-left: $header-margin-left + $header-button + $header-margin-left;
+    .title{
+        font-size: pxToRem(46);
+        margin-top: 0;
+        line-height: 1;
+        text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+    }
+    .subtitle{
+        margin-left: 0;
+        font-size: pxToRem(18);
+        color: #FFF;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        margin-top: pxToRem(4);
+    }
+
+    .content{
+        max-height: 70px;
+        .back-col{
+            display: flex;
+            justify-content: center;
+            button{
+                background: rgba(0, 0, 0, 0.3);
+            }
         }
     }
 }

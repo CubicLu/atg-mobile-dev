@@ -34,16 +34,17 @@ class SliderVideoComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="slider video">
-        <div className={'row content'}>
-          <div className="col s8">
+        <div className="list-view-all">
+          <div>
             <h1 className="title">{this.props.title}</h1>
           </div>
-          <div className="col s4 view-all">
+          <div className="action">
             {this.props.viewAll && (
               <Button color={'transparent'} label={'View All'} />
             )}
           </div>
         </div>
+
         <Slider {...this.settings}>
           {_.map(
             this.props.data,

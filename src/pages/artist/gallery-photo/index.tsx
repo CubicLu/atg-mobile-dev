@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Header,
-  ButtonIcon,
-  BackIcon,
-  ShareIcon,
-  StarIcon
-} from './../../../components';
+import { Header, ButtonIcon, ShareIcon, StarIcon } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
@@ -78,17 +72,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
           style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
         >
           <div className={`artist-gallery-photo-page`}>
-            <Header
-              leftContent={
-                <ButtonIcon
-                  icon={<BackIcon color={'#FFF'} />}
-                  onClick={(): void => {
-                    this.props.history.goBack();
-                  }}
-                />
-              }
-              type={'fixed'}
-            />
+            <Header />
 
             <div
               className={`content-container ${this.props.isPlaying &&

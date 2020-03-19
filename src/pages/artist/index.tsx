@@ -1,20 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  IonContent,
-  IonPage,
-  IonHeader,
-  IonButton,
-  CreateAnimation
-} from '@ionic/react';
+import { IonContent, IonPage, IonButton, CreateAnimation } from '@ionic/react';
 import {
   _,
   BackgroundImage,
   Header,
   Menu,
-  ButtonIcon,
-  BackIcon,
   SupportBy,
   LoaderFullscreen
 } from './../../components';
@@ -58,7 +50,6 @@ class ArtistPage extends React.Component<Props, State> {
   private animation: boolean = false;
   private menuRef: React.RefObject<CreateAnimation> = React.createRef();
   private nameRef: React.RefObject<CreateAnimation> = React.createRef();
-  private supRef: React.RefObject<CreateAnimation> = React.createRef();
   private supportRef: React.RefObject<CreateAnimation> = React.createRef();
 
   constructor(props: Props) {
@@ -135,24 +126,17 @@ class ArtistPage extends React.Component<Props, State> {
           backgroundImage={backgroundImage}
           blur={this.state.blur}
         />
-        <IonHeader className="ion-no-border">
-          <Header
-            type="fixed"
-            centerContent={
-              <h4
-                className={`artist-page name title ${scrolled ? '' : ' hide'}`}
-              >
-                {name}
-              </h4>
-            }
-            rightContent={
-              <div className={scrolled ? 'supportByHide' : 'supportByShow'}>
-                <SupportBy data={supportFans} />
-              </div>
-            }
-            leftContent={<ButtonIcon onClick={clickBack} icon={<BackIcon />} />}
-          />
-        </IonHeader>
+        <Header
+          leftBackOnClick={clickBack}
+          title={name}
+          titleClassName={`artist-name ${scrolled ? 'show' : ' hide'}`}
+          rightContent={
+            <SupportBy
+              data={supportFans}
+              className={scrolled ? 'hide' : 'show'}
+            />
+          }
+        />
 
         <div className="artist-page content">
           <IonContent
@@ -187,7 +171,7 @@ class ArtistPage extends React.Component<Props, State> {
                 fromTo={{
                   property: 'transform',
                   fromValue: 'translate(0, 0)',
-                  toValue: 'translate(0px, -176px)'
+                  toValue: 'translate(0px, -162px)'
                 }}
               >
                 <IonButton

@@ -17,47 +17,48 @@ interface DispatchProps {
 
 interface Props extends StateProps, DispatchProps {
   data?: ArtistInterface[];
+  className?: string;
 }
 
 class SupportByComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    if (this.props.data !== undefined && this.props.data?.length > 0) {
-      return (
-        <ul
-          className="support-by-component"
-          onClick={(): void =>
-            this.props.updateSettingsModal(
-              true,
-              React.createElement(MenuArtistList, {
-                title: 'Artists Supporting',
-                onClick: this.props.updateSettingsModal.bind(this, false, null),
-                background: 'background-white-base'
-              }),
-              'background-white-base'
-            )
-          }
-        >
-          <li>Supported By</li>
-          {_.map(
-            this.props.data?.slice(0, 3),
-            (data, i): React.ReactNode => {
-              return (
-                <li
-                  key={i}
-                  className="avatar"
-                  style={{ backgroundImage: `url(${data.cover})` }}
-                ></li>
-              );
-            }
-          )}
-
-          <li>
-            <DotsThreeIcon />
-          </li>
-        </ul>
-      );
+    if (!(this.props.data !== undefined && this.props.data?.length > 0)) {
+      return <ul />;
     }
-    return null;
+    return (
+      <ul
+        className={`support-by-component ${this.props.className}`}
+        onClick={(): void =>
+          this.props.updateSettingsModal(
+            true,
+            React.createElement(MenuArtistList, {
+              title: 'Artists Supporting',
+              onClick: this.props.updateSettingsModal.bind(this, false, null),
+              background: 'background-white-base'
+            }),
+            'background-white-base'
+          )
+        }
+      >
+        <li>Supported By</li>
+        {_.map(
+          this.props.data?.slice(0, 3),
+          (data, i): React.ReactNode => {
+            return (
+              <li
+                key={i}
+                className="avatar"
+                style={{ backgroundImage: `url(${data.cover})` }}
+              ></li>
+            );
+          }
+        )}
+
+        <li>
+          <DotsThreeIcon />
+        </li>
+      </ul>
+    );
   }
 }
 // eslint-disable-next-line

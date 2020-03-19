@@ -1,5 +1,5 @@
 import React from 'react';
-import { _, Button, ArrowRightIcon } from './../../components';
+import { Button, ArrowRightIcon } from './../../components';
 import {} from './../../actions';
 import { IonList, IonItem } from '@ionic/react';
 
@@ -21,33 +21,27 @@ class ListComponent extends React.Component<Props> {
     let self = this;
     return (
       <div className="list-component">
-        <div className={'row content'}>
-          <div className="col s8">
+        <div className="list-view-all">
+          <div>
             <h1 className="title">{this.props.title}</h1>
           </div>
-          <div className="col s4 view-all">
+          <div className="action">
             {this.props.viewAll && (
               <Button color={'transparent'} label={'View All'} />
             )}
           </div>
         </div>
+
         <IonList lines="none" className="list">
-          {_.map(
-            this.props.data,
-            (data, i): React.ReactNode => {
-              return (
-                <IonItem key={i}>
-                  <div className="row">
-                    <div className={`col s10 text`}>
-                      {data[self.props.label]}
-                    </div>
-                    <div className={`col s2 action`}>
-                      <ArrowRightIcon />
-                    </div>
-                  </div>
-                </IonItem>
-              );
-            }
+          {this.props.data?.map(
+            (data, i): React.ReactNode => (
+              <IonItem key={i}>
+                <div className="row text">{data[self.props.label]}</div>
+                <div className="action">
+                  <ArrowRightIcon />
+                </div>
+              </IonItem>
+            )
           )}
         </IonList>
       </div>

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Header,
-  ButtonIcon,
-  BackIcon,
-  _,
-  DotsThreeIcon
-} from './../../../components';
+import { Header, _ } from './../../../components';
 import {
   IonContent,
   IonPage,
@@ -254,24 +248,8 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
           >
             <IonHeader id="ionHeader" className="fixed ion-no-border">
               <Header
-                leftContent={
-                  <ButtonIcon
-                    icon={<BackIcon color={'#FFF'} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
                 centerContent={<h1 className="title">{title}</h1>}
-                type={'fixed'}
-                rightContent={
-                  <ButtonIcon
-                    icon={<DotsThreeIcon color={'#FFF'} />}
-                    onClick={(): void => {
-                      this.props.history.goBack();
-                    }}
-                  />
-                }
+                rightActionButton={true}
               />
             </IonHeader>
           </CreateAnimation>

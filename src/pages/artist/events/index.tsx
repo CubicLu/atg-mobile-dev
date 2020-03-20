@@ -12,6 +12,7 @@ import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
+import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -60,9 +61,11 @@ class ArtistEventsPage extends React.Component<Props, State> {
   }
 
   handleScroll(event: CustomEvent<any>): void {
-    const { blur } = this.state;
-    const played = this.headerRef.current!.playTopHeader(event, blur);
-    if (played) this.setState({ blur: !blur });
+    const currentScroll = validateScrollHeader(event, 30);
+    if (!currentScroll.validScroll) return;
+    if (currentScroll.blur === this.state.blur) return;
+    this.setState({ blur: currentScroll.blur });
+    this.headerRef.current!.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {

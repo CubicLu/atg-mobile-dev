@@ -82,6 +82,8 @@
     &.image{
         margin: 0.5rem 0 0.5rem 0 !important;
         height: 165px;
+        min-height: 165px;
+        min-width: 165px;
         background-repeat: no-repeat;
         background-position-x: center;
         background-position-y: center;

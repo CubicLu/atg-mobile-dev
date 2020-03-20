@@ -4,7 +4,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonList, IonItem } from '@ionic/react';
 import {
   Header,
-  _,
   BackgroundImage,
   Button,
   CardEvent,
@@ -88,13 +87,7 @@ class EventDetailPage extends React.Component<Props, State> {
             className={`artist-event-detail-page ${this.props.isPlaying &&
               'is-playing'}`}
           >
-            <IonContent
-              scrollY={true}
-              scrollEvents={true}
-              onIonScrollStart={(): any => {}}
-              onIonScroll={(): any => {}}
-              onIonScrollEnd={(): any => {}}
-            >
+            <IonContent>
               <div className="top-fixed">
                 <Header
                   rightCloseButton
@@ -137,8 +130,7 @@ class EventDetailPage extends React.Component<Props, State> {
                 <div className="row">
                   <div className="col s12 ">
                     <IonList lines="none" className="list users">
-                      {_.map(
-                        this.props.event?.whoIsGoing,
+                      {this.props.event?.whoIsGoing?.map(
                         (data, i): React.ReactNode => {
                           let opacity = data.isFriend === true ? '' : 'opacity';
                           return (

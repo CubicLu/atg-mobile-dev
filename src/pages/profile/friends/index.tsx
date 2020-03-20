@@ -4,7 +4,6 @@ import {
   Avatar,
   ButtonIcon,
   MessageBalloonIcon,
-  _,
   CloseIcon,
   Button
 } from './../../../components';
@@ -24,8 +23,7 @@ class ProfileFriendsPage extends React.Component<Props> {
     return (
       <IonContent className="profile-friends-page">
         <IonList lines="none">
-          {_.map(
-            [{ friend: false }, {}, {}, {}, {}, {}, {}, {}],
+          {[{ friend: false }, {}, {}, {}, {}, {}, {}, {}].map(
             (data, i): React.ReactNode => {
               let opacity = data.friend === false ? 'opacity' : '';
               return (

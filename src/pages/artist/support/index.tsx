@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
-  _,
   BackgroundImage,
   Header,
   ButtonPlan,
@@ -119,8 +118,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   </div>
 
                   <div className="row buttons">
-                    {_.map(
-                      this.props.plans,
+                    {this.props.plans.map(
                       (data, i): React.ReactNode => {
                         return (
                           <div className="col s6" key={i}>

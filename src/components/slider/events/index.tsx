@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardEvent, _, Button } from './../../../components';
+import { CardEvent, Button } from './../../../components';
 import {} from './../../../actions';
 
 interface Props {
@@ -31,8 +31,7 @@ class SliderEventsComponent extends React.Component<Props> {
 
         <div className="row">
           <div className="col s12">
-            {_.map(
-              this.props.data?.slice(0, 1),
+            {this.props.data?.slice(0, 1).map(
               (data, i): React.ReactNode => {
                 return (
                   <CardEvent

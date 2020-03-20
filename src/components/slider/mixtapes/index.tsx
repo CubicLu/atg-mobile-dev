@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   CardMixtapes,
-  _,
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeRebelRockImage,
@@ -81,8 +80,7 @@ class SliderMixtapesComponent extends React.Component<Props> {
         </div>
 
         <Slider {...this.settings}>
-          {_.map(
-            this.playlists,
+          {this.playlists.map(
             (data, i): React.ReactNode => {
               return (
                 <CardMixtapes

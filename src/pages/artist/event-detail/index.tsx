@@ -88,13 +88,7 @@ class EventDetailPage extends React.Component<Props, State> {
             className={`artist-event-detail-page ${this.props.isPlaying &&
               'is-playing'}`}
           >
-            <IonContent
-              scrollY={true}
-              scrollEvents={true}
-              onIonScrollStart={(): any => {}}
-              onIonScroll={(): any => {}}
-              onIonScrollEnd={(): any => {}}
-            >
+            <IonContent>
               <div className="top-fixed">
                 <Header
                   rightCloseButton

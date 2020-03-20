@@ -64,11 +64,6 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
     return (
       <IonPage id="gallery-photo-page">
         <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScrollStart={(): any => {}}
-          onIonScroll={(): any => {}}
-          onIonScrollEnd={(): any => {}}
           style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
         >
           <div className={`artist-gallery-photo-page`}>

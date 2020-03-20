@@ -77,8 +77,6 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScrollStart={(): any => this.setState({ scrolling: true })}
-          onIonScrollEnd={(): any => this.setState({ scrolling: false })}
           onIonScroll={this.handleScroll.bind(this)}
         >
           <BackgroundImage

@@ -1,7 +1,6 @@
 .artist-gallery-grid-page{
     
     @include page;
-    @include top-header;
     
     .background-top {
         top: #{-$default-height-header};

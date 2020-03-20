@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, CreateAnimation } from '@ionic/react';
 import {
-  _,
   BackgroundImage,
   Header,
   Menu,
@@ -17,7 +16,12 @@ import {
   getArtistAPI
 } from './../../actions';
 import { ApplicationState } from './../../reducers';
-import { ArtistInterface, MenuInterface } from '../../interfaces';
+import { validateScrollHeader } from '../../utils';
+import {
+  ArtistInterface,
+  MenuInterface,
+  ScrollHeaderInterface
+} from '../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -48,10 +52,13 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistPage extends React.Component<Props, State> {
-  private animation: boolean = false;
   private menuRef: React.RefObject<CreateAnimation> = React.createRef();
   private nameRef: React.RefObject<CreateAnimation> = React.createRef();
   private supportRef: React.RefObject<CreateAnimation> = React.createRef();
+  private lastValidScroll: ScrollHeaderInterface = {
+    direction: 'scrollUp',
+    blur: false
+  };
 
   constructor(props: Props) {
     super(props);
@@ -79,21 +86,20 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
-  async handleScroll(event: any): Promise<void> {
-    const menuAnimation = this.menuRef.current!.animation;
+  handleScroll(event: any): void {
+    const currentScroll = validateScrollHeader(event, 180, 250);
+    if (!currentScroll.validScroll) return;
+    if (currentScroll.direction === this.lastValidScroll.direction) return;
 
-    const { blur } = this.state;
-    const eventBlur = event.detail.scrollTop >= 140;
-    if (blur === eventBlur) return;
-    const direction = eventBlur ? 'normal' : 'reverse';
-
-    if (this.animation) return;
-    menuAnimation.direction(direction);
-    this.animation = true;
-    this.setState({ blur: eventBlur });
-    menuAnimation.play();
-    this.animation = false;
+    this.lastValidScroll = currentScroll;
+    this.setState({ blur: currentScroll.blur });
+    const parent = this.menuRef.current!.animation;
+    parent
+      .direction(currentScroll.animation)
+      .duration(200)
+      .play();
   }
+
   handleMenu(event: MenuInterface): void {
     if (event.isPage === true) {
       let route =
@@ -213,8 +219,7 @@ class ArtistPage extends React.Component<Props, State> {
             </CreateAnimation>
 
             {hasArtist &&
-              _.map(
-                this.props.artistTabs,
+              this.props.artistTabs.map(
                 (data, i): React.ReactNode =>
                   data.id === this.props.activeArtistTab &&
                   React.createElement(data.component, { key: i })

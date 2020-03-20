@@ -21,7 +21,8 @@ import {
   ButtonIcon,
   StarIcon,
   ShareIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  HeaderOverlay
 } from './../../../components';
 import {
   updateSettingsProperty,
@@ -35,7 +36,7 @@ import {
   BiographyInterface,
   AlbumInterface
 } from '../../../interfaces';
-import { setHeight } from '../../../utils';
+import { setHeight, validateScrollHeader } from '../../../utils';
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -66,13 +67,15 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistBiographyPage extends React.Component<Props, State> {
-  private headerRef: React.RefObject<CreateAnimation> = React.createRef();
-  slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
-  private headerTitleRef: React.RefObject<CreateAnimation> = React.createRef();
+  private headerRef: React.RefObject<any> = React.createRef();
+  private slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
+  private titleRef: React.RefObject<CreateAnimation> = React.createRef();
+
   constructor(props: Props) {
     super(props);
     this.state = { currentPage: 0, blur: false };
   }
+
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
@@ -83,28 +86,14 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.props.getArtistAPI(this.props.match.params.id);
   }
 
-  handleScroll(event: any): void {
-    const eventBlur = event.detail.scrollTop >= 450;
-    const scrollDown = event.detail.deltaY > 10;
-    const scrollUp = event.detail.deltaY < -10;
-
-    let play = false;
-    if (scrollDown && eventBlur && !this.state.blur) {
-      play = true;
-    } else if (scrollUp && !eventBlur && this.state.blur) {
-      play = true;
-    }
-    if (!play) return;
-
-    const parentAnimation = this.headerRef.current!.animation;
-    const headerTitleAnimation = this.headerTitleRef.current!.animation;
-    parentAnimation.direction(scrollDown ? 'normal' : 'reverse');
-
-    if (parentAnimation.childAnimations.length === 0) {
-      parentAnimation.addAnimation([headerTitleAnimation]);
-    }
-    this.setState({ blur: eventBlur });
-    parentAnimation.play();
+  handleScroll(event: CustomEvent<any>): void {
+    const currentScroll = validateScrollHeader(event, 180, 180);
+    if (!currentScroll.validScroll) return;
+    if (currentScroll.blur === this.state.blur) return;
+    this.setState({ blur: currentScroll.blur });
+    this.headerRef.current!.playTopHeader(currentScroll);
+    //used only in biography to fadeout BIOGRAPHY TITLE
+    this.titleRef.current!.animation.direction(currentScroll.animation!).play();
   }
 
   changeChapter(chapter?: number): void {
@@ -141,16 +130,31 @@ class ArtistBiographyPage extends React.Component<Props, State> {
       hasArtist &&
       hasArtist.biography &&
       hasArtist?.biography[this.state.currentPage];
+    const topheader: React.ReactNode = (
+      <React.Fragment>
+        <br />
+        <span className="biography-header">
+          {this.props.currentArtist!.name}
+        </span>
+        <br />
+        <span className="biography-subheader">Biography</span>
+      </React.Fragment>
+    );
 
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
+        <HeaderOverlay
+          ref={this.headerRef}
+          content={topheader}
+          className="biography"
+        />
         <Header
           rightActionButton={true}
           rightActionOnClick={toggleAction}
           centerContent={
             <CreateAnimation
               duration={500}
-              ref={this.headerTitleRef}
+              ref={this.titleRef}
               fromTo={{
                 property: 'color',
                 toValue: 'var(--color)',
@@ -161,25 +165,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             </CreateAnimation>
           }
         />
-
-        <CreateAnimation
-          ref={this.headerRef}
-          duration={500}
-          fromTo={{
-            property: 'opacity',
-            fromValue: '0',
-            toValue: '1'
-          }}
-        >
-          <div className="top-header biography">
-            <br />
-            <span className="biography-header">
-              {this.props.currentArtist!.name}
-            </span>
-            <br />
-            <span className="biography-subheader">Biography</span>
-          </div>
-        </CreateAnimation>
 
         <IonContent
           scrollEvents={true}

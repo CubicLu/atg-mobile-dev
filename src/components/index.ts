@@ -12,6 +12,7 @@ import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
 import HeaderComponent from './header';
+import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
 import SliderImageComponent from './slider/image';
 import SliderVideoComponent from './slider/video';
@@ -46,6 +47,7 @@ export {
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
   HeaderComponent as Header,
+  HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
   SliderImageComponent as SliderImage,
   SliderVideoComponent as SliderVideo,

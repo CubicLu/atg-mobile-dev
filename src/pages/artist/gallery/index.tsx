@@ -4,14 +4,16 @@ import {
   _,
   BackgroundImage,
   CardAlbumGallery,
-  LoaderFullscreen
+  LoaderFullscreen,
+  HeaderOverlay
 } from './../../../components';
-import { IonContent, IonPage, CreateAnimation } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
+import { validateScrollHeader } from '../../../utils';
 
 interface State {
   blur: boolean;
@@ -38,7 +40,7 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistGalleryPage extends React.Component<Props, State> {
-  private headerRef: React.RefObject<CreateAnimation> = React.createRef();
+  private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
     super(props);
     this.state = { blur: false };
@@ -58,21 +60,12 @@ class ArtistGalleryPage extends React.Component<Props, State> {
     }
   }
 
-  handleScroll(event: any): void {
-    const parentAnimation = this.headerRef.current!.animation;
-
-    const { blur } = this.state;
-    const eventBlur = event.detail.scrollTop > 30;
-    if (blur && !eventBlur) {
-      parentAnimation.duration(1500);
-      parentAnimation.direction('reverse');
-      parentAnimation.play();
-    } else if (eventBlur && !blur) {
-      parentAnimation.duration(500);
-      parentAnimation.direction('normal');
-      parentAnimation.play();
-    }
-    this.setState({ blur: eventBlur });
+  handleScroll(event: CustomEvent<any>): void {
+    const currentScroll = validateScrollHeader(event);
+    if (!currentScroll.validScroll) return;
+    if (currentScroll.blur === this.state.blur) return;
+    this.setState({ blur: currentScroll.blur });
+    this.headerRef.current!.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {
@@ -80,18 +73,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
       <IonPage id="gallery-page">
         <div className={`artist-gallery-page`}>
           <Header title="Gallery" />
-
-          <CreateAnimation
-            ref={this.headerRef}
-            duration={500}
-            fromTo={{
-              property: 'opacity',
-              fromValue: '0',
-              toValue: '1'
-            }}
-          >
-            <div className="top-header"></div>
-          </CreateAnimation>
+          <HeaderOverlay ref={this.headerRef} />
 
           <IonContent
             fullscreen={true}

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Header,
-  _,
   BackgroundImage,
   CardAlbumGallery,
   LoaderFullscreen,
@@ -95,24 +94,21 @@ class ArtistGalleryPage extends React.Component<Props, State> {
                 className={`row content-container ${this.props.isPlaying &&
                   ' is-playing'}`}
               >
-                {_.map(
-                  this.props.currentArtist?.gallery,
-                  (data, index): React.ReactNode => {
-                    return (
-                      <CardAlbumGallery
-                        key={index}
-                        onClick={(): void => {
-                          this.props.history.push(
-                            `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
-                          );
-                        }}
-                        image={data.cover}
-                        label={data.name}
-                        quantity={data.quantity}
-                        col={6}
-                      />
-                    );
-                  }
+                {this.props.currentArtist?.gallery?.map(
+                  (data, index): React.ReactNode => (
+                    <CardAlbumGallery
+                      key={index}
+                      onClick={(): void => {
+                        this.props.history.push(
+                          `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
+                        );
+                      }}
+                      image={data.cover}
+                      label={data.name}
+                      quantity={data.quantity}
+                      col={6}
+                    />
+                  )
                 )}
               </div>
             </BackgroundImage>

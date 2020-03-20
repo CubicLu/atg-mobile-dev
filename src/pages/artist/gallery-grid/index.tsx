@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, _, HeaderOverlay } from './../../../components';
+import { Header, HeaderOverlay } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
@@ -67,8 +67,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
   renderRow1Col3(data, i): React.ReactNode {
     return (
       <div className="row row1-col3" key={`row1-col3-${i}`}>
-        {_.map(
-          data,
+        {data.map(
           (item, i): React.ReactNode => {
             return (
               <div
@@ -241,14 +240,12 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
                 </div>
               )}
 
-              {_.map(
-                items,
+              {items.map(
                 (data, i): React.ReactNode => {
                   let key = Object.keys(data)[0];
-                  if (!_.isUndefined(key)) {
-                    return this.renderTemplate(key, data[key], i);
-                  }
-                  return null;
+                  return items.isUndefined(key)
+                    ? null
+                    : this.renderTemplate(key, data[key], i);
                 }
               )}
             </div>

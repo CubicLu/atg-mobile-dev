@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonList, IonContent } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { CardArtist, _ } from './../../../components';
+import { CardArtist } from './../../../components';
 import { getArtistsAPI } from './../../../actions';
 import { ArtistInterface } from '../../../interfaces';
 import { ApplicationState } from '../../../reducers';
@@ -32,11 +32,10 @@ class ProfileArtistsPage extends React.Component<Props> {
           }
         >
           <IonList className="artist-list">
-            {_.map(
-              this.props.artists,
-              (data, i): React.ReactNode => {
-                return <CardArtist key={i} artist={data} />;
-              }
+            {this.props.artists.map(
+              (data, i): React.ReactNode => (
+                <CardArtist key={i} artist={data} />
+              )
             )}
           </IonList>
         </div>

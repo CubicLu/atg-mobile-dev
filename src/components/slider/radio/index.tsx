@@ -2,7 +2,7 @@ import React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import { CardImage, _ } from './../../../components';
+import { CardImage } from './../../../components';
 import {} from './../../../actions';
 
 interface Props {
@@ -46,8 +46,7 @@ class SliderRadioComponent extends React.Component<Props> {
         </div>
 
         <Slider {...this.settings}>
-          {_.map(
-            this.props.data,
+          {this.props.data?.map(
             (data, i): React.ReactNode => {
               return (
                 <CardImage

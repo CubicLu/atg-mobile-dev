@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackgroundImage, Header, Menu, _ } from './../../../components';
+import { BackgroundImage, Header, Menu } from './../../../components';
 import {
   updateArtistProperty,
   updateSettingsProperty,
@@ -117,8 +117,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
                 (this.state.fixed ? ' absolute' : '')
               }
             >
-              {_.map(
-                this.props.deepDiveTabs,
+              {this.props.deepDiveTabs?.map(
                 (data, i): React.ReactNode =>
                   data.id === this.props.activeDeepDiveTab &&
                   React.createElement(data.component, { key: i })

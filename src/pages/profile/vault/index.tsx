@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
-  _,
   Avatar,
   ButtonIcon,
   AddPlaylistIcon,
@@ -25,8 +24,7 @@ class ProfileVaultPage extends React.Component<Props> {
       <IonContent>
         <div className="profile-vault-page">
           <IonList lines="none">
-            {_.map(
-              [{}, {}, {}, {}, {}, {}, {}, {}],
+            {[{}, {}, {}, {}, {}, {}, {}, {}].map(
               (data, i): React.ReactNode => {
                 return (
                   <IonItemSliding key={i}>

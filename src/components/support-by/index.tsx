@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { DotsThreeIcon, _, MenuArtistList } from './../../components';
+import { DotsThreeIcon, MenuArtistList } from './../../components';
 import { updateSettingsModal } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import { ArtistInterface } from '../../interfaces';
@@ -41,8 +41,7 @@ class SupportByComponent extends React.Component<Props> {
         }
       >
         <li>Supported By</li>
-        {_.map(
-          this.props.data?.slice(0, 3),
+        {this.props.data?.slice(0, 3)?.map(
           (data, i): React.ReactNode => {
             return (
               <li

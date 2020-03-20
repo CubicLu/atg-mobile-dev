@@ -1,5 +1,4 @@
 import React from 'react';
-import { _ } from './../../components';
 import { MenuInterface } from './../../interfaces';
 
 interface StateProps {}
@@ -25,8 +24,7 @@ class MenuComponent extends React.Component<Props> {
         className={this.props.className ? this.props.className : ''}
       >
         <ul className={'list inline menu generic' + (scroll ? ' scroll' : '')}>
-          {_.map(
-            this.props.tabs,
+          {this.props.tabs.map(
             (data, i): React.ReactNode => {
               return (
                 <li

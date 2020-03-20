@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { _, CardImage } from './../../../components';
+import { CardImage } from './../../../components';
 import {} from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
@@ -24,11 +24,10 @@ class ArtistDiscographyPage extends React.Component<Props> {
         }
       >
         <div className="row">
-          {_.map(
-            this.props.currentArtist?.discography,
-            (data, i): React.ReactNode => {
-              return <CardImage image={data.cover} key={i} />;
-            }
+          {this.props.currentArtist?.discography?.map(
+            (data, i): React.ReactNode => (
+              <CardImage image={data.cover} key={i} />
+            )
           )}
         </div>
       </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  _,
   BackgroundImage,
   Header
 } from './../../../components';
@@ -66,8 +65,7 @@ class MenuArtistList extends React.Component<Props> {
         <div className={`row header ${this.props.background}`} />
         <div className="row content">
           <ul>
-            {_.map(
-              data,
+            {data?.map(
               (data, i): React.ReactNode => {
                 return (
                   <li

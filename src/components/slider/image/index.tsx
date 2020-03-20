@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardImage, _, Button } from './../../../components';
+import { CardImage, Button } from './../../../components';
 import {} from './../../../actions';
 
 interface Props {
@@ -29,8 +29,7 @@ class SliderImageComponent extends React.Component<Props> {
         </div>
 
         <div className="row">
-          {_.map(
-            this.props.data,
+          {this.props.data?.map(
             (data, i): React.ReactNode => {
               return <CardImage image={data.image} key={i} type={'rounded'} />;
             }

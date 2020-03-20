@@ -5,7 +5,6 @@ import {
   BackgroundImage,
   HeaderProfile,
   Menu,
-  _,
   LoaderFullscreen
 } from './../../components';
 import { ApplicationState } from './../../reducers';
@@ -54,8 +53,7 @@ class ProfilePage extends React.Component<Props> {
               );
             }}
           />
-          {_.map(
-            this.props.fanTabs,
+          {this.props.fanTabs.map(
             (data, i): React.ReactNode => {
               if (data.id === this.props.activeFanTab) {
                 return React.createElement(data.component, { key: i });

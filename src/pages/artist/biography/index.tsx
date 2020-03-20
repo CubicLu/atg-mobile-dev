@@ -83,24 +83,28 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.props.getArtistAPI(this.props.match.params.id);
   }
 
-  async handleScroll(event: any): Promise<void> {
+  handleScroll(event: any): void {
+    const eventBlur = event.detail.scrollTop >= 450;
+    const scrollDown = event.detail.deltaY > 10;
+    const scrollUp = event.detail.deltaY < -10;
+
+    let play = false;
+    if (scrollDown && eventBlur && !this.state.blur) {
+      play = true;
+    } else if (scrollUp && !eventBlur && this.state.blur) {
+      play = true;
+    }
+    if (!play) return;
+
     const parentAnimation = this.headerRef.current!.animation;
     const headerTitleAnimation = this.headerTitleRef.current!.animation;
+    parentAnimation.direction(scrollDown ? 'normal' : 'reverse');
 
     if (parentAnimation.childAnimations.length === 0) {
       parentAnimation.addAnimation([headerTitleAnimation]);
     }
-    const { blur } = this.state;
-    const eventBlur = event.detail.currentY >= 450;
-    if (blur && !eventBlur) {
-      parentAnimation.direction('reverse');
-      await parentAnimation.play();
-    } else if (eventBlur && !blur) {
-      parentAnimation.direction('normal');
-      await parentAnimation.play();
-    }
-
     this.setState({ blur: eventBlur });
+    parentAnimation.play();
   }
 
   changeChapter(chapter?: number): void {

@@ -58,7 +58,6 @@ class SignUpPage extends React.Component<Props> {
           <IonButton
             className="primary gradient"
             size="large"
-            routerDirection="forward"
             routerLink="/enter-code"
             expand="full"
           >

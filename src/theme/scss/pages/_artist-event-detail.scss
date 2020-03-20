@@ -15,10 +15,11 @@
             position: fixed;
             width: 100%;
             background: linear-gradient(180deg, #000,#0e0819);
-            top: 100px;
-            padding-left: 20px;
-            padding-right: 20px;
+            top: 120px;
+            
             .card{
+                padding-left: 20px;
+                padding-right: 20px;
                 &.event{
                     .row{
                         margin-bottom: 0;

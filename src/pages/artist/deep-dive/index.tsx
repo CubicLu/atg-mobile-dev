@@ -62,7 +62,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
   handleScroll(event: any): void {
     const { fixed, scrolling } = this.state;
     if (!scrolling) return;
-    const eventFixed = event.detail.currentY > 100;
+    const eventFixed = event.detail.scrollTop > 100;
     if (fixed === eventFixed) return;
     this.setState({ fixed: eventFixed, scrolling: false });
   }

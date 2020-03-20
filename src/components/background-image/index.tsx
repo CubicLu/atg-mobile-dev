@@ -85,7 +85,7 @@ class BackgroundImageComponent extends React.Component<Props> {
 
     const backgroundClass = `background-image ${
       this.props.shadow ? 'shadow' : ''
-    } ${this.props.className}`;
+    } ${this.props.blur ? 'blur' : ''} ${this.props.className}`;
 
     let backgroundImageArray: string[] = [];
     backgroundImageArray.push(`url(${this.props.backgroundImage})`);

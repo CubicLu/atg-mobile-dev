@@ -1,18 +1,12 @@
 import React from 'react';
 import {
   Header,
-  _,
   CardEvent,
   LoaderFullscreen,
-  BackgroundImage
+  BackgroundImage,
+  HeaderOverlay
 } from './../../../components';
-import {
-  IonContent,
-  IonList,
-  IonItem,
-  IonPage,
-  CreateAnimation
-} from '@ionic/react';
+import { IonContent, IonList, IonItem, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
@@ -44,7 +38,7 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistEventsPage extends React.Component<Props, State> {
-  private headerRef: React.RefObject<CreateAnimation> = React.createRef();
+  private headerRef: React.RefObject<any> = React.createRef();
 
   constructor(props: Props) {
     super(props);
@@ -65,21 +59,10 @@ class ArtistEventsPage extends React.Component<Props, State> {
     }
   }
 
-  handleScroll(event: any): void {
-    const parentAnimation = this.headerRef.current!.animation;
-
+  handleScroll(event: CustomEvent<any>): void {
     const { blur } = this.state;
-    const eventBlur = event.detail.scrollTop > 30;
-    if (blur && !eventBlur) {
-      parentAnimation.duration(1500);
-      parentAnimation.direction('reverse');
-      parentAnimation.play();
-    } else if (eventBlur && !blur) {
-      parentAnimation.duration(500);
-      parentAnimation.direction('normal');
-      parentAnimation.play();
-    }
-    this.setState({ blur: eventBlur });
+    const played = this.headerRef.current!.playTopHeader(event, blur);
+    if (played) this.setState({ blur: !blur });
   }
 
   render(): React.ReactNode {
@@ -87,18 +70,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
       <IonPage id="events-page">
         <div className="artist-events-page">
           <Header title="Events" titleClassName="events" />
-
-          <CreateAnimation
-            ref={this.headerRef}
-            duration={500}
-            fromTo={{
-              property: 'opacity',
-              fromValue: '0',
-              toValue: '1'
-            }}
-          >
-            <div className="top-header"></div>
-          </CreateAnimation>
+          <HeaderOverlay ref={this.headerRef} />
 
           <IonContent
             scrollY={true}
@@ -114,8 +86,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
                 ' is-playing'}`}
             >
               <IonList lines="none" className="list">
-                {_.map(
-                  this.props.currentArtist?.events,
+                {this.props.currentArtist?.events?.map(
                   (data, i): React.ReactNode => {
                     return (
                       <IonItem key={i}>

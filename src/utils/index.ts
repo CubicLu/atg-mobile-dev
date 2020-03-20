@@ -1,3 +1,5 @@
+import { ScrollHeaderInterface } from '../interfaces';
+
 export function setHeight(original: number): number {
   if (window.outerHeight <= 300) {
     return 100;
@@ -14,4 +16,23 @@ export function setHeight(original: number): number {
   } else {
     return original;
   }
+}
+
+export function validateScrollHeader(
+  event: CustomEvent<any>,
+  downOffset: number = 40,
+  upOffset: number = downOffset
+): ScrollHeaderInterface {
+  if (!event) return { validScroll: false, velocity: 0, blur: false };
+
+  const velocity = event.detail.velocityY;
+  const direction = velocity > 0 ? 'scrollDown' : 'scrollUp';
+  const blur = velocity > 0;
+  const validScroll =
+    velocity !== 0 &&
+    ((event.detail.scrollTop > downOffset && direction === 'scrollDown') ||
+      (event.detail.scrollTop < upOffset && direction === 'scrollUp'));
+  const animation = velocity > 0 ? 'normal' : 'reverse';
+
+  return { velocity, direction, validScroll, animation, blur };
 }

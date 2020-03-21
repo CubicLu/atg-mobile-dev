@@ -40,7 +40,7 @@ class SupportByComponent extends React.Component<Props> {
           )
         }
       >
-        <li>Supported By</li>
+        <li>I'm Supported By</li>
         {this.props.data?.slice(0, 3)?.map(
           (data, i): React.ReactNode => {
             return (

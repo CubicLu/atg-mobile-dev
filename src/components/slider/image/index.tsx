@@ -16,26 +16,30 @@ class SliderImageComponent extends React.Component<Props> {
   };
   render(): React.ReactNode {
     return (
-      <div className="row slider image">
-        <div className="list-view-all">
-          <div>
-            <h1 className="title">{this.props.title}</h1>
+      this.props.data && (
+        <div className="row slider image">
+          <div className="list-view-all">
+            <div>
+              <h1 className="title">{this.props.title}</h1>
+            </div>
+            <div className="action">
+              {this.props.viewAll && (
+                <Button color={'transparent'} label={'View All'} />
+              )}
+            </div>
           </div>
-          <div className="action">
-            {this.props.viewAll && (
-              <Button color={'transparent'} label={'View All'} />
+
+          <div className="row">
+            {this.props.data?.map(
+              (data, i): React.ReactNode => {
+                return (
+                  <CardImage image={data.image} key={i} type={'rounded'} />
+                );
+              }
             )}
           </div>
         </div>
-
-        <div className="row">
-          {this.props.data?.map(
-            (data, i): React.ReactNode => {
-              return <CardImage image={data.image} key={i} type={'rounded'} />;
-            }
-          )}
-        </div>
-      </div>
+      )
     );
   }
 }

@@ -16,20 +16,16 @@ class SliderRadioComponent extends React.Component<Props> {
   public static defaultProps = {
     viewAll: true
   };
-  settings: any;
-  constructor(props: Props) {
-    super(props);
+  settings: any = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    centerMode: false,
+    variableWidth: true,
+    swipe: true,
+    arrows: false
+  };
 
-    this.settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      centerMode: false,
-      variableWidth: true,
-      swipe: true,
-      arrows: false
-    };
-  }
   render(): React.ReactNode {
     return (
       <div className="slider radio">

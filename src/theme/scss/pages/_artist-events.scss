@@ -3,17 +3,6 @@
     @include page;
     background: #000;
 
-    ion-header{
-        .header{
-            height: $default-height-header;
-        }
-        --background: rgba(255,255,255,0.2);
-        &.blur{
-            -webkit-backdrop-filter: blur(9.5px);
-            backdrop-filter: blur(9.5px);
-        }
-    }
-
     .background-image {
         background-size: contain;
     }

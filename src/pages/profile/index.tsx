@@ -43,7 +43,6 @@ class ProfilePage extends React.Component<Props> {
         >
           <HeaderProfile />
           <Menu
-            className="scroll-x list-fit"
             tabs={this.props.fanTabs}
             activeId={this.props.activeFanTab}
             onClick={(event: MenuInterface): void => {

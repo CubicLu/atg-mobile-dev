@@ -27,6 +27,7 @@ class SupportByComponent extends React.Component<Props> {
     }
     return (
       <ul
+        id={'support-bar'}
         className={`support-by-component ${this.props.className}`}
         onClick={(): void =>
           this.props.updateSettingsModal(

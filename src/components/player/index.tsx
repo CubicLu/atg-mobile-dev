@@ -66,8 +66,7 @@ class PlayerComponent extends React.Component<Props> {
   animating: boolean = false;
   gestureMini: Gesture | undefined;
   gestureExpanded: Gesture | undefined;
-  animation: any;
-  private ref: React.RefObject<HTMLDivElement> = React.createRef();
+  relativeAnimation: Animation | any;
 
   componentDidMount(): void {
     this.enablePlayerGesture();
@@ -80,7 +79,7 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   enablePlayerGesture(): void {
-    const mini = this.ref.current!;
+    const mini = document.querySelector('#player');
     if (!mini) return;
     const gestureConfigMini: GestureConfig = {
       el: mini,
@@ -101,27 +100,32 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   enablePlayerAnimation(): void {
-    const player = this.ref.current!;
+    const player = document.querySelector('#player');
     if (!player) return;
-    this.animation = createAnimation()
+    this.relativeAnimation = createAnimation()
       .addElement(player)
+      .easing('cubic-bezier(.36,.66,.04,1)')
       .duration(250)
-      .fromTo('minHeight', '0%', 'calc(100% - 58px)')
-      .fromTo(
-        'background',
-        'linear-gradient(180deg, #22022f, #070707)',
-        'linear-gradient(180deg, #aed8e5, #039e4a)'
-      );
+      .keyframes([
+        {
+          minHeight: '0%',
+          offset: 0
+        },
+        {
+          minHeight: 'calc(100% - 58px)',
+          offset: 1
+        }
+      ])
+      .onFinish((): boolean => (this.animating = false));
   }
   togglePlayer(e: any): void {
     e?.preventDefault();
     const direction = this.props.player.expanded ? 'reverse' : 'normal';
     if (this.animating) return;
-    this.animating = true;
     this.props.togglePlayer();
-    this.animation.direction(direction);
-    this.animation.play();
-    this.animating = false;
+    this.relativeAnimation.direction(direction);
+    this.animating = true;
+    this.relativeAnimation.play();
   }
 
   pauseSong(): void {
@@ -180,12 +184,13 @@ class PlayerComponent extends React.Component<Props> {
     } = this.props.player;
     const disabled = !song;
 
+    if (!this.relativeAnimation) this.enablePlayerAnimation();
     return (
-      <div ref={this.ref} className="player">
+      <div id="player" className="player expanded">
         {expanded && (
           <React.Fragment>
             <BackgroundImage
-              gradient={`180deg,#aed8e500,#039e4a00`}
+              gradient={`180deg,#aed8e5,#039e4a`}
               backgroundTop
               backgroundBottom
               backgroundBottomDark={false}
@@ -202,7 +207,7 @@ class PlayerComponent extends React.Component<Props> {
               leftMinimizeButton={true}
               leftMinimizeOnClick={this.togglePlayer.bind(this)}
             />
-            <div className="expanded">
+            <div>
               <div className="cover-title">
                 <IonImg className="image" src={song?.cover} />
                 <span className="main-song">{song?.name}&nbsp;</span>

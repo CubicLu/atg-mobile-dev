@@ -56,7 +56,13 @@ export function validateScrollHeader(
   downOffset: number = 40,
   upOffset: number = downOffset
 ): ScrollHeaderInterface {
-  if (!event) return { validScroll: false, velocity: 0, blur: false };
+  if (!event)
+    return {
+      validScroll: false,
+      velocity: 0,
+      blur: false,
+      animation: 'reverse'
+    };
 
   const velocity = event.detail.velocityY;
   const direction = velocity > 0 ? 'scrollDown' : 'scrollUp';

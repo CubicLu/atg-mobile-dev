@@ -1,12 +1,6 @@
-.scroll-x{
-    overflow-x: auto;
-}
-.list-fit{
-    .menu{
-        width: 100%;
-    }
-}
 .menu{
+    width: 100%;
+    overflow-x: auto;
     &.generic{
         &.scroll{
             justify-content: normal !important;

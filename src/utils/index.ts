@@ -1,4 +1,5 @@
-import { ScrollHeaderInterface } from '../interfaces';
+import { ScrollHeaderInterface, ArtistInterface } from '../interfaces';
+import { CSSProperties } from 'react';
 
 export function setHeight(original: number): number {
   if (window.outerHeight <= 300) {
@@ -16,6 +17,38 @@ export function setHeight(original: number): number {
   } else {
     return original;
   }
+}
+
+export function artistBackground(artist: ArtistInterface | any): CSSProperties {
+  let backgroundImageArray: string[] = [];
+  if (!artist)
+    artist = {
+      backgroundGradient: {
+        color1: '#079848',
+        color2: '#136137'
+      },
+      cover: {
+        background: undefined,
+        main: undefined,
+        event: undefined,
+        biography: undefined,
+        deepDive: undefined
+      }
+    };
+  const gradient = `180deg,${artist.backgroundGradient?.color1}00 0%,${artist.backgroundGradient?.color1}d1 45%,${artist.backgroundGradient?.color2} 100%`;
+  if (artist.cover.background) {
+    backgroundImageArray.push(`url(${artist.cover.background})`);
+  }
+  backgroundImageArray.push(`linear-gradient(${gradient})`);
+  const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
+
+  return {
+    backgroundImage,
+    filter: 'saturate(1.19)',
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
+    backgroundRepeat: 'no-repeat'
+  };
 }
 
 export function validateScrollHeader(

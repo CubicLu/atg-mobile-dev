@@ -31,7 +31,7 @@ class ArtistFeaturesPage extends React.Component<Props> {
       <div className={featureClass}>
         <List
           data={this.props.currentArtist?.featuredTracks}
-          title={'TRACKS'}
+          title={'TOP TRACKS'}
           viewAll
           label={'song'}
           id={'id'}

@@ -21,49 +21,42 @@ interface Props {
 }
 
 class SliderMixtapesComponent extends React.Component<Props> {
-  settings: any;
-  playlists: MixtapeInterface[];
+  settings: any = {
+    dots: this.props.dots,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    centerMode: true,
+    variableWidth: false,
+    swipe: true,
+    arrows: false
+  };
+  playlists: MixtapeInterface[] = [
+    {
+      cover: MixtapeEuroHouseImage,
+      name: 'Euro House',
+      quantity: 14
+    },
+    {
+      cover: MixtapeKnightImage,
+      name: 'KNIGHT',
+      quantity: 12
+    },
+    {
+      cover: MixtapeRebelRockImage,
+      name: 'Rebel Rock',
+      quantity: 10
+    },
+    {
+      cover: MixtapeMoonLightImage,
+      name: 'Moonlight',
+      quantity: 15
+    }
+  ];
   public static defaultProps = {
     menu: true,
     dots: true
   };
-  constructor(props: Props) {
-    super(props);
-
-    this.settings = {
-      dots: this.props.dots,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 1,
-      centerMode: true,
-      variableWidth: false,
-      swipe: true,
-      arrows: false
-    };
-
-    this.playlists = [
-      {
-        cover: MixtapeEuroHouseImage,
-        name: 'Euro House',
-        quantity: 14
-      },
-      {
-        cover: MixtapeKnightImage,
-        name: 'KNIGHT',
-        quantity: 12
-      },
-      {
-        cover: MixtapeRebelRockImage,
-        name: 'Rebel Rock',
-        quantity: 10
-      },
-      {
-        cover: MixtapeMoonLightImage,
-        name: 'Moonlight',
-        quantity: 15
-      }
-    ];
-  }
 
   render(): React.ReactNode {
     return (

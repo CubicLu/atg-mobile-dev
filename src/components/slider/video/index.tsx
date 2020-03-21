@@ -33,36 +33,38 @@ class SliderVideoComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <div className="slider video">
-        <div className="list-view-all">
-          <div>
-            <h1 className="title">{this.props.title}</h1>
+      this.props.data && (
+        <div className="slider video">
+          <div className="list-view-all">
+            <div>
+              <h1 className="title">{this.props.title}</h1>
+            </div>
+            <div className="action">
+              {this.props.viewAll && (
+                <Button color={'transparent'} label={'View All'} />
+              )}
+            </div>
           </div>
-          <div className="action">
-            {this.props.viewAll && (
-              <Button color={'transparent'} label={'View All'} />
-            )}
-          </div>
-        </div>
 
-        <Slider {...this.settings}>
-          {this.props.data?.map(
-            (data, i): React.ReactNode => {
-              return (
-                <CardVideo
-                  type={'rounded'}
-                  video={data.video}
-                  image={data.image}
-                  title={data.title}
-                  time={data.time}
-                  artist={data.artist}
-                  key={i}
-                />
-              );
-            }
-          )}
-        </Slider>
-      </div>
+          <Slider {...this.settings}>
+            {this.props.data?.map(
+              (data, i): React.ReactNode => {
+                return (
+                  <CardVideo
+                    type={'rounded'}
+                    video={data.video}
+                    image={data.image}
+                    title={data.title}
+                    time={data.time}
+                    artist={data.artist}
+                    key={i}
+                  />
+                );
+              }
+            )}
+          </Slider>
+        </div>
+      )
     );
   }
 }

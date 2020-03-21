@@ -1,30 +1,40 @@
 .artist-page{
+    ion-content{
+        position: relative;
+        height: 100%;
+    }
+    &.blur-background{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        // background: #00000025;
+        // backdrop-filter: blur(6.5px);
+    }
     .menu{
         &.generic{
             &.scroll {
-                margin-top: 0px;
-                padding: 16px;
+                margin-top: 0;
+                padding: 0;
                 padding-bottom: 4px;
                 margin-bottom: 12px;
                 transition: transform 500ms;
                 display: flex;
-                overflow: scroll;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                height: auto;
             }
         }
     }
-    .menuFixed{
+    &.menu-fixed{
         // originally 266 goes to 62px;
-        top: 276px;
+        top: 88px;
         position: fixed;
         width: 100%;
-        bottom: 0;
+        height: 72px;
+        height: 1px;
         opacity: 1;
     }
-    .notFixed{
-        opacity: 1;
-    }
-    position: relative;
-    //hack for positioning behind - top = glasspanel
     &.content{
         position: absolute;
         top: 160px;
@@ -32,6 +42,7 @@
         height: auto;
         width: 100%;
     }
+    position: relative;
     .row{
         width: 100%;
         margin-bottom: 5px;
@@ -39,42 +50,10 @@
         margin-left: 0;
         margin-right: 0;
     }
-    .emptySpace{
-        height: 130px;
-    }
-    .artistName{
+    .support-button{
         display: flex;
-        &.center{
-            justify-content: center;
-        }
-    }
-    .supportBtn{
-        z-index: 11;
-        display: flex;
-        &.center{
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        &.right{
-            top: 44px;
-            position: fixed;
-            right: 16px;
-            display: block;
-            opacity: 1;
-            animation-name: fadeInOpacity;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in;
-            animation-duration: 200ms;
-        }
-
-        @keyframes fadeInOpacity {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+        justify-content: center;
+        margin-bottom: 20px;
     }
     &.is-playing {
         ion-content{
@@ -84,26 +63,15 @@
     h2{
         margin: 0;
         text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
-        &.title {
-            font-size: pxToRem(48);
+        &.artist-title {
+            font-size: 48px;
+            line-height: 0.8;
             font-family: "Industria";
             font-weight: 600;
             color: white;
             text-align: center;
-            margin-bottom: 6px;
-            &.left{
-                opacity: 0;
-                transition: opacity 1000ms;
-                top: 150px;
-                position: fixed;
-                display: block;
-                font-size: pxToRem(30);
-            }
-            &.center{
-                opacity: 1;
-                transform: translate(0,0);
-                transition: opacity 1000ms;
-            }
+            margin-bottom: 14px;
+            opacity: 1;
         }
     }
 

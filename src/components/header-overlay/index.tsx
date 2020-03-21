@@ -16,7 +16,8 @@ class HeaderOverlayComponent extends React.Component<Props> {
   animationRef?: React.RefObject<CreateAnimation> = React.createRef();
   private lastValidScroll: ScrollHeaderInterface = {
     direction: 'scrollUp',
-    blur: false
+    blur: false,
+    animation: 'reverse'
   };
   public static defaultProps = {};
 

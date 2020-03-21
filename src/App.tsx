@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupConfig } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -36,6 +36,11 @@ export default class App extends React.Component {
   authenticated: boolean = true;
 
   render(): React.ReactNode {
+    setupConfig({
+      rippleEffect: false,
+      hideCaretOnScroll: true,
+      mode: 'ios'
+    });
     store.subscribe((): void => {
       if (this.authenticated) return; //temporary to debug
       const { loggedUser } = store.getState().authAPI;

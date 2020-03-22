@@ -91,6 +91,7 @@ class ArtistPage extends React.Component<Props, State> {
       .duration(300);
     const blurBack = createAnimation()
       .addElement(document.querySelector('#blur-background')!)
+      .easing('ease-in-out')
       .keyframes([
         { backdropFilter: 'blur(0)', opacity: 0, offset: 0 },
         { backdropFilter: 'blur(2px)', opacity: 0.9, offset: 0.25 },
@@ -101,12 +102,14 @@ class ArtistPage extends React.Component<Props, State> {
     // FIXED ANIMATION
     const support = createAnimation()
       .addElement(document.querySelector('#support-button')!)
-      .duration(400)
+      .duration(200)
+      .easing('ease-in-out')
       .fromTo('transform', 'translate(0, 0)', 'translate(10vw, -100px)');
     const title = createAnimation()
       .addElement(document.querySelector('#artist-title')!)
       .fromTo('fontSize', '48px', '30px')
-      .duration(400)
+      .easing('ease-in-out')
+      .duration(200)
       .fromTo('transform', 'translate(0, 0)', 'translate(-10vw, -100px)');
     const topMenu = createAnimation()
       .addElement(document.querySelector('#normal-menu')!)
@@ -116,11 +119,11 @@ class ArtistPage extends React.Component<Props, State> {
       .easing('ease-in-out')
       .addAnimation([menuOpacity, bar, support, blurBack, title]);
     this.fixedAnimation = createAnimation()
-      .easing('cubic-bezier(.36,.66,.04,1)')
+      .easing('ease-in-out')
       .addAnimation([support, title, topMenu]);
   }
-  async handleScroll(event: any): Promise<void> {
-    const currentScroll = validateScrollHeader(event, 120, 280);
+  handleScroll(event: any): void {
+    const currentScroll = validateScrollHeader(event, 200, 200);
     if (!currentScroll.validScroll) return;
     if (currentScroll.direction === this.lastValidScroll.direction) return;
 
@@ -130,9 +133,9 @@ class ArtistPage extends React.Component<Props, State> {
     this.relativeAnimation?.direction(currentScroll.animation).play();
 
     this.addRemoveFixedClasses(currentScroll.blur);
-    await this.fixedAnimation
+    this.fixedAnimation
       ?.direction(currentScroll.animation)
-      .duration(currentScroll.blur ? 600 : 50)
+      .duration(currentScroll.blur ? 400 : 50)
       .play();
     this.addRemoveFixedClasses(currentScroll.blur);
   }

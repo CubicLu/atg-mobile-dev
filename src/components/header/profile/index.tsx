@@ -17,7 +17,7 @@ interface State {
 class HeaderProfileComponent extends React.Component<Props, State> {
   handleLogout(): void {
     this.props.updateAuthProperty('loggedUser', undefined);
-    this.props.history.push('/initial');
+    window.location.href = '/initial';
   }
 
   constructor(props: Props) {

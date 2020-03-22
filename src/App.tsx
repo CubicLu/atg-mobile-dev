@@ -35,24 +35,25 @@ import './theme/variables.css';
 export default class App extends React.Component {
   authenticated: boolean = true;
 
-  render(): React.ReactNode {
+  UNSAFE_componentWillMount(): void {
     setupConfig({
       animated: false,
       experimentalTransitionShadow: true
     });
+  }
+
+  render(): React.ReactNode {
     store.subscribe((): void => {
       if (this.authenticated) return; //temporary to debug
       const { loggedUser } = store.getState().authAPI;
       if (this.authenticated === !!loggedUser) return;
       this.authenticated = !!loggedUser;
       this.forceUpdate();
-      window.location.reload();
     });
-
     const authenticated = <HomePage />;
     const notAuthenticated = (
-      <IonRouterOutlet id="notLogged">
-        <IonReactRouter>
+      <IonReactRouter>
+        <IonRouterOutlet id="notLogged">
           <Switch>
             <Route exact path="/initial" component={InitialPage} />
             <Route exact path="/sign-in" component={SignInPage} />
@@ -65,8 +66,8 @@ export default class App extends React.Component {
             />
             <Route path="/" render={(): any => <Redirect to="/initial" />} />
           </Switch>
-        </IonReactRouter>
-      </IonRouterOutlet>
+        </IonRouterOutlet>
+      </IonReactRouter>
     );
 
     return (

@@ -116,7 +116,7 @@ class PlayerComponent extends React.Component<Props> {
       if (y < 21) y = 0;
       document
         .getElementById('a')
-        ?.setAttribute('d', `M 0 100 c 200-${y}, 400,0, 400,0`);
+        ?.setAttribute('d', `M 0 10 c 200-${y}, 400,0, 400,0`);
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
       // eslint-disable-next-line no-undef
       await new Promise((resolve: any): any => setTimeout(resolve, interval));
@@ -208,7 +208,7 @@ class PlayerComponent extends React.Component<Props> {
       this.lastY = gesture.deltaY;
       svg.setAttribute(
         'd',
-        `M 0 100 c 200-${Math.abs(gesture.deltaY)}, 400,0, 400,0`
+        `M 0 10 c 200-${Math.abs(gesture.deltaY)}, 400,0, 400,0`
       );
     }
   }
@@ -351,27 +351,36 @@ class PlayerComponent extends React.Component<Props> {
 
         {!expanded && (
           <React.Fragment>
-            <div id="pull">
+            {!disabled && (
+              <div className="progress">
+                <div
+                  className="bar"
+                  style={{ width: timeElapsed * 3.333 }}
+                ></div>
+              </div>
+            )}
+
+            <div id="pull" className="pull">
               <svg
                 width="400"
-                height="100"
-                viewBox="0 0 400 100"
+                height="10"
+                viewBox="0 0 400 10"
                 style={{
                   position: 'fixed',
-                  bottom: 0,
-                  width: '100%',
+                  bottom: 85,
+                  marginLeft: 4,
+                  marginRight: 4,
+                  width: '99%',
                   height: 'auto',
                   overflow: 'visible'
                 }}
               >
                 {/* //1 a 213 */}
-                <g id="g3" style={{ transform: 'translateY(-90px)' }}>
-                  <path
-                    id="a"
-                    d={`M 0 100 c 200-0, 400,0, 400,0`}
-                    fill="linear-gradient(90deg, #22022f, #070707)"
-                  />
-                </g>
+                <path
+                  id="a"
+                  d={`M 0 10 c 200-0, 400,0, 400,0`}
+                  fill="#22022f)"
+                />
               </svg>
               {/* 
                   <path id="g" d="M 0 84.4 c 200-178,     400,0 400,0"/>
@@ -394,14 +403,6 @@ class PlayerComponent extends React.Component<Props> {
               <path id="invers2" d="M.059,18.955c0-7.331.015-16.283.015-16.283S32.209,4.879,55.5,5.413c85.745,3.758,247.541-.038,320.7-3.473,0,11.035-.056.043-.056,17.014"/> */}
             </div>
 
-            {!disabled && (
-              <div className="progress">
-                <div
-                  className="bar"
-                  style={{ width: timeElapsed * 3.333 }}
-                ></div>
-              </div>
-            )}
             <div className="cover">
               <div
                 className="img"

@@ -102,28 +102,32 @@ class ArtistPage extends React.Component<Props, State> {
     // FIXED ANIMATION
     const support = createAnimation()
       .addElement(document.querySelector('#support-button')!)
-      .duration(200)
+      .duration(300)
       .easing('ease-in-out')
       .fromTo('transform', 'translate(0, 0)', 'translate(10vw, -100px)');
     const title = createAnimation()
       .addElement(document.querySelector('#artist-title')!)
       .fromTo('fontSize', '48px', '30px')
       .easing('ease-in-out')
-      .duration(200)
+      .duration(300)
       .fromTo('transform', 'translate(0, 0)', 'translate(-10vw, -100px)');
     const topMenu = createAnimation()
       .addElement(document.querySelector('#normal-menu')!)
       .fromTo('transform', 'translateY(0px)', 'translateY(-70px)');
+    const placeHolder = createAnimation()
+      .addElement(document.querySelector('#placeholder-margin')!)
+      .fromTo('height', '160px', '0px')
+      .duration(300);
 
     this.relativeAnimation = createAnimation()
       .easing('ease-in-out')
       .addAnimation([menuOpacity, bar, support, blurBack, title]);
     this.fixedAnimation = createAnimation()
       .easing('ease-in-out')
-      .addAnimation([support, title, topMenu]);
+      .addAnimation([support, title, topMenu, placeHolder]);
   }
   handleScroll(event: any): void {
-    const currentScroll = validateScrollHeader(event, 200, 200);
+    const currentScroll = validateScrollHeader(event, 140, 200);
     if (!currentScroll.validScroll) return;
     if (currentScroll.direction === this.lastValidScroll.direction) return;
 
@@ -199,8 +203,6 @@ class ArtistPage extends React.Component<Props, State> {
             fullscreen={true}
             onIonScroll={this.handleScroll.bind(this)}
           >
-            <div id="placeholder-margin" style={{ height: 160, width: 1 }} />
-
             <div style={{ height: 52 }}>
               <h2 id="artist-title" className={`artist-title`}>
                 {this.props.currentArtist?.name}

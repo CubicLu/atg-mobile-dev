@@ -115,8 +115,8 @@ class ArtistPage extends React.Component<Props, State> {
       .addElement(document.querySelector('#normal-menu')!)
       .fromTo('transform', 'translateY(0px)', 'translateY(-70px)');
     const placeHolder = createAnimation()
-      .addElement(document.querySelector('#placeholder-margin')!)
-      .fromTo('height', '160px', '0px')
+      // .addElement(document.querySelector('#absolute')!)
+      .fromTo('marginTop', '0', '0')
       .duration(300);
 
     this.relativeAnimation = createAnimation()
@@ -139,7 +139,7 @@ class ArtistPage extends React.Component<Props, State> {
     this.addRemoveFixedClasses(currentScroll.blur);
     this.fixedAnimation
       ?.direction(currentScroll.animation)
-      .duration(currentScroll.blur ? 400 : 50)
+      .duration(currentScroll.blur ? 400 : 200)
       .play();
     this.addRemoveFixedClasses(currentScroll.blur);
   }
@@ -195,7 +195,7 @@ class ArtistPage extends React.Component<Props, State> {
 
         <div id="fixed-menu" className="artist-page menu-fixed-area" />
 
-        <div className="artist-page absolute">
+        <div id="absolute" className="artist-page absolute">
           <IonContent
             scrollY={true}
             scrollEvents={true}
@@ -203,7 +203,7 @@ class ArtistPage extends React.Component<Props, State> {
             fullscreen={true}
             onIonScroll={this.handleScroll.bind(this)}
           >
-            <div style={{ height: 52 }}>
+            <div style={{ height: 50, marginTop: 120 }}>
               <h2 id="artist-title" className={`artist-title`}>
                 {this.props.currentArtist?.name}
               </h2>

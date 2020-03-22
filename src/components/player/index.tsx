@@ -358,14 +358,14 @@ class PlayerComponent extends React.Component<Props> {
                 viewBox="0 0 400 100"
                 style={{
                   position: 'fixed',
-                  bottom: 95,
+                  bottom: 0,
                   width: '100%',
                   height: 'auto',
                   overflow: 'visible'
                 }}
               >
                 {/* //1 a 213 */}
-                <g id="g3">
+                <g id="g3" style={{ transform: 'translateY(-90px)' }}>
                   <path
                     id="a"
                     d={`M 0 100 c 200-0, 400,0, 400,0`}

@@ -1,7 +1,19 @@
 .artist-page{
-    ion-content{
-        position: relative;
-        height: 100%;
+    &.menu-fixed-area{
+        top: 88px;
+        position: fixed;
+        width: 100%;
+        height: 74px;
+        height: 1px;
+        opacity: 1;
+    }
+    &.absolute{
+        top: 0;
+        margin-top: 162px;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        position: absolute;
     }
     &.blur-background{
         position: fixed;
@@ -26,9 +38,22 @@
             }
         }
     }
+    .artist-title {
+        font-size: 48px;
+        line-height: 0.8;
+        font-family: "Industria";
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        margin-bottom: 14px;
+        opacity: 1;
+        margin: 0;
+        text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
+    }
     .set-menu-fixed{
         position: fixed;
         top: 160px;
+        width: 100%;
     }
     .set-name-fixed{
         position: fixed;
@@ -39,23 +64,6 @@
         position: fixed;
         top: calc(44px + 100px);
         right: calc(16px + 10vw);
-    }
-    &.menu-fixed-area{
-        // originally 266 goes to 62px;
-        top: 88px;
-        position: fixed;
-        width: 100%;
-        height: 74px;
-        height: 1px;
-        opacity: 1;
-    }
-    &.absolute{
-        top: 0;
-        margin-top: 160px;
-        bottom: 0;
-        width: 100%;
-        height: auto;
-        position: absolute;
     }
     .row{
         width: 100%;
@@ -68,26 +76,6 @@
         display: flex;
         justify-content: center;
     }
-    &.is-playing {
-        ion-content{
-            --padding-bottom: #{$default-height-player + $default-height-tabs + 251};
-        }
-    }
-    h2{
-        margin: 0;
-        text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
-        &.artist-title {
-            font-size: 48px;
-            line-height: 0.8;
-            font-family: "Industria";
-            font-weight: 600;
-            color: white;
-            text-align: center;
-            margin-bottom: 14px;
-            opacity: 1;
-        }
-    }
-
     .artist-discography-page{
         margin-bottom: 150px;
     }

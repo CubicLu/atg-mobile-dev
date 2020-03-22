@@ -114,18 +114,15 @@ class ArtistPage extends React.Component<Props, State> {
     const topMenu = createAnimation()
       .addElement(document.querySelector('#normal-menu')!)
       .fromTo('transform', 'translateY(0px)', 'translateY(-70px)');
-    const placeHolder = createAnimation()
-      .addElement(document.querySelector('.place')!)
-      .fromTo('height', '130px', '40px')
-      .duration(400);
 
     this.relativeAnimation = createAnimation()
       .easing('ease-in-out')
       .addAnimation([menuOpacity, bar, support, blurBack, title]);
     this.fixedAnimation = createAnimation()
       .easing('ease-in-out')
-      .addAnimation([support, title, topMenu, placeHolder]);
+      .addAnimation([support, title, topMenu]);
   }
+
   handleScroll(event: any): void {
     const currentScroll = validateScrollHeader(event, 140, 200);
     if (!currentScroll.validScroll) return;
@@ -134,14 +131,26 @@ class ArtistPage extends React.Component<Props, State> {
     this.lastValidScroll = currentScroll;
     this.blur = currentScroll.blur;
 
+    this.transferNodes();
     this.relativeAnimation?.direction(currentScroll.animation).play();
-
     this.addRemoveFixedClasses(currentScroll.blur);
     this.fixedAnimation
       ?.direction(currentScroll.animation)
       .duration(currentScroll.blur ? 400 : 200)
       .play();
     this.addRemoveFixedClasses(currentScroll.blur);
+  }
+
+  transferNodes(): void {
+    const oldParent = this.blur
+      ? document.querySelector('#original')
+      : document.querySelector('#fixed-menu');
+    const newParent = this.blur
+      ? document.querySelector('#fixed-menu')
+      : document.querySelector('#original');
+    while (oldParent?.hasChildNodes()) {
+      newParent?.appendChild(oldParent.firstChild!);
+    }
   }
 
   addRemoveFixedClasses(add: boolean): void {
@@ -194,7 +203,6 @@ class ArtistPage extends React.Component<Props, State> {
         />
 
         <div id="fixed-menu" className="artist-page menu-fixed-area" />
-
         <div id="absolute" className="artist-page absolute">
           <IonContent
             scrollY={true}
@@ -203,16 +211,13 @@ class ArtistPage extends React.Component<Props, State> {
             fullscreen={true}
             onIonScroll={this.handleScroll.bind(this)}
           >
-            <div>
-              <div className="place" style={{ height: 130 }} />
-
-              <div style={{ height: 50 }}>
+            <div id="original" style={{ marginTop: 130, minHeight: 200 }}>
+              <div style={{ minHeight: 50 }}>
                 <h2 id="artist-title" className={`artist-title`}>
                   {this.props.currentArtist?.name}
                 </h2>
               </div>
-
-              <div style={{ height: 30 }} className={`support-button`}>
+              <div style={{ minHeight: 30 }} className={`support-button`}>
                 <div id="support-button">
                   <ButtonSupport
                     buttonType={'text'}
@@ -227,9 +232,7 @@ class ArtistPage extends React.Component<Props, State> {
                   />
                 </div>
               </div>
-
-              <div className="place" style={{ height: 40 }} />
-
+              <div style={{ minHeight: 40 }} />
               <div style={{ minHeight: 80 }}>
                 <div id="normal-menu">
                   <Menu

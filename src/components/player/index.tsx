@@ -40,7 +40,6 @@ import {
   PauseButton
 } from '../icon/player';
 import { PlayIcon } from '../icon';
-import { resolve } from 'url';
 
 interface StateProps {
   player: PlayerReducerType;

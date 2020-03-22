@@ -115,9 +115,9 @@ class ArtistPage extends React.Component<Props, State> {
       .addElement(document.querySelector('#normal-menu')!)
       .fromTo('transform', 'translateY(0px)', 'translateY(-70px)');
     const placeHolder = createAnimation()
-      // .addElement(document.querySelector('#absolute')!)
-      .fromTo('marginTop', '0', '0')
-      .duration(300);
+      .addElement(document.querySelector('.place')!)
+      .fromTo('height', '130px', '40px')
+      .duration(400);
 
     this.relativeAnimation = createAnimation()
       .easing('ease-in-out')
@@ -203,35 +203,41 @@ class ArtistPage extends React.Component<Props, State> {
             fullscreen={true}
             onIonScroll={this.handleScroll.bind(this)}
           >
-            <div style={{ height: 50, marginTop: 120 }}>
-              <h2 id="artist-title" className={`artist-title`}>
-                {this.props.currentArtist?.name}
-              </h2>
-            </div>
+            <div>
+              <div className="place" style={{ height: 130 }} />
 
-            <div style={{ height: 52 }} className={`support-button`}>
-              <div id="support-button">
-                <ButtonSupport
-                  buttonType={'text'}
-                  type={'rounded'}
-                  uppercase
-                  supported={this.props.currentArtist?.support}
-                  onClick={(): void => {
-                    this.props.history.push(
-                      `/home/artist/${this.props.currentArtist?.username}/support`
-                    );
-                  }}
-                />
+              <div style={{ height: 50 }}>
+                <h2 id="artist-title" className={`artist-title`}>
+                  {this.props.currentArtist?.name}
+                </h2>
               </div>
-            </div>
 
-            <div style={{ minHeight: 80 }}>
-              <div id="normal-menu">
-                <Menu
-                  tabs={this.props.artistTabs}
-                  activeId={this.props.activeArtistTab}
-                  onClick={this.handleMenu.bind(this)}
-                />
+              <div style={{ height: 30 }} className={`support-button`}>
+                <div id="support-button">
+                  <ButtonSupport
+                    buttonType={'text'}
+                    type={'rounded'}
+                    uppercase
+                    supported={this.props.currentArtist?.support}
+                    onClick={(): void => {
+                      this.props.history.push(
+                        `/home/artist/${this.props.currentArtist?.username}/support`
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="place" style={{ height: 40 }} />
+
+              <div style={{ minHeight: 80 }}>
+                <div id="normal-menu">
+                  <Menu
+                    tabs={this.props.artistTabs}
+                    activeId={this.props.activeArtistTab}
+                    onClick={this.handleMenu.bind(this)}
+                  />
+                </div>
               </div>
             </div>
 

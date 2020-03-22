@@ -40,6 +40,7 @@ import {
   PauseButton
 } from '../icon/player';
 import { PlayIcon } from '../icon';
+import { resolve } from 'url';
 
 interface StateProps {
   player: PlayerReducerType;
@@ -67,6 +68,9 @@ class PlayerComponent extends React.Component<Props> {
   gestureMini: Gesture | undefined;
   gestureExpanded: Gesture | undefined;
   relativeAnimation: Animation | any;
+  lastY?: number;
+  elasticTimeout: any;
+  puling: boolean = false;
 
   componentDidMount(): void {
     this.enablePlayerGesture();
@@ -87,16 +91,38 @@ class PlayerComponent extends React.Component<Props> {
       gestureName: 'playerMove',
       gesturePriority: 20,
       passive: true,
-      onEnd: this.playerSwipe.bind(this)
+      onEnd: this.playerSwipe.bind(this),
+      onMove: this.playerPull.bind(this)
     };
     this.gestureMini = createGesture(gestureConfigMini);
     this.gestureMini.enable();
   }
 
   playerSwipe(gesture: any): void {
-    const validSwipeUp = !this.props.player.expanded && gesture.deltaY < 50;
+    const validSwipeUp = !this.props.player.expanded && gesture.deltaY < -250;
+    this.puling = false;
+    if (!this.props.player.expanded && !validSwipeUp) {
+      this.elasticBack();
+      return;
+    }
+
     const validSwipeDown = this.props.player.expanded && gesture.deltaY > 100;
     if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
+  }
+
+  async elasticBack(): Promise<void> {
+    let y = Math.abs(this.lastY!);
+    const interval = 1900 / y;
+    while (y > 0) {
+      if (y < 21) y = 0;
+      document
+        .getElementById('a')
+        ?.setAttribute('d', `M 0 100 c 200-${y}, 400,0, 400,0`);
+      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+      // eslint-disable-next-line no-undef
+      await new Promise((resolve: any): any => setTimeout(resolve, interval));
+      y = y - 20;
+    }
   }
 
   enablePlayerAnimation(): void {
@@ -105,7 +131,7 @@ class PlayerComponent extends React.Component<Props> {
     this.relativeAnimation = createAnimation()
       .addElement(player)
       .easing('cubic-bezier(.36,.66,.04,1)')
-      .duration(250)
+      .duration(300)
       .keyframes([
         {
           minHeight: '0%',
@@ -172,6 +198,19 @@ class PlayerComponent extends React.Component<Props> {
     currentIndex === 0
       ? this.playNewAudio(playlist[playlist.length - 1])
       : this.playNewAudio(playlist[currentIndex - 1]);
+  }
+
+  playerPull(gesture: any): void {
+    this.puling = true;
+    if (gesture.deltaY > -250 && gesture.deltaY < 0) {
+      this.lastY = gesture.deltaY;
+      document
+        .getElementById('a')
+        ?.setAttribute(
+          'd',
+          `M 0 100 c 200-${Math.abs(gesture.deltaY)}, 400,0, 400,0`
+        );
+    }
   }
 
   render(): React.ReactNode {
@@ -312,6 +351,49 @@ class PlayerComponent extends React.Component<Props> {
 
         {!expanded && (
           <React.Fragment>
+            <div id="pull">
+              <svg
+                width="400"
+                height="100"
+                viewBox="0 0 400 100"
+                style={{
+                  position: 'fixed',
+                  bottom: 95,
+                  width: '100%',
+                  height: 'auto',
+                  overflow: 'visible'
+                }}
+              >
+                {/* //1 a 213 */}
+                <g id="g3">
+                  <path
+                    id="a"
+                    d={`M 0 100 c 200-0, 400,0, 400,0`}
+                    fill="linear-gradient(90deg, #22022f, #070707)"
+                  />
+                </g>
+              </svg>
+              {/* 
+                  <path id="g" d="M 0 84.4 c 200-178,     400,0 400,0"/>
+                  <path id="h" d="M 0 64.9 c 200-133,     400,0 400,0"/>
+                  <path id="i" d="M 0 48.1 c 200-95,    400,0 400,0"/>
+                  <path id="j" d="M 0 26.6 c 200-48,    400,0 400,0"/> */}
+              {/* M0 0	193.8908781	0 a	6.109121876	250 0 1	1 0	500 L0
+              M0 0	195.8423705	0 a	4.157629532	250 0 1	1 0	500 L0
+              M0 0	197.7156247	0 a	2.284375307	250 0 1	1 0	500 L0
+              M0 0	199.5122695	0 a	0.4877305289	250 0 1	1 0	500 L0
+              quando chega no zero
+              M0 0	201.2339146	0 a	1.233914589	250 0 1	0 0	500 L0
+              M0 0	202.882151	0 a	2.882151042	250 0 1	0 0	500 L0
+              M0 0	204.4585511	0 a	4.458551133	250 0 1	0 0	500 L0
+              M0 0	205.9646686	0 a	5.964668572	250 0 1	0 0	500 L0
+              M0 0	207.4020386	0 a	7.402038574	250 0 1	0 0	500 L0 */}
+
+              {/* <path id="end" d="M.059,5C187.331,2.617,376.085,5,376.085,5"/>
+              <path id="inverse" d="M.059,13.75c0-5.088.015-5.15.015-11.3C64.191,7.015,281.03,3.906,376.2,1.941c0,7.66-.056.03-.056,11.809"/>
+              <path id="invers2" d="M.059,18.955c0-7.331.015-16.283.015-16.283S32.209,4.879,55.5,5.413c85.745,3.758,247.541-.038,320.7-3.473,0,11.035-.056.043-.056,17.014"/> */}
+            </div>
+
             {!disabled && (
               <div className="progress">
                 <div

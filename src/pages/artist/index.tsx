@@ -195,7 +195,7 @@ class ArtistPage extends React.Component<Props, State> {
 
         <div id="fixed-menu" className="artist-page menu-fixed-area" />
 
-        <div className="artist-page content">
+        <div className="artist-page absolute">
           <IonContent
             scrollY={true}
             scrollEvents={true}

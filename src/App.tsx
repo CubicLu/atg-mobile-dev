@@ -37,9 +37,8 @@ export default class App extends React.Component {
 
   render(): React.ReactNode {
     setupConfig({
-      rippleEffect: false,
-      hideCaretOnScroll: true,
-      mode: 'ios'
+      animated: false,
+      experimentalTransitionShadow: true
     });
     store.subscribe((): void => {
       if (this.authenticated) return; //temporary to debug
@@ -47,6 +46,7 @@ export default class App extends React.Component {
       if (this.authenticated === !!loggedUser) return;
       this.authenticated = !!loggedUser;
       this.forceUpdate();
+      window.location.reload();
     });
 
     const authenticated = <HomePage />;

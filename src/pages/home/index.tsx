@@ -48,13 +48,13 @@ class HomePage extends React.Component<Props> {
         >
           {this.props.modal.content}
         </ModalSlide>
-        <IonTabs
-          onIonTabsDidChange={(event): void => {
-            this.props.updateSettingsProperty('activeTab', event.detail.tab);
-          }}
-        >
-          <IonRouterOutlet id="home">
-            <Switch>
+        <Switch>
+          <IonTabs
+            onIonTabsDidChange={(event): void => {
+              this.props.updateSettingsProperty('activeTab', event.detail.tab);
+            }}
+          >
+            <IonRouterOutlet id="home">
               {this.props.links.map((p: LinksInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
@@ -64,19 +64,19 @@ class HomePage extends React.Component<Props> {
               <Route exact path="/home" component={ProfilePage} />
               <Route path="/" render={(): any => <Redirect to="/home" />} />
               <Route path="/" component={ProfilePage} />
-            </Switch>
-          </IonRouterOutlet>
+            </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" color="dark">
-            {this.props.tabs.map((p: TabsInterface): any => (
-              <IonTabButton tab={p.id} href={p.path} key={p.id}>
-                {React.createElement(p.icon, {
-                  color: this.props.activeTab === p.id ? '#00BAFF' : '#FFF'
-                })}
-              </IonTabButton>
-            ))}
-          </IonTabBar>
-        </IonTabs>
+            <IonTabBar slot="bottom" color="dark">
+              {this.props.tabs.map((p: TabsInterface): any => (
+                <IonTabButton tab={p.id} href={p.path} key={p.id}>
+                  {React.createElement(p.icon, {
+                    color: this.props.activeTab === p.id ? '#00BAFF' : '#FFF'
+                  })}
+                </IonTabButton>
+              ))}
+            </IonTabBar>
+          </IonTabs>
+        </Switch>
       </IonReactRouter>
     );
   }

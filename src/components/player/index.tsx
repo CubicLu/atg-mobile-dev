@@ -69,7 +69,7 @@ class PlayerComponent extends React.Component<Props> {
   relativeAnimation: Animation | any;
   lastY?: number;
   elasticTimeout: any;
-  puling: boolean = false;
+  pulling: boolean = false;
 
   componentDidMount(): void {
     this.enablePlayerGesture();
@@ -99,7 +99,7 @@ class PlayerComponent extends React.Component<Props> {
 
   playerSwipe(gesture: any): void {
     const validSwipeUp = !this.props.player.expanded && gesture.deltaY < -250;
-    this.puling = false;
+    this.pulling = false;
     if (!this.props.player.expanded && !validSwipeUp) {
       this.elasticBack();
       return;
@@ -200,15 +200,16 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   playerPull(gesture: any): void {
-    this.puling = true;
+    const svg = document.getElementById('a');
+    if (!svg) return;
+    if (!this.pulling && window.innerHeight - gesture.startY > 110) return;
+    this.pulling = true;
     if (gesture.deltaY > -250 && gesture.deltaY < 0) {
       this.lastY = gesture.deltaY;
-      document
-        .getElementById('a')
-        ?.setAttribute(
-          'd',
-          `M 0 100 c 200-${Math.abs(gesture.deltaY)}, 400,0, 400,0`
-        );
+      svg.setAttribute(
+        'd',
+        `M 0 100 c 200-${Math.abs(gesture.deltaY)}, 400,0, 400,0`
+      );
     }
   }
 

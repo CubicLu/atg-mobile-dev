@@ -43,6 +43,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-prod": "ionic build --prod --engine=cordova --platform=android",
+    "build-ios": "cordova build ios --prod --release --emulator",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{ts,tsx}'",

@@ -42,6 +42,10 @@
             margin-left: 0;
             margin-right: $button-margin-right;
         }
+        .community{
+            height: pxToRem(38);
+            margin-left: 9px;
+        }
     }
     .center{
         display: flex;
@@ -103,5 +107,36 @@
             font-size: pxToRem(50);
             line-height: 36px;
         }
+        &.community{
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.4;
+            margin-top: 0;
+            letter-spacing: 1.2px;
+            text-align: left;
+            color: #ffffff;
+            font-size: pxToRem(30);
+            line-height: 36px;
+            margin-left: 0 !important;
+        }
     }
+
+    .subtitle{
+        &.community{
+            height: 17px;
+            font-family: Helvetica;
+            font-size:  pxToRem(14);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.21;
+            letter-spacing: normal;
+            text-align: left;
+            color: #ffffff;
+            margin-left: 0 !important;
+        }
+    }
+
+    
 }

@@ -31,6 +31,7 @@ import MenuArtistListComponent from './menu/artist-list';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
+import SliderStoriesComponent from './slider/stories';
 
 export * from './icon';
 
@@ -65,7 +66,8 @@ export {
   MenuArtistListComponent as MenuArtistList,
   CardAlbumGalleryComponent as CardAlbumGallery,
   LoaderFullscreenComponent as LoaderFullscreen,
-  ButtonSupportComponent as ButtonSupport
+  ButtonSupportComponent as ButtonSupport,
+  SliderStoriesComponent as SliderStories
 };
 
 export { _ };

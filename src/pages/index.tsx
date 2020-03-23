@@ -2,7 +2,7 @@ import InitialPage from './initial';
 import SignUpPage from './sign-up';
 import HomePage from './home';
 import FeedPage from './feed';
-import MessagesPage from './messages';
+import CommunityPage from './community';
 import SignInPage from './sign-in';
 import ProfilePage from './profile';
 import SearchPage from './search';
@@ -36,7 +36,7 @@ export {
   SignUpPage,
   HomePage,
   FeedPage,
-  MessagesPage,
+  CommunityPage,
   SignInPage,
   ProfilePage,
   SearchPage,

@@ -20,7 +20,7 @@ import {
   ArtistEventsPage,
   ArtistPage,
   FeedPage,
-  MessagesPage,
+  CommunityPage,
   ProfilePage,
   SearchPage,
   RadioPage,
@@ -248,10 +248,10 @@ const defaultState: SettingsReducerType = {
       component: FeedPage
     },
     {
-      path: '/home/messages',
+      path: '/home/community',
       icon: MessageIcon,
-      id: 'messages',
-      component: MessagesPage
+      id: 'community',
+      component: CommunityPage
     },
     {
       path: '/home/profile',

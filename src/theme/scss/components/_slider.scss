@@ -46,4 +46,51 @@
             margin-top: 2px;
         }
     }
+
+    &.stories{
+        .title{
+            font-size: pxToRem(36);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.11;
+            letter-spacing: 1.44px;
+            text-align: left;
+            color: #ffffff;
+        }
+        .list{
+            overflow-x: scroll;
+            @include no-scroll-bar();
+            width: 100%;
+            &.inline{
+                margin-top: 15px;
+
+                li{
+                    text-align: center;
+                    &:first-child{
+                        margin-left: 20px;
+                    }
+                    margin-left: 15px;
+
+                    &:last-child{
+                        div{
+                            margin-right: 10px;
+                        }
+                    }
+
+                    label{
+                        font-family: "Helvetica Neue";
+                        font-size:  pxToRem(16);
+                        font-weight: normal;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 2.5;
+                        letter-spacing: normal;
+                        text-align: center;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
 }

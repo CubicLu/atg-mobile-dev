@@ -109,19 +109,40 @@ class PlayerComponent extends React.Component<Props> {
     if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
   }
 
-  async elasticBack(): Promise<void> {
-    let y = Math.abs(this.lastY!);
-    const interval = 1900 / y;
-    while (y > 0) {
-      if (y < 21) y = 0;
-      document
-        .getElementById('a')
-        ?.setAttribute('d', `M 0 10 c 200-${y}, 400,0, 400,0`);
-      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      // eslint-disable-next-line no-undef
-      await new Promise((resolve: any): any => setTimeout(resolve, interval));
-      y = y - 20;
+  currentY: number = 0;
+  refreshRate: number = 10;
+  directionDown: boolean = true;
+  step: number = 0;
+
+  elasticBack(): void {
+    this.currentY = Math.abs(this.lastY!);
+    this.step = 0;
+    this.doElastic();
+  }
+
+  doElastic(): boolean {
+    if (this.step >= 3) return true;
+    this.currentY = this.directionDown
+      ? (this.currentY -= this.refreshRate)
+      : (this.currentY += this.refreshRate);
+    if (this.currentY < 0) this.currentY = 0;
+
+    const lastY = Math.abs(this.lastY!);
+    const nextStep =
+      (this.directionDown && this.currentY <= 1) ||
+      (!this.directionDown && this.currentY >= lastY + 1);
+
+    document
+      .getElementById('a')
+      ?.setAttribute('d', `M 0 10 c 200-${this.currentY}, 400,0, 400,0`);
+    if (nextStep) {
+      this.step = this.step + 1;
+      if (this.step >= 3) return false;
+      this.lastY = Math.abs(lastY / 1.53);
+      this.directionDown = !this.directionDown;
     }
+    requestAnimationFrame(this.doElastic.bind(this));
+    return false;
   }
 
   enablePlayerAnimation(): void {

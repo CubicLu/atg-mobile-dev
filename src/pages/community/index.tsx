@@ -65,32 +65,32 @@ class CommunityPage extends React.Component<Props> {
                 {
                   name: 'Panthr COM',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'Maia Davies',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'It’s Ok Now',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'Panthr COM',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'Maia Davies',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'It’s Ok Now',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 }
               ]}
             />

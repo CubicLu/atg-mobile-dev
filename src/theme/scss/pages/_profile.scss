@@ -1,5 +1,11 @@
 .profile-page{
     height: 100%;
+    ion-content{
+        height: calc(100% - 270px);
+    }
+    &.is-playing{
+        margin-bottom: $default-height-player;
+    }
     ion-item-sliding.item-sliding-active-slide {
         ion-item{
             --ion-background-color: #1e053b;

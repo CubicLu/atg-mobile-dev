@@ -24,7 +24,7 @@ class ProfileVaultPage extends React.Component<Props> {
       <IonContent>
         <div className="profile-vault-page">
           <IonList lines="none">
-            {[{}, {}, {}, {}, {}, {}, {}, {}].map(
+            {[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}].map(
               (data, i): React.ReactNode => {
                 return (
                   <IonItemSliding key={i}>

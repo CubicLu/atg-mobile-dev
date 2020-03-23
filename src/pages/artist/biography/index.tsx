@@ -75,6 +75,10 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+<<<<<<< HEAD
+=======
+    if (nextProps.loading) return;
+>>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
     if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -105,7 +109,16 @@ class ArtistBiographyPage extends React.Component<Props, State> {
 
   zero = (<IonPage id="artist-biography" className="artist-biography-page" />);
   render(): React.ReactNode {
+<<<<<<< HEAD
     const { currentArtist: artist, modal, updateSettingsModal } = this.props;
+=======
+    const {
+      currentArtist: artist,
+      modal,
+      updateSettingsModal,
+      loading
+    } = this.props;
+>>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
 
     if (!artist) {
       return this.zero;
@@ -263,6 +276,11 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             ))}
           </IonSlides>
 
+<<<<<<< HEAD
+=======
+          <LoaderFullscreen visible={loading} />
+
+>>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
           <ModalSlide
             onClose={(): void => updateSettingsModal(false, null)}
             visible={modal.visible}

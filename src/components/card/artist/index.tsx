@@ -68,15 +68,15 @@ class CardArtistComponent extends React.Component<Props> {
                     />
                   </div>
                 </div>
-                <div className="row">
-                  <div
-                    className="col s8 align-items-end"
-                    onClick={(): void => {
-                      this.props.history.push(
-                        `/home/artist/${this.props.artist.username}`
-                      );
-                    }}
-                  >
+                <div
+                  className="row"
+                  onClick={(): void => {
+                    this.props.history.push(
+                      `/home/artist/${this.props.artist.username}`
+                    );
+                  }}
+                >
+                  <div className="col s8 align-items-end">
                     <div className="name">
                       <span>{this.props.artist.name}</span>
                     </div>

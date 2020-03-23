@@ -12,15 +12,6 @@
             margin-bottom: 0;
         }
     }
-
-    &.is-playing{
-        .profile-mixtapes-page{
-            padding-bottom: 60px;
-        }
-        ion-content{
-            --padding-bottom: #{$default-height-player + $default-height-tabs + 220};
-        }
-    }
 }
 .profile-center{
     padding-top: $header-margin-top + $button-margin-top;

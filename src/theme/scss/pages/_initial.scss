@@ -1,24 +1,175 @@
-.initial-page{ 
-    height: 100%;
+.sign-in-title{
+    font-size: 36px;
+    color: #fff;
+    font-family: "Industria";
+    margin: 0;
+    line-height: 0.75;
+}
+.initial-page-fullscreen{
     margin: $initial-margin-top;
-    .col{
-        padding: 0;
+    height: 100%;
+    .row {
+        margin-bottom: 0; 
+        &.fluid{
+            width: 100%;
+        }
+        .col{
+            padding: 0;
+        }
     }
-    .title{ 
-        &.album{
-            font-size: 80px;
-            line-height: 70px;
-            font-family: "Industria";
-            font-weight: 600;
+    .space-between{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: normal;
+        width: 100%;
+    }
+    .atg-header{
+        margin: $initial-margin-top;
+        margin-top: $header-margin-top;
+    }
+    .brand-title{
+        font-family: "Controller";
+        margin-top: 0;
+        font-weight: 400;
+        font-size: 72px;
+        white-space: pre;
+        position: relative;
+        line-height: 0.8;
+    }
+    .title-album{ 
+        font-size: 80px;
+        line-height: 70px;
+        font-family: "Industria";
+        font-weight: 600;
+        margin-bottom: 0px;
+        color: #fff;
+    }
+    .subtitle-album{ 
+        font-family: "Industria";
+        font-weight: 600;
+        font-size: 25px;
+        margin-top: 0px;
+        margin-bottom: 36px;
+        line-height: 0.8;
+        color: #fff;
+    }
+    .text-small{ 
+        font-family: "Helvetica";
+        font-size: 18px;
+        color: #fff;
+    }
+    .margin-footer{
+        margin-bottom: 120px;
+    }
+    // .brand-subtitle{
+    //     font-size: pxToRem(30);
+    //     position: absolute;
+    //     margin-left: 0;
+    //     left: 70px;
+    //     bottom: -11px;
+    //     white-space: pre;
+    //     position: relative;
+    // }
+    .form {
+        margin-top: 25%;
+        .form-title{
+            font-size: pxToRem(70);
+            line-height: 60px;
+            margin-bottom: pxToRem(10);
+        }
+    }
+    .register-bottom{
+        margin-bottom: 60px;
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .link{ 
+        font-size: 16px;
+        color: #6F6F6F;
+        font-family: "Helvetica";
+    }
+    .input-div{
+        p{
+            font-size: pxToRem(18);
+        }
+
+        input{
+            color: #757575;
+            letter-spacing: 0.2em;
+            text-align: center;
+        }
+    }
+    .center-align{
+        text-align: center;
+    }
+    .title-medium{
+        font-size: 48px;
+    }
+    .left-align{
+        text-align: left;
+    }
+    p{
+        color: #5E7FB1;
+        font-size: pxToRem(16);
+        font-family: "Helvetica Neue";
+        &.didnt-receive{
+            color: #9B9C9D;
         }
     }
 
-    .subtitle{ 
-        font-family: "Industria";
-        font-weight: 600;
-        &.album{
-            font-size: 25px;
-            margin-left: 0px;
+    .rounded-tooltip{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+        & .letter{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #000;
+            font-family: "Industria";
+            font-weight: 600;
+        }
+
+        & .register{
+            background-color: rgba(171, 165, 111, 0.5);
+            padding: 0px 20px;
+            color: #fff;
+            border-radius: 50px;
+            font-family: "Helvetica Neue";
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            padding-bottom: 2px !important;
+        }
+       
+    }
+
+
+    @media screen and (max-width: 360px) {
+        .brand-title{
+            font-size: pxToRem(70);
+        }
+        .subtitle{
+            font-size: pxToRem(24);
+        }
+        .title-medium{
+            font-size: pxToRem(42);
+        }
+        p{
+            margin-top: 0;
+            margin-bottom: 0;
         }
     }
 }

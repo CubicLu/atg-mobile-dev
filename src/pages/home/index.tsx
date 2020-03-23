@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ModalSlide, Player } from './../../components';
+import { ModalSlide, Player, LoaderFullscreen } from './../../components';
 import { updateSettingsProperty, updateSettingsModal } from './../../actions';
 import { TabsInterface, LinksInterface } from '../../interfaces';
 import { ApplicationState } from '../../reducers';
@@ -21,6 +21,7 @@ interface StateProps {
   links: LinksInterface[];
   isPlaying: boolean;
   modal: ModalSlideInterface;
+  loading: boolean;
 }
 
 interface DispatchProps {
@@ -36,10 +37,18 @@ interface Props extends StateProps, DispatchProps {}
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
-    const { updateSettingsModal, modal, activeTab, tabs, links } = this.props;
+    const {
+      updateSettingsModal,
+      modal,
+      activeTab,
+      tabs,
+      links,
+      loading
+    } = this.props;
     const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
     return (
       <IonReactRouter>
+        <LoaderFullscreen visible={loading} />
         <Player />
         {modal && (
           <ModalSlide
@@ -83,9 +92,13 @@ class HomePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  settings,
+  artistAPI
+}: ApplicationState): StateProps => {
   const { activeTab, tabs, links, isPlaying, modal } = settings;
-  return { activeTab, tabs, links, isPlaying, modal };
+  const { loading } = artistAPI;
+  return { activeTab, tabs, links, isPlaying, modal, loading };
 };
 
 export default connect(mapStateToProps, {

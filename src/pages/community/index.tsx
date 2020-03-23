@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  BackgroundImage,
-  LoaderFullscreen,
-  Header,
-  SliderStories
-} from './../../components';
+import { BackgroundImage, Header, SliderStories } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
 import { IonPage, IonContent } from '@ionic/react';
@@ -13,7 +8,6 @@ import PlusIcon from '../../components/icon/plus';
 
 interface StateProps {
   isPlaying: boolean;
-  loading: boolean;
 }
 
 interface DispatchProps {
@@ -96,19 +90,14 @@ class CommunityPage extends React.Component<Props> {
             />
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  artistAPI
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { isPlaying } = settings;
-  const { loading } = artistAPI;
-  return { isPlaying, loading };
+  return { isPlaying };
 };
 
 export default connect(mapStateToProps, {

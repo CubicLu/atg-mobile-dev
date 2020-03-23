@@ -14,7 +14,6 @@ import {
 } from '@ionic/react';
 import {
   BackgroundImage,
-  LoaderFullscreen,
   ModalSlide,
   Header,
   BiographyList,
@@ -49,7 +48,6 @@ interface DispatchProps {
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  loading: boolean;
   modal: ModalSlideInterface;
 }
 interface MatchParams {
@@ -77,7 +75,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.loading) return;
     if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -108,12 +105,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
 
   zero = (<IonPage id="artist-biography" className="artist-biography-page" />);
   render(): React.ReactNode {
-    const {
-      currentArtist: artist,
-      modal,
-      updateSettingsModal,
-      loading
-    } = this.props;
+    const { currentArtist: artist, modal, updateSettingsModal } = this.props;
 
     if (!artist) {
       return this.zero;
@@ -271,8 +263,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             ))}
           </IonSlides>
 
-          <LoaderFullscreen visible={loading} />
-
           <ModalSlide
             onClose={(): void => updateSettingsModal(false, null)}
             visible={modal.visible}
@@ -328,8 +318,8 @@ const mapStateToProps = ({
   artistAPI
 }: ApplicationState): StateProps => {
   const { modal } = settings;
-  const { currentArtist, loading } = artistAPI;
-  return { currentArtist, loading, modal };
+  const { currentArtist } = artistAPI;
+  return { currentArtist, modal };
 };
 
 export default connect(mapStateToProps, {

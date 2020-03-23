@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, createAnimation } from '@ionic/react';
-import {
-  Header,
-  Menu,
-  SupportBy,
-  LoaderFullscreen,
-  ButtonSupport
-} from './../../components';
+import { Header, Menu, SupportBy, ButtonSupport } from './../../components';
 import {
   updateArtistProperty,
   updateSettingsProperty,
@@ -28,7 +22,6 @@ interface StateProps {
   isPlaying: boolean;
   artistTabs: MenuInterface[];
   activeArtistTab: string;
-  loading: boolean;
 }
 
 interface DispatchProps {
@@ -61,11 +54,15 @@ class ArtistPage extends React.Component<Props, State> {
   };
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.loading) return;
     if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
+    }
+  }
+  UNSAFE_componentWillMount(): void {
+    if (this.props.currentArtist == null) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 
@@ -161,8 +158,10 @@ class ArtistPage extends React.Component<Props, State> {
 
   handleMenu(event: MenuInterface): void {
     const { match, history, updateSettingsProperty } = this.props;
-    if (event.isPage === true) {
-      event.route && history.push(event.route.replace(':id', match.params.id));
+    if (event.route && event.isPage === true) {
+      const href = event.route.replace(':id', match.params.id);
+      history.push(href);
+      // const action = Action.
     } else if (event.onClick) {
       event.onClick();
     } else {
@@ -174,17 +173,17 @@ class ArtistPage extends React.Component<Props, State> {
     if (!this.props.currentArtist) {
       return <IonPage id="artist-page" />;
     }
+
+    console.log(2);
     const {
       currentArtist: artist,
       history,
       artistTabs,
-      activeArtistTab,
-      loading
+      activeArtistTab
     } = this.props;
 
     const clickBack = (): void => history.push('/home/profile');
     if (!this.relativeAnimation) this.activateAnimations();
-    console.log('artist');
     return (
       <IonPage id="artist-page" style={artistBackground(artist)}>
         <div id="blur-background" className="artist-page blur-background" />
@@ -244,7 +243,6 @@ class ArtistPage extends React.Component<Props, State> {
               )}
           </IonContent>
         </div>
-        <LoaderFullscreen visible={loading} />
       </IonPage>
     );
   }
@@ -254,22 +252,19 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists, loading } = artistAPI;
+  const { currentArtist, artists } = artistAPI;
   const { isPlaying, artistTabs, activeArtistTab } = settings;
   return {
     currentArtist,
     artists,
     isPlaying,
     artistTabs,
-    activeArtistTab,
-    loading
+    activeArtistTab
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateArtistProperty,
-    updateSettingsProperty,
-    getArtistAPI
-  })(ArtistPage)
-);
+export default connect(mapStateToProps, {
+  updateArtistProperty,
+  updateSettingsProperty,
+  getArtistAPI
+})(ArtistPage);

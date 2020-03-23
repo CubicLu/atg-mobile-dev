@@ -16,7 +16,6 @@ interface StateProps {
   isPlaying: boolean;
   deepDiveTabs: MenuInterface[];
   activeDeepDiveTab: string;
-  loading: boolean;
 }
 
 interface DispatchProps {
@@ -131,14 +130,13 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying, deepDiveTabs, activeDeepDiveTab } = settings;
   return {
     currentArtist,
     isPlaying,
     deepDiveTabs,
-    activeDeepDiveTab,
-    loading
+    activeDeepDiveTab
   };
 };
 

@@ -10,7 +10,6 @@ import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  loading: boolean;
   isPlaying: boolean;
 }
 
@@ -258,9 +257,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying } = settings;
-  return { currentArtist, loading, isPlaying };
+  return { currentArtist, isPlaying };
 };
 
 export default withRouter(

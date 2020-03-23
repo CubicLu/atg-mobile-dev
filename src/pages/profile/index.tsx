@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IonPage } from '@ionic/react';
-import {
-  BackgroundImage,
-  HeaderProfile,
-  Menu,
-  LoaderFullscreen
-} from './../../components';
+import { BackgroundImage, HeaderProfile, Menu } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
 import { MenuInterface } from '../../interfaces';
@@ -15,7 +10,6 @@ interface StateProps {
   activeFanTab: string;
   fanTabs: MenuInterface[];
   isPlaying: boolean;
-  loading: boolean;
 }
 
 interface Props extends StateProps, DispatchProps {}
@@ -24,17 +18,12 @@ interface DispatchProps {
 }
 
 class ProfilePage extends React.Component<Props> {
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.loading) return;
-    if (this.props.loading) return;
-  }
   render(): React.ReactNode {
     const {
       isPlaying,
       fanTabs,
       activeFanTab,
-      updateSettingsProperty,
-      loading
+      updateSettingsProperty
     } = this.props;
     if (!fanTabs) return <IonPage />;
     return (
@@ -64,19 +53,14 @@ class ProfilePage extends React.Component<Props> {
               React.createElement(data.component, { key: i })
           )}
         </div>
-        <LoaderFullscreen visible={loading} />
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  artistAPI
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { activeFanTab, fanTabs, isPlaying } = settings;
-  const { loading } = artistAPI;
-  return { activeFanTab, fanTabs, isPlaying, loading };
+  return { activeFanTab, fanTabs, isPlaying };
 };
 
 export default connect(mapStateToProps, {

@@ -20,7 +20,6 @@ interface State {
   willGo: boolean;
 }
 interface StateProps {
-  loading: boolean;
   isPlaying: boolean;
   event: EventInterface | null;
 }
@@ -174,9 +173,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { event, loading } = artistAPI;
+  const { event } = artistAPI;
   const { isPlaying } = settings;
-  return { event, loading, isPlaying };
+  return { event, isPlaying };
 };
 
 export default withRouter(

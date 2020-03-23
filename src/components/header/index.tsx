@@ -50,10 +50,12 @@ class HeaderComponent extends React.Component<Props> {
 
   goBackClick = (ev: any): any => {
     if (this.props.leftBackOnClick) {
+      this.props.history.action = 'POP';
       return this.props.leftBackOnClick(ev);
     } else if (this.props.leftBackHref) {
       return this.props.history.push(this.props.leftBackHref);
     }
+    this.props.history.action = 'POP';
     return this.props.history.goBack();
   };
 

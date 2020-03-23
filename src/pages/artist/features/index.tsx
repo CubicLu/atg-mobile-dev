@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { ApplicationState } from './../../../reducers';
+import { ArtistInterface } from '../../../interfaces';
 import {
   List,
   SliderVideo,
@@ -8,55 +9,46 @@ import {
   SliderRadio,
   SliderEvents
 } from './../../../components';
-import {} from './../../../actions';
-import { ApplicationState } from './../../../reducers';
-import { ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   isPlaying: boolean;
 }
-interface DispatchProps {}
-interface Props extends StateProps, DispatchProps, RouteComponentProps {}
+interface Props extends StateProps {}
 
 class ArtistFeaturesPage extends React.Component<Props> {
   render(): React.ReactNode {
-    if (!this.props.currentArtist) return null;
+    const { currentArtist, isPlaying } = this.props;
+    if (!currentArtist) return <div />;
 
-    const featureClass = `artist-features-page${
-      this.props.isPlaying ? ' is-playing' : ''
-    }`;
+    const {
+      featuredTracks,
+      newReleases,
+      radio,
+      events,
+      username
+    } = currentArtist;
 
     return (
-      <div className={featureClass}>
+      <div className={`artist-features-page${isPlaying ? ' is-playing' : ''}`}>
         <List
-          data={this.props.currentArtist?.featuredTracks}
+          data={featuredTracks}
           title={'TOP TRACKS'}
           viewAll
           label={'song'}
           id={'id'}
         />
-        {this.props.currentArtist?.newReleases && (
-          <SliderVideo
-            data={this.props.currentArtist?.newReleases}
-            title={'VIDEOS'}
+        {newReleases && <SliderVideo data={newReleases} title={'VIDEOS'} />}
+        <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
+        {radio && <SliderRadio title={'PANTHR RADIO'} data={radio} />}
+        {Array.isArray(events) && events.length > 0 && (
+          <SliderEvents
+            data={[events[0]]}
+            viewAll
+            artistUsername={username}
+            title={'UPCOMING EVENTS'}
           />
         )}
-        <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
-        <SliderRadio
-          title={'PANTHR RADIO'}
-          data={this.props.currentArtist?.radio}
-        />
-        <SliderEvents
-          data={[
-            this.props.currentArtist?.events !== undefined
-              ? this.props.currentArtist?.events[0]
-              : {}
-          ]}
-          viewAll
-          artistUsername={this.props.currentArtist?.username}
-          title={'UPCOMING EVENTS'}
-        />
       </div>
     );
   }
@@ -71,4 +63,4 @@ const mapStateToProps = ({
   return { currentArtist, isPlaying };
 };
 
-export default withRouter(connect(mapStateToProps, {})(ArtistFeaturesPage));
+export default connect(mapStateToProps, {})(ArtistFeaturesPage);

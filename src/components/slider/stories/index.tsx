@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Avatar } from './../../../components';
-import {} from './../../../actions';
 
 interface Props {
   title: string;
@@ -19,42 +18,37 @@ class SliderStoriesComponent extends React.Component<Props> {
     imageKey: 'image'
   };
   render(): React.ReactNode {
+    const { title, viewAll, data, imageKey, labelKey } = this.props;
+    if (!data) return <div />;
+    const image = imageKey ? 'image' : '';
+    const label = labelKey ? 'label' : '';
+
     return (
       <div className="row slider stories">
         <div className="list-view-all">
           <div>
-            <h1 className="title">{this.props.title}</h1>
+            <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {this.props.viewAll && (
-              <Button color={'transparent'} label={'View All'} />
-            )}
+            {viewAll && <Button color={'transparent'} label={'View All'} />}
           </div>
         </div>
 
         <div className="row">
           <ul className="list inline">
-            {this.props.data?.map(
-              (data, i): React.ReactNode => {
-                let image =
-                  this.props.imageKey !== undefined
-                    ? this.props.imageKey
-                    : 'image';
-                let label =
-                  this.props.labelKey !== undefined
-                    ? this.props.labelKey
-                    : 'label';
+            {data?.map(
+              (d, i): React.ReactNode => {
                 return (
                   <li key={i}>
                     <div>
                       <Avatar
-                        image={data[image]}
+                        image={d[image]}
                         type="circle"
                         width={110}
                         height={110}
                         onClick={(): void => {}}
                       />
-                      <label>{data[label]}</label>
+                      <label>{d[label]}</label>
                     </div>
                   </li>
                 );

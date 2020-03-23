@@ -59,52 +59,69 @@ class HeaderComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const top = this.props.top ? ' header-top' : '';
-    const color = this.props.color;
-    const className = this.props.className;
+    const {
+      color,
+      className,
+      leftBackButton,
+      leftMinimizeButton,
+      leftMinimizeOnClick,
+      leftContent,
+      centerContent,
+      title,
+      titleClassName,
+      rightContent,
+      rightCloseButton,
+      rightCloseOnClick,
+      rightActionButton,
+      rightActionOnClick,
+      rightSettingsButton,
+      rightSettingsOnClick,
+      rightSupportButton,
+      rightUserGroupButton,
+      children
+    } = this.props;
+
     return (
       <IonHeader className="ion-no-border">
         <div className={`atg-header fixed${top} ${color} ${className}`}>
           <div className="start">
-            {this.props.leftBackButton && (
+            {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
                 <BackIcon />
               </div>
             )}
 
-            {this.props.leftMinimizeButton && (
-              <div className="" onClick={this.props.leftMinimizeOnClick}>
+            {leftMinimizeButton && (
+              <div onClick={leftMinimizeOnClick}>
                 <MinimizeIcon />
               </div>
             )}
 
-            {this.props.leftContent}
+            {leftContent}
           </div>
 
-          {this.props.centerContent}
+          {centerContent}
 
-          {this.props.title && (
-            <div className={`title ${this.props.titleClassName}`}>
-              <span>{this.props.title}</span>
+          {title && (
+            <div className={`title ${titleClassName}`}>
+              <span>{title}</span>
             </div>
           )}
 
           <div className="end">
-            {this.props.rightContent}
+            {rightContent}
 
-            {this.props.rightSupportButton && (
+            {rightSupportButton && (
               <div className="default-button dark">
                 <SupportIcon />
               </div>
             )}
-            {this.props.rightActionButton && (
-              <div
-                className="default-button dark"
-                onClick={this.props.rightActionOnClick}
-              >
+            {rightActionButton && (
+              <div className="default-button dark" onClick={rightActionOnClick}>
                 <DotsThreeIcon />
               </div>
             )}
-            {this.props.rightUserGroupButton && (
+            {rightUserGroupButton && (
               <div
                 className="default-button"
                 onClick={(): any => this.props.history.push('/home/feed')}
@@ -112,26 +129,20 @@ class HeaderComponent extends React.Component<Props> {
                 <UserGroupIcon color={'#FFF'} height={23} width={23} />
               </div>
             )}
-            {this.props.rightSettingsButton && (
-              <div
-                className="default-button"
-                onClick={this.props.rightSettingsOnClick}
-              >
+            {rightSettingsButton && (
+              <div className="default-button" onClick={rightSettingsOnClick}>
                 <SettingsIcon height={24} width={24} />
               </div>
             )}
-            {this.props.rightCloseButton && (
-              <div
-                className="default-button dark"
-                onClick={this.props.rightCloseOnClick}
-              >
+            {rightCloseButton && (
+              <div className="default-button dark" onClick={rightCloseOnClick}>
                 <CloseIcon />
               </div>
             )}
           </div>
         </div>
 
-        <div>{this.props.children}</div>
+        <div>{children}</div>
       </IonHeader>
     );
   }

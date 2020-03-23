@@ -8,7 +8,7 @@ import {
   BackgroundImage,
   ButtonSupport
 } from './../../components';
-import {} from './../../actions';
+
 import {
   createGesture,
   GestureConfig,

@@ -7,10 +7,9 @@ import {
   MixtapeMoonLightImage,
   Button
 } from './../../../components';
-import {} from './../../../actions';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
 import { MixtapeInterface } from '../../../interfaces';
 
 interface Props {
@@ -21,15 +20,9 @@ interface Props {
 }
 
 class SliderMixtapesComponent extends React.Component<Props> {
-  settings: any = {
-    dots: this.props.dots,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    centerMode: true,
-    variableWidth: false,
-    swipe: true,
-    arrows: false
+  public static defaultProps = {
+    menu: true,
+    dots: true
   };
   playlists: MixtapeInterface[] = [
     {
@@ -53,37 +46,39 @@ class SliderMixtapesComponent extends React.Component<Props> {
       quantity: 15
     }
   ];
-  public static defaultProps = {
-    menu: true,
-    dots: true
-  };
 
   render(): React.ReactNode {
+    const { menu, title, viewAll, dots } = this.props;
+    const playlists = this.playlists;
+    if (!this.playlists) return <div />;
+
+    const settings: Settings = {
+      dots: dots,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      centerMode: true,
+      variableWidth: false,
+      swipe: true,
+      arrows: false
+    };
+
     return (
       <div className="row slider mixtapes">
         <div className="list-view-all">
           <div>
-            <h1 className="title">{this.props.title}</h1>
+            <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {this.props.viewAll && (
-              <Button color={'transparent'} label={'View All'} />
-            )}
+            {viewAll && <Button color={'transparent'} label={'View All'} />}
           </div>
         </div>
 
-        <Slider {...this.settings}>
-          {this.playlists.map(
-            (data, i): React.ReactNode => {
-              return (
-                <CardMixtapes
-                  mixtape={data}
-                  key={i}
-                  index={i + 1}
-                  menu={this.props.menu}
-                />
-              );
-            }
+        <Slider {...settings}>
+          {playlists.map(
+            (data, i): React.ReactNode => (
+              <CardMixtapes mixtape={data} key={i} index={i + 1} menu={menu} />
+            )
           )}
         </Slider>
       </div>

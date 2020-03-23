@@ -1,6 +1,6 @@
 import React from 'react';
-import {} from './../../../components';
-import {} from './../../../actions';
+
+
 
 interface Props {
   color: string;
@@ -23,13 +23,8 @@ class BackIcon extends React.Component<Props> {
         height={this.props.height}
         viewBox={`0 0 ${this.props.width} ${this.props.height}`}
       >
-        <g
-          id="Group_1305"
-          data-name="Group 1305"
-          transform="translate(-16.823 -63.923)"
-        >
+        <g transform="translate(-16.823 -63.923)">
           <path
-            id="Icon"
             d="M7.793,17.76.327,10.2a.987.987,0,0,1-.178-.837A1.009,1.009,0,0,1,.193,8.239C.448,7.912,7.545.245,7.545.245a.563.563,0,0,1,.929,0,1.008,1.008,0,0,1,0,1.183L1.362,9.158l7.315,7.409a.99.99,0,0,1,.029,1.164.553.553,0,0,1-.913.029Z"
             transform="translate(16.823 63.923)"
             fill={this.props.color}

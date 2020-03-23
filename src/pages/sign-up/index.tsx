@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { IonPage, IonButton } from '@ionic/react';
 import { BackgroundImage, InputText, Header } from './../../components';
-import {} from './../../actions';
+
 
 interface Props extends RouteComponentProps {}
 

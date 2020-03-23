@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 
 interface StateProps {}
-
 interface DispatchProps {
   updateArtistProperty: (property: string, value: any) => void;
   updateSettingsModal: (
@@ -21,28 +20,28 @@ interface DispatchProps {
     className?: string
   ) => void;
 }
-
 interface Props extends StateProps, DispatchProps, RouteComponentProps {
   artist: ArtistInterface;
   key: number;
 }
-
 class CardArtistComponent extends React.Component<Props> {
   render(): React.ReactNode {
+    const { artist, updateSettingsModal, history } = this.props;
+    if (!artist) return <div />;
+    const { cover, username, support, name } = artist;
+
     return (
       <div className="row">
         <div className="col s12">
           <div
             className="card artist"
-            style={{ backgroundImage: `url(${this.props.artist.cover.main})` }}
+            style={{ backgroundImage: `url(${cover.main})` }}
           >
             <div className="row">
               <div
                 className="card-area"
                 onClick={(): void => {
-                  this.props.history.push(
-                    `/home/artist/${this.props.artist.username}`
-                  );
+                  history.push(`/home/artist/${username}`);
                 }}
               ></div>
               <div className="col s12 infos p-10">
@@ -51,16 +50,12 @@ class CardArtistComponent extends React.Component<Props> {
                     <ButtonIcon
                       color={'transparent'}
                       icon={<DotsThreeIcon color={'#6a6565'} />}
-                      onClick={this.props.updateSettingsModal.bind(
+                      onClick={updateSettingsModal.bind(
                         this,
                         true,
                         React.createElement(MenuFanSupportOptions, {
-                          artist: this.props.artist,
-                          onClick: this.props.updateSettingsModal.bind(
-                            this,
-                            false,
-                            null
-                          ),
+                          artist: artist,
+                          onClick: updateSettingsModal.bind(this, false, null),
                           background: 'background-tertiary-opacity95'
                         }),
                         'background-tertiary-opacity95'
@@ -71,24 +66,20 @@ class CardArtistComponent extends React.Component<Props> {
                 <div
                   className="row"
                   onClick={(): void => {
-                    this.props.history.push(
-                      `/home/artist/${this.props.artist.username}`
-                    );
+                    history.push(`/home/artist/${username}`);
                   }}
                 >
                   <div className="col s8 align-items-end">
                     <div className="name">
-                      <span>{this.props.artist.name}</span>
+                      <span>{name}</span>
                     </div>
                   </div>
                   <div className="col s4 support">
                     <ButtonSupport
                       buttonType={'icon'}
-                      supported={this.props.artist.support}
+                      supported={support}
                       onClick={(): void => {
-                        this.props.history.push(
-                          `/home/artist/${this.props.artist?.username}/support`
-                        );
+                        history.push(`/home/artist/${username}/support`);
                       }}
                     />
                   </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonIcon, Header } from './../../../components';
-import {} from './../../../actions';
+
 import { ArtistInterface } from '../../../interfaces';
 import {
   SupportIcon,

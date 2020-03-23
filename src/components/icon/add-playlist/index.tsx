@@ -1,6 +1,6 @@
 import React from 'react';
-import {} from './../../../components';
-import {} from './../../../actions';
+
+
 
 interface Props {
   color: string;
@@ -16,19 +16,18 @@ class AddPlaylistIcon extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
+    const { width, height, color } = this.props;
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={this.props.width}
-        height={this.props.height}
+        width={width}
+        height={height}
         viewBox={`0 0 20 14`}
       >
         <path
-          id="Path_60543"
-          data-name="Path 60543"
           d="M14,10H2v2H14Zm0-4H2V8H14Zm4,8V10H16v4H12v2h4v4h2V16h4V14ZM2,16h8V14H2Z"
           transform="translate(-2 -6)"
-          fill={this.props.color}
+          fill={color}
         />
       </svg>
     );

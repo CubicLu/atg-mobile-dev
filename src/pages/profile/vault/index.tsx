@@ -7,7 +7,7 @@ import {
   CloseIcon,
   ButtonSupport
 } from './../../../components';
-import {} from './../../../actions';
+
 import {
   IonList,
   IonItemSliding,

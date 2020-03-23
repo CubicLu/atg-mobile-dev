@@ -8,7 +8,6 @@ import {
   Button,
   Header
 } from './../../components';
-import {} from './../../actions';
 
 interface Props extends RouteComponentProps {}
 

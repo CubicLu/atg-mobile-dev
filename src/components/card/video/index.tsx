@@ -14,28 +14,29 @@ interface Props {
 }
 
 class CardVideoComponent extends React.Component<Props> {
-  public static defaultProps = {
-    type: 'normal'
-  };
+  public static defaultProps = { type: 'normal' };
 
   render(): React.ReactNode {
+    const { artist, type, image, time, title } = this.props;
+    if (!artist) return <div />;
+
     return (
       <div>
         <div
-          className={`card video ${this.props.type}`}
-          data-time={this.props.time}
-          style={{ backgroundImage: `url(${this.props.image})` }}
-        ></div>
+          className={`card video ${type}`}
+          data-time={time}
+          style={{ backgroundImage: `url(${image})` }}
+        />
         <div className="row card-out-content">
           <div className="col s12">
             <div className="row">
               <div className="col s12">
-                <h1 className="title">{this.props.title}</h1>
+                <h1 className="title">{title}</h1>
               </div>
             </div>
             <div className="row">
               <div className="col s12 button">
-                <h1 className={'artist'}>{this.props.artist.name}</h1>
+                <h1 className={'artist'}>{artist.name}</h1>
                 <ButtonIcon icon={<DotsThreeIcon />} color={'transparent'} />
               </div>
             </div>

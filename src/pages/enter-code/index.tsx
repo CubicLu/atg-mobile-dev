@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { BackgroundImage, InputCode, Header } from './../../components';
-import {} from './../../actions';
+
 import { IonPage } from '@ionic/react';
 
 interface State {

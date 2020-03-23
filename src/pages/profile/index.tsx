@@ -18,14 +18,24 @@ interface StateProps {
   loading: boolean;
 }
 
+interface Props extends StateProps, DispatchProps {}
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
 }
 
-interface Props extends StateProps, DispatchProps {}
-
 class ProfilePage extends React.Component<Props> {
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (nextProps.loading) return;
+  }
   render(): React.ReactNode {
+    const {
+      isPlaying,
+      fanTabs,
+      activeFanTab,
+      updateSettingsProperty,
+      loading
+    } = this.props;
+    if (!fanTabs) return <IonPage />;
     return (
       <IonPage id="profile-page">
         <BackgroundImage
@@ -35,33 +45,25 @@ class ProfilePage extends React.Component<Props> {
           backgroundTopOpacity={0.15}
           backgroundBottom
           backgroundBottomDark={false}
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.3}
+          bottomRotate={true}
+          backgroundBottomOpacity={0.15}
         />
-        <div
-          className={`profile-page` + (this.props.isPlaying && ' is-playing')}
-        >
+        <div className={`profile-page` + (isPlaying && ' is-playing')}>
           <HeaderProfile />
           <Menu
-            tabs={this.props.fanTabs}
-            activeId={this.props.activeFanTab}
+            tabs={fanTabs}
+            activeId={activeFanTab}
             onClick={(event: MenuInterface): void => {
-              return this.props.updateSettingsProperty(
-                'activeFanTab',
-                event.id
-              );
+              return updateSettingsProperty('activeFanTab', event.id);
             }}
           />
-          {this.props.fanTabs.map(
-            (data, i): React.ReactNode => {
-              if (data.id === this.props.activeFanTab) {
-                return React.createElement(data.component, { key: i });
-              }
-              return null;
-            }
+          {fanTabs.map(
+            (data, i): React.ReactNode =>
+              data.id === activeFanTab &&
+              React.createElement(data.component, { key: i })
           )}
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
+        <LoaderFullscreen visible={loading} />
       </IonPage>
     );
   }

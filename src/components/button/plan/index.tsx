@@ -1,6 +1,6 @@
 import React from 'react';
 import {} from './../../';
-import {} from './../../../actions';
+
 import { Colors, PlanInterface } from '../../../interfaces';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -24,18 +24,20 @@ class ButtonPlanComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    let currency = '$';
-    let active = this.props.active ? 'active' : '';
+    const { onClick, active, styles, plan } = this.props;
+    const { color, price, name } = plan;
+    if (!plan) return <div />;
+
     return (
       <div
-        className={`btn plan circle ${this.props.plan.color} ${active}`}
-        style={{ ...this.props.styles }}
+        className={`btn plan circle ${color} ${active ? 'active' : ''}`}
+        style={{ ...styles }}
       >
-        <div onClick={this.props.onClick.bind(this, this.props.plan)}>
-          <div className="price" data-currency={currency}>
-            {this.props.plan.price}
+        <div onClick={onClick.bind(this, plan)}>
+          <div className="price" data-currency={'$'}>
+            {price}
           </div>
-          <div className="name">{this.props.plan.name}</div>
+          <div className="name">{name}</div>
         </div>
       </div>
     );

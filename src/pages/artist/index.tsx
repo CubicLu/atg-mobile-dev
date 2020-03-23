@@ -61,21 +61,12 @@ class ArtistPage extends React.Component<Props, State> {
   };
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.currentArtist?.username) {
+    if (nextProps.loading) return;
+    if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (
-      nextProps.currentArtist == null &&
-      nextProps.match.params.id !== undefined
-    ) {
-      this.props.getArtistAPI(nextProps.match.params.id);
     }
-  }
-
-  componentWillUnmount(): void {
-    this.fixedAnimation.destroy();
-    this.relativeAnimation.destroy();
   }
 
   activateAnimations(): any {
@@ -170,36 +161,40 @@ class ArtistPage extends React.Component<Props, State> {
 
   handleMenu(event: MenuInterface): void {
     if (event.isPage === true) {
-      let route =
-        event.route != null
-          ? event.route.replace(':id', this.props.match.params.id)
-          : '';
-      this.props.history.push(route);
+      if (event.route) {
+        this.props.history.push(
+          event.route.replace(':id', this.props.match.params.id)
+        );
+      }
     } else if (event.onClick !== undefined) {
       event.onClick();
     } else {
-      this.props.updateSettingsProperty('activeArtistTab', event.id);
+      updateSettingsProperty('activeArtistTab', event.id);
     }
   }
 
   render(): React.ReactNode {
-    const hasArtist = this.props.currentArtist;
-    if (!hasArtist) return null;
-    const clickBack = (): void => this.props.history.push('/home/profile');
-    if (!this.relativeAnimation) this.activateAnimations();
+    if (!this.props.currentArtist) {
+      return <IonPage id="artist-page" />;
+    }
+    const {
+      currentArtist: artist,
+      history,
+      artistTabs,
+      activeArtistTab,
+      loading
+    } = this.props;
 
+    const clickBack = (): void => history.push('/home/profile');
+    if (!this.relativeAnimation) this.activateAnimations();
+    console.log('loaded');
     return (
-      <IonPage
-        id="artist-page"
-        style={artistBackground(this.props.currentArtist)}
-      >
+      <IonPage id="artist-page" style={artistBackground(artist)}>
         <div id="blur-background" className="artist-page blur-background" />
         <Header
           leftBackOnClick={clickBack}
           titleClassName={`artist-name`}
-          rightContent={
-            <SupportBy data={this.props.currentArtist?.supportArtistFans} />
-          }
+          rightContent={<SupportBy data={artist.supportArtistFans} />}
         />
 
         <div id="fixed-menu" className="artist-page menu-fixed-area" />
@@ -214,7 +209,7 @@ class ArtistPage extends React.Component<Props, State> {
             <div id="original" style={{ marginTop: 130, minHeight: 200 }}>
               <div style={{ minHeight: 50 }}>
                 <h2 id="artist-title" className={`artist-title`}>
-                  {this.props.currentArtist?.name}
+                  {artist.name}
                 </h2>
               </div>
               <div style={{ minHeight: 30 }} className={`support-button`}>
@@ -223,10 +218,10 @@ class ArtistPage extends React.Component<Props, State> {
                     buttonType={'text'}
                     type={'rounded'}
                     uppercase
-                    supported={this.props.currentArtist?.support}
+                    supported={artist.support}
                     onClick={(): void => {
                       this.props.history.push(
-                        `/home/artist/${this.props.currentArtist?.username}/support`
+                        `/home/artist/${artist.username}/support`
                       );
                     }}
                   />
@@ -236,22 +231,23 @@ class ArtistPage extends React.Component<Props, State> {
               <div style={{ minHeight: 80 }}>
                 <div id="normal-menu">
                   <Menu
-                    tabs={this.props.artistTabs}
-                    activeId={this.props.activeArtistTab}
+                    tabs={artistTabs}
+                    activeId={activeArtistTab}
                     onClick={this.handleMenu.bind(this)}
                   />
                 </div>
               </div>
             </div>
 
-            {this.props.artistTabs.map(
-              (data, i): React.ReactNode =>
-                data.id === this.props.activeArtistTab &&
-                React.createElement(data.component, { key: i })
-            )}
+            {artistTabs &&
+              artistTabs.map(
+                (data, i): React.ReactNode =>
+                  data.id === activeArtistTab &&
+                  React.createElement(data.component, { key: i })
+              )}
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
+        <LoaderFullscreen visible={loading} />
       </IonPage>
     );
   }

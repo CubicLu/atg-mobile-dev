@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonIcon } from './../../../components';
-import {} from './../../../actions';
+
 import { MixtapeInterface } from '../../../interfaces';
 import {
   PlayIcon,
@@ -41,25 +41,26 @@ class CardMixtapesComponent extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { index, menu, mixtape } = this.props;
+    if (!mixtape) return <div />;
+
     return (
       <div className="card mixtapes">
         <div className="row">
           <div className="col s12 cover">
             <div
               className={`tape`}
-              data-tapeindex={String(this.props.index).padStart(2, '0')}
+              data-tapeindex={String(index).padStart(2, '0')}
             >
               {this.state.openMenu === false && (
                 <div
                   className={`background ${
-                    this.props.menu === true ? '' : 'without-menu'
+                    menu === true ? '' : 'without-menu'
                   }`}
-                  style={{
-                    backgroundImage: `url(${this.props.mixtape.cover})`
-                  }}
+                  style={{ backgroundImage: `url(${mixtape.cover})` }}
                 >
                   <ButtonIcon icon={<PlayIcon />} />
-                  {this.props.menu === true && (
+                  {menu === true && (
                     <ButtonIcon
                       icon={<DotsThreeIcon />}
                       color="transparent"
@@ -118,10 +119,8 @@ class CardMixtapesComponent extends React.Component<Props, State> {
         </div>
         <div className="row">
           <div className="col s12 infos">
-            <span className="playlist">{this.props.mixtape.name}</span>
-            <span className="quantity">
-              {this.props.mixtape.quantity} Songs
-            </span>
+            <span className="playlist">{mixtape.name}</span>
+            <span className="quantity">{mixtape.quantity} Songs</span>
           </div>
         </div>
       </div>

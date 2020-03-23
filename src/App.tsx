@@ -38,7 +38,6 @@ export default class App extends React.Component {
       animated: false
     });
   }
-
   render(): React.ReactNode {
     store.subscribe((): void => {
       if (this.authenticated) return; //temporary to debug

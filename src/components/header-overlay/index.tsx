@@ -43,6 +43,7 @@ class HeaderOverlayComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
+    const { content, title, children, className } = this.props;
     return (
       <CreateAnimation
         ref={this.animationRef}
@@ -53,10 +54,10 @@ class HeaderOverlayComponent extends React.Component<Props> {
           toValue: '1'
         }}
       >
-        <div className={'top-header ' + this.props.className} ref={this.ref}>
-          {this.props.content}
-          {this.props.title}
-          <div>{this.props.children}</div>
+        <div className={'top-header ' + className} ref={this.ref}>
+          {content}
+          {title}
+          <div>{children}</div>
         </div>
       </CreateAnimation>
     );

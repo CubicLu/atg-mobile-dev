@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnlockedIcon } from './../../../components';
-import {} from './../../../actions';
+
 import {} from '../../icon';
 interface Props {
   onKeyUp: Function;

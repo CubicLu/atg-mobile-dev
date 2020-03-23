@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { CardImage } from './../../../components';
-import {} from './../../../actions';
+
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
 

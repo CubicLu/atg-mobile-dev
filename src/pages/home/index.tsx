@@ -37,41 +37,48 @@ interface Props extends StateProps, DispatchProps {}
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
+    const { updateSettingsModal, modal, activeTab, tabs, links } = this.props;
     return (
       <IonReactRouter>
         <Player />
-        <ModalSlide
-          onClose={(): void => this.props.updateSettingsModal(false, null)}
-          visible={this.props.modal.visible}
-          height={setHeight(40)}
-          classname={this.props.modal.classname}
-        >
-          {this.props.modal.content}
-        </ModalSlide>
+        {modal && (
+          <ModalSlide
+            onClose={(): void => updateSettingsModal(false, null)}
+            visible={modal.visible}
+            height={setHeight(40)}
+            className={modal.classname}
+          >
+            {modal.content}
+          </ModalSlide>
+        )}
 
         <Switch>
           <IonTabs
             onIonTabsDidChange={(event): void => {
-              this.props.updateSettingsProperty('activeTab', event.detail.tab);
+              updateSettingsProperty('activeTab', event.detail.tab);
             }}
           >
             <IonRouterOutlet id="home">
-              {this.props.links.map((p: LinksInterface, i: number): any => (
+              {links.map((p: LinksInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
-              {this.props.tabs.map((p: TabsInterface, i: number): any => (
+              {tabs.map((p: TabsInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
               <Route exact path="/home" component={ProfilePage} />
-              <Route exact path="/" render={(): any => <Redirect to="/home" />} />
+              <Route
+                exact
+                path="/"
+                render={(): any => <Redirect to="/home" />}
+              />
               <Route path="/" component={ProfilePage} />
             </IonRouterOutlet>
 
             <IonTabBar slot="bottom" color="dark">
-              {this.props.tabs.map((p: TabsInterface): any => (
+              {tabs.map((p: TabsInterface): any => (
                 <IonTabButton tab={p.id} href={p.path} key={p.id}>
                   {React.createElement(p.icon, {
-                    color: this.props.activeTab === p.id ? '#00BAFF' : '#FFF'
+                    color: activeTab === p.id ? '#00BAFF' : '#FFF'
                   })}
                 </IonTabButton>
               ))}

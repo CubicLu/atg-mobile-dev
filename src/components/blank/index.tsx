@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {} from './../../components';
-import {} from './../../actions';
+
+
 import { ApplicationState } from '../../reducers';
 
 interface Props {}

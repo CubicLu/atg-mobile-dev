@@ -14,8 +14,6 @@ interface Props {
   shadow?: boolean;
   gradient?: string;
   styles?: CSSProperties;
-  svgTop?: any;
-  svgBottom?: any;
   backgroundTop: boolean;
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;

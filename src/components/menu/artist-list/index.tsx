@@ -37,14 +37,19 @@ class MenuArtistList extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    let data = this.props.isSimilar
-      ? this.props.currentArtist?.similarArtist
-      : this.props.currentArtist?.supportArtistFans;
+    const { currentArtist, isSimilar, background } = this.props;
+    if (!currentArtist) return <div></div>;
+
+    let data = isSimilar
+      ? currentArtist.similarArtist
+      : currentArtist.supportArtistFans;
     return (
       <div className="menu artist-list">
         <BackgroundImage
           backgroundBottomOrange={true}
+          backgroundBottom={true}
           backgroundBottomOpacity={1}
+          className={background}
         />
         <Header
           leftBackButton={false}
@@ -55,7 +60,7 @@ class MenuArtistList extends React.Component<Props> {
           <div className={`row header`}>
             <h1 className="title">{this.props.title}</h1>
             <h2 className="subtitle">
-              {this.props.isSimilar && 'to'} {this.props.currentArtist?.name}
+              {this.props.isSimilar && 'to'} {currentArtist.name}
             </h2>
           </div>
         </Header>

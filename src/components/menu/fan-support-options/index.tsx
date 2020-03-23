@@ -1,6 +1,5 @@
 import React from 'react';
 import { ButtonIcon, Header } from './../../../components';
-
 import { ArtistInterface } from '../../../interfaces';
 import {
   SupportIcon,
@@ -16,9 +15,7 @@ interface Props {
 }
 
 class MenuFanSupportOptionsComponent extends React.Component<Props> {
-  public static defaultProps = {
-    onClick: (): void => {}
-  };
+  public static defaultProps = { onClick: (): void => {} };
 
   render(): React.ReactNode {
     return (

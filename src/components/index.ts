@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import _ from 'lodash';
 import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
@@ -33,6 +31,20 @@ import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
 import SliderStoriesComponent from './slider/stories';
 
+import BackgroundInitialImage from './../assets/img/background/initial/1.png';
+import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
+import BackgroundSignUpConfirmImage from './../assets/img/background/sign-up-confirm/1.png';
+
+import BackgroundCircleBubblesOrangeImage from './../assets/img/background/circles/orange-bubbles.png';
+import BackgroundCircleBubblesImage from './../assets/img/background/circles/black-bubbles.png';
+import BackgroundCircleBubblesInverted from './../assets/img/background/circles/black-bubbles-inverted.png';
+import BackgroundCircleBubblesLightImage from './../assets/img/background/circles/white-bubbles.png';
+import BackgroundCircleBubblesLightInverted from './../assets/img/background/circles/white-bubbles-inverted.png';
+
+import MixtapeEuroHouseImage from './../assets/img/mixtapes/euro-house.png';
+import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
+import MixtapeMoonLightImage from './../assets/img/mixtapes/moon-light.png';
+import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
 export * from './icon';
 
 export {
@@ -69,23 +81,6 @@ export {
   ButtonSupportComponent as ButtonSupport,
   SliderStoriesComponent as SliderStories
 };
-
-export { _ };
-
-const BackgroundInitialImage = require('./../assets/img/background/initial/1.png');
-const BackgroundSignInImage = require('./../assets/img/background/sign-in/1.png');
-const BackgroundSignUpConfirmImage = require('./../assets/img/background/sign-up-confirm/1.png');
-
-const BackgroundCircleBubblesOrangeImage = require('./../assets/img/background/circles/orange-bubbles.png');
-const BackgroundCircleBubblesImage = require('./../assets/img/background/circles/black-bubbles.png');
-const BackgroundCircleBubblesInverted = require('./../assets/img/background/circles/black-bubbles-inverted.png');
-const BackgroundCircleBubblesLightImage = require('./../assets/img/background/circles/white-bubbles.png');
-const BackgroundCircleBubblesLightInverted = require('./../assets/img/background/circles/white-bubbles-inverted.png');
-
-const MixtapeEuroHouseImage = require('./../assets/img/mixtapes/euro-house.png');
-const MixtapeKnightImage = require('./../assets/img/mixtapes/knight.png');
-const MixtapeMoonLightImage = require('./../assets/img/mixtapes/moon-light.png');
-const MixtapeRebelRockImage = require('./../assets/img/mixtapes/rebel-rock.png');
 
 export {
   BackgroundInitialImage,

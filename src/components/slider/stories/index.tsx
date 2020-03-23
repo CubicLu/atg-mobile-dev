@@ -1,5 +1,5 @@
 import React from 'react';
-import { _, Button, Avatar } from './../../../components';
+import { Button, Avatar } from './../../../components';
 import {} from './../../../actions';
 
 interface Props {
@@ -34,8 +34,7 @@ class SliderStoriesComponent extends React.Component<Props> {
 
         <div className="row">
           <ul className="list inline">
-            {_.map(
-              this.props.data,
+            {this.props.data?.map(
               (data, i): React.ReactNode => {
                 let image =
                   this.props.imageKey !== undefined

@@ -61,12 +61,6 @@
     padding: 10px;
 }
 
-.is-playing{
-    ion-content{
-        --padding-bottom: #{$default-height-player + $default-height-tabs + 10};
-    }
-}
-
 .sliding-panel-container{
     .background-bottom{
         height: 30vh;

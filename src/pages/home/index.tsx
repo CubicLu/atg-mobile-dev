@@ -48,6 +48,7 @@ class HomePage extends React.Component<Props> {
         >
           {this.props.modal.content}
         </ModalSlide>
+
         <Switch>
           <IonTabs
             onIonTabsDidChange={(event): void => {
@@ -62,7 +63,7 @@ class HomePage extends React.Component<Props> {
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
               <Route exact path="/home" component={ProfilePage} />
-              <Route path="/" render={(): any => <Redirect to="/home" />} />
+              <Route exact path="/" render={(): any => <Redirect to="/home" />} />
               <Route path="/" component={ProfilePage} />
             </IonRouterOutlet>
 

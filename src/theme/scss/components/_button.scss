@@ -102,36 +102,6 @@
         border-radius: 3px;
     }
 
-    &.rounded-tooltip{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: auto;
-        & div:first-child{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-            margin-bottom: 10px;
-            color: #000;
-            font-family: "Industria";
-            font-weight: 600;
-        }
-
-        & div:last-child{
-            background-color: rgba(171, 165, 111, 0.5);
-            padding: 0px 20px;
-            border-radius: 50px;
-            font-size: 20px;
-        }
-       
-    }
-
     &.plan{
         @include plan-detail();
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { IonPage, IonButton } from '@ionic/react';
 import {
   BackgroundImage,
@@ -33,12 +33,12 @@ class SignInPage extends React.Component<Props> {
     return (
       <IonPage id="sign-in-page">
         <BackgroundImage
-          gradient="180deg,#ffc23f00,#ffc23f"
+          gradient="180deg,#ffc23f,#ffc23f"
           backgroundImage={BackgroundSignInImage}
           backgroundTop={false}
           backgroundBottom={true}
+          backgroundBottomOpacity={0.25}
         />
-
         <Header
           leftBackButton={false}
           rightCloseButton={true}
@@ -46,43 +46,41 @@ class SignInPage extends React.Component<Props> {
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 
-        <div className="space-between">
-          <div className="sign-in-page">
-            <div className="form" />
-            <div className="row" />
-            <div className="col s12">
-              <InputText type="text" placeholder={'User Name'} />
-            </div>
+        <div className="initial-page-fullscreen">
+          <div className="space-between">
+            <div className="flex-compass" />
 
-            <div className="row" />
-            <div className="col s12">
+            <div className="flex-compass south center fluid">
+              <div className="row" />
+              <InputText type="text" placeholder={'User Name'} />
+              <br />
               <InputText type="text" placeholder={'Password'} />
-              <button className="btn transparent link">
+              <button className="btn transparent link left-align">
                 Forgot your password?
               </button>
+
+              <div className="row" />
+              <div className="col s12 mt-40">
+                <IonButton
+                  className="primary gradient"
+                  size="default"
+                  onClick={this.handleLogin.bind(this)}
+                  expand="full"
+                >
+                  Sign In
+                </IonButton>
+              </div>
             </div>
 
-            <div className="row" />
-            <div className="col s12 mt-40">
-              <IonButton
-                className="primary gradient"
-                size="default"
-                onClick={this.handleLogin.bind(this)}
-                expand="full"
+            <div className="footer flex-compass medium center">
+              <button
+                className="transparent rounded-tooltip"
+                onClick={(): any => this.props.history.push('/sign-up')}
               >
-                Sign In
-              </IonButton>
+                <div className="letter">r</div>
+                <div className="register">Register</div>
+              </button>
             </div>
-          </div>
-
-          <div className="bottom">
-            <button
-              className="btn transparent rounded-tooltip"
-              onClick={(): any => this.props.history.push('/sign-up')}
-            >
-              <div>r</div>
-              <div className="register">Register</div>
-            </button>
           </div>
         </div>
       </IonPage>
@@ -94,6 +92,4 @@ const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };
 
-export default withRouter(
-  connect(mapStateToProps, { updateAuthProperty })(SignInPage)
-);
+export default connect(mapStateToProps, { updateAuthProperty })(SignInPage);

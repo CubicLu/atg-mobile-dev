@@ -3,7 +3,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { IonPage, IonButton } from '@ionic/react';
 import { BackgroundImage, InputText, Header } from './../../components';
 
-
 interface Props extends RouteComponentProps {}
 
 class SignUpPage extends React.Component<Props> {

@@ -1,7 +1,5 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-
-
 import { IonPage } from '@ionic/react';
 
 interface Props extends RouteComponentProps {}

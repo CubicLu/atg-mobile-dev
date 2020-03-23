@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 interface Props {
   color?: string;
   width?: number | 16;

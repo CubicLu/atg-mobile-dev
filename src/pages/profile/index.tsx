@@ -26,6 +26,7 @@ interface DispatchProps {
 class ProfilePage extends React.Component<Props> {
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.loading) return;
+    if (this.props.loading) return;
   }
   render(): React.ReactNode {
     const {

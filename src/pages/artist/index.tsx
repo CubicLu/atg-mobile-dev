@@ -160,13 +160,10 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   handleMenu(event: MenuInterface): void {
+    const { match, history, updateSettingsProperty } = this.props;
     if (event.isPage === true) {
-      if (event.route) {
-        this.props.history.push(
-          event.route.replace(':id', this.props.match.params.id)
-        );
-      }
-    } else if (event.onClick !== undefined) {
+      event.route && history.push(event.route.replace(':id', match.params.id));
+    } else if (event.onClick) {
       event.onClick();
     } else {
       updateSettingsProperty('activeArtistTab', event.id);
@@ -187,7 +184,7 @@ class ArtistPage extends React.Component<Props, State> {
 
     const clickBack = (): void => history.push('/home/profile');
     if (!this.relativeAnimation) this.activateAnimations();
-    console.log('loaded');
+    console.log('artist');
     return (
       <IonPage id="artist-page" style={artistBackground(artist)}>
         <div id="blur-background" className="artist-page blur-background" />

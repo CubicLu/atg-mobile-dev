@@ -37,7 +37,6 @@ interface Props extends StateProps, DispatchProps {}
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
-<<<<<<< HEAD
     const {
       updateSettingsModal,
       modal,
@@ -46,9 +45,6 @@ class HomePage extends React.Component<Props> {
       links,
       loading
     } = this.props;
-=======
-    const { updateSettingsModal, modal, activeTab, tabs, links } = this.props;
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
     const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
     return (
       <IonReactRouter>

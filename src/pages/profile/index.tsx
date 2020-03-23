@@ -18,21 +18,12 @@ interface DispatchProps {
 }
 
 class ProfilePage extends React.Component<Props> {
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.loading) return;
-    if (this.props.loading) return;
-  }
   render(): React.ReactNode {
     const {
       isPlaying,
       fanTabs,
       activeFanTab,
-<<<<<<< HEAD
       updateSettingsProperty
-=======
-      updateSettingsProperty,
-      loading
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
     } = this.props;
     if (!fanTabs) return <IonPage />;
     return (
@@ -62,10 +53,6 @@ class ProfilePage extends React.Component<Props> {
               React.createElement(data.component, { key: i })
           )}
         </div>
-<<<<<<< HEAD
-=======
-        <LoaderFullscreen visible={loading} />
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
       </IonPage>
     );
   }

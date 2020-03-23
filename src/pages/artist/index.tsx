@@ -1,20 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import { RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, createAnimation } from '@ionic/react';
 import { Header, Menu, SupportBy, ButtonSupport } from './../../components';
-=======
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, createAnimation } from '@ionic/react';
-import {
-  Header,
-  Menu,
-  SupportBy,
-  LoaderFullscreen,
-  ButtonSupport
-} from './../../components';
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
 import {
   updateArtistProperty,
   updateSettingsProperty,
@@ -66,67 +54,16 @@ class ArtistPage extends React.Component<Props, State> {
   };
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-<<<<<<< HEAD
-=======
-    if (nextProps.loading) return;
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
     if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-<<<<<<< HEAD
   UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
-=======
-
-  activateAnimations(): any {
-    const normalMenu = document.querySelector('#normal-menu');
-    const fixedMenu = document.querySelector('#fixed-menu');
-    if (!(normalMenu && fixedMenu)) return;
-    const menuOpacity = createAnimation()
-      .addElement(fixedMenu!)
-      .fromTo('opacity', '0', '1');
-    const bar = createAnimation()
-      .addElement(document.querySelector('#support-bar')!)
-      .fromTo('transform', 'translateX(0px)', 'translateX(250px)')
-      .duration(300);
-    const blurBack = createAnimation()
-      .addElement(document.querySelector('#blur-background')!)
-      .easing('ease-in-out')
-      .keyframes([
-        { backdropFilter: 'blur(0)', opacity: 0, offset: 0 },
-        { backdropFilter: 'blur(2px)', opacity: 0.9, offset: 0.25 },
-        { backdropFilter: 'blur(4px)', opacity: 0.9, offset: 0.5 },
-        { backdropFilter: 'blur(6.5px)', opacity: 1, offset: 1 }
-      ])
-      .duration(600);
-    // FIXED ANIMATION
-    const support = createAnimation()
-      .addElement(document.querySelector('#support-button')!)
-      .duration(300)
-      .easing('ease-in-out')
-      .fromTo('transform', 'translate(0, 0)', 'translate(10vw, -100px)');
-    const title = createAnimation()
-      .addElement(document.querySelector('#artist-title')!)
-      .fromTo('fontSize', '48px', '30px')
-      .easing('ease-in-out')
-      .duration(300)
-      .fromTo('transform', 'translate(0, 0)', 'translate(-10vw, -100px)');
-    const topMenu = createAnimation()
-      .addElement(document.querySelector('#normal-menu')!)
-      .fromTo('transform', 'translateY(0px)', 'translateY(-70px)');
-
-    this.relativeAnimation = createAnimation()
-      .easing('ease-in-out')
-      .addAnimation([menuOpacity, bar, support, blurBack, title]);
-    this.fixedAnimation = createAnimation()
-      .easing('ease-in-out')
-      .addAnimation([support, title, topMenu]);
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
   }
 
   activateAnimations(): any {
@@ -221,15 +158,10 @@ class ArtistPage extends React.Component<Props, State> {
 
   handleMenu(event: MenuInterface): void {
     const { match, history, updateSettingsProperty } = this.props;
-<<<<<<< HEAD
     if (event.route && event.isPage === true) {
       const href = event.route.replace(':id', match.params.id);
       history.push(href);
       // const action = Action.
-=======
-    if (event.isPage === true) {
-      event.route && history.push(event.route.replace(':id', match.params.id));
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
     } else if (event.onClick) {
       event.onClick();
     } else {
@@ -245,26 +177,11 @@ class ArtistPage extends React.Component<Props, State> {
       currentArtist: artist,
       history,
       artistTabs,
-      activeArtistTab,
-      loading
-    } = this.props;
-
-<<<<<<< HEAD
-    console.log(2);
-    const {
-      currentArtist: artist,
-      history,
-      artistTabs,
       activeArtistTab
     } = this.props;
 
     const clickBack = (): void => history.push('/home/profile');
     if (!this.relativeAnimation) this.activateAnimations();
-=======
-    const clickBack = (): void => history.push('/home/profile');
-    if (!this.relativeAnimation) this.activateAnimations();
-    console.log('artist');
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
     return (
       <IonPage id="artist-page" style={artistBackground(artist)}>
         <div id="blur-background" className="artist-page blur-background" />
@@ -324,10 +241,6 @@ class ArtistPage extends React.Component<Props, State> {
               )}
           </IonContent>
         </div>
-<<<<<<< HEAD
-=======
-        <LoaderFullscreen visible={loading} />
->>>>>>> b613ff3d093cd4b800d9a4f2bf43503a45201bbf
       </IonPage>
     );
   }

@@ -1,6 +1,6 @@
 interface Animator {
   element: HTMLElement | Element;
-  refreshRate: number;
+  duration: number;
   axisY: number;
   axisX: number;
   direction: Direction;
@@ -12,7 +12,7 @@ type Direction = 'normal' | 'reverse';
 export default class VigilAnimator {
   public element: HTMLElement | Element;
   public elementId: string;
-  public refreshRate: number;
+  public duration: number;
   public direction: Direction;
   public loaded: boolean = false;
   public step: number = 0;
@@ -29,12 +29,10 @@ export default class VigilAnimator {
   public currentX: number = 0;
   public currentY: number = 0;
 
-  public timesPlayed: number = 0;
-
   constructor(obj: Animator) {
     this.element = obj.element;
     this.elementId = obj.element.id;
-    this.refreshRate = obj.refreshRate;
+    this.duration = obj.duration;
     this.direction = obj.direction;
     this.marginRight = !!obj.marginRight;
     this.onFinish = obj.onFinish ? obj.onFinish : (): void => {};
@@ -44,7 +42,7 @@ export default class VigilAnimator {
   }
   changeDirection(): void {
     const normal: Direction = 'normal';
-    const reverse: Direction = 'normal';
+    const reverse: Direction = 'reverse';
     if (this.direction === normal) {
       this.direction = reverse;
     } else {
@@ -52,10 +50,8 @@ export default class VigilAnimator {
     }
   }
   playReverse(): void {
-    this.timesPlayed += 1;
     this.changeDirection();
     this.finished = false;
-    console.log(this.timesPlayed, this.direction)
     // this.play();
   }
   load(): void {
@@ -72,30 +68,31 @@ export default class VigilAnimator {
         this.element.getBoundingClientRect().width
       : this.axisX;
     this.loaded = true;
-    this.totalSteps = Math.floor(this.refreshRate / 20);
+    this.totalSteps = Math.floor(this.duration / 10);
     this.distanceX = this.axisX - this.element.getBoundingClientRect().left;
     this.distanceY = this.axisY - this.element.getBoundingClientRect().top;
     console.log(this.axisX, this.axisY, this.distanceX, this.distanceY);
   }
 
   play(): void {
-    if (this.timesPlayed >= 2) return;
     if (!this.loaded) this.load();
     if (this.finished) return;
-    let factor = this.direction === 'normal' ? 1 : -1;
-
     const ratioX = this.distanceX / this.totalSteps;
     const ratioY = this.distanceY / this.totalSteps;
-
-    this.currentX = ratioX * this.currentStep * factor;
-    this.currentY = ratioY * this.currentStep * factor;
-    console.log(ratioX, ratioY, this.currentX, this.currentY, this.currentStep);
+    this.currentX = ratioX * this.currentStep;
+    this.currentY = ratioY * this.currentStep;
     const transform = `translate(${this.currentX}px, ${this.currentY}px)`;
     (this.element as HTMLElement).style.transform = transform;
 
-    if (this.timesPlayed > 0) console.log(factor, this.currentStep);
-    const nextStep = this.currentStep + factor;
-    if (this.currentStep < this.totalSteps && this.currentStep >= 0) {
+    const direction = this.direction === 'normal' ? 1 : -1;
+    const nextStep = this.currentStep + direction;
+    let isValid = false;
+    if (this.direction === 'normal') {
+      isValid = this.currentStep < this.totalSteps;
+    } else {
+      isValid = this.currentStep >= 0 && this.direction === 'reverse';
+    }
+    if (isValid) {
       this.currentStep = nextStep;
     } else {
       this.finished = true;
@@ -106,11 +103,12 @@ export default class VigilAnimator {
   }
 
   elasticPlay(): void {
+    const rate = this.duration / 30;
     if (this.step >= 3) return this.onFinish();
     this.currentY =
       this.direction === 'normal'
-        ? (this.currentY -= this.refreshRate)
-        : (this.currentY += this.refreshRate);
+        ? (this.currentY -= rate)
+        : (this.currentY += rate);
 
     if (this.currentY < 0) this.currentY = 0;
     const absoluteHeight = Math.abs(this.axisY!);

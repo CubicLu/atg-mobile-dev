@@ -94,7 +94,7 @@ class ArtistPage extends React.Component<Props, State> {
 
     this.vigil = new VigilAnimator({
       element: document.querySelector('#support-button')!,
-      refreshRate: 500,
+      duration: 500,
       direction: 'normal',
       axisY: 46,
       axisX: 16,
@@ -102,7 +102,6 @@ class ArtistPage extends React.Component<Props, State> {
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
       onFinish: () => {
         console.log(this.vigil?.currentStep);
-        this.vigil?.changeDirection();
         this.vigil?.playReverse();
       }
     });

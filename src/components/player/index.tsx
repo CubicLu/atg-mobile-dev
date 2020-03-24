@@ -114,7 +114,7 @@ class PlayerComponent extends React.Component<Props> {
       element: document.getElementById('a')!,
       axisY: Math.abs(this.lastY!),
       axisX: 0,
-      refreshRate: 12,
+      duration: 500,
       direction: 'normal'
     }).elasticPlay();
   }

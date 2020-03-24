@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, ButtonIcon, SupportIcon } from './../../../components';
-import {} from './../../../actions';
 import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props {
@@ -22,28 +21,35 @@ class ButtonSupportComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    let supported = this.props.supported ? '#FC5F62' : '#FFF';
-    let text = this.props.supported ? 'Supported' : 'Support';
-    let upppercase = this.props.uppercase ? text.toLocaleUpperCase() : text;
+    const {
+      onClick,
+      supported,
+      type,
+      bold,
+      buttonType,
+      uppercase
+    } = this.props;
 
-    if (this.props.buttonType === 'icon') {
+    if (buttonType === 'icon') {
       return (
-        <div className="button-support-component justify-content-center text-center">
+        <div className="button-support-component">
           <ButtonIcon
-            icon={<SupportIcon color={supported} />}
-            color={this.props.supported ? Colors.supported : Colors.support}
+            icon={<SupportIcon color={supported ? '#FC5F62' : '#fff'} />}
+            color={supported ? Colors.supported : Colors.support}
           />
-          <span className="text-support-icon">{upppercase}</span>
+          <span className={`text-support-icon${uppercase ? 'uppercase ' : ''}`}>
+            {supported ? 'Supported' : 'Support'}
+          </span>
         </div>
       );
     } else {
       return (
         <Button
-          onClick={this.props.onClick.bind(this)}
-          color={this.props.supported ? Colors.supported : Colors.support}
-          label={upppercase}
-          type={this.props.type}
-          bold={this.props.bold}
+          onClick={onClick.bind(this)}
+          color={supported ? Colors.supported : Colors.support}
+          label={supported ? 'Supported' : 'Support'}
+          type={type}
+          bold={bold}
         />
       );
     }

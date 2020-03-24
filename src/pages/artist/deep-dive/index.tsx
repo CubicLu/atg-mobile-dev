@@ -16,7 +16,6 @@ interface StateProps {
   isPlaying: boolean;
   deepDiveTabs: MenuInterface[];
   activeDeepDiveTab: string;
-  loading: boolean;
 }
 
 interface DispatchProps {
@@ -72,6 +71,8 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;
+    if (!currentArtist) return <IonPage />;
     return (
       <IonPage id="artist-deep-dive-dive-page">
         <IonContent
@@ -80,7 +81,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
         >
           <BackgroundImage
-            backgroundImage={this.props.currentArtist?.cover.deepDive}
+            backgroundImage={currentArtist.cover.deepDive}
             blur={this.state.fixed}
           >
             <div className={`artist-deep-dive-page`}>
@@ -91,21 +92,17 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
                   centerContent={
                     <div className="center-col">
                       <div className="title-page">Deep Dive</div>
-                      <div className="artist-name">
-                        {this.props.currentArtist?.name}
-                      </div>
+                      <div className="artist-name">{currentArtist.name}</div>
                     </div>
                   }
                 />
                 <div className="title-container">
                   <div className="title-page">Deep Dive</div>
-                  <div className="artist-name">
-                    {this.props.currentArtist?.name}
-                  </div>
+                  <div className="artist-name">{currentArtist.name}</div>
                 </div>
                 <Menu
-                  tabs={this.props.deepDiveTabs}
-                  activeId={this.props.activeDeepDiveTab}
+                  tabs={deepDiveTabs}
+                  activeId={activeDeepDiveTab}
                   onClick={this.handleMenu.bind(this)}
                 />
               </div>
@@ -117,10 +114,10 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
                 (this.state.fixed ? ' absolute' : '')
               }
             >
-              {this.props.deepDiveTabs?.map(
-                (data, i): React.ReactNode =>
-                  data.id === this.props.activeDeepDiveTab &&
-                  React.createElement(data.component, { key: i })
+              {deepDiveTabs?.map(
+                (d, i): React.ReactNode =>
+                  d.id === activeDeepDiveTab &&
+                  React.createElement(d.component, { key: i })
               )}
             </div>
           </BackgroundImage>
@@ -133,14 +130,13 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying, deepDiveTabs, activeDeepDiveTab } = settings;
   return {
     currentArtist,
     isPlaying,
     deepDiveTabs,
-    activeDeepDiveTab,
-    loading
+    activeDeepDiveTab
   };
 };
 

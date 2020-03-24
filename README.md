@@ -1,3 +1,8 @@
+order:
+https://github.com/ionic-team/ionic-react-conference-app/blob/master/src/App.tsx
+<IonApp>
+<IonReactRouter>
+<IonRouterOutlet>
 # Ionic React Cordova
 
 ## Install dependencies

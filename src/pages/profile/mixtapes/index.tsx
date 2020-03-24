@@ -1,19 +1,12 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { SliderMixtapes } from './../../../components';
-import {} from './../../../actions';
-import { IonContent } from '@ionic/react';
 
-interface Props extends RouteComponentProps {}
+interface Props {}
 
 class ProfileMixtapesPage extends React.Component<Props> {
   render(): React.ReactNode {
-    return (
-      <IonContent className="profile-mixtapes-page">
-        <SliderMixtapes />
-      </IonContent>
-    );
+    return <SliderMixtapes />;
   }
 }
 
-export default withRouter(ProfileMixtapesPage);
+export default ProfileMixtapesPage;

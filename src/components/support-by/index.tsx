@@ -22,37 +22,35 @@ interface Props extends StateProps, DispatchProps {
 
 class SupportByComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    if (!(this.props.data !== undefined && this.props.data?.length > 0)) {
-      return <ul />;
-    }
+    const { data, className, updateSettingsModal } = this.props;
+    if (!data) return <ul />;
+
     return (
       <ul
-        className={`support-by-component ${this.props.className}`}
+        id={'support-bar'}
+        className={`support-by-component ${className}`}
         onClick={(): void =>
-          this.props.updateSettingsModal(
+          updateSettingsModal(
             true,
             React.createElement(MenuArtistList, {
               title: 'Artists Supporting',
-              onClick: this.props.updateSettingsModal.bind(this, false, null),
+              onClick: updateSettingsModal.bind(this, false, null),
               background: 'background-white-base'
             }),
             'background-white-base'
           )
         }
       >
-        <li>Supported By</li>
-        {this.props.data?.slice(0, 3)?.map(
-          (data, i): React.ReactNode => {
-            return (
-              <li
-                key={i}
-                className="avatar"
-                style={{ backgroundImage: `url(${data.cover})` }}
-              ></li>
-            );
-          }
+        <li>I´m Supported By</li>
+        {data.slice(0, 3)?.map(
+          (d, i): React.ReactNode => (
+            <li
+              key={i}
+              className="avatar"
+              style={{ backgroundImage: `url(${d.cover})` }}
+            ></li>
+          )
         )}
-
         <li>
           <DotsThreeIcon />
         </li>

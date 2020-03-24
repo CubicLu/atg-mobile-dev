@@ -2,8 +2,7 @@ import React from 'react';
 import { CardVideo, Button } from './../../../components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
-import {} from './../../../actions';
+import Slider, { Settings } from 'react-slick';
 import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props {
@@ -18,11 +17,12 @@ class SliderVideoComponent extends React.Component<Props> {
     viewAll: true,
     scroll: false
   };
-  settings: any;
-  constructor(props: Props) {
-    super(props);
 
-    this.settings = {
+  render(): React.ReactNode {
+    const { title, viewAll, data } = this.props;
+    if (!data) return <div />;
+
+    const settings: Settings = {
       dots: false,
       infinite: false,
       arrows: false,
@@ -30,37 +30,31 @@ class SliderVideoComponent extends React.Component<Props> {
       variableWidth: true,
       swipe: true
     };
-  }
-
-  render(): React.ReactNode {
     return (
       <div className="slider video">
         <div className="list-view-all">
           <div>
-            <h1 className="title">{this.props.title}</h1>
+            <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {this.props.viewAll && (
+            {viewAll && (
               <Button color={Colors.transparent} label={'View All'} />
             )}
           </div>
         </div>
-
-        <Slider {...this.settings}>
-          {this.props.data?.map(
-            (data, i): React.ReactNode => {
-              return (
-                <CardVideo
-                  type={ShapesSize.rounded}
-                  video={data.video}
-                  image={data.image}
-                  title={data.title}
-                  time={data.time}
-                  artist={data.artist}
-                  key={i}
-                />
-              );
-            }
+        <Slider {...settings}>
+          {data.map(
+            (d, i): React.ReactNode => (
+              <CardVideo
+                type={ShapesSize.rounded}
+                video={d.video}
+                image={d.image}
+                title={d.title}
+                time={d.time}
+                artist={d.artist}
+                key={i}
+              />
+            )
           )}
         </Slider>
       </div>

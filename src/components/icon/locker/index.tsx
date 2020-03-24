@@ -1,6 +1,4 @@
 import React from 'react';
-import {} from './../../../components';
-import {} from './../../../actions';
 
 interface Props {
   color: string;
@@ -23,15 +21,8 @@ class UnlockedIcon extends React.Component<Props> {
         height={this.props.height}
         viewBox="0 0 38 35.75"
       >
-        <g
-          id="Group_1819"
-          data-name="Group 1819"
-          transform="translate(-173 -160)"
-          opacity="0.25"
-        >
+        <g transform="translate(-173 -160)" opacity="1">
           <rect
-            id="Rectangle_599"
-            data-name="Rectangle 599"
             width="27"
             height="21"
             rx="2"
@@ -43,8 +34,6 @@ class UnlockedIcon extends React.Component<Props> {
             strokeWidth="2"
           />
           <path
-            id="Path_51626"
-            data-name="Path 51626"
             d="M190.5,173.75v-4.5a8.25,8.25,0,0,0-16.5,0v4.5"
             fill="none"
             stroke={this.props.color}

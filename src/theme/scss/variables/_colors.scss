@@ -1,5 +1,5 @@
 $primary: #6F10E2;
-$secondary: #01aed4;
+$secondary: #00baff;
 $tertiary: #FCC505;
 $quartenary: #FF9766;
 
@@ -8,9 +8,6 @@ $primary-gradient: #2C0C69;
 $secondary-gradient: #0c36e6;
 $tertiary-gradient: #E0850A;
 $quartenary-gradient: #FF9766;
-
-
- 
 
 $colors: (
     primary: (
@@ -39,3 +36,6 @@ $colors: (
         opacity95: rbga(#FFF, 0.95)
     )
 );
+.background-white-base{
+    background-color: #FFF,
+}

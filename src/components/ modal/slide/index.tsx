@@ -1,6 +1,4 @@
 import React from 'react';
-import {} from './../../../components';
-import {} from './../../../actions';
 import SlidingPanel from 'react-sliding-side-panel';
 
 interface Props {
@@ -9,7 +7,7 @@ interface Props {
   height?: number;
   onClose: Function;
   onOpen: Function;
-  classname?: string;
+  className: string;
 }
 
 class ModalSlideComponent extends React.Component<Props> {
@@ -19,19 +17,19 @@ class ModalSlideComponent extends React.Component<Props> {
     height: 30,
     onClose: (): void => {},
     onOpen: (): void => {},
-    classname: ''
+    className: ''
   };
 
   render(): React.ReactNode {
+    const { type, visible, height, className, children } = this.props;
     return (
       <SlidingPanel
-        {...this.props}
-        type={this.props.type}
-        isOpen={this.props.visible}
-        size={this.props.height}
-        panelClassName={`modal slide ${this.props.type} ${this.props.classname}`}
+        type={type}
+        isOpen={visible}
+        size={height}
+        panelClassName={`modal slide ${type} ${className}`}
       >
-        {this.props.children}
+        {children}
       </SlidingPanel>
     );
   }

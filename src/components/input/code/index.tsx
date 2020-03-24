@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnlockedIcon } from './../../../components';
-import {} from './../../../actions';
+
 import {} from '../../icon';
 interface Props {
   onKeyUp: Function;
@@ -35,7 +35,7 @@ class InputCodeComponent extends React.Component<Props, State> {
             />
           </div>
           <div className="input-group-icon">
-            <UnlockedIcon color={'#949494'} />
+            <UnlockedIcon color={'#000'} />
           </div>
         </div>
         {this.props.isValid === false && (

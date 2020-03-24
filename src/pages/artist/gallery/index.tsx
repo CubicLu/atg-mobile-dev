@@ -3,7 +3,6 @@ import {
   Header,
   BackgroundImage,
   CardAlbumGallery,
-  LoaderFullscreen,
   HeaderOverlay
 } from './../../../components';
 import { IonContent, IonPage } from '@ionic/react';
@@ -20,7 +19,6 @@ interface State {
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  loading: boolean;
   isPlaying: boolean;
 }
 
@@ -114,7 +112,6 @@ class ArtistGalleryPage extends React.Component<Props, State> {
             </BackgroundImage>
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
@@ -124,9 +121,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying } = settings;
-  return { currentArtist, loading, isPlaying };
+  return { currentArtist, isPlaying };
 };
 
 export default withRouter(

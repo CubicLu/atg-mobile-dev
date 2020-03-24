@@ -7,6 +7,13 @@
     }
 }
 .sliding-panel-container{
+    .background-white-base{
+        background-color: #FFF,
+    }
+    .background-tertiary-opacity95{
+        opacity: 0.95;
+        background-color: #ffd102;
+    }
     .atg-header {
         padding-top: 16px;
         overflow: hidden;
@@ -16,6 +23,7 @@
         margin-bottom: 0;
         margin-right: 24px;
         margin-left: 24px;
+        
     }
     .leaving{
         opacity: 0;

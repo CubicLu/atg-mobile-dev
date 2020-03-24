@@ -21,47 +21,43 @@ interface Props extends StateProps, DispatchProps {
 
 class BiographyContentComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    if (this.props.data !== undefined && this.props.data?.length > 0) {
-      return (
-        <ul
-          className="biography-content-component"
-          onClick={(): void =>
-            this.props.updateSettingsModal(
-              true,
-              React.createElement(MenuArtistList, {
-                title: 'Biography',
-                onClick: this.props.updateSettingsModal.bind(this, false, null)
-              }),
-              'background-white-base'
-            )
-          }
-        >
-          <li>Supported By</li>
-          {this.props.data?.slice(0, 3).map(
-            (data, i): React.ReactNode => {
-              return (
-                <li
-                  key={i}
-                  className="avatar"
-                  style={{ backgroundImage: `url(${data.cover})` }}
-                ></li>
-              );
-            }
-          )}
+    const { data } = this.props;
+    if (!data) return <ul />;
 
-          <li>
-            <DotsThreeIcon />
-          </li>
-        </ul>
-      );
-    }
-    return null;
+    return (
+      <ul
+        className="biography-content-component"
+        onClick={(): void =>
+          this.props.updateSettingsModal(
+            true,
+            React.createElement(MenuArtistList, {
+              title: 'Biography',
+              onClick: this.props.updateSettingsModal.bind(this, false, null)
+            }),
+            'background-white-base'
+          )
+        }
+      >
+        <li>Supported By</li>
+        {data.slice(0, 3).map(
+          (d, i): React.ReactNode => (
+            <li
+              key={i}
+              className="avatar"
+              style={{ backgroundImage: `url(${d.cover})` }}
+            ></li>
+          )
+        )}
+
+        <li>
+          <DotsThreeIcon />
+        </li>
+      </ul>
+    );
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
+const mapStateToProps = ({}: ApplicationState): StateProps => { return {} };
 export default connect(mapStateToProps, {
   updateSettingsModal
 })(BiographyContentComponent);

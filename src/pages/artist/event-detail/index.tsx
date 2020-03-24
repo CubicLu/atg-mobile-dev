@@ -20,7 +20,6 @@ interface State {
   willGo: boolean;
 }
 interface StateProps {
-  loading: boolean;
   isPlaying: boolean;
   event: EventInterface | null;
 }
@@ -81,7 +80,6 @@ class EventDetailPage extends React.Component<Props, State> {
           gradient={`180deg,#000,#20123a`}
           backgroundBottom
           bottomRotate
-          backgroundBottomOrange={true}
         >
           <div
             className={`artist-event-detail-page ${this.props.isPlaying &&
@@ -177,9 +175,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { event, loading } = artistAPI;
+  const { event } = artistAPI;
   const { isPlaying } = settings;
-  return { event, loading, isPlaying };
+  return { event, isPlaying };
 };
 
 export default withRouter(

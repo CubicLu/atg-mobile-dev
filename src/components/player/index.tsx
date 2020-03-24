@@ -8,7 +8,7 @@ import {
   BackgroundImage,
   ButtonSupport
 } from './../../components';
-import {} from './../../actions';
+
 import {
   createGesture,
   GestureConfig,
@@ -40,6 +40,7 @@ import {
   PauseButton
 } from '../icon/player';
 import { PlayIcon } from '../icon';
+import VigilAnimator from '../../utils/animateFrame';
 
 interface StateProps {
   player: PlayerReducerType;
@@ -66,8 +67,9 @@ class PlayerComponent extends React.Component<Props> {
   animating: boolean = false;
   gestureMini: Gesture | undefined;
   gestureExpanded: Gesture | undefined;
-  animation: any;
-  private ref: React.RefObject<HTMLDivElement> = React.createRef();
+  relativeAnimation: Animation | any;
+  lastY?: number;
+  pulling: boolean = false;
 
   componentDidMount(): void {
     this.enablePlayerGesture();
@@ -80,7 +82,7 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   enablePlayerGesture(): void {
-    const mini = this.ref.current!;
+    const mini = document.querySelector('#player');
     if (!mini) return;
     const gestureConfigMini: GestureConfig = {
       el: mini,
@@ -88,40 +90,62 @@ class PlayerComponent extends React.Component<Props> {
       gestureName: 'playerMove',
       gesturePriority: 20,
       passive: true,
-      onEnd: this.playerSwipe.bind(this)
+      onEnd: this.playerSwipe.bind(this),
+      onMove: this.playerPull.bind(this)
     };
     this.gestureMini = createGesture(gestureConfigMini);
     this.gestureMini.enable();
   }
 
   playerSwipe(gesture: any): void {
-    const validSwipeUp = !this.props.player.expanded && gesture.deltaY < 50;
+    const validSwipeUp = !this.props.player.expanded && gesture.deltaY < -250;
+    this.pulling = false;
+    if (!this.props.player.expanded && !validSwipeUp) {
+      this.elasticBack();
+      return;
+    }
+
     const validSwipeDown = this.props.player.expanded && gesture.deltaY > 100;
     if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
   }
 
+  elasticBack(): void {
+    new VigilAnimator({
+      element: document.getElementById('a')!,
+      axisY: Math.abs(this.lastY!),
+      axisX: 0,
+      duration: 500,
+      direction: 'normal'
+    }).elasticPlay();
+  }
+
   enablePlayerAnimation(): void {
-    const player = this.ref.current!;
+    const player = document.querySelector('#player');
     if (!player) return;
-    this.animation = createAnimation()
+    this.relativeAnimation = createAnimation()
       .addElement(player)
-      .duration(250)
-      .fromTo('minHeight', '0%', 'calc(100% - 58px)')
-      .fromTo(
-        'background',
-        'linear-gradient(180deg, #22022f, #070707)',
-        'linear-gradient(180deg, #aed8e5, #039e4a)'
-      );
+      .easing('cubic-bezier(.36,.66,.04,1)')
+      .duration(300)
+      .keyframes([
+        {
+          minHeight: '0%',
+          offset: 0
+        },
+        {
+          minHeight: 'calc(100% - 58px)',
+          offset: 1
+        }
+      ])
+      .onFinish((): boolean => (this.animating = false));
   }
   togglePlayer(e: any): void {
     e?.preventDefault();
     const direction = this.props.player.expanded ? 'reverse' : 'normal';
     if (this.animating) return;
-    this.animating = true;
     this.props.togglePlayer();
-    this.animation.direction(direction);
-    this.animation.play();
-    this.animating = false;
+    this.relativeAnimation.direction(direction);
+    this.animating = true;
+    this.relativeAnimation.play();
   }
 
   pauseSong(): void {
@@ -170,6 +194,20 @@ class PlayerComponent extends React.Component<Props> {
       : this.playNewAudio(playlist[currentIndex - 1]);
   }
 
+  playerPull(gesture: any): void {
+    const svg = document.getElementById('a');
+    if (!svg) return;
+    if (!this.pulling && window.innerHeight - gesture.startY > 110) return;
+    this.pulling = true;
+    if (gesture.deltaY > -250 && gesture.deltaY < 0) {
+      this.lastY = gesture.deltaY;
+      svg.setAttribute(
+        'd',
+        `M 0 10 c 200-${Math.abs(gesture.deltaY)}, 400,0, 400,0`
+      );
+    }
+  }
+
   render(): React.ReactNode {
     const {
       expanded,
@@ -180,12 +218,13 @@ class PlayerComponent extends React.Component<Props> {
     } = this.props.player;
     const disabled = !song;
 
+    if (!this.relativeAnimation) this.enablePlayerAnimation();
     return (
-      <div ref={this.ref} className="player">
+      <div id="player" className="player expanded">
         {expanded && (
           <React.Fragment>
             <BackgroundImage
-              gradient={`180deg,#aed8e500,#039e4a00`}
+              gradient={`180deg,#aed8e5,#039e4a`}
               backgroundTop
               backgroundBottom
               backgroundBottomDark={false}
@@ -206,7 +245,7 @@ class PlayerComponent extends React.Component<Props> {
               leftMinimizeButton={true}
               leftMinimizeOnClick={this.togglePlayer.bind(this)}
             />
-            <div className="expanded">
+            <div>
               <div className="cover-title">
                 <IonImg className="image" src={song?.cover} />
                 <span className="main-song">{song?.name}&nbsp;</span>
@@ -319,6 +358,50 @@ class PlayerComponent extends React.Component<Props> {
                 ></div>
               </div>
             )}
+
+            <div id="pull" className="pull">
+              <svg
+                width="400"
+                height="10"
+                viewBox="0 0 400 10"
+                style={{
+                  position: 'fixed',
+                  bottom: 85,
+                  marginLeft: 4,
+                  marginRight: 4,
+                  width: '99%',
+                  height: 'auto',
+                  overflow: 'visible'
+                }}
+              >
+                {/* //1 a 213 */}
+                <path
+                  id="a"
+                  d={`M 0 10 c 200-0, 400,0, 400,0`}
+                  fill="#22022f)"
+                />
+              </svg>
+              {/* 
+                  <path id="g" d="M 0 84.4 c 200-178,     400,0 400,0"/>
+                  <path id="h" d="M 0 64.9 c 200-133,     400,0 400,0"/>
+                  <path id="i" d="M 0 48.1 c 200-95,    400,0 400,0"/>
+                  <path id="j" d="M 0 26.6 c 200-48,    400,0 400,0"/> */}
+              {/* M0 0	193.8908781	0 a	6.109121876	250 0 1	1 0	500 L0
+              M0 0	195.8423705	0 a	4.157629532	250 0 1	1 0	500 L0
+              M0 0	197.7156247	0 a	2.284375307	250 0 1	1 0	500 L0
+              M0 0	199.5122695	0 a	0.4877305289	250 0 1	1 0	500 L0
+              quando chega no zero
+              M0 0	201.2339146	0 a	1.233914589	250 0 1	0 0	500 L0
+              M0 0	202.882151	0 a	2.882151042	250 0 1	0 0	500 L0
+              M0 0	204.4585511	0 a	4.458551133	250 0 1	0 0	500 L0
+              M0 0	205.9646686	0 a	5.964668572	250 0 1	0 0	500 L0
+              M0 0	207.4020386	0 a	7.402038574	250 0 1	0 0	500 L0 */}
+
+              {/* <path id="end" d="M.059,5C187.331,2.617,376.085,5,376.085,5"/>
+              <path id="inverse" d="M.059,13.75c0-5.088.015-5.15.015-11.3C64.191,7.015,281.03,3.906,376.2,1.941c0,7.66-.056.03-.056,11.809"/>
+              <path id="invers2" d="M.059,18.955c0-7.331.015-16.283.015-16.283S32.209,4.879,55.5,5.413c85.745,3.758,247.541-.038,320.7-3.473,0,11.035-.056.043-.056,17.014"/> */}
+            </div>
+
             <div className="cover">
               <div
                 className="img"

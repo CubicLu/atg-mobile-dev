@@ -3,7 +3,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { CardImage } from './../../../components';
-import {} from './../../../actions';
 import { ShapesSize } from '../../../interfaces';
 
 interface Props {
@@ -17,11 +16,12 @@ class SliderRadioComponent extends React.Component<Props> {
   public static defaultProps = {
     viewAll: true
   };
-  settings: any;
-  constructor(props: Props) {
-    super(props);
 
-    this.settings = {
+  render(): React.ReactNode {
+    const { title, data } = this.props;
+    if (!data) return <div />;
+
+    const settings: any = {
       dots: false,
       infinite: false,
       speed: 500,
@@ -30,35 +30,32 @@ class SliderRadioComponent extends React.Component<Props> {
       swipe: true,
       arrows: false
     };
-  }
-  render(): React.ReactNode {
+
     return (
       <div className="slider radio">
         <div className="row">
           <div className="col s12">
-            {this.props.title && (
+            {title && (
               <div className={'row content'}>
                 <div className="col s12">
-                  <h1 className="title">{this.props.title}</h1>
+                  <h1 className="title">{title}</h1>
                 </div>
               </div>
             )}
           </div>
         </div>
 
-        <Slider {...this.settings}>
-          {this.props.data?.map(
-            (data, i): React.ReactNode => {
-              return (
-                <CardImage
-                  image={data.image}
-                  type={ShapesSize.circle}
-                  key={i}
-                  col={2}
-                  label={data.label}
-                />
-              );
-            }
+        <Slider {...settings}>
+          {data.map(
+            (d, i): React.ReactNode => (
+              <CardImage
+                image={d.image}
+                type={ShapesSize.circle}
+                key={i}
+                col={2}
+                label={d.label}
+              />
+            )
           )}
         </Slider>
       </div>

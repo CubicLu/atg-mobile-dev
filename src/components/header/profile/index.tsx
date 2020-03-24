@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
 import { Avatar, Header } from './../../../components';
 import { IonActionSheet, ActionSheetButton } from '@ionic/react';
 import { connect } from 'react-redux';
@@ -11,14 +10,14 @@ interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
 }
 
-interface Props extends RouteComponentProps, DispatchProps {}
+interface Props extends DispatchProps {}
 interface State {
   showProfileActions: boolean;
 }
 class HeaderProfileComponent extends React.Component<Props, State> {
   handleLogout(): void {
     this.props.updateAuthProperty('loggedUser', undefined);
-    this.props.history.push('/initial');
+    window.location.href = '/initial';
   }
 
   constructor(props: Props) {
@@ -91,6 +90,6 @@ const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };
 
-export default withRouter(
-  connect(mapStateToProps, { updateAuthProperty })(HeaderProfileComponent)
+export default connect(mapStateToProps, { updateAuthProperty })(
+  HeaderProfileComponent
 );

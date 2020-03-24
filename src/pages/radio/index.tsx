@@ -1,8 +1,6 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {} from './../../components';
-import {} from './../../actions';
 
 interface Props extends RouteComponentProps {}
 
@@ -10,7 +8,7 @@ class RadioPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="radio-page">
-        <IonContent>radio</IonContent>
+        <div></div>
       </IonPage>
     );
   }

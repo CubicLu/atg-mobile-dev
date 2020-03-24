@@ -1,14 +1,5 @@
 .radio-page {
-  .swiper-container {
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  .swiper-slide {
-    width: 100px!important;
-    height: 100px!important;
-    background-color: black;
-    color: white;
-    border: white 1px solid;
+  svg {
+    overflow: visible;
   }
 }

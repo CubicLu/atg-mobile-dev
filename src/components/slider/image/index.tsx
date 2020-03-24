@@ -1,36 +1,36 @@
 import React from 'react';
 import { CardImage, Button } from './../../../components';
-import {} from './../../../actions';
-import { ShapesSize, Colors } from '../../../interfaces';
+import { Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;
   viewAll?: boolean;
-  scroll?: boolean;
   data?: any[];
 }
 
 class SliderImageComponent extends React.Component<Props> {
   public static defaultProps = {
-    viewAll: true,
-    scroll: false
+    viewAll: true
   };
   render(): React.ReactNode {
+    const { title, viewAll, data } = this.props;
+    if (!data) return <div />;
+
     return (
       <div className="row slider image">
         <div className="list-view-all">
           <div>
-            <h1 className="title">{this.props.title}</h1>
+            <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {this.props.viewAll && (
+            {viewAll && (
               <Button color={Colors.transparent} label={'View All'} />
             )}
           </div>
         </div>
 
         <div className="row">
-          {this.props.data?.map(
+          {data.map(
             (data, i): React.ReactNode => {
               return (
                 <CardImage

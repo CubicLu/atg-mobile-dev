@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   BackgroundImage,
-  LoaderFullscreen,
   Header,
   SliderStories,
   CardPost
@@ -15,7 +14,6 @@ import { PostInterface } from '../../interfaces';
 
 interface StateProps {
   isPlaying: boolean;
-  loading: boolean;
   posts: PostInterface[];
   loadingCommunity: boolean;
 }
@@ -41,8 +39,8 @@ class CommunityPage extends React.Component<Props> {
           backgroundTopOpacity={0.15}
           backgroundBottom
           backgroundBottomDark={false}
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.3}
+          bottomRotate={true}
+          backgroundBottomOpacity={0.15}
         />
         <Header
           leftBackButton={false}
@@ -110,7 +108,6 @@ class CommunityPage extends React.Component<Props> {
             )}
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
@@ -118,14 +115,12 @@ class CommunityPage extends React.Component<Props> {
 
 const mapStateToProps = ({
   settings,
-  artistAPI,
   communityAPI
 }: ApplicationState): StateProps => {
   const { isPlaying } = settings;
-  const { loading } = artistAPI;
   const { posts } = communityAPI;
   const loadingCommunity = communityAPI.loading;
-  return { isPlaying, loading, posts, loadingCommunity };
+  return { isPlaying, posts, loadingCommunity };
 };
 
 export default connect(mapStateToProps, {

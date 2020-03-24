@@ -1,12 +1,6 @@
-.scroll-x{
-    overflow-x: auto;
-}
-.list-fit{
-    .menu{
-        width: 100%;
-    }
-}
 .menu{
+    width: 100%;
+    overflow-x: auto;
     &.generic{
         &.scroll{
             justify-content: normal !important;
@@ -41,8 +35,8 @@
                     justify-content: center;
                     span{
                         border-radius: 50%;
-                        height: 40px !important;
-                        width: 40px !important;
+                        height: 42px !important;
+                        width: 42px !important;
                         align-items: center;
                         text-align: center;
                         display: flex;
@@ -51,7 +45,7 @@
                         background-color: #E0E8CB;
                         font-family: "Industria";
                         font-weight: 600;
-                        font-size: 33px;
+                        font-size: 42px;
                         padding-bottom: 2px;
                     }
                 }

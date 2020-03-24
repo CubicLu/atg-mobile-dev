@@ -113,6 +113,7 @@ class PlayerComponent extends React.Component<Props> {
     new VigilAnimator({
       element: document.getElementById('a')!,
       axisY: Math.abs(this.lastY!),
+      axisX: 0,
       refreshRate: 12,
       direction: 'normal'
     }).elasticPlay();

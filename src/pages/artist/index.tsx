@@ -96,8 +96,15 @@ class ArtistPage extends React.Component<Props, State> {
       element: document.querySelector('#support-button')!,
       refreshRate: 500,
       direction: 'normal',
-      axisY: 80,
-      marginRight: 50
+      axisY: 46,
+      axisX: 16,
+      marginRight: true,
+      onFinish: () => {
+        console.log(this.vigil?.currentStep)
+        this.vigil?.changeDirection();
+        this.vigil?.playReverse();
+        
+      }
     });
 
     const support = createAnimation()
@@ -124,7 +131,6 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   handleScroll(event: any): void {
-    console.log(this.vigil);
     const a = this.vigil?.play();
 
     const currentScroll = validateScrollHeader(event, 140, 200);

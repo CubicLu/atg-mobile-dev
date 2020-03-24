@@ -11,7 +11,11 @@ import {
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage } from '@ionic/react';
-import { ArtistInterface, PlanInterface, ShapesSize } from '../../../interfaces';
+import {
+  ArtistInterface,
+  PlanInterface,
+  ShapesSize
+} from '../../../interfaces';
 
 interface State {
   planDetail: boolean;

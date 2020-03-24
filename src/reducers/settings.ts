@@ -237,6 +237,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/event',
       id: 'artistEvents',
       component: ArtistEventsPage
+    },
+    {
+      path: '/home/community/:artistId',
+      id: 'community',
+      component: CommunityPage
     }
   ],
 

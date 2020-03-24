@@ -23,3 +23,32 @@ export const getCommunityPostsAPISuccess = (response): any => ({
   type: ActionType.GET_COMMUNITY_POSTS_API_SUCCESS,
   payload: response
 });
+
+export const getCommunityByArtistUsernameAPI = (username: string): any => ({
+  type: ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API,
+  payload: username
+});
+
+export const getCommunityByArtistUsernameAPIFailure = (error): any => ({
+  type: ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API_FAILURE,
+  payload: error
+});
+
+export const getCommunityByArtistUsernameAPISuccess = (response): any => ({
+  type: ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS,
+  payload: response
+});
+
+export const getCommunityStoriesAPI = (): any => ({
+  type: ActionType.GET_COMMUNITY_STORIES_API
+});
+
+export const getCommunityStoriesAPIFailure = (error): any => ({
+  type: ActionType.GET_COMMUNITY_STORIES_API_FAILURE,
+  payload: error
+});
+
+export const getCommunityStoriesAPISuccess = (response): any => ({
+  type: ActionType.GET_COMMUNITY_STORIES_API_SUCCESS,
+  payload: response
+});

@@ -15,6 +15,7 @@ import {
   IonItem,
   IonContent
 } from '@ionic/react';
+import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -31,7 +32,11 @@ class ProfileVaultPage extends React.Component<Props> {
                     <IonItem>
                       <div className="row">
                         <div className="col s3 image">
-                          <Avatar type="circle" width={50} height={50} />
+                          <Avatar
+                            type={ShapesSize.circle}
+                            width={50}
+                            height={50}
+                          />
                         </div>
                         <div className="col s6 info">
                           <span className="song">Jah Work</span>
@@ -48,15 +53,15 @@ class ProfileVaultPage extends React.Component<Props> {
                     <IonItemOptions side="end">
                       <ButtonIcon
                         icon={<AddPlaylistIcon />}
-                        color="green"
-                        type="normal"
+                        color={Colors.green}
+                        type={ShapesSize.normal}
                       />
                       <ButtonIcon
                         icon={
                           <CloseIcon width={15} height={15} strokeWidth={2} />
                         }
-                        color="red"
-                        type="normal"
+                        color={Colors.red}
+                        type={ShapesSize.normal}
                       />
                     </IonItemOptions>
                   </IonItemSliding>

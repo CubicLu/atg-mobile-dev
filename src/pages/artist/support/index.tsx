@@ -11,7 +11,7 @@ import {
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage } from '@ionic/react';
-import { ArtistInterface, PlanInterface } from '../../../interfaces';
+import { ArtistInterface, PlanInterface, ShapesSize } from '../../../interfaces';
 
 interface State {
   planDetail: boolean;
@@ -142,7 +142,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   <div className="row">
                     <div className="col s4">
                       <Avatar
-                        type={'circle'}
+                        type={ShapesSize.circle}
                         width={100}
                         height={100}
                         image={this.props.currentArtist?.supportImages?.avatar}
@@ -168,7 +168,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
                   <div className="col s12 footer">
                     <ButtonSupport
-                      type={'normal'}
+                      type={ShapesSize.normal}
                       buttonType={'text'}
                       onClick={(): void =>
                         this.props.history.push(

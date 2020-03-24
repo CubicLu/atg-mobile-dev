@@ -3,26 +3,34 @@ import {
   BackgroundImage,
   LoaderFullscreen,
   Header,
-  SliderStories
+  SliderStories,
+  CardPost
 } from './../../components';
 import { ApplicationState } from './../../reducers';
-import { updateSettingsProperty } from './../../actions';
+import { updateSettingsProperty, getCommunityPostsAPI } from './../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import PlusIcon from '../../components/icon/plus';
+import { PostInterface } from '../../interfaces';
 
 interface StateProps {
   isPlaying: boolean;
   loading: boolean;
+  posts: PostInterface[];
+  loadingCommunity: boolean;
 }
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
+  getCommunityPostsAPI: () => void;
 }
 
 interface Props extends StateProps, DispatchProps {}
 
 class CommunityPage extends React.Component<Props> {
+  componentDidMount(): void {
+    this.props.getCommunityPostsAPI();
+  }
   render(): React.ReactNode {
     return (
       <IonPage id="community-page">
@@ -65,35 +73,41 @@ class CommunityPage extends React.Component<Props> {
                 {
                   name: 'Panthr COM',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'Maia Davies',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'It’s Ok Now',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'Panthr COM',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'Maia Davies',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 },
                 {
                   name: 'It’s Ok Now',
                   avatar:
-                    'http://ccsrightsmanagement.com/wp-content/uploads/2018/01/Screen-Shot-2018-10-25-at-4.20.01-PM-300x300.png'
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/maia-davies.png'
                 }
               ]}
             />
+
+            {this.props.posts.map(
+              (data, i): React.ReactNode => {
+                return <CardPost key={i} post={data} />;
+              }
+            )}
           </IonContent>
         </div>
         <LoaderFullscreen visible={this.props.loading} />
@@ -104,13 +118,17 @@ class CommunityPage extends React.Component<Props> {
 
 const mapStateToProps = ({
   settings,
-  artistAPI
+  artistAPI,
+  communityAPI
 }: ApplicationState): StateProps => {
   const { isPlaying } = settings;
   const { loading } = artistAPI;
-  return { isPlaying, loading };
+  const { posts } = communityAPI;
+  const loadingCommunity = communityAPI.loading;
+  return { isPlaying, loading, posts, loadingCommunity };
 };
 
 export default connect(mapStateToProps, {
-  updateSettingsProperty
+  updateSettingsProperty,
+  getCommunityPostsAPI
 })(CommunityPage);

@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { CardImage } from './../../../components';
 import {} from './../../../actions';
+import { ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;
@@ -51,7 +52,7 @@ class SliderRadioComponent extends React.Component<Props> {
               return (
                 <CardImage
                   image={data.image}
-                  type={'circle'}
+                  type={ShapesSize.circle}
                   key={i}
                   col={2}
                   label={data.label}

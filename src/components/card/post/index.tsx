@@ -1,7 +1,12 @@
 import React from 'react';
-import { Avatar, ButtonIcon } from './../../../components';
+import {
+  Avatar,
+  ButtonIcon,
+  BalloonIcon,
+  ShareLineIcon,
+  HeartIcon
+} from './../../../components';
 import { PostInterface, ShapesSize } from '../../../interfaces';
-import { ShareIcon } from '../../icon';
 
 interface Props {
   post: PostInterface;
@@ -29,12 +34,12 @@ class CardPostComponent extends React.Component<Props> {
                 <label>{this.props.post.username} </label>
               </div>
               <div className="col s6 button">
-                <ButtonIcon icon={<ShareIcon />} />
+                <ButtonIcon icon={<ShareLineIcon />} />
                 <ButtonIcon
-                  icon={<ShareIcon />}
+                  icon={<BalloonIcon />}
                   label={this.props.post.commentsQuantity}
                 />
-                <ButtonIcon icon={<ShareIcon />} />
+                <ButtonIcon icon={<HeartIcon />} />
               </div>
             </div>
           </div>

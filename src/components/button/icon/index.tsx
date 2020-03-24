@@ -17,7 +17,7 @@ class ButtonIconComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {},
     color: Colors.transparentGray,
-    type: 'circle',
+    type: ShapesSize.circle,
     fixed: false
   };
 
@@ -30,6 +30,7 @@ class ButtonIconComponent extends React.Component<Props> {
         style={{ ...this.props.styles }}
       >
         {this.props.icon}
+        {this.props.label && <span>{this.props.label}</span>}
       </button>
     );
   }

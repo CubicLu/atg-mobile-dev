@@ -20,7 +20,8 @@ import { validateScrollHeader } from '../../utils';
 import {
   ArtistInterface,
   MenuInterface,
-  ScrollHeaderInterface
+  ScrollHeaderInterface,
+  ShapesSize
 } from '../../interfaces';
 
 interface StateProps {
@@ -188,7 +189,7 @@ class ArtistPage extends React.Component<Props, State> {
               >
                 <ButtonSupport
                   buttonType={'text'}
-                  type={'rounded'}
+                  type={ShapesSize.rounded}
                   uppercase
                   supported={this.props.currentArtist?.support}
                   onClick={(): void => {

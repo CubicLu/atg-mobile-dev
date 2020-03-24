@@ -1,29 +1,23 @@
 import React from 'react';
 import {} from './../';
 import {} from './../../actions';
+import { ShapesSize, Colors } from '../../interfaces';
 
 interface Props {
   onClick: Function;
   label: string;
   id?: string;
-  color?:
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'transparent'
-    | 'support'
-    | 'disable'
-    | 'supported';
+  color?: Colors;
   gradient?: boolean;
   bold?: boolean;
-  type?: 'rounded' | 'normal' | 'full';
+  type?: ShapesSize;
 }
 
 class ButtonComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {},
     gradient: false,
-    type: 'normal',
+    type: ShapesSize.normal,
     bold: false
   };
 

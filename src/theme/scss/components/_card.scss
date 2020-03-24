@@ -385,6 +385,49 @@
             color: #919397;
        }
     }
+
+    &.post{
+        height: 290px;
+        margin-bottom: 25px;
+        border-radius: 20px;
+
+        .info{
+            height: 100%;
+            display: inline-flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            width: 100%;
+
+            .col{
+                display: inline-flex;
+            }
+
+            .user{
+                label{
+                    font-family: Helvetica;
+                    font-size: pxToRem(12);
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: pxToRem(42);
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: #ffffff;
+                    margin-left: 5px;
+                }
+            }
+            .button{
+                display: inline-flex;
+                justify-content: space-between;            
+            }
+        }
+
+        .row{
+            margin-bottom: 17px;
+            width: 100%;
+        }
+    }
+
     @media screen and (max-width: 360px){
         &.event{
             .circle {

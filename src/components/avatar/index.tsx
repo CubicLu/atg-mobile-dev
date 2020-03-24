@@ -2,10 +2,11 @@
 import React from 'react';
 import {} from './../../components';
 import {} from './../../actions';
+import { ShapesSize } from '../../interfaces';
 
 interface Props {
   image: string | undefined;
-  type?: 'rounded' | 'circle' | 'normal';
+  type?: ShapesSize;
   width?: number;
   height?: number;
   onClick?: any;
@@ -15,7 +16,7 @@ class AvatarComponent extends React.Component<Props> {
   public static defaultProps = {
     image:
       'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg',
-    type: 'normal',
+    type: ShapesSize.normal,
     width: 60,
     height: 60
   };

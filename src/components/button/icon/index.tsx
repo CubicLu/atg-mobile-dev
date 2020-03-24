@@ -1,27 +1,22 @@
 import React from 'react';
 import {} from './../../';
 import {} from './../../../actions';
+import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props {
   onClick: Function;
   icon: any;
-  color?:
-    | 'transparent'
-    | 'green'
-    | 'transparent-gray'
-    | 'support'
-    | 'red'
-    | 'supported'
-    | 'orange';
-  type?: 'rounded' | 'circle' | 'normal' | 'full';
+  color?: Colors;
+  type?: ShapesSize;
   styles?: object;
   fixed: boolean;
+  label?: string | number;
 }
 
 class ButtonIconComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {},
-    color: 'transparent-gray',
+    color: Colors.transparentGray,
     type: 'circle',
     fixed: false
   };

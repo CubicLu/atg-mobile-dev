@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, ArrowRightIcon } from './../../components';
 import {} from './../../actions';
 import { IonList, IonItem } from '@ionic/react';
+import { Colors } from '../../interfaces';
 
 interface Props {
   title: string;
@@ -27,7 +28,7 @@ class ListComponent extends React.Component<Props> {
           </div>
           <div className="action">
             {this.props.viewAll && (
-              <Button color={'transparent'} label={'View All'} />
+              <Button color={Colors.transparent} label={'View All'} />
             )}
           </div>
         </div>

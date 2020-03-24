@@ -11,7 +11,7 @@ import {} from './../../../actions';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import { MixtapeInterface } from '../../../interfaces';
+import { MixtapeInterface, Colors } from '../../../interfaces';
 
 interface Props {
   title?: string;
@@ -74,7 +74,7 @@ class SliderMixtapesComponent extends React.Component<Props> {
           </div>
           <div className="action">
             {this.props.viewAll && (
-              <Button color={'transparent'} label={'View All'} />
+              <Button color={Colors.transparent} label={'View All'} />
             )}
           </div>
         </div>

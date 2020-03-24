@@ -32,6 +32,7 @@ import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
 import SliderStoriesComponent from './slider/stories';
+import CardPostComponent from './card/post';
 
 export * from './icon';
 
@@ -67,7 +68,8 @@ export {
   CardAlbumGalleryComponent as CardAlbumGallery,
   LoaderFullscreenComponent as LoaderFullscreen,
   ButtonSupportComponent as ButtonSupport,
-  SliderStoriesComponent as SliderStories
+  SliderStoriesComponent as SliderStories,
+  CardPostComponent as CardPost
 };
 
 export { _ };

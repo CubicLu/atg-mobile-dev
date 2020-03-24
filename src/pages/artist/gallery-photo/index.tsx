@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface, Colors } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -77,13 +77,13 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
               <ul className="list inline menu-share">
                 <li>
                   <ButtonIcon
-                    color={'orange'}
+                    color={Colors.orange}
                     icon={<StarIcon width={24} height={24} />}
                   />
                 </li>
                 <li>
                   <ButtonIcon
-                    color={'green'}
+                    color={Colors.green}
                     icon={<ShareIcon width={22} height={20} />}
                   />
                 </li>

@@ -1,16 +1,17 @@
 import React from 'react';
+import { ShapesSize } from '../../../interfaces';
 
 interface Props {
   image: string | undefined;
   key: number;
-  type: 'normal' | 'rounded' | 'circle';
+  type: ShapesSize;
   col: number;
   label?: string;
 }
 
 class CardImageComponent extends React.Component<Props> {
   public static defaultProps = {
-    type: 'normal',
+    type: ShapesSize.normal,
     col: 6
   };
   render(): React.ReactNode {

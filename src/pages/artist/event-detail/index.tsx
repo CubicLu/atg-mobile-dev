@@ -13,7 +13,7 @@ import {
   getArtistEventAPI,
   updateArtistSetInitialProperty
 } from './../../../actions';
-import { EventInterface } from './../../../interfaces';
+import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
 import { ApplicationState } from './../../../reducers';
 
 interface State {
@@ -102,7 +102,9 @@ class EventDetailPage extends React.Component<Props, State> {
                     <div className="col s12 justify-center">
                       <Button
                         label={this.state.willGo ? "Can't go" : "I'm going"}
-                        color={this.state.willGo ? 'disable' : 'secondary'}
+                        color={
+                          this.state.willGo ? Colors.disable : Colors.secondary
+                        }
                         gradient={true}
                         bold
                         onClick={(): void => {
@@ -138,7 +140,7 @@ class EventDetailPage extends React.Component<Props, State> {
                               <div className="row">
                                 <div className={`col s3 image ${opacity}`}>
                                   <Avatar
-                                    type="circle"
+                                    type={ShapesSize.circle}
                                     image={data.avatar}
                                     width={50}
                                     height={50}
@@ -150,7 +152,7 @@ class EventDetailPage extends React.Component<Props, State> {
                                 <div className="col s3 action">
                                   <Button
                                     gradient={true}
-                                    color="secondary"
+                                    color={Colors.secondary}
                                     label="Connect"
                                   />
                                 </div>

@@ -31,7 +31,12 @@ export enum ActionType {
   TOGGLE_REPEAT_PLAYER = 'TOGGLE_REPEAT_PLAYER',
   FAVORITE_SONG = 'FAVORITE_SONG',
   SET_PLAYLIST_PLAYER = 'SET_PLAYLIST_PLAYER',
-  SET_RADIO_PLAYER = 'SET_RADIO_PLAYER'
+  SET_RADIO_PLAYER = 'SET_RADIO_PLAYER',
+  GET_COMMUNITY_POSTS_API = 'GET_COMMUNITY_POSTS_API',
+  GET_COMMUNITY_POSTS_API_FAILURE = 'GET_COMMUNITY_POSTS_API_FAILURE',
+  GET_COMMUNITY_POSTS_API_SUCCESS = 'GET_COMMUNITY_POSTS_API_SUCCESS',
+  UPDATE_COMMUNITY_SET_INITIAL_PROPERTY = 'UPDATE_COMMUNITY_SET_INITIAL_PROPERTY',
+  UPDATE_COMMUNITY_PROPERTY = 'UPDATE_COMMUNITY_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -173,6 +178,23 @@ export interface PlayerReducerType {
   repeat: boolean;
 }
 
+export interface CommunityReducerType {
+  posts: PostInterface[];
+  loading: boolean;
+  errorMessage: string | null;
+  successMessage: string | null;
+}
+
+export interface PostInterface {
+  username: string;
+  avatar: string;
+  image: string;
+  commentsQuantity: number;
+  comments: CommentInterface[];
+}
+
+export interface CommentInterface {}
+
 export interface GradientColorsInterface {
   color1: string;
   color2: string;
@@ -225,7 +247,12 @@ export enum Colors {
   red = 'red',
   orange = 'orange',
   yellow = 'yellow',
-  blue = 'blue'
+  blue = 'blue',
+  supported = 'supported',
+  disable = 'disable',
+  primary = 'primary',
+  secondary = 'secondary',
+  tertiary = 'tertiary'
 }
 
 export interface DiscographyInterface {
@@ -271,3 +298,10 @@ export interface BiographyInterface {
 }
 
 export interface EventWhoIsGoingInterface extends UserInterface {}
+
+export enum ShapesSize {
+  rounded = 'rounded',
+  circle = 'circle',
+  normal = 'normal',
+  full = 'full'
+}

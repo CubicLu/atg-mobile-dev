@@ -9,6 +9,7 @@ import {
   Header
 } from './../../components';
 import {} from './../../actions';
+import { ShapesSize, Colors } from '../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -57,8 +58,8 @@ class SignUpConfirmPage extends React.Component<Props> {
                   <div className="col s12">
                     <Button
                       label="Sign in"
-                      type="full"
-                      color="primary"
+                      type={ShapesSize.full}
+                      color={Colors.primary}
                       gradient
                       bold
                       onClick={(): any => {

@@ -34,7 +34,8 @@ import {
   ArtistInterface,
   ModalSlideInterface,
   BiographyInterface,
-  AlbumInterface
+  AlbumInterface,
+  Colors
 } from '../../../interfaces';
 import { setHeight, validateScrollHeader } from '../../../utils';
 
@@ -239,13 +240,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                           <div className="col s1" />
                           <div className="col s2">
                             <ButtonIcon
-                              color={'orange'}
+                              color={Colors.orange}
                               icon={<StarIcon width={24} height={24} />}
                             />
                           </div>
                           <div className="col s2">
                             <ButtonIcon
-                              color={'green'}
+                              color={Colors.green}
                               icon={<ShareIcon width={22} height={20} />}
                             />
                           </div>

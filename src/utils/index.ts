@@ -50,6 +50,50 @@ export function artistBackground(artist: ArtistInterface | any): CSSProperties {
   };
 }
 
+interface Coordinates {
+  translateX: number;
+  translateY: number;
+  initialX: number;
+  initialY: number;
+}
+
+export function getFixedTranslatePoints(
+  element: Element,
+  destX?: number,
+  destY?: number,
+  alignRight: boolean = false,
+  alignBottom: boolean = false
+): Coordinates {
+  let translateX = 0,
+    translateY = 0,
+    initialX = 0,
+    initialY = 0;
+  if (!element) {
+    return { translateX, translateY, initialX, initialY };
+  }
+  if (!element.getBoundingClientRect()) {
+    return { translateX, translateY, initialX, initialY };
+  }
+  initialX = alignRight
+    ? element.getBoundingClientRect().right
+    : element.getBoundingClientRect().left;
+  initialY = element.getBoundingClientRect().top;
+  // console.log(element.offsetHeight, element.offsetTop, element.getBoundingClientRect().top)
+  const eWidth = element.getBoundingClientRect().width;
+  const elHeight = element.getBoundingClientRect().height;
+
+  if (destX) {
+    translateX = alignRight ? window.innerWidth - destX - eWidth : destX;
+    translateX -= element.getBoundingClientRect().left;
+  }
+  if (destY) {
+    translateY = alignBottom ? window.innerHeight - destY - elHeight : destY;
+    translateY -= element.getBoundingClientRect().top;
+  }
+
+  return { translateX, translateY, initialX, initialY };
+}
+
 export function validateScrollHeader(
   event: CustomEvent<any>,
   downOffset: number = 40,

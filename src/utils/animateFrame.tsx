@@ -1,9 +1,9 @@
 interface Animator {
   element: HTMLElement | Element;
   duration: number;
-  axisY: number;
-  axisX: number;
-  direction: Direction;
+  axisY?: number;
+  axisX?: number;
+  direction?: Direction;
   onFinish?: Function | null;
   marginRight?: boolean;
 }
@@ -11,15 +11,14 @@ type Direction = 'normal' | 'reverse';
 
 export default class VigilAnimator {
   public element: HTMLElement | Element;
-  public elementId: string;
   public duration: number;
-  public direction: Direction;
+  public direction: Direction = 'normal';
   public loaded: boolean = false;
   public step: number = 0;
   public onFinish: Function;
   public marginRight: boolean = false;
   public finished: boolean = false;
-  public axisY: number;
+  public axisY: number = 0;
   public axisX: number = 0;
   public currentStep: number = 0;
   public totalSteps: number = 0;
@@ -28,17 +27,17 @@ export default class VigilAnimator {
   public distanceY: number = 0;
   public currentX: number = 0;
   public currentY: number = 0;
+  public playing: boolean = false;
 
   constructor(obj: Animator) {
     this.element = obj.element;
-    this.elementId = obj.element.id;
     this.duration = obj.duration;
-    this.direction = obj.direction;
     this.marginRight = !!obj.marginRight;
     this.onFinish = obj.onFinish ? obj.onFinish : (): void => {};
 
-    this.axisY = this.currentY = obj.axisY;
-    this.axisX = obj.axisX;
+    if (obj.direction) this.direction = obj.direction;
+    if (obj.axisY) this.axisY = this.currentY = obj.axisY;
+    if (obj.axisX) this.axisX = obj.axisX;
   }
   changeDirection(): void {
     const normal: Direction = 'normal';
@@ -52,16 +51,8 @@ export default class VigilAnimator {
   playReverse(): void {
     this.changeDirection();
     this.finished = false;
-    // this.play();
   }
   load(): void {
-    (this.element as HTMLElement).style.position = 'fixed';
-    (this.element as HTMLElement).style.top =
-      this.element.getBoundingClientRect().top + 'px';
-    (this.element as HTMLElement).style.left =
-      this.element.getBoundingClientRect().left + 'px';
-    (this.element as HTMLElement).style.zIndex = '10';
-
     this.axisX = this.marginRight
       ? window.innerWidth -
         this.axisX -
@@ -71,11 +62,32 @@ export default class VigilAnimator {
     this.totalSteps = Math.floor(this.duration / 10);
     this.distanceX = this.axisX - this.element.getBoundingClientRect().left;
     this.distanceY = this.axisY - this.element.getBoundingClientRect().top;
-    console.log(this.axisX, this.axisY, this.distanceX, this.distanceY);
+  }
+
+  addFixed(): void {
+    const elm = this.element as HTMLElement;
+    elm.style.position = 'fixed';
+    elm.style.top = this.element.getBoundingClientRect().top + 'px';
+    elm.style.left = this.element.getBoundingClientRect().left + 'px';
+    elm.style.zIndex = '10';
+  }
+  removeFixed(): void {
+    const elm = this.element as HTMLElement;
+    elm.style.removeProperty('fixed');
+    elm.style.removeProperty('top');
+    elm.style.removeProperty('left');
+    elm.style.removeProperty('zIndex');
   }
 
   play(): void {
-    if (!this.loaded) this.load();
+    if (!this.loaded) {
+      this.load();
+    }
+    if (!this.playing && !this.finished) {
+      this.playing = true;
+      this.addFixed();
+    }
+
     if (this.finished) return;
     const ratioX = this.distanceX / this.totalSteps;
     const ratioY = this.distanceY / this.totalSteps;
@@ -96,7 +108,9 @@ export default class VigilAnimator {
       this.currentStep = nextStep;
     } else {
       this.finished = true;
-      this.onFinish();
+      this.playing = false;
+      this.onFinish(this.direction);
+      this.direction === 'reverse' && this.removeFixed();
       return;
     }
     requestAnimationFrame(this.play.bind(this));

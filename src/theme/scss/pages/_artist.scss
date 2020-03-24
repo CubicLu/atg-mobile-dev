@@ -50,21 +50,6 @@
         margin: 0;
         text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
     }
-    .set-menu-fixed{
-        position: fixed;
-        top: 160px;
-        width: 100%;
-    }
-    .set-name-fixed{
-        position: fixed;
-        top: calc(48px + 100px);
-        left: calc(56px + 10vw);
-    }
-    .set-support-fixed{
-        position: fixed;
-        top: calc(44px + 100px);
-        right: calc(16px + 10vw);
-    }
     .row{
         width: 100%;
         margin-bottom: 5px;

@@ -40,6 +40,7 @@ import {
   PauseButton
 } from '../icon/player';
 import { PlayIcon } from '../icon';
+import VigilAnimator from '../../utils/animateFrame';
 
 interface StateProps {
   player: PlayerReducerType;
@@ -68,7 +69,6 @@ class PlayerComponent extends React.Component<Props> {
   gestureExpanded: Gesture | undefined;
   relativeAnimation: Animation | any;
   lastY?: number;
-  elasticTimeout: any;
   pulling: boolean = false;
 
   componentDidMount(): void {
@@ -109,40 +109,13 @@ class PlayerComponent extends React.Component<Props> {
     if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
   }
 
-  currentY: number = 0;
-  refreshRate: number = 10;
-  directionDown: boolean = true;
-  step: number = 0;
-
   elasticBack(): void {
-    this.currentY = Math.abs(this.lastY!);
-    this.step = 0;
-    this.doElastic();
-  }
-
-  doElastic(): boolean {
-    if (this.step >= 3) return true;
-    this.currentY = this.directionDown
-      ? (this.currentY -= this.refreshRate)
-      : (this.currentY += this.refreshRate);
-    if (this.currentY < 0) this.currentY = 0;
-
-    const lastY = Math.abs(this.lastY!);
-    const nextStep =
-      (this.directionDown && this.currentY <= 1) ||
-      (!this.directionDown && this.currentY >= lastY + 1);
-
-    document
-      .getElementById('a')
-      ?.setAttribute('d', `M 0 10 c 200-${this.currentY}, 400,0, 400,0`);
-    if (nextStep) {
-      this.step = this.step + 1;
-      if (this.step >= 3) return false;
-      this.lastY = Math.abs(lastY / 1.53);
-      this.directionDown = !this.directionDown;
-    }
-    requestAnimationFrame(this.doElastic.bind(this));
-    return false;
+    new VigilAnimator({
+      element: document.getElementById('a')!,
+      axisY: Math.abs(this.lastY!),
+      refreshRate: 12,
+      direction: 'normal'
+    }).elasticPlay();
   }
 
   enablePlayerAnimation(): void {

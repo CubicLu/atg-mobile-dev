@@ -46,7 +46,6 @@ export function artistBackground(artist: ArtistInterface | any): CSSProperties {
     backgroundImage,
     filter: 'saturate(1.19)',
     backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat'
   };
 }

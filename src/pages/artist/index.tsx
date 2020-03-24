@@ -15,6 +15,7 @@ import {
   MenuInterface,
   ScrollHeaderInterface
 } from '../../interfaces';
+import VigilAnimator from '../../utils/animateFrame';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -66,6 +67,7 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
+  vigil?: VigilAnimator;
   activateAnimations(): any {
     const normalMenu = document.querySelector('#normal-menu');
     const fixedMenu = document.querySelector('#fixed-menu');
@@ -88,6 +90,15 @@ class ArtistPage extends React.Component<Props, State> {
       ])
       .duration(600);
     // FIXED ANIMATION
+
+    this.vigil = new VigilAnimator({
+      element: document.querySelector('#support-button')!,
+      refreshRate: 500,
+      direction: 'normal',
+      axisY: 80,
+      marginRight: 50
+    });
+
     const support = createAnimation()
       .addElement(document.querySelector('#support-button')!)
       .duration(300)
@@ -112,6 +123,9 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   handleScroll(event: any): void {
+    console.log(this.vigil)
+    const a = this.vigil?.play();
+
     const currentScroll = validateScrollHeader(event, 140, 200);
     if (!currentScroll.validScroll) return;
     if (currentScroll.direction === this.lastValidScroll.direction) return;

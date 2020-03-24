@@ -63,7 +63,6 @@ export default class VigilAnimator {
     this.direction = this.direction === 'normal' ? 'reverse' : 'normal';
   }
   play(): void {
-    
     if (!this.loaded) {
       this.load();
     }
@@ -75,7 +74,7 @@ export default class VigilAnimator {
     const rateY = (this.distanceY / this.refreshRate) * factor;
     this.currentX = this.currentX + rateX;
     this.currentY = this.currentY + rateY;
-    console.log("factor", factor, rateX, rateY)
+    //console.log("factor", factor, rateX, rateY)
     // const finished = ;
     let finished = false;
     if (

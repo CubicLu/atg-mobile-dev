@@ -124,7 +124,7 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   handleScroll(event: any): void {
-    console.log(this.vigil)
+    console.log(this.vigil);
     const a = this.vigil?.play();
 
     const currentScroll = validateScrollHeader(event, 140, 200);

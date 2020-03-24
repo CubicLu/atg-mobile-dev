@@ -34,11 +34,7 @@ class ButtonSupportComponent extends React.Component<Props> {
       return (
         <div className="button-support-component">
           <ButtonIcon
-            icon={
-              <SupportIcon
-                color={supported ? Colors.supported : Colors.support}
-              />
-            }
+            icon={<SupportIcon color={supported ? '#FC5F62' : '#fff'} />}
             color={supported ? Colors.supported : Colors.support}
           />
           <span className={`text-support-icon${uppercase ? 'uppercase ' : ''}`}>

@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 interface Props {}
 
 class ArtistVideosPage extends React.Component<Props> {

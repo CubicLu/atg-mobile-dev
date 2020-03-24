@@ -46,29 +46,34 @@ export default class App extends React.Component {
       this.authenticated = !!loggedUser;
       this.forceUpdate();
     });
-    const authenticated = <HomePage />;
-    const notAuthenticated = (
-      <IonReactRouter>
-        <IonRouterOutlet id="notLogged">
-          <Switch>
-            <Route exact path="/initial" component={InitialPage} />
-            <Route exact path="/sign-in" component={SignInPage} />
-            <Route exact path="/sign-up" component={SignUpPage} />
-            <Route exact path="/enter-code" component={EnterCodePage} />
-            <Route
-              exact
-              path="/sign-up-confirm"
-              component={SignUpConfirmPage}
-            />
-            <Route path="/" render={(): any => <Redirect to="/initial" />} />
-          </Switch>
-        </IonRouterOutlet>
-      </IonReactRouter>
-    );
 
     return (
       <Provider store={store}>
-        <IonApp>{this.authenticated ? authenticated : notAuthenticated}</IonApp>
+        <IonApp>
+          {this.authenticated ? (
+            <HomePage />
+          ) : (
+            <IonReactRouter>
+              <IonRouterOutlet id="notLogged">
+                <Switch>
+                  <Route exact path="/initial" component={InitialPage} />
+                  <Route exact path="/sign-in" component={SignInPage} />
+                  <Route exact path="/sign-up" component={SignUpPage} />
+                  <Route exact path="/enter-code" component={EnterCodePage} />
+                  <Route
+                    exact
+                    path="/sign-up-confirm"
+                    component={SignUpConfirmPage}
+                  />
+                  <Route
+                    path="/"
+                    render={(): any => <Redirect to="/initial" />}
+                  />
+                </Switch>
+              </IonRouterOutlet>
+            </IonReactRouter>
+          )}
+        </IonApp>
       </Provider>
     );
   }

@@ -22,7 +22,6 @@ export function* getCommunityPosts(): any {
   yield takeEvery(ActionType.GET_COMMUNITY_POSTS_API, getCommunityPostsAPI);
 }
 
-
 export default function* rootSaga(): any {
   yield all([fork(getCommunityPosts)]);
 }

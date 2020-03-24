@@ -42,7 +42,6 @@ class SliderVideoComponent extends React.Component<Props> {
             )}
           </div>
         </div>
-
         <Slider {...settings}>
           {data.map(
             (d, i): React.ReactNode => (

@@ -99,11 +99,11 @@ class ArtistPage extends React.Component<Props, State> {
       axisY: 46,
       axisX: 16,
       marginRight: true,
+      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
       onFinish: () => {
-        console.log(this.vigil?.currentStep)
+        console.log(this.vigil?.currentStep);
         this.vigil?.changeDirection();
         this.vigil?.playReverse();
-        
       }
     });
 
@@ -131,8 +131,7 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   handleScroll(event: any): void {
-    const a = this.vigil?.play();
-
+    // this.vigil?.play();
     const currentScroll = validateScrollHeader(event, 140, 200);
     if (!currentScroll.validScroll) return;
     if (currentScroll.direction === this.lastValidScroll.direction) return;

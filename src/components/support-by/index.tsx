@@ -51,7 +51,6 @@ class SupportByComponent extends React.Component<Props> {
             ></li>
           )
         )}
-
         <li>
           <DotsThreeIcon />
         </li>

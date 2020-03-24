@@ -10,7 +10,7 @@ import {
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { MixtapeInterface } from '../../../interfaces';
+import { MixtapeInterface, Colors } from '../../../interfaces';
 
 interface Props {
   title?: string;
@@ -70,7 +70,9 @@ class SliderMixtapesComponent extends React.Component<Props> {
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {viewAll && <Button color={'transparent'} label={'View All'} />}
+            {viewAll && (
+              <Button color={Colors.transparent} label={'View All'} />
+            )}
           </div>
         </div>
 

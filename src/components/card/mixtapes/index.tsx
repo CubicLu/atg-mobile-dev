@@ -1,7 +1,6 @@
 import React from 'react';
 import { ButtonIcon } from './../../../components';
-
-import { MixtapeInterface } from '../../../interfaces';
+import { MixtapeInterface, Colors } from '../../../interfaces';
 import {
   PlayIcon,
   DotsThreeIcon,
@@ -63,7 +62,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                   {menu === true && (
                     <ButtonIcon
                       icon={<DotsThreeIcon />}
-                      color="transparent"
+                      color={Colors.transparent}
                       onClick={this.setMenu.bind(this)}
                     />
                   )}
@@ -80,7 +79,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                   <ul className="buttons">
                     <li>
                       <ButtonIcon
-                        color="red"
+                        color={Colors.red}
                         icon={<TrashIcon width={15} height={15} />}
                       />
                     </li>
@@ -95,7 +94,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                     </li>
                     <li>
                       <ButtonIcon
-                        color="green"
+                        color={Colors.green}
                         icon={<ShareIcon width={20} height={20} />}
                       />
                     </li>

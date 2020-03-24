@@ -6,7 +6,7 @@ import {
   Header
 } from './../../../components';
 import { updateSettingsModal } from './../../../actions';
-import { BiographyInterface } from '../../../interfaces';
+import { BiographyInterface, Colors } from '../../../interfaces';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -43,7 +43,7 @@ class BiographyListComponent extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           rightCloseOnClick={this.props.onClick.bind(this)}
-          color={'transparent'}
+          color={Colors.transparent}
         >
           <div className={`row header`}>
             <h1 className="title">{this.props.title}</h1>
@@ -62,13 +62,13 @@ class BiographyListComponent extends React.Component<Props> {
                     {data.accessLevel && data.accessLevel > 0 ? (
                       <ButtonIcon
                         icon={<LockedIcon color={'#000'} />}
-                        color={'transparent'}
+                        color={Colors.transparent}
                         styles={{ padding: '0 9px' }}
                       />
                     ) : (
                       <ButtonIcon
                         icon={<ArrowRightIcon color={'#000'} />}
-                        color={'transparent'}
+                        color={Colors.transparent}
                       />
                     )}
                   </li>

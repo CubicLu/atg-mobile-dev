@@ -1,12 +1,12 @@
 import React from 'react';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface, ShapesSize, Colors } from '../../../interfaces';
 import { ButtonIcon } from '../..';
 import { DotsThreeIcon } from '../../icon';
 
 interface Props {
   image: string | undefined;
   key: number;
-  type: 'normal' | 'rounded';
+  type: ShapesSize;
   video: string | undefined;
   title: string;
   time: number;
@@ -14,7 +14,9 @@ interface Props {
 }
 
 class CardVideoComponent extends React.Component<Props> {
-  public static defaultProps = { type: 'normal' };
+  public static defaultProps = {
+    type: ShapesSize.normal
+  };
 
   render(): React.ReactNode {
     const { artist, type, image, time, title } = this.props;
@@ -37,7 +39,10 @@ class CardVideoComponent extends React.Component<Props> {
             <div className="row">
               <div className="col s12 button">
                 <h1 className={'artist'}>{artist.name}</h1>
-                <ButtonIcon icon={<DotsThreeIcon />} color={'transparent'} />
+                <ButtonIcon
+                  icon={<DotsThreeIcon />}
+                  color={Colors.transparent}
+                />
               </div>
             </div>
           </div>

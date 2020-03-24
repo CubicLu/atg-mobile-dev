@@ -30,6 +30,7 @@ import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
 import SliderStoriesComponent from './slider/stories';
+import CardPostComponent from './card/post';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -79,7 +80,8 @@ export {
   CardAlbumGalleryComponent as CardAlbumGallery,
   LoaderFullscreenComponent as LoaderFullscreen,
   ButtonSupportComponent as ButtonSupport,
-  SliderStoriesComponent as SliderStories
+  SliderStoriesComponent as SliderStories,
+  CardPostComponent as CardPost
 };
 
 export {

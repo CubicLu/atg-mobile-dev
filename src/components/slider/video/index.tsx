@@ -3,6 +3,7 @@ import { CardVideo, Button } from './../../../components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
+import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props {
   title: string;
@@ -36,7 +37,9 @@ class SliderVideoComponent extends React.Component<Props> {
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {viewAll && <Button color={'transparent'} label={'View All'} />}
+            {viewAll && (
+              <Button color={Colors.transparent} label={'View All'} />
+            )}
           </div>
         </div>
 
@@ -44,7 +47,7 @@ class SliderVideoComponent extends React.Component<Props> {
           {data.map(
             (d, i): React.ReactNode => (
               <CardVideo
-                type={'rounded'}
+                type={ShapesSize.rounded}
                 video={d.video}
                 image={d.image}
                 title={d.title}

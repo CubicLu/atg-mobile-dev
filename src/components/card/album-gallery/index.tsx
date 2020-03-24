@@ -1,9 +1,10 @@
 import React from 'react';
+import { ShapesSize } from '../../../interfaces';
 
 interface Props {
   image: string | undefined;
   key: number;
-  type?: 'normal' | 'rounded' | 'circle';
+  type?: ShapesSize;
   col: number;
   label?: string;
   quantity?: number;
@@ -12,7 +13,7 @@ interface Props {
 
 class CardAlbumGalleryComponent extends React.Component<Props> {
   public static defaultProps = {
-    type: 'rounded',
+    type: ShapesSize.rounded,
     col: 6,
     quantity: 0
   };

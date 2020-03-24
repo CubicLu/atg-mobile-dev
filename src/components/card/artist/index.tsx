@@ -7,7 +7,7 @@ import {
   ButtonSupport
 } from './../../../components';
 import { updateArtistProperty, updateSettingsModal } from './../../../actions';
-import { ArtistInterface } from './../../../interfaces';
+import { ArtistInterface, Colors } from './../../../interfaces';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 
@@ -48,7 +48,7 @@ class CardArtistComponent extends React.Component<Props> {
                 <div className="row">
                   <div className="col s12 button">
                     <ButtonIcon
-                      color={'transparent'}
+                      color={Colors.transparent}
                       icon={<DotsThreeIcon color={'#6a6565'} />}
                       onClick={updateSettingsModal.bind(
                         this,

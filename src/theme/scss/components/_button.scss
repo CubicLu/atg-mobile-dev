@@ -83,14 +83,23 @@
     &.icon { 
         &.circle { 
            border-radius: 50%;
-           height: 40px;
-           width: 40px;
+           height: 42px;
+           width: 42px;
            align-items: center;
            text-align: center;
            display: flex;
            justify-content: center;
            align-content: center;
            margin-top: 1px;
+           flex-direction: column;
+
+           span{
+                height: 10px;
+                line-height: 12px;
+                font-size: 10px;
+                margin-top: 2px;
+                margin-bottom: 2px;
+           }
         }
     }
 

@@ -4,6 +4,7 @@ import { IonActionSheet, ActionSheetButton } from '@ionic/react';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
+import { ShapesSize } from '../../../interfaces';
 
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
@@ -65,7 +66,7 @@ class HeaderProfileComponent extends React.Component<Props, State> {
       >
         <div className="profile-center">
           <Avatar
-            type="circle"
+            type={ShapesSize.circle}
             onClick={(): any => this.toggleProfileActions(true)}
           />
           <IonActionSheet

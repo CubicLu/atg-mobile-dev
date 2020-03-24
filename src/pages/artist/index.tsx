@@ -13,7 +13,8 @@ import { validateScrollHeader, artistBackground } from '../../utils';
 import {
   ArtistInterface,
   MenuInterface,
-  ScrollHeaderInterface
+  ScrollHeaderInterface,
+  ShapesSize
 } from '../../interfaces';
 import VigilAnimator from '../../utils/animateFrame';
 
@@ -224,7 +225,7 @@ class ArtistPage extends React.Component<Props, State> {
                 <div id="support-button">
                   <ButtonSupport
                     buttonType={'text'}
-                    type={'rounded'}
+                    type={ShapesSize.rounded}
                     uppercase
                     supported={artist.support}
                     onClick={(): void => {

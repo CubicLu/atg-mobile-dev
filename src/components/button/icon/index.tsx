@@ -1,32 +1,27 @@
 import React from 'react';
+import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props {
   onClick: Function;
   icon: any;
-  color?:
-    | 'transparent'
-    | 'green'
-    | 'transparent-gray'
-    | 'support'
-    | 'red'
-    | 'supported'
-    | 'orange';
-  type?: 'rounded' | 'circle' | 'normal' | 'full';
+  color?: Colors;
+  type?: ShapesSize;
   styles?: object;
   fixed: boolean;
+  label?: string | number;
 }
 
 class ButtonIconComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {},
-    color: 'transparent-gray',
-    type: 'circle',
+    color: Colors.transparentGray,
+    type: ShapesSize.circle,
     fixed: false
   };
 
   render(): React.ReactNode {
     const isFixed = (this.props.fixed && ' fixed') || '';
-    const { onClick, type, color, styles, icon } = this.props;
+    const { onClick, type, color, styles, icon, label } = this.props;
 
     return (
       <button
@@ -35,6 +30,7 @@ class ButtonIconComponent extends React.Component<Props> {
         style={{ ...styles }}
       >
         {icon}
+        {label && <span>{label}</span>}
       </button>
     );
   }

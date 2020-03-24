@@ -23,6 +23,9 @@ import UserGroupIcon from './user-group';
 import BackIcon from './back';
 import ArrowRightIcon from './arrow-right';
 import TicketIcon from './ticket';
+import BalloonIcon from './balloon';
+import ShareLineIcon from './share-line';
+import HeartIcon from './heart';
 
 export {
   MessageIcon,
@@ -49,5 +52,8 @@ export {
   UserGroupIcon,
   BackIcon,
   ArrowRightIcon,
-  TicketIcon
+  TicketIcon,
+  BalloonIcon,
+  ShareLineIcon,
+  HeartIcon
 };

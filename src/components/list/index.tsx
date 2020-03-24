@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ArrowRightIcon } from './../../components';
-
 import { IonList, IonItem } from '@ionic/react';
+import { Colors } from '../../interfaces';
 
 interface Props {
   title: string;
@@ -29,7 +29,9 @@ class ListComponent extends React.Component<Props> {
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {viewAll && <Button color={'transparent'} label={'View All'} />}
+            {viewAll && (
+              <Button color={Colors.transparent} label={'View All'} />
+            )}
           </div>
         </div>
 

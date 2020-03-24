@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardImage, Button } from './../../../components';
-
+import { Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;
@@ -23,14 +23,22 @@ class SliderImageComponent extends React.Component<Props> {
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {viewAll && <Button color={'transparent'} label={'View All'} />}
+            {viewAll && (
+              <Button color={Colors.transparent} label={'View All'} />
+            )}
           </div>
         </div>
 
         <div className="row">
           {data.map(
             (data, i): React.ReactNode => {
-              return <CardImage image={data.image} key={i} type={'rounded'} />;
+              return (
+                <CardImage
+                  image={data.image}
+                  key={i}
+                  type={ShapesSize.rounded}
+                />
+              );
             }
           )}
         </div>

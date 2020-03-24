@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, ButtonIcon, SupportIcon } from './../../../components';
+import { ShapesSize, Colors } from '../../../interfaces';
+
 interface Props {
   buttonType: 'icon' | 'text';
-  type?: 'rounded' | 'normal' | 'full';
+  type?: ShapesSize;
   onClick: Function;
   supported: boolean;
   uppercase?: boolean;
@@ -32,8 +34,12 @@ class ButtonSupportComponent extends React.Component<Props> {
       return (
         <div className="button-support-component">
           <ButtonIcon
-            icon={<SupportIcon color={supported ? '#FC5F62' : '#FFF'} />}
-            color={supported ? 'supported' : 'support'}
+            icon={
+              <SupportIcon
+                color={supported ? Colors.supported : Colors.support}
+              />
+            }
+            color={supported ? Colors.supported : Colors.support}
           />
           <span className={`text-support-icon${uppercase ? 'uppercase ' : ''}`}>
             {supported ? 'Supported' : 'Support'}
@@ -44,7 +50,7 @@ class ButtonSupportComponent extends React.Component<Props> {
       return (
         <Button
           onClick={onClick.bind(this)}
-          color={supported ? 'supported' : 'support'}
+          color={supported ? Colors.supported : Colors.support}
           label={supported ? 'Supported' : 'Support'}
           type={type}
           bold={bold}

@@ -32,7 +32,7 @@ import {
   updateElapsed
 } from './../../actions/playerActions';
 import { ApplicationState } from '../../reducers';
-import { PlayerReducerType, SongInterface } from '../../interfaces';
+import { PlayerReducerType, SongInterface, ShapesSize } from '../../interfaces';
 import {
   PlayButton,
   NextButton,
@@ -235,7 +235,11 @@ class PlayerComponent extends React.Component<Props> {
             <Header
               leftBackButton={false}
               centerContent={
-                <ButtonSupport buttonType={'text'} uppercase type={'rounded'} />
+                <ButtonSupport
+                  buttonType={'text'}
+                  uppercase
+                  type={ShapesSize.rounded}
+                />
               }
               leftMinimizeButton={true}
               leftMinimizeOnClick={this.togglePlayer.bind(this)}

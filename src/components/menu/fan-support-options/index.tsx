@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonIcon, Header } from './../../../components';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface, Colors, ShapesSize } from '../../../interfaces';
 import {
   SupportIcon,
   StarIcon,
@@ -24,7 +24,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           rightCloseOnClick={this.props.onClick.bind(this)}
-          color={'transparent'}
+          color={Colors.transparent}
         >
           <div className={`row header ${this.props.background}`}>
             <h1 className="title">MY {this.props.artist.name}</h1>
@@ -38,32 +38,32 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
               Increase support
               <ButtonIcon
                 icon={<SupportIcon />}
-                color={'support'}
-                type={'circle'}
+                color={Colors.support}
+                type={ShapesSize.circle}
               />
             </li>
             <li>
               Decrease support
               <ButtonIcon
                 icon={<StarIcon width={25} />}
-                color={'transparent-gray'}
-                type={'circle'}
+                color={Colors.transparentGray}
+                type={ShapesSize.circle}
               />
             </li>
             <li>
               Temporarily pause support
               <ButtonIcon
                 icon={<NetworkIcon />}
-                color={'transparent-gray'}
-                type={'circle'}
+                color={Colors.transparentGray}
+                type={ShapesSize.circle}
               />
             </li>
             <li>
               Cancel support
               <ButtonIcon
                 icon={<AddPlaylistIcon />}
-                color={'transparent-gray'}
-                type={'circle'}
+                color={Colors.transparentGray}
+                type={ShapesSize.circle}
               />
             </li>
           </ul>

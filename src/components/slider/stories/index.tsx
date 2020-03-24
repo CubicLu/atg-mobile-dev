@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Avatar } from './../../../components';
+import { Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;
@@ -30,7 +31,9 @@ class SliderStoriesComponent extends React.Component<Props> {
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {viewAll && <Button color={'transparent'} label={'View All'} />}
+            {viewAll && (
+              <Button color={Colors.transparent} label={'View All'} />
+            )}
           </div>
         </div>
 
@@ -43,7 +46,7 @@ class SliderStoriesComponent extends React.Component<Props> {
                     <div>
                       <Avatar
                         image={d[image]}
-                        type="circle"
+                        type={ShapesSize.circle}
                         width={110}
                         height={110}
                         onClick={(): void => {}}

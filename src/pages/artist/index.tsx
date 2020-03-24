@@ -9,14 +9,17 @@ import {
   getArtistAPI
 } from './../../actions';
 import { ApplicationState } from './../../reducers';
-import { validateScrollHeader, artistBackground } from '../../utils';
+import {
+  validateScrollHeader,
+  artistBackground,
+  getFixedTranslatePoints
+} from '../../utils';
 import {
   ArtistInterface,
   MenuInterface,
   ScrollHeaderInterface,
   ShapesSize
 } from '../../interfaces';
-import VigilAnimator from '../../utils/animateFrame';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -45,7 +48,6 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistPage extends React.Component<Props, State> {
-  fixedAnimation: Animation | any;
   relativeAnimation: Animation | any;
   menuAnimationRelative: Animation | any;
   blur: boolean = false;
@@ -54,6 +56,7 @@ class ArtistPage extends React.Component<Props, State> {
     blur: false,
     animation: 'reverse'
   };
+  fixedAnimation: Animation | any;
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.currentArtist == null) {
@@ -68,7 +71,6 @@ class ArtistPage extends React.Component<Props, State> {
     }
   }
 
-  vigil?: VigilAnimator;
   activateAnimations(): any {
     const normalMenu = document.querySelector('#normal-menu');
     const fixedMenu = document.querySelector('#fixed-menu');
@@ -90,47 +92,13 @@ class ArtistPage extends React.Component<Props, State> {
         { backdropFilter: 'blur(6.5px)', opacity: 1, offset: 1 }
       ])
       .duration(600);
-    // FIXED ANIMATION
-
-    this.vigil = new VigilAnimator({
-      element: document.querySelector('#support-button')!,
-      duration: 500,
-      direction: 'normal',
-      axisY: 46,
-      axisX: 16,
-      marginRight: true,
-      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      onFinish: () => {
-        console.log(this.vigil?.currentStep);
-        this.vigil?.playReverse();
-      }
-    });
-
-    const support = createAnimation()
-      .addElement(document.querySelector('#support-button')!)
-      .duration(300)
-      .easing('ease-in-out')
-      .fromTo('transform', 'translate(0, 0)', 'translate(10vw, -100px)');
-    const title = createAnimation()
-      .addElement(document.querySelector('#artist-title')!)
-      .fromTo('fontSize', '48px', '30px')
-      .easing('ease-in-out')
-      .duration(300)
-      .fromTo('transform', 'translate(0, 0)', 'translate(-10vw, -100px)');
-    const topMenu = createAnimation()
-      .addElement(document.querySelector('#normal-menu')!)
-      .fromTo('transform', 'translateY(0px)', 'translateY(-70px)');
-
+    // this.vigilAnimations.push[(supportButton, artistTitle, topMenu)];
     this.relativeAnimation = createAnimation()
-      .easing('ease-in-out')
-      .addAnimation([menuOpacity, bar, support, blurBack, title]);
-    this.fixedAnimation = createAnimation()
-      .easing('ease-in-out')
-      .addAnimation([support, title, topMenu]);
+      .easing('ease-out')
+      .addAnimation([menuOpacity, bar, blurBack]);
   }
 
   handleScroll(event: any): void {
-    // this.vigil?.play();
     const currentScroll = validateScrollHeader(event, 140, 200);
     if (!currentScroll.validScroll) return;
     if (currentScroll.direction === this.lastValidScroll.direction) return;
@@ -139,13 +107,69 @@ class ArtistPage extends React.Component<Props, State> {
     this.blur = currentScroll.blur;
 
     this.transferNodes();
+    this.loadFixedAnimation();
     this.relativeAnimation?.direction(currentScroll.animation).play();
-    this.addRemoveFixedClasses(currentScroll.blur);
-    this.fixedAnimation
-      ?.direction(currentScroll.animation)
-      .duration(currentScroll.blur ? 400 : 200)
-      .play();
-    this.addRemoveFixedClasses(currentScroll.blur);
+  }
+
+  loadFixedAnimation(): void {
+    if (!this.fixedAnimation) {
+      const a = document.querySelector('#support-button')!;
+      const aT = getFixedTranslatePoints(a, 16, 46, true);
+      const elemA = createAnimation()
+        .addElement(a)
+        .duration(300)
+        .fromTo(
+          'transform',
+          'translate(0,0)',
+          `translate(${aT.translateX}px,${aT.translateY}px)`
+        );
+      // .keyframes([
+      //   { transform: 'translate3d(0,0,0)' },
+      //   {
+      //     transform: `translate3d(${aT.translateX}px,${aT.translateY}px, 0)`
+      //   }
+      // ]);
+
+      const b = document.querySelector('#artist-title')!;
+      const h2 = document.querySelector('#artist-h2')!;
+      const bT = getFixedTranslatePoints(h2, 26, 36);
+      const elemB = createAnimation()
+        .addElement(b)
+        .duration(300)
+        .fromTo(
+          'transform',
+          'translate3d(0,0,0) scale(1)',
+          `translate3d(${bT.translateX}px,${bT.translateY}px, 0) scale(0.66)`
+        );
+      // .keyframes([
+      //   { transform: 'translate3d(0,0,0) scale(1)' },
+      //   {
+      //     transform: `translate3d(${bT.translateX}px,${bT.translateY}px, 0) scale(0.66)`
+      //   }
+      // ]);
+      const d = document.querySelector('#normal-menu')!;
+      const dT = getFixedTranslatePoints(d, 0, 88);
+      const elemD = createAnimation()
+        .addElement(d)
+        .duration(300)
+        .fromTo(
+          'transform',
+          'translate3d(0,0,0)',
+          `translate3d(${dT.translateX}px,${dT.translateY}px, 0)`
+        );
+      // .keyframes([
+      //   { transform: 'translate3d(0,0,0)' },
+      //   {
+      //     transform: `translate3d(${dT.translateX}px,${dT.translateY}px, 0)`
+      //   }
+      // ]);
+      this.relativeAnimation?.addAnimation([elemA, elemB, elemD]);
+      this.fixedAnimation = [elemA, elemB, elemD];
+    }
+    // this.fixedAnimation = createAnimation()
+    // .duration(300)
+    // .easing('ease-out')
+    // .addAnimation([elemA, elemB, elemD]);
   }
 
   transferNodes(): void {
@@ -157,21 +181,6 @@ class ArtistPage extends React.Component<Props, State> {
       : document.querySelector('#original');
     while (oldParent?.hasChildNodes()) {
       newParent?.appendChild(oldParent.firstChild!);
-    }
-  }
-
-  addRemoveFixedClasses(add: boolean): void {
-    const normalMenu = document.querySelector('#normal-menu');
-    const supportButton = document.querySelector('#support-button');
-    const artistTitle = document.querySelector('#artist-title');
-    if (add) {
-      normalMenu?.classList.add('set-menu-fixed');
-      supportButton?.classList.add('set-support-fixed');
-      artistTitle?.classList.add('set-name-fixed');
-    } else {
-      normalMenu?.classList.remove('set-menu-fixed');
-      supportButton?.classList.remove('set-support-fixed');
-      artistTitle?.classList.remove('set-name-fixed');
     }
   }
 
@@ -222,7 +231,7 @@ class ArtistPage extends React.Component<Props, State> {
             <div id="original" style={{ marginTop: 130, minHeight: 200 }}>
               <div style={{ minHeight: 50 }}>
                 <h2 id="artist-title" className={`artist-title`}>
-                  {artist.name}
+                  <span id="artist-h2">{artist.name}</span>
                 </h2>
               </div>
               <div style={{ minHeight: 30 }} className={`support-button`}>

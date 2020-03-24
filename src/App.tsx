@@ -35,7 +35,7 @@ export default class App extends React.Component {
 
   UNSAFE_componentWillMount(): void {
     setupConfig({
-      animated: false
+      animated: true
     });
   }
   render(): React.ReactNode {

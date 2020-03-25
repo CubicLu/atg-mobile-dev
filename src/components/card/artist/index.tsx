@@ -31,59 +31,49 @@ class CardArtistComponent extends React.Component<Props> {
     const { cover, username, support, name } = artist;
 
     return (
-      <div className="row">
-        <div className="col s12">
-          <div
-            className="card artist"
-            style={{ backgroundImage: `url(${cover.main})` }}
-          >
+      <div
+        className="card card-artist"
+        style={{ backgroundImage: `url(${cover.main})` }}
+      >
+        <div className="row">
+          <div className="col s12 infos p-10">
             <div className="row">
-              <div
-                className="card-area"
-                onClick={(): void => {
-                  history.push(`/home/artist/${username}`);
-                }}
-              ></div>
-              <div className="col s12 infos p-10">
-                <div className="row">
-                  <div className="col s12 button">
-                    <ButtonIcon
-                      color={Colors.transparent}
-                      icon={<DotsThreeIcon color={'#6a6565'} />}
-                      onClick={updateSettingsModal.bind(
-                        this,
-                        true,
-                        React.createElement(MenuFanSupportOptions, {
-                          artist: artist,
-                          onClick: updateSettingsModal.bind(this, false, null),
-                          background: 'background-tertiary-opacity95'
-                        }),
-                        'background-tertiary-opacity95'
-                      )}
-                    />
-                  </div>
+              <div className="col s12 button">
+                <ButtonIcon
+                  color={Colors.transparent}
+                  icon={<DotsThreeIcon color={'#6a6565'} />}
+                  onClick={updateSettingsModal.bind(
+                    this,
+                    true,
+                    React.createElement(MenuFanSupportOptions, {
+                      artist: artist,
+                      onClick: updateSettingsModal.bind(this, false, null),
+                      background: 'background-tertiary-opacity95'
+                    }),
+                    'background-tertiary-opacity95'
+                  )}
+                />
+              </div>
+            </div>
+            <div
+              className="row"
+              onClick={(): void => {
+                history.push(`/home/artist/${username}`);
+              }}
+            >
+              <div className="col s8 align-items-end">
+                <div className="name">
+                  <span>{name}</span>
                 </div>
-                <div
-                  className="row"
+              </div>
+              <div className="col s4 support">
+                <ButtonSupport
+                  buttonType={'icon'}
+                  supported={support}
                   onClick={(): void => {
-                    history.push(`/home/artist/${username}`);
+                    history.push(`/home/artist/${username}/support`);
                   }}
-                >
-                  <div className="col s8 align-items-end">
-                    <div className="name">
-                      <span>{name}</span>
-                    </div>
-                  </div>
-                  <div className="col s4 support">
-                    <ButtonSupport
-                      buttonType={'icon'}
-                      supported={support}
-                      onClick={(): void => {
-                        history.push(`/home/artist/${username}/support`);
-                      }}
-                    />
-                  </div>
-                </div>
+                />
               </div>
             </div>
           </div>

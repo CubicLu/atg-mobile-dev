@@ -62,7 +62,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     if (currentScroll.blur === this.state.blur) return;
     this.setState({ blur: currentScroll.blur });
-    this.headerRef.current!.playTopHeader(currentScroll);
+    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {
@@ -71,7 +71,6 @@ class ArtistGalleryPage extends React.Component<Props, State> {
         <div className={`artist-gallery-page`}>
           <Header title="Gallery" />
           <HeaderOverlay ref={this.headerRef} />
-
           <IonContent
             fullscreen={true}
             scrollY={true}
@@ -87,29 +86,28 @@ class ArtistGalleryPage extends React.Component<Props, State> {
               bottomRotate
               backgroundTopDark
               backgroundTopOpacity={0.7}
+            />
+            <div
+              className={`row content-container ${this.props.isPlaying &&
+                ' is-playing'}`}
             >
-              <div
-                className={`row content-container ${this.props.isPlaying &&
-                  ' is-playing'}`}
-              >
-                {this.props.currentArtist?.gallery?.map(
-                  (data, index): React.ReactNode => (
-                    <CardAlbumGallery
-                      key={index}
-                      onClick={(): void => {
-                        this.props.history.push(
-                          `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
-                        );
-                      }}
-                      image={data.cover}
-                      label={data.name}
-                      quantity={data.quantity}
-                      col={6}
-                    />
-                  )
-                )}
-              </div>
-            </BackgroundImage>
+              {this.props.currentArtist?.gallery?.map(
+                (data, index): React.ReactNode => (
+                  <CardAlbumGallery
+                    key={index}
+                    onClick={(): void => {
+                      this.props.history.push(
+                        `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
+                      );
+                    }}
+                    image={data.cover}
+                    label={data.name}
+                    quantity={data.quantity}
+                    col={6}
+                  />
+                )
+              )}
+            </div>
           </IonContent>
         </div>
       </IonPage>

@@ -180,7 +180,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     if (currentScroll.blur === this.state.blur) return;
     this.setState({ blur: currentScroll.blur });
-    this.headerRef.current!.playTopHeader(currentScroll);
+    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {

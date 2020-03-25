@@ -46,14 +46,12 @@ class ArtistVideosPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist == null
-    ) {
+    if (nextProps.currentArtist == null) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-
   componentDidMount(): void {
     if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
@@ -65,7 +63,7 @@ class ArtistVideosPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     if (currentScroll.blur === this.state.blur) return;
     this.setState({ blur: currentScroll.blur });
-    this.headerRef.current!.playTopHeader(currentScroll);
+    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {
@@ -75,12 +73,10 @@ class ArtistVideosPage extends React.Component<Props, State> {
         <div className="artist-videos-page">
           <Header title="Videos" titleClassName="videos" />
           <HeaderOverlay ref={this.headerRef} />
-
           <IonContent
             scrollY={true}
             scrollEvents={true}
             onIonScroll={this.handleScroll.bind(this)}
-            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
           >
             <BackgroundImage
               gradient={`180deg,#1F0739,#1F0739`}
@@ -90,39 +86,38 @@ class ArtistVideosPage extends React.Component<Props, State> {
               bottomRotate
               backgroundTopDark
               backgroundTopOpacity={0.7}
-            >
-              <div className="content-container">
-                {currentArtist?.videos?.recents !== undefined && (
-                  <SliderVideo
-                    data={currentArtist?.videos?.recents}
-                    title={'Recent Videos'}
-                    viewAll={false}
-                    size={Sizes.sm}
-                    type={ShapesSize.normal}
-                  />
-                )}
-                <div className="row">
-                  <div className="col s12 showcase">
-                    <h1 className="title">Showcase</h1>
+            />
+            <div className="content-container">
+              {currentArtist?.videos?.recents !== undefined && (
+                <SliderVideo
+                  data={currentArtist?.videos?.recents}
+                  title={'Recent Videos'}
+                  viewAll={false}
+                  size={Sizes.sm}
+                  type={ShapesSize.normal}
+                />
+              )}
+              <div className="row">
+                <div className="col s12 showcase">
+                  <h1 className="title">Showcase</h1>
 
-                    {currentArtist?.videos?.showcase.map(
-                      (value, i): React.ReactNode => {
-                        return (
-                          <CardVideo
-                            key={i}
-                            size={Sizes.lg}
-                            type={ShapesSize.full}
-                            time={value.time}
-                            video={value.video}
-                            image={value.image}
-                          />
-                        );
-                      }
-                    )}
-                  </div>
+                  {currentArtist?.videos?.showcase.map(
+                    (value, i): React.ReactNode => {
+                      return (
+                        <CardVideo
+                          key={i}
+                          size={Sizes.lg}
+                          type={ShapesSize.full}
+                          time={value.time}
+                          video={value.video}
+                          image={value.image}
+                        />
+                      );
+                    }
+                  )}
                 </div>
               </div>
-            </BackgroundImage>
+            </div>
           </IonContent>
         </div>
       </IonPage>

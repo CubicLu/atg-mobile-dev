@@ -1,11 +1,23 @@
 .community-page{
-
     &.content{
         position: absolute;
         top: 90px;
         bottom: 0;
         height: auto;
         width: 100%;
+
+        .filter{
+            .title{
+                font-size: pxToRem(36);
+                margin: 0 0 0 15px;
+            }
+
+            .btn{
+                font-size: pxToRem(17);
+                padding: 0 12px;
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
     }
 }
 

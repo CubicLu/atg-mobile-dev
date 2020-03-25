@@ -434,6 +434,10 @@
                     text-align: left;
                     color: #ffffff;
                     margin-left: 5px;
+                    &::before{
+                        content: "@";
+                        display: inline-flex;
+                    }
                 }
             }
             .button{

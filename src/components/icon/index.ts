@@ -26,6 +26,7 @@ import TicketIcon from './ticket';
 import BalloonIcon from './balloon';
 import ShareLineIcon from './share-line';
 import HeartIcon from './heart';
+import ChatMessageIcon from './chat-message';
 
 export {
   MessageIcon,
@@ -55,5 +56,6 @@ export {
   TicketIcon,
   BalloonIcon,
   ShareLineIcon,
-  HeartIcon
+  HeartIcon,
+  ChatMessageIcon
 };

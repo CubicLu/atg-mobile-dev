@@ -36,7 +36,13 @@ export enum ActionType {
   GET_COMMUNITY_POSTS_API_FAILURE = 'GET_COMMUNITY_POSTS_API_FAILURE',
   GET_COMMUNITY_POSTS_API_SUCCESS = 'GET_COMMUNITY_POSTS_API_SUCCESS',
   UPDATE_COMMUNITY_SET_INITIAL_PROPERTY = 'UPDATE_COMMUNITY_SET_INITIAL_PROPERTY',
-  UPDATE_COMMUNITY_PROPERTY = 'UPDATE_COMMUNITY_PROPERTY'
+  UPDATE_COMMUNITY_PROPERTY = 'UPDATE_COMMUNITY_PROPERTY',
+  GET_COMMUNITY_BY_ARTIST_USERNAME_API = 'GET_COMMUNITY_BY_ARTIST_USERNAME_API',
+  GET_COMMUNITY_BY_ARTIST_USERNAME_API_FAILURE = 'GET_COMMUNITY_BY_ARTIST_USERNAME_API_FAILURE',
+  GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS = 'GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS',
+  GET_COMMUNITY_STORIES_API = 'GET_COMMUNITY_STORIES_API',
+  GET_COMMUNITY_STORIES_API_FAILURE = 'GET_COMMUNITY_STORIES_API_FAILURE',
+  GET_COMMUNITY_STORIES_API_SUCCESS = 'GET_COMMUNITY_STORIES_API_SUCCESS'
 }
 
 export interface TabsInterface {
@@ -139,6 +145,7 @@ export interface ArtistReducerType {
 
 export interface UserInterface {
   name: string;
+  fullname?: string;
   email?: string;
   avatar?: string | undefined;
   username: string;
@@ -184,10 +191,19 @@ export interface PlayerReducerType {
 
 export interface CommunityReducerType {
   posts: PostInterface[];
+  stories: StorieInterface[];
+  currentCommunityArtist: CommunityArtistInterface | null;
   loading: boolean;
   errorMessage: string | null;
   successMessage: string | null;
 }
+
+export interface StorieInterface {
+  image: string;
+  label: string;
+}
+
+export interface CommunityArtistInterface extends UserInterface {}
 
 export interface PostInterface {
   username: string;

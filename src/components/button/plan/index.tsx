@@ -1,5 +1,5 @@
 import React from 'react';
-import {} from './../../';
+import { ButtonIcon, DotsThreeIcon } from './../../';
 
 import { Colors, PlanInterface } from '../../../interfaces';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -32,12 +32,15 @@ class ButtonPlanComponent extends React.Component<Props> {
       <div
         className={`btn plan circle ${color} ${active ? 'active' : ''}`}
         style={{ ...styles }}
+        onClick={onClick.bind(this, plan)}
       >
-        <div onClick={onClick.bind(this, plan)}>
-          <div className="price" data-currency={'$'}>
-            {price}
+        <div className="price">
+          <div>
+            <span className="currency">{'$'}</span>
+            <span>{price}</span>
           </div>
-          <div className="name">{name}</div>
+          <span className="plan-name">{name}</span>
+          <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
         </div>
       </div>
     );

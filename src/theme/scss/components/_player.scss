@@ -39,7 +39,7 @@
         width: 160px;
         height: 160px;
     }
-    @media screen and (max-width: 420px){
+    @media screen and (max-height: 668px){
         margin-top: 64px;
         margin-bottom: 16px;
         .image{
@@ -85,7 +85,7 @@
     .player-button{
         width: 64px;
     }
-    @media screen and (max-width: 420px){
+    @media screen and (max-height: 668px){
             margin-top: 8px;
             margin-bottom: 8px;
     }

@@ -71,6 +71,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <IonPage />; //to render only once, no construct again
     const { planDetail } = this.state;
+    const planDetailClass = planDetail ? ' detail' : '';
 
     const backButton = (): void => this.showDetail(false);
     const closeButton = (): void =>
@@ -90,7 +91,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             />
           ) : (
             <BackgroundImage
-              gradient="180deg, #28144800 30%, #281448bf 50%, #281448 100%"
+              gradient="180deg, #28144800 30%, #281448 60%, #281448 100%"
               backgroundImage={currentArtist.supportImages?.background}
             />
           )}
@@ -101,22 +102,19 @@ class ArtistSupportPage extends React.Component<Props, State> {
             rightCloseOnClick={closeButton}
           />
 
-          <div
-            className={`artist-support-page initial-page-fullscreen ${
-              planDetail ? 'detail' : ''
-            }`}
-          >
+          <div className={`artist-support-page h-100${planDetailClass}`}>
             {!planDetail && (
               <React.Fragment>
-                <div className="h-33 flex-compass south medium">
-                  <h1 className={'title'}>
+                <div className="h-33" />
+                <div className="flex-compass south medium row">
+                  <h1 className="title">
                     Yeah buddy! So stoked you
                     <br />
                     want to support us!
                   </h1>
                 </div>
 
-                <div className="h-50 buttons row">
+                <div className="buttons row">
                   {this.props.plans.map(
                     (data, i): React.ReactNode => {
                       return (
@@ -132,9 +130,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       );
                     }
                   )}
-                </div>
-                <div className="h-16 flex-compass half medium">
-                  <h5>Tap an option below for more details</h5>
+                  <div className="h-16 flex-compass half medium row">
+                    <h5>Tap an option below for more details</h5>
+                  </div>
                 </div>
               </React.Fragment>
             )}

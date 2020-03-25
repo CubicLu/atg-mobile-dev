@@ -65,7 +65,13 @@
     }
 
     &.green{
-        background: #00A850;
+        background: #00a850;
+    }
+    &.light-blue{
+        background: #00aedb;
+    }
+    &.orange{
+        background: #f78429;
     }
 
     &.support{
@@ -99,8 +105,12 @@
            display: flex;
            justify-content: center;
            align-content: center;
-           margin-top: 1px;
            flex-direction: column;
+           &.supported, &.support{
+                margin-top: 4px;   
+                width: 39px;
+                height: 39px;
+           }
 
            span{
                 height: 10px;

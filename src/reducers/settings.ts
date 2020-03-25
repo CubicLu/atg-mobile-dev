@@ -164,7 +164,7 @@ const defaultState: SettingsReducerType = {
     {
       name: 'Platinum',
       price: '0.89',
-      color: Colors.gold,
+      color: Colors.tertiary,
       id: 3,
       description:
         'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'
@@ -172,7 +172,7 @@ const defaultState: SettingsReducerType = {
     {
       name: 'Gold',
       price: '0.79',
-      color: Colors.blue,
+      color: Colors.lightBlue,
       id: 2,
       description:
         'Welcome to Panthr Platinum and thank you for your support. Platinum support level allows the user to experience and listen to music. There is access to discovery for a limited time. Enjoy the Panthr experience.'

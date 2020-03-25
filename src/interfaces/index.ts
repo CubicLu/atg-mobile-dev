@@ -247,6 +247,7 @@ export enum Colors {
   red = 'red',
   orange = 'orange',
   yellow = 'yellow',
+  gold = 'gold',
   blue = 'blue',
   supported = 'supported',
   disable = 'disable',

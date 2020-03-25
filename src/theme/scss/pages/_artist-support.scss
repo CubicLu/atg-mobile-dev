@@ -1,30 +1,14 @@
 .artist-support-page{
-    position: relative;
     overflow: auto;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 80px;
-    margin-bottom: 50px;
-
-    .info{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        margin-top: 140px;
-        padding-top: 0;
-        padding-bottom: 16px;
-        
-
-        .title{
-            font-size: pxToRem(48);
-            line-height: 48px;
-            text-align: center;
-        }
-        .subtitle{
-            font-size: pxToRem(18);
-        }
+    .title{
+        font-size: pxToRem(48);
+        line-height: 48px;
+        text-align: center;
     }
+    .subtitle{
+        font-size: pxToRem(18);
+    }
+
     h5{
         color: #ffffff;
         text-align: center;

@@ -32,7 +32,7 @@ class BiographyListComponent extends React.Component<Props> {
   };
   render(): React.ReactNode {
     return (
-      <div className="menu generic-list">
+      <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom
           backgroundBottomOrange={true}

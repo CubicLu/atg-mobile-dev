@@ -44,7 +44,7 @@ class MenuArtistList extends React.Component<Props> {
       ? currentArtist.similarArtist
       : currentArtist.supportArtistFans;
     return (
-      <div className="menu artist-list">
+      <div className="menu-artist-list">
         <BackgroundImage
           backgroundBottom={true}
           backgroundBottomOrange={true}

@@ -19,7 +19,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <div className={`container menu fan-support-options`}>
+      <div className={`container fan-support-options`}>
         <Header
           leftBackButton={false}
           rightCloseButton={true}

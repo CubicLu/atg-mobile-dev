@@ -13,7 +13,7 @@ class ThankYouPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="thank-you-page">
-        <IonContent>
+        <IonContent scrollY={false}>
           <BackgroundImage
             gradient="180deg, #FDD105 0%, #C16509 100%"
             backgroundTop

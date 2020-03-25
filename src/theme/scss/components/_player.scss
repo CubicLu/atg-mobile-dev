@@ -1,4 +1,11 @@
 
+.moving{
+    filter: blur(4px);
+    opacity: 0.95;
+    .artist-bar, .atg-header{
+        opacity: 0;
+    }
+}
 .cover-title{
     margin: 32px;
     margin-top: 90px;
@@ -121,16 +128,17 @@
     bottom: 50px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    .background-image, .background-top, .background-bottom{
+    .background-image, .background-top {
         position: absolute;
         top: 2;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top-left-radius: 19px;
+        border-top-right-radius: 19px;
     }
     .bottom-shadow{
         background: linear-gradient(180deg, #ffffff00 40%, #000);
         position: absolute;
         z-index: 0;
+        width: 100%;
         opacity: 0.85;
         bottom: -1px;
         pointer-events:none;
@@ -138,6 +146,8 @@
     .background-bottom{
         bottom: 0;
         z-index: -1;
+        position: absolute;
+        bottom: 100px;
     }
     .player-button{
         background: transparent;

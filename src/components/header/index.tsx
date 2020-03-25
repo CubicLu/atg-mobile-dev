@@ -140,7 +140,10 @@ class HeaderComponent extends React.Component<Props> {
               </div>
             )}
             {rightSettingsButton && (
-              <div className="default-button" onClick={rightSettingsOnClick}>
+              <div
+                className="default-button dark"
+                onClick={rightSettingsOnClick}
+              >
                 <SettingsIcon height={24} width={24} />
               </div>
             )}

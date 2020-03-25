@@ -34,8 +34,8 @@ class BackgroundImageComponent extends React.Component<Props> {
     backgroundBottomOrange: false,
     backgroundTopDark: true,
     backgroundBottomDark: true,
-    backgroundTopOpacity: 0.12,
-    backgroundBottomOpacity: 0.15,
+    backgroundTopOpacity: 0.2,
+    backgroundBottomOpacity: 0.2,
     blur: false,
     className: ''
   };

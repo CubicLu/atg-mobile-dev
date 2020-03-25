@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonPage, IonButton } from '@ionic/react';
+import { IonPage, IonButton, IonContent } from '@ionic/react';
 import {
   ArtistInterface,
   PlanInterface,
@@ -72,18 +72,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { username } = currentArtist;
     const { plan } = this.state;
     const hasPlan = !!plan;
-    const planDetailClass = hasPlan ? ' detail h-100' : '';
+    const planDetailClass = hasPlan ? ' detail ' : '';
 
     const backButton = (): void => this.showDetail();
     const closeButton = (): void => history.push(`/home/artist/${username}`);
     const rightButton = hasPlan ? backButton : closeButton;
 
     const allPlans = (
-      <div className="flex-compass south medium">
-        <BackgroundImage
-          gradient="180deg, #28144800 30%, #281448 60%, #281448 100%"
-          backgroundImage={currentArtist.supportImages?.background}
-        />
+      <div className="flex-compass south medium" style={{ height: 'inherit' }}>
         <div className="row">
           <h1 className="title center-align">
             Yeah buddy! So stoked you
@@ -112,15 +108,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
       </div>
     );
     const detailPlan = (
-      <div className="space-between h-100">
-        <BackgroundImage
-          gradient="180deg, #FCC505 0%, #C16509 100%"
-          backgroundTop={true}
-          backgroundTopDark={true}
-          backgroundBottom={true}
-          backgroundBottomOpacity={0.3}
-          backgroundBottomDark={false}
-        />
+      <div className="space-between h-75">
         <div className="row fluid">
           <div className="col s4">
             <Avatar
@@ -168,17 +156,31 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
     return (
       <IonPage>
-        <React.Fragment>
-          <Header
-            leftBackButton={false}
-            rightCloseButton={true}
-            rightCloseOnClick={rightButton}
-          />
-
-          <div className={`artist-support-page ${planDetailClass}`}>
+        <Header
+          leftBackButton={false}
+          rightCloseButton={true}
+          rightCloseOnClick={rightButton}
+        />
+        <IonContent scrollY={!hasPlan}>
+          <div className={`artist-support-page h-100 ${planDetailClass}`}>
+            {hasPlan ? (
+              <BackgroundImage
+                gradient="180deg, #FCC505 0%, #C16509 100%"
+                backgroundTop={true}
+                backgroundTopDark={true}
+                backgroundBottom={true}
+                backgroundBottomOpacity={0.3}
+                backgroundBottomDark={false}
+              />
+            ) : (
+              <BackgroundImage
+                gradient="180deg, #28144800 30%, #281448 60%, #281448 100%"
+                backgroundImage={currentArtist.supportImages?.background}
+              />
+            )}
             {hasPlan ? detailPlan : allPlans}
           </div>
-        </React.Fragment>
+        </IonContent>
       </IonPage>
     );
   }

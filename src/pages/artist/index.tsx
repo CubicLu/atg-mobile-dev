@@ -84,7 +84,6 @@ class ArtistPage extends React.Component<Props, State> {
       .duration(300);
     const blurBack = createAnimation()
       .addElement(document.querySelector('#blur-background')!)
-      .easing('ease-in-out')
       .keyframes([
         { backdropFilter: 'blur(0)', opacity: 0, offset: 0 },
         { backdropFilter: 'blur(2px)', opacity: 0.9, offset: 0.25 },
@@ -93,9 +92,11 @@ class ArtistPage extends React.Component<Props, State> {
       ])
       .duration(600);
     // this.vigilAnimations.push[(supportButton, artistTitle, topMenu)];
-    this.relativeAnimation = createAnimation()
-      .easing('ease-out')
-      .addAnimation([menuOpacity, bar, blurBack]);
+    this.relativeAnimation = createAnimation().addAnimation([
+      menuOpacity,
+      bar,
+      blurBack
+    ]);
   }
 
   handleScroll(event: any): void {
@@ -168,7 +169,6 @@ class ArtistPage extends React.Component<Props, State> {
     }
     // this.fixedAnimation = createAnimation()
     // .duration(300)
-    // .easing('ease-out')
     // .addAnimation([elemA, elemB, elemD]);
   }
 

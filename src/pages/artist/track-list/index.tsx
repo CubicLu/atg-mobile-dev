@@ -132,21 +132,23 @@ class TrackListPage extends React.Component<Props> {
         <BackgroundImage
           gradient={`180deg,#aed8e5,#039e4a`}
           backgroundTop
+          backgroundTopDark={true}
+          backgroundTopOpacity={0.2}
           backgroundBottom
-          backgroundBottomDark={false}
-          backgroundTopDark
-          backgroundTopOpacity={0.25}
-          backgroundBottomOpacity={0.3}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.6}
         />
         <Header
           leftBackButton={true}
           rightActionButton={true}
           rightContent={
-            <ButtonSupport
-              buttonType={'text'}
-              uppercase
-              type={ShapesSize.rounded}
-            />
+            <div>
+              <ButtonSupport
+                buttonType={'text'}
+                uppercase
+                type={ShapesSize.rounded}
+              />
+            </div>
           }
           rightActionYellow={true}
           rightActionOnClick={null}

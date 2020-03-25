@@ -1,16 +1,15 @@
 import React from 'react';
-import { IonContent } from '@ionic/react';
 import { RouteComponentProps } from 'react-router-dom';
 import { CardArtist } from './../../../components';
 import { getArtistsAPI } from './../../../actions';
 import { ArtistInterface } from '../../../interfaces';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
+import { IonContent } from '@ionic/react';
 
 interface StateProps {
   artists: ArtistInterface[];
 }
-
 interface DispatchProps {
   getArtistsAPI: () => any;
 }
@@ -23,18 +22,16 @@ class ProfileArtistsPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { artists } = this.props;
-    if (artists && artists.length > 0) {
-      return (
-        <IonContent>
-          {artists.map(
-            (data, i): React.ReactNode => (
-              <CardArtist key={i} artist={data} />
-            )
-          )}
-        </IonContent>
-      );
-    }
-    return <IonContent />;
+    if (!(artists && artists.length > 0)) return <div />;
+    return (
+      <IonContent>
+        {artists.map(
+          (data, i): React.ReactNode => (
+            <CardArtist key={i} artist={data} />
+          )
+        )}
+      </IonContent>
+    );
   }
 }
 

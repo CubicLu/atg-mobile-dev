@@ -27,7 +27,7 @@ class ButtonComponent extends React.Component<Props> {
     const { onClick, color, type, label } = this.props;
     let gradient = this.props.gradient ? 'gradient' : '';
     let bold = this.props.bold ? 'bold' : '';
-    let size = this.props.size != Sizes.md && Sizes.lg ? 'btn-large' : '';
+    let size = this.props.size !== Sizes.md && Sizes.lg ? 'btn-large' : '';
     let gradientDirection = this.props.gradientDirection
       ? this.props.gradientDirection
       : GradientDirection.horizontal;

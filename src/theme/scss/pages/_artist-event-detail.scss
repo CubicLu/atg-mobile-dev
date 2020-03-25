@@ -7,16 +7,17 @@
         height: 350px;
         z-index: 2;
         top: 0;
+        border-bottom: 1px solid $secondary;
         position: fixed;
         background: linear-gradient(180deg, #000, #0e0819);
         .content-fixed{
-            height: 250px;
+            height: 40vh;
             z-index: 2;
             position: fixed;
             width: 100%;
             background: linear-gradient(180deg, #000,#0e0819);
-            top: 120px;
-            
+            padding-top: 120px;
+            top: 0;
             .card{
                 padding-left: 20px;
                 padding-right: 20px;
@@ -31,7 +32,7 @@
     
     .content-list{
         position: relative;
-        top: 370px;
+        top: 43vh;
         @include list-user;
         ion-item{
             border-bottom: none;

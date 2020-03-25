@@ -43,16 +43,6 @@
     .artist-discography-page{
         margin-bottom: 150px;
     }
-    .menu-artist{
-        padding: 0 0 4px 0;
-        display: flex;
-        height: auto;
-        .menu{
-            &.scroll{
-                padding-left: $list-margin;
-            }
-        }
-    }
 }
 
 .artist-features-page{

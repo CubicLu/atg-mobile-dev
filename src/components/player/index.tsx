@@ -59,7 +59,7 @@ interface DispatchProps {
   resumeSong: () => void;
   updateElapsed: (time: number) => void;
 }
-interface Props extends StateProps, DispatchProps { }
+interface Props extends StateProps, DispatchProps {}
 
 class PlayerComponent extends React.Component<Props> {
   audio: HTMLAudioElement | undefined;
@@ -124,19 +124,12 @@ class PlayerComponent extends React.Component<Props> {
     if (!player) return;
     this.relativeAnimation = createAnimation()
       .addElement(player)
-      .easing('cubic-bezier(.36,.66,.04,1)')
       .duration(300)
-      .keyframes([
-        {
-          minHeight: '0%',
-          offset: 0
-        },
-        {
-          minHeight: 'calc(100% - 58px)',
-          offset: 1
-        }
-      ])
-      .onFinish((): boolean => (this.animating = false));
+      .fromTo('minHeight', '0%', 'calc(100% - 58px)')
+      .onFinish((): void => {
+        this.animating = false;
+        this.forceUpdate();
+      });
   }
   togglePlayer(e: any): void {
     e?.preventDefault();
@@ -145,7 +138,11 @@ class PlayerComponent extends React.Component<Props> {
     this.props.togglePlayer();
     this.relativeAnimation.direction(direction);
     this.animating = true;
-    this.relativeAnimation.play();
+    this.relativeAnimation
+      .beforeAddClass('moving')
+      .afterRemoveClass('moving')
+      .play();
+    this.forceUpdate();
   }
 
   pauseSong(): void {
@@ -240,11 +237,11 @@ class PlayerComponent extends React.Component<Props> {
                   viewBox="0 0 400 10"
                   style={{
                     position: 'fixed',
-                    bottom: 85,
-                    marginLeft: 4,
-                    marginRight: 4,
-                    width: '99%',
-                    height: 'auto',
+                    bottom: 100,
+                    paddingLeft: 15,
+                    paddingRight: 15,
+                    width: '100%',
+                    height: 'fit-content',
                     overflow: 'visible'
                   }}
                 >
@@ -252,7 +249,7 @@ class PlayerComponent extends React.Component<Props> {
                   <path
                     id="a"
                     d={`M 0 10 c 200-0, 400,0, 400,0`}
-                    fill="#22022f)"
+                    fill="#aed8e5"
                   />
                 </svg>
                 {/* 
@@ -295,14 +292,14 @@ class PlayerComponent extends React.Component<Props> {
                           <PauseIcon />
                         </button>
                       ) : (
-                          <button
-                            disabled={!song}
-                            className="player-button"
-                            onClick={(): void => this.resumeSong()}
-                          >
-                            <PlayIcon />
-                          </button>
-                        )}
+                        <button
+                          disabled={!song}
+                          className="player-button"
+                          onClick={(): void => this.resumeSong()}
+                        >
+                          <PlayIcon />
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>
@@ -358,11 +355,11 @@ class PlayerComponent extends React.Component<Props> {
               <BackgroundImage
                 gradient={`180deg,#aed8e5,#039e4a`}
                 backgroundTop
+                backgroundTopDark={true}
+                backgroundTopOpacity={0.2}
                 backgroundBottom
-                backgroundBottomDark={false}
-                backgroundTopDark
-                backgroundTopOpacity={0.25}
-                backgroundBottomOpacity={0.3}
+                backgroundBottomOrange={true}
+                backgroundBottomOpacity={0.6}
               />
               <Header
                 leftBackButton={false}
@@ -448,7 +445,7 @@ class PlayerComponent extends React.Component<Props> {
                 </div>
 
                 <div className="bottom-shadow h-16 w-100" />
-                <div className="flex-compass south half h-16">
+                <div className="artist-bar flex-compass south half h-16">
                   <div className="row p-0 flex-wrap">
                     <div className="col s4 p-0">
                       <IonImg

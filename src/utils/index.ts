@@ -19,7 +19,10 @@ export function setHeight(original: number): number {
   }
 }
 
-export function artistBackground(artist: ArtistInterface | any): CSSProperties {
+export function artistBackground(
+  artist: ArtistInterface | any,
+  coverType: string = 'background'
+): CSSProperties {
   let backgroundImageArray: string[] = [];
   if (!artist)
     artist = {
@@ -36,8 +39,8 @@ export function artistBackground(artist: ArtistInterface | any): CSSProperties {
       }
     };
   const gradient = `180deg,${artist.backgroundGradient?.color1}00 0%,${artist.backgroundGradient?.color1}d1 45%,${artist.backgroundGradient?.color2} 100%`;
-  if (artist.cover.background) {
-    backgroundImageArray.push(`url(${artist.cover.background})`);
+  if (artist.cover[coverType]) {
+    backgroundImageArray.push(`url(${artist.cover[coverType]})`);
   }
   backgroundImageArray.push(`linear-gradient(${gradient})`);
   const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');

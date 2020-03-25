@@ -1,3 +1,37 @@
+.badge-blue{
+ .btn{
+    height: 30px !important;
+    border-radius: 8px !important;
+    background-image: linear-gradient(90deg, #64e9ff, #0082ff) !important;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 1.14;
+    width: 120px;
+ }
+}
+.badge-gray{
+ .btn{
+    height: 30px !important;
+    border-radius: 8px !important;
+    background-image: linear-gradient(90deg, #9c9d9d, #717274) !important;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 1.14;
+    width: 120px;
+ }
+}
+.confirm-blue{
+ .btn{
+    height: 30px !important;
+    border-radius: 8px !important;
+    background-image: linear-gradient(90deg, #01aed4, #0c36e6) !important;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 1.14;
+    width: 86px;
+    margin-top: 14px;
+ }
+}
 .btn { 
     .btn-large{
         height: 48px;

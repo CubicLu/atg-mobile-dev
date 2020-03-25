@@ -20,7 +20,7 @@ class MenuComponent extends React.Component<Props> {
     const { tabs, onClick, activeId } = this.props;
     const scroll = tabs.length > 4;
     return (
-      <ul className={'list inline menu ' + (scroll ? ' scroll' : '')}>
+      <ul className={'horizontal-menu ' + (scroll ? ' scroll' : '')}>
         {tabs.map(
           (data, i): React.ReactNode => {
             return (

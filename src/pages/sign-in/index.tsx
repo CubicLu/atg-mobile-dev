@@ -36,7 +36,7 @@ class SignInPage extends React.Component<Props> {
           gradient="180deg,#ffc23f,#ffc23f"
           backgroundImage={BackgroundSignInImage}
           backgroundTop={false}
-          backgroundBottom={true}
+          backgroundBottom={false}
           backgroundBottomOpacity={0.25}
         />
         <Header

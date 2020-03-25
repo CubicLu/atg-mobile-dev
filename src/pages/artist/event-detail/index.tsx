@@ -76,11 +76,7 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
-        <BackgroundImage
-          gradient={`180deg,#000,#20123a`}
-          backgroundBottom
-          bottomRotate
-        >
+        <BackgroundImage gradient={`180deg,#000,#20123a`} backgroundBottom>
           <div
             className={`artist-event-detail-page ${this.props.isPlaying &&
               'is-playing'}`}

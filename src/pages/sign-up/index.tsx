@@ -15,7 +15,6 @@ class SignUpPage extends React.Component<Props> {
           backgroundTopOpacity={0.3}
           backgroundBottom={true}
           backgroundBottomDark={false}
-          bottomRotate={true}
           gradient="180deg, #231441, #080709"
         />
         <Header

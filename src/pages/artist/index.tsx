@@ -148,7 +148,7 @@ class ArtistPage extends React.Component<Props, State> {
       //   }
       // ]);
       const d = document.querySelector('#normal-menu')!;
-      const dT = getFixedTranslatePoints(d, 0, 88);
+      const dT = getFixedTranslatePoints(d, 0, 80);
       const elemD = createAnimation()
         .addElement(d)
         .duration(300)
@@ -251,7 +251,7 @@ class ArtistPage extends React.Component<Props, State> {
               </div>
               <div style={{ minHeight: 40 }} />
               <div style={{ minHeight: 80 }}>
-                <div id="normal-menu">
+                <div id="normal-menu" className="menu-artist">
                   <Menu
                     tabs={artistTabs}
                     activeId={activeArtistTab}

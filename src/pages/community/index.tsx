@@ -39,7 +39,6 @@ class CommunityPage extends React.Component<Props> {
           backgroundTopOpacity={0.15}
           backgroundBottom
           backgroundBottomDark={false}
-          bottomRotate={true}
           backgroundBottomOpacity={0.15}
         />
         <Header

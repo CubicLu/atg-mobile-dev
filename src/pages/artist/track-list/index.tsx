@@ -134,7 +134,6 @@ class TrackListPage extends React.Component<Props> {
           backgroundTop
           backgroundBottom
           backgroundBottomDark={false}
-          bottomRotate
           backgroundTopDark
           backgroundTopOpacity={0.25}
           backgroundBottomOpacity={0.3}

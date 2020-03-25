@@ -35,7 +35,6 @@ class ProfilePage extends React.Component<Props> {
           backgroundTopOpacity={0.15}
           backgroundBottom
           backgroundBottomDark={false}
-          bottomRotate={true}
           backgroundBottomOpacity={0.15}
         />
         <div className={`profile-page` + (isPlaying && ' is-playing')}>

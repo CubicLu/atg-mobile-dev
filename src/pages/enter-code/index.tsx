@@ -40,7 +40,6 @@ class EnterCodePage extends React.Component<Props, State> {
           backgroundBottom={true}
           backgroundBottomDark={false}
           backgroundBottomOpacity={0.13}
-          bottomRotate={true}
         />
         <Header
           leftBackButton={true}

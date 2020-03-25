@@ -10,9 +10,6 @@ ion-page{
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -27,24 +24,18 @@ ion-page{
     }
 }
 .background-top, .background-bottom {
+    position: fixed;
     z-index: -2;
     background-size: cover;
-    background-position: center center;
     background-repeat: no-repeat;
-    height: 50vh;
     width: 100%;
-    position: fixed;
-    &.rotate{
-        transform: rotate(180deg);
-    }
-    &.background-bottom{
-        bottom: -50px;
-        margin-top: 50%;
-    }
-    &.background-top{
-        top: 0;
-        margin-top: 0;
-    }
+    height: 100%;
+}
+.background-top {
+    background-position: center top;
+}
+.background-bottom {
+    background-position: center bottom;
 }
 .background-legend {
     z-index: -2;

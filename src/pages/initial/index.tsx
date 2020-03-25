@@ -36,7 +36,7 @@ class InitialPage extends React.Component<Props> {
               <h2 className="subtitle-album">DESTINATION FOR ARTIST & FANS</h2>
             </div>
 
-            <div className="footer row flex-fluid">
+            <div className="footer row fluid">
               <div className="row">
                 <IonButton
                   className="primary gradient"

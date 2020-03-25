@@ -22,8 +22,8 @@ class ButtonComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { onClick, color, type, label } = this.props;
-    let gradient = this.props.gradient ? 'gradient' : '';
-    let bold = this.props.bold ? 'bold' : '';
+    const gradient = this.props.gradient ? 'gradient' : '';
+    const bold = this.props.bold ? 'bold' : '';
     return (
       <button
         onClick={onClick.bind(this)}

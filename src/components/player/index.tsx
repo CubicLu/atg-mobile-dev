@@ -59,7 +59,7 @@ interface DispatchProps {
   resumeSong: () => void;
   updateElapsed: (time: number) => void;
 }
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps { }
 
 class PlayerComponent extends React.Component<Props> {
   audio: HTMLAudioElement | undefined;
@@ -295,14 +295,14 @@ class PlayerComponent extends React.Component<Props> {
                           <PauseIcon />
                         </button>
                       ) : (
-                        <button
-                          disabled={!song}
-                          className="player-button"
-                          onClick={(): void => this.resumeSong()}
-                        >
-                          <PlayIcon />
-                        </button>
-                      )}
+                          <button
+                            disabled={!song}
+                            className="player-button"
+                            onClick={(): void => this.resumeSong()}
+                          >
+                            <PlayIcon />
+                          </button>
+                        )}
                     </div>
                   )}
                 </div>
@@ -360,7 +360,6 @@ class PlayerComponent extends React.Component<Props> {
                 backgroundTop
                 backgroundBottom
                 backgroundBottomDark={false}
-                bottomRotate
                 backgroundTopDark
                 backgroundTopOpacity={0.25}
                 backgroundBottomOpacity={0.3}

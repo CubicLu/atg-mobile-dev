@@ -1,7 +1,7 @@
 ion-tabbar {
     --ion-safe-area-bottom: 0px;
 }
-ion-button {
+.ion-button, ion-button {
     margin: 0;
     font-family: "Helvetica Neue";
     font-size: 16px;;
@@ -51,7 +51,13 @@ ion-button {
         &.gradient{ 
             background: linear-gradient(180deg, $tertiary 0%, $tertiary-gradient 100%);
         }
-        
+    }
+    &.support{ 
+        background: linear-gradient(90deg, $support-start 0%, $support-end 100%);
+        color: #FFF;
+        font-size: 16px;
+        box-shadow: 0 3px 6px 0 #00000029;
+        border-radius: 3px;
     }
     &.transparent{ 
         background: transparent;
@@ -70,15 +76,6 @@ ion-button {
 
     &.green{
         background: #00A850;
-    }
-
-    &.support{
-        background: linear-gradient(120deg, #FF9766, #FC5F62);
-        height: 30px;
-        line-height: 30px;
-        font-size: 14px;
-        font-weight: 400;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     }
 
     &.icon { 

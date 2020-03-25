@@ -29,7 +29,7 @@
         background: $secondary;
         color: #FFF;
         &.gradient { 
-            background: linear-gradient(to right, $secondary 0%, $secondary-gradient 100%);
+            background: linear-gradient(90deg, $secondary 0%, $secondary-gradient 100%);
         }
     }
     &.tertiary { 
@@ -60,7 +60,7 @@
     }
 
     &.transparent-gray{
-        background: rgba(0,0,0,0.5);
+        background: #00000080;
         color: #FFF;
     }
 
@@ -75,13 +75,13 @@
     }
 
     &.support{
-        background: linear-gradient(120deg, #FF9766, #FC5F62);
+        background: linear-gradient(90deg, #FF9766, #FC5F62);
         height: 30px;
         line-height: 30px;    
     }
 
     &.supported{
-        background: linear-gradient(120deg, #fff, #fff);
+        background: linear-gradient(90deg, #fff, #fff);
         height: 30px;
         line-height: 30px;
         color: #FC5F62;
@@ -91,7 +91,7 @@
         background: #717274;
         color: #FFF;
         &.gradient { 
-            background: linear-gradient(to right, #9c9d9d, #717274 99%);
+            background: linear-gradient(90deg, #9c9d9d, #717274 99%);
         }
     }
 

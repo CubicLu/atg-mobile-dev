@@ -144,7 +144,7 @@
     font-family: 'Helvetica';
     font-size: 18px;
   }
-  @media screen and (max-width: 360px){
+  @media screen and (max-height: 667px){
     &.circle {
       border-radius: 50%;
       height: 128px;

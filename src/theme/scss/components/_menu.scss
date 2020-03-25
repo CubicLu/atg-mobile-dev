@@ -1,24 +1,24 @@
 .menu{
     width: 100%;
-    overflow-x: auto;
-    &.generic{
-        &.scroll{
-            justify-content: normal !important;
-            margin-top: 30px;
-            @include no-scroll-bar();
-            li{
-                margin-left: 8px !important;
-                margin-right: 8px !important;
-
-                &:first-child{
-                    margin-left: 8px !important;
-                }
-                &:last-child{
-                    padding-right: 8px !important;
-                }
+    &.scroll{
+        overflow-x: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        justify-content: normal !important;
+        margin-top: 30px;
+        @include no-scroll-bar();
+        li{
+            margin-left: $menu-scroll-margin;
+            margin-right: $menu-scroll-margin;
+            &:first-child{
+                margin-left: 0;
+            }
+            &:last-child{
+                padding-right: $menu-scroll-margin;
             }
         }
-
+    }
+    &.generic{
         justify-content: space-around;
         padding: $menu-padding/2 0;
         margin-top: 30px;
@@ -53,6 +53,7 @@
                 .title{
                     font-family: 'Helvetica';
                     font-size: 14px;
+                    color: $menu;
                     margin-top: $list-padding-top;
                     font-weight: 400;
                     border-bottom: 2px solid transparent;
@@ -74,7 +75,6 @@
                     }
                 }
             }
-
     }
 
     &.fan-support-options, &.artist-list, &.generic-list{

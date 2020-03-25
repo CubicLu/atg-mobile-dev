@@ -13,20 +13,21 @@ interface Props extends StateProps, DispatchProps {
 }
 
 class MenuComponent extends React.Component<Props> {
-  public static defaultProps = {
-    onClick: (): void => {}
-  };
+  public static defaultProps = { onClick: (): void => {} };
+
   render(): React.ReactNode {
-    let scroll = this.props.tabs.length > 4;
+    if (!this.props.tabs) return <ul />;
+    const { tabs, onClick, activeId } = this.props;
+    const scroll = tabs.length > 4;
     return (
       <ul className={'list inline menu generic' + (scroll ? ' scroll' : '')}>
-        {this.props.tabs.map(
+        {tabs.map(
           (data, i): React.ReactNode => {
             return (
               <li
-                className={this.props.activeId === data.id ? 'active' : ''}
                 key={i}
-                onClick={this.props.onClick.bind(this, data)}
+                className={activeId === data.id ? 'active' : ''}
+                onClick={onClick.bind(this, data)}
               >
                 <span className="circle">
                   <span>{data.icon}</span>

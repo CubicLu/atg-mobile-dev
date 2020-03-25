@@ -36,8 +36,10 @@ class ButtonPlanComponent extends React.Component<Props> {
       >
         <div className="price">
           <div>
-            <span className="currency">{'$'}</span>
-            <span>{price}</span>
+            <span>
+              <span className="currency">{'$'}</span>
+              {price}
+            </span>
           </div>
           <span className="plan-name">{name}</span>
           <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />

@@ -7,9 +7,11 @@ import {
   HeartIcon
 } from './../../../components';
 import { PostInterface, ShapesSize } from '../../../interfaces';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface Props {
+interface Props extends RouteComponentProps {
   post: PostInterface;
+  showUser?: boolean;
 }
 
 class CardPostComponent extends React.Component<Props> {
@@ -24,14 +26,26 @@ class CardPostComponent extends React.Component<Props> {
         <div className="row info">
           <div className="col s12">
             <div className="row">
-              <div className="col s6 user">
-                <Avatar
-                  image={this.props.post.avatar}
-                  type={ShapesSize.circle}
-                  width={42}
-                  height={42}
-                />
-                <label>{this.props.post.username} </label>
+              <div
+                className="col s6 user"
+                onClick={(): void => {
+                  if (this.props.showUser)
+                    this.props.history.push(
+                      `/home/community/${this.props.post.username}`
+                    );
+                }}
+              >
+                {this.props.showUser && (
+                  <>
+                    <Avatar
+                      image={this.props.post.avatar}
+                      type={ShapesSize.circle}
+                      width={42}
+                      height={42}
+                    />
+                    <label>{this.props.post.username} </label>
+                  </>
+                )}
               </div>
               <div className="col s6 button">
                 <ButtonIcon icon={<ShareLineIcon />} />
@@ -49,4 +63,4 @@ class CardPostComponent extends React.Component<Props> {
   }
 }
 
-export default CardPostComponent;
+export default withRouter(CardPostComponent);

@@ -68,7 +68,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
       return <IonPage />;
     }
 
-    const { currentArtist, history } = this.props;
+    const { currentArtist, history, match } = this.props;
     const { username } = currentArtist;
     const { plan } = this.state;
     const hasPlan = !!plan;
@@ -152,13 +152,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
         <div className="row body">{this.state.plan?.description}</div>
 
         <div className="mt-40 margin-footer row fluid">
-          <div className="ion-button button-large">
-            <IonButton
-              className="support"
-              size="large"
-              routerLink={`/home/artist/${username}`}
-              expand="full"
-            >
+          <div
+            className="ion-button button-large"
+            onClick={(): void =>
+              history.push(`/home/thank-you`, { artistId: match.params.id })
+            }
+          >
+            <IonButton className="support" size="large" expand="full">
               Support Us
             </IonButton>
           </div>

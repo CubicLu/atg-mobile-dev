@@ -10,6 +10,17 @@
         .slick-slide {
             margin: 0 10px;
         }
+
+        &.sm{
+            .title{
+                font-size: pxToRem(42);
+            }
+
+            .slick-slide {
+                margin: 0 7px;
+            }
+    
+        }
     }
     &.radio{
         .card{

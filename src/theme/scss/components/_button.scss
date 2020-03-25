@@ -29,7 +29,12 @@
         background: $secondary;
         color: #FFF;
         &.gradient { 
-            background: linear-gradient(90deg, $secondary 0%, $secondary-gradient 100%);
+            &.vertical {
+                background: linear-gradient(90deg, $secondary 0%, $secondary-gradient 100%);
+            }
+            &.horizontal {
+                background: linear-gradient(180deg, $secondary 0%, $secondary-gradient 100%);
+            }
         }
     }
     &.tertiary { 

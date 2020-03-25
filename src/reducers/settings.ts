@@ -112,7 +112,8 @@ const defaultState: SettingsReducerType = {
       id: 'videos',
       label: 'Videos',
       icon: 'v',
-      component: ArtistVideosPage
+      isPage: true,
+      route: '/home/artist/:id/video'
     },
     {
       id: 'deep',
@@ -243,6 +244,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/thank-you',
       id: 'thankYou',
       component: ThankYouPage
+    },
+    {
+      path: '/home/artist/:id/video',
+      id: 'artistVideos',
+      component: ArtistVideosPage
     }
   ],
 

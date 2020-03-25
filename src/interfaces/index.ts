@@ -68,6 +68,10 @@ export interface ArtistInterface {
   similarArtist?: ArtistInterface[];
   gallery?: GalleryInterface[];
   biography?: BiographyInterface[];
+  videos?: {
+    recents: VideoInterface[];
+    showcase: VideoInterface[];
+  };
 }
 
 export interface ArtistCoverInterface {
@@ -305,8 +309,20 @@ export enum ShapesSize {
   normal = 'normal',
   full = 'full'
 }
-
+export enum Sizes {
+  xs = 'xs',
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+  xl = 'xl'
+}
 export enum GradientDirection {
   vertical = 'vertical',
   horizontal = 'horizontal'
+}
+export interface VideoInterface {
+  image: string;
+  video: string;
+  time: number | string;
+  datePublished: Date;
 }

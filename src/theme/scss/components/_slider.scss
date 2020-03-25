@@ -11,14 +11,20 @@
             margin: 0 10px;
         }
     }
-
     &.radio{
         .card{
             &.image{
                 &.circle{
                     height: 110px;
                     width: 110px;
+                    min-height: 110px;
+                    min-width: 110px;
                 }
+            }
+        }
+        .slick-track{
+            .slick-slide {
+                margin: 0;
             }
         }
         > .slick-slider{
@@ -61,7 +67,6 @@
         .list{
             overflow-x: scroll;
             @include no-scroll-bar();
-            width: 100%;
             &.inline{
                 margin-top: 15px;
 

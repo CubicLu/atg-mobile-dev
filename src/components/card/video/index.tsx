@@ -35,8 +35,6 @@ class CardVideoComponent extends React.Component<Props> {
               <div className="col s12">
                 <h1 className="title">{title}</h1>
               </div>
-            </div>
-            <div className="row">
               <div className="col s12 button">
                 <h1 className={'artist'}>{artist.name}</h1>
                 <ButtonIcon

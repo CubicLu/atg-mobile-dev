@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardEvent, Button } from './../../../components';
-import { Colors } from '../../../interfaces';
+import { Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;
@@ -19,13 +19,11 @@ class SliderEventsComponent extends React.Component<Props> {
 
     return (
       <div className="row slider image">
-        <div className="list-view-all">
-          <div>
-            <h1 className="title">{title}</h1>
-          </div>
-          <div className="action">
+        <div className="list-component align-bottom row">
+          <h1 className="title">{title}</h1>
+          <div className="align-end">
             {viewAll && (
-              <Button color={Colors.transparent} label={'View All'} />
+              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
             )}
           </div>
         </div>

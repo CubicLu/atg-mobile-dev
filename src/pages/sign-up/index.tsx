@@ -23,16 +23,16 @@ class SignUpPage extends React.Component<Props> {
           rightCloseButton={true}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
-        <div className="initial-page-fullscreen">
-          <div className="space-between">
-            <div className="row flex-compass center">
+        <div className="initial-page-fullscreen double-top">
+          <div className="space-between h-100">
+            <div className="row flex-compass h-100 center">
               <h1 className="title secondary brand-title">panthr</h1>
               <h2 className="brand subtitle long-center">
                 THE ULTIMATE DESTINATION FOR ARTIST & FANS
               </h2>
             </div>
 
-            <div className="flex-compass medium">
+            <div className="flex-compass h-100 medium">
               <div className="col s12 mt-40">
                 <InputText type="text" placeholder={'First Name'} />
               </div>
@@ -51,7 +51,7 @@ class SignUpPage extends React.Component<Props> {
               <br />
             </div>
 
-            <div className="footer flex-compass north center">
+            <div className="footer flex-compass h-100 north center">
               <div className="left-align">
                 <p>
                   By signing up you confirm that you have read and agree

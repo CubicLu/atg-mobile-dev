@@ -39,8 +39,11 @@ class ArtistFeaturesPage extends React.Component<Props> {
           id={'id'}
         />
         {newReleases && <SliderVideo data={newReleases} title={'VIDEOS'} />}
+
         <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
+
         {radio && <SliderRadio title={'PANTHR RADIO'} data={radio} />}
+
         {Array.isArray(events) && events.length > 0 && (
           <SliderEvents
             data={[events[0]]}

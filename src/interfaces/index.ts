@@ -303,5 +303,6 @@ export enum ShapesSize {
   rounded = 'rounded',
   circle = 'circle',
   normal = 'normal',
-  full = 'full'
+  full = 'full',
+  viewAll = 'view-all'
 }

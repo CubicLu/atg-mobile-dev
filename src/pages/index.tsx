@@ -30,6 +30,7 @@ import ArtistGalleryPhotoPage from './artist/gallery-photo';
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
 import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
+import TrackListPage from './artist/track-list';
 
 export {
   InitialPage,
@@ -61,5 +62,6 @@ export {
   ArtistDeepDivePedigreePage,
   ArtistDeepDiveCataloguePage,
   ArtistGalleryGridPage,
-  ArtistGalleryPhotoPage
+  ArtistGalleryPhotoPage,
+  TrackListPage
 };

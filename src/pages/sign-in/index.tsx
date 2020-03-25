@@ -46,11 +46,11 @@ class SignInPage extends React.Component<Props> {
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 
-        <div className="initial-page-fullscreen">
-          <div className="space-between">
-            <div className="flex-compass" />
+        <div className="initial-page-fullscreen double-top">
+          <div className="space-between h-100">
+            <div className="flex-compass h-100" />
 
-            <div className="flex-compass south center fluid">
+            <div className="flex-compass h-100 south center fluid">
               <div className="row" />
               <InputText type="text" placeholder={'User Name'} />
               <br />
@@ -72,7 +72,7 @@ class SignInPage extends React.Component<Props> {
               </div>
             </div>
 
-            <div className="footer flex-compass medium center">
+            <div className="footer flex-compass h-100 medium center">
               <button
                 className="transparent rounded-tooltip"
                 onClick={(): any => this.props.history.push('/sign-up')}

@@ -4,7 +4,7 @@ import { ShapesSize, Colors } from '../../interfaces';
 
 interface Props {
   onClick: Function;
-  label: string;
+  label?: string;
   id?: string;
   color?: Colors;
   gradient?: boolean;
@@ -30,6 +30,11 @@ class ButtonComponent extends React.Component<Props> {
         className={`btn ${color} ${gradient} ${type} ${bold}`}
       >
         {label}
+        {type === ShapesSize.viewAll && (
+          <span className="view-all">
+            View All<span className="arrow-next">&nbsp;&rsaquo;</span>
+          </span>
+        )}
       </button>
     );
   }

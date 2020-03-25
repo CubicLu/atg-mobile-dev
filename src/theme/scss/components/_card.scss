@@ -459,6 +459,10 @@
 .card-out-content{
     .col{
         padding: 0 !important;
+        .row{
+            margin-left: 0;
+           margin-right: 0;
+        }
     }
 
     h1{
@@ -469,6 +473,7 @@
             font-size: 24px !important;
             font-weight: 400 !important;
             color: #FFF;
+            line-height: 2;
         }
         &.artist{
             font-size: 18px !important;

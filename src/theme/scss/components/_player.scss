@@ -1,5 +1,113 @@
 
+.cover-title{
+    margin: 32px;
+    margin-top: 90px;
+    max-height: 250px;
+    text-align: center;
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.91;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    .radius{
+        border-radius: 10px;
+        box-shadow: 0 3px 6px 0 #00000033;
+        object-fit: contain;
+    }
+    .main-song{
+        font-size: 22px;
+        font-stretch: semi-condensed;
+    }
+    .main-artist{
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    .main-album{
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+    .main-source{
+        font-size: 14px;
+    }
+    .image{
+        margin: 0 auto;
+        width: 160px;
+        height: 160px;
+    }
+    @media screen and (max-width: 420px){
+        margin-top: 64px;
+        margin-bottom: 16px;
+        .image{
+            width: 120px;
+            height: 120px;
+        }
+        .main-song{
+            font-size: 18px;
+        }
+        .main-artist{
+            font-size: 14px;
+        }
+    }
+}
+.main-player{
+    margin: 32px;
+    max-height: 128px;
+    text-align: center;
+    .player-progress{
+        width: 100%;
+        height: 3px;
+        background-color: #363636;
+        margin-bottom: 44px;
+        position: relative;
+        border-left: 4px solid #ff00ff;
+        border-right: 4px solid #fcc505;
+        .bar{
+            background: #FFFFFF;
+            height: 3px;
+        }
+        .elapsed{
+            font-size: 14px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+    }
+    .player-three-buttons{
+        display: flex;
+        justify-content: center;
+    }
+    .player-button{
+        width: 64px;
+    }
+    @media screen and (max-width: 420px){
+            margin-top: 8px;
+            margin-bottom: 8px;
+    }
+}
+
+.tile-label-s4{
+    position: absolute;
+    bottom: 0;
+    width: 33.33%;
+    padding-bottom: 9px;
+    font-size: 14px;
+    color: #ffffff;
+    z-index: 1;
+    text-align: center;
+    font-weight: bold;
+    z-index: 10;
+    font-weight: 400;
+}
 .player{
+    .atg-header{
+        align-items: flex-start;
+    }
     button[disabled]{
     pointer-events: none;
     opacity: 0.5;
@@ -19,101 +127,20 @@
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
     }
+    .bottom-shadow{
+        background: linear-gradient(180deg, #ffffff00 40%, #000);
+        position: absolute;
+        z-index: 0;
+        opacity: 0.85;
+        bottom: -1px;
+        pointer-events:none;
+    }
     .background-bottom{
         bottom: 0;
         z-index: -1;
     }
     .player-button{
         background: transparent;
-    }
-    &.expanded{
-        .cover-title{
-            margin-top: 90px;
-            margin-left: 32px;
-            margin-right: 32px;
-            margin-bottom: 48px;
-            max-height: 250px;
-            text-align: center;
-            font-family: "Helvetica Neue";
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.91;
-            color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            display: block;
-            text-overflow: ellipsis;
-            .main-song{
-                font-size: 20px;
-            }
-            .main-artist{
-                font-size: 16px;
-                margin-bottom: 30px;
-            }
-            .main-source{
-                font-size: 16px;
-            }
-        }
-        .main-player{
-            margin: 32px;
-            max-height: 128px;
-            text-align: center;
-            .player-progress{
-                width: 100%;
-                height: 3px;
-                background-color: #363636;
-                margin-bottom: 44px;
-                position: relative;
-                border-left: 4px solid #ff00ff;
-                border-right: 4px solid #fcc505;
-                .bar{
-                    background: #FFFFFF;
-                    height: 3px;
-                }
-                .elapsed{
-                    font-size: 14px;
-                    color: #ffffff;
-                    display: flex;
-                    justify-content: space-between;
-                    margin-top: 8px;
-                }
-            }
-            .player-three-buttons{
-                display: flex;
-                justify-content: center;
-            }
-            .player-button{
-                width: 64px;
-            }
-        }
-        .image{
-            margin: 0 auto;
-            width: 160px;
-            height: 160px;
-        }
-        .see-more{
-            display: inline-flex;
-            flex-wrap: wrap-reverse;
-            align-items: center;
-            position: absolute;
-            bottom: 0;
-            max-height: 125px;
-            overflow: hidden;
-            .tile{
-                width: 33.333vw;
-                height: 33.333vw;
-            }
-            .tile-label{
-                width: 33.333vw;
-                margin-bottom: 8px;
-                font-size: 14px;
-                color: #ffffff;
-                z-index: 1;
-                text-align: center;
-                font-weight: bold;
-            }
-        }
     }
     .row{
         margin-bottom: 0;

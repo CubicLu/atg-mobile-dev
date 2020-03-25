@@ -10,7 +10,7 @@ import {
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { MixtapeInterface, Colors } from '../../../interfaces';
+import { MixtapeInterface, Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
   title?: string;
@@ -64,14 +64,14 @@ class SliderMixtapesComponent extends React.Component<Props> {
     };
 
     return (
-      <div className="row slider mixtapes">
-        <div className="list-view-all">
+      <div className="slider mixtapes">
+        <div className="list-component align-bottom row">
           <div>
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
             {viewAll && (
-              <Button color={Colors.transparent} label={'View All'} />
+              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
             )}
           </div>
         </div>

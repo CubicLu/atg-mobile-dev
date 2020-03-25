@@ -220,173 +220,47 @@ class PlayerComponent extends React.Component<Props> {
 
     if (!this.relativeAnimation) this.enablePlayerAnimation();
     return (
-      <div id="player" className="player expanded">
-        {expanded && (
-          <React.Fragment>
-            <BackgroundImage
-              gradient={`180deg,#aed8e5,#039e4a`}
-              backgroundTop
-              backgroundBottom
-              backgroundBottomDark={false}
-              bottomRotate
-              backgroundTopDark
-              backgroundTopOpacity={0.25}
-              backgroundBottomOpacity={0.3}
-            />
-            <Header
-              leftBackButton={false}
-              centerContent={
-                <ButtonSupport
-                  buttonType={'text'}
-                  uppercase
-                  type={ShapesSize.rounded}
-                />
-              }
-              leftMinimizeButton={true}
-              leftMinimizeOnClick={this.togglePlayer.bind(this)}
-            />
-            <div>
-              <div className="cover-title">
-                <IonImg className="image" src={song?.cover} />
-                <span className="main-song">{song?.name}&nbsp;</span>
-                <br />
-                <span className="main-artist">{song?.artist}&nbsp;</span>
-                <br />
-                <span className="main-source">
-                  Source: {playlist?.name}&nbsp;
-                </span>
-              </div>
-
-              <div className="main-player">
-                <div className="player-progress">
+      <div id="player" className="player">
+        <div className="mini">
+          {!expanded && (
+            <React.Fragment>
+              {!disabled && (
+                <div className="progress">
                   <div
                     className="bar"
                     style={{ width: timeElapsed * 3.333 }}
                   ></div>
-                  <div className="elapsed">
-                    <span>
-                      {moment()
-                        .minutes(0)
-                        .second(timeElapsed)
-                        .format('m:ss')}
-                    </span>
-                    <span>
-                      {moment()
-                        .minutes(0)
-                        .second(song?.duration || 0)
-                        .format('m:ss')}
-                    </span>
-                  </div>
                 </div>
-                <div className="player-three-buttons">
-                  <button
-                    disabled={!song}
-                    className="player-button"
-                    onClick={(): void => this.prevSong()}
-                  >
-                    <PrevButton />
-                  </button>
+              )}
 
-                  {playing && (
-                    <button
-                      disabled={!song}
-                      className="player-button"
-                      onClick={(): void => this.pauseSong()}
-                    >
-                      <PauseButton />
-                    </button>
-                  )}
-                  {!playing && (
-                    <button
-                      disabled={!song}
-                      className="player-button"
-                      onClick={(): void => this.resumeSong()}
-                    >
-                      <PlayButton />
-                    </button>
-                  )}
-
-                  <button
-                    disabled={!song}
-                    className="player-button"
-                    onClick={(): void => this.nextSong()}
-                  >
-                    <NextButton />
-                  </button>
-                </div>
-              </div>
-
-              <div className="see-more">
-                <span className="tile-label">Liner Notes</span>
-                <span className="tile-label">Community</span>
-                <span className="tile-label">Artist Home</span>
-              </div>
-              <div className="see-more">
-                <IonImg
-                  onClick={this.props.setPlaylistPlayer.bind(this)}
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-                  }
-                />
-                <IonImg
-                  onClick={this.props.setRadioPlaylistPlayer.bind(this)}
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-                  }
-                />
-                <IonImg
-                  onClick={this.props.setPlaylistPlayer.bind(this)}
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-                  }
-                />
-              </div>
-            </div>
-          </React.Fragment>
-        )}
-
-        {!expanded && (
-          <React.Fragment>
-            {!disabled && (
-              <div className="progress">
-                <div
-                  className="bar"
-                  style={{ width: timeElapsed * 3.333 }}
-                ></div>
-              </div>
-            )}
-
-            <div id="pull" className="pull">
-              <svg
-                width="400"
-                height="10"
-                viewBox="0 0 400 10"
-                style={{
-                  position: 'fixed',
-                  bottom: 85,
-                  marginLeft: 4,
-                  marginRight: 4,
-                  width: '99%',
-                  height: 'auto',
-                  overflow: 'visible'
-                }}
-              >
-                {/* //1 a 213 */}
-                <path
-                  id="a"
-                  d={`M 0 10 c 200-0, 400,0, 400,0`}
-                  fill="#22022f)"
-                />
-              </svg>
-              {/* 
+              <div id="pull" className="pull">
+                <svg
+                  width="400"
+                  height="10"
+                  viewBox="0 0 400 10"
+                  style={{
+                    position: 'fixed',
+                    bottom: 85,
+                    marginLeft: 4,
+                    marginRight: 4,
+                    width: '99%',
+                    height: 'auto',
+                    overflow: 'visible'
+                  }}
+                >
+                  {/* //1 a 213 */}
+                  <path
+                    id="a"
+                    d={`M 0 10 c 200-0, 400,0, 400,0`}
+                    fill="#22022f)"
+                  />
+                </svg>
+                {/* 
                   <path id="g" d="M 0 84.4 c 200-178,     400,0 400,0"/>
                   <path id="h" d="M 0 64.9 c 200-133,     400,0 400,0"/>
                   <path id="i" d="M 0 48.1 c 200-95,    400,0 400,0"/>
                   <path id="j" d="M 0 26.6 c 200-48,    400,0 400,0"/> */}
-              {/* M0 0	193.8908781	0 a	6.109121876	250 0 1	1 0	500 L0
+                {/* M0 0	193.8908781	0 a	6.109121876	250 0 1	1 0	500 L0
               M0 0	195.8423705	0 a	4.157629532	250 0 1	1 0	500 L0
               M0 0	197.7156247	0 a	2.284375307	250 0 1	1 0	500 L0
               M0 0	199.5122695	0 a	0.4877305289	250 0 1	1 0	500 L0
@@ -397,83 +271,221 @@ class PlayerComponent extends React.Component<Props> {
               M0 0	205.9646686	0 a	5.964668572	250 0 1	0 0	500 L0
               M0 0	207.4020386	0 a	7.402038574	250 0 1	0 0	500 L0 */}
 
-              {/* <path id="end" d="M.059,5C187.331,2.617,376.085,5,376.085,5"/>
+                {/* <path id="end" d="M.059,5C187.331,2.617,376.085,5,376.085,5"/>
               <path id="inverse" d="M.059,13.75c0-5.088.015-5.15.015-11.3C64.191,7.015,281.03,3.906,376.2,1.941c0,7.66-.056.03-.056,11.809"/>
               <path id="invers2" d="M.059,18.955c0-7.331.015-16.283.015-16.283S32.209,4.879,55.5,5.413c85.745,3.758,247.541-.038,320.7-3.473,0,11.035-.056.043-.056,17.014"/> */}
-            </div>
+              </div>
 
-            <div className="cover">
-              <div
-                className="img"
-                style={{
-                  backgroundSize: 'contain',
-                  background: disabled ? '#1a0922cc' : `url(${song?.cover})`
-                }}
-              >
-                {!disabled && (
-                  <div className="icon">
-                    {playing ? (
+              <div className="cover">
+                <div
+                  className="img"
+                  style={{
+                    backgroundSize: 'contain',
+                    background: disabled ? '#1a0922cc' : `url(${song?.cover})`
+                  }}
+                >
+                  {!disabled && (
+                    <div className="icon">
+                      {playing ? (
+                        <button
+                          disabled={!song}
+                          className="player-button"
+                          onClick={(): void => this.pauseSong()}
+                        >
+                          <PauseIcon />
+                        </button>
+                      ) : (
+                        <button
+                          disabled={!song}
+                          className="player-button"
+                          onClick={(): void => this.resumeSong()}
+                        >
+                          <PlayIcon />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="row">
+                <div
+                  className="col s3"
+                  onClick={this.togglePlayer.bind(this)}
+                  style={{ height: '50px' }}
+                />
+                <div className="col s9">
+                  <div className="row">
+                    <div
+                      onClick={this.togglePlayer.bind(this)}
+                      className="col s7 info"
+                    >
+                      <span className="song">{song?.name}</span>
+                      <span className="artist">{song?.artist}</span>
+                    </div>
+                    <div className="col s5 commands">
+                      <ul className="list inline">
+                        <li>
+                          <button
+                            disabled={disabled}
+                            onClick={this.props.favoriteSong.bind(this)}
+                          >
+                            <StarIcon />
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            disabled={disabled}
+                            onClick={this.nextSong.bind(this)}
+                          >
+                            <NextIcon />
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </React.Fragment>
+          )}
+        </div>
+        <div className="player-expanded h-100">
+          {expanded && (
+            <React.Fragment>
+              <BackgroundImage
+                gradient={`180deg,#aed8e5,#039e4a`}
+                backgroundTop
+                backgroundBottom
+                backgroundBottomDark={false}
+                bottomRotate
+                backgroundTopDark
+                backgroundTopOpacity={0.25}
+                backgroundBottomOpacity={0.3}
+              />
+              <Header
+                leftBackButton={false}
+                centerContent={
+                  <ButtonSupport
+                    buttonType={'text'}
+                    uppercase
+                    type={ShapesSize.rounded}
+                  />
+                }
+                leftMinimizeButton={true}
+                leftMinimizeOnClick={this.togglePlayer.bind(this)}
+              />
+              <div id="expanded-body" className="space-between h-100 p-0">
+                <div className="cover-title h-50">
+                  <IonImg className="image" src={song?.cover} />
+                  <span className="main-song">{song?.name}&nbsp;</span>
+                  <br />
+                  <span className="main-artist">{song?.artist}&nbsp;</span>
+                  <br />
+                  <span className="main-source">
+                    Source: {playlist?.name}&nbsp;
+                  </span>
+                </div>
+
+                <div className="main-player h-33">
+                  <div className="player-progress">
+                    <div
+                      className="bar"
+                      style={{ width: timeElapsed * 3.333 }}
+                    ></div>
+                    <div className="elapsed">
+                      <span>
+                        {moment()
+                          .minutes(0)
+                          .second(timeElapsed)
+                          .format('m:ss')}
+                      </span>
+                      <span>
+                        {moment()
+                          .minutes(0)
+                          .second(song?.duration || 0)
+                          .format('m:ss')}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="player-three-buttons">
+                    <button
+                      disabled={!song}
+                      className="player-button"
+                      onClick={(): void => this.prevSong()}
+                    >
+                      <PrevButton />
+                    </button>
+
+                    {playing && (
                       <button
                         disabled={!song}
                         className="player-button"
                         onClick={(): void => this.pauseSong()}
                       >
-                        <PauseIcon />
+                        <PauseButton />
                       </button>
-                    ) : (
+                    )}
+                    {!playing && (
                       <button
                         disabled={!song}
                         className="player-button"
                         onClick={(): void => this.resumeSong()}
                       >
-                        <PlayIcon />
+                        <PlayButton />
                       </button>
                     )}
-                  </div>
-                )}
-              </div>
-            </div>
 
-            <div className="row">
-              <div
-                className="col s3"
-                onClick={this.togglePlayer.bind(this)}
-                style={{ height: '50px' }}
-              />
-              <div className="col s9">
-                <div className="row">
-                  <div
-                    onClick={this.togglePlayer.bind(this)}
-                    className="col s7 info"
-                  >
-                    <span className="song">{song?.name}</span>
-                    <span className="artist">{song?.artist}</span>
+                    <button
+                      disabled={!song}
+                      className="player-button"
+                      onClick={(): void => this.nextSong()}
+                    >
+                      <NextButton />
+                    </button>
                   </div>
-                  <div className="col s5 commands">
-                    <ul className="list inline">
-                      <li>
-                        <button
-                          disabled={disabled}
-                          onClick={this.props.favoriteSong.bind(this)}
-                        >
-                          <StarIcon />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          disabled={disabled}
-                          onClick={this.nextSong.bind(this)}
-                        >
-                          <NextIcon />
-                        </button>
-                      </li>
-                    </ul>
+                </div>
+
+                <div id="shadow" className="bottom-shadow h-16 w-100" />
+                <div className="flex-compass south half h-16">
+                  <div className="row p-0 flex-wrap">
+                    <div className="col s4 p-0">
+                      <IonImg
+                        onClick={this.props.setPlaylistPlayer.bind(this)}
+                        className="tile"
+                        src={
+                          'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+                        }
+                      />
+                      <span className="tile-label-s4">Liner Notes</span>
+                    </div>
+
+                    <div className="col s4 p-0">
+                      <IonImg
+                        onClick={this.props.setRadioPlaylistPlayer.bind(this)}
+                        className="tile"
+                        src={
+                          'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+                        }
+                      />
+                      <span className="tile-label-s4">Community</span>
+                    </div>
+
+                    <div className="col s4 p-0">
+                      <IonImg
+                        onClick={this.props.setPlaylistPlayer.bind(this)}
+                        className="tile"
+                        src={
+                          'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+                        }
+                      />
+                      <span className="tile-label-s4">Artist Home</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </React.Fragment>
-        )}
+            </React.Fragment>
+          )}
+        </div>
       </div>
     );
   }

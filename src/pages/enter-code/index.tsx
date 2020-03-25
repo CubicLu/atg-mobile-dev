@@ -47,8 +47,8 @@ class EnterCodePage extends React.Component<Props, State> {
           rightCloseButton={true}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
-        <div className="initial-page-fullscreen">
-          <div className="space-between">
+        <div className="initial-page-fullscreen double-top">
+          <div className="space-between h-100">
             <div className="row">
               <div className="col s12">
                 <h1 className="mt-40 title title-medium center-align">
@@ -62,7 +62,7 @@ class EnterCodePage extends React.Component<Props, State> {
               </div>
             </div>
 
-            <div className="flex-compass medium">
+            <div className="flex-compass h-100 medium">
               <div className="row">
                 <div className="col s12 mt-40 input-div">
                   <p className="text-small center-align">
@@ -77,7 +77,7 @@ class EnterCodePage extends React.Component<Props, State> {
               </div>
             </div>
 
-            <div className="footer flex-compass north center">
+            <div className="footer flex-compass h-100 north center">
               <div>
                 <p className="didnt-receive">
                   I didn’t receive an email message

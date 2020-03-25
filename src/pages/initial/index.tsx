@@ -20,14 +20,14 @@ class InitialPage extends React.Component<Props> {
           shadow
           legend="Celeste Waite"
         />
-        <div className="initial-page-fullscreen">
-          <div className="space-between">
+        <div className="initial-page-fullscreen double-top">
+          <div className="space-between h-100">
             <div className="row">
               <h1 className="title secondary brand-title">panthr</h1>
               <h2 className="brand subtitle">ARTIST-TO-FAN</h2>
             </div>
 
-            <div className="flex-compass south west">
+            <div className="flex-compass h-100 south west">
               <h1 className="title-album">
                 THE
                 <br />

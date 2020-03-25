@@ -2,7 +2,16 @@
     border-radius: 2px;
     text-align: center;
     text-transform: initial;
-
+    &.view-all{
+        text-align: right;
+        font-size: 16px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .arrow-next{
+        font-size: 40px;
+        float: right;
+    }
     &.fixed{
         position: fixed;
         z-index: 10;

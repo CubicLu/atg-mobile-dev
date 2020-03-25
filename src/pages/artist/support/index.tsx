@@ -175,9 +175,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
                       type={ShapesSize.normal}
                       buttonType={'text'}
                       onClick={(): void =>
-                        this.props.history.push(
-                          `/home/artist/${this.props.currentArtist?.username}`
-                        )
+                        this.props.history.push(`/home/thank-you`, {
+                          artistId: this.props.match.params.id
+                        })
                       }
                     />
                   </div>

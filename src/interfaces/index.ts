@@ -305,3 +305,8 @@ export enum ShapesSize {
   normal = 'normal',
   full = 'full'
 }
+
+export enum GradientDirection {
+  vertical = 'vertical',
+  horizontal = 'horizontal'
+}

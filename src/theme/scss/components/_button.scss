@@ -20,7 +20,12 @@
         background: $secondary;
         color: #FFF;
         &.gradient { 
-            background: linear-gradient(to right, $secondary 0%, $secondary-gradient 100%);
+            &.vertical {
+                background: linear-gradient(to right, $secondary 0%, $secondary-gradient 100%);
+            }
+            &.horizontal {
+                background: linear-gradient(to bottom, $secondary 0%, $secondary-gradient 100%);
+            }
         }
     }
     &.tertiary { 

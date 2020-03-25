@@ -30,7 +30,8 @@ import {
   ArtistDeepDiveCataloguePage,
   ArtistDeepDivePage,
   ArtistGalleryPhotoPage,
-  ArtistGalleryGridPage
+  ArtistGalleryGridPage,
+  ThankYouPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -238,6 +239,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/event',
       id: 'artistEvents',
       component: ArtistEventsPage
+    },
+    {
+      path: '/home/thank-you',
+      id: 'thankYou',
+      component: ThankYouPage
     },
     {
       path: '/home/artist/:id/video',

@@ -14,6 +14,7 @@ import ProfileFriendsPage from './profile/friends';
 import ProfileMixtapesPage from './profile/mixtapes';
 import ProfileVaultPage from './profile/vault';
 import ArtistPage from './artist';
+import ThankYouPage from './thank-you';
 
 import ArtistDeepDivePage from './artist/deep-dive';
 import ArtistFeaturesPage from './artist/features';
@@ -61,5 +62,6 @@ export {
   ArtistDeepDivePedigreePage,
   ArtistDeepDiveCataloguePage,
   ArtistGalleryGridPage,
-  ArtistGalleryPhotoPage
+  ArtistGalleryPhotoPage,
+  ThankYouPage
 };

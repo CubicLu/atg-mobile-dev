@@ -92,7 +92,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     if (currentScroll.blur === this.state.blur) return;
     this.setState({ blur: currentScroll.blur });
-    this.headerRef.current!.playTopHeader(currentScroll);
+    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
     //used only in biography to fadeout BIOGRAPHY TITLE
     this.titleRef.current!.animation.direction(currentScroll.animation!).play();
   }

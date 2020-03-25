@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Header,
   CardEvent,
-  LoaderFullscreen,
   BackgroundImage,
   HeaderOverlay
 } from './../../../components';
@@ -16,7 +15,6 @@ import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  loading: boolean;
   isPlaying: boolean;
 }
 
@@ -65,7 +63,7 @@ class ArtistEventsPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     if (currentScroll.blur === this.state.blur) return;
     this.setState({ blur: currentScroll.blur });
-    this.headerRef.current!.playTopHeader(currentScroll);
+    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {
@@ -106,7 +104,6 @@ class ArtistEventsPage extends React.Component<Props, State> {
             </div>
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
@@ -116,9 +113,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying } = settings;
-  return { currentArtist, loading, isPlaying };
+  return { currentArtist, isPlaying };
 };
 
 export default withRouter(

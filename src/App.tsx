@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupConfig } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -30,11 +30,14 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-/* Theme variables */
-import './theme/variables.css';
 export default class App extends React.Component {
   authenticated: boolean = true;
 
+  UNSAFE_componentWillMount(): void {
+    setupConfig({
+      animated: true
+    });
+  }
   render(): React.ReactNode {
     store.subscribe((): void => {
       if (this.authenticated) return; //temporary to debug
@@ -44,29 +47,33 @@ export default class App extends React.Component {
       this.forceUpdate();
     });
 
-    const authenticated = <HomePage />;
-    const notAuthenticated = (
-      <IonRouterOutlet id="notLogged">
-        <IonReactRouter>
-          <Switch>
-            <Route exact path="/initial" component={InitialPage} />
-            <Route exact path="/sign-in" component={SignInPage} />
-            <Route exact path="/sign-up" component={SignUpPage} />
-            <Route exact path="/enter-code" component={EnterCodePage} />
-            <Route
-              exact
-              path="/sign-up-confirm"
-              component={SignUpConfirmPage}
-            />
-            <Route path="/" render={(): any => <Redirect to="/initial" />} />
-          </Switch>
-        </IonReactRouter>
-      </IonRouterOutlet>
-    );
-
     return (
       <Provider store={store}>
-        <IonApp>{this.authenticated ? authenticated : notAuthenticated}</IonApp>
+        <IonApp>
+          {this.authenticated ? (
+            <HomePage />
+          ) : (
+            <IonReactRouter>
+              <IonRouterOutlet id="notLogged">
+                <Switch>
+                  <Route exact path="/initial" component={InitialPage} />
+                  <Route exact path="/sign-in" component={SignInPage} />
+                  <Route exact path="/sign-up" component={SignUpPage} />
+                  <Route exact path="/enter-code" component={EnterCodePage} />
+                  <Route
+                    exact
+                    path="/sign-up-confirm"
+                    component={SignUpConfirmPage}
+                  />
+                  <Route
+                    path="/"
+                    render={(): any => <Redirect to="/initial" />}
+                  />
+                </Switch>
+              </IonRouterOutlet>
+            </IonReactRouter>
+          )}
+        </IonApp>
       </Provider>
     );
   }

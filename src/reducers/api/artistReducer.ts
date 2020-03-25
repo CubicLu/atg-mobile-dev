@@ -1,6 +1,5 @@
 import { Action, ActionType, ArtistReducerType } from './../../interfaces';
 import createReducer from './../createReducer';
-import {} from './../../components';
 
 const defaultState: ArtistReducerType = {
   artists: [],

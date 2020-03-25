@@ -1,7 +1,6 @@
 import React from 'react';
-import { _, Button, Avatar } from './../../../components';
-import {} from './../../../actions';
-import { ShapesSize, Colors } from '../../../interfaces';
+import { Button, Avatar } from './../../../components';
+import { Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;
@@ -20,14 +19,19 @@ class SliderStoriesComponent extends React.Component<Props> {
     imageKey: 'image'
   };
   render(): React.ReactNode {
+    const { title, viewAll, data, imageKey, labelKey } = this.props;
+    if (!data) return <div />;
+    const image = imageKey ? 'image' : '';
+    const label = labelKey ? 'label' : '';
+
     return (
       <div className="row slider stories">
         <div className="list-view-all">
           <div>
-            <h1 className="title">{this.props.title}</h1>
+            <h1 className="title">{title}</h1>
           </div>
           <div className="action">
-            {this.props.viewAll && (
+            {viewAll && (
               <Button color={Colors.transparent} label={'View All'} />
             )}
           </div>
@@ -35,28 +39,19 @@ class SliderStoriesComponent extends React.Component<Props> {
 
         <div className="row">
           <ul className="list inline">
-            {_.map(
-              this.props.data,
-              (data, i): React.ReactNode => {
-                let image =
-                  this.props.imageKey !== undefined
-                    ? this.props.imageKey
-                    : 'image';
-                let label =
-                  this.props.labelKey !== undefined
-                    ? this.props.labelKey
-                    : 'label';
+            {data?.map(
+              (d, i): React.ReactNode => {
                 return (
                   <li key={i}>
                     <div>
                       <Avatar
-                        image={data[image]}
+                        image={d[image]}
                         type={ShapesSize.circle}
                         width={110}
                         height={110}
                         onClick={(): void => {}}
                       />
-                      <label>{data[label]}</label>
+                      <label>{d[label]}</label>
                     </div>
                   </li>
                 );

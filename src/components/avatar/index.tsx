@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
-import {} from './../../components';
-import {} from './../../actions';
 import { ShapesSize } from '../../interfaces';
 
 interface Props {
@@ -21,16 +19,17 @@ class AvatarComponent extends React.Component<Props> {
     height: 60
   };
   render(): React.ReactNode {
+    const { onClick, image, type, width, height } = this.props;
     return (
       <div
-        onClick={this.props.onClick}
+        onClick={onClick}
         style={{
-          backgroundImage: `url(${this.props.image})`,
-          width: this.props.width,
-          height: this.props.height
+          backgroundImage: `url(${image})`,
+          width: width,
+          height: height
         }}
-        className={`avatar ${this.props.type}`}
-      ></div>
+        className={`avatar ${type}`}
+      />
     );
   }
 }

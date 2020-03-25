@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   BackgroundImage,
-  LoaderFullscreen,
   Header,
   SliderStories,
   CardPost,
@@ -34,7 +33,6 @@ interface MatchParams {
 }
 interface StateProps {
   isPlaying: boolean;
-  loading: boolean;
   posts: PostInterface[];
   loadingCommunity: boolean;
   stories: StorieInterface[];
@@ -242,7 +240,6 @@ class CommunityPage extends React.Component<Props, State> {
             )}
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loadingCommunity} />
       </IonPage>
     );
   }
@@ -250,16 +247,13 @@ class CommunityPage extends React.Component<Props, State> {
 
 const mapStateToProps = ({
   settings,
-  artistAPI,
   communityAPI
 }: ApplicationState): StateProps => {
   const { isPlaying } = settings;
-  const { loading } = artistAPI;
   const { posts, stories, currentCommunityArtist } = communityAPI;
   const loadingCommunity = communityAPI.loading;
   return {
     isPlaying,
-    loading,
     posts,
     loadingCommunity,
     stories,

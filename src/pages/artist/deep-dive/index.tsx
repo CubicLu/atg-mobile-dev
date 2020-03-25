@@ -16,7 +16,6 @@ interface StateProps {
   isPlaying: boolean;
   deepDiveTabs: MenuInterface[];
   activeDeepDiveTab: string;
-  loading: boolean;
 }
 
 interface DispatchProps {
@@ -72,6 +71,8 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    if (!this.props.currentArtist) return <IonPage />;
+    const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;
     return (
       <IonPage id="artist-deep-dive-dive-page">
         <IonContent
@@ -80,50 +81,45 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
         >
           <BackgroundImage
-            backgroundImage={this.props.currentArtist?.cover.deepDive}
+            backgroundImage={currentArtist.cover.deepDive}
             blur={this.state.fixed}
-          >
-            <div className={`artist-deep-dive-page`}>
-              <div className={this.state.fixed ? 'row header-fixed' : 'row'}>
-                <Header
-                  rightActionButton
-                  rightActionOnClick={(): void => this.props.history.goBack()}
-                  centerContent={
-                    <div className="center-col">
-                      <div className="title-page">Deep Dive</div>
-                      <div className="artist-name">
-                        {this.props.currentArtist?.name}
-                      </div>
-                    </div>
-                  }
-                />
-                <div className="title-container">
-                  <div className="title-page">Deep Dive</div>
-                  <div className="artist-name">
-                    {this.props.currentArtist?.name}
+          />
+          <div className={`artist-deep-dive-page`}>
+            <div className={this.state.fixed ? 'row header-fixed' : 'row'}>
+              <Header
+                rightActionButton
+                rightActionOnClick={(): void => this.props.history.goBack()}
+                centerContent={
+                  <div className="center-col">
+                    <div className="title-page">Deep Dive</div>
+                    <div className="artist-name">{currentArtist.name}</div>
                   </div>
-                </div>
-                <Menu
-                  tabs={this.props.deepDiveTabs}
-                  activeId={this.props.activeDeepDiveTab}
-                  onClick={this.handleMenu.bind(this)}
-                />
+                }
+              />
+              <div className="title-container">
+                <div className="title-page">Deep Dive</div>
+                <div className="artist-name">{currentArtist.name}</div>
               </div>
+              <Menu
+                tabs={deepDiveTabs}
+                activeId={activeDeepDiveTab}
+                onClick={this.handleMenu.bind(this)}
+              />
             </div>
+          </div>
 
-            <div
-              className={
-                `artist-deep-dive-page bottom` +
-                (this.state.fixed ? ' absolute' : '')
-              }
-            >
-              {this.props.deepDiveTabs?.map(
-                (data, i): React.ReactNode =>
-                  data.id === this.props.activeDeepDiveTab &&
-                  React.createElement(data.component, { key: i })
-              )}
-            </div>
-          </BackgroundImage>
+          <div
+            className={
+              `artist-deep-dive-page bottom` +
+              (this.state.fixed ? ' absolute' : '')
+            }
+          >
+            {deepDiveTabs?.map(
+              (d, i): React.ReactNode =>
+                d.id === activeDeepDiveTab &&
+                React.createElement(d.component, { key: i })
+            )}
+          </div>
         </IonContent>
       </IonPage>
     );
@@ -133,14 +129,13 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying, deepDiveTabs, activeDeepDiveTab } = settings;
   return {
     currentArtist,
     isPlaying,
     deepDiveTabs,
-    activeDeepDiveTab,
-    loading
+    activeDeepDiveTab
   };
 };
 

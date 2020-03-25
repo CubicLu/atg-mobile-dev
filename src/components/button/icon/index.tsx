@@ -1,6 +1,4 @@
 import React from 'react';
-import {} from './../../';
-import {} from './../../../actions';
 import { ShapesSize, Colors } from '../../../interfaces';
 
 interface Props {
@@ -22,15 +20,17 @@ class ButtonIconComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const isFixed = this.props.fixed ? ' fixed' : '';
+    const isFixed = (this.props.fixed && ' fixed') || '';
+    const { onClick, type, color, styles, icon, label } = this.props;
+
     return (
       <button
-        onClick={this.props.onClick.bind(this)}
-        className={`btn icon ${this.props.type} ${this.props.color} ${isFixed}`}
-        style={{ ...this.props.styles }}
+        onClick={onClick.bind(this)}
+        className={`btn icon ${type} ${color} ${isFixed}`}
+        style={{ ...styles }}
       >
-        {this.props.icon}
-        {this.props.label && <span>{this.props.label}</span>}
+        {icon}
+        {label && <span>{label}</span>}
       </button>
     );
   }

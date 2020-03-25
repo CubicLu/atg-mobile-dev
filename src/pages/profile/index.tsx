@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IonPage } from '@ionic/react';
-import {
-  BackgroundImage,
-  HeaderProfile,
-  Menu,
-  LoaderFullscreen
-} from './../../components';
+import { BackgroundImage, HeaderProfile, Menu } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { updateSettingsProperty } from './../../actions';
 import { MenuInterface } from '../../interfaces';
@@ -15,17 +10,22 @@ interface StateProps {
   activeFanTab: string;
   fanTabs: MenuInterface[];
   isPlaying: boolean;
-  loading: boolean;
 }
 
+interface Props extends StateProps, DispatchProps {}
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
 }
 
-interface Props extends StateProps, DispatchProps {}
-
 class ProfilePage extends React.Component<Props> {
   render(): React.ReactNode {
+    const {
+      isPlaying,
+      fanTabs,
+      activeFanTab,
+      updateSettingsProperty
+    } = this.props;
+    if (!fanTabs) return <IonPage />;
     return (
       <IonPage id="profile-page">
         <BackgroundImage
@@ -35,46 +35,32 @@ class ProfilePage extends React.Component<Props> {
           backgroundTopOpacity={0.15}
           backgroundBottom
           backgroundBottomDark={false}
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.3}
+          bottomRotate={true}
+          backgroundBottomOpacity={0.15}
         />
-        <div
-          className={`profile-page` + (this.props.isPlaying && ' is-playing')}
-        >
+        <div className={`profile-page` + (isPlaying && ' is-playing')}>
           <HeaderProfile />
           <Menu
-            className="scroll-x list-fit"
-            tabs={this.props.fanTabs}
-            activeId={this.props.activeFanTab}
+            tabs={fanTabs}
+            activeId={activeFanTab}
             onClick={(event: MenuInterface): void => {
-              return this.props.updateSettingsProperty(
-                'activeFanTab',
-                event.id
-              );
+              return updateSettingsProperty('activeFanTab', event.id);
             }}
           />
-          {this.props.fanTabs.map(
-            (data, i): React.ReactNode => {
-              if (data.id === this.props.activeFanTab) {
-                return React.createElement(data.component, { key: i });
-              }
-              return null;
-            }
+          {fanTabs.map(
+            (data, i): React.ReactNode =>
+              data.id === activeFanTab &&
+              React.createElement(data.component, { key: i })
           )}
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  artistAPI
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { activeFanTab, fanTabs, isPlaying } = settings;
-  const { loading } = artistAPI;
-  return { activeFanTab, fanTabs, isPlaying, loading };
+  return { activeFanTab, fanTabs, isPlaying };
 };
 
 export default connect(mapStateToProps, {

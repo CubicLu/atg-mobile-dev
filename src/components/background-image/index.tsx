@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 import {
-  BackgroundCircleBubblesImage,
-  BackgroundCircleBubblesInverted,
-  BackgroundCircleBubblesLightImage,
-  BackgroundCircleBubblesLightInverted,
-  BackgroundCircleBubblesOrangeImage
+  BackgroundCircleBubblesImage as DarkBottom,
+  BackgroundCircleBubblesInverted as DarkTop,
+  BackgroundCircleBubblesLightImage as LightBottom,
+  BackgroundCircleBubblesLightInverted as LightTop,
+  BackgroundCircleBubblesOrangeImage as OrangeBottom
 } from './../../components';
 
 interface Props {
@@ -14,8 +14,6 @@ interface Props {
   shadow?: boolean;
   gradient?: string;
   styles?: CSSProperties;
-  svgTop?: any;
-  svgBottom?: any;
   backgroundTop: boolean;
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;
@@ -51,73 +49,68 @@ class BackgroundImageComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const topClass = 'background-top' + (this.props.topRotate ? ' rotate' : '');
-    const bottomClass =
-      'background-bottom' +
-      (this.props.svgBottom || this.props.bottomRotate ? ' rotate' : '');
-    const hasTop = this.props.backgroundTop || !!this.props.svgTop;
-    const hasBottom = this.props.backgroundBottom || !!this.props.svgBottom;
+    const {
+      backgroundTop: hasTop,
+      backgroundBottom: hasBottom,
+      backgroundBottomDark: bDark,
+      backgroundBottomOrange: bOrange,
+      backgroundBottomOpacity: bOpacity,
+      backgroundBottomHeight: bHeight,
+      backgroundTopDark: tDark,
+      backgroundTopOpacity: tOpacity,
+      backgroundTopHeight: tHeight,
+      backgroundImage: imageUrl,
+      gradient,
+      blur,
+      shadow,
+      className,
+      styles,
+      legend,
+      children,
+      topRotate,
+      bottomRotate
+    } = this.props;
 
-    const topCircleStyle = this.props.svgTop
-      ? {}
-      : {
-          backgroundImage: `url(${
-            this.props.backgroundTopDark
-              ? BackgroundCircleBubblesInverted
-              : BackgroundCircleBubblesLightInverted
-          })`,
-          opacity: this.props.backgroundTopOpacity,
-          height: this.props.backgroundTopHeight
-        };
-    const bottomCircleStyle = this.props.svgBottom
-      ? {}
-      : {
-          backgroundImage: `url(${
-            this.props.backgroundBottomDark
-              ? BackgroundCircleBubblesImage
-              : this.props.backgroundBottomOrange
-              ? BackgroundCircleBubblesOrangeImage
-              : BackgroundCircleBubblesLightImage
-          })`,
-          opacity: this.props.backgroundBottomOpacity,
-          height: this.props.backgroundBottomHeight
-        };
+    const topClass = 'background-top' + (topRotate ? ' rotate' : '');
+    const topStyle = {
+      backgroundImage: `url(${tDark ? DarkTop : LightTop})`,
+      opacity: tOpacity,
+      height: tHeight
+    };
 
-    const backgroundClass = `background-image ${
-      this.props.shadow ? 'shadow' : ''
-    } ${this.props.blur ? 'blur' : ''} ${this.props.className}`;
-
-    let backgroundImageArray: string[] = [];
-    backgroundImageArray.push(`url(${this.props.backgroundImage})`);
-
-    if (this.props.gradient) {
-      backgroundImageArray.push(`linear-gradient(${this.props.gradient})`);
+    const bottomClass = 'background-bottom' + (bottomRotate ? ' rotate' : '');
+    let bottomUrl = bDark ? DarkBottom : LightBottom;
+    if (bOrange) {
+      bottomUrl = OrangeBottom;
     }
+    const bottomStyle = {
+      backgroundImage: `url(${bottomUrl})`,
+      opacity: bOpacity,
+      height: bHeight
+    };
 
-    const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
+    let imageArray: string[] = [];
+    let classArray: string[] = ['background-image'];
+
+    imageUrl && imageArray.push(`url(${imageUrl})`);
+    gradient && imageArray.push(`linear-gradient(${gradient})`);
+    shadow && classArray.push('shadow');
+    blur && classArray.push('blur');
+    className && classArray.push(className);
+
+    const backgroundClass = classArray.filter(Boolean).join(' ');
+    const backgroundStyle = {
+      backgroundImage: imageArray.filter(Boolean).join(', '),
+      ...styles
+    };
+
     return (
       <React.Fragment>
-        <div
-          className={backgroundClass}
-          style={{ backgroundImage, ...this.props.styles }}
-        />
-
-        {hasTop && (
-          <div className={topClass} style={topCircleStyle}>
-            {!!this.props.svgTop && this.props.svgTop}
-          </div>
-        )}
-
-        {hasBottom && (
-          <div className={bottomClass} style={bottomCircleStyle}>
-            {!!this.props.svgBottom && this.props.svgBottom}
-          </div>
-        )}
-
-        {this.props.legend && (
-          <div className="background-legend">{this.props.legend}</div>
-        )}
-        {this.props.children}
+        <div className={backgroundClass} style={backgroundStyle} />
+        {legend && <div className="background-legend">{legend}</div>}
+        {hasTop && <div className={topClass} style={topStyle} />}
+        {hasBottom && <div className={bottomClass} style={bottomStyle} />}
+        {children}
       </React.Fragment>
     );
   }

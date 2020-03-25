@@ -10,7 +10,6 @@ ion-page{
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
-    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -19,8 +18,9 @@ ion-page{
     width: 100%;
     position: fixed;
     &.blur{
+
         animation: blur 0.5s ease forwards;
-        background-color: rgb(0, 0, 0);
+        background-color: #00000033;
     }
     &.shadow{
         box-shadow: inset 0px 60px 70px 0px #000, inset 0px -60px 70px 0px #000;

@@ -30,7 +30,8 @@ import {
   ArtistDeepDiveCataloguePage,
   ArtistDeepDivePage,
   ArtistGalleryPhotoPage,
-  ArtistGalleryGridPage
+  ArtistGalleryGridPage,
+  ThankYouPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -111,7 +112,8 @@ const defaultState: SettingsReducerType = {
       id: 'videos',
       label: 'Videos',
       icon: 'v',
-      component: ArtistVideosPage
+      isPage: true,
+      route: '/home/artist/:id/video'
     },
     {
       id: 'deep',
@@ -242,6 +244,16 @@ const defaultState: SettingsReducerType = {
       path: '/home/community/:artistId',
       id: 'community',
       component: CommunityPage
+    },
+    {
+      path: '/home/thank-you',
+      id: 'thankYou',
+      component: ThankYouPage
+    },
+    {
+      path: '/home/artist/:id/video',
+      id: 'artistVideos',
+      component: ArtistVideosPage
     }
   ],
 

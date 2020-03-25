@@ -20,7 +20,6 @@ interface State {
   willGo: boolean;
 }
 interface StateProps {
-  loading: boolean;
   isPlaying: boolean;
   event: EventInterface | null;
 }
@@ -77,97 +76,94 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
-        <BackgroundImage
-          gradient={`180deg,#000,#20123a`}
-          backgroundBottom
-          bottomRotate
-          backgroundBottomOrange={true}
+        <div
+          className={`artist-event-detail-page ${this.props.isPlaying &&
+            'is-playing'}`}
         >
-          <div
-            className={`artist-event-detail-page ${this.props.isPlaying &&
-              'is-playing'}`}
-          >
-            <IonContent>
-              <div className="top-fixed">
-                <Header
-                  rightCloseButton
-                  rightCloseOnClick={(): void => {
-                    this.props.updateArtistSetInitialProperty('event');
-                    this.props.history.goBack();
-                  }}
-                  centerContent={<h1 className="title">{`Who's going`}</h1>}
-                />
-                <div className="content-fixed">
-                  <div className="row">
-                    <div className="col s12 justify-center">
-                      <Button
-                        label={this.state.willGo ? "Can't go" : "I'm going"}
-                        color={
-                          this.state.willGo ? Colors.disable : Colors.secondary
-                        }
-                        gradient={true}
-                        bold
-                        onClick={(): void => {
-                          this.setState({ willGo: !this.state.willGo });
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row border-bottom">
-                    <div className="col s12">
-                      <CardEvent
-                        id={Number(this.props.match.params.eventId)}
-                        artistUsername={this.props.match.params.id}
-                        data={this.props.event}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className={`content-list ${this.props.isPlaying &&
-                  'is-playing'}`}
-              >
+          <IonContent>
+            <BackgroundImage
+              gradient={`180deg,#000,#20123a`}
+              backgroundBottom
+              bottomRotate
+            />
+            <div className="top-fixed">
+              <Header
+                rightCloseButton
+                rightCloseOnClick={(): void => {
+                  this.props.updateArtistSetInitialProperty('event');
+                  this.props.history.goBack();
+                }}
+                centerContent={<h1 className="title">{`Who's going`}</h1>}
+              />
+              <div className="content-fixed">
                 <div className="row">
-                  <div className="col s12 ">
-                    <IonList lines="none" className="list users">
-                      {this.props.event?.whoIsGoing?.map(
-                        (data, i): React.ReactNode => {
-                          let opacity = data.isFriend === true ? '' : 'opacity';
-                          return (
-                            <IonItem key={i}>
-                              <div className="row">
-                                <div className={`col s3 image ${opacity}`}>
-                                  <Avatar
-                                    type={ShapesSize.circle}
-                                    image={data.avatar}
-                                    width={50}
-                                    height={50}
-                                  />
-                                </div>
-                                <div className={`col s6 info ${opacity}`}>
-                                  <span className="user">{data.username}</span>
-                                </div>
-                                <div className="col s3 action">
-                                  <Button
-                                    gradient={true}
-                                    color={Colors.secondary}
-                                    label="Connect"
-                                  />
-                                </div>
-                              </div>
-                            </IonItem>
-                          );
-                        }
-                      )}
-                    </IonList>
+                  <div className="col s12 justify-center">
+                    <Button
+                      label={this.state.willGo ? "Can't go" : "I'm going"}
+                      color={
+                        this.state.willGo ? Colors.disable : Colors.secondary
+                      }
+                      gradient={true}
+                      bold
+                      onClick={(): void => {
+                        this.setState({ willGo: !this.state.willGo });
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div className="row border-bottom">
+                  <div className="col s12">
+                    <CardEvent
+                      id={Number(this.props.match.params.eventId)}
+                      artistUsername={this.props.match.params.id}
+                      data={this.props.event}
+                    />
                   </div>
                 </div>
               </div>
-            </IonContent>
-          </div>
-        </BackgroundImage>
+            </div>
+            <div
+              className={`content-list ${this.props.isPlaying && 'is-playing'}`}
+            >
+              <div className="row">
+                <div className="col s12 ">
+                  <IonList lines="none" className="list users">
+                    {this.props.event?.whoIsGoing?.map(
+                      (data, i): React.ReactNode => {
+                        let opacity = data.isFriend === true ? '' : 'opacity';
+                        return (
+                          <IonItem key={i}>
+                            <div className="row">
+                              <div className={`col s3 image ${opacity}`}>
+                                <Avatar
+                                  type={ShapesSize.circle}
+                                  image={data.avatar}
+                                  width={50}
+                                  height={50}
+                                />
+                              </div>
+                              <div className={`col s6 info ${opacity}`}>
+                                <span className="user">{data.username}</span>
+                              </div>
+                              <div className="col s3 action">
+                                <Button
+                                  gradient={true}
+                                  color={Colors.secondary}
+                                  label="Connect"
+                                />
+                              </div>
+                            </div>
+                          </IonItem>
+                        );
+                      }
+                    )}
+                  </IonList>
+                </div>
+              </div>
+            </div>
+          </IonContent>
+        </div>
       </IonPage>
     );
   }
@@ -177,9 +173,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { event, loading } = artistAPI;
+  const { event } = artistAPI;
   const { isPlaying } = settings;
-  return { event, loading, isPlaying };
+  return { event, isPlaying };
 };
 
 export default withRouter(

@@ -10,7 +10,6 @@ import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  loading: boolean;
   isPlaying: boolean;
 }
 
@@ -181,7 +180,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     if (currentScroll.blur === this.state.blur) return;
     this.setState({ blur: currentScroll.blur });
-    this.headerRef.current!.playTopHeader(currentScroll);
+    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
   }
 
   render(): React.ReactNode {
@@ -241,11 +240,9 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
               )}
 
               {items.map(
-                (data, i): React.ReactNode => {
-                  let key = Object.keys(data)[0];
-                  return items.isUndefined(key)
-                    ? null
-                    : this.renderTemplate(key, data[key], i);
+                (data: any, i: number): React.ReactNode => {
+                  let key = Object.keys(data) ? Object.keys(data)[0] : null;
+                  return !!key && this.renderTemplate(key, data[key], i);
                 }
               )}
             </div>
@@ -260,9 +257,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { isPlaying } = settings;
-  return { currentArtist, loading, isPlaying };
+  return { currentArtist, isPlaying };
 };
 
 export default withRouter(

@@ -1,7 +1,6 @@
 import React from 'react';
 import {} from './../';
-import {} from './../../actions';
-import { ShapesSize, Colors } from '../../interfaces';
+import { ShapesSize, Colors, GradientDirection } from '../../interfaces';
 
 interface Props {
   onClick: Function;
@@ -11,6 +10,7 @@ interface Props {
   gradient?: boolean;
   bold?: boolean;
   type?: ShapesSize;
+  gradientDirection?: GradientDirection;
 }
 
 class ButtonComponent extends React.Component<Props> {
@@ -22,14 +22,18 @@ class ButtonComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
+    const { onClick, color, type, label } = this.props;
     let gradient = this.props.gradient ? 'gradient' : '';
     let bold = this.props.bold ? 'bold' : '';
+    let gradientDirection = this.props.gradientDirection
+      ? this.props.gradientDirection
+      : GradientDirection.horizontal;
     return (
       <button
-        onClick={this.props.onClick.bind(this)}
-        className={`btn ${this.props.color} ${gradient} ${this.props.type} ${bold}`}
+        onClick={onClick.bind(this)}
+        className={`btn ${color} ${gradient} ${gradientDirection} ${type} ${bold}`}
       >
-        {this.props.label}
+        {label}
       </button>
     );
   }

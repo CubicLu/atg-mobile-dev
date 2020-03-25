@@ -1,7 +1,7 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { BackgroundImage, InputCode, Header } from './../../components';
-import {} from './../../actions';
+
 import { IonPage } from '@ionic/react';
 
 interface State {
@@ -47,33 +47,42 @@ class EnterCodePage extends React.Component<Props, State> {
           rightCloseButton={true}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
-        <div className="enter-code-page">
-          <div className="row">
-            <div className="col s12">
-              <h1 className="mt-40 title center-align">
-                Enter Verification Code
-              </h1>
+        <div className="initial-page-fullscreen">
+          <div className="space-between">
+            <div className="row">
+              <div className="col s12">
+                <h1 className="mt-40 title title-medium center-align">
+                  Enter Verification Code
+                </h1>
 
-              <p>
-                We sent a code to: <br />
-                thesound@music.com
-              </p>
+                <p className="text-small center-align">
+                  We sent a code to: <br />
+                  thesound@music.com
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="row">
-            <div className="col s12 mt-40 input-div">
-              <p>Enter the 6-digit code</p>
-              <InputCode
-                onKeyUp={this.validToken.bind(this)}
-                isValid={this.state.isValid}
-              />
+            <div className="flex-compass medium">
+              <div className="row">
+                <div className="col s12 mt-40 input-div">
+                  <p className="text-small center-align">
+                    Enter the 6-digit code
+                  </p>
+                  <br />
+                  <InputCode
+                    onKeyUp={this.validToken.bind(this)}
+                    isValid={this.state.isValid}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="row ">
-            <div className="col s12">
-              <p className="didnt-receive">I didn’t receive an email message</p>
+            <div className="footer flex-compass north center">
+              <div>
+                <p className="didnt-receive">
+                  I didn’t receive an email message
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -82,4 +91,4 @@ class EnterCodePage extends React.Component<Props, State> {
   }
 }
 
-export default withRouter(EnterCodePage);
+export default EnterCodePage;

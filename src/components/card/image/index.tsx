@@ -14,14 +14,16 @@ class CardImageComponent extends React.Component<Props> {
     type: ShapesSize.normal,
     col: 6
   };
+
   render(): React.ReactNode {
+    const { col, type, image, label } = this.props;
     return (
-      <div className={`col s${this.props.col}`}>
+      <div className={`col s${col}`}>
         <div
-          className={`card image ${this.props.type}`}
-          style={{ backgroundImage: `url(${this.props.image})` }}
+          className={`card image ${type}`}
+          style={{ backgroundImage: `url(${image})` }}
         ></div>
-        <div className="label">{this.props.label}</div>
+        <div className="label">{label}</div>
       </div>
     );
   }

@@ -1,22 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, CreateAnimation } from '@ionic/react';
-import {
-  BackgroundImage,
-  Header,
-  Menu,
-  SupportBy,
-  LoaderFullscreen,
-  ButtonSupport
-} from './../../components';
+import { RouteComponentProps } from 'react-router-dom';
+import { IonContent, IonPage, createAnimation } from '@ionic/react';
+import { Header, Menu, SupportBy, ButtonSupport } from './../../components';
 import {
   updateArtistProperty,
   updateSettingsProperty,
   getArtistAPI
 } from './../../actions';
 import { ApplicationState } from './../../reducers';
-import { validateScrollHeader } from '../../utils';
+import {
+  validateScrollHeader,
+  artistBackground,
+  getFixedTranslatePoints
+} from '../../utils';
 import {
   ArtistInterface,
   MenuInterface,
@@ -30,7 +27,6 @@ interface StateProps {
   isPlaying: boolean;
   artistTabs: MenuInterface[];
   activeArtistTab: string;
-  loading: boolean;
 }
 
 interface DispatchProps {
@@ -44,7 +40,6 @@ interface MatchParams {
 }
 interface State {
   blur: boolean;
-  scrolling: boolean;
 }
 
 interface Props
@@ -53,181 +48,227 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistPage extends React.Component<Props, State> {
-  private menuRef: React.RefObject<CreateAnimation> = React.createRef();
-  private nameRef: React.RefObject<CreateAnimation> = React.createRef();
-  private supportRef: React.RefObject<CreateAnimation> = React.createRef();
+  relativeAnimation: Animation | any;
+  menuAnimationRelative: Animation | any;
+  blur: boolean = false;
   private lastValidScroll: ScrollHeaderInterface = {
     direction: 'scrollUp',
-    blur: false
+    blur: false,
+    animation: 'reverse'
   };
+  fixedAnimation: Animation | any;
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      blur: false,
-      scrolling: false
-    };
-  }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.currentArtist?.username) {
+    if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
     } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (
-      nextProps.currentArtist == null &&
-      nextProps.match.params.id !== undefined
-    ) {
-      this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-
   UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 
+  activateAnimations(): any {
+    const normalMenu = document.querySelector('#normal-menu');
+    const fixedMenu = document.querySelector('#fixed-menu');
+    if (!(normalMenu && fixedMenu)) return;
+    const menuOpacity = createAnimation()
+      .addElement(fixedMenu!)
+      .fromTo('opacity', '0', '1');
+    const bar = createAnimation()
+      .addElement(document.querySelector('#support-bar')!)
+      .fromTo('transform', 'translateX(0px)', 'translateX(250px)')
+      .duration(300);
+    const blurBack = createAnimation()
+      .addElement(document.querySelector('#blur-background')!)
+      .easing('ease-in-out')
+      .keyframes([
+        { backdropFilter: 'blur(0)', opacity: 0, offset: 0 },
+        { backdropFilter: 'blur(2px)', opacity: 0.9, offset: 0.25 },
+        { backdropFilter: 'blur(4px)', opacity: 0.9, offset: 0.5 },
+        { backdropFilter: 'blur(6.5px)', opacity: 1, offset: 1 }
+      ])
+      .duration(600);
+    // this.vigilAnimations.push[(supportButton, artistTitle, topMenu)];
+    this.relativeAnimation = createAnimation()
+      .easing('ease-out')
+      .addAnimation([menuOpacity, bar, blurBack]);
+  }
+
   handleScroll(event: any): void {
-    const currentScroll = validateScrollHeader(event, 180, 250);
+    const currentScroll = validateScrollHeader(event, 140, 200);
     if (!currentScroll.validScroll) return;
     if (currentScroll.direction === this.lastValidScroll.direction) return;
 
     this.lastValidScroll = currentScroll;
-    this.setState({ blur: currentScroll.blur });
-    const parent = this.menuRef.current!.animation;
-    parent
-      .direction(currentScroll.animation)
-      .duration(200)
-      .play();
+    this.blur = currentScroll.blur;
+
+    this.transferNodes();
+    this.loadFixedAnimation();
+    this.relativeAnimation?.direction(currentScroll.animation).play();
+  }
+
+  loadFixedAnimation(): void {
+    if (!this.fixedAnimation) {
+      const a = document.querySelector('#support-button')!;
+      const aT = getFixedTranslatePoints(a, 16, 46, true);
+      const elemA = createAnimation()
+        .addElement(a)
+        .duration(300)
+        .fromTo(
+          'transform',
+          'translate(0,0)',
+          `translate(${aT.translateX}px,${aT.translateY}px)`
+        );
+      // .keyframes([
+      //   { transform: 'translate3d(0,0,0)' },
+      //   {
+      //     transform: `translate3d(${aT.translateX}px,${aT.translateY}px, 0)`
+      //   }
+      // ]);
+
+      const b = document.querySelector('#artist-title')!;
+      const h2 = document.querySelector('#artist-h2')!;
+      const bT = getFixedTranslatePoints(h2, 26, 36);
+      const elemB = createAnimation()
+        .addElement(b)
+        .duration(300)
+        .fromTo(
+          'transform',
+          'translate3d(0,0,0) scale(1)',
+          `translate3d(${bT.translateX}px,${bT.translateY}px, 0) scale(0.66)`
+        );
+      // .keyframes([
+      //   { transform: 'translate3d(0,0,0) scale(1)' },
+      //   {
+      //     transform: `translate3d(${bT.translateX}px,${bT.translateY}px, 0) scale(0.66)`
+      //   }
+      // ]);
+      const d = document.querySelector('#normal-menu')!;
+      const dT = getFixedTranslatePoints(d, 0, 88);
+      const elemD = createAnimation()
+        .addElement(d)
+        .duration(300)
+        .fromTo(
+          'transform',
+          'translate3d(0,0,0)',
+          `translate3d(${dT.translateX}px,${dT.translateY}px, 0)`
+        );
+      // .keyframes([
+      //   { transform: 'translate3d(0,0,0)' },
+      //   {
+      //     transform: `translate3d(${dT.translateX}px,${dT.translateY}px, 0)`
+      //   }
+      // ]);
+      this.relativeAnimation?.addAnimation([elemA, elemB, elemD]);
+      this.fixedAnimation = [elemA, elemB, elemD];
+    }
+    // this.fixedAnimation = createAnimation()
+    // .duration(300)
+    // .easing('ease-out')
+    // .addAnimation([elemA, elemB, elemD]);
+  }
+
+  transferNodes(): void {
+    const oldParent = this.blur
+      ? document.querySelector('#original')
+      : document.querySelector('#fixed-menu');
+    const newParent = this.blur
+      ? document.querySelector('#fixed-menu')
+      : document.querySelector('#original');
+    while (oldParent?.hasChildNodes()) {
+      newParent?.appendChild(oldParent.firstChild!);
+    }
   }
 
   handleMenu(event: MenuInterface): void {
-    if (event.isPage === true) {
-      let route =
-        event.route != null
-          ? event.route.replace(':id', this.props.match.params.id)
-          : '';
-      this.props.history.push(route);
-    } else if (event.onClick !== undefined) {
+    const { match, history, updateSettingsProperty } = this.props;
+    if (event.route && event.isPage === true) {
+      const href = event.route.replace(':id', match.params.id);
+      history.push(href);
+      // const action = Action.
+    } else if (event.onClick) {
       event.onClick();
     } else {
-      this.props.updateSettingsProperty('activeArtistTab', event.id);
+      updateSettingsProperty('activeArtistTab', event.id);
     }
   }
 
   render(): React.ReactNode {
-    const hasArtist = this.props.currentArtist;
-    if (!hasArtist) {
-      return (
-        <IonPage id="artist-page">
-          <LoaderFullscreen visible={true} />
-        </IonPage>
-      );
+    if (!this.props.currentArtist) {
+      return <IonPage id="artist-page" />;
     }
+    const {
+      currentArtist: artist,
+      history,
+      artistTabs,
+      activeArtistTab
+    } = this.props;
 
-    const scrolled = this.state.blur;
-    const supportFans = this.props.currentArtist?.supportArtistFans;
-    const name = this.props.currentArtist?.name;
-    const gradient = `180deg,${this.props.currentArtist?.backgroundGradient?.color1}00 0%,${this.props.currentArtist?.backgroundGradient?.color1}d1 60%,${this.props.currentArtist?.backgroundGradient?.color2} 100%`;
-    const backgroundImage = this.props.currentArtist?.cover.background;
-    const clickBack = (): void => this.props.history.push('/home/profile');
-
+    const clickBack = (): void => history.push('/home/profile');
+    if (!this.relativeAnimation) this.activateAnimations();
     return (
-      <IonPage id="artist-page">
-        <BackgroundImage
-          gradient={gradient}
-          backgroundImage={backgroundImage}
-          blur={this.state.blur}
-        />
+      <IonPage id="artist-page" style={artistBackground(artist)}>
+        <div id="blur-background" className="artist-page blur-background" />
         <Header
           leftBackOnClick={clickBack}
-          title={name}
-          titleClassName={`artist-name ${scrolled ? 'show' : ' hide'}`}
-          rightContent={
-            <SupportBy
-              data={supportFans}
-              className={scrolled ? 'hide' : 'show'}
-            />
-          }
+          titleClassName={`artist-name`}
+          rightContent={<SupportBy data={artist.supportArtistFans} />}
         />
 
-        <div className="artist-page content">
+        <div id="fixed-menu" className="artist-page menu-fixed-area" />
+        <div id="absolute" className="artist-page absolute">
           <IonContent
             scrollY={true}
             scrollEvents={true}
+            forceOverscroll={true}
+            fullscreen={true}
             onIonScroll={this.handleScroll.bind(this)}
           >
-            <div className="emptySpace" />
-            <div className="artistName center">
-              <CreateAnimation
-                ref={this.nameRef}
-                duration={200}
-                fromTo={{
-                  property: 'transform',
-                  fromValue: 'translate(0, 0)',
-                  toValue: 'translate(-60px, -120px)'
-                }}
-              >
-                <h2
-                  id="artistName"
-                  className={`title ${scrolled ? 'left' : 'center'}`}
-                >
-                  {name}
+            <div id="original" style={{ marginTop: 130, minHeight: 200 }}>
+              <div style={{ minHeight: 50 }}>
+                <h2 id="artist-title" className={`artist-title`}>
+                  <span id="artist-h2">{artist.name}</span>
                 </h2>
-              </CreateAnimation>
-            </div>
-
-            <div className={`supportBtn ${scrolled ? 'right' : 'center'}`}>
-              <CreateAnimation
-                ref={this.supportRef}
-                duration={200}
-                fromTo={{
-                  property: 'transform',
-                  fromValue: 'translate(0, 0)',
-                  toValue: 'translate(0px, -162px)'
-                }}
-              >
-                <ButtonSupport
-                  buttonType={'text'}
-                  type={ShapesSize.rounded}
-                  uppercase
-                  supported={this.props.currentArtist?.support}
-                  onClick={(): void => {
-                    this.props.history.push(
-                      `/home/artist/${this.props.currentArtist?.username}/support`
-                    );
-                  }}
-                />
-              </CreateAnimation>
-            </div>
-
-            <CreateAnimation
-              ref={this.menuRef}
-              duration={200}
-              fromTo={{
-                property: 'transform',
-                fromValue: 'translateY(0px)',
-                toValue: 'translateY(-204px)'
-              }}
-            >
-              <div className={scrolled ? 'menuFixed ' : 'notFixed'}>
-                <Menu
-                  tabs={this.props.artistTabs}
-                  activeId={this.props.activeArtistTab}
-                  onClick={this.handleMenu.bind(this)}
-                />
               </div>
-            </CreateAnimation>
+              <div style={{ minHeight: 30 }} className={`support-button`}>
+                <div id="support-button">
+                  <ButtonSupport
+                    buttonType={'text'}
+                    type={ShapesSize.rounded}
+                    uppercase
+                    supported={artist.support}
+                    onClick={(): void => {
+                      this.props.history.push(
+                        `/home/artist/${artist.username}/support`
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+              <div style={{ minHeight: 40 }} />
+              <div style={{ minHeight: 80 }}>
+                <div id="normal-menu">
+                  <Menu
+                    tabs={artistTabs}
+                    activeId={activeArtistTab}
+                    onClick={this.handleMenu.bind(this)}
+                  />
+                </div>
+              </div>
+            </div>
 
-            {hasArtist &&
-              this.props.artistTabs.map(
+            {artistTabs &&
+              artistTabs.map(
                 (data, i): React.ReactNode =>
-                  data.id === this.props.activeArtistTab &&
+                  data.id === activeArtistTab &&
                   React.createElement(data.component, { key: i })
               )}
           </IonContent>
         </div>
-        <LoaderFullscreen visible={this.props.loading} />
       </IonPage>
     );
   }
@@ -237,22 +278,19 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists, loading } = artistAPI;
+  const { currentArtist, artists } = artistAPI;
   const { isPlaying, artistTabs, activeArtistTab } = settings;
   return {
     currentArtist,
     artists,
     isPlaying,
     artistTabs,
-    activeArtistTab,
-    loading
+    activeArtistTab
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateArtistProperty,
-    updateSettingsProperty,
-    getArtistAPI
-  })(ArtistPage)
-);
+export default connect(mapStateToProps, {
+  updateArtistProperty,
+  updateSettingsProperty,
+  getArtistAPI
+})(ArtistPage);

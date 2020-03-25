@@ -32,7 +32,7 @@ export function* getCommunityPosts(): any {
 }
 
 export const getCommunityByArtistUsernameRequest = async (
-  username
+  username: string
 ): Promise<CommunityArtistInterface> =>
   await API.get(`community/posts/${username}.json`);
 

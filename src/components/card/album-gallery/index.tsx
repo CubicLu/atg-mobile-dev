@@ -18,17 +18,18 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
     quantity: 0
   };
   render(): React.ReactNode {
+    const { col, onClick, type, image, label, quantity } = this.props;
     return (
       <div
-        className={`col s${this.props.col} card album-gallery`}
-        onClick={this.props.onClick.bind(this)}
+        className={`col s${col} card album-gallery`}
+        onClick={onClick.bind(this)}
       >
         <div
-          className={`image ${this.props.type}`}
-          style={{ backgroundImage: `url(${this.props.image})` }}
+          className={`image ${type}`}
+          style={{ backgroundImage: `url(${image})` }}
         ></div>
-        <div className="label">{this.props.label}</div>
-        <span>{this.props.quantity} items</span>
+        <div className="label">{label}</div>
+        <span>{quantity} items</span>
       </div>
     );
   }

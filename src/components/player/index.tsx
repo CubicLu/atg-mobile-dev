@@ -448,7 +448,7 @@ class PlayerComponent extends React.Component<Props> {
                   </div>
                 </div>
 
-                <div id="shadow" className="bottom-shadow h-16 w-100" />
+                <div className="bottom-shadow h-16 w-100" />
                 <div className="flex-compass south half h-16">
                   <div className="row p-0 flex-wrap">
                     <div className="col s4 p-0">

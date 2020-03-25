@@ -11,6 +11,12 @@
     flex-wrap: wrap-reverse;
     align-items: center;
 }
+.flex-wrap-fluid{
+    margin-left: -28px;
+    margin-right: -28px;
+    width: 100vw;
+    padding-bottom: 20px !important;
+}
 .mt-40{
     margin-top: 40px;
 }

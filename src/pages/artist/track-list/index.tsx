@@ -13,7 +13,9 @@ import { BackgroundImage, Header, ButtonSupport } from '../../../components';
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
-interface DispatchProps {}
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
 interface Props extends StateProps, DispatchProps {}
 
 class TrackListPage extends React.Component<Props> {
@@ -139,19 +141,19 @@ class TrackListPage extends React.Component<Props> {
         />
         <Header
           leftBackButton={true}
-          centerContent={
+          rightActionButton={true}
+          rightContent={
             <ButtonSupport
               buttonType={'text'}
               uppercase
               type={ShapesSize.rounded}
             />
           }
-          rightActionButton={true}
           rightActionYellow={true}
           rightActionOnClick={null}
         />
 
-        <div className="initial-page-fullscreen">
+        <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
           <div className="">
             <div className="cover-title">
               <IonImg className="image radius" src={song?.cover} />
@@ -171,6 +173,41 @@ class TrackListPage extends React.Component<Props> {
                 </div>
               )
             )}
+          </div>
+
+          <div className="bottom-shadow h-16 w-100" />
+          <div className="flex-compass south half h-16">
+            <div className="row p-0 flex-wrap flex-wrap-fluid">
+              <div className="col s4 p-0">
+                <IonImg
+                  className="tile"
+                  src={
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+                  }
+                />
+                <span className="tile-label-s4">Liner Notes</span>
+              </div>
+
+              <div className="col s4 p-0">
+                <IonImg
+                  className="tile"
+                  src={
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+                  }
+                />
+                <span className="tile-label-s4">Community</span>
+              </div>
+
+              <div className="col s4 p-0">
+                <IonImg
+                  className="tile"
+                  src={
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+                  }
+                />
+                <span className="tile-label-s4">Artist Home</span>
+              </div>
+            </div>
           </div>
         </div>
       </IonPage>

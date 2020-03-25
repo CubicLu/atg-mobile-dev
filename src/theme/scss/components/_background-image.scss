@@ -14,6 +14,9 @@ ion-page{
     height: 100%;
     width: 100%;
     position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
     &.blur{
         filter: blur(7px);
         transition: 0.5s ease;
@@ -33,9 +36,13 @@ ion-page{
 }
 .background-top {
     background-position: center top;
+    top: 0;
+    left: 0;
 }
 .background-bottom {
     background-position: center bottom;
+    bottom: 0;
+    left: 0;
 }
 .background-legend {
     z-index: -2;

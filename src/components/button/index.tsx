@@ -1,6 +1,6 @@
 import React from 'react';
 import {} from './../';
-import { ShapesSize, Colors, GradientDirection } from '../../interfaces';
+import { ShapesSize, Colors, GradientDirection, Sizes } from '../../interfaces';
 
 interface Props {
   onClick: Function;
@@ -10,6 +10,7 @@ interface Props {
   gradient?: boolean;
   bold?: boolean;
   type?: ShapesSize;
+  size?: Sizes;
   gradientDirection?: GradientDirection;
 }
 
@@ -18,20 +19,22 @@ class ButtonComponent extends React.Component<Props> {
     onClick: (): any => {},
     gradient: false,
     type: ShapesSize.normal,
-    bold: false
+    bold: false,
+    size: Sizes.md
   };
 
   render(): React.ReactNode {
     const { onClick, color, type, label } = this.props;
     let gradient = this.props.gradient ? 'gradient' : '';
     let bold = this.props.bold ? 'bold' : '';
+    let size = this.props.size != Sizes.md && Sizes.lg ? 'btn-large' : '';
     let gradientDirection = this.props.gradientDirection
       ? this.props.gradientDirection
       : GradientDirection.horizontal;
     return (
       <button
         onClick={onClick.bind(this)}
-        className={`btn ${color} ${gradient} ${gradientDirection} ${type} ${bold}`}
+        className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold}`}
       >
         {label}
         {type === ShapesSize.viewAll && (

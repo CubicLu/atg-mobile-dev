@@ -83,7 +83,6 @@ class ArtistVideosPage extends React.Component<Props, State> {
               backgroundTop
               backgroundBottom
               backgroundBottomDark={false}
-              bottomRotate
               backgroundTopDark
               backgroundTopOpacity={0.7}
             />

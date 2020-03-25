@@ -129,17 +129,15 @@
         }
     }    
     .menu{
-        &.generic{
-            max-width: 250px !important;
-            display: flex;
-            align-content: center;
-            align-items: center;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 20px;
-            .scroll{
-                margin-top: 0px;
-            }
+        max-width: 250px !important;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        .scroll{
+            margin-top: 0px;
         }
     }
 }

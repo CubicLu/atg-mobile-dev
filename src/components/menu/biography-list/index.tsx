@@ -35,9 +35,8 @@ class BiographyListComponent extends React.Component<Props> {
       <div className="menu generic-list">
         <BackgroundImage
           backgroundBottom
-          backgroundBottomDark={false}
           backgroundBottomOrange={true}
-          backgroundBottomOpacity={1}
+          backgroundBottomOpacity={0.4}
         />
         <Header
           leftBackButton={false}

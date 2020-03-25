@@ -1,5 +1,9 @@
 .menu{
     width: 100%;
+    justify-content: space-around;
+    padding: $menu-padding/2 0;
+    margin-top: 30px;
+    
     &.scroll{
         overflow-x: auto;
         overflow-x: scroll;
@@ -8,6 +12,10 @@
         margin-top: 30px;
         @include no-scroll-bar();
         li{
+            text-align: center;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
             margin-left: $menu-scroll-margin;
             margin-right: $menu-scroll-margin;
             &:first-child{
@@ -16,65 +24,50 @@
             &:last-child{
                 padding-right: $menu-scroll-margin;
             }
-        }
-    }
-    &.generic{
-        justify-content: space-around;
-        padding: $menu-padding/2 0;
-        margin-top: 30px;
-        li{
-            margin-right: 0 !important;
-            text-align: center;
-            height: 70px;
-            display: flex;
-            flex-direction: column;
-
-                .circle{
-                    width: 100%;
+            .circle{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                span{
+                    border-radius: 50%;
+                    height: 42px !important;
+                    width: 42px !important;
+                    align-items: center;
+                    text-align: center;
                     display: flex;
                     justify-content: center;
-                    span{
-                        border-radius: 50%;
-                        height: 42px !important;
-                        width: 42px !important;
-                        align-items: center;
-                        text-align: center;
-                        display: flex;
-                        justify-content: center;
-                        align-content: center;
-                        background-color: #E0E8CB;
-                        font-family: "Industria";
-                        font-weight: 600;
-                        font-size: 42px;
-                        padding-bottom: 2px;
-                    }
+                    align-content: center;
+                    background-color: #E0E8CB;
+                    font-family: "Industria";
+                    font-weight: 600;
+                    font-size: 42px;
+                    padding-bottom: 4px;
                 }
-
+            }
+            &.active{
                 .title{
-                    font-family: 'Helvetica';
-                    font-size: 14px;
-                    color: $menu;
+                    font-weight: bold;
+                    border-bottom: 2px;
+                    border-bottom: 2px solid $tertiary;
+                    color: $tertiary;
                     margin-top: $list-padding-top;
-                    font-weight: 400;
-                    border-bottom: 2px solid transparent;
                 }
-
-                &.active{
-                    .title{
-                        font-weight: bold;
-                        border-bottom: 2px;
-                        border-bottom: 2px solid $tertiary;
-                        color: $tertiary;
-                        margin-top: $list-padding-top;
-                    }
-
-                    .circle{
-                        span{
-                            background: $tertiary;
-                        }
+                .circle{
+                    span{
+                        background: $tertiary;
                     }
                 }
             }
+        }
+        
+    }
+    .title{
+        font-family: 'Helvetica';
+        font-size: 14px;
+        color: $menu;
+        margin-top: $list-padding-top;
+        font-weight: 400;
+        border-bottom: 2px solid transparent;
     }
 
     &.fan-support-options, &.artist-list, &.generic-list{

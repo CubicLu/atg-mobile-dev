@@ -46,9 +46,9 @@ class MenuArtistList extends React.Component<Props> {
     return (
       <div className="menu artist-list">
         <BackgroundImage
-          backgroundBottomOrange={true}
           backgroundBottom={true}
-          backgroundBottomOpacity={1}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.4}
         />
         <Header
           leftBackButton={false}

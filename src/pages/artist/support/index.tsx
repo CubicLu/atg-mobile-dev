@@ -156,7 +156,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             <IonButton
               className="support"
               size="large"
-              routerLink="/home/artist/${username}"
+              routerLink={`/home/artist/${username}`}
               expand="full"
             >
               Support Us

@@ -28,9 +28,9 @@
         &.generic{
             &.scroll {
                 margin-top: 0;
+                margin-left: 20px;
                 padding: 0;
                 padding-bottom: 4px;
-                transition: transform 500ms;
                 display: flex;
                 overflow-x: scroll;
                 overflow-y: hidden;

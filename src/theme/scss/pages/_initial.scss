@@ -12,11 +12,8 @@
     align-self: normal;
     width: 100%;
 }
-.double-top{
-    margin-top: 2 * $initial-margin;    
-}
 .initial-page-fullscreen{
-    margin: $initial-margin;
+    padding: $initial-margin;
     height: 100%;
     .row {
         margin-bottom: 0; 
@@ -174,4 +171,7 @@
             margin-bottom: 0;
         }
     }
+}
+.double-top{
+    margin-top: 2 * $initial-margin;    
 }

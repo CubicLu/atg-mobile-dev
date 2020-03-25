@@ -18,8 +18,8 @@ ion-page{
     width: 100%;
     position: fixed;
     &.blur{
-
-        animation: blur 0.5s ease forwards;
+        filter: blur(7px);
+        transition: 0.5s ease;
         background-color: #00000033;
     }
     &.shadow{
@@ -57,28 +57,4 @@ ion-page{
     transform: rotate(-180deg);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
-}
-
-@include keyframes(blur) {
-    0% {
-        -webkit-filter: blur(0px);
-        -moz-filter: blur(0px);
-        -o-filter: blur(0px);
-        -ms-filter: blur(0px);
-        filter: blur(0px);
-    }
-    50% {
-        -webkit-filter: blur(3.5px);
-        -moz-filter: blur(3.5px);
-        -o-filter: blur(3.5px);
-        -ms-filter: blur(3.5px);
-        filter: blur(3.5px);
-    }
-    100% {
-        -webkit-filter: blur(7px);
-        -moz-filter: blur(7px);
-        -o-filter: blur(7px);
-        -ms-filter: blur(7px);
-        filter: blur(7px);
-    }
 }

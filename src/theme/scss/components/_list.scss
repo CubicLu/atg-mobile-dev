@@ -21,6 +21,19 @@ ul{
     margin-bottom: $list-padding-bottom;
     display: flex;
 }
+.list-track-number{
+    padding-left: $list-padding-top;
+    padding-right: 2 * $list-padding-top;
+}
+.list-track{
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #ffffff;
+    &.row{
+        padding-bottom: $list-padding-top;
+        margin-top: $list-padding-top;
+    }
+}
 .list-component{
 margin-bottom: 0;
 margin-left: $list-margin;

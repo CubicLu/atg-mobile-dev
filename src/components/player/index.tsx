@@ -349,7 +349,10 @@ class PlayerComponent extends React.Component<Props> {
             </React.Fragment>
           )}
         </div>
-        <div className="player-expanded h-100">
+        <div
+          className="player-expanded h-100"
+          style={expanded ? {} : { height: 0 }}
+        >
           {expanded && (
             <React.Fragment>
               <BackgroundImage

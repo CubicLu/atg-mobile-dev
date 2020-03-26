@@ -16,6 +16,8 @@ interface Props extends RouteComponentProps {
 
 class CardPostComponent extends React.Component<Props> {
   render(): React.ReactNode {
+    const { history } = this.props;
+
     return (
       <div
         className="card post"
@@ -52,6 +54,9 @@ class CardPostComponent extends React.Component<Props> {
                 <ButtonIcon
                   icon={<BalloonIcon />}
                   label={this.props.post.commentsQuantity}
+                  onClick={(): void => {
+                    history.push(`/home/community/comments/${1}`);
+                  }}
                 />
                 <ButtonIcon icon={<HeartIcon />} />
               </div>

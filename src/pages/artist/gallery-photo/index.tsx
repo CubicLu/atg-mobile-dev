@@ -62,10 +62,11 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="gallery-photo-page">
-        <IonContent>
+        <Header />
+        <IonContent
+          style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
+        >
           <div className={`artist-gallery-photo-page`}>
-            <Header />
-
             <div
               className={`content-container ${this.props.isPlaying &&
                 ' is-playing'}`}

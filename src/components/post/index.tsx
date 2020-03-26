@@ -42,8 +42,7 @@ class ArtistPostComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const { currentPostComments } = this.props;
-    const { currentPostCover } = this.props;
+    const { currentPostComments, currentPostCover } = this.props;
     return (
       <div>
         <PostCover cover={currentPostCover} />

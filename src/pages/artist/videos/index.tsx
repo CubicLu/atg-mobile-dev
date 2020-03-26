@@ -70,14 +70,14 @@ class ArtistVideosPage extends React.Component<Props, State> {
     const { currentArtist } = this.props;
     return (
       <IonPage id="artist-videos-page">
-          <Header title="Videos" titleClassName="videos" />
-          <HeaderOverlay ref={this.headerRef} />
-          <IonContent
-            scrollY={true}
-            scrollEvents={true}
-            onIonScroll={this.handleScroll.bind(this)}
-          >
-             <div className="artist-videos-page">
+        <Header title="Videos" titleClassName="videos" />
+        <HeaderOverlay ref={this.headerRef} />
+        <IonContent
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={this.handleScroll.bind(this)}
+        >
+          <div className="artist-videos-page">
             <BackgroundImage
               gradient={`180deg,#1F0739,#1F0739`}
               backgroundTop

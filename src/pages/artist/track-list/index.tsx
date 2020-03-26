@@ -127,7 +127,6 @@ class TrackListPage extends React.Component<Props> {
     ]
   };
   render(): React.ReactNode {
-    const song: any = null;
     return (
       <IonPage id="track-list">
         <BackgroundImage

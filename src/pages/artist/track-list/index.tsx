@@ -43,31 +43,20 @@ class TrackListPage extends React.Component<Props> {
   render(): React.ReactNode {
     // const artistBackground = this.props.currentArtist?.cover.background;
     const { currentArtist } = this.props;
-    const style = currentArtist ? artistBackground(currentArtist) : {};
+    const style = currentArtist ? artistBackground(currentArtist, true) : {};
     const type = this.props.match.params.reference;
-    if (type === 'artist') {
+    const discos = currentArtist && currentArtist.discography;
+    if (type === 'artist' && discos) {
       switch (this.props.match.params.referenceId) {
         case '0': {
-          this.playlist.name =
-            (currentArtist!.discography &&
-              currentArtist!.discography[0].name) ||
-            '';
-          this.playlist.cover =
-            (currentArtist!.discography &&
-              currentArtist!.discography[0].cover) ||
-            '';
+          this.playlist.name = discos && discos[0].name;
+          this.playlist.cover = discos && discos[0].cover!;
           this.playlist.owner = currentArtist!.name;
           break;
         }
         default: {
-          this.playlist.name =
-            (currentArtist!.discography &&
-              currentArtist!.discography[0].name) ||
-            '';
-          this.playlist.cover =
-            (currentArtist!.discography &&
-              currentArtist!.discography[0].cover) ||
-            '';
+          this.playlist.name = discos && discos[1].name;
+          this.playlist.cover = discos && discos[1].cover!;
           this.playlist.owner = currentArtist!.name;
           break;
         }
@@ -94,11 +83,13 @@ class TrackListPage extends React.Component<Props> {
           rightActionButton={true}
           rightContent={
             <div style={{ margin: 'auto 4px 2px 4px' }}>
-              <ButtonSupport
-                buttonType={'text'}
-                uppercase
-                type={ShapesSize.rounded}
-              />
+              {currentArtist && (
+                <ButtonSupport
+                  buttonType={'text'}
+                  uppercase
+                  type={ShapesSize.rounded}
+                />
+              )}
             </div>
           }
           rightActionYellow={true}

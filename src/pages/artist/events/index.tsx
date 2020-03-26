@@ -8,19 +8,17 @@ import {
 import { IonContent, IonList, IonItem, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { getArtistAPI } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
 }
 
 interface MatchParams {
@@ -44,15 +42,13 @@ class ArtistEventsPage extends React.Component<Props, State> {
     this.state = { blur: false };
   }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist == null
-    ) {
+    if (nextProps.currentArtist == null) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-
-  componentDidMount(): void {
+  UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
@@ -67,60 +63,46 @@ class ArtistEventsPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { currentArtist } = this.props;
+    if (!currentArtist) return <IonPage />;
     return (
       <IonPage id="events-page">
-        <div className="artist-events-page">
-          <Header title="Events" titleClassName="events" />
-          <HeaderOverlay ref={this.headerRef} />
-
-          <IonContent
-            scrollY={true}
-            scrollEvents={true}
-            onIonScroll={this.handleScroll.bind(this)}
-            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
-          >
-            <BackgroundImage
-              backgroundImage={this.props.currentArtist?.cover.event}
-            />
-            <div
-              className={`content-list ${this.props.isPlaying &&
-                ' is-playing'}`}
-            >
+        <Header title="Events" titleClassName="events" />
+        <IonContent
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={this.handleScroll.bind(this)}
+        >
+          <div className="artist-events-page">
+            <BackgroundImage backgroundImage={currentArtist.cover?.event} />
+            <HeaderOverlay ref={this.headerRef} />
+            <div className={`content-list is-playing'}`}>
               <IonList lines="none" className="list">
-                {this.props.currentArtist?.events?.map(
-                  (data, i): React.ReactNode => {
-                    return (
-                      <IonItem key={i}>
-                        <CardEvent
-                          data={data}
-                          id={i}
-                          artistUsername={this.props.currentArtist?.username}
-                        />
-                      </IonItem>
-                    );
-                  }
+                {currentArtist.events?.map(
+                  (data, i): React.ReactNode => (
+                    <IonItem key={i}>
+                      <CardEvent
+                        data={data}
+                        id={i}
+                        artistUsername={currentArtist.username}
+                      />
+                    </IonItem>
+                  )
                 )}
               </IonList>
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty
-  })(ArtistEventsPage)
+  connect(mapStateToProps, { getArtistAPI })(ArtistEventsPage)
 );

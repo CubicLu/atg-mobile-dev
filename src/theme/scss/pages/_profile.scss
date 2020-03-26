@@ -1,7 +1,12 @@
 .profile-page{
     height: 100%;
     ion-content{
-        height: calc(100% - 270px);
+        height: calc(100% - 330px);
+    }
+    .slider{
+        &.mixtapes{
+            overflow: hidden;
+        }
     }
     &.is-playing{
         margin-bottom: $default-height-player;

@@ -35,17 +35,16 @@ class SliderVideoComponent extends React.Component<Props> {
       swipe: true
     };
     return (
-      <div className={`slider video ${size}`}>
-        <div className="list-view-all">
-          <div>
-            <h1 className="title">{title}</h1>
-          </div>
-          <div className="action">
+      <div className="slider video">
+        <div className="list-component align-bottom row">
+          <h1 className="title">{title}</h1>
+          <div className="align-end">
             {viewAll && (
-              <Button color={Colors.transparent} label={'View All'} />
+              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
             )}
           </div>
         </div>
+
         <Slider {...settings}>
           {data.map(
             (d, i): React.ReactNode => (

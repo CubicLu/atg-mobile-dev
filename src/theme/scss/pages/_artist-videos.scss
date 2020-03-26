@@ -1,7 +1,5 @@
 .artist-videos-page{
-
     @include page;
-
     .background-top {
         top: #{-$default-height-header};
         position: absolute;
@@ -9,15 +7,14 @@
     .content-container{
         position: relative;
         top: 92px;
-
         .showcase{
             padding-left: 20px;
             padding-right: 20px;
-            .title{
-                margin-top: 0;
-                font-size: pxToRem(42);
-                margin-left: 10px;
-            }
         }
+    }
+    .title{
+        margin-top: 0;
+        font-size: pxToRem(42);
+        margin-left: 10px;
     }
 }

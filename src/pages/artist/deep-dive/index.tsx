@@ -47,11 +47,12 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
+    if (nextProps.currentArtist == null) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-
   UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
@@ -78,13 +79,14 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
+          style={{ background: '#000' }}
           onIonScroll={this.handleScroll.bind(this)}
         >
-          <BackgroundImage
-            backgroundImage={currentArtist.cover.deepDive}
-            blur={this.state.fixed}
-          />
           <div className={`artist-deep-dive-page`}>
+            <BackgroundImage
+              backgroundImage={currentArtist.cover.deepDive}
+              blur={this.state.fixed}
+            />
             <div className={this.state.fixed ? 'row header-fixed' : 'row'}>
               <Header
                 rightActionButton

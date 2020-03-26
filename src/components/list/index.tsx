@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, ArrowRightIcon } from './../../components';
-import { IonList, IonItem } from '@ionic/react';
-import { Colors } from '../../interfaces';
+import { Colors, ShapesSize } from '../../interfaces';
 
 interface Props {
   title: string;
@@ -24,29 +23,25 @@ class ListComponent extends React.Component<Props> {
 
     return (
       <div className="list-component">
-        <div className="list-view-all">
-          <div>
-            <h1 className="title">{title}</h1>
-          </div>
-          <div className="action">
+        <div className="align-bottom row">
+          <h1 className="title">{title}</h1>
+          <div className="align-end">
             {viewAll && (
-              <Button color={Colors.transparent} label={'View All'} />
+              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
             )}
           </div>
         </div>
 
-        <IonList lines="none" className="list">
-          {data.map(
-            (data, i): React.ReactNode => (
-              <IonItem key={i}>
-                <div className="row text">{data[label]}</div>
-                <div className="action">
-                  <ArrowRightIcon />
-                </div>
-              </IonItem>
-            )
-          )}
-        </IonList>
+        {data.map(
+          (data, i): React.ReactNode => (
+            <div className="row list-margin-row text" key={i}>
+              {data[label]}
+              <div className="align-end">
+                <ArrowRightIcon />
+              </div>
+            </div>
+          )
+        )}
       </div>
     );
   }

@@ -52,7 +52,7 @@ class ArtistVideosPage extends React.Component<Props, State> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  componentDidMount(): void {
+  UNSAFE_componentWillMount(): void {
     if (this.props.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
@@ -70,7 +70,6 @@ class ArtistVideosPage extends React.Component<Props, State> {
     const { currentArtist } = this.props;
     return (
       <IonPage id="artist-videos-page">
-        <div className="artist-videos-page">
           <Header title="Videos" titleClassName="videos" />
           <HeaderOverlay ref={this.headerRef} />
           <IonContent
@@ -78,12 +77,12 @@ class ArtistVideosPage extends React.Component<Props, State> {
             scrollEvents={true}
             onIonScroll={this.handleScroll.bind(this)}
           >
+             <div className="artist-videos-page">
             <BackgroundImage
               gradient={`180deg,#1F0739,#1F0739`}
               backgroundTop
               backgroundBottom
               backgroundBottomDark={false}
-              bottomRotate
               backgroundTopDark
               backgroundTopOpacity={0.7}
             />
@@ -118,8 +117,8 @@ class ArtistVideosPage extends React.Component<Props, State> {
                 </div>
               </div>
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

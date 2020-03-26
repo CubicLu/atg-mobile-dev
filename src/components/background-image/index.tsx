@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 import {
-  BackgroundCircleBubblesImage as DarkBottom,
-  BackgroundCircleBubblesInverted as DarkTop,
-  BackgroundCircleBubblesLightImage as LightBottom,
-  BackgroundCircleBubblesLightInverted as LightTop,
-  BackgroundCircleBubblesOrangeImage as OrangeBottom
+  OrangeBubblesBottom,
+  BlackBubblesTop,
+  BlackBubblesBottom,
+  WhiteBubblesTop,
+  WhiteBubblesBottom
 } from './../../components';
 
 interface Props {
@@ -17,14 +17,10 @@ interface Props {
   backgroundTop: boolean;
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;
-  backgroundTopHeight: number;
   backgroundBottom: boolean;
   backgroundBottomDark: boolean;
   backgroundBottomOpacity: number;
-  backgroundBottomHeight: number;
   backgroundBottomOrange: boolean;
-  topRotate: boolean;
-  bottomRotate: boolean;
   blur: boolean;
   className: string;
 }
@@ -35,15 +31,11 @@ class BackgroundImageComponent extends React.Component<Props> {
     shadow: false,
     backgroundTop: false,
     backgroundBottom: false,
-    topRotate: false,
     backgroundBottomOrange: false,
-    bottomRotate: false,
     backgroundTopDark: true,
     backgroundBottomDark: true,
-    backgroundTopOpacity: 0.12,
-    backgroundBottomOpacity: 0.12,
-    backgroundTopHeight: 300,
-    backgroundBottomHeight: 300,
+    backgroundTopOpacity: 0.2,
+    backgroundBottomOpacity: 0.2,
     blur: false,
     className: ''
   };
@@ -55,10 +47,8 @@ class BackgroundImageComponent extends React.Component<Props> {
       backgroundBottomDark: bDark,
       backgroundBottomOrange: bOrange,
       backgroundBottomOpacity: bOpacity,
-      backgroundBottomHeight: bHeight,
       backgroundTopDark: tDark,
       backgroundTopOpacity: tOpacity,
-      backgroundTopHeight: tHeight,
       backgroundImage: imageUrl,
       gradient,
       blur,
@@ -66,27 +56,23 @@ class BackgroundImageComponent extends React.Component<Props> {
       className,
       styles,
       legend,
-      children,
-      topRotate,
-      bottomRotate
+      children
     } = this.props;
 
-    const topClass = 'background-top' + (topRotate ? ' rotate' : '');
+    const topClass = 'background-top';
     const topStyle = {
-      backgroundImage: `url(${tDark ? DarkTop : LightTop})`,
-      opacity: tOpacity,
-      height: tHeight
+      backgroundImage: `url(${tDark ? BlackBubblesTop : WhiteBubblesTop})`,
+      opacity: tOpacity
     };
 
-    const bottomClass = 'background-bottom' + (bottomRotate ? ' rotate' : '');
-    let bottomUrl = bDark ? DarkBottom : LightBottom;
+    const bottomClass = 'background-bottom';
+    let bottomUrl = bDark ? BlackBubblesBottom : WhiteBubblesBottom;
     if (bOrange) {
-      bottomUrl = OrangeBottom;
+      bottomUrl = OrangeBubblesBottom;
     }
     const bottomStyle = {
       backgroundImage: `url(${bottomUrl})`,
-      opacity: bOpacity,
-      height: bHeight
+      opacity: bOpacity
     };
 
     let imageArray: string[] = [];

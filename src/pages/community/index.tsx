@@ -204,9 +204,8 @@ class CommunityPage extends React.Component<Props, State> {
           backgroundTop
           backgroundTopOpacity={0.15}
           backgroundBottom
-          backgroundBottomDark={false}
           backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.3}
+          backgroundBottomOpacity={0.4}
         />
         {this.renderHeader()}
         <div

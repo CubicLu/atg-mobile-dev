@@ -24,20 +24,6 @@
         background: #00000025;
         backdrop-filter: blur(6.5px);
     }
-    .menu{
-        &.generic{
-            &.scroll {
-                margin-top: 0;
-                padding: 0;
-                padding-bottom: 4px;
-                transition: transform 500ms;
-                display: flex;
-                overflow-x: scroll;
-                overflow-y: hidden;
-                height: auto;
-            }
-        }
-    }
     .artist-title {
         font-size: 48px;
         line-height: 0.8;
@@ -50,13 +36,6 @@
         margin: 0;
         text-shadow: 3px 1px rgba(0, 0, 0, 0.16);
     }
-    .row{
-        width: 100%;
-        margin-bottom: 5px;
-        margin-top: 0;
-        margin-left: 0;
-        margin-right: 0;
-    }
     .support-button{
         display: flex;
         justify-content: center;
@@ -66,3 +45,21 @@
     }
 }
 
+.artist-features-page{
+    padding-bottom: 50px;
+    .slider {
+        .col{
+            .row {
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+            }
+        }
+    }
+    
+        h1{
+            &.title{
+                font-size: pxToRem(50);
+            }
+        }
+    
+}

@@ -16,16 +16,6 @@
     padding-left: 8px !important;
     justify-content: space-around;
     align-items: center;
-    .hide{
-        opacity: 0;
-        transform: translateX(120%);
-        transition: transform 200ms, opacity 200ms;
-    }
-    .show{
-        transform: translateX(0);
-        opacity: 1;
-        transition: opacity 200ms, transform 200ms;
-    }
     li{
         &:first-child{
             text-align: right;

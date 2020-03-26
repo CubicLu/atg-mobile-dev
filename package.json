@@ -97,8 +97,7 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-custom-config": {},
-      "cordova-plugin-ionic-webview": {}
+      "cordova-custom-config": {}
     },
     "platforms": [
       "ios",

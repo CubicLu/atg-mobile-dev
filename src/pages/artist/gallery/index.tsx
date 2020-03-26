@@ -68,25 +68,23 @@ class ArtistGalleryPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="gallery-page">
-        <div className={`artist-gallery-page`}>
-          <Header title="Gallery" />
-          <HeaderOverlay ref={this.headerRef} />
-          <IonContent
-            fullscreen={true}
-            scrollY={true}
-            scrollEvents={true}
-            onIonScroll={this.handleScroll.bind(this)}
-            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
-          >
-            <BackgroundImage
-              gradient={`180deg,#1F0739,#1F0739`}
-              backgroundTop
-              backgroundBottom
-              backgroundBottomDark={false}
-              bottomRotate
-              backgroundTopDark
-              backgroundTopOpacity={0.7}
-            />
+        <Header title="Gallery" />
+        <HeaderOverlay ref={this.headerRef} />
+        <IonContent
+          fullscreen={true}
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={this.handleScroll.bind(this)}
+        >
+          <BackgroundImage
+            gradient={`180deg,#1F0739,#1F0739`}
+            backgroundTop
+            backgroundBottom
+            backgroundBottomDark={false}
+            backgroundTopDark
+            backgroundTopOpacity={0.7}
+          />
+          <div className={`artist-gallery-page`}>
             <div
               className={`row content-container ${this.props.isPlaying &&
                 ' is-playing'}`}
@@ -108,8 +106,8 @@ class ArtistGalleryPage extends React.Component<Props, State> {
                 )
               )}
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

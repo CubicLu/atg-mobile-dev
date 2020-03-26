@@ -1,107 +1,84 @@
 .artist-support-page{
-    position: relative;
     overflow: auto;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 80px;
-    margin-bottom: 50px;
-
-    .info{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        margin-top: 140px;
-        padding-top: 0;
-        padding-bottom: 16px;
-        
-
-        .title{
-            font-size: pxToRem(48);
-            line-height: 48px;
-            text-align: center;
-        }
-        .subtitle{
-            font-size: pxToRem(18);
-        }
+    .title{
+        font-size: pxToRem(38);
+        line-height: 1;
+    }
+    .subtitle{
+        font-size: pxToRem(18);
     }
     h5{
         color: #ffffff;
         text-align: center;
         font-weight: normal;
-        font-size: pxToRem(18);
+        font-size: 18px;
         font-family: "Helvetica Neue";
+        line-height: 2;
+        padding-bottom: 36px;
 
     }
-
-    .buttons{
-        .col{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    .dots{
-        height: 16px;
-        position: relative;
-        width: 100%;
+    .col{
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-
+    .detail-header{
+        display: block;
+        text-align: left;
+    }
     &.detail{
+        color: #000;
+        .header{
+            padding-left: 8px;
+            line-height: 1.17;
+            font-family: "Industria";
+            font-weight: bold;
+            display: block;
+        }
+        margin-top: $default-height-header;
+        margin-bottom: $default-height-header;
+        margin-left: $list-margin;
+        margin-right: $list-margin;
         .text{
             font-family: 'Helvetica';
             padding: 10px;
             text-align: justify;
         }
         .title{
-            font-size: pxToRem(50);
-            margin-top: 0;
-            color: #000;
-        }
-    
-        .subtitle{
-            font-size: pxToRem(40);
-            margin-top: -10px;
+            font-size: pxToRem(48);
             color: #000;
             margin-left: 0;
         }
-
-        .plan-detail{
-            @include plan-detail();
-            align-items: flex-start;
-            line-height: 75px;
-            .price{
-                font-size: pxToRem(85);
+        .subtitle{
+            font-size: pxToRem(36);
+            color: #000;
+            margin-left: 0;
+        }
+        .price{
+            line-height: 1;
+            margin-left: 0;
+            color: #000;
+            font-size: pxToRem(72);
+            .currency{
+                font-size: 30px;
+                vertical-align: middle;
             }
-            .name{
-                line-height: 14px;
+            .price-after{
+                font-family: "Helvetica";
+                font-size: 14px;
+                line-height: 1.1;
+                vertical-align: bottom;
+                display: inline-block;
+                margin-left: 8px;
+                margin-bottom: 8px;
             }
         }
-
-        .footer{
-            margin-top: 30%;
-            padding: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            .btn{
-                padding-left: 30px;
-                padding-right: 30px;
-                height: 40px;
-                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 3px 1px -2px rgba(0, 0, 0, 0.09), 0 1px 5px 0 rgba(0, 0, 0, 0.09);
-            }
-        }
-    }
-
-    
-    @media screen and (max-height: 768px){
-        .is-playing{
-            padding-bottom: 0 !important;
+        .body{
+            font-size: 16px;
+            font-family: 'Helvetica';
+            line-height: 1.5;
+            font-weight: 400;
         }
     }
-    
 }

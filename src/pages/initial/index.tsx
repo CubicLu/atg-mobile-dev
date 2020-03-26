@@ -20,14 +20,14 @@ class InitialPage extends React.Component<Props> {
           shadow
           legend="Celeste Waite"
         />
-        <div className="initial-page-fullscreen">
-          <div className="space-between">
-            <div className="row">
+        <div className="initial-page-fullscreen double-top">
+          <div className="space-between h-100">
+            <div className="row h-25">
               <h1 className="title secondary brand-title">panthr</h1>
               <h2 className="brand subtitle">ARTIST-TO-FAN</h2>
             </div>
 
-            <div className="flex-compass south west">
+            <div className="flex-compass h-50 south west">
               <h1 className="title-album">
                 THE
                 <br />
@@ -36,7 +36,7 @@ class InitialPage extends React.Component<Props> {
               <h2 className="subtitle-album">DESTINATION FOR ARTIST & FANS</h2>
             </div>
 
-            <div className="footer row flex-fluid margin-footer">
+            <div className="footer row fluid">
               <div className="row">
                 <IonButton
                   className="primary gradient"

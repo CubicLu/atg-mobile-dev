@@ -32,12 +32,11 @@ class BiographyListComponent extends React.Component<Props> {
   };
   render(): React.ReactNode {
     return (
-      <div className="menu generic-list">
+      <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom
-          backgroundBottomDark={false}
           backgroundBottomOrange={true}
-          backgroundBottomOpacity={1}
+          backgroundBottomOpacity={0.4}
         />
         <Header
           leftBackButton={false}

@@ -1,8 +1,55 @@
+.badge-blue{
+ .btn{
+    height: 30px !important;
+    border-radius: 8px !important;
+    background-image: linear-gradient(90deg, #64e9ff, #0082ff) !important;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 1.14;
+    width: 120px;
+ }
+}
+.badge-gray{
+ .btn{
+    height: 30px !important;
+    border-radius: 8px !important;
+    background-image: linear-gradient(90deg, #9c9d9d, #717274) !important;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 1.14;
+    width: 120px;
+ }
+}
+.confirm-blue{
+ .btn{
+    height: 30px !important;
+    border-radius: 8px !important;
+    background-image: linear-gradient(90deg, #01aed4, #0c36e6) !important;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 1.14;
+    width: 86px;
+    margin-top: 14px;
+ }
+}
 .btn { 
+    .btn-large{
+        height: 48px;
+        font-size: 16px;
+    }
     border-radius: 2px;
     text-align: center;
     text-transform: initial;
-
+    &.view-all{
+        text-align: right;
+        font-size: 16px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .arrow-next{
+        font-size: 40px;
+        float: right;
+    }
     &.fixed{
         position: fixed;
         z-index: 10;
@@ -21,10 +68,10 @@
         color: #FFF;
         &.gradient { 
             &.vertical {
-                background: linear-gradient(to right, $secondary 0%, $secondary-gradient 100%);
+                background: linear-gradient(90deg, $secondary 0%, $secondary-gradient 100%);
             }
             &.horizontal {
-                background: linear-gradient(to bottom, $secondary 0%, $secondary-gradient 100%);
+                background: linear-gradient(180deg, $secondary 0%, $secondary-gradient 100%);
             }
         }
     }
@@ -56,22 +103,28 @@
     }
 
     &.transparent-gray{
-        background: rgba(0,0,0,0.5);
+        background: #00000080;
         color: #FFF;
     }
 
     &.green{
-        background: #00A850;
+        background: #00a850;
+    }
+    &.light-blue{
+        background: #00aedb;
+    }
+    &.orange{
+        background: #f78429;
     }
 
     &.support{
-        background: linear-gradient(120deg, #FF9766, #FC5F62);
+        background: linear-gradient(90deg, #FF9766, #FC5F62);
         height: 30px;
         line-height: 30px;    
     }
 
     &.supported{
-        background: linear-gradient(120deg, #fff, #fff);
+        background: linear-gradient(90deg, #fff, #fff);
         height: 30px;
         line-height: 30px;
         color: #FC5F62;
@@ -81,7 +134,7 @@
         background: #717274;
         color: #FFF;
         &.gradient { 
-            background: linear-gradient(to right, #9c9d9d, #717274 99%);
+            background: linear-gradient(90deg, #9c9d9d, #717274 99%);
         }
     }
 
@@ -95,8 +148,12 @@
            display: flex;
            justify-content: center;
            align-content: center;
-           margin-top: 1px;
            flex-direction: column;
+           &.supported, &.support{
+                margin-top: 4px;   
+                width: 39px;
+                height: 39px;
+           }
 
            span{
                 height: 10px;

@@ -267,7 +267,9 @@ export enum Colors {
   red = 'red',
   orange = 'orange',
   yellow = 'yellow',
+  gold = 'gold',
   blue = 'blue',
+  lightBlue = 'light-blue',
   supported = 'supported',
   disable = 'disable',
   primary = 'primary',
@@ -323,7 +325,8 @@ export enum ShapesSize {
   rounded = 'rounded',
   circle = 'circle',
   normal = 'normal',
-  full = 'full'
+  full = 'full',
+  viewAll = 'view-all'
 }
 export enum Sizes {
   xs = 'xs',

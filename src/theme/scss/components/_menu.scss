@@ -1,181 +1,176 @@
-.menu{
+.horizontal-menu{
     width: 100%;
-    overflow-x: auto;
-    &.generic{
-        &.scroll{
-            justify-content: normal !important;
-            margin-top: 30px;
-            @include no-scroll-bar();
-            li{
-                margin-left: 8px !important;
-                margin-right: 8px !important;
-
-                &:first-child{
-                    margin-left: 8px !important;
-                }
-                &:last-child{
-                    padding-right: 8px !important;
-                }
-            }
-        }
-
-        justify-content: space-around;
-        padding: $menu-padding/2 0;
-        margin-top: 30px;
-        li{
-            margin-right: 0 !important;
-            text-align: center;
-            height: 70px;
-            display: flex;
-            flex-direction: column;
-
-                .circle{
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    span{
-                        border-radius: 50%;
-                        height: 42px !important;
-                        width: 42px !important;
-                        align-items: center;
-                        text-align: center;
-                        display: flex;
-                        justify-content: center;
-                        align-content: center;
-                        background-color: #E0E8CB;
-                        font-family: "Industria";
-                        font-weight: 600;
-                        font-size: 42px;
-                        padding-bottom: 2px;
-                    }
-                }
-
-                .title{
-                    font-family: 'Helvetica';
-                    font-size: 14px;
-                    margin-top: $menu-padding/2;
-                    font-weight: 400;
-                    border-bottom: 2px solid transparent;
-                }
-
-                &.active{
-                    .title{
-                        font-weight: bold;
-                        border-bottom: 2px;
-                        border-bottom: 2px solid $tertiary;
-                        color: $tertiary;
-                        margin-top: $menu-padding/2;
-                    }
-
-                    .circle{
-                        span{
-                            background: $tertiary;
-                        }
-                    }
-                }
-            }
-
-    }
-
-    &.fan-support-options, &.artist-list, &.generic-list{
-        width: 100%;
-        overflow-y: hidden;
-        .header{
+    list-style: none;
+    display: inline-flex;
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: center;
+    padding: 10px 0;
+    li{
+        text-align: center;
+        height: 70px;
+        .circle{
+            margin-left: $menu-scroll-margin;
+            margin-right: $menu-scroll-margin;
             width: 100%;
-            padding-top: $menu-padding;
-            border-top-left-radius: $menu-padding;
-            border-top-right-radius: $menu-padding;
-            margin-top: 0;
-            margin-bottom: 0;
-            position: fixed;
-            z-index: 1;
-            .title{
-                font-size: pxToRem(50);
-                margin-top: 8px;
-                margin-left: $menu-padding;
-                line-height: 28px;
-            }
-            .subtitle{
-                font-size: pxToRem(30);
-                margin-left: $menu-padding;
-            }
-            .button{
-                .btn {
-                    background: rgba(0, 0, 0, 0.25);
-                }
-                height: 35px;
-                align-items: flex-end;
+            display: flex;
+            span{
+                border-radius: 50%;
+                height: 42px !important;
+                width: 42px !important;
+                align-items: center;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                background-color: #E0E8CB;
+                font-family: "Industria";
+                font-weight: 600;
+                font-size: 42px;
+                padding-bottom: 4px;
             }
         }
-        .header{
-            position: fixed;
-            height: 75px;
+    }
+    .active{
+        li{
+            &:first-child{
+                margin-left: 0;
+            }
+            &:last-child{
+                padding-right: $menu-scroll-margin;
+            }
         }
-        .content{
-            position: relative;
-            top: 75px;
-            margin-bottom: 80px;
-            padding-left:$menu-padding; 
-            padding-right:$menu-padding; 
-            ul{
-                li{
-                    display: inline-flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: $menu-padding/2;
-                    width: 100%;
-                    font-family: "Helvetica Neue";
-                    font-size: pxToRem(18);
-                    font-weight: 400;
-                    color: #333;
-                    button{
-                        padding: 5px 10px;
-                    }
+        .title{
+            font-weight: bold;
+            border-bottom: 2px solid $tertiary;
+            color: $tertiary;
+            margin-top: 10px;
+            letter-spacing: -0.6px;
+        }
+        .circle{
+            span{
+                background: $tertiary;
+            }
+        }
+    }
+    &.scroll{
+        overflow-x: scroll;
+        overflow-y: hidden;
+        justify-content: normal !important;
+        @include no-scroll-bar();
+        padding-left: $list-margin;
+    }
+    .title{
+        font-family: 'Helvetica';
+        font-size: 14px;
+        color: $menu;
+        margin-top: 10px;
+        font-weight: 400;
+        border-bottom: 2px solid transparent;
+        line-height: 30px;
+    }
+}
+
+
+.fan-support-options, .menu-artist-list, .menu-generic-list{
+    width: 100%;
+    overflow-y: hidden;
+    .header{
+        width: 100%;
+        padding-top: $menu-padding;
+        border-top-left-radius: $menu-padding;
+        border-top-right-radius: $menu-padding;
+        margin-top: 0;
+        margin-bottom: 0;
+        position: fixed;
+        z-index: 1;
+        .title{
+            font-size: pxToRem(50);
+            margin-top: 8px;
+            margin-left: $menu-padding;
+            line-height: 28px;
+        }
+        .subtitle{
+            font-size: pxToRem(30);
+            margin-left: $menu-padding;
+        }
+        .button{
+            .btn {
+                background: rgba(0, 0, 0, 0.25);
+            }
+            height: 35px;
+            align-items: flex-end;
+        }
+    }
+    .header{
+        position: fixed;
+        height: 75px;
+    }
+    .artist{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        .avatar{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+        .name{
+            margin-left: 10px;
+            margin-right: 10px;
+            font-family: 'Helvetica';
+            font-size: pxToRem(18);
+        }
+    }
+    .content{
+        position: relative;
+        top: 75px;
+        margin-bottom: 80px;
+        padding-left:$menu-padding; 
+        padding-right:$menu-padding; 
+        ul{
+            li{
+                display: inline-flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: $menu-padding/2;
+                width: 100%;
+                font-family: "Helvetica Neue";
+                font-size: pxToRem(18);
+                font-weight: 400;
+                color: #333;
+                button{
+                    padding: 5px 10px;
                 }
             }
         }
     }
-    &.generic-list{
+}
+
+.menu-generic-list{
+    .title{
+        color: #000;
+        font-family: 'Baskerville';
+        font-weight: 600;
+        font-size: pxToRem(36);
+        line-height: 36px;
+    }
+}
+
+.menu-artist-list{
+    .header{
         .title{
             color: #000;
             font-family: 'Baskerville';
-            font-weight: 600;
+            font-weight: 400;
             font-size: pxToRem(36);
-            line-height: 36px;
         }
-    }
-
-    &.artist-list{
-        .header{
-            .title{
-                color: #000;
-                font-family: 'Baskerville';
-                font-weight: 400;
-                font-size: pxToRem(36);
-            }
-            .subtitle{
-                color: rgba($color: #000, $alpha: 0.65);
-                font-family: 'Helvetica';
-                font-weight: 400;
-                font-size: pxToRem(18);
-                margin-top: 0px;
-            }
-        }
-        .artist{
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            .avatar{
-                height: 40px;
-                width: 40px;
-                border-radius: 50%;
-            }
-            .name{
-                margin-left: 10px;
-                margin-right: 10px;
-                font-family: 'Helvetica';
-                font-size: pxToRem(18);
-            }
+        .subtitle{
+            color: rgba($color: #000, $alpha: 0.65);
+            font-family: 'Helvetica';
+            font-weight: 400;
+            font-size: pxToRem(18);
+            margin-top: 0px;
         }
     }
 }

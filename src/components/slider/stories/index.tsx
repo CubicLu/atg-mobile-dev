@@ -26,13 +26,13 @@ class SliderStoriesComponent extends React.Component<Props> {
 
     return (
       <div className="row slider stories">
-        <div className="list-view-all">
+        <div className="align-bottom">
           <div>
             <h1 className="title">{title}</h1>
           </div>
           <div className="action">
             {viewAll && (
-              <Button color={Colors.transparent} label={'View All'} />
+              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
             )}
           </div>
         </div>

@@ -33,16 +33,8 @@ class SliderRadioComponent extends React.Component<Props> {
 
     return (
       <div className="slider radio">
-        <div className="row">
-          <div className="col s12">
-            {title && (
-              <div className={'row content'}>
-                <div className="col s12">
-                  <h1 className="title">{title}</h1>
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="list-component align-bottom row">
+          <h1 className="title">{title}</h1>
         </div>
 
         <Slider {...settings}>

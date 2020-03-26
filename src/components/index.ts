@@ -36,11 +36,12 @@ import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
 import BackgroundSignUpConfirmImage from './../assets/img/background/sign-up-confirm/1.png';
 
-import BackgroundCircleBubblesOrangeImage from './../assets/img/background/circles/orange-bubbles.png';
-import BackgroundCircleBubblesImage from './../assets/img/background/circles/black-bubbles.png';
-import BackgroundCircleBubblesInverted from './../assets/img/background/circles/black-bubbles-inverted.png';
-import BackgroundCircleBubblesLightImage from './../assets/img/background/circles/white-bubbles.png';
-import BackgroundCircleBubblesLightInverted from './../assets/img/background/circles/white-bubbles-inverted.png';
+import OrangeBubblesTop from './../assets/img/background/circles/orange-top.png';
+import OrangeBubblesBottom from './../assets/img/background/circles/orange-bottom.png';
+import BlackBubblesTop from './../assets/img/background/circles/black-top.png';
+import BlackBubblesBottom from './../assets/img/background/circles/black-bottom.png';
+import WhiteBubblesTop from './../assets/img/background/circles/white-top.png';
+import WhiteBubblesBottom from './../assets/img/background/circles/white-bottom.png';
 
 import MixtapeEuroHouseImage from './../assets/img/mixtapes/euro-house.png';
 import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
@@ -85,16 +86,17 @@ export {
 };
 
 export {
+  OrangeBubblesTop,
+  OrangeBubblesBottom,
+  BlackBubblesTop,
+  BlackBubblesBottom,
+  WhiteBubblesTop,
+  WhiteBubblesBottom,
   BackgroundInitialImage,
-  BackgroundCircleBubblesImage,
-  BackgroundCircleBubblesInverted,
-  BackgroundCircleBubblesLightImage,
-  BackgroundCircleBubblesLightInverted,
   BackgroundSignInImage,
   BackgroundSignUpConfirmImage,
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeMoonLightImage,
-  MixtapeRebelRockImage,
-  BackgroundCircleBubblesOrangeImage
+  MixtapeRebelRockImage
 };

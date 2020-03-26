@@ -6,20 +6,19 @@ ion-page{
 }
 .background-image{
     z-index: -3;
-    filter: saturate(1.2);
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     height: 100%;
     width: 100%;
     position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
     &.blur{
-
-        animation: blur 0.5s ease forwards;
+        filter: blur(7px);
+        transition: 0.5s ease;
         background-color: #00000033;
     }
     &.shadow{
@@ -27,24 +26,22 @@ ion-page{
     }
 }
 .background-top, .background-bottom {
+    position: fixed;
     z-index: -2;
     background-size: cover;
-    background-position: center center;
     background-repeat: no-repeat;
-    height: 50vh;
     width: 100%;
-    position: fixed;
-    &.rotate{
-        transform: rotate(180deg);
-    }
-    &.background-bottom{
-        bottom: -50px;
-        margin-top: 50%;
-    }
-    &.background-top{
-        top: 0;
-        margin-top: 0;
-    }
+    height: 100%;
+}
+.background-top {
+    background-position: center top;
+    top: 0;
+    left: 0;
+}
+.background-bottom {
+    background-position: center bottom;
+    bottom: 0;
+    left: 0;
 }
 .background-legend {
     z-index: -2;
@@ -57,28 +54,4 @@ ion-page{
     transform: rotate(-180deg);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
-}
-
-@include keyframes(blur) {
-    0% {
-        -webkit-filter: blur(0px);
-        -moz-filter: blur(0px);
-        -o-filter: blur(0px);
-        -ms-filter: blur(0px);
-        filter: blur(0px);
-    }
-    50% {
-        -webkit-filter: blur(3.5px);
-        -moz-filter: blur(3.5px);
-        -o-filter: blur(3.5px);
-        -ms-filter: blur(3.5px);
-        filter: blur(3.5px);
-    }
-    100% {
-        -webkit-filter: blur(7px);
-        -moz-filter: blur(7px);
-        -o-filter: blur(7px);
-        -ms-filter: blur(7px);
-        filter: blur(7px);
-    }
 }

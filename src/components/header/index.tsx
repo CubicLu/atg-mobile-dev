@@ -8,10 +8,10 @@ import MinimizeIcon from '../icon/minimize';
 interface Props extends RouteComponentProps {
   className?: string;
   title?: string | null;
-  titleClassName?: string | null;
+  titleClassName?: string;
   leftBackButton?: boolean;
   top?: boolean;
-  color?: string | undefined;
+  color?: string;
   leftMinimizeButton?: boolean;
   rightActionButton?: boolean;
   rightCloseButton?: boolean;
@@ -20,15 +20,16 @@ interface Props extends RouteComponentProps {
   rightAddButton?: boolean;
   rightFilterButton?: boolean;
   rightUserGroupButton?: boolean;
-  leftContent?: React.ReactNode | null;
-  centerContent?: React.ReactNode | null;
-  rightContent?: React.ReactNode | null;
-  rightActionOnClick?: any | undefined;
-  rightCloseOnClick?: any | undefined;
-  leftMinimizeOnClick?: any | undefined;
-  rightSettingsOnClick?: any | undefined;
-  leftBackOnClick?: any | undefined;
-  leftBackHref?: string | undefined;
+  rightActionYellow?: boolean;
+  leftContent?: React.ReactNode;
+  centerContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
+  rightActionOnClick?: any;
+  rightCloseOnClick?: any;
+  leftMinimizeOnClick?: any;
+  rightSettingsOnClick?: any;
+  leftBackOnClick?: any;
+  leftBackHref?: string;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -38,6 +39,7 @@ class HeaderComponent extends React.Component<Props> {
     leftBackButton: true,
     leftContent: null,
     rightActionButton: false,
+    rightActionYellow: false,
     top: false,
     rightSettingsButton: false,
     rightSupportButton: false,
@@ -60,7 +62,7 @@ class HeaderComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const top = this.props.top ? ' header-top' : '';
+    const top = this.props.top ? 'header-top' : '';
     const {
       color,
       className,
@@ -80,12 +82,13 @@ class HeaderComponent extends React.Component<Props> {
       rightSettingsOnClick,
       rightSupportButton,
       rightUserGroupButton,
+      rightActionYellow,
       children
     } = this.props;
 
     return (
       <IonHeader className="ion-no-border">
-        <div className={`atg-header fixed${top} ${color} ${className}`}>
+        <div className={`atg-header fixed ${top} ${color} ${className}`}>
           <div className="start">
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
@@ -119,8 +122,13 @@ class HeaderComponent extends React.Component<Props> {
               </div>
             )}
             {rightActionButton && (
-              <div className="default-button dark" onClick={rightActionOnClick}>
-                <DotsThreeIcon />
+              <div
+                className={`default-button ${
+                  rightActionYellow ? 'gold' : 'dark'
+                }`}
+                onClick={rightActionOnClick}
+              >
+                <DotsThreeIcon color={rightActionYellow ? '#000' : '#fff'} />
               </div>
             )}
             {rightUserGroupButton && (
@@ -132,7 +140,10 @@ class HeaderComponent extends React.Component<Props> {
               </div>
             )}
             {rightSettingsButton && (
-              <div className="default-button" onClick={rightSettingsOnClick}>
+              <div
+                className="default-button dark"
+                onClick={rightSettingsOnClick}
+              >
                 <SettingsIcon height={24} width={24} />
               </div>
             )}

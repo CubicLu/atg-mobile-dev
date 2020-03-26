@@ -1,19 +1,15 @@
 .artist-events-page{
-
     @include page;
     background: #000;
-
     .background-image {
         background-size: contain;
     }
-
     .fixed-content{
         height: 40%;
         position: fixed;
         width: 100%;
         z-index: 1;
     }
-
     .content-list{
         background: #000;
         position: relative;

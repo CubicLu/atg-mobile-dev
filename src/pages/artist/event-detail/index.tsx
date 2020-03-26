@@ -82,9 +82,10 @@ class EventDetailPage extends React.Component<Props, State> {
         >
           <IonContent>
             <BackgroundImage
-              gradient={`180deg,#000,#20123a`}
-              backgroundBottom
-              bottomRotate
+              gradient={`180deg,#000,#1f1038`}
+              backgroundBottom={true}
+              backgroundBottomOrange={true}
+              backgroundBottomOpacity={0.2}
             />
             <div className="top-fixed">
               <Header
@@ -96,30 +97,29 @@ class EventDetailPage extends React.Component<Props, State> {
                 centerContent={<h1 className="title">{`Who's going`}</h1>}
               />
               <div className="content-fixed">
-                <div className="row">
-                  <div className="col s12 justify-center">
-                    <Button
-                      label={this.state.willGo ? "Can't go" : "I'm going"}
-                      color={
-                        this.state.willGo ? Colors.disable : Colors.secondary
-                      }
-                      gradient={true}
-                      bold
-                      onClick={(): void => {
-                        this.setState({ willGo: !this.state.willGo });
-                      }}
-                    />
-                  </div>
+                <div
+                  className={`row center-align badge-${
+                    this.state.willGo ? 'gray' : 'blue'
+                  }`}
+                >
+                  <Button
+                    label={this.state.willGo ? "Can't go" : "I'm going"}
+                    color={
+                      this.state.willGo ? Colors.disable : Colors.secondary
+                    }
+                    gradient={true}
+                    bold
+                    onClick={(): void => {
+                      this.setState({ willGo: !this.state.willGo });
+                    }}
+                  />
                 </div>
-
-                <div className="row border-bottom">
-                  <div className="col s12">
-                    <CardEvent
-                      id={Number(this.props.match.params.eventId)}
-                      artistUsername={this.props.match.params.id}
-                      data={this.props.event}
-                    />
-                  </div>
+                <div className="row">
+                  <CardEvent
+                    id={Number(this.props.match.params.eventId)}
+                    artistUsername={this.props.match.params.id}
+                    data={this.props.event}
+                  />
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@ class EventDetailPage extends React.Component<Props, State> {
                               <div className={`col s6 info ${opacity}`}>
                                 <span className="user">{data.username}</span>
                               </div>
-                              <div className="col s3 action">
+                              <div className="col s3 action confirm-blue">
                                 <Button
                                   gradient={true}
                                   color={Colors.secondary}

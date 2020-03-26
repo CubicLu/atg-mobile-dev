@@ -62,7 +62,7 @@ class HeaderComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const top = this.props.top ? ' header-top' : '';
+    const top = this.props.top ? 'header-top' : '';
     const {
       color,
       className,
@@ -88,7 +88,7 @@ class HeaderComponent extends React.Component<Props> {
 
     return (
       <IonHeader className="ion-no-border">
-        <div className={`atg-header fixed${top} ${color} ${className}`}>
+        <div className={`atg-header fixed ${top} ${color} ${className}`}>
           <div className="start">
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>

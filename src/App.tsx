@@ -35,7 +35,8 @@ export default class App extends React.Component {
 
   UNSAFE_componentWillMount(): void {
     setupConfig({
-      animated: true
+      animated: true,
+      swipeBackEnabled: false
     });
   }
   render(): React.ReactNode {

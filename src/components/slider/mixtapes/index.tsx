@@ -65,7 +65,7 @@ class SliderMixtapesComponent extends React.Component<Props> {
 
     return (
       <div className="slider mixtapes">
-        <div className="list-component align-bottom row">
+        <div className="list-feature-component align-bottom row">
           <div>
             <h1 className="title">{title}</h1>
           </div>

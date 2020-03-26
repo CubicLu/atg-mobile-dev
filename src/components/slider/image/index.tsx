@@ -17,8 +17,8 @@ class SliderImageComponent extends React.Component<Props> {
     if (!data) return <div />;
 
     return (
-      <div className="list-component">
-        <div className="align-bottom row">
+      <div className="slider images">
+        <div className="list-feature-component align-bottom row">
           <div>
             <h1 className="title">{title}</h1>
           </div>

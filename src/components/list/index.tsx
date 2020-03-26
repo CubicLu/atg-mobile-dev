@@ -22,7 +22,7 @@ class ListComponent extends React.Component<Props> {
     if (!data) return <div />;
 
     return (
-      <div className="list-component">
+      <div className="list-feature-component">
         <div className="align-bottom row">
           <h1 className="title">{title}</h1>
           <div className="align-end">

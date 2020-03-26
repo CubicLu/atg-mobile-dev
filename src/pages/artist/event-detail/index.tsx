@@ -80,6 +80,14 @@ class EventDetailPage extends React.Component<Props, State> {
           className={`artist-event-detail-page ${this.props.isPlaying &&
             'is-playing'}`}
         >
+          <Header
+            rightCloseButton
+            rightCloseOnClick={(): void => {
+              this.props.updateArtistSetInitialProperty('event');
+              this.props.history.goBack();
+            }}
+            centerContent={<h1 className="title">{`Who's going`}</h1>}
+          />
           <IonContent>
             <BackgroundImage
               gradient={`180deg,#000,#1f1038`}
@@ -87,80 +95,64 @@ class EventDetailPage extends React.Component<Props, State> {
               backgroundBottomOrange={true}
               backgroundBottomOpacity={0.2}
             />
-            <div className="top-fixed">
-              <Header
-                rightCloseButton
-                rightCloseOnClick={(): void => {
-                  this.props.updateArtistSetInitialProperty('event');
-                  this.props.history.goBack();
-                }}
-                centerContent={<h1 className="title">{`Who's going`}</h1>}
-              />
-              <div className="content-fixed">
-                <div
-                  className={`row center-align badge-${
-                    this.state.willGo ? 'gray' : 'blue'
-                  }`}
-                >
-                  <Button
-                    label={this.state.willGo ? "Can't go" : "I'm going"}
-                    color={
-                      this.state.willGo ? Colors.disable : Colors.secondary
-                    }
-                    gradient={true}
-                    bold
-                    onClick={(): void => {
-                      this.setState({ willGo: !this.state.willGo });
-                    }}
-                  />
-                </div>
-                <div className="row">
-                  <CardEvent
-                    id={Number(this.props.match.params.eventId)}
-                    artistUsername={this.props.match.params.id}
-                    data={this.props.event}
-                  />
-                </div>
+            <div className="content-fixed" slot="fixed">
+              <div
+                className={`row center-align badge-${
+                  this.state.willGo ? 'gray' : 'blue'
+                }`}
+              >
+                <Button
+                  label={this.state.willGo ? "Can't go" : "I'm going"}
+                  color={this.state.willGo ? Colors.disable : Colors.secondary}
+                  gradient={true}
+                  bold
+                  onClick={(): void => {
+                    this.setState({ willGo: !this.state.willGo });
+                  }}
+                />
+              </div>
+              <div className="row">
+                <CardEvent
+                  id={Number(this.props.match.params.eventId)}
+                  artistUsername={this.props.match.params.id}
+                  data={this.props.event}
+                />
               </div>
             </div>
             <div
               className={`content-list ${this.props.isPlaying && 'is-playing'}`}
             >
-              <div className="row">
-                <div className="col s12 ">
-                  <IonList lines="none" className="list users">
-                    {this.props.event?.whoIsGoing?.map(
-                      (data, i): React.ReactNode => {
-                        let opacity = data.isFriend === true ? '' : 'opacity';
-                        return (
-                          <IonItem key={i}>
-                            <div className="row">
-                              <div className={`col s3 image ${opacity}`}>
-                                <Avatar
-                                  type={ShapesSize.circle}
-                                  image={data.avatar}
-                                  width={50}
-                                  height={50}
-                                />
-                              </div>
-                              <div className={`col s6 info ${opacity}`}>
-                                <span className="user">{data.username}</span>
-                              </div>
-                              <div className="col s3 action confirm-blue">
-                                <Button
-                                  gradient={true}
-                                  color={Colors.secondary}
-                                  label="Connect"
-                                />
-                              </div>
-                            </div>
-                          </IonItem>
-                        );
-                      }
-                    )}
-                  </IonList>
-                </div>
-              </div>
+              <IonList lines="none" className="list users">
+                {this.props.event?.whoIsGoing?.map(
+                  (data, i): React.ReactNode => {
+                    let opacity = data.isFriend === true ? '' : 'opacity';
+                    return (
+                      <IonItem key={i}>
+                        <div className="row">
+                          <div className={`col s3 image ${opacity}`}>
+                            <Avatar
+                              type={ShapesSize.circle}
+                              image={data.avatar}
+                              width={50}
+                              height={50}
+                            />
+                          </div>
+                          <div className={`col s6 info ${opacity}`}>
+                            <span className="user">{data.username}</span>
+                          </div>
+                          <div className="col s3 action confirm-blue">
+                            <Button
+                              gradient={true}
+                              color={Colors.secondary}
+                              label="Connect"
+                            />
+                          </div>
+                        </div>
+                      </IonItem>
+                    );
+                  }
+                )}
+              </IonList>
             </div>
           </IonContent>
         </div>

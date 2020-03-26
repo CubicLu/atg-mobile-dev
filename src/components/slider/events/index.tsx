@@ -19,7 +19,7 @@ class SliderEventsComponent extends React.Component<Props> {
 
     return (
       <React.Fragment>
-        <div className="list-component align-bottom row">
+        <div className="list-feature-component align-bottom row">
           <div>
             <h1 className="title">{title}</h1>
           </div>

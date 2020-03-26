@@ -470,7 +470,9 @@ class PlayerComponent extends React.Component<Props> {
 
                     <div className="col s4 p-0">
                       <IonImg
-                        onClick={this.props.setPlaylistPlayer.bind(this)}
+                        onClick={(): void => {
+                          window.location.href = '/home/track/default/2/1';
+                        }}
                         className="tile"
                         src={
                           'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'

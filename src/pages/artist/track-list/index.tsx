@@ -56,7 +56,7 @@ class TrackListPage extends React.Component<Props> {
     return (
       <IonPage style={style} id="track-list">
         {currentArtist && (
-          <div style={{ zIndex: -1 }} className="blur-background" />
+          <div style={{ zIndex: -1 }} className="blur-background opacity-1" />
         )}
         {!currentArtist && (
           <BackgroundImage

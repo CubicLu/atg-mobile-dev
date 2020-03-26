@@ -1,9 +1,10 @@
 .artist-gallery-photo-page{
-    
+
     @include page;
-    height: 100%;
+    position: unset;
+    height: auto;
     width: 100%;
-    
+
     .content-container{
         display: flex;
         justify-content: center;

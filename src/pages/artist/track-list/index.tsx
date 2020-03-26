@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
+import { RouteComponentProps } from 'react-router-dom';
+import { getArtistAPI } from './../../../actions';
 import {
   ShapesSize,
   ArtistInterface,
@@ -10,16 +12,159 @@ import {
 import { IonPage, IonImg } from '@ionic/react';
 import { BackgroundImage, Header, ButtonSupport } from '../../../components';
 import AddTrackIcon from '../../../components/icon/add-track';
+import { artistBackground } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
+  getArtistAPI: (username: string) => void;
 }
-interface Props extends StateProps, DispatchProps {}
-
+type TrackReference = 'artist' | 'radio' | 'playlist' | 'mixtape' | 'default';
+interface MatchParams {
+  reference: TrackReference;
+  referenceId: string;
+  id: string;
+}
+interface Props
+  extends StateProps,
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
 class TrackListPage extends React.Component<Props> {
+  UNSAFE_componentWillMount(): void {
+    if (
+      this.props.match.params.reference === 'artist' &&
+      this.props.currentArtist == null
+    ) {
+      this.props.getArtistAPI(this.props.match.params.referenceId);
+    }
+  }
+  render(): React.ReactNode {
+    // const artistBackground = this.props.currentArtist?.cover.background;
+    const { currentArtist } = this.props;
+    const style = currentArtist ? artistBackground(currentArtist, true) : {};
+    const type = this.props.match.params.reference;
+    const discos = currentArtist && currentArtist.discography;
+    if (type === 'artist' && discos) {
+      switch (this.props.match.params.referenceId) {
+        case '0': {
+          this.playlist.name = discos && discos[0].name;
+          this.playlist.cover = discos && discos[0].cover!;
+          this.playlist.owner = currentArtist!.name;
+          break;
+        }
+        default: {
+          this.playlist.name = discos && discos[1].name;
+          this.playlist.cover = discos && discos[1].cover!;
+          this.playlist.owner = currentArtist!.name;
+          break;
+        }
+      }
+    }
+    return (
+      <IonPage style={style} id="track-list">
+        {currentArtist && (
+          <div style={{ zIndex: -1 }} className="blur-background" />
+        )}
+        {!currentArtist && (
+          <BackgroundImage
+            gradient={`180deg,#aed8e5,#039e4a`}
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundTopOpacity={0.2}
+            backgroundBottom
+            backgroundBottomOrange={true}
+            backgroundBottomOpacity={0.6}
+          />
+        )}
+        <Header
+          leftBackButton={true}
+          rightActionButton={true}
+          rightContent={
+            <div style={{ margin: 'auto 4px 2px 4px' }}>
+              {currentArtist && (
+                <ButtonSupport
+                  buttonType={'text'}
+                  uppercase
+                  type={ShapesSize.rounded}
+                />
+              )}
+            </div>
+          }
+          rightActionYellow={true}
+          rightActionOnClick={null}
+        />
+
+        <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
+          <div className="">
+            <div className="cover-title">
+              <div
+                className="image radius"
+                style={{
+                  background: `url(${this.playlist?.cover})`,
+                  backgroundSize: 'cover'
+                }}
+              />
+              <span className="main-song">{this.playlist?.name}&nbsp;</span>
+              <br />
+              <span className="main-artist">{this.playlist?.owner}&nbsp;</span>
+            </div>
+          </div>
+
+          <div id="songs">
+            {this.playlist.items.map(
+              (song: SongInterface, i: number): React.ReactElement => (
+                <div className="row list-margin-row list-track" key={i}>
+                  <div className="list-track-number">{song.trackNumber}</div>
+                  <div>{song.name}</div>
+                  <div className="align-end">
+                    <AddTrackIcon />
+                  </div>
+                </div>
+              )
+            )}
+          </div>
+
+          <div className="bottom-shadow h-16 w-100" />
+          <div className="flex-compass south half h-16">
+            <div className="row p-0 flex-wrap flex-wrap-fluid">
+              <div className="col s4 p-0">
+                <IonImg
+                  className="tile"
+                  src={
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+                  }
+                />
+                <span className="tile-label-s4">Liner Notes</span>
+              </div>
+
+              <div className="col s4 p-0">
+                <IonImg
+                  className="tile"
+                  src={
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+                  }
+                />
+                <span className="tile-label-s4">Community</span>
+              </div>
+
+              <div className="col s4 p-0">
+                <IonImg
+                  className="tile"
+                  src={
+                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+                  }
+                />
+                <span className="tile-label-s4">Artist Home</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </IonPage>
+    );
+  }
+
   playlist: PlaylistInterface = {
     name: 'Euro House',
     id: 1,
@@ -126,102 +271,6 @@ class TrackListPage extends React.Component<Props> {
       }
     ]
   };
-  render(): React.ReactNode {
-    return (
-      <IonPage id="track-list">
-        <BackgroundImage
-          gradient={`180deg,#aed8e5,#039e4a`}
-          backgroundTop
-          backgroundTopDark={true}
-          backgroundTopOpacity={0.2}
-          backgroundBottom
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.6}
-        />
-        <Header
-          leftBackButton={true}
-          rightActionButton={true}
-          rightContent={
-            <div style={{ margin: 'auto 4px 2px 4px' }}>
-              <ButtonSupport
-                buttonType={'text'}
-                uppercase
-                type={ShapesSize.rounded}
-              />
-            </div>
-          }
-          rightActionYellow={true}
-          rightActionOnClick={null}
-        />
-
-        <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
-          <div className="">
-            <div className="cover-title">
-              <div
-                className="image radius"
-                style={{
-                  background: `url(${this.playlist?.cover})`,
-                  backgroundSize: 'cover'
-                }}
-              />
-              <span className="main-song">{this.playlist?.name}&nbsp;</span>
-              <br />
-              <span className="main-artist">{this.playlist?.owner}&nbsp;</span>
-            </div>
-          </div>
-
-          <div id="songs">
-            {this.playlist.items.map(
-              (song: SongInterface, i: number): React.ReactElement => (
-                <div className="row list-margin-row list-track" key={i}>
-                  <div className="list-track-number">{song.trackNumber}</div>
-                  <div>{song.name}</div>
-                  <div className="align-end">
-                    <AddTrackIcon />
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-
-          <div className="bottom-shadow h-16 w-100" />
-          <div className="flex-compass south half h-16">
-            <div className="row p-0 flex-wrap flex-wrap-fluid">
-              <div className="col s4 p-0">
-                <IonImg
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-                  }
-                />
-                <span className="tile-label-s4">Liner Notes</span>
-              </div>
-
-              <div className="col s4 p-0">
-                <IonImg
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-                  }
-                />
-                <span className="tile-label-s4">Community</span>
-              </div>
-
-              <div className="col s4 p-0">
-                <IonImg
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-                  }
-                />
-                <span className="tile-label-s4">Artist Home</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </IonPage>
-    );
-  }
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
@@ -229,4 +278,4 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default connect(mapStateToProps, {})(TrackListPage);
+export default connect(mapStateToProps, { getArtistAPI })(TrackListPage);

@@ -242,7 +242,7 @@ const defaultState: SettingsReducerType = {
       component: ArtistEventsPage
     },
     {
-      path: '/home/track/:id',
+      path: '/home/track/:reference/:referenceId/:id',
       id: 'b',
       component: TrackListPage
     },

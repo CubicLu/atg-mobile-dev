@@ -230,7 +230,15 @@ class ArtistPage extends React.Component<Props, State> {
           >
             <div id="original" style={{ marginTop: 130, minHeight: 200 }}>
               <div style={{ minHeight: 50 }}>
-                <h2 id="artist-title" className={`artist-title`}>
+                <h2
+                  id="artist-title"
+                  className={`artist-title`}
+                  onClick={(): void => {
+                    this.props.history.push(
+                      '/home/track/artist/pharell-williams/1'
+                    );
+                  }}
+                >
                   <span id="artist-h2">{artist.name}</span>
                 </h2>
               </div>

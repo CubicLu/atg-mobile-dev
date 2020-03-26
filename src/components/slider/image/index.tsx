@@ -17,8 +17,8 @@ class SliderImageComponent extends React.Component<Props> {
     if (!data) return <div />;
 
     return (
-      <div className="slider image">
-        <div className="list-component align-bottom row">
+      <div className="list-component">
+        <div className="align-bottom row">
           <div>
             <h1 className="title">{title}</h1>
           </div>
@@ -29,19 +29,11 @@ class SliderImageComponent extends React.Component<Props> {
           </div>
         </div>
 
-        <div className="row">
-          {data.map(
-            (data, i): React.ReactNode => {
-              return (
-                <CardImage
-                  image={data.image}
-                  key={i}
-                  type={ShapesSize.rounded}
-                />
-              );
-            }
-          )}
-        </div>
+        {data.slice(0, 1).map(
+          (data, i): React.ReactNode => (
+            <CardImage image={data.image} key={i} type={ShapesSize.rounded} />
+          )
+        )}
       </div>
     );
   }

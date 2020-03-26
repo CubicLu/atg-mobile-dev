@@ -1,13 +1,2 @@
 .artist-gallery-page{
-
-    @include page;
-
-    .background-top {
-        top: #{-$default-height-header};
-        position: absolute;
-    }
-    .content-container{
-        position: relative;
-        top: 92px;
-    }
 }

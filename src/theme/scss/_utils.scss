@@ -128,6 +128,22 @@
     display: flex;
     align-items: flex-end;
 }
+.content-container{
+    margin-top: 100px;
+    padding-left: $content-margin-left;
+    padding-right: $content-margin-right;
+    .negative-padding{
+        margin-left: -20px;
+    }
+    .title{
+        margin-top: 0;
+        font-size: pxToRem(42);
+        margin-left: 16px;
+    }
+}
+.no-col{
+    margin: 0 -0.75rem; //used to nullify col padding
+}
 .my-masonry-grid {
     display: -webkit-box; /* Not needed if autoprefixing */
     display: -ms-flexbox; /* Not needed if autoprefixing */

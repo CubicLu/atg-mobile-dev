@@ -1,16 +1,2 @@
 .artist-videos-page{
-    @include page;
-    .content-container{
-        margin-top: 120px;
-        padding-left: $content-margin-left;
-        padding-right: $content-margin-right;
-        .negative-padding{
-            margin-left: -20px;
-        }
-    }
-    .title{
-        margin-top: 0;
-        font-size: pxToRem(42);
-        margin-left: 16px;
-    }
 }

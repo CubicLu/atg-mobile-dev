@@ -18,31 +18,30 @@ class SliderEventsComponent extends React.Component<Props> {
     if (!data) return <div />;
 
     return (
-      <div className="row slider image">
+      <React.Fragment>
         <div className="list-component align-bottom row">
-          <h1 className="title">{title}</h1>
-          <div className="align-end">
+          <div>
+            <h1 className="title">{title}</h1>
+          </div>
+          <div className="action">
             {viewAll && (
               <Button color={Colors.transparent} type={ShapesSize.viewAll} />
             )}
           </div>
         </div>
-
-        <div className="row">
-          <div className="col s12">
-            {data.slice(0, 1).map(
-              (data, i): React.ReactNode => (
-                <CardEvent
-                  data={data}
-                  id={i}
-                  key={i}
-                  artistUsername={artistUsername}
-                />
-              )
-            )}
-          </div>
+        <div style={{ marginLeft: 24, marginRight: 24 }}>
+          {data.slice(0, 1).map(
+            (data, i): React.ReactNode => (
+              <CardEvent
+                data={data}
+                id={i}
+                key={i}
+                artistUsername={artistUsername}
+              />
+            )
+          )}
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

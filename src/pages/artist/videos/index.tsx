@@ -88,33 +88,33 @@ class ArtistVideosPage extends React.Component<Props, State> {
             />
             <div className="content-container">
               {currentArtist?.videos?.recents !== undefined && (
-                <SliderVideo
-                  data={currentArtist?.videos?.recents}
-                  title={'Recent Videos'}
-                  viewAll={false}
-                  size={Sizes.sm}
-                  type={ShapesSize.normal}
-                />
-              )}
-              <div className="row">
-                <div className="col s12 showcase">
-                  <h1 className="title">Showcase</h1>
-
-                  {currentArtist?.videos?.showcase.map(
-                    (value, i): React.ReactNode => {
-                      return (
-                        <CardVideo
-                          key={i}
-                          size={Sizes.lg}
-                          type={ShapesSize.full}
-                          time={value.time}
-                          video={value.video}
-                          image={value.image}
-                        />
-                      );
-                    }
-                  )}
+                <div className="negative-padding">
+                  <SliderVideo
+                    data={currentArtist?.videos?.recents}
+                    title={'Recent Videos'}
+                    viewAll={false}
+                    size={Sizes.sm}
+                    type={ShapesSize.normal}
+                  />
                 </div>
+              )}
+              <div className="row showcase">
+                <h1 className="title">Showcase</h1>
+
+                {currentArtist?.videos?.showcase.map(
+                  (value, i): React.ReactNode => {
+                    return (
+                      <CardVideo
+                        key={i}
+                        size={Sizes.lg}
+                        type={ShapesSize.full}
+                        time={value.time}
+                        video={value.video}
+                        image={value.image}
+                      />
+                    );
+                  }
+                )}
               </div>
             </div>
           </div>

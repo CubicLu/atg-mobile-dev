@@ -66,6 +66,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { isPlaying } = this.props;
     return (
       <IonPage id="gallery-page">
         <Header title="Gallery" />
@@ -84,11 +85,8 @@ class ArtistGalleryPage extends React.Component<Props, State> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className={`artist-gallery-page`}>
-            <div
-              className={`row content-container ${this.props.isPlaying &&
-                ' is-playing'}`}
-            >
+          <div className={`content-container`}>
+            <div className={`row no-col ${isPlaying && ' is-playing'}`}>
               {this.props.currentArtist?.gallery?.map(
                 (data, index): React.ReactNode => (
                   <CardAlbumGallery

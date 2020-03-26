@@ -165,12 +165,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
           <div className={`artist-support-page h-100 ${planDetailClass}`}>
             {hasPlan ? (
               <BackgroundImage
-                gradient="180deg, #FCC505 0%, #C16509 100%"
-                backgroundTop={true}
+                gradient="180deg, #FDD105 0%, #C16509 100%"
+                backgroundTop
                 backgroundTopDark={true}
-                backgroundBottom={true}
-                backgroundBottomOpacity={0.3}
+                backgroundBottom
                 backgroundBottomDark={false}
+                backgroundBottomOpacity={0.33}
               />
             ) : (
               <BackgroundImage

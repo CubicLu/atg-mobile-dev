@@ -28,7 +28,7 @@ class ProfilePage extends React.Component<Props> {
     if (!fanTabs) return <IonPage />;
     return (
       <IonPage id="profile-page">
-        <IonContent id="profile-page">
+        <IonContent id="profile-page" scrollY={false}>
           <BackgroundImage
             gradient="180deg,#652ddd,#2c0d5c"
             backgroundTopDark

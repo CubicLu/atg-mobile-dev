@@ -26,9 +26,7 @@ class SliderStoriesComponent extends React.Component<Props> {
 
     return (
       <div className="row slider stories">
-
-
-        <div className="list-component align-bottom row">
+        <div className="list-feature-component align-bottom row">
           <h1 className="title">{title}</h1>
           <div className="align-end action">
             {viewAll && (

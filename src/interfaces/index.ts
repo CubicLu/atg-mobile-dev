@@ -42,7 +42,13 @@ export enum ActionType {
   GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS = 'GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS',
   GET_COMMUNITY_STORIES_API = 'GET_COMMUNITY_STORIES_API',
   GET_COMMUNITY_STORIES_API_FAILURE = 'GET_COMMUNITY_STORIES_API_FAILURE',
-  GET_COMMUNITY_STORIES_API_SUCCESS = 'GET_COMMUNITY_STORIES_API_SUCCESS'
+  GET_COMMUNITY_STORIES_API_SUCCESS = 'GET_COMMUNITY_STORIES_API_SUCCESS',
+  GET_COMMUNITY_COMMENTARIES_API = 'GET_COMMUNITY_COMMENTARIES_API',
+  GET_COMMUNITY_COMMENTARIES_API_FAILURE = 'GET_COMMUNITY_COMMENTARIES_API_FAILURE',
+  GET_COMMUNITY_COMMENTARIES_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_API_SUCCESS',
+  GET_COMMUNITY_COMMENTARIES_COVER_API = 'GET_COMMUNITY_COMMENTARIES_COVER_API',
+  GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE = 'GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE',
+  GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS'
 }
 
 export interface TabsInterface {
@@ -196,6 +202,8 @@ export interface CommunityReducerType {
   loading: boolean;
   errorMessage: string | null;
   successMessage: string | null;
+  currentPostComments: CommentInterface[] | null;
+  currentPostCover: CommentCoverInterface;
 }
 
 export interface StorieInterface {
@@ -213,7 +221,15 @@ export interface PostInterface {
   comments: CommentInterface[];
 }
 
-export interface CommentInterface {}
+export interface CommentInterface {
+  text: string;
+  user: UserInterface;
+  replies: CommentInterface[] | null;
+}
+
+export interface CommentCoverInterface {
+  url: string;
+}
 
 export interface GradientColorsInterface {
   color1: string;
@@ -274,7 +290,8 @@ export enum Colors {
   disable = 'disable',
   primary = 'primary',
   secondary = 'secondary',
-  tertiary = 'tertiary'
+  tertiary = 'tertiary',
+  grayTransparent = 'gray-transparent'
 }
 
 export interface DiscographyInterface {

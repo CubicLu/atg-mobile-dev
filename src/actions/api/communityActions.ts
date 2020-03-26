@@ -52,3 +52,33 @@ export const getCommunityStoriesAPISuccess = (response): any => ({
   type: ActionType.GET_COMMUNITY_STORIES_API_SUCCESS,
   payload: response
 });
+
+export const getCommunityCommentsAPI = (postId: string): any => ({
+  type: ActionType.GET_COMMUNITY_COMMENTARIES_API,
+  payload: postId
+});
+
+export const getCommunityCommentsAPIFailure = (error): any => ({
+  type: ActionType.GET_COMMUNITY_COMMENTARIES_API_FAILURE,
+  payload: error
+});
+
+export const getCommunityCommentsAPISuccess = (response): any => ({
+  type: ActionType.GET_COMMUNITY_COMMENTARIES_API_SUCCESS,
+  payload: response
+});
+
+export const getCommunityCommentsCoverAPI = (postId: string): any => ({
+  type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API,
+  payload: postId
+});
+
+export const getCommunityCommentsCoverAPIFailure = (error): any => ({
+  type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE,
+  payload: error
+});
+
+export const getCommunityCommentsCoverAPISuccess = (response): any => ({
+  type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS,
+  payload: response
+});

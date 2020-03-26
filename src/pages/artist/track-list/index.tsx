@@ -9,6 +9,7 @@ import {
 } from '../../../interfaces';
 import { IonPage, IonImg } from '@ionic/react';
 import { BackgroundImage, Header, ButtonSupport } from '../../../components';
+import AddTrackIcon from '../../../components/icon/add-track';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -142,7 +143,7 @@ class TrackListPage extends React.Component<Props> {
           leftBackButton={true}
           rightActionButton={true}
           rightContent={
-            <div>
+            <div style={{ margin: 'auto 4px 2px 4px' }}>
               <ButtonSupport
                 buttonType={'text'}
                 uppercase
@@ -157,7 +158,13 @@ class TrackListPage extends React.Component<Props> {
         <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
           <div className="">
             <div className="cover-title">
-              <IonImg className="image radius" src={song?.cover} />
+              <IonImg
+                className="image radius"
+                style={{
+                  background: `url(${this.playlist?.cover})`,
+                  backgroundSize: 'cover'
+                }}
+              />
               <span className="main-song">Girl{song?.name}&nbsp;</span>
               <br />
               <span className="main-artist">Pharell{song?.artist}&nbsp;</span>
@@ -170,7 +177,9 @@ class TrackListPage extends React.Component<Props> {
                 <div className="row list-margin-row list-track" key={i}>
                   <div className="list-track-number">{song.trackNumber}</div>
                   <div>{song.name}</div>
-                  <div className="align-end">Add</div>
+                  <div className="align-end">
+                    <AddTrackIcon />
+                  </div>
                 </div>
               )
             )}

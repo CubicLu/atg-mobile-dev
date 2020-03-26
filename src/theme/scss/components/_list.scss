@@ -22,12 +22,14 @@ ul{
     display: flex;
 }
 .list-track-number{
-    padding-left: $list-padding-top;
-    padding-right: 2 * $list-padding-top;
+    min-width: 36px;
+    text-align: center;
+    font-size: 18px;
 }
 .list-track{
     font-family: Helvetica;
     font-size: 18px;
+    line-height: 1;
     color: #ffffff;
     &.row{
         padding-bottom: $list-padding-top;

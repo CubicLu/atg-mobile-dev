@@ -237,11 +237,10 @@ class PlayerComponent extends React.Component<Props> {
                   viewBox="0 0 400 10"
                   style={{
                     position: 'fixed',
-                    bottom: 100,
+                    bottom: 99,
                     paddingLeft: 15,
                     paddingRight: 15,
                     width: '100%',
-                    height: 'fit-content',
                     overflow: 'visible'
                   }}
                 >
@@ -249,10 +248,10 @@ class PlayerComponent extends React.Component<Props> {
                   <path
                     id="a"
                     d={`M 0 10 c 200-0, 400,0, 400,0`}
-                    fill="#aed8e5"
+                    fill="#22022f"
                   />
                 </svg>
-                {/* 
+                {/*
                   <path id="g" d="M 0 84.4 c 200-178,     400,0 400,0"/>
                   <path id="h" d="M 0 64.9 c 200-133,     400,0 400,0"/>
                   <path id="i" d="M 0 48.1 c 200-95,    400,0 400,0"/>

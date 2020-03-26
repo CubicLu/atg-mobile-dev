@@ -167,7 +167,7 @@
         height: $default-height-player + 15;
         clip-path: inset(0 0 5px 0);
         bottom: -5px;
-        
+
         .img{
             background-repeat: no-repeat;
             background-position-x: center;
@@ -188,7 +188,7 @@
             height: 100%;
         }
     }
-    
+
     .progress{
         position: absolute;
         margin: 0;
@@ -204,7 +204,7 @@
         }
     }
 
-    
+
     .info{
         height: $default-height-player;
         display: flex;
@@ -223,19 +223,19 @@
             white-space: pre;
             text-overflow: ellipsis;
         }
-        
+
         .song{
             font-weight: bold;
             margin-bottom: 0px;
             margin-top: 5px;
-        }    
+        }
     }
-    
+
     .commands{
         height: $default-height-player;
         display: flex;
         align-items: center;
-    
+
         ul{
             &.list{
                 justify-content: space-around;
@@ -250,5 +250,5 @@
             }
         }
     }
-    
+
 }

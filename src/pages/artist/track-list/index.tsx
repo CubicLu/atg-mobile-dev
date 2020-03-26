@@ -158,16 +158,16 @@ class TrackListPage extends React.Component<Props> {
         <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
           <div className="">
             <div className="cover-title">
-              <IonImg
+              <div
                 className="image radius"
                 style={{
                   background: `url(${this.playlist?.cover})`,
                   backgroundSize: 'cover'
                 }}
               />
-              <span className="main-song">Girl{song?.name}&nbsp;</span>
+              <span className="main-song">{this.playlist?.name}&nbsp;</span>
               <br />
-              <span className="main-artist">Pharell{song?.artist}&nbsp;</span>
+              <span className="main-artist">{this.playlist?.owner}&nbsp;</span>
             </div>
           </div>
 

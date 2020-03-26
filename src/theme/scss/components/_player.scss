@@ -6,6 +6,13 @@
         opacity: 0;
     }
 }
+.player-support{
+    margin-top: 12px;
+    display: flex;
+}
+.track-header{
+    height: 80px;
+}
 .cover-title{
     margin: 32px;
     margin-top: 90px;
@@ -21,6 +28,9 @@
     overflow: hidden;
     display: block;
     text-overflow: ellipsis;
+    &.track-list{
+        margin-top: 0px;
+    }
 
     .radius{
         border-radius: 10px;

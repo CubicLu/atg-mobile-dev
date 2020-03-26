@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { getArtistAPI } from './../../../actions';
 import {
   ShapesSize,
@@ -9,8 +9,8 @@ import {
   PlaylistInterface,
   SongInterface
 } from '../../../interfaces';
-import { IonPage, IonImg } from '@ionic/react';
-import { BackgroundImage, Header, ButtonSupport } from '../../../components';
+import { IonPage, IonImg, IonContent, IonHeader } from '@ionic/react';
+import { BackgroundImage, ButtonSupport, BackIcon } from '../../../components';
 import AddTrackIcon from '../../../components/icon/add-track';
 import { artistBackground } from '../../../utils';
 
@@ -46,21 +46,12 @@ class TrackListPage extends React.Component<Props> {
     const style = currentArtist ? artistBackground(currentArtist, true) : {};
     const type = this.props.match.params.reference;
     const discos = currentArtist && currentArtist.discography;
+
     if (type === 'artist' && discos) {
-      switch (this.props.match.params.referenceId) {
-        case '0': {
-          this.playlist.name = discos && discos[0].name;
-          this.playlist.cover = discos && discos[0].cover!;
-          this.playlist.owner = currentArtist!.name;
-          break;
-        }
-        default: {
-          this.playlist.name = discos && discos[1].name;
-          this.playlist.cover = discos && discos[1].cover!;
-          this.playlist.owner = currentArtist!.name;
-          break;
-        }
-      }
+      const current = discos[this.props.match.params.id];
+      if (current?.name) this.playlist.name = current.name;
+      if (current?.cover) this.playlist.cover = current.cover;
+      this.playlist.owner = currentArtist!.name;
     }
     return (
       <IonPage style={style} id="track-list">
@@ -78,89 +69,99 @@ class TrackListPage extends React.Component<Props> {
             backgroundBottomOpacity={0.6}
           />
         )}
-        <Header
-          leftBackButton={true}
-          rightActionButton={true}
-          rightContent={
-            <div style={{ margin: 'auto 4px 2px 4px' }}>
-              {currentArtist && (
+        <IonHeader className="track-header">
+          <div className={`atg-header`}>
+            <div className="start">
+              <div
+                className="default-button dark"
+                onClick={(): void => this.props.history.goBack()}
+              >
+                <BackIcon />
+              </div>
+            </div>
+            {currentArtist && (
+              <div className="center player-support">
                 <ButtonSupport
                   buttonType={'text'}
                   uppercase
                   type={ShapesSize.rounded}
                 />
+              </div>
+            )}
+            <div className="end" />
+          </div>
+        </IonHeader>
+
+        <IonHeader className="ion-no-border" mode="ios" translucent={true} />
+        <IonContent>
+          <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
+            <div className="">
+              <div className="cover-title track-list">
+                <div
+                  className="image radius"
+                  style={{
+                    background: `url(${this.playlist?.cover})`,
+                    backgroundSize: 'cover'
+                  }}
+                />
+                <span className="main-song">{this.playlist?.name}&nbsp;</span>
+                <br />
+                <span className="main-artist">
+                  {this.playlist?.owner}&nbsp;
+                </span>
+              </div>
+            </div>
+
+            <div id="songs">
+              {this.playlist.items.map(
+                (song: SongInterface, i: number): React.ReactElement => (
+                  <div className="row list-margin-row list-track" key={i}>
+                    <div className="list-track-number">{song.trackNumber}</div>
+                    <div>{song.name}</div>
+                    <div className="align-end">
+                      <AddTrackIcon />
+                    </div>
+                  </div>
+                )
               )}
             </div>
-          }
-          rightActionYellow={true}
-          rightActionOnClick={null}
-        />
 
-        <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
-          <div className="">
-            <div className="cover-title">
-              <div
-                className="image radius"
-                style={{
-                  background: `url(${this.playlist?.cover})`,
-                  backgroundSize: 'cover'
-                }}
-              />
-              <span className="main-song">{this.playlist?.name}&nbsp;</span>
-              <br />
-              <span className="main-artist">{this.playlist?.owner}&nbsp;</span>
-            </div>
-          </div>
-
-          <div id="songs">
-            {this.playlist.items.map(
-              (song: SongInterface, i: number): React.ReactElement => (
-                <div className="row list-margin-row list-track" key={i}>
-                  <div className="list-track-number">{song.trackNumber}</div>
-                  <div>{song.name}</div>
-                  <div className="align-end">
-                    <AddTrackIcon />
-                  </div>
+            <div className="bottom-shadow h-16 w-100" />
+            <div className="flex-compass south half h-16">
+              <div className="row p-0 flex-wrap flex-wrap-fluid">
+                <div className="col s4 p-0">
+                  <IonImg
+                    className="tile"
+                    src={
+                      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+                    }
+                  />
+                  <span className="tile-label-s4">Liner Notes</span>
                 </div>
-              )
-            )}
-          </div>
 
-          <div className="bottom-shadow h-16 w-100" />
-          <div className="flex-compass south half h-16">
-            <div className="row p-0 flex-wrap flex-wrap-fluid">
-              <div className="col s4 p-0">
-                <IonImg
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-                  }
-                />
-                <span className="tile-label-s4">Liner Notes</span>
-              </div>
+                <div className="col s4 p-0">
+                  <IonImg
+                    className="tile"
+                    src={
+                      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+                    }
+                  />
+                  <span className="tile-label-s4">Community</span>
+                </div>
 
-              <div className="col s4 p-0">
-                <IonImg
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-                  }
-                />
-                <span className="tile-label-s4">Community</span>
-              </div>
-
-              <div className="col s4 p-0">
-                <IonImg
-                  className="tile"
-                  src={
-                    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-                  }
-                />
-                <span className="tile-label-s4">Artist Home</span>
+                <div className="col s4 p-0">
+                  <IonImg
+                    className="tile"
+                    src={
+                      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+                    }
+                  />
+                  <span className="tile-label-s4">Artist Home</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </IonContent>
       </IonPage>
     );
   }
@@ -189,7 +190,7 @@ class TrackListPage extends React.Component<Props> {
         id: '5R9k9x85lAYbamdUoKAJvj',
         artist: 'Pop Smoke',
         name: 'Dior (with Gunna) - Remix',
-        trackNumber: 15,
+        trackNumber: 2,
         duration: 230.386,
         cover:
           'https://i.scdn.co/image/ab67616d0000b273cd90e898c070ef21812ab363',
@@ -201,7 +202,7 @@ class TrackListPage extends React.Component<Props> {
         id: '0nbXyq5TXYPCO7pr3N8S4I',
         artist: 'Roddy Ricch',
         name: 'The Box',
-        trackNumber: 2,
+        trackNumber: 3,
         duration: 196.652,
         cover:
           'https://i.scdn.co/image/ab67616d0000b273600adbc750285ea1a8da249f',
@@ -213,7 +214,7 @@ class TrackListPage extends React.Component<Props> {
         id: '4iiWcajF1fEUpwcUewc464',
         artist: 'Future',
         name: 'Life Is Good (feat. Drake, DaBaby & Lil Baby) - Remix',
-        trackNumber: 1,
+        trackNumber: 4,
         duration: 315.346,
         cover:
           'https://i.scdn.co/image/ab67616d0000b2734df9c60aa74fb72c1e07fd1d',
@@ -225,7 +226,7 @@ class TrackListPage extends React.Component<Props> {
         id: '3Q6F8RByyhRTJpRtZLY3cg',
         artist: 'Jack Harlow',
         name: 'WHATS POPPIN',
-        trackNumber: 1,
+        trackNumber: 5,
         duration: 139.741,
         cover:
           'https://i.scdn.co/image/ab67616d0000b27305c50cf7a461aa654fe9b15a',
@@ -237,7 +238,7 @@ class TrackListPage extends React.Component<Props> {
         id: '7KSSdFCBHCfq4KPzz78ghk',
         artist: 'Lil Baby',
         name: 'Heatin Up (feat. Gunna)',
-        trackNumber: 2,
+        trackNumber: 6,
         duration: 177.314,
         cover:
           'https://i.scdn.co/image/ab67616d0000b273f46a9ad551acbdab8f72fd89',
@@ -249,7 +250,7 @@ class TrackListPage extends React.Component<Props> {
         id: '1HF6P40Z7nfExGaB1Gk99v',
         artist: 'Lil Uzi Vert',
         name: 'Got The Guap (feat. Young Thug)',
-        trackNumber: 13,
+        trackNumber: 7,
         duration: 176.756,
         cover:
           'https://i.scdn.co/image/ab67616d0000b273a4865bd4e21a153d4d7f72f0',
@@ -261,7 +262,7 @@ class TrackListPage extends React.Component<Props> {
         id: '7EiZI6JVHllARrX9PUvAdX',
         artist: 'Future',
         name: 'Low Life',
-        trackNumber: 10,
+        trackNumber: 8,
         duration: 313.546,
         cover:
           'https://i.scdn.co/image/ab67616d0000b273626745b3aa04899001a924ad',
@@ -278,4 +279,6 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default connect(mapStateToProps, { getArtistAPI })(TrackListPage);
+export default withRouter(
+  connect(mapStateToProps, { getArtistAPI })(TrackListPage)
+);

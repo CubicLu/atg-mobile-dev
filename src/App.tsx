@@ -51,9 +51,8 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <IonApp>
-          {this.authenticated ? (
-            <HomePage />
-          ) : (
+          <HomePage authenticated={this.authenticated} />
+          {!this.authenticated && (
             <IonReactRouter>
               <IonRouterOutlet id="notLogged">
                 <Switch>
@@ -68,7 +67,11 @@ export default class App extends React.Component {
                   />
                   <Route
                     path="/"
-                    render={(): any => <Redirect to="/initial" />}
+                    render={(): any => (
+                      <Redirect
+                        to={this.authenticated ? '/home/profile' : '/initial'}
+                      />
+                    )}
                   />
                 </Switch>
               </IonRouterOutlet>

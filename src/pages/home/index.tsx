@@ -33,13 +33,24 @@ interface DispatchProps {
   ) => void;
 }
 
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps {
+  authenticated: boolean;
+}
 
 class HomePage extends React.Component<Props> {
-  
   render(): React.ReactNode {
-    const { modal, activeTab, tabs, links, loading } = this.props;
+    const {
+      modal,
+      activeTab,
+      tabs,
+      links,
+      loading,
+      authenticated
+    } = this.props;
     const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
+
+    if (!authenticated) return <React.Fragment />;
+
     return (
       <IonReactRouter>
         <LoaderFullscreen visible={loading} />

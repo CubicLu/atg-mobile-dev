@@ -41,6 +41,7 @@ import {
 } from '../icon/player';
 import { PlayIcon } from '../icon';
 import VigilAnimator from '../../utils/animateFrame';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface StateProps {
   player: PlayerReducerType;
@@ -59,7 +60,7 @@ interface DispatchProps {
   resumeSong: () => void;
   updateElapsed: (time: number) => void;
 }
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class PlayerComponent extends React.Component<Props> {
   audio: HTMLAudioElement | undefined;
@@ -471,7 +472,8 @@ class PlayerComponent extends React.Component<Props> {
                     <div className="col s4 p-0">
                       <IonImg
                         onClick={(): void => {
-                          window.location.href = '/home/track/default/2/1';
+                          this.props.history.push('/home/track/default/2/1');
+                          this.togglePlayer(null);
                         }}
                         className="tile"
                         src={
@@ -494,17 +496,19 @@ class PlayerComponent extends React.Component<Props> {
 const mapStateToProps = ({ player }: ApplicationState): StateProps => {
   return { player };
 };
-export default connect(mapStateToProps, {
-  setPlaylistPlayer,
-  setRadioPlaylistPlayer,
-  togglePlayer,
-  toggleShuffle,
-  toggleRepeat,
-  playSong,
-  favoriteSong,
-  pauseSong,
-  nextSong,
-  prevSong,
-  resumeSong,
-  updateElapsed
-})(PlayerComponent);
+export default withRouter(
+  connect(mapStateToProps, {
+    setPlaylistPlayer,
+    setRadioPlaylistPlayer,
+    togglePlayer,
+    toggleShuffle,
+    toggleRepeat,
+    playSong,
+    favoriteSong,
+    pauseSong,
+    nextSong,
+    prevSong,
+    resumeSong,
+    updateElapsed
+  })(PlayerComponent)
+);

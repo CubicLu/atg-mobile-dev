@@ -3,12 +3,17 @@ import { API } from './../../utils/api';
 import {
   ActionType,
   CommunityArtistInterface,
+  ArtistInterface,
   PostInterface,
   StorieInterface
 } from './../../interfaces';
 import {
   getCommunityPostsAPIFailure,
   getCommunityPostsAPISuccess,
+  getCommunityCommentsAPIFailure,
+  getCommunityCommentsAPISuccess,
+  getCommunityCommentsCoverAPIFailure,
+  getCommunityCommentsCoverAPISuccess,
   getCommunityByArtistUsernameAPIFailure,
   getCommunityByArtistUsernameAPISuccess,
   getCommunityStoriesAPISuccess,
@@ -68,10 +73,54 @@ export function* getCommunityStories(): any {
   yield takeEvery(ActionType.GET_COMMUNITY_STORIES_API, getCommunityStoriesAPI);
 }
 
+export const getCommunityCommentsRequest = async (
+  postId: string
+): Promise<ArtistInterface[]> =>
+  await API.get(`community/posts/comments/${postId}.json`);
+
+function* getCommunityCommentsAPI({ payload }: any): any {
+  try {
+    const request = yield call(getCommunityCommentsRequest, payload);
+    yield put(getCommunityCommentsAPISuccess(request));
+  } catch (error) {
+    yield put(getCommunityCommentsAPIFailure(error));
+  }
+}
+
+export function* getCommunityComments(): any {
+  yield takeEvery(
+    ActionType.GET_COMMUNITY_COMMENTARIES_API,
+    getCommunityCommentsAPI
+  );
+}
+
+export const getCommunityCoverRequest = async (
+  postId: string
+): Promise<ArtistInterface[]> =>
+  await API.get(`community/posts/cover/${postId}.json`);
+
+function* getCommunityCommentsCoverAPI({ payload }: any): any {
+  try {
+    const request = yield call(getCommunityCoverRequest, payload);
+    yield put(getCommunityCommentsCoverAPISuccess(request));
+  } catch (error) {
+    yield put(getCommunityCommentsCoverAPIFailure(error));
+  }
+}
+
+export function* getCommunityCover(): any {
+  yield takeEvery(
+    ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API,
+    getCommunityCommentsCoverAPI
+  );
+}
+
 export default function* rootSaga(): any {
   yield all([
     fork(getCommunityPosts),
     fork(getCommunityByArtistUsername),
-    fork(getCommunityStories)
+    fork(getCommunityStories),
+    fork(getCommunityComments),
+    fork(getCommunityCover)
   ]);
 }

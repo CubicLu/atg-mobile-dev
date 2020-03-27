@@ -13,6 +13,7 @@ import ProfileArtistsPage from './profile/artists';
 import ProfileFriendsPage from './profile/friends';
 import ProfileMixtapesPage from './profile/mixtapes';
 import ProfileVaultPage from './profile/vault';
+import CommunityPostPage from './community/post';
 import ArtistPage from './artist';
 import ThankYouPage from './thank-you';
 
@@ -49,6 +50,7 @@ export {
   ProfileFriendsPage,
   ProfileMixtapesPage,
   ProfileVaultPage,
+  CommunityPostPage,
   ArtistPage,
   ArtistDeepDivePage,
   ArtistFeaturesPage,

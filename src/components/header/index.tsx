@@ -30,6 +30,9 @@ interface Props extends RouteComponentProps {
   rightSettingsOnClick?: any;
   leftBackOnClick?: any;
   leftBackHref?: string;
+  translucent?: boolean;
+  ios?: boolean;
+  fixed?: boolean;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -47,7 +50,10 @@ class HeaderComponent extends React.Component<Props> {
     rightFilterButton: false,
     rightUserGroupButton: false,
     centerContent: null,
-    rightContent: null
+    rightContent: null,
+    translucent: false,
+    ios: false,
+    fixed: true
   };
 
   goBackClick = (ev: any): any => {
@@ -72,6 +78,7 @@ class HeaderComponent extends React.Component<Props> {
       leftContent,
       centerContent,
       title,
+      fixed,
       titleClassName,
       rightContent,
       rightCloseButton,
@@ -86,9 +93,11 @@ class HeaderComponent extends React.Component<Props> {
       children
     } = this.props;
 
+    const isFixed = fixed ? 'fixed' : '';
+
     return (
-      <IonHeader className="ion-no-border">
-        <div className={`atg-header fixed ${top} ${color} ${className}`}>
+      <IonHeader id="ion-header" className="ion-no-border">
+        <div className={`atg-header ${isFixed} ${top} ${color} ${className}`}>
           <div className="start">
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
@@ -155,7 +164,7 @@ class HeaderComponent extends React.Component<Props> {
           </div>
         </div>
 
-        <div>{children}</div>
+        <React.Fragment>{children}</React.Fragment>
       </IonHeader>
     );
   }

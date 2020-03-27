@@ -6,6 +6,8 @@ ion-page{
 }
 .background-image{
     z-index: -3;
+    pointer-events: none;
+    user-select: none;
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
@@ -16,9 +18,13 @@ ion-page{
     top: 0;
     bottom: 0;
     left: 0;
+    &.sature{
+        filter: saturate(1.19);
+        pointer-events: none;
+        user-select: none;
+    }
     &.blur{
         filter: blur(7px);
-        transition: 0.5s ease;
         background-color: #00000033;
     }
     &.shadow{
@@ -28,6 +34,8 @@ ion-page{
 .background-top, .background-bottom {
     position: fixed;
     z-index: -2;
+    pointer-events: none;
+    user-select: none;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;

@@ -1,75 +1,59 @@
 .horizontal-menu{
     width: 100%;
-    list-style: none;
     display: inline-flex;
     margin-top: 0;
     margin-bottom: 0;
-    justify-content: center;
     padding: 10px 0;
-    li{
-        text-align: center;
-        height: 70px;
+    text-align: center;
+    &.center{
+        padding-left: 2*$menu-scroll-margin;
+        padding-right: 2*$menu-scroll-margin;
         .circle{
             margin-left: $menu-scroll-margin;
             margin-right: $menu-scroll-margin;
-            width: 100%;
-            display: flex;
-            span{
-                border-radius: 50%;
-                height: 42px !important;
-                width: 42px !important;
-                min-height: 42px !important;
-                min-width: 42px !important;
-                align-items: center;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                background-color: #E0E8CB;
-                font-family: "Industria";
-                font-weight: 600;
-                font-size: 42px;
-                padding-bottom: 4px;
-            }
         }
+        justify-content: space-around;
+    }
+    .circle{
+        margin-left: $menu-scroll-margin;
+        margin-right: $menu-scroll-margin;
+        margin-bottom: 6px;
+        border-radius: 50%;
+        height: 42px !important;
+        width: 42px !important;
+        max-height: 42px;
+        max-width: 42px;
+        background-color: #E0E8CB;
+        font-family: "Industria";
+        font-weight: 600;
+        font-size: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .label{
+        font-family: 'Helvetica';
+        font-size: 14px;
+        color: $menu;
+        font-weight: 400;
+        border-bottom: 2px solid transparent;
     }
     .active{
-        li{
-            &:first-child{
-                margin-left: 0;
-            }
-            &:last-child{
-                padding-right: $menu-scroll-margin;
-            }
-        }
-        .title{
+        .label{
             font-weight: bold;
             border-bottom: 2px solid $tertiary;
             color: $tertiary;
-            margin-top: 10px;
-            letter-spacing: -0.6px;
         }
         .circle{
-            span{
-                background: $tertiary;
-            }
+            background: $tertiary;
         }
-    }
+    } 
     &.scroll{
         overflow-x: scroll;
         overflow-y: hidden;
         justify-content: normal !important;
         @include no-scroll-bar();
-        padding-left: $list-margin;
-    }
-    .title{
-        font-family: 'Helvetica';
-        font-size: 14px;
-        color: $menu;
-        margin-top: 10px;
-        font-weight: 400;
-        border-bottom: 2px solid transparent;
-        line-height: 30px;
+        padding-left: $menu-padding;
     }
 }
 

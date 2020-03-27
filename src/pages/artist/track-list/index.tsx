@@ -69,7 +69,7 @@ class TrackListPage extends React.Component<Props> {
             backgroundBottomOpacity={0.6}
           />
         )}
-        <IonHeader className="track-header">
+        <IonHeader className="track-header ion-no-border">
           <div className={`atg-header`}>
             <div className="start">
               <div
@@ -92,7 +92,6 @@ class TrackListPage extends React.Component<Props> {
           </div>
         </IonHeader>
 
-        <IonHeader className="ion-no-border" mode="ios" translucent={true} />
         <IonContent>
           <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
             <div className="">

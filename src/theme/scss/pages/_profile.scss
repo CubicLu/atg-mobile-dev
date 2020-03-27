@@ -3,11 +3,11 @@
     ion-content{
         height: calc(100% - 330px);
     }
-    .slider{
-        .list-feature-component{
-            display: none;
-        }
-    }
+    // .slider{
+    //     .list-feature-component{
+    //         display: none;
+    //     }
+    // }
     &.is-playing{
         margin-bottom: $default-height-player;
     }
@@ -28,21 +28,6 @@
     padding-top: $header-margin-top + $button-margin-top;
     padding-bottom: $header-margin-top/2;
     padding-left: $header-margin-left + $header-button + $header-margin-left;
-    .title{
-        font-size: pxToRem(46);
-        margin-top: 0;
-        line-height: 1;
-        text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
-    }
-    .subtitle{
-        margin-left: 0;
-        font-size: pxToRem(18);
-        color: #FFF;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 400;
-        margin-top: pxToRem(4);
-    }
-
     .content{
         max-height: 70px;
         .back-col{

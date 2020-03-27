@@ -75,8 +75,8 @@ class HeaderProfileComponent extends React.Component<Props, State> {
             buttons={this.profileActions}
           />
 
-          <h2 className="subtitle">Rosetta Throp</h2>
-          <h1 className="title">Musical Goddess</h1>
+          <div className="f4 ">Rosetta Throp</div>
+          <div className="h00 l1 shadow">Musical Goddess</div>
         </div>
         {this.props.children}
       </Header>

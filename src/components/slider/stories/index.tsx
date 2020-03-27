@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Avatar } from './../../../components';
+import { Button, Avatar, SectionTitle } from './../../../components';
 import { Colors, ShapesSize } from '../../../interfaces';
 
 interface Props {
@@ -26,14 +26,7 @@ class SliderStoriesComponent extends React.Component<Props> {
 
     return (
       <div className="row slider stories">
-        <div className="list-feature-component align-bottom row">
-          <h1 className="title">{title}</h1>
-          <div className="align-end action">
-            {viewAll && (
-              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
-            )}
-          </div>
-        </div>
+        <SectionTitle title={title} viewAll={viewAll} />
 
         <div className="row">
           <ul className="list inline">

@@ -23,7 +23,7 @@
         width: 42px !important;
         max-height: 42px;
         max-width: 42px;
-        background-color: #E0E8CB;
+        background-color: $menu;
         font-family: "Industria";
         font-weight: 600;
         font-size: 42px;
@@ -52,7 +52,6 @@
         overflow-x: scroll;
         overflow-y: hidden;
         justify-content: normal !important;
-        @include no-scroll-bar();
         padding-left: $menu-padding;
     }
 }
@@ -121,7 +120,7 @@
                 align-items: center;
                 margin-bottom: $menu-padding/2;
                 width: 100%;
-                font-family: "Helvetica Neue";
+                font-family: "Helvetica";
                 font-size: pxToRem(18);
                 font-weight: 400;
                 color: #333;
@@ -132,17 +131,6 @@
         }
     }
 }
-
-.menu-generic-list{
-    .title{
-        color: #000;
-        font-family: 'Baskerville';
-        font-weight: 600;
-        font-size: pxToRem(36);
-        line-height: 36px;
-    }
-}
-
 .menu-artist-list{
     .header{
         .title{

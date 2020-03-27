@@ -153,7 +153,9 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                 fromValue: 'white'
               }}
             >
-              <span className="biography-header">{activeBio.title}</span>
+              <span className="baskerville h0 l1 biography-header">
+                {activeBio.title}
+              </span>
             </CreateAnimation>
           }
         />

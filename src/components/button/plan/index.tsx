@@ -41,7 +41,7 @@ class ButtonPlanComponent extends React.Component<Props> {
               {price}
             </span>
           </div>
-          <span className="plan-name">{name}</span>
+          <span className="f4">{name}</span>
           <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
         </div>
       </div>

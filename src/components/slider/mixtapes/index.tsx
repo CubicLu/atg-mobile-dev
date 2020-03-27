@@ -5,12 +5,12 @@ import {
   MixtapeKnightImage,
   MixtapeRebelRockImage,
   MixtapeMoonLightImage,
-  Button
+  SectionTitle
 } from './../../../components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { MixtapeInterface, Colors, ShapesSize } from '../../../interfaces';
+import { MixtapeInterface } from '../../../interfaces';
 
 interface Props {
   title?: string;
@@ -65,16 +65,7 @@ class SliderMixtapesComponent extends React.Component<Props> {
 
     return (
       <div className="slider mixtapes">
-        <div className="list-feature-component align-bottom row">
-          <div>
-            <h1 className="title">{title}</h1>
-          </div>
-          <div className="action">
-            {viewAll && (
-              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
-            )}
-          </div>
-        </div>
+        <SectionTitle title={title!} viewAll={viewAll} />
 
         <Slider {...settings}>
           {playlists.map(

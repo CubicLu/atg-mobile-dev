@@ -1,3 +1,75 @@
+.shadow{
+    text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+}
+.text-10 { font-size: 10px !important }
+.text-12 { font-size: 12px !important }
+.text-14 { font-size: 14px !important }
+.text-15 { font-size: 15px !important }
+.text-16 { font-size: 16px !important }
+.text-18 { font-size: 18px !important }
+.text-20 { font-size: 20px !important }
+.text-22 { font-size: 22px !important }
+.text-24 { font-size: 24px !important }
+.text-28 { font-size: 28px !important }
+.text-30 { font-size: 30px !important }
+.text-32 { font-size: 32px !important }
+.text-36 { font-size: 36px !important }
+.text-40 { font-size: 40px !important }
+.text-42 { font-size: 42px !important }
+.text-48 { font-size: 48px !important }
+.text-54 { font-size: 54px !important }
+.text-72 { font-size: 72px !important }
+.text-96 { font-size: 96px !important }
+.h00{ font-size: 48px }
+.h0{ font-size: 42px }
+h1,.h1{ font-size: 36px }
+h2,.h2{ font-size: 30px }
+h3,.h3{ font-size: 24px }
+h4,.h4{ font-size: 20px }
+h5,.h5{ font-size: 18px }
+h6,.h6{ font-size: 16px }
+.f1{ font-size: 24px }
+.f2{ font-size: 22px }
+.f3{ font-size: 20px }
+.f4{ font-size: 18px }
+.f5{ font-size: 16px }
+.f6{ font-size: 14px }
+.f6{ font-size: 12px }
+.f7{ font-size: 10px }
+.f1, .f2, .f3, .f4, .f5, .f6,.f7{
+    line-height: 1.25;
+    font-family: "Helvetica";
+    color: #fff;
+    &.dark{
+        color: #000;
+    }
+}
+.h00, .h0, .h1, .h2, .h3, .h4, .h5{
+    line-height: 1.25;
+    font-family: "Industria";
+    color: #fff;
+}
+.l1{ line-height: 1}
+.letter-spacing-2{ letter-spacing: 1.44px; }
+.baskerville{
+    font-family: 'Baskerville';
+    color: #fff;
+    &.dark{
+        color: #000;
+    }
+    
+    //merge
+    .biography-header{
+        --color: #5e7fb100;
+        z-index: 1;
+        font-size: 48px;
+        line-height: 36px;
+    }
+}
+.italic { font-style: italic }
+
+
+
 
 .title{
     font-size: 60px;

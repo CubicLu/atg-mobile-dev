@@ -5,7 +5,8 @@ import {
   Header,
   BackgroundImage,
   SliderVideo,
-  CardVideo
+  CardVideo,
+  SectionTitle
 } from '../../../components';
 import { validateScrollHeader } from '../../../utils';
 import { Sizes, ShapesSize, ArtistInterface } from '../../../interfaces';
@@ -89,18 +90,16 @@ class ArtistVideosPage extends React.Component<Props, State> {
             <div className="content-container">
               {currentArtist?.videos?.recents !== undefined && (
                 <div className="negative-padding">
+                  <SectionTitle title={'Recent Videos'} viewAll={true} />
                   <SliderVideo
                     data={currentArtist?.videos?.recents}
-                    title={'Recent Videos'}
-                    viewAll={false}
                     size={Sizes.sm}
                     type={ShapesSize.normal}
                   />
                 </div>
               )}
               <div className="row showcase">
-                <h1 className="title">Showcase</h1>
-
+                <SectionTitle title={'Showcase'} />
                 {currentArtist?.videos?.showcase.map(
                   (value, i): React.ReactNode => {
                     return (

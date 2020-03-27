@@ -57,10 +57,10 @@ class MenuArtistList extends React.Component<Props> {
           color={Colors.transparent}
         >
           <div className={`row header`}>
-            <h1 className="title">{this.props.title}</h1>
-            <h2 className="subtitle">
+            <div className="h2 baskerville span dark">{this.props.title}</div>
+            <div className="h2 subtitle">
               {this.props.isSimilar && 'to'} {currentArtist.name}
-            </h2>
+            </div>
           </div>
         </Header>
 

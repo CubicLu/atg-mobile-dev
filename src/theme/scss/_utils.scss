@@ -1,11 +1,6 @@
 @include top-header;
-.row{
-    .col{
-        &.p-0{
-            padding: 0px;
-        }
-    }
-}
+@include no-scroll-bar();
+
 .flex-wrap{
     display: flex;
     flex-wrap: wrap-reverse;
@@ -52,6 +47,10 @@
     display: flex;
     justify-content: center;
 }
+.justify-content-end{
+    display: flex;
+    justify-content: flex-end;
+}
 .text-center{
     text-align: center;
 }
@@ -65,7 +64,7 @@
     padding-top: 0px;
     padding-bottom: 0px;
     &.warning{
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: "Helvetica";
         font-size: 12px;
     }
 }
@@ -104,20 +103,15 @@
 .p-10{
     padding: 10px;
 }
-.align-bottom{
+.align-baseline{
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
 }
 .align-start{
     margin-left: 0;
 }
 .align-end{
     margin-left: auto;
-}
-.sliding-panel-container{
-    .background-bottom{
-        height: 30vh;
-    }
 }
 .text-support-icon{
     color: #FFF;
@@ -129,7 +123,7 @@
     align-items: flex-end;
 }
 .content-container{
-    margin-top: 100px;
+    margin-top: $content-margin-top;
     padding-left: $content-margin-left;
     padding-right: $content-margin-right;
     .negative-padding{
@@ -138,11 +132,19 @@
     .title{
         margin-top: 0;
         font-size: pxToRem(42);
-        margin-left: 16px;
+        margin-left: $content-margin-left;
     }
 }
 .no-col{
     margin: 0 -0.75rem; //used to nullify col padding
+}
+
+.arrow-next{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+    padding-top: 0px;
+    margin-left: auto;
 }
 .my-masonry-grid {
     display: -webkit-box; /* Not needed if autoprefixing */
@@ -150,20 +152,18 @@
     display: flex;
     margin-left: -2px; /* gutter size offset */
     width: auto;
-  }
-  .my-masonry-grid_column {
+}
+.my-masonry-grid_column {
     padding-left: 2px; /* gutter size */
     background-clip: padding-box;
-  }
-  
-  /* Style your items */
-  .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+}
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
     background: grey;
     margin-bottom: 2px;
-  }
+}
+.sliding-panel-container{
+    .background-bottom {
+        height: 30vh;
+    }
+}
 
-
-  .justify-content-end{
-      display: flex;
-      justify-content: flex-end;
-  }

@@ -45,7 +45,7 @@ class BiographyListComponent extends React.Component<Props> {
           color={Colors.transparent}
         >
           <div className={`row header`}>
-            <h1 className="title">{this.props.title}</h1>
+            <h2 className="baskerville h2">{this.props.title}</h2>
           </div>
         </Header>
         <div className={`row header ${this.props.background}`} />

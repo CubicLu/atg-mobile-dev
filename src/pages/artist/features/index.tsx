@@ -7,7 +7,8 @@ import {
   SliderVideo,
   SliderMixtapes,
   SliderRadio,
-  SliderEvents
+  SliderEvents,
+  SectionTitle
 } from './../../../components';
 
 interface StateProps {
@@ -33,26 +34,20 @@ class ArtistFeaturesPage extends React.Component<Props> {
 
     return (
       <div className={`artist-features-page${isPlaying ? ' is-playing' : ''}`}>
-        <List
-          data={featuredTracks}
-          title={'TOP TRACKS'}
-          viewAll
-          label={'song'}
-          id={'id'}
-        />
-        {newReleases && <SliderVideo data={newReleases} title={'VIDEOS'} />}
+        <SectionTitle title={'TOP TRACKS'} viewAll={true} />
+        <List data={featuredTracks} label={'song'} id={'id'} />
+
+        {newReleases && <SectionTitle title={'VIDEOS'} viewAll={true} />}
+        {newReleases && <SliderVideo data={newReleases} />}
 
         <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
 
-        {radio && <SliderRadio title={'PANTHR RADIO'} data={radio} />}
+        {radio && <SectionTitle title={'PANTHR RADIO'} viewAll={true} />}
+        {radio && <SliderRadio data={radio} />}
 
+        {hasEvents && <SectionTitle title={'UPCOMING EVENTS'} viewAll={true} />}
         {hasEvents && (
-          <SliderEvents
-            data={[events![0]]}
-            viewAll
-            artistUsername={username}
-            title={'UPCOMING EVENTS'}
-          />
+          <SliderEvents data={[events![0]]} artistUsername={username} />
         )}
       </div>
     );

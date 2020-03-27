@@ -62,7 +62,7 @@ class CardArtistComponent extends React.Component<Props> {
               }}
             >
               <div className="col s8 align-items-end">
-                <div className="name">
+                <div className="h3 artist-name">
                   <span>{name}</span>
                 </div>
               </div>

@@ -16,7 +16,7 @@
         right: 0;
     }
     &.header-top{
-        top: $header-top;
+        top: 0;
     }
     .default-button{
         margin-top: $button-margin-top;
@@ -97,19 +97,6 @@
                 opacity: 0;
             }
         }
-        &.biography{
-            color: white;
-            --color: #5e7fb1;;
-            top: 0;
-            text-align: center;
-            font-family: "Baskerville" !important;
-            left: 0px;
-            z-index: 1;
-            margin-top: 0;
-            margin-bottom: 0;
-            font-size: pxToRem(50);
-            line-height: 36px;
-        }
         &.community{
             font-weight: normal;
             font-stretch: normal;
@@ -128,7 +115,7 @@
     .subtitle{
         &.community{
             height: 17px;
-            font-family: Helvetica;
+            font-family: "Helvetica";
             font-size:  pxToRem(14);
             font-weight: normal;
             font-stretch: normal;

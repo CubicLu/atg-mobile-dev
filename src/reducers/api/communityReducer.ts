@@ -1,6 +1,5 @@
 import { Action, ActionType, CommunityReducerType } from './../../interfaces';
 import createReducer from './../createReducer';
-import {} from './../../components';
 
 const defaultState: CommunityReducerType = {
   posts: [],
@@ -8,7 +7,9 @@ const defaultState: CommunityReducerType = {
   currentCommunityArtist: null,
   loading: false,
   successMessage: null,
-  errorMessage: null
+  errorMessage: null,
+  currentPostComments: null,
+  currentPostCover: { url: '' }
 };
 
 export const communityReducer = createReducer<CommunityReducerType>(
@@ -126,6 +127,64 @@ export const communityReducer = createReducer<CommunityReducerType>(
         ...state,
         loading: false,
         errorMessage: action.payload
+      };
+    },
+
+    [ActionType.GET_COMMUNITY_COMMENTARIES_API](
+      state: CommunityReducerType
+    ): any {
+      return {
+        ...state,
+        loading: true
+      };
+    },
+    [ActionType.GET_COMMUNITY_COMMENTARIES_API_SUCCESS](
+      state: CommunityReducerType,
+      action: Action<any>
+    ): any {
+      return {
+        ...state,
+        loading: false,
+        currentPostComments: action.payload.data
+      };
+    },
+    [ActionType.GET_COMMUNITY_COMMENTARIES_API_FAILURE](
+      state: CommunityReducerType,
+      action: Action<any>
+    ): any {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload.data
+      };
+    },
+
+    [ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API](
+      state: CommunityReducerType
+    ): any {
+      return {
+        ...state,
+        loading: true
+      };
+    },
+    [ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS](
+      state: CommunityReducerType,
+      action: Action<any>
+    ): any {
+      return {
+        ...state,
+        loading: false,
+        currentPostCover: action.payload.data
+      };
+    },
+    [ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE](
+      state: CommunityReducerType,
+      action: Action<any>
+    ): any {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload.data
       };
     }
   }

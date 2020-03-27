@@ -138,6 +138,14 @@
         }
     }
 
+    &.gray-transparent{
+        background: transparent;
+        color: #b2b2b2;
+        border: none !important;
+        box-shadow: none !important;
+        font-size: 14px;
+    }
+
     &.icon { 
         &.circle { 
            border-radius: 50%;

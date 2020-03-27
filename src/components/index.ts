@@ -31,6 +31,10 @@ import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
 import SliderStoriesComponent from './slider/stories';
 import CardPostComponent from './card/post';
+import PostCoverComponent from './post/post-cover';
+import PostTextComponent from './post/post-text';
+import PostCommentsComponent from './post/post-comments';
+import ArtistPostComponent from './post';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -82,7 +86,11 @@ export {
   LoaderFullscreenComponent as LoaderFullscreen,
   ButtonSupportComponent as ButtonSupport,
   SliderStoriesComponent as SliderStories,
-  CardPostComponent as CardPost
+  CardPostComponent as CardPost,
+  PostCoverComponent as PostCover,
+  PostTextComponent as PostText,
+  PostCommentsComponent as PostComment,
+  ArtistPostComponent as ArtistPost
 };
 
 export {

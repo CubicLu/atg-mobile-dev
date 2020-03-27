@@ -29,6 +29,8 @@ class ArtistFeaturesPage extends React.Component<Props> {
       username
     } = currentArtist;
 
+    const hasEvents = Array.isArray(events) && events.length > 0;
+
     return (
       <div className={`artist-features-page${isPlaying ? ' is-playing' : ''}`}>
         <List
@@ -44,9 +46,9 @@ class ArtistFeaturesPage extends React.Component<Props> {
 
         {radio && <SliderRadio title={'PANTHR RADIO'} data={radio} />}
 
-        {Array.isArray(events) && events.length > 0 && (
+        {hasEvents && (
           <SliderEvents
-            data={[events[0]]}
+            data={[events![0]]}
             viewAll
             artistUsername={username}
             title={'UPCOMING EVENTS'}

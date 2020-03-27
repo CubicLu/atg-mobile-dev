@@ -6,11 +6,9 @@
                 padding-left: 20px !important;
             }
         }
-        
         .slick-slide {
             margin: 0 10px;
         }
-
         &.sm{
             .title{
                 font-size: pxToRem(42);
@@ -19,7 +17,6 @@
             .slick-slide {
                 margin: 0 7px;
             }
-    
         }
     }
     &.radio{
@@ -43,7 +40,6 @@
                 padding-left: 30px !important;
             }
         }
-        
         .slick-slide {
             margin: 0 10px;
             width: 130px;
@@ -63,7 +59,6 @@
             margin-top: 2px;
         }
     }
-
     &.stories{
         .title{
             font-size: pxToRem(36);
@@ -77,6 +72,7 @@
         }
         .list{
             overflow-x: scroll;
+            width: 100%;
             @include no-scroll-bar();
             &.inline{
                 margin-top: 15px;

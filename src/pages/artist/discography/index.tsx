@@ -4,6 +4,7 @@ import { CardImage } from './../../../components';
 
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -12,7 +13,7 @@ interface StateProps {
 
 interface DispatchProps {}
 
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class ArtistDiscographyPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -25,7 +26,16 @@ class ArtistDiscographyPage extends React.Component<Props> {
         <div className="row">
           {discography?.map(
             (d, i): React.ReactNode => (
-              <CardImage image={d.cover} key={i} />
+              <div
+                onClick={(): void =>
+                  this.props.history.push(
+                    `/home/track/artist/${currentArtist.username}/${i}`
+                  )
+                }
+                key={i}
+              >
+                <CardImage key={i} image={d.cover} />
+              </div>
             )
           )}
         </div>
@@ -43,4 +53,4 @@ const mapStateToProps = ({
   return { currentArtist, isPlaying };
 };
 
-export default connect(mapStateToProps, {})(ArtistDiscographyPage);
+export default withRouter(connect(mapStateToProps, {})(ArtistDiscographyPage));

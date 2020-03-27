@@ -1,38 +1,28 @@
 .artist-event-detail-page{
-    
     @include page;
-
-    .top-fixed{
-        width: 100%;
-        height: 350px;
+    .content-fixed{
+        top: 0;
         z-index: 2;
+        width: 100%;
+        height: 220px;
+        background: linear-gradient(180deg, #000,#0e0819);
+        padding-top: 110px;
         top: 0;
         border-bottom: 1px solid $secondary;
-        position: fixed;
-        background: linear-gradient(180deg, #000, #0e0819);
-        .content-fixed{
-            height: 40vh;
-            z-index: 2;
-            position: fixed;
-            width: 100%;
-            background: linear-gradient(180deg, #000,#0e0819);
-            padding-top: 120px;
-            top: 0;
-            .card{
-                padding-left: 20px;
-                padding-right: 20px;
-                &.event{
-                    .row{
-                        margin-bottom: 0;
-                    }
+        .card{
+            padding-left: 20px;
+            padding-right: 20px;
+            &.event{
+                .row{
+                    margin-bottom: 0;
                 }
             }
         }
     }
     
     .content-list{
+        margin-top: 350px;
         position: relative;
-        top: 43vh;
         @include list-user;
         ion-item{
             border-bottom: none;

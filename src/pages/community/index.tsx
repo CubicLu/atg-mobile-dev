@@ -196,16 +196,17 @@ class CommunityPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { isArtist } = this.state;
     return (
       <IonPage id="community-page">
         <BackgroundImage
           gradient={`180deg,${this.state.backgroundColor[0]},${this.state.backgroundColor[1]}`}
           backgroundTopDark
           backgroundTop
-          backgroundTopOpacity={0.15}
+          backgroundTopOpacity={isArtist ? 0.5 : 0.25}
           backgroundBottom
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.4}
+          backgroundBottomDark={false}
+          backgroundBottomOpacity={0.08}
         />
         {this.renderHeader()}
         <div

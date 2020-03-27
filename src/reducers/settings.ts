@@ -248,7 +248,7 @@ const defaultState: SettingsReducerType = {
       component: CommunityPostPage
     },
     {
-      path: '/home/track/:id',
+      path: '/home/track/:reference/:referenceId/:id',
       id: 'b',
       component: TrackListPage
     },

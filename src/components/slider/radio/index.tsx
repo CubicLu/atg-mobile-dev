@@ -33,7 +33,7 @@ class SliderRadioComponent extends React.Component<Props> {
 
     return (
       <div className="slider radio">
-        <div className="list-component align-bottom row">
+        <div className="list-feature-component align-bottom row">
           <h1 className="title">{title}</h1>
         </div>
 

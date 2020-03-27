@@ -36,11 +36,11 @@ ul{
         margin-top: $list-padding-top;
     }
 }
-.list-component{
-margin-bottom: 0;
-margin-left: $list-margin;
-margin-right: $list-margin;
-margin-top: 30px;
+.list-feature-component{
+    margin-bottom: 0;
+    margin-left: $list-margin;
+    margin-right: $list-margin;
+    margin-top: 30px;
     .row{
         .col{
             padding: 0;
@@ -61,5 +61,6 @@ margin-top: 30px;
         justify-content: flex-end;
         font-size: 16px;
         padding-top: 0px;
+        margin-left: auto;
     }
 }

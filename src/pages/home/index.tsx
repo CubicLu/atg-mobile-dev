@@ -33,26 +33,31 @@ interface DispatchProps {
   ) => void;
 }
 
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps {
+  authenticated: boolean;
+}
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
     const {
-      updateSettingsModal,
       modal,
       activeTab,
       tabs,
       links,
-      loading
+      loading,
+      authenticated
     } = this.props;
     const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
+
+    if (!authenticated) return <React.Fragment />;
+
     return (
       <IonReactRouter>
         <LoaderFullscreen visible={loading} />
         <Player />
         {modal && (
           <ModalSlide
-            onClose={(): void => updateSettingsModal(false, null)}
+            onClose={(): void => this.props.updateSettingsModal(false, null)}
             visible={modal.visible}
             height={setHeight(40)}
             className={modal.classname}
@@ -62,9 +67,9 @@ class HomePage extends React.Component<Props> {
         )}
 
         <IonTabs
-          onIonTabsDidChange={(event): void =>
-            updateSettingsProperty('activeTab', event.detail.tab)
-          }
+          onIonTabsDidChange={(event): void => {
+            this.props.updateSettingsProperty('activeTab', event.detail.tab);
+          }}
         >
           <IonRouterOutlet>
             {links.map((p: LinksInterface, i: number): any => (

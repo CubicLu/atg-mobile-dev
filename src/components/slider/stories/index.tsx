@@ -9,6 +9,7 @@ interface Props {
   data?: any[];
   labelKey?: string;
   imageKey?: string;
+  onClickViewAll?: Function;
 }
 
 class SliderStoriesComponent extends React.Component<Props> {
@@ -16,8 +17,10 @@ class SliderStoriesComponent extends React.Component<Props> {
     viewAll: true,
     scroll: false,
     labelKey: 'label',
-    imageKey: 'image'
+    imageKey: 'image',
+    onClickViewAll: (): void => {}
   };
+
   render(): React.ReactNode {
     const { title, viewAll, data, imageKey, labelKey } = this.props;
     if (!data) return <div />;
@@ -30,7 +33,15 @@ class SliderStoriesComponent extends React.Component<Props> {
           <h1 className="title">{title}</h1>
           <div className="align-end action">
             {viewAll && (
-              <Button color={Colors.transparent} type={ShapesSize.viewAll} />
+              <Button
+                color={Colors.transparent}
+                type={ShapesSize.viewAll}
+                onClick={(): void => {
+                  if (this.props.onClickViewAll) {
+                    this.props.onClickViewAll();
+                  }
+                }}
+              />
             )}
           </div>
         </div>

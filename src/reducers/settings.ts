@@ -33,7 +33,8 @@ import {
   ArtistGalleryGridPage,
   CommunityPostPage,
   TrackListPage,
-  ThankYouPage
+  ThankYouPage,
+  CommunityAllArtistsPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -251,6 +252,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/track/:reference/:referenceId/:id',
       id: 'b',
       component: TrackListPage
+    },
+    {
+      path: '/home/community/artist',
+      id: 'communityArtist',
+      component: CommunityAllArtistsPage
     },
     {
       path: '/home/community/:artistId',

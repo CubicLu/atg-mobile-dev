@@ -71,7 +71,8 @@ class CommunityPage extends React.Component<Props, State> {
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.artistId !== undefined &&
-      nextProps.currentCommunityArtist === null
+      nextProps.currentCommunityArtist === null &&
+      nextProps.match.params.artistId !== 'artist'
     ) {
       this.setBackgroundArtist();
       if (
@@ -79,7 +80,8 @@ class CommunityPage extends React.Component<Props, State> {
           this.props.currentCommunityArtist?.username ||
         nextProps.match.params.artistId !== this.props.match.params.artistId ||
         (nextProps.currentCommunityArtist == null &&
-          nextProps.match.params.artistId !== undefined)
+          nextProps.match.params.artistId !== undefined &&
+          nextProps.match.params.artistId !== 'artist')
       ) {
         this.props.getCommunityByArtistUsernameAPI(
           nextProps.match.params.artistId
@@ -89,7 +91,10 @@ class CommunityPage extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    if (this.props.match.params.artistId !== undefined) {
+    if (
+      this.props.match.params.artistId !== undefined &&
+      this.props.match.params.artistId !== 'artist'
+    ) {
       this.setBackgroundArtist();
       this.props.getCommunityByArtistUsernameAPI(
         this.props.match.params.artistId
@@ -218,6 +223,9 @@ class CommunityPage extends React.Component<Props, State> {
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (
               <SliderStories
+                onClickViewAll={(): void => {
+                  this.props.history.push('/home/community/artist');
+                }}
                 title={
                   this.state.isArtist ? 'DAILY DRIP' : 'ARTIST COMMUNITIES'
                 }

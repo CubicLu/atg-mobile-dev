@@ -12,7 +12,7 @@ import {
 import { IonPage, IonImg, IonContent, IonHeader } from '@ionic/react';
 import { BackgroundImage, ButtonSupport, BackIcon } from '../../../components';
 import AddTrackIcon from '../../../components/icon/add-track';
-import { artistBackground } from '../../../utils';
+import { artistBackground, shadowTitle } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -119,39 +119,34 @@ class TrackListPage extends React.Component<Props> {
                   </div>
                 )
               )}
-            </div>
 
-            <div className="bottom-shadow h-16 w-100" />
-            <div className="flex-compass south half h-16">
-              <div className="row p-0 flex-wrap flex-wrap-fluid">
-                <div className="col s4 p-0">
-                  <IonImg
+              <div className="row" />
+              <div className="artist-bar flex-compass south half h-16">
+                <div className="flex-align-baseline fluid">
+                  <div
                     className="tile"
-                    src={
+                    style={shadowTitle(
                       'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-                    }
-                  />
-                  <span className="tile-label-s4 f6">Liner Notes</span>
-                </div>
-
-                <div className="col s4 p-0">
-                  <IonImg
+                    )}
+                  >
+                    <span className="tile-label f6">Liner Notes</span>
+                  </div>
+                  <div
                     className="tile"
-                    src={
+                    style={shadowTitle(
                       'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-                    }
-                  />
-                  <span className="tile-label-s4 f6">Community</span>
-                </div>
-
-                <div className="col s4 p-0">
-                  <IonImg
+                    )}
+                  >
+                    <span className="tile-label f6">Liner Notes</span>
+                  </div>
+                  <div
                     className="tile"
-                    src={
+                    style={shadowTitle(
                       'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-                    }
-                  />
-                  <span className="tile-label-s4 f6">Artist Home</span>
+                    )}
+                  >
+                    <span className="tile-label f6">Liner Notes</span>
+                  </div>
                 </div>
               </div>
             </div>

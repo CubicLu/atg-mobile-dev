@@ -5,14 +5,14 @@ import {
   CommentCoverInterface,
   CommentInterface
 } from '../../interfaces';
-import { ApplicationState } from './../../reducers';
+import { ApplicationState } from '../../reducers';
 import { Button } from './../index';
 import { PostText, PostComment, InputText, PostCover } from '../index';
 import {
   updateSettingsProperty,
   getCommunityCommentsAPI,
   getCommunityCommentsCoverAPI
-} from './../../actions';
+} from '../../actions';
 
 interface StateProps {
   isPlaying: boolean;
@@ -32,10 +32,6 @@ interface Props extends DispatchProps, StateProps {
 }
 
 class ArtistPostComponent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   componentDidMount(): void {
     this.props.getCommunityCommentsAPI(this.props.id);
     this.props.getCommunityCommentsCoverAPI(this.props.id);

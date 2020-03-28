@@ -16,10 +16,6 @@ interface Props extends RouteComponentProps {
 }
 
 class PostCover extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     const { cover } = this.props;
     return (

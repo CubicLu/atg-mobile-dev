@@ -23,21 +23,6 @@
         margin-bottom: $default-height-header;
         margin-left: $list-margin;
         margin-right: $list-margin;
-        .text{
-            font-family: 'Helvetica';
-            padding: 10px;
-            text-align: justify;
-        }
-        .title{
-            font-size: pxToRem(48);
-            color: #000;
-            margin-left: 0;
-        }
-        .subtitle{
-            font-size: pxToRem(36);
-            color: #000;
-            margin-left: 0;
-        }
         .price{
             line-height: 1;
             margin-left: 0;
@@ -53,12 +38,6 @@
                 margin-left: 8px;
                 margin-bottom: 8px;
             }
-        }
-        .body{
-            font-size: 16px;
-            font-family: 'Helvetica';
-            line-height: 1.5;
-            font-weight: 400;
         }
     }
 }

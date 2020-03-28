@@ -72,11 +72,8 @@ class ArtistPage extends React.Component<Props, {}> {
           .addElement(document.querySelector('#support-bar')!)
           .fromTo('transform', 'translateX(0px)', 'translateX(250px)'),
         createAnimation()
-          .addElement(document.querySelector('#blur-background')!)
-          .keyframes([
-            { backdropFilter: 'blur(0)', opacity: 0 },
-            { backdropFilter: 'blur(6.5px)', opacity: 1 }
-          ]),
+          .addElement(document.querySelector('#fade-background')!)
+          .fromTo('opacity', '0', `1`),
         createAnimation()
           .addElement(supportButton)
           .fromTo(
@@ -134,15 +131,15 @@ class ArtistPage extends React.Component<Props, {}> {
       return <IonPage style={artistBackground(null)} id="artist-page" />;
     }
     const { currentArtist: artist, artistTabs, activeArtistTab } = this.props;
-
     return (
       <IonPage
         id="artist-page"
-        className="saturate"
         style={artistBackground(artist)}
+        className="saturate"
       >
+        <Header leftBackHref="/home/profile" />
         <SupportBy data={artist.supportArtistFans} />
-        <Header />
+        <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
           <h2 id="artist-title" className={`artist-title artist-top`}>
             {artist.name}
@@ -167,11 +164,10 @@ class ArtistPage extends React.Component<Props, {}> {
             onClick={this.handleMenu.bind(this)}
           />
         </div>
-
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          forceOverscroll={false}
+          forceOverscroll={true}
           fullscreen={false}
           onIonScroll={this.handleScroll.bind(this)}
         >
@@ -182,7 +178,6 @@ class ArtistPage extends React.Component<Props, {}> {
               data.id === activeArtistTab &&
               React.createElement(data.component, { key: i })
           )}
-          <div id="blur-background" className="artist-page blur-background" />
         </IonContent>
       </IonPage>
     );

@@ -64,9 +64,6 @@
     .center-align{
         text-align: center;
     }
-    .title-medium{
-        font-size: 48px;
-    }
     .left-align{
         text-align: left;
     }
@@ -118,12 +115,6 @@
     @media screen and (max-width: 360px) {
         .brand-title{
             font-size: pxToRem(70);
-        }
-        .subtitle{
-            font-size: pxToRem(24);
-        }
-        .title-medium{
-            font-size: pxToRem(42);
         }
         p{
             margin-top: 0;

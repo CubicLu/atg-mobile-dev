@@ -42,6 +42,7 @@ import {
 import { PlayIcon } from '../icon';
 import VigilAnimator from '../../utils/animateFrame';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { shadowTitle } from '../../utils';
 
 interface StateProps {
   player: PlayerReducerType;
@@ -277,7 +278,8 @@ class PlayerComponent extends React.Component<Props> {
                 <div
                   className="img"
                   style={{
-                    backgroundSize: 'contain',
+                    backgroundSize: 'cover',
+                    backgroundPositionY: 'center',
                     background: disabled ? '#1a0922cc' : `url(${song?.cover})`
                   }}
                 >
@@ -374,18 +376,24 @@ class PlayerComponent extends React.Component<Props> {
                 leftMinimizeOnClick={this.togglePlayer.bind(this)}
               />
               <div id="expanded-body" className="space-between h-100 p-0">
-                <div className="cover-title h-50">
-                  <IonImg className="image" src={song?.cover} />
-                  <span className="main-song">{song?.name}&nbsp;</span>
+                <div className="player-upper-half m-4">
+                  <div
+                    className="image"
+                    style={{
+                      background: `url(${song?.cover})`,
+                      backgroundSize: 'cover'
+                    }}
+                  />
+                  <span className="f4">{song?.name}&nbsp;</span>
                   <br />
-                  <span className="main-artist">{song?.artist}&nbsp;</span>
+                  <span className="f6">{song?.artist}&nbsp;</span>
                   <br />
                   <span className="main-source">
                     Source: {playlist?.name}&nbsp;
                   </span>
                 </div>
 
-                <div className="main-player h-33">
+                <div className="main-player m-4 h-33">
                   <div className="player-progress">
                     <div
                       className="bar"
@@ -446,41 +454,36 @@ class PlayerComponent extends React.Component<Props> {
 
                 <div className="bottom-shadow h-16 w-100" />
                 <div className="artist-bar flex-compass south half h-16">
-                  <div className="row p-0 flex-wrap">
-                    <div className="col s4 p-0">
-                      <IonImg
-                        onClick={this.props.setPlaylistPlayer.bind(this)}
-                        className="tile"
-                        src={
-                          'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-                        }
-                      />
-                      <span className="tile-label-s4">Liner Notes</span>
+                  <div className="flex-align-baseline fluid">
+                    <div
+                      className="tile"
+                      onClick={this.props.setPlaylistPlayer.bind(this)}
+                      style={shadowTitle(
+                        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+                      )}
+                    >
+                      <span className="tile-label f6">Liner Notes</span>
                     </div>
-
-                    <div className="col s4 p-0">
-                      <IonImg
-                        onClick={this.props.setRadioPlaylistPlayer.bind(this)}
-                        className="tile"
-                        src={
-                          'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-                        }
-                      />
-                      <span className="tile-label-s4">Community</span>
+                    <div
+                      className="tile"
+                      onClick={this.props.setRadioPlaylistPlayer.bind(this)}
+                      style={shadowTitle(
+                        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+                      )}
+                    >
+                      <span className="tile-label f6">Liner Notes</span>
                     </div>
-
-                    <div className="col s4 p-0">
-                      <IonImg
-                        onClick={(): void => {
-                          this.props.history.push('/home/track/default/2/1');
-                          this.togglePlayer(null);
-                        }}
-                        className="tile"
-                        src={
-                          'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-                        }
-                      />
-                      <span className="tile-label-s4">Artist Home</span>
+                    <div
+                      className="tile"
+                      onClick={(): void => {
+                        this.props.history.push('/home/track/default/2/1');
+                        this.togglePlayer(null);
+                      }}
+                      style={shadowTitle(
+                        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+                      )}
+                    >
+                      <span className="tile-label f6">Liner Notes</span>
                     </div>
                   </div>
                 </div>

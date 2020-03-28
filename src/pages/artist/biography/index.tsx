@@ -184,7 +184,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                         {bio.name}
                         <p className="read">Read&nbsp;</p>
                       </h1>
-                      <h2 className="subtitle">{bio.subtitle}</h2>
+                      <h2 className="f4">{bio.subtitle}</h2>
                     </div>
                   </div>
 

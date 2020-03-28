@@ -55,9 +55,7 @@ class TrackListPage extends React.Component<Props> {
     }
     return (
       <IonPage style={style} id="track-list">
-        {currentArtist && (
-          <div style={{ zIndex: -1 }} className="blur-background opacity-1" />
-        )}
+        {currentArtist && <div className="fade-background" />}
         {!currentArtist && (
           <BackgroundImage
             gradient={`180deg,#aed8e5,#039e4a`}
@@ -95,19 +93,17 @@ class TrackListPage extends React.Component<Props> {
         <IonContent>
           <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
             <div className="">
-              <div className="cover-title track-list">
+              <div className="player-upper-half track-list m-4">
                 <div
                   className="image radius"
                   style={{
                     background: `url(${this.playlist?.cover})`,
-                    backgroundSize: 'cover'
+                    backgroundSize: 'contain'
                   }}
                 />
-                <span className="main-song">{this.playlist?.name}&nbsp;</span>
+                <span className="f4">{this.playlist?.name}&nbsp;</span>
                 <br />
-                <span className="main-artist">
-                  {this.playlist?.owner}&nbsp;
-                </span>
+                <span className="f6">{this.playlist?.owner}&nbsp;</span>
               </div>
             </div>
 
@@ -135,7 +131,7 @@ class TrackListPage extends React.Component<Props> {
                       'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
                     }
                   />
-                  <span className="tile-label-s4">Liner Notes</span>
+                  <span className="tile-label-s4 f6">Liner Notes</span>
                 </div>
 
                 <div className="col s4 p-0">
@@ -145,7 +141,7 @@ class TrackListPage extends React.Component<Props> {
                       'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
                     }
                   />
-                  <span className="tile-label-s4">Community</span>
+                  <span className="tile-label-s4 f6">Community</span>
                 </div>
 
                 <div className="col s4 p-0">
@@ -155,7 +151,7 @@ class TrackListPage extends React.Component<Props> {
                       'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
                     }
                   />
-                  <span className="tile-label-s4">Artist Home</span>
+                  <span className="tile-label-s4 f6">Artist Home</span>
                 </div>
               </div>
             </div>

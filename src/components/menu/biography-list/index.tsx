@@ -43,13 +43,12 @@ class BiographyListComponent extends React.Component<Props> {
           rightCloseButton={true}
           rightCloseOnClick={this.props.onClick.bind(this)}
           color={Colors.transparent}
-        >
-          <div className={`row header`}>
-            <h2 className="baskerville h2">{this.props.title}</h2>
-          </div>
-        </Header>
-        <div className={`row header ${this.props.background}`} />
-        <div className="row content">
+        />
+        <div className={`modal-header ${this.props.background}`}>
+          <span className="h2 dark baskerville">{this.props.title}</span>
+        </div>
+
+        <div className="modal-content">
           <ul>
             {this.props.items &&
               this.props.items.map(

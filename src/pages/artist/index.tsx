@@ -51,16 +51,14 @@ class ArtistPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  UNSAFE_componentDidMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
+  componentWillUnmount(): void {
+    this.custom.animation = undefined;
   }
   loadAnimations(): void {
     const normalMenu = document.querySelector('#horizontal-menu');
     if (!normalMenu) return;
     this.custom.loaded = true;
-    const ionHeader = document.querySelector('#ion-header')!;
+    const itensHeader = document.querySelector('.offset-content')!;
     const supportButton = document.querySelector('#support-button')!;
     const artistTitle = document.querySelector('#artist-title')!;
     const aT = getFixedTranslatePoints(supportButton!, 16, 46, true);
@@ -83,8 +81,8 @@ class ArtistPage extends React.Component<Props, {}> {
           .addElement(supportButton)
           .fromTo(
             'transform',
-            'translate3d(0,0,0)',
-            `translate3d(${aT.translateX}px,${aT.translateY}px, 0)`
+            'translate(0,0)',
+            `translate(${aT.translateX}px,${aT.translateY}px)`
           ),
         createAnimation()
           .addElement(artistTitle)
@@ -97,12 +95,13 @@ class ArtistPage extends React.Component<Props, {}> {
           .addElement(normalMenu)
           .fromTo(
             'transform',
-            'translate3d(0,0,0)',
-            `translate3d(${menu.translateX}px,${menu.translateY}px,0)`
+            'translateY(0)',
+            `translateY(${menu.translateY}px)`
           ),
         createAnimation()
-          .addElement(ionHeader)
-          .fromTo('height', '482px', '162px')
+          .addElement(itensHeader)
+          .fromTo('marginTop', '0px', '-120px')
+        //use values between 100 and 200 -> 80px less than throttle
       ]);
     this.custom.progressStarted = true;
     this.custom.animation.progressStart(true);
@@ -110,8 +109,9 @@ class ArtistPage extends React.Component<Props, {}> {
 
   handleScroll(event: any): void {
     if (!this.custom.loaded) this.loadAnimations();
-    const offset = Number(Math.min(event.detail.scrollTop / 150, 1).toFixed(2));
-    this.blur = event.detail.scrollTop > 150;
+    //use values between 100 and 200 on divisor to throttle
+    const offset = Number(Math.min(event.detail.scrollTop / 200, 1).toFixed(2));
+    this.blur = event.detail.scrollTop > 200;
 
     if (this.blur && this.lastOffset === 1) return;
     this.custom.animation.progressStep(offset);
@@ -150,35 +150,34 @@ class ArtistPage extends React.Component<Props, {}> {
               >
                 <BackIcon />
               </div>
+              <SupportBy data={artist.supportArtistFans} />
             </div>
           </div>
-
-          <div className="artist-landing-header">
-            <SupportBy data={artist.supportArtistFans} />
-            <h2 id="artist-title" className={`artist-title artist-top`}>
-              {artist.name}
-            </h2>
-            <br />
-            <ButtonSupport
-              id="support-button"
-              buttonType={'text'}
-              type={ShapesSize.rounded}
-              uppercase
-              supported={artist.support}
-              onClick={(): void => {
-                this.props.history.push(
-                  `/home/artist/${artist.username}/support`
-                );
-              }}
-            />
-
-            <Menu
-              tabs={artistTabs}
-              activeId={activeArtistTab}
-              onClick={this.handleMenu.bind(this)}
-            />
-          </div>
         </IonHeader>
+        <div id="ion-item-header" className="artist-landing-header">
+          <h2 id="artist-title" className={`artist-title artist-top`}>
+            {artist.name}
+          </h2>
+          <br />
+          <ButtonSupport
+            id="support-button"
+            buttonType={'text'}
+            type={ShapesSize.rounded}
+            uppercase
+            supported={artist.support}
+            onClick={(): void => {
+              this.props.history.push(
+                `/home/artist/${artist.username}/support`
+              );
+            }}
+          />
+
+          <Menu
+            tabs={artistTabs}
+            activeId={activeArtistTab}
+            onClick={this.handleMenu.bind(this)}
+          />
+        </div>
 
         <IonContent
           scrollY={true}
@@ -187,6 +186,8 @@ class ArtistPage extends React.Component<Props, {}> {
           fullscreen={false}
           onIonScroll={this.handleScroll.bind(this)}
         >
+          <div className="offset-content" />
+
           {artistTabs?.map(
             (data, i): React.ReactNode =>
               data.id === activeArtistTab &&

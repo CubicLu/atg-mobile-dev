@@ -24,7 +24,9 @@
         overflow: initial;
     }
     .offset-content{
-        height: 330px;   
+        height: 330px;
+        pointer-events: none;
+        user-select: none;   
     }
     .artist-landing-header{
         text-align: center;

@@ -160,7 +160,7 @@ class HeaderComponent extends React.Component<Props> {
           </div>
         </div>
 
-        <React.Fragment>{children}</React.Fragment>
+        <>{children}</>
       </IonHeader>
     );
   }

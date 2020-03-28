@@ -5,13 +5,12 @@ import {
   BackgroundImage,
   HeaderOverlay
 } from './../../../components';
-import { IonContent, IonList, IonItem, IonPage } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -54,14 +53,6 @@ class ArtistEventsPage extends React.Component<Props, State> {
     }
   }
 
-  handleScroll(event: CustomEvent<any>): void {
-    const currentScroll = validateScrollHeader(event, 30);
-    if (!currentScroll.validScroll) return;
-    if (currentScroll.blur === this.state.blur) return;
-    this.setState({ blur: currentScroll.blur });
-    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
-  }
-
   render(): React.ReactNode {
     const { currentArtist } = this.props;
     if (!currentArtist) return <IonPage />;
@@ -71,7 +62,9 @@ class ArtistEventsPage extends React.Component<Props, State> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={this.handleScroll.bind(this)}
+          onIonScroll={(e: CustomEvent): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
         >
           <div className="artist-events-page">
             <BackgroundImage backgroundImage={currentArtist.cover?.event} />

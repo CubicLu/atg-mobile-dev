@@ -236,7 +236,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                         <div className="col s1" />
                         <div className="col s2">
                           <ButtonIcon
-                            color={Colors.green}
+                            color={Colors.orange}
                             icon={<StarIcon width={24} height={24} />}
                           />
                         </div>

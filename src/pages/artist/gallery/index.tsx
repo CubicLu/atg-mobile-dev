@@ -11,7 +11,6 @@ import { ArtistInterface } from '../../../interfaces';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-import { validateScrollHeader } from '../../../utils';
 
 interface State {
   blur: boolean;
@@ -56,15 +55,6 @@ class ArtistGalleryPage extends React.Component<Props, State> {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
-
-  handleScroll(event: CustomEvent<any>): void {
-    const currentScroll = validateScrollHeader(event);
-    if (!currentScroll.validScroll) return;
-    if (currentScroll.blur === this.state.blur) return;
-    this.setState({ blur: currentScroll.blur });
-    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
-  }
-
   render(): React.ReactNode {
     const { isPlaying } = this.props;
     return (
@@ -75,7 +65,9 @@ class ArtistGalleryPage extends React.Component<Props, State> {
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={this.handleScroll.bind(this)}
+          onIonScroll={(e: CustomEvent): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
         >
           <BackgroundImage
             gradient={`180deg,#1F0739,#1F0739`}

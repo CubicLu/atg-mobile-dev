@@ -1,6 +1,7 @@
 import React from 'react';
 import { CreateAnimation } from '@ionic/react';
 import { ScrollHeaderInterface } from '../../interfaces';
+import { validateScrollHeader } from '../../utils';
 
 interface Props {
   overlayHeader?: string;
@@ -20,6 +21,10 @@ class HeaderOverlayComponent extends React.Component<Props> {
     animation: 'reverse'
   };
   public static defaultProps = {};
+
+  public handleParentScroll(event: CustomEvent<any>): void {
+    this.playTopHeader(validateScrollHeader(event));
+  }
 
   public playTopHeader(
     currentScroll: ScrollHeaderInterface,

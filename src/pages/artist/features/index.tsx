@@ -61,19 +61,17 @@ class ArtistFeaturesPage extends React.Component<Props> {
             <SliderRadio data={radio} />
           </React.Fragment>
         )}
-
         <div className="row mx-05" />
+
         {Array.isArray(events) && events.length > 0 && (
-          <React.Fragment>
-            <div className="row">
-              <Section
-                className="mx-3"
-                title={'UPCOMING EVENTS'}
-                viewAll={true}
-              />
-            </div>
+          <div className="row">
+            <Section
+              className="mx-3"
+              title={'UPCOMING EVENTS'}
+              viewAll={true}
+            />
             <SliderEvents data={[events![0]]} artistUsername={username} />
-          </React.Fragment>
+          </div>
         )}
       </div>
     );

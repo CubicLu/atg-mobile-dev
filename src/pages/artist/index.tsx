@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, createAnimation, IonHeader } from '@ionic/react';
-import { Menu, SupportBy, ButtonSupport, BackIcon } from './../../components';
+import { IonContent, IonPage, createAnimation } from '@ionic/react';
+import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface, ShapesSize } from '../../interfaces';
@@ -141,19 +141,8 @@ class ArtistPage extends React.Component<Props, {}> {
         className="saturate"
         style={artistBackground(artist)}
       >
-        <IonHeader id="ion-header" className="ion-no-border">
-          <div className="atg-header">
-            <div className="start">
-              <div
-                className="default-button dark"
-                onClick={(): void => this.props.history.push(`/home/profile`)}
-              >
-                <BackIcon />
-              </div>
-              <SupportBy data={artist.supportArtistFans} />
-            </div>
-          </div>
-        </IonHeader>
+        <SupportBy data={artist.supportArtistFans} />
+        <Header />
         <div id="ion-item-header" className="artist-landing-header">
           <h2 id="artist-title" className={`artist-title artist-top`}>
             {artist.name}

@@ -1,11 +1,5 @@
 @include top-header;
 @include no-scroll-bar();
-
-.flex-wrap{
-    display: flex;
-    flex-wrap: wrap-reverse;
-    align-items: center;
-}
 .flex-wrap-fluid{
     margin-left: -28px;
     margin-right: -28px;
@@ -43,23 +37,9 @@
         justify-content: flex-start;
     }
 }
-.justify-center{
-    display: flex;
-    justify-content: center;
-}
-.justify-content-end{
-    display: flex;
-    justify-content: flex-end;
-}
 .text-center{
     text-align: center;
 }
-.align-items-center{
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
 .message {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -68,8 +48,9 @@
         font-size: 12px;
     }
 }
-
-
+.bold{
+    font-weight: bold;
+}
 .h-12{
     height: 12.5%;
 }
@@ -97,15 +78,79 @@
 .p-0{
     padding: 0px;
 }
-.m-0{
-    margin: 0px;
-}
+.px-0{ padding-left: 0px;padding-right: 0px; }
+.px-1{ padding-left: 8px;padding-right: 8px; }
+.px-2{ padding-left: 16px;padding-right: 16px; }
+.px-3{ padding-left: 24px;padding-right: 24px; }
+.px-12{ padding-left: 12px;padding-right: 12px; }
+.mx-0{ margin-left: 0px;margin-right: 0px; }
+.mx-05{ margin-left: 4px;margin-right: 4px; }
+.mx-1{ margin-left: 8px;margin-right: 8px; }
+.mx-2{ margin-left: 16px;margin-right: 16px; }
+.mx-3{ margin-left: 24px;margin-right: 24px; }
+.mx-4{ margin-left: 32px;margin-right: 32px; }
+.my-0{ margin-top: 0px;margin-bottom: 0px; }
+.my-1{ margin-top: 8px;margin-bottom: 8px; }
+.my-2{ margin-top: 16px;margin-bottom: 16px; }
+.my-3{ margin-top: 24px;margin-bottom: 24px; }
+.my-4{ margin-top: 32px;margin-bottom: 32px; }
+.m-0{ margin: 0px; }
+.m-1{ margin: 8px; }
+.m-2{ margin: 16px; }
+.m-3{ margin: 24px; }
+.m-4{ margin: 32px; }
+.mt-4{ margin-top: 32px; }
+.mt-5{ margin-top: 36px; }
+.mt-negative-1{ margin-top: -8px; }
+.mt-negative-2{ margin-top: -16px; }
 .p-10{
     padding: 10px;
 }
-.align-baseline{
+.flex-align-baseline{
     display: flex;
     align-items: baseline;
+}
+.flex-align-center{
+    display: flex;
+    align-items: center;
+}
+.flex-align-items-end{
+    display: flex;
+    align-items: flex-end;
+}
+.flex-wrap{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+}
+.flex-justify-center{
+    display: flex;
+    justify-content: center;
+}
+.flex-column-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex-justify-content-end{
+    display: flex;
+    justify-content: flex-end;
+}
+.flex-row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.flex-space-around {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+.flex-space-between-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 .align-start{
     margin-left: 0;
@@ -118,16 +163,16 @@
     font-size: 10px;
     white-space: pre;
 }
-.align-items-end{
-    display: flex;
-    align-items: flex-end;
+.no-wrap{
+    white-space: pre;
 }
 .content-container{
     margin-top: $content-margin-top;
     padding-left: $content-margin-left;
     padding-right: $content-margin-right;
-    .negative-padding{
-        margin-left: -20px;
+    .no-margin{
+        margin-left: -$content-margin-left;
+        margin-right: -$content-margin-right;
     }
     .title{
         margin-top: 0;
@@ -135,8 +180,11 @@
         margin-left: $content-margin-left;
     }
 }
-.no-col{
-    margin: 0 -0.75rem; //used to nullify col padding
+.no-margin{
+    margin: 0 -0.75rem !important; //used to nullify col padding
+}
+.no-padding{
+    padding: 0 -0.75rem !important; //used to nullify col padding
 }
 
 .arrow-next{

@@ -3,42 +3,20 @@
     ion-content{
         height: calc(100% - 330px);
     }
-    // .slider{
-    //     .list-feature-component{
-    //         display: none;
-    //     }
-    // }
     &.is-playing{
         margin-bottom: $default-height-player;
     }
-    ion-item-sliding.item-sliding-active-slide {
-        ion-item{
-            --ion-background-color: #1e053b;
-        }
-    }
-
-    .artist-list{
-        background: transparent;
-        .row{
-            margin-bottom: 0;
-        }
-    }
 }
 .profile-center{
+    margin-left: $header-button + 2*$header-margin-left;
+    margin-right: $header-button + 2*$header-margin-left;
+    width: auto;
+    max-height: 200px;
     padding-top: $header-margin-top + $button-margin-top;
-    padding-bottom: $header-margin-top/2;
-    padding-left: $header-margin-left + $header-button + $header-margin-left;
-    .content{
-        max-height: 70px;
-        .back-col{
-            display: flex;
-            justify-content: center;
-            button{
-                background: rgba(0, 0, 0, 0.3);
-            }
-        }
-    }
-}.profile-mixtapes{
+    padding-bottom: $header-margin-top;
+}
+
+.profile-mixtapes{
     .slider{
         .slick-dots li{
             width: 12px;
@@ -54,5 +32,4 @@
         }
     }
     margin-top: 0;
-    
 }

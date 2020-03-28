@@ -19,21 +19,21 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <div className={`container fan-support-options`}>
+      <div className={`fan-support-options`}>
         <Header
           leftBackButton={false}
           rightCloseButton={true}
           rightCloseOnClick={this.props.onClick.bind(this)}
           color={Colors.transparent}
-        >
-          <div className={`row header ${this.props.background}`}>
-            <h1 className="title">MY {this.props.artist.name}</h1>
-            <h2 className="subtitle">FAN SUPPORT OPTIONS</h2>
-          </div>
-        </Header>
-        <div className={`row header ${this.props.background}`} />
-        <div className="row content">
-          <ul>
+        />
+
+        <div className={`modal-header py-2 ${this.props.background}`}>
+          <div className="h0 l1">MY {this.props.artist.name}</div>
+          <div className="h2 l1">FAN SUPPORT OPTIONS</div>
+        </div>
+
+        <div className="modal-content f5">
+          <ul className="">
             <li>
               Increase support
               <ButtonIcon

@@ -55,17 +55,20 @@ class MenuArtistList extends React.Component<Props> {
           rightCloseButton={true}
           rightCloseOnClick={this.props.onClick.bind(this)}
           color={Colors.transparent}
-        >
-          <div className={`row header`}>
-            <div className="h2 baskerville span dark">{this.props.title}</div>
-            <div className="h2 subtitle">
-              {this.props.isSimilar && 'to'} {currentArtist.name}
-            </div>
-          </div>
-        </Header>
+        />
 
-        <div className={`row header ${this.props.background}`} />
-        <div className="row content">
+        <div className={`modal-header ${this.props.background}`}>
+          <span className="h3 dark baskerville text-28">
+            {this.props.title}
+          </span>
+          <br />
+          <span className="f5 dark sub l1">
+            {this.props.isSimilar && 'to'} {currentArtist.name}
+          </span>
+          <br />
+        </div>
+
+        <div className="modal-content">
           <ul>
             {data?.map(
               (data, i): React.ReactNode => {
@@ -82,7 +85,7 @@ class MenuArtistList extends React.Component<Props> {
                         className="avatar"
                         style={{ backgroundImage: `url(${data.cover})` }}
                       ></div>
-                      <div className="name">{data.name}</div>
+                      <div className="f4 dark">{data.name}</div>
                     </div>
                     <ButtonIcon
                       icon={<ArrowRightIcon color={'#000'} />}

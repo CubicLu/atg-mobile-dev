@@ -47,33 +47,26 @@ export default class App extends React.Component {
       this.authenticated = !!loggedUser;
       this.forceUpdate();
     });
-
+    const defaultRoute = (): any => (
+      <Redirect to={this.authenticated ? '/home/profile' : '/initial'} />
+    );
     return (
       <Provider store={store}>
         <IonApp>
-          <HomePage authenticated={this.authenticated} />
+          {this.authenticated && <HomePage authenticated={true} />}
           {!this.authenticated && (
             <IonReactRouter>
-              <IonRouterOutlet id="notLogged">
-                <Switch>
-                  <Route exact path="/initial" component={InitialPage} />
-                  <Route exact path="/sign-in" component={SignInPage} />
-                  <Route exact path="/sign-up" component={SignUpPage} />
-                  <Route exact path="/enter-code" component={EnterCodePage} />
-                  <Route
-                    exact
-                    path="/sign-up-confirm"
-                    component={SignUpConfirmPage}
-                  />
-                  <Route
-                    path="/"
-                    render={(): any => (
-                      <Redirect
-                        to={this.authenticated ? '/home/profile' : '/initial'}
-                      />
-                    )}
-                  />
-                </Switch>
+              <IonRouterOutlet animated={false} id="notLogged" mode="ios">
+                <Route exact path="/initial" component={InitialPage} />
+                <Route exact path="/sign-in" component={SignInPage} />
+                <Route exact path="/sign-up" component={SignUpPage} />
+                <Route exact path="/enter-code" component={EnterCodePage} />
+                <Route
+                  exact
+                  path="/sign-up-confirm"
+                  component={SignUpConfirmPage}
+                />
+                <Route render={defaultRoute} />
               </IonRouterOutlet>
             </IonReactRouter>
           )}

@@ -35,24 +35,17 @@ class CardVideoComponent extends React.Component<Props> {
           data-time={time}
           style={{ backgroundImage: `url(${image})` }}
         />
-        <div>
-          <div className="col s12">
-            {title && (
-              <div className="col s12">
-                <h1 className="title">{title}</h1>
-              </div>
-            )}
-            {artist && (
-              <div className="col s12 button">
-                <h1 className={'artist'}>{artist?.name}</h1>
-                <ButtonIcon
-                  icon={<DotsThreeIcon />}
-                  color={Colors.transparent}
-                />
-              </div>
-            )}
+
+        {title && <span className="f1 my-1">{title}</span>}
+        <br />
+        {artist && (
+          <div className={'f4 l11 flex-align-center'}>
+            <span className="align-start">{artist.name}</span>
+            <span className="align-end">
+              <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
+            </span>
           </div>
-        </div>
+        )}
       </div>
     );
   }

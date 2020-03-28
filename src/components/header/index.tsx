@@ -38,7 +38,6 @@ interface Props extends RouteComponentProps {
 class HeaderComponent extends React.Component<Props> {
   public static defaultProps = {
     title: null,
-    titleAlign: 'center',
     leftBackButton: true,
     leftContent: null,
     rightActionButton: false,
@@ -114,13 +113,10 @@ class HeaderComponent extends React.Component<Props> {
             {leftContent}
           </div>
 
-          {centerContent}
-
-          {title && (
-            <div className={`title ${titleClassName}`}>
-              <span>{title}</span>
-            </div>
-          )}
+          <div className="center">
+            {centerContent}
+            {title && <span className={`h2 ${titleClassName}`}>{title}</span>}
+          </div>
 
           <div className="end">
             {rightContent}

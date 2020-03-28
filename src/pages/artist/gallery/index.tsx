@@ -86,7 +86,7 @@ class ArtistGalleryPage extends React.Component<Props, State> {
             backgroundTopOpacity={0.7}
           />
           <div className={`content-container`}>
-            <div className={`row no-col ${isPlaying && ' is-playing'}`}>
+            <div className={`row no-margin ${isPlaying && ' is-playing'}`}>
               {this.props.currentArtist?.gallery?.map(
                 (data, index): React.ReactNode => (
                   <CardAlbumGallery

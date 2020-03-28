@@ -1,8 +1,9 @@
 .shadow{
-    text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+    text-shadow: 0 3px 1px #00000040;
 }
 .text-10 { font-size: 10px !important }
 .text-12 { font-size: 12px !important }
+.text-13 { font-size: 13px !important }
 .text-14 { font-size: 14px !important }
 .text-15 { font-size: 15px !important }
 .text-16 { font-size: 16px !important }
@@ -28,15 +29,17 @@ h3,.h3{ font-size: 24px }
 h4,.h4{ font-size: 20px }
 h5,.h5{ font-size: 18px }
 h6,.h6{ font-size: 16px }
+.f00{ font-size: 36px }
+.f0{ font-size: 30px }
 .f1{ font-size: 24px }
 .f2{ font-size: 22px }
 .f3{ font-size: 20px }
 .f4{ font-size: 18px }
 .f5{ font-size: 16px }
 .f6{ font-size: 14px }
-.f6{ font-size: 12px }
-.f7{ font-size: 10px }
-.f1, .f2, .f3, .f4, .f5, .f6,.f7{
+.f7{ font-size: 12px }
+.f8{ font-size: 10px }
+.f00,.f0,.f1, .f2, .f3, .f4, .f5, .f6,.f7,.f8{
     line-height: 1.25;
     font-family: "Helvetica";
     color: #fff;
@@ -50,6 +53,8 @@ h6,.h6{ font-size: 16px }
     color: #fff;
 }
 .l1{ line-height: 1}
+.l11{ line-height: 1.1}
+.l15{ line-height: 1.5}
 .letter-spacing-2{ letter-spacing: 1.44px; }
 .baskerville{
     font-family: 'Baskerville';

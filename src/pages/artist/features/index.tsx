@@ -8,7 +8,7 @@ import {
   SliderMixtapes,
   SliderRadio,
   SliderEvents,
-  SectionTitle
+  SectionTitle as Section
 } from './../../../components';
 
 interface StateProps {
@@ -30,24 +30,50 @@ class ArtistFeaturesPage extends React.Component<Props> {
       username
     } = currentArtist;
 
-    const hasEvents = Array.isArray(events) && events.length > 0;
-
     return (
-      <div className={`artist-features-page${isPlaying ? ' is-playing' : ''}`}>
-        <SectionTitle title={'TOP TRACKS'} viewAll={true} />
-        <List data={featuredTracks} label={'song'} id={'id'} />
+      <div className={`artist-features-page ${isPlaying ? 'is-playing' : ''}`}>
+        <div className="row" />
+        <div className="row">
+          <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />
+          <List data={featuredTracks} label={'song'} id={'id'} />
+        </div>
 
-        {newReleases && <SectionTitle title={'VIDEOS'} viewAll={true} />}
-        {newReleases && <SliderVideo data={newReleases} />}
+        {newReleases && (
+          <div className="row">
+            <Section className="mx-3" title={'VIDEOS'} viewAll={true} />
+            {newReleases && <SliderVideo data={newReleases} />}
+          </div>
+        )}
 
-        <SliderMixtapes title={'PANTHR Playlists'} menu={false} dots={false} />
+        <div className="row">
+          <Section className="mx-3" title={'PANTHR Playlists'} viewAll={true} />
+          <SliderMixtapes
+            title={'PANTHR Playlists'}
+            menu={false}
+            dots={false}
+          />
+        </div>
 
-        {radio && <SectionTitle title={'PANTHR RADIO'} viewAll={true} />}
-        {radio && <SliderRadio data={radio} />}
+        <div className="row" />
+        {radio && (
+          <React.Fragment>
+            <Section className="mx-3" title={'PANTHR RADIO'} viewAll={true} />
+            <SliderRadio data={radio} />
+          </React.Fragment>
+        )}
 
-        {hasEvents && <SectionTitle title={'UPCOMING EVENTS'} viewAll={true} />}
-        {hasEvents && (
-          <SliderEvents data={[events![0]]} artistUsername={username} />
+        <div className="row mx-05" />
+        {Array.isArray(events) && events.length > 0 && (
+          <React.Fragment>
+            <div className="row">
+              <Section
+                className="mx-3"
+                title={'UPCOMING EVENTS'}
+                viewAll={true}
+              />
+            </div>
+            <SliderEvents data={[events![0]]} artistUsername={username} />
+          </React.Fragment>
         )}
       </div>
     );

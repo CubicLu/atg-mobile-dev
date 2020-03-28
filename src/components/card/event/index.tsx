@@ -44,52 +44,44 @@ class CardEventComponent extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <div className="card event">
-        <div className="row">
-          <div className="col s4 p-0">
-            <div className={`circle calendar ${this.getColor()} p-0`}>
-              <div>FEB</div>
-              <div>21</div>
-            </div>
-          </div>
-          <div className="col s8">
-            <div className="row">
-              <div className="col s12">
-                <h6>The Happy Tour</h6>
-                <h6 className="h7 bold">Microsoft Theatre</h6>
-                <h6 className="h7">Los Angeles, CA</h6>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col s12">
-                <ul className="list inline">
-                  <li>
-                    <ShareIcon width={20} height={35} />
-                    <div className="h9">Share</div>
-                  </li>
-                  <li
-                    onClick={(): void => {
-                      this.props.history.push(
-                        `/home/artist/${this.props.artistUsername}/event/${this.props.id}`
-                      );
-                    }}
-                  >
-                    <UserGroupIcon width={25} height={35} />
-                    <div className="h9">{`Who's Going`}</div>
-                  </li>
-                  <li
-                    onClick={(): void => {
-                      this.showMessage(true);
-                    }}
-                  >
-                    <TicketIcon height={35} />
-                    <div className="h9">Buy</div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <div className="card-event row">
+        <div className="col s4 no-padding">
+          <div className={`calendar flex-column-center ${this.getColor()}`}>
+            <div className="f4 l1">FEB</div>
+            <div className="f00 l1">21</div>
           </div>
         </div>
+        <div className="col s1" />
+        <div className="col s7">
+          <div className="row">
+            <div className="f4 l15 calendar-blue bold">The Happy Tour</div>
+            <div className="f4 l15">Microsoft Theatre</div>
+            <div className="f6 l15">Los Angeles, CA</div>
+          </div>
+          <div className="row m-0">
+            <ul className="list inline white-text">
+              <li>
+                <ShareIcon width={20} height={35} />
+                <div className="l15 f6 text-13 no-wrap">Share</div>
+              </li>
+              <li
+                onClick={(): void => {
+                  this.props.history.push(
+                    `/home/artist/${this.props.artistUsername}/event/${this.props.id}`
+                  );
+                }}
+              >
+                <UserGroupIcon width={25} height={35} />
+                <div className="l15 f6 text-13 no-wrap">{`Who's Going`}</div>
+              </li>
+              <li onClick={(): void => this.showMessage(true)}>
+                <TicketIcon height={35} />
+                <div className="l15 f6 text-13 no-wrap">Buy</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <IonAlert
           isOpen={this.state.show}
           onDidDismiss={(): void => this.showMessage(false)}

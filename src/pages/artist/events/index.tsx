@@ -77,19 +77,16 @@ class ArtistEventsPage extends React.Component<Props, State> {
             <BackgroundImage backgroundImage={currentArtist.cover?.event} />
             <HeaderOverlay ref={this.headerRef} />
             <div className={`content-list is-playing'}`}>
-              <IonList lines="none" className="list">
-                {currentArtist.events?.map(
-                  (data, i): React.ReactNode => (
-                    <IonItem key={i}>
-                      <CardEvent
-                        data={data}
-                        id={i}
-                        artistUsername={currentArtist.username}
-                      />
-                    </IonItem>
-                  )
-                )}
-              </IonList>
+              {currentArtist.events?.map(
+                (data, i): React.ReactNode => (
+                  <CardEvent
+                    key={i}
+                    data={data}
+                    id={i}
+                    artistUsername={currentArtist.username}
+                  />
+                )
+              )}
             </div>
           </div>
         </IonContent>

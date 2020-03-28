@@ -4,8 +4,7 @@ import {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeRebelRockImage,
-  MixtapeMoonLightImage,
-  SectionTitle
+  MixtapeMoonLightImage
 } from './../../../components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -48,7 +47,7 @@ class SliderMixtapesComponent extends React.Component<Props> {
   ];
 
   render(): React.ReactNode {
-    const { menu, title, viewAll, dots } = this.props;
+    const { menu, dots } = this.props;
     const playlists = this.playlists;
     if (!this.playlists) return <div />;
 
@@ -65,8 +64,6 @@ class SliderMixtapesComponent extends React.Component<Props> {
 
     return (
       <div className="slider mixtapes">
-        <SectionTitle title={title!} viewAll={viewAll} />
-
         <Slider {...settings}>
           {playlists.map(
             (data, i): React.ReactNode => (

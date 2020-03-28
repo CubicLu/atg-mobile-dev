@@ -88,15 +88,17 @@ class ArtistVideosPage extends React.Component<Props, State> {
               backgroundTopOpacity={0.7}
             />
             <div className="content-container">
-              {currentArtist?.videos?.recents !== undefined && (
-                <div className="negative-padding">
+              {currentArtist?.videos?.recents && (
+                <React.Fragment>
                   <SectionTitle title={'Recent Videos'} viewAll={true} />
-                  <SliderVideo
-                    data={currentArtist?.videos?.recents}
-                    size={Sizes.sm}
-                    type={ShapesSize.normal}
-                  />
-                </div>
+                  <div className="no-margin">
+                    <SliderVideo
+                      data={currentArtist?.videos?.recents}
+                      size={Sizes.sm}
+                      type={ShapesSize.normal}
+                    />
+                  </div>
+                </React.Fragment>
               )}
               <div className="row showcase">
                 <SectionTitle title={'Showcase'} />

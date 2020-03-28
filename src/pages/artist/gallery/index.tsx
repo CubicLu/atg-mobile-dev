@@ -12,10 +12,6 @@ import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 
-interface State {
-  blur: boolean;
-}
-
 interface StateProps {
   currentArtist: ArtistInterface | null;
   isPlaying: boolean;
@@ -35,12 +31,9 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistGalleryPage extends React.Component<Props, State> {
+class ArtistGalleryPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
-  constructor(props: Props) {
-    super(props);
-    this.state = { blur: false };
-  }
+
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.id !== this.props.match.params.id ||

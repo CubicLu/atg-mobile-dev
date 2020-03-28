@@ -24,22 +24,13 @@ interface MatchParams {
   id: string;
 }
 
-interface State {
-  blur: boolean;
-}
-
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistEventsPage extends React.Component<Props, State> {
+class ArtistEventsPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
-
-  constructor(props: Props) {
-    super(props);
-    this.state = { blur: false };
-  }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);

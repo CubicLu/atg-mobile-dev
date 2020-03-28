@@ -54,7 +54,7 @@ class EnterCodePage extends React.Component<Props, State> {
                   Enter Verification Code
                 </h1>
 
-                <p className="text-small center-align">
+                <p className="f4 center-align">
                   We sent a code to: <br />
                   thesound@music.com
                 </p>
@@ -64,9 +64,7 @@ class EnterCodePage extends React.Component<Props, State> {
             <div className="flex-compass h-100 medium">
               <div className="row">
                 <div className="col s12 mt-40 input-div">
-                  <p className="text-small center-align">
-                    Enter the 6-digit code
-                  </p>
+                  <p className="f4 center-align">Enter the 6-digit code</p>
                   <br />
                   <InputCode
                     onKeyUp={this.validToken.bind(this)}

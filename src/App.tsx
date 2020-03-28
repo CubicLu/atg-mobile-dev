@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupConfig } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider } from 'react-redux';

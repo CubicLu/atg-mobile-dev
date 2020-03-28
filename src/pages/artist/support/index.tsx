@@ -81,13 +81,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const allPlans = (
       <div className="flex-compass south medium" style={{ height: 'inherit' }}>
         <div className="row">
-          <h1 className="title center-align">
+          <h1 className="h1 l11 center-align">
             Yeah buddy! So stoked you
             <br />
             want to support us!
           </h1>
         </div>
-        <div className="row">
+        <div className="row mx-1">
           {this.props.plans.map(
             (data, i): React.ReactNode => {
               return (
@@ -101,9 +101,11 @@ class ArtistSupportPage extends React.Component<Props, State> {
               );
             }
           )}
-          <div className="h-16 flex-compass half medium">
-            <h5>Tap an option below for more details</h5>
-          </div>
+        </div>
+        <div className="m-0 h-16 flex-compass half medium">
+          <div className="row f4">Tap an option below for more details</div>
+          <br />
+          <br />
         </div>
       </div>
     );
@@ -120,14 +122,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
           </div>
 
           <div className="col s8 header">
-            <div className="title">{currentArtist.name}</div>
-            <div className="subtitle">Support Level</div>
-            <div className="subtitle">{plan?.name}</div>
-            <div className="price">
+            <div className="h00 dark l1">{currentArtist.name}</div>
+            <div className="h1 dark l1">Support Level</div>
+            <div className="h1 dark l1">{plan?.name}</div>
+            <div className="price text-72 l1">
               <span>
-                <span className="currency">{'$'}</span>
+                <span className="h2 dark currency">{'$'}</span>
                 {plan?.price}
-                <span className="price-after">
+                <span className="price-after f6 l11 dark">
                   per
                   <br />
                   Month
@@ -137,9 +139,26 @@ class ArtistSupportPage extends React.Component<Props, State> {
           </div>
         </div>
 
-        <div className="row body">{this.state.plan?.description}</div>
+        {/* <div className="row body">{this.state.plan?.description}</div> */}
+        <div className="row body">
+          <span className="l1">Here’s what you receive with your support</span>
+          <ul>
+            <li>• Benefit 1</li>
+            <li>• Benefit 2</li>
+            <li>• Benefit 3</li>
+            <li>• Benefit 4</li>
+            <li>• Benefit 5</li>
+            <li>• Benefit 6</li>
+            <li>• Benefit 7</li>
+            <li>• Benefit 8</li>
+            <li>• Benefit 9</li>
+            <li>• Benefit 10</li>
+          </ul>
+          <span className="l1">You can change at anytime.</span>
+          <br />
+        </div>
 
-        <div className="mt-40 margin-footer row fluid">
+        <div className="margin-footer row fluid">
           <div
             className="ion-button button-large"
             onClick={(): void =>
@@ -161,7 +180,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
           rightCloseButton={true}
           rightCloseOnClick={rightButton}
         />
-        <IonContent scrollY={!hasPlan}>
+        <IonContent scrollY={true}>
           <div className={`artist-support-page h-100 ${planDetailClass}`}>
             {hasPlan ? (
               <BackgroundImage

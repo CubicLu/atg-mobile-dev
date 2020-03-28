@@ -27,23 +27,13 @@ interface DispatchProps {
 interface MatchParams {
   id: string;
 }
-
-interface State {
-  blur: boolean;
-}
-
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistVideosPage extends React.Component<Props, State> {
+class ArtistVideosPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
-
-  constructor(props: Props) {
-    super(props);
-    this.state = { blur: false };
-  }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.currentArtist == null) {

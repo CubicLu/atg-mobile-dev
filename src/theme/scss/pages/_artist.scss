@@ -20,7 +20,7 @@
     ion-header{
         height: 162px;
         margin-bottom: 0;
-        z-index: 0;
+        z-index: 1;
         overflow: initial;
     }
     .offset-content{
@@ -33,14 +33,22 @@
         position: absolute;
         top: 300px;
         width: 100%;
+        z-index: 10;
+        pointer-events: none;
     }
     .support-by-component{
         top: 48px;
         right: 16px;
+        pointer-events: all;
+        z-index: 10;
     }
     #support-button{
         margin-bottom: 24px;
         margin-top: 10px;
+        pointer-events: all;
+    }
+    .horizontal-menu {
+        pointer-events: all; 
     }
 }
 .artist-title {

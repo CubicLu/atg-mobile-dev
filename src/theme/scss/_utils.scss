@@ -37,9 +37,6 @@
         justify-content: flex-start;
     }
 }
-.text-center{
-    text-align: center;
-}
 .message {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -87,6 +84,7 @@
 .mx-05{ margin-left: 4px;margin-right: 4px; }
 .mx-1{ margin-left: 8px;margin-right: 8px; }
 .mx-2{ margin-left: 16px;margin-right: 16px; }
+.mx-25{ margin-left: 20px;margin-right: 20px; }
 .mx-3{ margin-left: 24px;margin-right: 24px; }
 .mx-4{ margin-left: 32px;margin-right: 32px; }
 .my-0{ margin-top: 0px;margin-bottom: 0px; }
@@ -158,14 +156,6 @@
 .align-end{
     margin-left: auto;
 }
-.text-support-icon{
-    color: #FFF;
-    font-size: 10px;
-    white-space: pre;
-}
-.no-wrap{
-    white-space: pre;
-}
 .content-container{
     margin-top: $content-margin-top;
     padding-left: $content-margin-left;
@@ -173,11 +163,6 @@
     .no-margin{
         margin-left: -$content-margin-left;
         margin-right: -$content-margin-right;
-    }
-    .title{
-        margin-top: 0;
-        font-size: pxToRem(42);
-        margin-left: $content-margin-left;
     }
 }
 .no-margin{

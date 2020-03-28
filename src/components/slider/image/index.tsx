@@ -1,6 +1,6 @@
 import React from 'react';
-import { CardImage, Button, SectionTitle } from './../../../components';
-import { Colors, ShapesSize } from '../../../interfaces';
+import { CardImage, SectionTitle } from './../../../components';
+import { ShapesSize } from '../../../interfaces';
 
 interface Props {
   title: string;

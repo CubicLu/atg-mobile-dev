@@ -33,6 +33,9 @@ h6,.h6{ font-size: 16px }
     line-height: 1.25;
     font-family: "Industria";
     color: #fff;
+    &.dark{
+        color: #000;
+    }
 }
 
 .f00{ font-size: 36px }
@@ -63,19 +66,8 @@ h6,.h6{ font-size: 16px }
     &.dark{
         color: #000;
     }
-    
-    //merge
-    .biography-header{
-        --color: #5e7fb100;
-        z-index: 1;
-        font-size: 48px;
-        line-height: 36px;
-    }
 }
 .italic { font-style: italic }
-
-
-
 
 .title{
     font-size: 60px;
@@ -94,16 +86,32 @@ h6,.h6{ font-size: 16px }
     }
 }
 
-.title, .subtitle{  
-    color: white;
-    margin-bottom: 0;
-    &.primary { 
-        color: $primary;
-    }
-    &.secondary { 
-        color: $secondary;
-    }
-    &.tertiary { 
-        color: $tertiary;
-    }
+.title-album{ 
+    font-size: 80px;
+    line-height: 70px;
+    font-family: "Industria";
+    font-weight: 600;
+    margin-bottom: 0px;
+    color: #fff;
+}
+.brand-title{
+    color: $secondary;
+    font-family: "Controller";
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 72px;
+    white-space: pre;
+    position: relative;
+    line-height: 0.8;
+}
+.text-support-icon{
+    color: #FFF;
+    font-size: 10px;
+    white-space: pre;
+}
+.no-wrap{
+    white-space: pre;
+}
+.text-center{
+    text-align: center;
 }

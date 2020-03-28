@@ -130,12 +130,11 @@ class ArtistBiographyPage extends React.Component<Props, State> {
 
     const activeBio = biography[this.state.currentPage];
     const topheader: React.ReactNode = (
-      <React.Fragment>
+      <div className="m-4">
+        <span className="text-18 l1">{artist.name}</span>
         <br />
-        <span className="biography-header">{artist.name}</span>
-        <br />
-        <span className="biography-subheader">Biography</span>
-      </React.Fragment>
+        <span className="text-14 l1">Biography</span>
+      </div>
     );
 
     return (
@@ -149,13 +148,11 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               ref={this.titleRef}
               fromTo={{
                 property: 'color',
-                toValue: 'var(--color)',
+                toValue: '#ffffff00',
                 fromValue: 'white'
               }}
             >
-              <span className="baskerville h0 l1 biography-header">
-                {activeBio.title}
-              </span>
+              <span className="baskerville h0 l1">{activeBio.title}</span>
             </CreateAnimation>
           }
         />

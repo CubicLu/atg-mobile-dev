@@ -12,10 +12,6 @@ interface StateProps {
   isPlaying: boolean;
 }
 
-interface State {
-  blur: boolean;
-}
-
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
@@ -33,13 +29,8 @@ interface Props
   album: GalleryInterface;
 }
 
-class ArtistGalleryGridPage extends React.Component<Props, State> {
+class ArtistGalleryGridPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
-  constructor(props: Props) {
-    super(props);
-    this.state = { blur: false };
-  }
-
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.id !== this.props.match.params.id ||

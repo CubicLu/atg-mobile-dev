@@ -53,11 +53,6 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
-  }
 
   handleScroll(event: any): void {
     const { fixed, scrolling } = this.state;

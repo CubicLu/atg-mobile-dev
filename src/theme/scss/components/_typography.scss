@@ -21,6 +21,7 @@
 .text-54 { font-size: 54px !important }
 .text-72 { font-size: 72px !important }
 .text-96 { font-size: 96px !important }
+.h000{ font-size: 54px }
 .h00{ font-size: 48px }
 .h0{ font-size: 42px }
 h1,.h1{ font-size: 36px }
@@ -29,7 +30,7 @@ h3,.h3{ font-size: 24px }
 h4,.h4{ font-size: 20px }
 h5,.h5{ font-size: 18px }
 h6,.h6{ font-size: 16px }
-.h00, .h0, .h1, .h2, .h3, .h4, .h5{
+.h000, .h00, .h0, .h1, .h2, .h3, .h4, .h5{
     line-height: 1.25;
     font-family: "Industria";
     color: #fff;
@@ -55,16 +56,26 @@ h6,.h6{ font-size: 16px }
     &.dark{
         color: #000;
     }
+    .neue{
+        font-family: "Helvetica Neue";
+    }
 }
 .l1{ line-height: 1}
 .l11{ line-height: 1.1}
 .l15{ line-height: 1.5}
+.l2{ line-height: 2}
+.l25{ line-height: 2.5}
 .letter-spacing-2{ letter-spacing: 1.44px; }
+.letter-spacing-09{ letter-spacing: -1px; }
 .baskerville{
     font-family: 'Baskerville';
     color: #fff;
     &.dark{
         color: #000;
+    }
+    &.italic{
+        font-family: "Baskerville Italic";
+        font-style: italic;
     }
 }
 .italic { font-style: italic }

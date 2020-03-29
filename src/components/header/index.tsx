@@ -4,6 +4,7 @@ import { BackIcon, DotsThreeIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
+import { SongInfoButton } from '../icon/player';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -17,6 +18,7 @@ interface Props extends RouteComponentProps {
   rightCloseButton?: boolean;
   rightSettingsButton?: boolean;
   rightSupportButton?: boolean;
+  rightInfoButton?: boolean;
   rightAddButton?: boolean;
   rightFilterButton?: boolean;
   rightUserGroupButton?: boolean;
@@ -28,6 +30,7 @@ interface Props extends RouteComponentProps {
   rightCloseOnClick?: any;
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
+  rightInfoOnClick?: any;
   leftBackOnClick?: any;
   leftBackHref?: string;
   translucent?: boolean;
@@ -88,6 +91,8 @@ class HeaderComponent extends React.Component<Props> {
       rightSettingsOnClick,
       rightSupportButton,
       rightUserGroupButton,
+      rightInfoButton,
+      rightInfoOnClick,
       rightActionYellow,
       children
     } = this.props;
@@ -155,6 +160,11 @@ class HeaderComponent extends React.Component<Props> {
             {rightCloseButton && (
               <div className="default-button dark" onClick={rightCloseOnClick}>
                 <CloseIcon />
+              </div>
+            )}
+            {rightInfoButton && (
+              <div className="default-button" onClick={rightInfoOnClick}>
+                <SongInfoButton />
               </div>
             )}
           </div>

@@ -21,7 +21,7 @@ export function setHeight(original: number): number {
 
 export function shadowTitle(url: string): CSSProperties {
   return {
-    backgroundImage: `linear-gradient(180deg, #ffffff00 60%, #000 100%), url(${url})`,
+    backgroundImage: `linear-gradient(180deg, #ffffff00 40%, #000 100%), url(${url})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat'
   };

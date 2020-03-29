@@ -12,6 +12,9 @@
 .fluid{
     width: 100%;
 }
+.overflow-auto{
+    overflow: auto;
+}
 .flex-compass{
     width: 100%;
     align-self: center;
@@ -86,6 +89,7 @@
 .mx-2{ margin-left: 16px;margin-right: 16px; }
 .mx-25{ margin-left: 20px;margin-right: 20px; }
 .mx-3{ margin-left: 24px;margin-right: 24px; }
+.mx-35{ margin-left: 28px;margin-right: 28px; }
 .mx-4{ margin-left: 32px;margin-right: 32px; }
 .my-0{ margin-top: 0px;margin-bottom: 0px; }
 .my-1{ margin-top: 8px;margin-bottom: 8px; }
@@ -96,11 +100,31 @@
 .m-1{ margin: 8px; }
 .m-2{ margin: 16px; }
 .m-3{ margin: 24px; }
+.m-35{ margin: 28px; }
 .m-4{ margin: 32px; }
+.p-0{ padding: 0px; }
+.p-1{ padding: 8px; }
+.p-2{ padding: 16px; }
+.p-3{ padding: 24px; }
+.p-35{ padding: 28px; }
+.p-4{ padding: 32px; }
+.mb-0{ margin-bottom: 0px; }
+.mb-1{ margin-bottom: 8px; }
+.mb-2{ margin-bottom: 16px; }
+.mb-3{ margin-bottom: 24px; }
+.mb-4{ margin-bottom: 32px; }
+.mb-5{ margin-bottom: 40px; }
+.mt-0{ margin-top: 0px; }
+.mt-1{ margin-top: 8px; }
+.mt-2{ margin-top: 16px; }
+.mt-3{ margin-top: 24px; }
 .mt-4{ margin-top: 32px; }
+.mt-05{ margin-top: 4px; }
 .mt-5{ margin-top: 36px; }
 .mt-negative-1{ margin-top: -8px; }
 .mt-negative-2{ margin-top: -16px; }
+.pt-0{ padding-top: 0px; }
+.pt-1{ padding-top: 8px; }
 .p-10{
     padding: 10px;
 }

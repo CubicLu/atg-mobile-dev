@@ -121,11 +121,11 @@ class ArtistSupportPage extends React.Component<Props, State> {
             />
           </div>
 
-          <div className="col s8 header">
+          <div className="col s8 px-1 header">
             <div className="h00 dark l1">{currentArtist.name}</div>
             <div className="h1 dark l1">Support Level</div>
             <div className="h1 dark l1">{plan?.name}</div>
-            <div className="price text-72 l1">
+            <div className="h2 price dark text-72 l1">
               <span>
                 <span className="h2 dark currency">{'$'}</span>
                 {plan?.price}

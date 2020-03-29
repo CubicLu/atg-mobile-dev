@@ -18,6 +18,7 @@ class ArrowRightIcon extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <svg
+        id="arrow-right"
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}

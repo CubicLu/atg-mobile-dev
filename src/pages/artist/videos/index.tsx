@@ -42,11 +42,6 @@ class ArtistVideosPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
-  }
   render(): React.ReactNode {
     const { currentArtist } = this.props;
     return (

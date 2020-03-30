@@ -132,15 +132,12 @@ class ArtistPage extends React.Component<Props, {}> {
     }
     const { currentArtist: artist, artistTabs, activeArtistTab } = this.props;
     return (
-      <IonPage
-        id="artist-page"
-        style={artistBackground(artist)}
-      >
+      <IonPage id="artist-page" style={artistBackground(artist)}>
         <Header leftBackHref="/home/profile" />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
-          <h2 id="artist-title" className={`artist-title artist-top`}>
+          <h2 id="artist-title" className={`h00 m-0 inline-table l1 shadow`}>
             {artist.name}
           </h2>
           <br />

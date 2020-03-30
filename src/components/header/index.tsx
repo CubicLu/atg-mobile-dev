@@ -120,7 +120,11 @@ class HeaderComponent extends React.Component<Props> {
 
           <div className="center">
             {centerContent}
-            {title && <span className={`h2 ${titleClassName}`}>{title}</span>}
+            {title && (
+              <div className={`h2 l11 ${titleClassName ? titleClassName : ''}`}>
+                {title}
+              </div>
+            )}
           </div>
 
           <div className="end">

@@ -16,7 +16,7 @@ export default class ListComponent extends React.Component<Props> {
   render(): React.ReactNode {
     if (!this.props.data) return <div />;
     return (
-      <div className="list-component-content">
+      <div className="list-component-content mb-0">
         {this.props.data.map(
           (data, i): React.ReactNode => (
             <div className="row list-margin-row f4" key={i}>

@@ -123,7 +123,7 @@ class CommunityPage extends React.Component<Props, State> {
           }}
           leftBackButton={true}
           title={this.props.currentCommunityArtist?.fullname}
-          titleClassName={`artist-name`}
+          titleClassName={`community-artist-name`}
           rightActionButton={this.state.joined ? false : true}
           rightContent={
             this.state.joined && (

@@ -60,7 +60,7 @@ class CardArtistComponent extends React.Component<Props> {
               history.replace(`/home/artist/${username}`);
             }}
           >
-            <div className="h3 artist-name l12 align-start">
+            <div className="h3 artist-card-name l12 align-start">
               <span>{name}</span>
             </div>
             <div className="align-end">

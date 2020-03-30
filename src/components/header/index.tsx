@@ -4,6 +4,7 @@ import { BackIcon, DotsThreeIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
+import { SongInfoButton } from '../icon/player';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -17,6 +18,7 @@ interface Props extends RouteComponentProps {
   rightCloseButton?: boolean;
   rightSettingsButton?: boolean;
   rightSupportButton?: boolean;
+  rightInfoButton?: boolean;
   rightAddButton?: boolean;
   rightFilterButton?: boolean;
   rightUserGroupButton?: boolean;
@@ -28,6 +30,7 @@ interface Props extends RouteComponentProps {
   rightCloseOnClick?: any;
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
+  rightInfoOnClick?: any;
   leftBackOnClick?: any;
   leftBackHref?: string;
   translucent?: boolean;
@@ -38,7 +41,6 @@ interface Props extends RouteComponentProps {
 class HeaderComponent extends React.Component<Props> {
   public static defaultProps = {
     title: null,
-    titleAlign: 'center',
     leftBackButton: true,
     leftContent: null,
     rightActionButton: false,
@@ -89,6 +91,8 @@ class HeaderComponent extends React.Component<Props> {
       rightSettingsOnClick,
       rightSupportButton,
       rightUserGroupButton,
+      rightInfoButton,
+      rightInfoOnClick,
       rightActionYellow,
       children
     } = this.props;
@@ -114,13 +118,14 @@ class HeaderComponent extends React.Component<Props> {
             {leftContent}
           </div>
 
-          {centerContent}
-
-          {title && (
-            <div className={`title ${titleClassName}`}>
-              <span>{title}</span>
-            </div>
-          )}
+          <div className="center">
+            {centerContent}
+            {title && (
+              <div className={`h2 l11 ${titleClassName ? titleClassName : ''}`}>
+                {title}
+              </div>
+            )}
+          </div>
 
           <div className="end">
             {rightContent}
@@ -161,10 +166,15 @@ class HeaderComponent extends React.Component<Props> {
                 <CloseIcon />
               </div>
             )}
+            {rightInfoButton && (
+              <div className="default-button" onClick={rightInfoOnClick}>
+                <SongInfoButton />
+              </div>
+            )}
           </div>
         </div>
 
-        <React.Fragment>{children}</React.Fragment>
+        <>{children}</>
       </IonHeader>
     );
   }

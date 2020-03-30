@@ -22,7 +22,7 @@ class ThankYouPage extends React.Component<Props> {
             backgroundBottomDark={false}
             backgroundBottomOpacity={0.33}
           />
-          <div className="thank-you-page">
+          <div className="thank-you-page mx-3">
             <div className="space-between h-100">
               <div className="row">
                 <div className="col s12">

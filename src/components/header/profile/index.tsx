@@ -52,34 +52,33 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     }
   ];
 
-  toggleProfileActions(option: boolean): void {
-    this.setState({ showProfileActions: option });
-    this.forceUpdate();
+  toggleProfileActions(opt: boolean = true): void {
+    this.setState({ showProfileActions: opt });
   }
 
   render(): React.ReactNode {
     return (
-      <Header
-        rightSettingsButton={true}
-        rightUserGroupButton={true}
-        rightSettingsOnClick={(): void => this.toggleProfileActions(true)}
-      >
+      <div>
+        <Header
+          rightSettingsButton={true}
+          rightUserGroupButton={true}
+          rightSettingsOnClick={(): void => this.toggleProfileActions()}
+        />
+
         <div className="profile-center">
           <Avatar
             type={ShapesSize.circle}
-            onClick={(): any => this.toggleProfileActions(true)}
+            onClick={(): any => this.toggleProfileActions()}
           />
           <IonActionSheet
             onDidDismiss={(): any => this.toggleProfileActions(false)}
             isOpen={this.state.showProfileActions}
             buttons={this.profileActions}
           />
-
-          <h2 className="subtitle">Rosetta Throp</h2>
-          <h1 className="title">Musical Goddess</h1>
+          <div className="f4 l15">Rosetta Throp</div>
+          <div className="h00 l1 shadow">Musical Goddess</div>
         </div>
-        {this.props.children}
-      </Header>
+      </div>
     );
   }
 }

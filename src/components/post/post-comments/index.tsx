@@ -9,10 +9,6 @@ interface Props {
 }
 
 class PostCommentsComponent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   componentDidMount(): void {}
 
   render(): React.ReactNode {
@@ -33,7 +29,10 @@ class PostCommentsComponent extends React.Component<Props> {
           <span className={'fan-username'}>{comment.user.name}</span>
           <span className={'fan-comment'}>{comment.text}</span>
           {comment.replies != null && (
-            <a className={'reply-link'}> {comment.replies} replies</a>
+            <a className={'reply-link'} href={'/#'}>
+              {' '}
+              {comment.replies} replies
+            </a>
           )}
         </div>
         <ButtonIcon

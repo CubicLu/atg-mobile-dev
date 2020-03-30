@@ -9,10 +9,10 @@ import {
   PlaylistInterface,
   SongInterface
 } from '../../../interfaces';
-import { IonPage, IonImg, IonContent, IonHeader } from '@ionic/react';
+import { IonPage, IonContent, IonHeader } from '@ionic/react';
 import { BackgroundImage, ButtonSupport, BackIcon } from '../../../components';
 import AddTrackIcon from '../../../components/icon/add-track';
-import { artistBackground } from '../../../utils';
+import { artistBackground, shadowTitle } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -32,16 +32,20 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 class TrackListPage extends React.Component<Props> {
-  UNSAFE_componentWillMount(): void {
-    if (
-      this.props.match.params.reference === 'artist' &&
-      this.props.currentArtist == null
-    ) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    const isArtist = this.props.match.params.reference === 'artist';
+    if (!isArtist) return;
+
+    if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.referenceId);
+    } else if (
+      nextProps.match.params.referenceId !== this.props.match.params.referenceId
+    ) {
+      this.props.getArtistAPI(nextProps.match.params.referenceId);
     }
   }
+
   render(): React.ReactNode {
-    // const artistBackground = this.props.currentArtist?.cover.background;
     const { currentArtist } = this.props;
     const style = currentArtist ? artistBackground(currentArtist, true) : {};
     const type = this.props.match.params.reference;
@@ -53,11 +57,10 @@ class TrackListPage extends React.Component<Props> {
       if (current?.cover) this.playlist.cover = current.cover;
       this.playlist.owner = currentArtist!.name;
     }
+
     return (
-      <IonPage style={style} id="track-list">
-        {currentArtist && (
-          <div style={{ zIndex: -1 }} className="blur-background opacity-1" />
-        )}
+      <IonPage style={style} id="track-list-page">
+        {currentArtist && <div className="fade-background blur" />}
         {!currentArtist && (
           <BackgroundImage
             gradient={`180deg,#aed8e5,#039e4a`}
@@ -69,6 +72,7 @@ class TrackListPage extends React.Component<Props> {
             backgroundBottomOpacity={0.6}
           />
         )}
+
         <IonHeader className="track-header ion-no-border">
           <div className={`atg-header`}>
             <div className="start">
@@ -92,72 +96,60 @@ class TrackListPage extends React.Component<Props> {
           </div>
         </IonHeader>
 
-        <IonContent>
-          <div className="initial-page-fullscreen" style={{ overflow: 'auto' }}>
-            <div className="">
-              <div className="cover-title track-list">
-                <div
-                  className="image radius"
-                  style={{
-                    background: `url(${this.playlist?.cover})`,
-                    backgroundSize: 'cover'
-                  }}
-                />
-                <span className="main-song">{this.playlist?.name}&nbsp;</span>
-                <br />
-                <span className="main-artist">
-                  {this.playlist?.owner}&nbsp;
-                </span>
-              </div>
+        <IonContent scrollY={true} forceOverscroll={true}>
+          <div className="track-list-page mx-25">
+            <div className="player-upper-half center-align track-list m-4 mt-0">
+              <div
+                className="image radius"
+                style={{
+                  background: `url(${this.playlist?.cover})`,
+                  backgroundSize: 'contain'
+                }}
+              />
+              <div className="f3 l2">{this.playlist?.name}&nbsp;</div>
+              <div className="f6">{this.playlist?.owner}&nbsp;</div>
             </div>
 
-            <div id="songs">
+            <div id="songs" className="mt-3">
               {this.playlist.items.map(
                 (song: SongInterface, i: number): React.ReactElement => (
-                  <div className="row list-margin-row list-track" key={i}>
-                    <div className="list-track-number">{song.trackNumber}</div>
-                    <div>{song.name}</div>
-                    <div className="align-end">
+                  <div className="flex-align-center row" key={i}>
+                    <div className="f5 list-track-number">
+                      {song.trackNumber}
+                    </div>
+                    <div className="f5 track-song">{song.name}</div>
+                    <div className="flex-justify-center align-end">
                       <AddTrackIcon />
                     </div>
                   </div>
                 )
               )}
             </div>
-
-            <div className="bottom-shadow h-16 w-100" />
-            <div className="flex-compass south half h-16">
-              <div className="row p-0 flex-wrap flex-wrap-fluid">
-                <div className="col s4 p-0">
-                  <IonImg
-                    className="tile"
-                    src={
-                      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-                    }
-                  />
-                  <span className="tile-label-s4">Liner Notes</span>
-                </div>
-
-                <div className="col s4 p-0">
-                  <IonImg
-                    className="tile"
-                    src={
-                      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-                    }
-                  />
-                  <span className="tile-label-s4">Community</span>
-                </div>
-
-                <div className="col s4 p-0">
-                  <IonImg
-                    className="tile"
-                    src={
-                      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-                    }
-                  />
-                  <span className="tile-label-s4">Artist Home</span>
-                </div>
-              </div>
+          </div>
+          <div className="bottom-tiles fluid mb-5">
+            <div
+              className="tile"
+              style={shadowTitle(
+                'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/deep-dive-background.png'
+              )}
+            >
+              <span className="f6">Deep Dive</span>
+            </div>
+            <div
+              className="tile"
+              style={shadowTitle(
+                'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+              )}
+            >
+              <span className="f6">Community</span>
+            </div>
+            <div
+              className="tile"
+              style={shadowTitle(
+                'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+              )}
+            >
+              <span className="f6">Artist Home</span>
             </div>
           </div>
         </IonContent>

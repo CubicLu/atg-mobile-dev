@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
-import { ApplicationState } from '../../../reducers';
 import { ArtistPost } from '../../../components';
 
 interface MatchParams {
@@ -21,9 +20,4 @@ class CommunityPostPage extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const mapStateToProps = ({}: ApplicationState): object => {
-  return {};
-};
-
 export default withRouter(CommunityPostPage);

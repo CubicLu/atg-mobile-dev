@@ -1,3 +1,84 @@
+.shadow{
+    text-shadow: 0 3px 1px #00000040;
+}
+.text-10 { font-size: 10px !important }
+.text-12 { font-size: 12px !important }
+.text-13 { font-size: 13px !important }
+.text-14 { font-size: 14px !important }
+.text-15 { font-size: 15px !important }
+.text-16 { font-size: 16px !important }
+.text-18 { font-size: 18px !important }
+.text-20 { font-size: 20px !important }
+.text-22 { font-size: 22px !important }
+.text-24 { font-size: 24px !important }
+.text-28 { font-size: 28px !important }
+.text-30 { font-size: 30px !important }
+.text-32 { font-size: 32px !important }
+.text-36 { font-size: 36px !important }
+.text-40 { font-size: 40px !important }
+.text-42 { font-size: 42px !important }
+.text-48 { font-size: 48px !important }
+.text-54 { font-size: 54px !important }
+.text-72 { font-size: 72px !important }
+.text-96 { font-size: 96px !important }
+.h000{ font-size: 54px }
+.h00{ font-size: 48px }
+.h0{ font-size: 42px }
+h1,.h1{ font-size: 36px }
+h2,.h2{ font-size: 30px }
+h3,.h3{ font-size: 24px }
+h4,.h4{ font-size: 20px }
+h5,.h5{ font-size: 18px }
+h6,.h6{ font-size: 16px }
+.h000, .h00, .h0, .h1, .h2, .h3, .h4, .h5{
+    line-height: 1.25;
+    font-family: "Industria";
+    color: #fff;
+    &.dark{
+        color: #000;
+    }
+}
+
+.f00{ font-size: 36px }
+.f0{ font-size: 30px }
+.f1{ font-size: 24px }
+.f2{ font-size: 22px }
+.f3{ font-size: 20px }
+.f4{ font-size: 18px }
+.f5{ font-size: 16px }
+.f6{ font-size: 14px }
+.f7{ font-size: 12px }
+.f8{ font-size: 10px }
+.f00,.f0,.f1, .f2, .f3, .f4, .f5, .f6,.f7,.f8{
+    line-height: 1.25;
+    font-family: "Helvetica";
+    color: #fff;
+    &.dark{
+        color: #000;
+    }
+    .neue{
+        font-family: "Helvetica Neue";
+    }
+}
+.l1{ line-height: 1}
+.l11{ line-height: 1.1}
+.l15{ line-height: 1.5}
+.l2{ line-height: 2}
+.l25{ line-height: 2.5}
+.letter-spacing-2{ letter-spacing: 1.44px; }
+.letter-spacing-09{ letter-spacing: -1px; }
+.baskerville{
+    font-family: 'Baskerville';
+    color: #fff;
+    &.dark{
+        color: #000;
+    }
+    &.italic{
+        font-family: "Baskerville Italic";
+        font-style: italic;
+    }
+}
+.italic { font-style: italic }
 
 .title{
     font-size: 60px;
@@ -16,16 +97,32 @@
     }
 }
 
-.title, .subtitle{  
-    color: white;
-    margin-bottom: 0;
-    &.primary { 
-        color: $primary;
-    }
-    &.secondary { 
-        color: $secondary;
-    }
-    &.tertiary { 
-        color: $tertiary;
-    }
+.title-album{ 
+    font-size: 80px;
+    line-height: 70px;
+    font-family: "Industria";
+    font-weight: 600;
+    margin-bottom: 0px;
+    color: #fff;
+}
+.brand-title{
+    color: #00baff;
+    font-family: "Controller";
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 72px;
+    white-space: pre;
+    position: relative;
+    line-height: 0.8;
+}
+.text-support-icon{
+    color: #FFF;
+    font-size: 10px;
+    white-space: pre;
+}
+.no-wrap{
+    white-space: pre;
+}
+.text-center{
+    text-align: center;
 }

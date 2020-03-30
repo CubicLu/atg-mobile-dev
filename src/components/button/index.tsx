@@ -39,11 +39,6 @@ class ButtonComponent extends React.Component<Props> {
         className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold}`}
       >
         {label}
-        {type === ShapesSize.viewAll && (
-          <span className="view-all">
-            View All<span className="arrow-next">&nbsp;&rsaquo;</span>
-          </span>
-        )}
       </button>
     );
   }

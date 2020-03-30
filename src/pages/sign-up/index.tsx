@@ -25,10 +25,10 @@ class SignUpPage extends React.Component<Props> {
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
             <div className="row flex-compass h-100 center">
-              <h1 className="title secondary brand-title">panthr</h1>
-              <h2 className="brand subtitle long-center">
+              <span className="brand-title">panthr</span>
+              <span className="h3 long-center">
                 THE ULTIMATE DESTINATION FOR ARTIST & FANS
-              </h2>
+              </span>
             </div>
 
             <div className="flex-compass h-100 medium">

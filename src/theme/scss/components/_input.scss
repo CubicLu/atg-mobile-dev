@@ -12,21 +12,18 @@ input[type="number"]:not(.browser-default),
 input[type="search"]:not(.browser-default) {
   border-bottom: none;
   &.input {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Helvetica";
     @include placeholder {
       color: #707087;
       font-size: $font-size-input;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Helvetica";
     }
 
     text-indent: 10px;
     background: #fff;
     border-radius: 2px;
     font-size: $font-size-input;
-
-    &.text {
-    }
-
+    
     &:focus {
       border-bottom: none;
       box-shadow: none;

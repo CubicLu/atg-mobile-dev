@@ -73,7 +73,6 @@
         .list{
             overflow-x: scroll;
             width: 100%;
-            @include no-scroll-bar();
             &.inline{
                 margin-top: 15px;
 
@@ -91,7 +90,7 @@
                     }
 
                     label{
-                        font-family: "Helvetica Neue";
+                        font-family: "Helvetica";
                         font-size:  pxToRem(16);
                         font-weight: normal;
                         font-stretch: normal;

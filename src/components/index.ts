@@ -35,6 +35,7 @@ import PostCoverComponent from './post/post-cover';
 import PostTextComponent from './post/post-text';
 import PostCommentsComponent from './post/post-comments';
 import ArtistPostComponent from './post';
+import SectionTitleComponent from './section-title';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -90,7 +91,8 @@ export {
   PostCoverComponent as PostCover,
   PostTextComponent as PostText,
   PostCommentsComponent as PostComment,
-  ArtistPostComponent as ArtistPost
+  ArtistPostComponent as ArtistPost,
+  SectionTitleComponent as SectionTitle
 };
 
 export {

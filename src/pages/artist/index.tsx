@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, createAnimation, IonHeader } from '@ionic/react';
-import { Menu, SupportBy, ButtonSupport, BackIcon } from './../../components';
+import { IonContent, IonPage, createAnimation } from '@ionic/react';
+import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface, ShapesSize } from '../../interfaces';
@@ -51,16 +51,14 @@ class ArtistPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  UNSAFE_componentDidMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
+  componentWillUnmount(): void {
+    this.custom.animation = undefined;
   }
   loadAnimations(): void {
     const normalMenu = document.querySelector('#horizontal-menu');
     if (!normalMenu) return;
     this.custom.loaded = true;
-    const ionHeader = document.querySelector('#ion-header')!;
+    const itensHeader = document.querySelector('.offset-content')!;
     const supportButton = document.querySelector('#support-button')!;
     const artistTitle = document.querySelector('#artist-title')!;
     const aT = getFixedTranslatePoints(supportButton!, 16, 46, true);
@@ -74,17 +72,14 @@ class ArtistPage extends React.Component<Props, {}> {
           .addElement(document.querySelector('#support-bar')!)
           .fromTo('transform', 'translateX(0px)', 'translateX(250px)'),
         createAnimation()
-          .addElement(document.querySelector('#blur-background')!)
-          .keyframes([
-            { backdropFilter: 'blur(0)', opacity: 0 },
-            { backdropFilter: 'blur(6.5px)', opacity: 1 }
-          ]),
+          .addElement(document.querySelector('#fade-background')!)
+          .fromTo('opacity', '0', `1`),
         createAnimation()
           .addElement(supportButton)
           .fromTo(
             'transform',
-            'translate3d(0,0,0)',
-            `translate3d(${aT.translateX}px,${aT.translateY}px, 0)`
+            'translate(0,0)',
+            `translate(${aT.translateX}px,${aT.translateY}px)`
           ),
         createAnimation()
           .addElement(artistTitle)
@@ -97,12 +92,13 @@ class ArtistPage extends React.Component<Props, {}> {
           .addElement(normalMenu)
           .fromTo(
             'transform',
-            'translate3d(0,0,0)',
-            `translate3d(${menu.translateX}px,${menu.translateY}px,0)`
+            'translateY(0)',
+            `translateY(${menu.translateY}px)`
           ),
         createAnimation()
-          .addElement(ionHeader)
-          .fromTo('height', '482px', '162px')
+          .addElement(itensHeader)
+          .fromTo('marginTop', '0px', '-120px')
+        //use values between 100 and 200 -> 80px less than throttle
       ]);
     this.custom.progressStarted = true;
     this.custom.animation.progressStart(true);
@@ -110,8 +106,9 @@ class ArtistPage extends React.Component<Props, {}> {
 
   handleScroll(event: any): void {
     if (!this.custom.loaded) this.loadAnimations();
-    const offset = Number(Math.min(event.detail.scrollTop / 150, 1).toFixed(2));
-    this.blur = event.detail.scrollTop > 150;
+    //use values between 100 and 200 on divisor to throttle
+    const offset = Number(Math.min(event.detail.scrollTop / 200, 1).toFixed(2));
+    this.blur = event.detail.scrollTop > 200;
 
     if (this.blur && this.lastOffset === 1) return;
     this.custom.animation.progressStep(offset);
@@ -134,65 +131,53 @@ class ArtistPage extends React.Component<Props, {}> {
       return <IonPage style={artistBackground(null)} id="artist-page" />;
     }
     const { currentArtist: artist, artistTabs, activeArtistTab } = this.props;
-
     return (
       <IonPage
         id="artist-page"
-        className="saturate"
         style={artistBackground(artist)}
+        className="saturate"
       >
-        <IonHeader id="ion-header" className="ion-no-border">
-          <div className="atg-header">
-            <div className="start">
-              <div
-                className="default-button dark"
-                onClick={(): void => this.props.history.push(`/home/profile`)}
-              >
-                <BackIcon />
-              </div>
-            </div>
-          </div>
+        <Header leftBackHref="/home/profile" />
+        <SupportBy data={artist.supportArtistFans} />
+        <div id="fade-background" className="fade-background opacity-0 blur" />
+        <div id="ion-item-header" className="artist-landing-header">
+          <h2 id="artist-title" className={`h00 m-0 inline-table l1 shadow`}>
+            {artist.name}
+          </h2>
+          <br />
+          <ButtonSupport
+            id="support-button"
+            buttonType={'text'}
+            type={ShapesSize.rounded}
+            uppercase
+            supported={artist.support}
+            onClick={(): void => {
+              this.props.history.push(
+                `/home/artist/${artist.username}/support`
+              );
+            }}
+          />
 
-          <div className="artist-landing-header">
-            <SupportBy data={artist.supportArtistFans} />
-            <h2 id="artist-title" className={`artist-title artist-top`}>
-              {artist.name}
-            </h2>
-            <br />
-            <ButtonSupport
-              id="support-button"
-              buttonType={'text'}
-              type={ShapesSize.rounded}
-              uppercase
-              supported={artist.support}
-              onClick={(): void => {
-                this.props.history.push(
-                  `/home/artist/${artist.username}/support`
-                );
-              }}
-            />
-
-            <Menu
-              tabs={artistTabs}
-              activeId={activeArtistTab}
-              onClick={this.handleMenu.bind(this)}
-            />
-          </div>
-        </IonHeader>
-
+          <Menu
+            tabs={artistTabs}
+            activeId={activeArtistTab}
+            onClick={this.handleMenu.bind(this)}
+          />
+        </div>
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          forceOverscroll={false}
+          forceOverscroll={true}
           fullscreen={false}
           onIonScroll={this.handleScroll.bind(this)}
         >
+          <div className="offset-content" />
+
           {artistTabs?.map(
             (data, i): React.ReactNode =>
               data.id === activeArtistTab &&
               React.createElement(data.component, { key: i })
           )}
-          <div id="blur-background" className="artist-page blur-background" />
         </IonContent>
       </IonPage>
     );

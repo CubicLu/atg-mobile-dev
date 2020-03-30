@@ -54,7 +54,7 @@ class CardArtistComponent extends React.Component<Props> {
           </div>
 
           <div
-            className="flex-space-between-bottom mx-2 mb-1 l12"
+            className="flex-space-between-bottom mx-1 mb-1 l12"
             onClick={(): void => {
               history.action = 'POP';
               history.replace(`/home/artist/${username}`);

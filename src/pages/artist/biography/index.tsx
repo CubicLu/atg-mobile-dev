@@ -209,7 +209,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           scrollX={false}
           onIonScroll={this.handleScroll.bind(this)}
         >
-          <IonSlides ref={this.slides} options={{ autoHeight: true }}>
+          <IonSlides ref={this.slides} options={{ autoHeight: false }}>
             {biography.map((bio: BiographyInterface): any => (
               <IonSlide key={bio.chapter} className={bio.template}>
                 <div

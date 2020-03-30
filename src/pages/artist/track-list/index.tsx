@@ -133,7 +133,7 @@ class TrackListPage extends React.Component<Props> {
                 'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
               )}
             >
-              <span className="f6 bold">Liner Notes</span>
+              <span className="f6">Liner Notes</span>
             </div>
             <div
               className="tile"
@@ -141,7 +141,7 @@ class TrackListPage extends React.Component<Props> {
                 'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
               )}
             >
-              <span className="f6 bold">Community</span>
+              <span className="f6">Community</span>
             </div>
             <div
               className="tile"
@@ -149,7 +149,7 @@ class TrackListPage extends React.Component<Props> {
                 'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
               )}
             >
-              <span className="f6 bold">Artist Home</span>
+              <span className="f6">Artist Home</span>
             </div>
           </div>
         </IonContent>

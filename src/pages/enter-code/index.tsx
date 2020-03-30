@@ -61,7 +61,7 @@ class EnterCodePage extends React.Component<Props, State> {
               </div>
             </div>
 
-            <div className="flex-compass h-100 medium">
+            <div className="flex-compass fluid h-100 medium">
               <div className="row">
                 <div className="col s12 mt-40 input-div">
                   <div className="f4 center-align">Enter the 6-digit code</div>

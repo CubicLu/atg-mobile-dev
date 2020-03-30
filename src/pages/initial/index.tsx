@@ -27,7 +27,7 @@ class InitialPage extends React.Component<Props> {
               <div className="mx-25 h2 bold">ARTIST-TO-FAN</div>
             </div>
 
-            <div className="flex-compass h-50 south west">
+            <div className="flex-compass fluid h-50 south west">
               <h1 className="title-album">
                 THE
                 <br />

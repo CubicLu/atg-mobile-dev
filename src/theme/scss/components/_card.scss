@@ -144,13 +144,12 @@
         &::after{
             content: attr(data-time);
             background: #000;
-            height: 25px;
+            height: 20px;
             width: 100%;
-            font-family: "Helvetica";
-            font-size: 14px;
+            font-size: 12px;
             white-space: nowrap;
             max-width: 48px;
-            padding: 3px 3px;
+            padding: 1px 4px;
             text-align: center;
             color: #FFF;
             display: block;
@@ -210,12 +209,6 @@
                 border-radius: 10px;
             }
         }
-       .label{
-           color: #FFF;
-           font-weight: bold;
-           font-family: 'Helvetica';
-           font-size: 14px;
-       }
        span{
             font-family: 'Helvetica';
             font-size: 12px;
@@ -306,10 +299,10 @@
         display: flex;
         flex-direction: column;
     }
-    @media screen and (max-width: 360px){
+    @media screen and (max-height: 568px){
         .calendar{
-            height: 80px;
-            width: 80px;
+            height: 84px;
+            width: 84px;
         }
     }
 }

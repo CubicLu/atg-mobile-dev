@@ -23,7 +23,7 @@ class CardImageComponent extends React.Component<Props> {
           className={`card image ${type}`}
           style={{ backgroundImage: `url(${image})` }}
         ></div>
-        <div className="label">{label}</div>
+        <div className="f5 l2">{label}</div>
       </div>
     );
   }

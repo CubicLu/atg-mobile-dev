@@ -24,14 +24,14 @@ class SignUpConfirmPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          leftContent={<div className="h1 l1 no-wrap">CONFIRM</div>}
+          leftContent={<div className="h1 l08 no-wrap">CONFIRM</div>}
           rightCloseOnClick={(): any => this.props.history.push('/home')}
         />
 
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
             <div className="row ">&nbsp;</div>
-            <div className="flex-compass h-100 south">
+            <div className="flex-compass fluid h-100 south">
               <h2 className="title text-center">
                 THANKS FOR THE
                 <br />

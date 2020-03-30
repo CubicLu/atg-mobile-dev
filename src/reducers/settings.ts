@@ -42,7 +42,8 @@ import {
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon
+  RadioIcon,
+  SliderMixtapes
 } from './../components';
 import React from 'react';
 import { store } from '../store';
@@ -69,7 +70,7 @@ const defaultState: SettingsReducerType = {
       id: 'mixtapes',
       label: 'Mixtapes',
       icon: 'm',
-      component: ProfileMixtapesPage
+      component: SliderMixtapes
     },
     {
       id: 'friends',

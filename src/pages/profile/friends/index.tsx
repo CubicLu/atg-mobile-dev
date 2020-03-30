@@ -15,7 +15,7 @@ import {
   IonItem,
   IonContent
 } from '@ionic/react';
-import { ShapesSize, Colors } from '../../../interfaces';
+import { ShapesSize, Colors, Sizes } from '../../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -30,22 +30,24 @@ class ProfileFriendsPage extends React.Component<Props> {
               return (
                 <IonItemSliding key={i}>
                   <IonItem>
-                    <div className="row">
-                      <div className={`col s3 image ${opacity}`}>
+                    <div className="row mx-1">
+                      <div className={`col s2 no-padding ${opacity}`}>
                         <Avatar
                           type={ShapesSize.circle}
-                          width={50}
-                          height={50}
+                          width={48}
+                          height={48}
                         />
                       </div>
-                      <div className={`col s6 info ${opacity}`}>
-                        <span className="user">BassmanJeff</span>
+                      <div className={`col s7 no-padding info ${opacity}`}>
+                        <span className="user f5">BassmanJeff</span>
                       </div>
-                      <div className="col s3 action">
+                      <div className="col s3 rounded action">
                         {data.friend === false ? (
                           <Button
                             gradient={true}
                             color={Colors.tertiary}
+                            size={Sizes.md}
+                            type={ShapesSize.rounded}
                             label="PENDING"
                           />
                         ) : (

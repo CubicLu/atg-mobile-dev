@@ -9,6 +9,7 @@ interface Props {
   supported: boolean;
   uppercase?: boolean;
   bold?: boolean;
+  id: string;
 }
 
 class ButtonSupportComponent extends React.Component<Props> {
@@ -17,7 +18,8 @@ class ButtonSupportComponent extends React.Component<Props> {
     onClick: (): void => {},
     supported: false,
     uppercase: false,
-    bold: false
+    bold: false,
+    id: 'support-button'
   };
 
   render(): React.ReactNode {
@@ -27,12 +29,13 @@ class ButtonSupportComponent extends React.Component<Props> {
       type,
       bold,
       buttonType,
-      uppercase
+      uppercase,
+      id
     } = this.props;
 
     if (buttonType === 'icon') {
       return (
-        <div className="button-support-component">
+        <div id={id} className="button-support-component">
           <ButtonIcon
             icon={<SupportIcon color={supported ? '#FC5F62' : '#fff'} />}
             color={supported ? Colors.supported : Colors.support}
@@ -45,6 +48,7 @@ class ButtonSupportComponent extends React.Component<Props> {
     } else {
       return (
         <Button
+          id={id}
           onClick={onClick.bind(this)}
           color={supported ? Colors.supported : Colors.support}
           label={supported ? 'Supported' : 'Support'}

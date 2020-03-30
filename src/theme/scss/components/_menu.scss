@@ -1,18 +1,19 @@
 .horizontal-menu{
     width: 100%;
-    display: inline-flex;
+    display: flex;
     margin-top: 0;
     margin-bottom: 0;
     padding: 10px 0;
     text-align: center;
     &.center{
+        width: auto;
         padding-left: 2*$menu-scroll-margin;
         padding-right: 2*$menu-scroll-margin;
         .circle{
             margin-left: $menu-scroll-margin;
             margin-right: $menu-scroll-margin;
         }
-        justify-content: space-around;
+        justify-content: space-between;
     }
     .circle{
         margin-left: $menu-scroll-margin;

@@ -1,5 +1,4 @@
 .card-artist{
-    margin: $card-artist-margin;
     height: 140px;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -148,7 +147,8 @@
             height: 25px;
             width: 100%;
             font-family: "Helvetica";
-            max-width: 45px;
+            font-size: 14px;
+            max-width: 48px;
             padding: 3px 3px;
             text-align: center;
             color: #FFF;

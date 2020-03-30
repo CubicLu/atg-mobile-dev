@@ -135,7 +135,6 @@ class ArtistPage extends React.Component<Props, {}> {
       <IonPage
         id="artist-page"
         style={artistBackground(artist)}
-        className="saturate"
       >
         <Header leftBackHref="/home/profile" />
         <SupportBy data={artist.supportArtistFans} />

@@ -51,6 +51,8 @@
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "emulator:android": "cordova run android",
     "emulator:ios": "cordova run ios",
+    "simulate:android": "simulate android --target=chrome",
+    "simulate:ios": "simulate ios --target=chrome",
     "build ios": "ionic build && cordova build ios --prod --release",
     "build:ionic": "ionic build"
   },

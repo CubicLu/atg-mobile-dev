@@ -4,7 +4,7 @@
         height: calc(100% - 330px);
     }
     &.is-playing{
-        margin-bottom: $default-height-player;
+        margin-bottom: $default-height-player + 20;
     }
 }
 .profile-center{

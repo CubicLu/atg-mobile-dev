@@ -29,7 +29,6 @@
         -o-background-size: cover;
         background-size: cover;
     }
-
     &.mixtapes{
         background: transparent;
         position: relative;
@@ -38,12 +37,9 @@
         border-radius: 0;
         padding-left: 10px;
         padding-right: 10px;
-
+        padding-top: 16px;
         .row{
             margin-bottom: 0 !important;
-        }
-        .cover{
-            padding: 15px 10px;
         }
         .tape{
             position: relative;
@@ -54,7 +50,6 @@
             -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
             -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
             box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-
             .background{
                 background-repeat: no-repeat;
                 background-position-x: center;
@@ -114,18 +109,6 @@
             }
 
 
-        }
-        .infos{
-            justify-content: center;
-            .playlist, .quantity{
-                color: #FFF;
-                font-family: "Helvetica";
-                display: flex;
-                justify-content: center;
-            }
-            .playlist{
-                font-size: 18px;
-            }
         }
     }
 
@@ -230,25 +213,6 @@
 
             .col{
                 display: inline-flex;
-            }
-
-            .user{
-                label{
-                    font-family: "Helvetica";
-                    font-size: pxToRem(12);
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: pxToRem(42);
-                    letter-spacing: normal;
-                    text-align: left;
-                    color: #ffffff;
-                    margin-left: 5px;
-                    &::before{
-                        content: "@";
-                        display: inline-flex;
-                    }
-                }
             }
             .button{
                 display: inline-flex;

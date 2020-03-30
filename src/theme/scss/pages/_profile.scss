@@ -6,6 +6,22 @@
     &.is-playing{
         margin-bottom: $default-height-player + 20;
     }
+    .slick-slider{
+        margin-top: 16px;
+        margin-bottom: 32px;
+    }
+    .slick-dots li{
+        width: 12px;
+        margin: 0 2px;
+    }
+    .slick-dots li.slick-active button:before{
+        color: $tertiary;
+    }
+    .slick-dots li button:before{
+        color: rgba($color: #fff, $alpha: 0.5);
+        font-size: 8px;
+        width: 12px;
+    }
 }
 .profile-center{
     margin-left: $header-button + 2*$header-margin-left;
@@ -15,21 +31,18 @@
     padding-top: $header-margin-top + $button-margin-top;
     padding-bottom: $header-margin-top;
 }
-
-.profile-mixtapes{
-    .slider{
-        .slick-dots li{
-            width: 12px;
-            margin: 0 2px;
-        }
-        .slick-dots li.slick-active button:before{
-            color: $tertiary;
-        }
-        .slick-dots li button:before{
-            color: rgba($color: #fff, $alpha: 0.5);
-            font-size: 8px;
-            width: 12px;
-        }
+@media screen and (max-height: 667px){
+    .profile-center{
+        padding-bottom: $header-margin-top/4;
+        padding-bottom: $header-margin-top/4;
     }
-    margin-top: 0;
+    .profile-page{
+        .slick-slider{
+            margin-top: 0;
+            min-height: 280px;
+            overflow: hidden;
+            padding-bottom: 100px;
+        }
+        
+    }
 }

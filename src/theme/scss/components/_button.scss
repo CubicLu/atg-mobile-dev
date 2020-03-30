@@ -1,45 +1,43 @@
 .badge-blue{
  .btn{
-    height: 30px !important;
     border-radius: 8px !important;
     background-image: linear-gradient(90deg, #64e9ff, #0082ff) !important;
-    font-family: "Helvetica";
-    font-size: 14px;
-    line-height: 1.14;
     width: 120px;
  }
 }
 .badge-gray{
  .btn{
-    height: 30px !important;
     border-radius: 8px !important;
     background-image: linear-gradient(90deg, #9c9d9d, #717274) !important;
-    font-family: "Helvetica";
-    font-size: 14px;
-    line-height: 1.14;
     width: 120px;
  }
 }
 .confirm-blue{
- .btn{
-    height: 30px !important;
+ #btn-id{
     border-radius: 8px !important;
-    background-image: linear-gradient(90deg, #01aed4, #0c36e6) !important;
-    font-family: "Helvetica";
-    font-size: 14px;
-    line-height: 1.14;
+    background-image: linear-gradient(90deg, #01aed4, #1236c2) !important;
     width: 86px;
     margin-top: 14px;
  }
 }
-.btn { 
+.btn {
+    border-radius: 2px;
+    text-align: center;
+    text-transform: initial;
+    
+    color: #fff;
+    &.bold{
+        font-size: 12.5px;
+        font-weight: 600;
+    }
+    &.normal{
+        height: 30px;
+        line-height: 1.13;
+    } 
     &.large{
         height: 48px;
         font-size: 16px;
     }
-    border-radius: 2px;
-    text-align: center;
-    text-transform: initial;
     &.fixed{
         position: fixed;
         z-index: 10;
@@ -85,17 +83,10 @@
     &.full {
         width: 100%;
     }
-
-    &.bold{
-        font-weight: bold;
-        font-family: "Helvetica";
-    }
-
     &.transparent-gray{
         background: #00000080;
         color: #FFF;
     }
-
     &.green{
         background: #00a850;
     }
@@ -110,13 +101,14 @@
         background: linear-gradient(90deg, #FF9766, #FC5F62);
         height: 30px;
         line-height: 30px;    
+        font-weight: 500;
     }
-
     &.supported{
         background: linear-gradient(90deg, #fff, #fff);
         height: 30px;
         line-height: 30px;
         color: #FC5F62;
+        font-weight: 500;
     }
 
     &.disable{
@@ -134,7 +126,12 @@
         box-shadow: none !important;
         font-size: 14px;
     }
-
+    &.supported,&.support{
+        text-transform: uppercase;
+    }
+    &.rounded{
+        border-radius: 8px;
+    }
     &.icon { 
         &.circle { 
            border-radius: 50%;
@@ -163,18 +160,6 @@
            }
         }
     }
-
-    &.rounded{
-        border-radius: 8px;
-        &.supported,&.support{
-            text-transform: uppercase;
-        }
-    }
-
-    &.normal{
-        border-radius: 3px;
-    }
-
     &.plan{
         @include plan-detail();
     }

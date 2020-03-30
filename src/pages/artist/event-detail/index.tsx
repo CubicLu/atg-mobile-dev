@@ -9,7 +9,12 @@ import {
   CardEvent,
   Avatar
 } from './../../../components';
-import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
+import {
+  EventInterface,
+  ShapesSize,
+  Colors,
+  Sizes
+} from './../../../interfaces';
 import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,
@@ -82,11 +87,11 @@ class EventDetailPage extends React.Component<Props, State> {
         >
           <Header
             rightCloseButton
+            title="Who's going"
             rightCloseOnClick={(): void => {
               this.props.updateArtistSetInitialProperty('event');
               this.props.history.goBack();
             }}
-            centerContent={<h1 className="title">{`Who's going`}</h1>}
           />
           <IonContent>
             <BackgroundImage
@@ -127,23 +132,26 @@ class EventDetailPage extends React.Component<Props, State> {
                     let opacity = data.isFriend === true ? '' : 'opacity';
                     return (
                       <IonItem key={i}>
-                        <div className="row">
-                          <div className={`col s3 image ${opacity}`}>
+                        <div className="row mx-1">
+                          <div className={`col s2 no-padding ${opacity}`}>
                             <Avatar
                               type={ShapesSize.circle}
                               image={data.avatar}
-                              width={50}
-                              height={50}
+                              width={48}
+                              height={48}
                             />
                           </div>
-                          <div className={`col s6 info ${opacity}`}>
-                            <span className="user">{data.username}</span>
+                          <div className={`col s7 no-padding info ${opacity}`}>
+                            <span className="user f5">{data.username}</span>
                           </div>
-                          <div className="col s3 action confirm-blue">
+                          <div className="col s3 f6 bold action confirm-blue">
                             <Button
+                              bold={true}
                               gradient={true}
                               color={Colors.secondary}
-                              label="Connect"
+                              size={Sizes.md}
+                              type={ShapesSize.rounded}
+                              label="CONNECT"
                             />
                           </div>
                         </div>

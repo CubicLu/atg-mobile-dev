@@ -8,11 +8,12 @@ import { ShapesSize } from '../../../interfaces';
 interface Props {
   scroll?: boolean;
   data?: any[];
+  className?: string;
 }
 
 class SliderRadioComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    const { data } = this.props;
+    const { data, className } = this.props;
     if (!data) return <div />;
 
     const settings: any = {
@@ -26,7 +27,7 @@ class SliderRadioComponent extends React.Component<Props> {
     };
 
     return (
-      <div className="slider radio">
+      <div className={`slider radio ${className}`}>
         <Slider {...settings}>
           {data.map(
             (d, i): React.ReactNode => (

@@ -79,13 +79,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const rightButton = hasPlan ? backButton : closeButton;
 
     const allPlans = (
-      <div className="flex-compass south medium" style={{ height: 'inherit' }}>
-        <div className="row">
-          <h1 className="h1 l11 center-align">
+      <div className="flex-compass fluid south medium h-100">
+        <div className="row mt-3">
+          <div className="h1 l11 center-align">
             Yeah buddy! So stoked you
             <br />
             want to support us!
-          </h1>
+          </div>
         </div>
         <div className="row mx-1">
           {this.props.plans.map(

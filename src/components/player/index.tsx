@@ -214,9 +214,12 @@ class PlayerComponent extends React.Component<Props> {
 
     return (
       <>
-        <div className="progress">
-          <div className="bar" style={{ width: timeElapsed * 3.333 }}></div>
-        </div>
+        {song && (
+          <div className="progress">
+            <div className="bar" style={{ width: timeElapsed * 3.333 }} />
+          </div>
+        )}
+
         <div className="cover">
           <div
             className="img"

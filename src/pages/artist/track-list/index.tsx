@@ -59,7 +59,7 @@ class TrackListPage extends React.Component<Props> {
     }
 
     return (
-      <IonPage style={style} id="track-list">
+      <IonPage style={style} id="track-list-page">
         {currentArtist && <div className="fade-background blur" />}
         {!currentArtist && (
           <BackgroundImage
@@ -97,7 +97,7 @@ class TrackListPage extends React.Component<Props> {
         </IonHeader>
 
         <IonContent scrollY={true} forceOverscroll={true}>
-          <div className="mx-25">
+          <div className="track-list-page mx-25">
             <div className="player-upper-half center-align track-list m-4 mt-0">
               <div
                 className="image radius"
@@ -113,8 +113,8 @@ class TrackListPage extends React.Component<Props> {
             <div id="songs" className="mt-3">
               {this.playlist.items.map(
                 (song: SongInterface, i: number): React.ReactElement => (
-                  <div className="row list-margin-row list-track" key={i}>
-                    <div className="f5 list-track-number center-align">
+                  <div className="flex-align-center row" key={i}>
+                    <div className="f5 list-track-number">
                       {song.trackNumber}
                     </div>
                     <div className="f5 track-song">{song.name}</div>

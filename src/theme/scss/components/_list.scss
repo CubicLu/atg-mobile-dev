@@ -15,35 +15,3 @@ ul{
         }
     }
 }
-
-.list-margin-row{
-    margin-top: $list-padding-top;
-    margin-bottom: $list-padding-bottom;
-    display: flex;
-}
-.list-track-number{
-    min-width: 36px;
-    text-align: left;
-    padding-right: 16px;
-}
-.list-track{
-    &.row{
-        margin-top: $list-padding-top;
-        max-height: 30px;
-        overflow: hidden;
-        align-items: center;
-    }
-}
-.track-song{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 12px;
-}
-.list-component-content {
-    margin-bottom: 0;
-}
-.list-component-content, .section-header-margin {
-    margin-left: $list-margin;
-    margin-right: $list-margin;
-}

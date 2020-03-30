@@ -19,7 +19,7 @@
 }
 #artist-page{
     &.saturate{
-        filter: saturate(1.1);
+        filter: saturate(1.15);
     }
     &.blur{
         -webkit-backdrop-filter: blur(5px);

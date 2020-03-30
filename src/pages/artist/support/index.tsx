@@ -72,7 +72,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { username } = currentArtist;
     const { plan } = this.state;
     const hasPlan = !!plan;
-    const planDetailClass = hasPlan ? ' detail ' : '';
+    const planDetailClass = hasPlan ? ' detail mx-3' : '';
 
     const backButton = (): void => this.showDetail();
     const closeButton = (): void => history.push(`/home/artist/${username}`);

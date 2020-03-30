@@ -9,6 +9,7 @@ interface Props {
   data?: any[];
   labelKey?: string;
   imageKey?: string;
+  onPressItem?: (id) => void;
 }
 
 class SliderStoriesComponent extends React.Component<Props> {
@@ -40,7 +41,7 @@ class SliderStoriesComponent extends React.Component<Props> {
             {data?.map(
               (d, i): React.ReactNode => {
                 return (
-                  <li key={i}>
+                  <li key={i} onClick={this.props.onPressItem?.bind(this, i)}>
                     <div>
                       <Avatar
                         image={d[image]}

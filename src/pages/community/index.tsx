@@ -224,6 +224,13 @@ class CommunityPage extends React.Component<Props, State> {
                 labelKey="label"
                 imageKey="image"
                 data={this.props.stories}
+                onPressItem={(id): void => {
+                  if (this.state.isArtist) {
+                    this.props.history.push(
+                      `/home/community/${this.props.match.params.artistId}/daily-drip/${id}`
+                    );
+                  }
+                }}
               />
             )}
             {this.renderTitleAndFilterPosts()}

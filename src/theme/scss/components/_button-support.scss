@@ -1,8 +1,9 @@
 .button-support-component{
     line-height: 16px;
     text-align: center;
-    width: 50px;
-    max-width: 50px;
+    width: 47px;
+    max-width: 47px;
+    overflow: hidden;
     .btn{
         &.icon{
             margin-left: auto;

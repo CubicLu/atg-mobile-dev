@@ -284,7 +284,7 @@ class PlayerComponent extends React.Component<Props> {
   mainControls(): React.ReactNode {
     const { playing, timeElapsed, song } = this.props.player;
     return (
-      <div className="main-controls">
+      <div className="main-controls fluid">
         <div className="player-progress">
           <div className="bar" style={{ width: timeElapsed * 3.333 }}></div>
           <div className="elapsed f6">

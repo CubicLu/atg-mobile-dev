@@ -130,10 +130,10 @@ class TrackListPage extends React.Component<Props> {
             <div
               className="tile"
               style={shadowTitle(
-                'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+                'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/deep-dive-background.png'
               )}
             >
-              <span className="f6">Liner Notes</span>
+              <span className="f6">Deep Dive</span>
             </div>
             <div
               className="tile"

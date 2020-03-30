@@ -394,23 +394,23 @@ class PlayerComponent extends React.Component<Props> {
       <div id="player-navbar-buttons" className="player-navbar-buttons">
         <div className="navbar-button space-between">
           <ShuffleButton />
-          <span className="f8 l1 mt-05">Shuffle</span>
+          <span className="f8 l1 mb-05">Shuffle</span>
         </div>
         <div className="navbar-button space-between">
           <RepeatButton />
-          <span className="f8 l1 mt-05">Repeat</span>
+          <span className="f8 l1 mb-05">Repeat</span>
         </div>
         <div className="navbar-button space-between">
           <LikeButton />
-          <span className="f8 l1 mt-05">Like</span>
+          <span className="f8 l1 mb-05">Like</span>
         </div>
         <div className="navbar-button space-between">
           <MixTapeButton />
-          <span className="f8 l1 mt-05">Mixtape</span>
+          <span className="f8 l1 mb-05">Mixtape</span>
         </div>
         <div className="navbar-button space-between">
           <ShareButton />
-          <span className="f8 l1 mt-05">Share</span>
+          <span className="f8 l1 mb-05">Share</span>
         </div>
       </div>
     );

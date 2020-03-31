@@ -342,8 +342,7 @@ export enum ShapesSize {
   rounded = 'rounded',
   circle = 'circle',
   normal = 'normal',
-  full = 'full',
-  viewAll = 'view-all'
+  full = 'full'
 }
 export enum Sizes {
   xs = 'xs',

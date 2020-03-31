@@ -24,7 +24,7 @@ class SignUpConfirmPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          leftContent={<h4 className="sign-in-title">CONFIRM</h4>}
+          leftContent={<div className="h1 l1 no-wrap">CONFIRM</div>}
           rightCloseOnClick={(): any => this.props.history.push('/home')}
         />
 
@@ -33,12 +33,11 @@ class SignUpConfirmPage extends React.Component<Props> {
             <div className="row ">&nbsp;</div>
             <div className="flex-compass h-100 south">
               <h2 className="title text-center">
-                THANKS FOR THE <br />
+                THANKS FOR THE
+                <br />
                 PANTHR LOVE.
               </h2>
-              <p className="text-center text-small">
-                Please confirm your password
-              </p>
+              <p className="text-center f4">Please confirm your password</p>
               <br />
             </div>
 

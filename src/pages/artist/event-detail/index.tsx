@@ -9,12 +9,12 @@ import {
   CardEvent,
   Avatar
 } from './../../../components';
+import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
+import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,
   updateArtistSetInitialProperty
 } from './../../../actions';
-import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
-import { ApplicationState } from './../../../reducers';
 
 interface State {
   willGo: boolean;
@@ -90,14 +90,14 @@ class EventDetailPage extends React.Component<Props, State> {
           />
           <IonContent>
             <BackgroundImage
-              gradient={`180deg,#000,#1f1038`}
+              gradient={`180deg,#000,#20123a`}
               backgroundBottom={true}
               backgroundBottomOrange={true}
-              backgroundBottomOpacity={0.2}
+              backgroundBottomOpacity={0.15}
             />
             <div className="content-fixed" slot="fixed">
               <div
-                className={`row center-align badge-${
+                className={`center-align badge-${
                   this.state.willGo ? 'gray' : 'blue'
                 }`}
               >
@@ -111,14 +111,13 @@ class EventDetailPage extends React.Component<Props, State> {
                   }}
                 />
               </div>
-              <div className="row">
-                <CardEvent
-                  id={Number(this.props.match.params.eventId)}
-                  artistUsername={this.props.match.params.id}
-                  data={this.props.event}
-                />
-              </div>
+              <CardEvent
+                id={Number(this.props.match.params.eventId)}
+                artistUsername={this.props.match.params.id}
+                data={this.props.event}
+              />
             </div>
+
             <div
               className={`content-list ${this.props.isPlaying && 'is-playing'}`}
             >

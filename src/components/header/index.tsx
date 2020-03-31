@@ -4,6 +4,7 @@ import { BackIcon, DotsThreeIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
+import { SongInfoButton } from '../icon/player';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -17,6 +18,7 @@ interface Props extends RouteComponentProps {
   rightCloseButton?: boolean;
   rightSettingsButton?: boolean;
   rightSupportButton?: boolean;
+  rightInfoButton?: boolean;
   rightAddButton?: boolean;
   rightFilterButton?: boolean;
   rightUserGroupButton?: boolean;
@@ -28,14 +30,17 @@ interface Props extends RouteComponentProps {
   rightCloseOnClick?: any;
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
+  rightInfoOnClick?: any;
   leftBackOnClick?: any;
   leftBackHref?: string;
+  translucent?: boolean;
+  ios?: boolean;
+  fixed?: boolean;
 }
 
 class HeaderComponent extends React.Component<Props> {
   public static defaultProps = {
     title: null,
-    titleAlign: 'center',
     leftBackButton: true,
     leftContent: null,
     rightActionButton: false,
@@ -47,7 +52,10 @@ class HeaderComponent extends React.Component<Props> {
     rightFilterButton: false,
     rightUserGroupButton: false,
     centerContent: null,
-    rightContent: null
+    rightContent: null,
+    translucent: false,
+    ios: false,
+    fixed: true
   };
 
   goBackClick = (ev: any): any => {
@@ -72,6 +80,7 @@ class HeaderComponent extends React.Component<Props> {
       leftContent,
       centerContent,
       title,
+      fixed,
       titleClassName,
       rightContent,
       rightCloseButton,
@@ -82,13 +91,17 @@ class HeaderComponent extends React.Component<Props> {
       rightSettingsOnClick,
       rightSupportButton,
       rightUserGroupButton,
+      rightInfoButton,
+      rightInfoOnClick,
       rightActionYellow,
       children
     } = this.props;
 
+    const isFixed = fixed ? 'fixed' : '';
+
     return (
-      <IonHeader className="ion-no-border">
-        <div className={`atg-header fixed ${top} ${color} ${className}`}>
+      <IonHeader id="ion-header" className="ion-no-border">
+        <div className={`atg-header ${isFixed} ${top} ${color} ${className}`}>
           <div className="start">
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
@@ -105,13 +118,14 @@ class HeaderComponent extends React.Component<Props> {
             {leftContent}
           </div>
 
-          {centerContent}
-
-          {title && (
-            <div className={`title ${titleClassName}`}>
-              <span>{title}</span>
-            </div>
-          )}
+          <div className="center">
+            {centerContent}
+            {title && (
+              <div className={`h2 l11 ${titleClassName ? titleClassName : ''}`}>
+                {title}
+              </div>
+            )}
+          </div>
 
           <div className="end">
             {rightContent}
@@ -152,10 +166,15 @@ class HeaderComponent extends React.Component<Props> {
                 <CloseIcon />
               </div>
             )}
+            {rightInfoButton && (
+              <div className="default-button" onClick={rightInfoOnClick}>
+                <SongInfoButton />
+              </div>
+            )}
           </div>
         </div>
 
-        <div>{children}</div>
+        <>{children}</>
       </IonHeader>
     );
   }

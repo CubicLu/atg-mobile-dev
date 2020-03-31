@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../reducers';
+import { Nullable } from '../../types/common';
 
-interface Props {}
+interface Props { }
 interface State {
-  showControls: boolean;
+  readonly showControls: boolean;
 }
 
 class VideoPlayerComponent extends React.Component<Props, State> {
-  private video: HTMLVideoElement | null;
+  private video: Nullable<HTMLVideoElement>;
   private videoControls: React.ReactNode;
+
   constructor(props: Props) {
     super(props);
+
     this.video = null;
     this.videoControls = null;
 
@@ -21,9 +24,10 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    const videoWorks = !!this.video?.canPlayType;
-    if (videoWorks) {
-      //this.video?.controls = false;
+    if (!!this.video?.canPlayType) {
+      if (this.video) {
+        this.video.controls = false;
+      }
       this.showControl(true);
     }
   }
@@ -35,10 +39,10 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 
   renderControls(): React.ReactNode {
-    if (this.state.showControls) {
-      return <div className={`video-controls`} id="video-controls"></div>;
+    if (!this.state.showControls) {
+      return null;
     }
-    return null;
+    return <div className={`video-controls`} id="video-controls"></div>;
   }
 
   render(): React.ReactNode {

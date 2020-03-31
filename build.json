@@ -1,12 +1,5 @@
 {
   "android": {
-      "debug": {
-          "keystore": "../android.keystore",
-          "storePassword": "android",
-          "alias": "mykey1",
-          "password" : "password",
-          "keystoreType": ""
-      },
       "release": {
           "keystore": "./keystore/my-release-key.keystore",
           "alias": "atg",

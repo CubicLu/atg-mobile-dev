@@ -1,14 +1,7 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import {
-  HeaderOverlay,
-  Header,
-  BackgroundImage,
-  SliderVideo,
-  CardVideo,
-  SectionTitle
-} from '../../../components';
-import { Sizes, ShapesSize, ArtistInterface } from '../../../interfaces';
+import { BackgroundImage, VideoPlayer } from '../../../components';
+import { ArtistInterface } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
@@ -32,7 +25,7 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistVideosPage extends React.Component<Props, {}> {
+class ArtistVideoDetailPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
@@ -42,19 +35,9 @@ class ArtistVideosPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-
-  onOpenVideo(id: number): void {
-    this.props.history.push(
-      `/home/artist/${this.props.match.params.id}/video/${id}`
-    );
-  }
-
   render(): React.ReactNode {
-    const { currentArtist } = this.props;
     return (
       <IonPage id="artist-videos-page">
-        <Header title="Videos" titleClassName="videos" />
-        <HeaderOverlay ref={this.headerRef} />
         <IonContent
           scrollY={true}
           scrollEvents={true}
@@ -70,39 +53,9 @@ class ArtistVideosPage extends React.Component<Props, {}> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className="content-container">
-            {currentArtist?.videos?.recents && (
-              <React.Fragment>
-                <SectionTitle title={'Recent Videos'} viewAll={true} />
-                <div className="no-margin">
-                  <SliderVideo
-                    data={currentArtist?.videos?.recents}
-                    size={Sizes.sm}
-                    type={ShapesSize.normal}
-                    onClick={this.onOpenVideo.bind(this)}
-                  />
-                </div>
-              </React.Fragment>
-            )}
-            <div className="row showcase">
-              <SectionTitle title={'Showcase'} />
-              {currentArtist?.videos?.showcase.map(
-                (value, i): React.ReactNode => {
-                  return (
-                    <CardVideo
-                      onClick={this.onOpenVideo.bind(this, i)}
-                      id={i}
-                      key={i}
-                      size={Sizes.lg}
-                      type={ShapesSize.full}
-                      time={value.time}
-                      video={value.video}
-                      image={value.image}
-                    />
-                  );
-                }
-              )}
-            </div>
+          <div className="artist-video-detail-page">
+            <VideoPlayer />
+            <div className="content-container"></div>
           </div>
         </IonContent>
       </IonPage>
@@ -123,5 +76,5 @@ export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
     updateSettingsProperty
-  })(ArtistVideosPage)
+  })(ArtistVideoDetailPage)
 );

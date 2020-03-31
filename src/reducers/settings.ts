@@ -33,7 +33,8 @@ import {
   ArtistGalleryGridPage,
   CommunityPostPage,
   TrackListPage,
-  ThankYouPage
+  ThankYouPage,
+  ArtistVideoDetailPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -261,6 +262,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/thank-you',
       id: 'thankYou',
       component: ThankYouPage
+    },
+    {
+      path: '/home/artist/:id/video/:videoId',
+      id: 'artistVideo',
+      component: ArtistVideoDetailPage
     },
     {
       path: '/home/artist/:id/video',

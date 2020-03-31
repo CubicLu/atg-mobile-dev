@@ -28,11 +28,13 @@ import ArtistSupportPage from './artist/support';
 import ArtistEventDetailPage from './artist/event-detail';
 import ArtistGalleryGridPage from './artist/gallery-grid';
 import ArtistGalleryPhotoPage from './artist/gallery-photo';
+import ArtistVideoDetailPage from './artist/video-detail';
 
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
 import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
 import TrackListPage from './artist/track-list';
+
 
 export {
   InitialPage,
@@ -67,5 +69,6 @@ export {
   ArtistGalleryGridPage,
   ArtistGalleryPhotoPage,
   TrackListPage,
-  ThankYouPage
+  ThankYouPage,
+  ArtistVideoDetailPage
 };

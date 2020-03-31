@@ -27,7 +27,7 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
         <div
           className={`image ${type}`}
           style={{ backgroundImage: `url(${image})` }}
-        ></div>
+        />
         <div className="f6 bold">{label}</div>
         <span>{quantity} items</span>
       </div>

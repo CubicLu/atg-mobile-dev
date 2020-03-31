@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { BackIcon, DotsThreeIcon } from '..';
+import { BackIcon, ButtonIcon, DotsThreeIcon, ShareIcon, StarIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
@@ -40,6 +40,7 @@ interface Props extends RouteComponentProps {
   fixed?: boolean;
   rightButtonGroup?: boolean;
   parentCallback?: Function;
+  overlay?: string | number;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -105,7 +106,9 @@ class HeaderComponent extends React.Component<Props> {
       rightInfoButton,
       rightInfoOnClick,
       rightActionYellow,
-      children
+      rightButtonGroup,
+      children,
+      overlay
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -182,10 +185,35 @@ class HeaderComponent extends React.Component<Props> {
                 <SongInfoButton />
               </div>
             )}
+
+            {rightButtonGroup && (
+              <ul className="list inline">
+                <li>
+                  <ButtonIcon
+                    color={Colors.orange}
+                    icon={<StarIcon width={24} height={24} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    color={Colors.green}
+                    icon={<ShareIcon width={22} height={20} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    color={Colors.cyan}
+                    icon={<ChatMessageIcon width={22} height={20} />}
+                    onClick={this.openChatPanel.bind(this, true)}
+                    overlay={overlay}
+                  />
+                </li>
+              </ul>
+            )}
           </div>
         </div>
 
-        <>{children}</>
+        <div>{children}</div>
       </IonHeader>
     );
   }

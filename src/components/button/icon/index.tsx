@@ -9,6 +9,7 @@ interface Props {
   styles?: object;
   fixed: boolean;
   label?: string | number;
+  overlay?: string | number;
 }
 
 class ButtonIconComponent extends React.Component<Props> {
@@ -21,17 +22,20 @@ class ButtonIconComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const isFixed = (this.props.fixed && ' fixed') || '';
-    const { onClick, type, color, styles, icon, label } = this.props;
+    const { onClick, type, color, styles, icon, label, overlay } = this.props;
 
     return (
-      <button
-        onClick={onClick.bind(this)}
-        className={`btn icon ${type} ${color} ${isFixed}`}
-        style={{ ...styles }}
-      >
-        {icon}
-        {label && <span>{label}</span>}
-      </button>
+      <div>
+        <button
+          onClick={onClick.bind(this)}
+          className={`btn icon ${type} ${color} ${isFixed}`}
+          style={{ ...styles }}
+        >
+          {icon}
+          {label && <span>{label}</span>}
+          {<div className={`overlay`}>{overlay}</div>}
+        </button>
+      </div>
     );
   }
 }

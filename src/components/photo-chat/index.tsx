@@ -1,10 +1,11 @@
 import React from 'react';
 
-import InputTextComponent from '../input/text';
-import { PostComment } from '../../components';
+import { PostComment, CloseIcon, InputText, Button } from '../../components';
+import { Colors, CommentInterface } from '../../interfaces';
 interface Props {
   displayChat: boolean;
   parentCallback?: Function;
+  currentPostComments?: CommentInterface[];
 }
 class PhotoChatComponent extends React.Component<Props> {
   closeChatPanel = (shouldDisplay: boolean): void => {
@@ -13,53 +14,30 @@ class PhotoChatComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const currentPostComments = [
-      {
-        user: { username: '@Victor', name: 'Victor' },
-        text: 'aeeee'
-      },
-      {
-        user: { username: '@Victor', name: 'Victor' },
-        text: 'aeeee'
-      },
-      {
-        user: { username: '@Victor', name: 'Victor' },
-        text: 'aeeee'
-      },
-      {
-        user: { username: '@Victor', name: 'Victor' },
-        text: 'aeeee'
-      },
-      {
-        user: { username: '@Victor', name: 'Victor' },
-        text: 'aeeee'
-      },
-      {
-        user: { username: '@Victor', name: 'Victor' },
-        text: 'aeeee'
-      }
-    ];
     return (
       <div>
         {this.props.displayChat && (
-          <div style={{ height: 350, paddingBottom: 50 }}>
+          <div style={{ maxHeight: 350, paddingBottom: 50 }}>
             <div className="row photo-chat-header">
               <div className="col s10" />
-              <div className="col s2">
+              <div className="col">
                 <div onClick={this.closeChatPanel.bind(this, false)}>
-                  <img src={'../assets/close.svg'} alt={'Close'} />
+                  <CloseIcon width={24} height={24} />
                 </div>
               </div>
             </div>
-            <div className="row" style={{ height: 170, overflowY: 'scroll' }}>
-              {!!currentPostComments &&
-                currentPostComments.map(
+            <div className="row chat-section">
+              {this.props.currentPostComments &&
+                this.props.currentPostComments.map(
                   (data, i): React.ReactNode => {
                     return <PostComment comment={data} key={i} />;
                   }
                 )}
             </div>
-            <InputTextComponent type={'text'} placeholder={'Start a Chat'} />
+            <div className="chat-input">
+              <InputText type={'text'} placeholder={'Start a chat'} />
+              <Button label="Post" color={Colors.grayTransparent} bold={true} />
+            </div>
           </div>
         )}
       </div>

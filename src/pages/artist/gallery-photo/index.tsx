@@ -2,20 +2,26 @@ import React from 'react';
 import { Header, PhotoChat } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import {
+  getArtistAPI,
+  updateSettingsProperty,
+  getArtistGalleryCommentsAPI
+} from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface, CommentInterface } from '../../../interfaces';
 import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   isPlaying: boolean;
+  currentGalleryComments: CommentInterface[];
 }
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
+  getArtistGalleryCommentsAPI: (photoId: number, name: string) => void;
 }
 
 interface MatchParams {
@@ -29,12 +35,12 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistGalleryPhotoPage extends React.Component<Props> {
-  state = { displayChat: false, displayHeader: true };
-  private headerRef: React.RefObject<any> = React.createRef();
+  state = { displayChat: false, displayHeader: true,  currentGalleryComments: 10};
 
   callbackFunction = (childData: boolean, showHeader?: boolean): void => {
     this.setState({ displayChat: childData });
     if (showHeader) this.setState({ displayHeader: true });
+    console.log(this.props)
   };
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
@@ -46,7 +52,8 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
     }
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
+    this.props.getArtistGalleryCommentsAPI(0, 'pharell-williams');
     if (this.props.currentArtist === null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
@@ -79,7 +86,11 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
       <IonPage id="gallery-photo-page">
         <div>
           {this.state.displayHeader && (
-            <Header rightButtonGroup parentCallback={this.callbackFunction} />
+            <Header
+              rightButtonGroup
+              parentCallback={this.callbackFunction}
+              overlay={this.props.currentGalleryComments.length}
+            />
           )}
         </div>
         <IonContent
@@ -101,6 +112,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props> {
         <PhotoChat
           displayChat={this.state.displayChat}
           parentCallback={this.callbackFunction}
+          currentPostComments={this.props.currentGalleryComments}
         />
       </IonPage>
     );
@@ -111,13 +123,15 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
+  const { currentArtist, currentGalleryComments } = artistAPI;
   const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentGalleryComments, currentArtist, isPlaying };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, updateSettingsProperty })(
-    ArtistGalleryPhotoPage
-  )
+  connect(mapStateToProps, {
+    getArtistAPI,
+    updateSettingsProperty,
+    getArtistGalleryCommentsAPI
+  })(ArtistGalleryPhotoPage)
 );

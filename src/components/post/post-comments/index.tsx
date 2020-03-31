@@ -26,7 +26,7 @@ class PostCommentsComponent extends React.Component<Props> {
           </div>
         </div>
         <div className={'post-commentary-text'}>
-          <span className={'fan-username'}>{comment.user.name}</span>
+          <span className={'fan-username'}>{comment.user.username}</span>
           <span className={'fan-comment'}>{comment.text}</span>
           {comment.replies != null && (
             <a className={'reply-link'} href={'/#'}>

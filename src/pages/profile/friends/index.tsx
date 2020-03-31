@@ -41,9 +41,10 @@ class ProfileFriendsPage extends React.Component<Props> {
                       <div className={`col s7 no-padding info ${opacity}`}>
                         <span className="user f5">BassmanJeff</span>
                       </div>
-                      <div className="col s3 rounded action">
+                      <div className="col s3 flex-align-items-end flex-justify-content-end">
                         {data.friend === false ? (
                           <Button
+                            className="mt-10"
                             gradient={true}
                             color={Colors.tertiary}
                             size={Sizes.md}

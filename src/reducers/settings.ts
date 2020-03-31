@@ -9,7 +9,6 @@ import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
   ProfileFriendsPage,
-  ProfileMixtapesPage,
   ProfileVaultPage,
   ArtistFeaturesPage,
   ArtistDiscographyPage,

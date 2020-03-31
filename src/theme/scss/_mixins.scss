@@ -109,18 +109,19 @@
 }
 
 @mixin plan-detail(){
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
   &.circle {
     border-radius: 50%;
     height: 156px;
     width: 156px;
     margin-bottom: 16px;
-    border: 7px solid transparent;
+    color: #fff;
+    border: 0px solid transparent;
     &.active{
-      border: 7px solid #FFF;
+      border: 6px solid #FFF;
     }
   }
   .price{
@@ -209,8 +210,13 @@
           }
       }
   }
-  .btn{
-    &.normal{
+
+  ion-item{
+    padding-right: 4px;
+  }
+  ion-item-options{
+    .btn{
+      margin-top: 0;
         border-radius: 0;
         height: 100%;
         padding-left: 5px;
@@ -221,23 +227,5 @@
         align-items: center;
         border-bottom: 1px solid #45187B;
     }
-  }
-  #btn-id{
-          height: 30px;
-          line-height: 1.1;
-          padding-left: 8px;
-          padding-right: 8px;
-          width: 75px;
-          margin-top: 10px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-  }
-   .action {
-      display: flex;
-      justify-content: flex-end;
-      align-items: end;
-      padding-left: 4px !important;
-      padding-right: 8px !important;
   }
 }

@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonPage, IonButton, IonContent } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   ArtistInterface,
   PlanInterface,
-  ShapesSize
+  ShapesSize,
+  Sizes,
+  Colors
 } from '../../../interfaces';
 import {
   BackgroundImage,
   Header,
   ButtonPlan,
-  Avatar
+  Avatar,
+  Button
 } from './../../../components';
 
 interface State {
@@ -159,16 +162,16 @@ class ArtistSupportPage extends React.Component<Props, State> {
         </div>
 
         <div className="margin-footer row fluid">
-          <div
-            className="ion-button button-large"
+          <Button
+            size={Sizes.lg}
+            label="Support Us"
+            type={ShapesSize.full}
+            color={Colors.support}
+            gradient={true}
             onClick={(): void =>
               history.push(`/home/thank-you`, { artistId: match.params.id })
             }
-          >
-            <IonButton className="support" size="large" expand="full">
-              Support Us
-            </IonButton>
-          </div>
+          />
         </div>
       </div>
     );

@@ -340,9 +340,10 @@ export interface EventWhoIsGoingInterface extends UserInterface {}
 
 export enum ShapesSize {
   rounded = 'rounded',
+  badge = 'badge',
   circle = 'circle',
   normal = 'normal',
-  full = 'full'
+  full = 'fluid'
 }
 export enum Sizes {
   xs = 'xs',

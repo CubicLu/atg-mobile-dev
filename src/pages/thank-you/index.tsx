@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { BackgroundImage, Button } from './../../components';
 import CheckIcon from '../../components/icon/check';
-import { Colors, Sizes } from '../../interfaces';
+import { Colors, Sizes, GradientDirection } from '../../interfaces';
 
 interface Props extends RouteComponentProps {
   artistId: string;
@@ -50,6 +50,7 @@ class ThankYouPage extends React.Component<Props> {
                   <Button
                     bold
                     size={Sizes.lg}
+                    gradientDirection={GradientDirection.vertical}
                     label="Continue Listening"
                     gradient={true}
                     onClick={(): void => {

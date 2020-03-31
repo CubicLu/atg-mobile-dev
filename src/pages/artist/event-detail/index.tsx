@@ -101,16 +101,12 @@ class EventDetailPage extends React.Component<Props, State> {
               backgroundBottomOpacity={0.15}
             />
             <div className="content-fixed" slot="fixed">
-              <div
-                className={`center-align badge-${
-                  this.state.willGo ? 'gray' : 'blue'
-                }`}
-              >
+              <div className={`flex-justify-center`}>
                 <Button
                   label={this.state.willGo ? "Can't go" : "I'm going"}
-                  color={this.state.willGo ? Colors.disable : Colors.secondary}
+                  color={this.state.willGo ? Colors.disable : Colors.blue}
+                  type={ShapesSize.badge}
                   gradient={true}
-                  bold
                   onClick={(): void => {
                     this.setState({ willGo: !this.state.willGo });
                   }}
@@ -132,7 +128,7 @@ class EventDetailPage extends React.Component<Props, State> {
                     let opacity = data.isFriend === true ? '' : 'opacity';
                     return (
                       <IonItem key={i}>
-                        <div className="row mx-1">
+                        <div className="row">
                           <div className={`col s2 no-padding ${opacity}`}>
                             <Avatar
                               type={ShapesSize.circle}
@@ -144,14 +140,14 @@ class EventDetailPage extends React.Component<Props, State> {
                           <div className={`col s7 no-padding info ${opacity}`}>
                             <span className="user f5">{data.username}</span>
                           </div>
-                          <div className="col s3 f6 bold action confirm-blue">
+                          <div className="col s3 f6">
                             <Button
-                              bold={true}
+                              className="mt-1"
                               gradient={true}
-                              color={Colors.secondary}
+                              color={Colors.blue}
                               size={Sizes.md}
                               type={ShapesSize.rounded}
-                              label="CONNECT"
+                              label="Connect"
                             />
                           </div>
                         </div>

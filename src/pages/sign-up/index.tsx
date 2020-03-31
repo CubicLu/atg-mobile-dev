@@ -1,7 +1,8 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonPage, IonButton } from '@ionic/react';
-import { BackgroundImage, InputText, Header } from './../../components';
+import { IonPage, IonRouterLink } from '@ionic/react';
+import { BackgroundImage, InputText, Header, Button } from './../../components';
+import { Sizes, ShapesSize } from '../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -22,7 +23,7 @@ class SignUpPage extends React.Component<Props> {
           rightCloseButton={true}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
-        <div className="initial-page-fullscreen double-top">
+        <div className="initial-page-fullscreen double-top mb-4">
           <div className="space-between h-100">
             <div className="row flex-compass h-100 center">
               <span className="brand-title">panthr</span>
@@ -32,7 +33,7 @@ class SignUpPage extends React.Component<Props> {
             </div>
 
             <div className="flex-compass fluid h-100 medium">
-              <div className="col s12 mt-40">
+              <div className="col s12 mt-5">
                 <InputText type="text" placeholder={'First Name'} />
               </div>
               <div className="row" />
@@ -58,15 +59,15 @@ class SignUpPage extends React.Component<Props> {
                 </p>
               </div>
 
-              <div className="row mt-40" />
-              <IonButton
-                className="primary gradient"
-                size="large"
-                routerLink="/enter-code"
-                expand="full"
-              >
-                Sign Up
-              </IonButton>
+              <div className="row mt-5" />
+              <IonRouterLink routerLink="/enter-code">
+                <Button
+                  size={Sizes.lg}
+                  label="Create an account"
+                  type={ShapesSize.full}
+                  gradient={true}
+                />
+              </IonRouterLink>
             </div>
           </div>
         </div>

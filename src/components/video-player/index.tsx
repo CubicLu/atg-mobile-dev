@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../reducers';
 import { Nullable } from '../../types/common';
 import { ButtonIcon } from '..';
-import { PlayIcon, PauseIcon } from '../icon';
+import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
 
 interface Props {}
 interface State {
@@ -63,6 +63,18 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     }
   }
 
+  renderTopButtons(): React.ReactNode {
+    return (
+      <div className="row top-buttons">
+        <div className="col s6">
+          <ButtonIcon icon={<FullscreenIcon />} />
+        </div>
+        <div className="col s6 flex-justify-content-end">
+          <ButtonIcon icon={<CloseIcon />} />
+        </div>
+      </div>
+    );
+  }
   renderButtonPlayOrPause(): React.ReactNode {
     if (!this.state.paused && this.state.first === true) {
       return (
@@ -107,6 +119,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <div className="video-player-component">
+        {this.renderTopButtons()}
         <div className="container">
           <video
             controls
@@ -122,9 +135,10 @@ class VideoPlayerComponent extends React.Component<Props, State> {
               type="video/mp4"
             ></source>
           </video>
+          {this.renderControls()}
         </div>
 
-        {this.renderControls()}
+       
       </div>
     );
   }

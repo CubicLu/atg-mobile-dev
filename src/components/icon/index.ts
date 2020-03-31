@@ -27,6 +27,7 @@ import BalloonIcon from './balloon';
 import ShareLineIcon from './share-line';
 import HeartIcon from './heart';
 import ChatMessageIcon from './chat-message';
+import FullscreenIcon from './fullscreen';
 
 export {
   MessageIcon,
@@ -57,5 +58,6 @@ export {
   BalloonIcon,
   ShareLineIcon,
   HeartIcon,
-  ChatMessageIcon
+  ChatMessageIcon,
+  FullscreenIcon
 };

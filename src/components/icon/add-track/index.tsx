@@ -18,11 +18,11 @@ export default class AddTrackIcon extends React.Component<Props> {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="26.525"
-        height="26.525"
-        viewBox="0 0 26.525 26.525"
+        width="30"
+        height="30"
+        viewBox="0 0 30 30"
       >
-        <g>
+        <g transform="translate(2 2)">
           <path
             d="M24,12A12,12,0,1,1,12,0,12,12,0,0,1,24,12Z"
             transform="translate(24.744 0) rotate(87)"

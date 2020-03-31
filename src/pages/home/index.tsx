@@ -48,8 +48,11 @@ class HomePage extends React.Component<Props> {
       authenticated
     } = this.props;
     const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
+    const initial = (): JSX.Element => <Redirect to="/initial" />;
 
-    if (!authenticated) return <React.Fragment />;
+    if (!authenticated) {
+      return <Route path="/" render={initial} />;
+    }
 
     return (
       <IonReactRouter>
@@ -78,8 +81,8 @@ class HomePage extends React.Component<Props> {
             {tabs.map((p: TabsInterface, i: number): any => (
               <Route exact path={p.path} component={p.component} key={i} />
             ))}
-            <Route exact path="/" render={redirect} />
-            <Route exact path="/home" render={redirect} />
+            <Route animated={false} exact path="/home" render={redirect} />
+            <Route render={redirect} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">

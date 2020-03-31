@@ -53,11 +53,6 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
-  }
 
   handleScroll(event: any): void {
     const { fixed, scrolling } = this.state;
@@ -93,14 +88,14 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
                 rightActionOnClick={(): void => this.props.history.goBack()}
                 centerContent={
                   <div className="center-col">
-                    <div className="title-page">Deep Dive</div>
-                    <div className="artist-name">{currentArtist.name}</div>
+                    <div className="h2 l1">Deep Dive</div>
+                    <div className="f6 l1">{currentArtist.name}</div>
                   </div>
                 }
               />
               <div className="title-container">
-                <div className="title-page">Deep Dive</div>
-                <div className="artist-name">{currentArtist.name}</div>
+                <div className="h000">Deep Dive</div>
+                <div className="f1">{currentArtist.name}</div>
               </div>
               <Menu
                 tabs={deepDiveTabs}

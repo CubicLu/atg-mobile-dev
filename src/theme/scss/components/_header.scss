@@ -16,13 +16,15 @@
         right: 0;
     }
     &.header-top{
-        top: $header-top;
+        top: 0;
     }
     .default-button{
         margin-top: $button-margin-top;
         border-radius: 50%;
         height: $header-button;
         width: $header-button;
+        min-height: $header-button;
+        min-width: $header-button;
         color: #FFF;
         cursor: pointer;
         text-decoration: none;
@@ -45,12 +47,9 @@
             margin-left: 0;
             margin-right: $button-margin-right;
         }
-        .community{
-            height: pxToRem(38);
-            margin-left: 9px;
-        }
     }
     .center{
+        line-height: 1.1;
         display: flex;
         width: 100%;
         justify-content: center;
@@ -69,77 +68,22 @@
         z-index: 1;
     }
 
-    .title{
+    .community-artist-name{
         font-size: 30px;
         line-height: 34px;
         font-family: "Industria";
+        margin-left: 8px;
+        font-weight: 600;
         color: white;
+        text-align: left;
+        text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
         width: 100%;
-        text-align: center;
-        &.left{
-            text-align: left;
-        }
-        &.artist-name{
-            font-size: 30px;
-            line-height: 34px;
-            font-family: "Industria";
-            margin-left: 8px;
-            font-weight: 600;
-            color: white;
-            text-align: left;
-            text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
-            width: 100%;
-            opacity: 1;
-            animation-name: fadeInOpacity;
-            animation-timing-function: ease-in;
-            animation-duration: 400ms;
-            &.hide{
-                opacity: 0;
-            }
-        }
-        &.biography{
-            color: white;
-            --color: #5e7fb1;;
-            top: 0;
-            text-align: center;
-            font-family: "Baskerville" !important;
-            left: 0px;
-            z-index: 1;
-            margin-top: 0;
-            margin-bottom: 0;
-            font-size: pxToRem(50);
-            line-height: 36px;
-        }
-        &.community{
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.4;
-            margin-top: 0;
-            letter-spacing: 1.2px;
-            text-align: left;
-            color: #ffffff;
-            font-size: pxToRem(30);
-            line-height: 36px;
-            margin-left: 0 !important;
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-timing-function: ease-in;
+        animation-duration: 400ms;
+        &.hide{
+            opacity: 0;
         }
     }
-
-    .subtitle{
-        &.community{
-            height: 17px;
-            font-family: Helvetica;
-            font-size:  pxToRem(14);
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.21;
-            letter-spacing: normal;
-            text-align: left;
-            color: #ffffff;
-            margin-left: 0 !important;
-        }
-    }
-
-    
 }

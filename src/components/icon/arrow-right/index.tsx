@@ -4,18 +4,21 @@ interface Props {
   color: string;
   width: number;
   height: number;
+  stroke: number;
 }
 
 class ArrowRightIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
     width: 10,
-    height: 20
+    height: 20,
+    stroke: 2
   };
 
   render(): React.ReactNode {
     return (
       <svg
+        id="arrow-right"
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
@@ -29,7 +32,7 @@ class ArrowRightIcon extends React.Component<Props> {
             stroke={this.props.color}
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth="2"
+            strokeWidth={this.props.stroke}
           />
         </g>
       </svg>

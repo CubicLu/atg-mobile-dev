@@ -1,75 +1,21 @@
-.card{
-    &.card-artist{
-        margin: $card-artist-margin;
-        height: 140px;
-        background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
-        background-size: cover;
-        border-radius: 10px;
-        -moz-box-shadow: inset 0 -45px 30px -20px #000000;
-        -webkit-box-shadow: inset 0 -45px 30px -20px #000000;
-        box-shadow: inset 0 -45px 30px -20px #000000;
+.card-artist{
+    height: 140px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    border-radius: 10px;
+    -moz-box-shadow: inset 0 -45px 30px -20px #000000;
+    -webkit-box-shadow: inset 0 -45px 30px -20px #000000;
+    box-shadow: inset 0 -45px 30px -20px #000000;
 
-        .row{
-            margin-bottom: 0;
-            height: 100%;
-            display: flex;
-            .row {
-                height: auto;
-            }
-        }
-
-        .infos{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            .name{
-                font-family: "Industria";
-                color: #fff;
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 24px;
-                padding-bottom: 12px;
-                padding-top: 8px;
-                padding-left: 4px;
-                span{
-                    display:inline-block;
-                    border-bottom:1px solid #FFF;
-                }
-            }
-            .button{
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                padding-top: 8px;
-                padding-right: 15px;
-
-                button {
-                    padding: 0;
-                    height: 15px;
-                    padding-bottom: 5px;
-                }
-            }
-
-            .support {
-                display: flex;
-                justify-content: flex-end;
-                padding-right: 12px;
-                padding-bottom: 7px;
-                
-                button {
-                    padding: 0;
-                    display: flex;
-                    justify-content: center;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-            }
-        }
-
+    .artist-card-name{
+        display:inline-block;
+        border-bottom:1px solid #FFF;
     }
+}
 
+.card{
     &.image{
         margin: 0.5rem 0 0.5rem 0 !important;
         height: 165px;
@@ -162,10 +108,7 @@
                 content: attr(data-tapeindex) ".";
                 display: inline-block;
                 color: rgba(255, 255, 255, 0.5);
-                font-family: "Industria";
-                font-size: 36px;
                 position: relative;
-                font-weight: 600;
                 right: 18px;
                 bottom: 10px;
             }
@@ -176,7 +119,7 @@
             justify-content: center;
             .playlist, .quantity{
                 color: #FFF;
-                font-family: Arial, Helvetica, sans-serif;
+                font-family: "Helvetica";
                 display: flex;
                 justify-content: center;
             }
@@ -204,7 +147,9 @@
             height: 25px;
             width: 100%;
             font-family: "Helvetica";
-            max-width: 45px;
+            font-size: 14px;
+            white-space: nowrap;
+            max-width: 48px;
             padding: 3px 3px;
             text-align: center;
             color: #FFF;
@@ -243,119 +188,6 @@
 
     &.circle{
         border-radius: 50%;
-    }
-
-    &.event{
-        background: transparent;
-        box-shadow: none;
-        border-radius: 0;
-        margin-top: 20px;
-
-        .circle {
-            &.calendar{
-                height: 105px;
-                width: 105px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-
-                &.color{
-                    @include color-modifiers($attribute: 'background-color');
-                }
-                &.color-green-base{
-                    background-color: #89C832;
-                }
-
-
-                div{
-                    &:first-child{
-                        font-size: pxToRem(18);
-                        color: #FFF;
-                        line-height: 18px;
-                    }
-
-                    &:last-child{
-                        font-size: pxToRem(36);
-                        color: #FFF;
-                        line-height: 38px;
-                    }
-                }
-
-            }
-        }
-        h1{
-            margin-top: 0px;
-            color: #01AED4;
-            font-size: 26px;
-            font-weight: bold;
-            font-family: "Helvetica";
-            margin-bottom: 5px;
-        }
-
-        h2, h3{
-            margin-top: 0px;
-            color: #fff;
-            font-size: 26px;
-            font-weight: 400;
-            font-family: "Helvetica";
-            margin-bottom: 5px;
-        }
-
-        h5{
-            font-size: 24px;
-        }
-        h6{
-            font-weight: bold;
-            font-family: "Helvetica";
-            color: #01AED4;
-            font-size: 20px;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-        .h7{
-            font-weight: normal;
-            font-family: "Helvetica";
-            color: #ffffff;
-            font-size: 16px;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-        .h9{
-            font-weight: normal;
-            font-family: "Helvetica";
-            color: #ffffff;
-            font-size: 13px;
-        }
-        .bold{
-            font-weight: bold;
-        }
-
-        .list {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 7px;
-            li{
-                margin: 0;
-                justify-content: center;
-                align-items: center;
-                display: flex;
-                flex-direction: column;
-                button{
-                    padding: 0;
-                }
-
-                .label{
-                    width: 100%;
-                    font-family: "Helvetica";
-                    color: #fff;
-                    margin-top: 8px;
-                    text-align: center;
-                    font-size: 19px;
-                }
-            }
-        }
     }
 
     &.album-gallery{
@@ -409,7 +241,7 @@
 
             .user{
                 label{
-                    font-family: Helvetica;
+                    font-family: "Helvetica";
                     font-size: pxToRem(12);
                     font-weight: normal;
                     font-stretch: normal;
@@ -436,68 +268,48 @@
             width: 100%;
         }
     }
-
-    @media screen and (max-width: 360px){
-        &.event{
-            .circle {
-                &.calendar{
-                    height: 80px;
-                    width: 80px;
-                }
-            }
-
-            h1, h2{
-                font-size: 20px;
-            }
-
-            h3{
-                font-size: 14px;
-            }
-
-            .list {
-                li{
-                    .label{
-                        font-size: 12px;
-                    }
-                }
-            }
-        }
-    }
 }
 
-.card-out-content{
-    .col{
-        padding: 0 !important;
-        .row{
-            margin-left: 0;
-           margin-right: 0;
+.card-event{
+    background: transparent;
+    padding: $card-padding;
+    color: #000000;
+    min-height: 180px;
+    .white-text{ 
+        color: #fff; 
+        .list{
+            color: #fff;
         }
     }
-
-    h1{
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        &.title, &.artist{
-            font-family: "Helvetica" !important;
-            font-size: 24px !important;
-            font-weight: 400 !important;
-            color: #FFF;
-            line-height: 2;
+    .calendar{
+        border-radius: 50%;
+        height: 105px;
+        width: 105px;
+        &.color{
+            @include color-modifiers($attribute: 'background-color');
         }
-        &.artist{
-            font-size: 18px !important;
-            align-items: center;
-            display: flex;
+        &.color-green-base{
+            background-color: #89C832;
         }
     }
-
-    .button{
-        display: inline-flex;
+    .calendar-blue {
+        color: #01aed4;
+    }
+    .list {
+        margin-right: 8px;
+        width: 100%;
         justify-content: space-between;
-        margin-top: -14px;
-        button{
-            padding: 0;
+    }
+    li{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    @media screen and (max-width: 360px){
+        .calendar{
+            height: 80px;
+            width: 80px;
         }
     }
 }
-

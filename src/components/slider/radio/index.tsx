@@ -6,19 +6,13 @@ import { CardImage } from './../../../components';
 import { ShapesSize } from '../../../interfaces';
 
 interface Props {
-  title: string;
-  viewAll?: boolean;
   scroll?: boolean;
   data?: any[];
 }
 
 class SliderRadioComponent extends React.Component<Props> {
-  public static defaultProps = {
-    viewAll: true
-  };
-
   render(): React.ReactNode {
-    const { title, data } = this.props;
+    const { data } = this.props;
     if (!data) return <div />;
 
     const settings: any = {
@@ -33,10 +27,6 @@ class SliderRadioComponent extends React.Component<Props> {
 
     return (
       <div className="slider radio">
-        <div className="list-feature-component align-bottom row">
-          <h1 className="title">{title}</h1>
-        </div>
-
         <Slider {...settings}>
           {data.map(
             (d, i): React.ReactNode => (

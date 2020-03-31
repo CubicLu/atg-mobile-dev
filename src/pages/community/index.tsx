@@ -6,7 +6,8 @@ import {
   CardPost,
   ButtonIcon,
   Button,
-  ChatMessageIcon
+  ChatMessageIcon,
+  SectionTitle
 } from './../../components';
 import { ApplicationState } from './../../reducers';
 import {
@@ -127,7 +128,7 @@ class CommunityPage extends React.Component<Props, State> {
           }}
           leftBackButton={true}
           title={this.props.currentCommunityArtist?.fullname}
-          titleClassName={`artist-name`}
+          titleClassName={`community-artist-name`}
           rightActionButton={this.state.joined ? false : true}
           rightContent={
             this.state.joined && (
@@ -145,40 +146,35 @@ class CommunityPage extends React.Component<Props, State> {
       return (
         <Header
           leftBackButton={false}
-          leftContent={
-            <div className="community">
-              <h2 className="title community">Community</h2>
-              <h1 className="subtitle community">Musical Goddess</h1>
-            </div>
-          }
           rightContent={
             <div className="default-button dark" onClick={(): void => {}}>
               <PlusIcon />
             </div>
           }
           rightActionButton={true}
-        />
+        >
+          <div className="community mx-3 mt-5">
+            <div className="h2 community">Community</div>
+            <div className="f6 no-wrap">Musical Goddess</div>
+          </div>
+        </Header>
       );
   }
 
   renderTitleAndFilterPosts(): React.ReactNode {
     return (
-      <div className="row filter">
-        <div className="col s9">
-          <h1 className="title">
-            {this.state.isArtist
-              ? this.props.currentCommunityArtist?.name.toUpperCase()
-              : 'MY'}{' '}
-            COMMUNITY
-          </h1>
-        </div>
-        <div className="col s3 justify-content-end">
-          <Button
-            type={ShapesSize.rounded}
-            color={Colors.transparentGray}
-            label={'Filter'}
-          />
-        </div>
+      <div className="row filter mx-3 fluid">
+        <span className="h1 p-0 letter-spacing-2 align-start">
+          {this.state.isArtist
+            ? this.props.currentCommunityArtist?.name.toUpperCase()
+            : 'MY'}{' '}
+          COMMUNITY
+        </span>
+        <Button
+          type={ShapesSize.rounded}
+          color={Colors.transparentGray}
+          label={'Filter'}
+        />
       </div>
     );
   }
@@ -186,7 +182,7 @@ class CommunityPage extends React.Component<Props, State> {
   renderJoinButton(): React.ReactNode {
     if (!this.state.joined && this.state.isArtist) {
       return (
-        <div className="justify-center">
+        <div className="flex-justify-center">
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
@@ -202,6 +198,7 @@ class CommunityPage extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { isArtist } = this.state;
+    const { isPlaying } = this.props;
     return (
       <IonPage id="community-page">
         <BackgroundImage
@@ -215,35 +212,28 @@ class CommunityPage extends React.Component<Props, State> {
         />
         {this.renderHeader()}
         <div
-          className={
-            `community-page content` + (this.props.isPlaying && ' is-playing')
-          }
+          className={`community-page content` + (isPlaying && ' is-playing')}
         >
           <IonContent>
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (
-              <SliderStories
-                onClickViewAll={(): void => {
-                  this.props.history.push('/home/community/artist');
-                }}
-                title={
-                  this.state.isArtist ? 'DAILY DRIP' : 'ARTIST COMMUNITIES'
-                }
-                labelKey="label"
-                imageKey="image"
-                data={this.props.stories}
-              />
+              <>
+                <SectionTitle
+                  title={isArtist ? 'DAILY DRIP' : 'ARTIST COMMUNITIES'}
+                  viewAll={true}
+                  className="mx-3"
+                />
+                <SliderStories
+                  labelKey="label"
+                  imageKey="image"
+                  data={this.props.stories}
+                />
+              </>
             )}
             {this.renderTitleAndFilterPosts()}
             {this.props.posts.map(
               (data, i): React.ReactNode => {
-                return (
-                  <CardPost
-                    key={i}
-                    post={data}
-                    showUser={!this.state.isArtist}
-                  />
-                );
+                return <CardPost key={i} post={data} showUser={!isArtist} />;
               }
             )}
           </IonContent>

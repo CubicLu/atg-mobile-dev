@@ -1,0 +1,42 @@
+.community-all-artists-page{
+    &.is-playing{
+        padding-bottom: 43px;
+    }
+    &.content{
+        position: absolute;
+        top: 90px;
+        bottom: 0;
+        height: auto;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 0;
+
+        .col{
+            margin-bottom: 20px;
+            margin-left: 0;
+            margin-right: 0;
+            padding-right: 0;
+            padding-left: 0;
+            div{
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                label{
+                    font-family: "Helvetica Neue";
+                    font-size:  pxToRem(16);
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 2.5;
+                    letter-spacing: normal;
+                    color: #ffffff;
+                    width: 100%;
+                }
+            }
+            
+        }
+        
+    }
+}

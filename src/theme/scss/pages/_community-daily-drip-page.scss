@@ -1,0 +1,48 @@
+.community-daily-drip-page{
+    &.is-playing{
+        padding-bottom: 43px;
+    }
+
+    .header{
+        --ion-safe-area-top: $header-margin-top;
+        margin-top: $header-margin-top;
+        margin-left: $header-margin-left;
+        margin-right: $header-margin-right;
+        margin-bottom: $header-margin-bottom;
+
+        .row{
+            margin-bottom: 0;
+        }
+
+        .user-info{
+            display: inline-flex;
+            align-items: center;
+
+            span{
+                font-family: "Helvetica";
+                font-size: 16px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.19;
+                letter-spacing: normal;
+                color: #ffffff;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .footer{
+        .buttons{
+            .btn{
+                margin-right: 12px;
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+           
+        }
+    }
+}
+
+

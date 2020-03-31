@@ -33,6 +33,9 @@ import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
 import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
 import TrackListPage from './artist/track-list';
+import CommunityDailyDripPage from './community/daily-drip';
+
+import CommunityAllArtistsPage from './community/all-artists';
 
 export {
   InitialPage,
@@ -67,5 +70,7 @@ export {
   ArtistGalleryGridPage,
   ArtistGalleryPhotoPage,
   TrackListPage,
-  ThankYouPage
+  ThankYouPage,
+  CommunityDailyDripPage,
+  CommunityAllArtistsPage
 };

@@ -1,0 +1,9 @@
+{
+  "android": {
+      "release": {
+          "keystore": "./keystore/my-release-key.keystore",
+          "alias": "atg",
+          "keystoreType": ""
+      }
+  }
+}

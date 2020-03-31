@@ -5,6 +5,8 @@ import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 import { SongInfoButton } from '../icon/player';
+import { Colors } from '../../interfaces';
+import ChatMessageIcon from '../icon/chat-message';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -36,6 +38,8 @@ interface Props extends RouteComponentProps {
   translucent?: boolean;
   ios?: boolean;
   fixed?: boolean;
+  rightButtonGroup?: boolean;
+  parentCallback?: Function;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -51,6 +55,7 @@ class HeaderComponent extends React.Component<Props> {
     rightAddButton: false,
     rightFilterButton: false,
     rightUserGroupButton: false,
+    rightButtonGroup: false,
     centerContent: null,
     rightContent: null,
     translucent: false,
@@ -67,6 +72,12 @@ class HeaderComponent extends React.Component<Props> {
     }
     this.props.history.action = 'POP';
     return this.props.history.goBack();
+  };
+
+  openChatPanel = (shouldDisplay: boolean): Function => {
+    return this.props.parentCallback
+      ? this.props.parentCallback(shouldDisplay)
+      : null;
   };
 
   render(): React.ReactNode {

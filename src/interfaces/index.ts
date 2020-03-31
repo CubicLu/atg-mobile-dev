@@ -224,7 +224,7 @@ export interface PostInterface {
 export interface CommentInterface {
   text: string;
   user: UserInterface;
-  replies: CommentInterface[] | null;
+  replies?: CommentInterface[] | null;
 }
 
 export interface CommentCoverInterface {

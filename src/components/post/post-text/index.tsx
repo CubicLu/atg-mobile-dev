@@ -6,6 +6,11 @@ import { ApplicationState } from '../../../reducers';
 
 interface Props {}
 class PostText extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
+
+
   render(): React.ReactNode {
     return (
       <div className={'post-text'}>

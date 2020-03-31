@@ -7,6 +7,7 @@ interface Props {
   data?: any[];
   labelKey?: string;
   imageKey?: string;
+  onPressItem?: (id) => void;
   onClickViewAll?: Function;
 }
 

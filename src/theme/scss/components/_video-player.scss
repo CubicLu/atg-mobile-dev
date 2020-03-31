@@ -1,3 +1,40 @@
 .video-player-component{
+    position: relative;
+    height: $video-player-height;
+    background: #000;
 
+    .container{
+        margin: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         .video{
+            width: 100%;
+            height: 100%;
+        }
+    }
+   
+    .video-controls{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .play-button, .pause-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            svg{
+                margin-left: 5px;
+            }
+        }
+
+        .pause-button{
+            svg{
+                margin-left: 0;
+            }
+        }
+    }
 }

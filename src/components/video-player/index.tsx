@@ -116,6 +116,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
             poster="poster.jpg"
             ref={(ref): HTMLVideoElement | null => (this.video = ref)}
             playsInline
+            webkit-playsinline
           >
             <source
               src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/videoplayback.mp4"

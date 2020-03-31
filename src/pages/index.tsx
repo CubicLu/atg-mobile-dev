@@ -34,6 +34,8 @@ import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
 import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
 import TrackListPage from './artist/track-list';
 
+import CommunityAllArtistsPage from './community/all-artists';
+
 export {
   InitialPage,
   SignUpPage,
@@ -67,5 +69,6 @@ export {
   ArtistGalleryGridPage,
   ArtistGalleryPhotoPage,
   TrackListPage,
-  ThankYouPage
+  ThankYouPage,
+  CommunityAllArtistsPage
 };

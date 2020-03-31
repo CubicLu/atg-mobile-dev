@@ -7,14 +7,17 @@ interface Props {
   data?: any[];
   labelKey?: string;
   imageKey?: string;
+  onClickViewAll?: Function;
 }
 
 class SliderStoriesComponent extends React.Component<Props> {
   public static defaultProps = {
     scroll: false,
     labelKey: 'label',
-    imageKey: 'image'
+    imageKey: 'image',
+    onClickViewAll: (): void => {}
   };
+
   render(): React.ReactNode {
     const { data, imageKey, labelKey } = this.props;
     if (!data) return <div />;

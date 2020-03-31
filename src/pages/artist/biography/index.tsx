@@ -6,14 +6,10 @@ import {
   IonSlides,
   IonSlide,
   IonImg,
-  IonGrid,
-  IonRow,
   IonPage,
-  CreateAnimation,
-  IonCol
+  CreateAnimation
 } from '@ionic/react';
 import {
-  BackgroundImage,
   ModalSlide,
   Header,
   BiographyList,
@@ -82,11 +78,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-  UNSAFE_componentWillMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
-  }
 
   handleScroll(event: CustomEvent<any>): void {
     const currentScroll = validateScrollHeader(event, 180, 180);
@@ -103,6 +94,58 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     if (!slides) return;
     chapter ? slides.slideTo(chapter) : slides.slideNext();
     this.props.updateSettingsModal(false, null);
+  }
+
+  chapterFooter(): React.ReactNode {
+    return (
+      <div className="row footer p-4 fluid mt-2 mb-4">
+        <div className="footer-buttons align-start">
+          <ButtonIcon
+            color={Colors.orange}
+            icon={<StarIcon width={24} height={24} />}
+          />
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <ButtonIcon
+            color={Colors.green}
+            icon={<ShareIcon width={22} height={20} />}
+          />
+        </div>
+        <div className="align-end" onClick={(): void => this.changeChapter()}>
+          <span className="f3 l15 dark">NEXT&nbsp;</span>
+          <ArrowRightIcon width={18} height={18} color={'#000'} />
+        </div>
+      </div>
+    );
+  }
+
+  articleAlbum(items: AlbumInterface[]): React.ReactNode {
+    return (
+      <div className="row no-margin">
+        {items.map((item: AlbumInterface, i: number): any => (
+          <div className="col s6 no-padding" key={i}>
+            <IonImg style={{ border: '4px solid #fff' }} src={item.image} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  readMore(activeBio: BiographyInterface): React.ReactNode {
+    return (
+      <div className="row">
+        <div className="readmore h00 dark mb-2">
+          {activeBio.readMore?.title}
+        </div>
+
+        {activeBio.readMore?.items.map(
+          (item: AlbumInterface, i: number): any => (
+            <div className="col s4 album no-padding center-align" key={i}>
+              <IonImg src={item.image} />
+              <span className="f6 dark read-more-label">{item.name}</span>
+            </div>
+          )
+        )}
+      </div>
+    );
   }
 
   render(): React.ReactNode {
@@ -127,16 +170,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
       }),
       'background-white-base'
     );
-
     const activeBio = biography[this.state.currentPage];
-    const topheader: React.ReactNode = (
-      <React.Fragment>
-        <br />
-        <span className="biography-header">{artist.name}</span>
-        <br />
-        <span className="biography-subheader">Biography</span>
-      </React.Fragment>
-    );
 
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
@@ -149,13 +183,24 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               ref={this.titleRef}
               fromTo={{
                 property: 'color',
-                toValue: 'var(--color)',
-                fromValue: 'white'
+                fromValue: '#ffffff',
+                toValue: '#00000000'
               }}
             >
-              <span className="biography-header">{activeBio.title}</span>
+              <span className="baskerville h0 l1">{activeBio.title}</span>
             </CreateAnimation>
           }
+        />
+        <HeaderOverlay
+          ref={this.headerRef}
+          content={
+            <div className="m-4">
+              <span className="text-18 l1">{artist.name}</span>
+              <br />
+              <span className="text-14 l1">Biography</span>
+            </div>
+          }
+          className="biography"
         />
 
         <IonContent
@@ -163,111 +208,61 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           scrollY={true}
           scrollX={false}
           onIonScroll={this.handleScroll.bind(this)}
-          className="artist-biography-content"
         >
-          <HeaderOverlay
-            ref={this.headerRef}
-            content={topheader}
-            className="biography"
-          />
-          <div>
-            <IonSlides ref={this.slides} options={{ autoHeight: true }}>
-              {biography.map((bio: BiographyInterface): any => (
-                <IonSlide key={bio.chapter} className={bio.template}>
-                  <div className="chapter-zero">
-                    <BackgroundImage
-                      gradient="180deg, #231441, #080709"
-                      className={bio.template}
-                      backgroundImage={bio.cover}
-                    />
-                    <div className="cover-feature">
-                      <h1 className="feature">
-                        {bio.name}
-                        <p className="read">Read&nbsp;</p>
-                      </h1>
-                      <h2 className="subtitle">{bio.subtitle}</h2>
+          <IonSlides ref={this.slides} options={{ autoHeight: false }}>
+            {biography.map((bio: BiographyInterface): any => (
+              <IonSlide key={bio.chapter} className={bio.template}>
+                <div
+                  className={`chapter-zero ${bio.template}`}
+                  style={{
+                    backgroundImage: `url(${bio.cover}), linear-gradient(#231441, #080709)`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                >
+                  <div className="cover-feature">
+                    <h1 className="feature">
+                      {bio.name}
+                      <p className="read">Read&nbsp;</p>
+                    </h1>
+                    <h2 className="sub f4">{bio.subtitle}</h2>
+                  </div>
+                </div>
+
+                <div className="chapter left-align">
+                  {bio.nameHeadline && (
+                    <div className="p-3 mt-2 mb-0 f0 bold dark name-headline">
+                      {bio.nameHeadline}
                     </div>
+                  )}
+
+                  <div className="m-3 mb-1 headline h000">{bio.headline}</div>
+
+                  <div className="mx-3 baskerville italic h4 dark">
+                    by {bio.byline}
                   </div>
 
-                  <div className="chapter">
-                    <IonGrid>
-                      <h1 className="name-headline">{bio.nameHeadline}</h1>
-                      <h1 className="headline">{bio.headline}</h1>
-                      <div className="byline">by {bio.byline}</div>
-                      <IonRow className="skyline">
-                        <IonImg src={bio.skyline} />
-                      </IonRow>
-                      <IonRow>
-                        <div className="article">
-                          {bio.leadParagraph === '.... details'
-                            ? this.victoria
-                            : bio.leadParagraph}
-                          <IonRow>
-                            <br />
-                            {bio.items?.map(
-                              (item: AlbumInterface, i: number): any => (
-                                <IonCol size="6" key={i}>
-                                  <IonImg src={item.image} />
-                                </IonCol>
-                              )
-                            )}
-                          </IonRow>
-                        </div>
-                        {bio.readMore && (
-                          <div className="article">
-                            <h1 className="readmore">{bio.readMore.title}</h1>
-                            <IonRow>
-                              <br />
-                              {bio.readMore.items.map(
-                                (item: AlbumInterface, i: number): any => (
-                                  <IonCol size="4" key={i}>
-                                    <IonImg src={item.image} />
-                                    <span className="item">{item.name}</span>
-                                  </IonCol>
-                                )
-                              )}
-                            </IonRow>
-                          </div>
-                        )}
-                      </IonRow>
-                      <IonRow className="row footer">
-                        <div className="col s1" />
-                        <div className="col s2">
-                          <ButtonIcon
-                            color={Colors.green}
-                            icon={<StarIcon width={24} height={24} />}
-                          />
-                        </div>
-                        <div className="col s2">
-                          <ButtonIcon
-                            color={Colors.green}
-                            icon={<ShareIcon width={22} height={20} />}
-                          />
-                        </div>
-                        <div className="col s1" />
+                  {bio.skyline && <IonImg className="sky" src={bio.skyline} />}
 
-                        <div className="col s1" />
-                        <div
-                          onClick={(): void => this.changeChapter()}
-                          className="col s3 next"
-                        >
-                          <span>NEXT</span>
-                        </div>
-                        <div className="col s1 arrow">
-                          <ArrowRightIcon
-                            width={18}
-                            height={18}
-                            color={'#000'}
-                          />
-                        </div>
-                        <div className="col s1" />
-                      </IonRow>
-                    </IonGrid>
+                  <div className="p-3 mt-2 mb-2 h3 baskerville left-align article l15">
+                    {bio.leadParagraph === '.... details'
+                      ? this.victoria
+                      : bio.leadParagraph}
                   </div>
-                </IonSlide>
-              ))}
-            </IonSlides>
-          </div>
+
+                  <div className="p-3">
+                    {bio.items && this.articleAlbum(bio.items)}
+                  </div>
+
+                  <div className="p-3">
+                    {bio.readMore && this.readMore(bio)}
+                  </div>
+
+                  {this.chapterFooter()}
+                </div>
+              </IonSlide>
+            ))}
+          </IonSlides>
         </IonContent>
         <ModalSlide
           onClose={(): void => updateSettingsModal(false, null)}

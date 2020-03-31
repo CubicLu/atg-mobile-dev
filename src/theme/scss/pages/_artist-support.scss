@@ -1,22 +1,5 @@
 .artist-support-page{
     overflow: auto;
-    .title{
-        font-size: pxToRem(38);
-        line-height: 1;
-    }
-    .subtitle{
-        font-size: pxToRem(18);
-    }
-    h5{
-        color: #ffffff;
-        text-align: center;
-        font-weight: normal;
-        font-size: 18px;
-        font-family: "Helvetica Neue";
-        line-height: 2;
-        padding-bottom: 36px;
-
-    }
     .col{
         padding: 0;
         display: flex;
@@ -30,55 +13,22 @@
     &.detail{
         color: #000;
         .header{
-            padding-left: 8px;
-            line-height: 1.17;
-            font-family: "Industria";
-            font-weight: bold;
             display: block;
         }
         margin-top: $default-height-header;
         margin-bottom: $default-height-header;
-        margin-left: $list-margin;
-        margin-right: $list-margin;
-        .text{
-            font-family: 'Helvetica';
-            padding: 10px;
-            text-align: justify;
-        }
-        .title{
-            font-size: pxToRem(48);
-            color: #000;
-            margin-left: 0;
-        }
-        .subtitle{
-            font-size: pxToRem(36);
-            color: #000;
-            margin-left: 0;
-        }
         .price{
             line-height: 1;
             margin-left: 0;
-            color: #000;
-            font-size: pxToRem(72);
             .currency{
-                font-size: 30px;
                 vertical-align: middle;
             }
             .price-after{
-                font-family: "Helvetica";
-                font-size: 14px;
-                line-height: 1.1;
                 vertical-align: bottom;
                 display: inline-block;
                 margin-left: 8px;
                 margin-bottom: 8px;
             }
-        }
-        .body{
-            font-size: 16px;
-            font-family: 'Helvetica';
-            line-height: 1.5;
-            font-weight: 400;
         }
     }
 }

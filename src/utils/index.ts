@@ -19,9 +19,17 @@ export function setHeight(original: number): number {
   }
 }
 
+export function shadowTitle(url: string): CSSProperties {
+  return {
+    backgroundImage: `linear-gradient(180deg, #ffffff00 40%, #000 100%), url(${url})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat'
+  };
+}
+
 export function artistBackground(
   artist: ArtistInterface | any,
-  blur: boolean = false,
+  fade: boolean = false,
   coverType: string = 'background'
 ): CSSProperties {
   let backgroundImageArray: string[] = [];
@@ -40,7 +48,7 @@ export function artistBackground(
       }
     };
   const gradient = `180deg,${artist.backgroundGradient?.color1}00 0%,${artist.backgroundGradient?.color1}d1 45%,${artist.backgroundGradient?.color2} 100%`;
-  if (blur) {
+  if (fade) {
     backgroundImageArray.push('linear-gradient(180deg,#00000030,#00000030)');
   }
   if (artist.cover[coverType]) {
@@ -51,8 +59,6 @@ export function artistBackground(
 
   return {
     backgroundImage,
-    filter: 'saturate(1.19)',
-    backdropFilter: blur ? 'blur(5px)' : '',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat'
   };

@@ -44,6 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:android": "cordova build android --release -- --packageType=bundle --password=$ATGPASS --storePassword=$ATGSTOREPASS",
     "build-prod": "ionic build --prod --engine=cordova --platform=android",
     "build-ios": "cordova build ios --prod --release --emulator",
     "test": "react-scripts test",
@@ -51,6 +52,8 @@
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "emulator:android": "cordova run android",
     "emulator:ios": "cordova run ios",
+    "simulate:android": "simulate android --target=chrome",
+    "simulate:ios": "simulate ios --target=chrome",
     "build ios": "ionic build && cordova build ios --prod --release",
     "build:ionic": "ionic build"
   },

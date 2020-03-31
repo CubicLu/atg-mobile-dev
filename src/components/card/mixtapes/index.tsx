@@ -48,7 +48,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
         <div className="row">
           <div className="col s12 cover">
             <div
-              className={`tape`}
+              className={'h1 tape'}
               data-tapeindex={String(index).padStart(2, '0')}
             >
               {this.state.openMenu === false && (

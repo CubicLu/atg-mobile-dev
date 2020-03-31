@@ -23,8 +23,8 @@ class InitialPage extends React.Component<Props> {
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
             <div className="row h-25">
-              <h1 className="title secondary brand-title">panthr</h1>
-              <h2 className="brand subtitle">ARTIST-TO-FAN</h2>
+              <div className="brand-title">panthr</div>
+              <div className="mx-25 h2 bold">ARTIST-TO-FAN</div>
             </div>
 
             <div className="flex-compass h-50 south west">
@@ -33,7 +33,9 @@ class InitialPage extends React.Component<Props> {
                 <br />
                 ULTIMATE
               </h1>
-              <h2 className="subtitle-album">DESTINATION FOR ARTIST & FANS</h2>
+              <span className="initial-description bold h1">
+                DESTINATION FOR ARTIST & FANS
+              </span>
             </div>
 
             <div className="footer row fluid">

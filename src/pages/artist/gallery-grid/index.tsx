@@ -6,15 +6,10 @@ import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 import { GalleryInterface, ArtistInterface } from '../../../interfaces';
-import { validateScrollHeader } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   isPlaying: boolean;
-}
-
-interface State {
-  blur: boolean;
 }
 
 interface DispatchProps {
@@ -34,13 +29,8 @@ interface Props
   album: GalleryInterface;
 }
 
-class ArtistGalleryGridPage extends React.Component<Props, State> {
+class ArtistGalleryGridPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
-  constructor(props: Props) {
-    super(props);
-    this.state = { blur: false };
-  }
-
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.id !== this.props.match.params.id ||
@@ -175,14 +165,6 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
     }
   }
 
-  handleScroll(event: CustomEvent<any>): void {
-    const currentScroll = validateScrollHeader(event, 30);
-    if (!currentScroll.validScroll) return;
-    if (currentScroll.blur === this.state.blur) return;
-    this.setState({ blur: currentScroll.blur });
-    this.headerRef && this.headerRef.current.playTopHeader(currentScroll);
-  }
-
   render(): React.ReactNode {
     let title =
       this.props.currentArtist?.gallery !== undefined
@@ -219,17 +201,16 @@ class ArtistGalleryGridPage extends React.Component<Props, State> {
           className={`artist-gallery-grid-page ${this.props.isPlaying &&
             'is-playing'}`}
         >
-          <Header
-            centerContent={<h1 className="title">{title}</h1>}
-            rightActionButton={true}
-          />
+          <Header title={title} rightActionButton={true} />
           <HeaderOverlay ref={this.headerRef} />
 
           <IonContent
             fullscreen={true}
             scrollY={true}
             scrollEvents={true}
-            onIonScroll={this.handleScroll.bind(this)}
+            onIonScroll={(e: CustomEvent): void =>
+              this.headerRef.current?.handleParentScroll(e)
+            }
             style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#FFF' }}
           >
             <div className={`images`}>

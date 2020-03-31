@@ -35,6 +35,8 @@ import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
 import TrackListPage from './artist/track-list';
 import CommunityDailyDripPage from './community/daily-drip';
 
+import CommunityAllArtistsPage from './community/all-artists';
+
 export {
   InitialPage,
   SignUpPage,
@@ -69,5 +71,6 @@ export {
   ArtistGalleryPhotoPage,
   TrackListPage,
   ThankYouPage,
-  CommunityDailyDripPage
+  CommunityDailyDripPage,
+  CommunityAllArtistsPage
 };

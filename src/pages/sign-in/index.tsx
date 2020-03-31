@@ -36,13 +36,13 @@ class SignInPage extends React.Component<Props> {
           gradient="180deg,#ffc23f,#ffc23f"
           backgroundImage={BackgroundSignInImage}
           backgroundTop={false}
-          backgroundBottom={false}
-          backgroundBottomOpacity={0.25}
+          backgroundBottom={true}
+          backgroundBottomOpacity={0.2}
         />
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          leftContent={<h4 className="sign-in-title">SIGN IN</h4>}
+          leftContent={<div className="h1 l1 no-wrap">SIGN IN</div>}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 

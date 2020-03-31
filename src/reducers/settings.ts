@@ -34,7 +34,8 @@ import {
   CommunityPostPage,
   TrackListPage,
   ThankYouPage,
-  CommunityDailyDripPage
+  CommunityDailyDripPage,
+  CommunityAllArtistsPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -257,6 +258,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/community/:artistId/daily-drip/:dailyDripId',
       id: 'community',
       component: CommunityDailyDripPage
+    },
+    {
+      path: '/home/community/artist',
+      id: 'communityArtist',
+      component: CommunityAllArtistsPage
     },
     {
       path: '/home/community/:artistId',

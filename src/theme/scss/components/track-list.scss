@@ -1,0 +1,13 @@
+.track-list-page{
+    .list-track-number{
+        min-width: 36px;
+        text-align: left;
+        padding-right: 16px;
+    }
+    .track-song{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 12px;
+    }
+}

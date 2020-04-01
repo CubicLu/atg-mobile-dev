@@ -31,7 +31,7 @@ class SignUpPage extends React.Component<Props> {
               </span>
             </div>
 
-            <div className="flex-compass h-100 medium">
+            <div className="flex-compass fluid h-100 medium">
               <div className="col s12 mt-40">
                 <InputText type="text" placeholder={'First Name'} />
               </div>

@@ -44,6 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:android": "cordova build android --release -- --packageType=bundle --password=$ATGPASS --storePassword=$ATGSTOREPASS",
     "build-prod": "ionic build --prod --engine=cordova --platform=android",
     "build-ios": "cordova build ios --prod --release --emulator",
     "test": "react-scripts test",
@@ -99,7 +100,10 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-custom-config": {}
+      "cordova-custom-config": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      }
     },
     "platforms": [
       "ios",

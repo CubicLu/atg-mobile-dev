@@ -39,10 +39,10 @@ class CardVideoComponent extends React.Component<Props> {
           style={{ backgroundImage: `url(${image})` }}
         />
 
-        {title && <span className="f1 my-1">{title}</span>}
+        {title && <span className="f4 my-1">{title}</span>}
         <br />
         {artist && (
-          <div className={'f4 l11 flex-align-center'}>
+          <div className={'f6 l11 flex-align-center'}>
             <span className="align-start">{artist.name}</span>
             <span className="align-end">
               <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />

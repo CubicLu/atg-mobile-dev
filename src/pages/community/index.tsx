@@ -72,7 +72,8 @@ class CommunityPage extends React.Component<Props, State> {
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (
       nextProps.match.params.artistId !== undefined &&
-      nextProps.currentCommunityArtist === null
+      nextProps.currentCommunityArtist === null &&
+      nextProps.match.params.artistId !== 'artist'
     ) {
       this.setBackgroundArtist();
       if (
@@ -80,7 +81,8 @@ class CommunityPage extends React.Component<Props, State> {
           this.props.currentCommunityArtist?.username ||
         nextProps.match.params.artistId !== this.props.match.params.artistId ||
         (nextProps.currentCommunityArtist == null &&
-          nextProps.match.params.artistId !== undefined)
+          nextProps.match.params.artistId !== undefined &&
+          nextProps.match.params.artistId !== 'artist')
       ) {
         this.props.getCommunityByArtistUsernameAPI(
           nextProps.match.params.artistId
@@ -90,7 +92,10 @@ class CommunityPage extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    if (this.props.match.params.artistId !== undefined) {
+    if (
+      this.props.match.params.artistId !== undefined &&
+      this.props.match.params.artistId !== 'artist'
+    ) {
       this.setBackgroundArtist();
       this.props.getCommunityByArtistUsernameAPI(
         this.props.match.params.artistId
@@ -148,7 +153,7 @@ class CommunityPage extends React.Component<Props, State> {
           }
           rightActionButton={true}
         >
-          <div className="community mx-3 mt-5">
+          <div className="community mx-3 mt-45">
             <div className="h2 community">Community</div>
             <div className="f6 no-wrap">Musical Goddess</div>
           </div>
@@ -222,6 +227,13 @@ class CommunityPage extends React.Component<Props, State> {
                   labelKey="label"
                   imageKey="image"
                   data={this.props.stories}
+                  onPressItem={(id): void => {
+                    if (this.state.isArtist) {
+                      this.props.history.push(
+                        `/home/community/${this.props.match.params.artistId}/daily-drip/${id}`
+                      );
+                    }
+                  }}
                 />
               </>
             )}

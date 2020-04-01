@@ -81,7 +81,7 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
   renderButtons(): React.ReactNode {
     return (
       <div className="row">
-        <div className="col s12 justify-center">
+        <div className="col s12 flex-justify-center buttons">
           <ButtonIcon color={Colors.orange} icon={<ShareIcon />} />
           <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
           <ButtonIcon color={Colors.blue} icon={<ShareIcon />} />

@@ -205,7 +205,7 @@ class HeaderComponent extends React.Component<Props> {
                     color={Colors.cyan}
                     icon={<ChatMessageIcon width={22} height={20} />}
                     onClick={this.openChatPanel.bind(this, true)}
-                    overlay={overlay}
+                    overlay={0}
                   />
                 </li>
               </ul>

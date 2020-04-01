@@ -33,7 +33,9 @@ class ButtonIconComponent extends React.Component<Props> {
         >
           {icon}
           {label && <span>{label}</span>}
-          {<div className={`overlay`}>{overlay}</div>}
+          {!!overlay && overlay >= 0 && (
+            <div className={`overlay`}>{overlay}</div>
+          )}
         </button>
       </div>
     );

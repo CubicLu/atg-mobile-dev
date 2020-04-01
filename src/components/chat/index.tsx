@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ApplicationState } from '../../reducers';
-import { Avatar } from '..';
-import { ShapesSize } from '../../interfaces';
+import { Avatar, InputText, Button } from '..';
+import { ShapesSize, Colors } from '../../interfaces';
 
 interface Props {}
 
@@ -28,13 +28,16 @@ class ChatComponent extends React.Component<Props> {
     return (
       <div className="chat-component">
         <div className="messages">
-          {[{}, {}, {}, {}, {}, {}].map(
+          {[{}, {}, {}, {}].map(
             (data, i): React.ReactNode => {
               return this.renderMessage(data, i);
             }
           )}
         </div>
-        <div className="input"></div>
+        <div className="input">
+          <InputText type={'text'} placeholder={'Start a chat'} />
+          <Button label="Post" color={Colors.grayTransparent} bold={true} />
+        </div>
       </div>
     );
   }

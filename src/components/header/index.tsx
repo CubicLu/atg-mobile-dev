@@ -36,6 +36,7 @@ interface Props extends RouteComponentProps {
   translucent?: boolean;
   ios?: boolean;
   fixed?: boolean;
+  leftTitle?: string;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -94,7 +95,8 @@ class HeaderComponent extends React.Component<Props> {
       rightInfoButton,
       rightInfoOnClick,
       rightActionYellow,
-      children
+      children,
+      leftTitle
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -106,6 +108,12 @@ class HeaderComponent extends React.Component<Props> {
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
                 <BackIcon />
+              </div>
+            )}
+
+            {leftTitle && (
+              <div className={`h2 l11 ${titleClassName ? titleClassName : ''}`}>
+                {leftTitle}
               </div>
             )}
 

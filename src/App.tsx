@@ -38,18 +38,16 @@ export default class App extends React.Component {
       animated: true,
       swipeBackEnabled: false
     });
-  }
-  render(): React.ReactNode {
+
     store.subscribe((): void => {
-      if (this.authenticated) return; //temporary to debug
+      if (this.authenticated) return;
       const { loggedUser } = store.getState().authAPI;
       if (this.authenticated === !!loggedUser) return;
       this.authenticated = !!loggedUser;
       this.forceUpdate();
     });
-    const defaultRoute = (): any => (
-      <Redirect to={this.authenticated ? '/home/profile' : '/initial'} />
-    );
+  }
+  render(): React.ReactNode {
     return (
       <Provider store={store}>
         <IonApp>
@@ -66,7 +64,7 @@ export default class App extends React.Component {
                   path="/sign-up-confirm"
                   component={SignUpConfirmPage}
                 />
-                <Route render={defaultRoute} />
+                <Route render={(): any => <Redirect to={'/initial'} />} />
               </IonRouterOutlet>
             </IonReactRouter>
           )}

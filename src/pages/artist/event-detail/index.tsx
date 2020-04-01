@@ -117,45 +117,44 @@ class EventDetailPage extends React.Component<Props, State> {
                 artistUsername={this.props.match.params.id}
                 data={this.props.event}
               />
-            </div>
-
-            <div
-              className={`content-list ${this.props.isPlaying && 'is-playing'}`}
-            >
-              <IonList lines="none" className="list users">
-                {this.props.event?.whoIsGoing?.map(
-                  (data, i): React.ReactNode => {
-                    let opacity = data.isFriend === true ? '' : 'opacity';
-                    return (
-                      <IonItem key={i}>
-                        <div className="row">
-                          <div className={`col s2 no-padding ${opacity}`}>
-                            <Avatar
-                              type={ShapesSize.circle}
-                              image={data.avatar}
-                              width={48}
-                              height={48}
-                            />
+              <div className="content-list">
+                <IonList lines="none" className="list users">
+                  {this.props.event?.whoIsGoing?.map(
+                    (data, i): React.ReactNode => {
+                      let opacity = data.isFriend === true ? '' : 'opacity';
+                      return (
+                        <IonItem key={i}>
+                          <div className="row">
+                            <div className={`col s2 no-padding ${opacity}`}>
+                              <Avatar
+                                type={ShapesSize.circle}
+                                image={data.avatar}
+                                width={48}
+                                height={48}
+                              />
+                            </div>
+                            <div
+                              className={`col s7 no-padding info ${opacity}`}
+                            >
+                              <span className="user f5">{data.username}</span>
+                            </div>
+                            <div className="col s3 f6">
+                              <Button
+                                className="mt-1"
+                                gradient={true}
+                                color={Colors.blue}
+                                size={Sizes.md}
+                                type={ShapesSize.rounded}
+                                label="Connect"
+                              />
+                            </div>
                           </div>
-                          <div className={`col s7 no-padding info ${opacity}`}>
-                            <span className="user f5">{data.username}</span>
-                          </div>
-                          <div className="col s3 f6">
-                            <Button
-                              className="mt-1"
-                              gradient={true}
-                              color={Colors.blue}
-                              size={Sizes.md}
-                              type={ShapesSize.rounded}
-                              label="Connect"
-                            />
-                          </div>
-                        </div>
-                      </IonItem>
-                    );
-                  }
-                )}
-              </IonList>
+                        </IonItem>
+                      );
+                    }
+                  )}
+                </IonList>
+              </div>
             </div>
           </IonContent>
         </div>

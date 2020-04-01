@@ -66,8 +66,12 @@ class ArtistVideosPage extends React.Component<Props, {}> {
           <div className="content-container">
             {currentArtist?.videos?.recents && (
               <React.Fragment>
-                <SectionTitle title={'Recent Videos'} viewAll={true} />
-                <div className="no-margin">
+                <SectionTitle
+                  className="mx-2"
+                  title={'Recent Videos'}
+                  viewAll={true}
+                />
+                <div className="slick-list-no-margin">
                   <SliderVideo
                     data={currentArtist?.videos?.recents}
                     size={Sizes.sm}
@@ -77,7 +81,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
               </React.Fragment>
             )}
             <div className="row showcase">
-              <SectionTitle title={'Showcase'} />
+              <SectionTitle className="mx-2" title={'Showcase'} />
               {currentArtist?.videos?.showcase.map(
                 (value, i): React.ReactNode => {
                   return (

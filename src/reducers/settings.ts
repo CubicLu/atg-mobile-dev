@@ -34,15 +34,15 @@ import {
   TrackListPage,
   ThankYouPage,
   CommunityDailyDripPage,
-  CommunityAllArtistsPage
+  CommunityAllArtistsPage,
+  ProfileMixtapesPage
 } from './../pages';
 import {
   MenuArtistList,
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon,
-  SliderMixtapes
+  RadioIcon
 } from './../components';
 import React from 'react';
 import { store } from '../store';
@@ -69,7 +69,7 @@ const defaultState: SettingsReducerType = {
       id: 'mixtapes',
       label: 'Mixtapes',
       icon: 'm',
-      component: SliderMixtapes
+      component: ProfileMixtapesPage
     },
     {
       id: 'friends',

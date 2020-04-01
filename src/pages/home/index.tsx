@@ -39,36 +39,9 @@ interface Props extends StateProps, DispatchProps {
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
-    const {
-      modal,
-      activeTab,
-      tabs,
-      links,
-      loading,
-      authenticated
-    } = this.props;
-    const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
-    const initial = (): JSX.Element => <Redirect to="/initial" />;
-
-    if (!authenticated) {
-      return <Route path="/" render={initial} />;
-    }
-
+    const { modal, activeTab, tabs, links, loading } = this.props;
     return (
       <IonReactRouter>
-        <LoaderFullscreen visible={loading} />
-        <Player />
-        {modal && (
-          <ModalSlide
-            onClose={(): void => this.props.updateSettingsModal(false, null)}
-            visible={modal.visible}
-            height={setHeight(40)}
-            className={modal.classname}
-          >
-            {modal.content}
-          </ModalSlide>
-        )}
-
         <IonTabs
           onIonTabsDidChange={(event): void => {
             this.props.updateSettingsProperty('activeTab', event.detail.tab);
@@ -81,12 +54,17 @@ class HomePage extends React.Component<Props> {
             {tabs.map((p: TabsInterface, i: number): any => (
               <Route exact path={p.path} component={p.component} key={i} />
             ))}
-            <Route animated={false} exact path="/home" render={redirect} />
-            <Route render={redirect} />
+            <Route
+              animated={false}
+              exact
+              path="/home"
+              render={(): any => <Redirect to="/home/profile" />}
+            />
+            <Redirect to="/home/profile" />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">
-            {tabs.map((p: TabsInterface): any => (
+            {tabs?.map((p: TabsInterface): any => (
               <IonTabButton tab={p.id} href={p.path} key={p.id}>
                 {React.createElement(p.icon, {
                   color: activeTab === p.id ? '#00BAFF' : '#FFF'
@@ -95,6 +73,19 @@ class HomePage extends React.Component<Props> {
             ))}
           </IonTabBar>
         </IonTabs>
+
+        <LoaderFullscreen visible={loading} />
+        <Player />
+        {modal && (
+          <ModalSlide
+            onClose={(): void => this.props.updateSettingsModal(false, null)}
+            visible={modal.visible}
+            height={setHeight(40)}
+            className={modal.classname}
+          >
+            {modal.content}
+          </ModalSlide>
+        )}
       </IonReactRouter>
     );
   }

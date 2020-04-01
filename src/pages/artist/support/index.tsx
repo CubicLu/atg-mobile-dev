@@ -177,7 +177,29 @@ class ArtistSupportPage extends React.Component<Props, State> {
     );
 
     return (
-      <IonPage>
+      <IonPage
+        id="support-page"
+        style={{
+          background: hasPlan
+            ? 'linear-gradient(180deg, #FDD105, #C16509)'
+            : 'linear-gradient(180deg, #2814484d, #281448a8, #281448)'
+        }}
+      >
+        {hasPlan ? (
+          <BackgroundImage
+            gradient="180deg, #FDD105, #C16509"
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundBottom
+            backgroundBottomDark={false}
+            backgroundBottomOpacity={0.33}
+          />
+        ) : (
+          <BackgroundImage
+            gradient="180deg, #2814484d, #281448a8, #281448"
+            backgroundImage={currentArtist.supportImages?.background}
+          />
+        )}
         <Header
           leftBackButton={false}
           rightCloseButton={true}
@@ -185,21 +207,6 @@ class ArtistSupportPage extends React.Component<Props, State> {
         />
         <IonContent scrollY={true}>
           <div className={`artist-support-page h-100 ${planDetailClass}`}>
-            {hasPlan ? (
-              <BackgroundImage
-                gradient="180deg, #FDD105 0%, #C16509 100%"
-                backgroundTop
-                backgroundTopDark={true}
-                backgroundBottom
-                backgroundBottomDark={false}
-                backgroundBottomOpacity={0.33}
-              />
-            ) : (
-              <BackgroundImage
-                gradient="180deg, #28144800 30%, #281448 60%, #281448 100%"
-                backgroundImage={currentArtist.supportImages?.background}
-              />
-            )}
             {hasPlan ? detailPlan : allPlans}
           </div>
         </IonContent>

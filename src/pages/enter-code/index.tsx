@@ -50,7 +50,7 @@ class EnterCodePage extends React.Component<Props, State> {
           <div className="space-between h-100">
             <div className="row">
               <div className="col s12">
-                <h1 className="mt-40 h00 center-align">
+                <h1 className="mt-5 h00 center-align">
                   Enter Verification Code
                 </h1>
 
@@ -63,7 +63,7 @@ class EnterCodePage extends React.Component<Props, State> {
 
             <div className="flex-compass fluid h-100 medium">
               <div className="row">
-                <div className="col s12 mt-40 input-div">
+                <div className="col s12 mt-5 input-div">
                   <div className="f4 center-align">Enter the 6-digit code</div>
                   <br />
                   <InputCode

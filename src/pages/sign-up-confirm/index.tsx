@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonPage } from '@ionic/react';
+import { IonPage, IonRouterLink } from '@ionic/react';
 import {
   BackgroundImage,
   BackgroundSignUpConfirmImage,
@@ -8,7 +8,7 @@ import {
   Button,
   Header
 } from './../../components';
-import { ShapesSize, Colors } from '../../interfaces';
+import { ShapesSize, Sizes } from '../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -32,12 +32,12 @@ class SignUpConfirmPage extends React.Component<Props> {
           <div className="space-between h-100">
             <div className="row ">&nbsp;</div>
             <div className="flex-compass fluid h-100 south">
-              <h2 className="title text-center">
+              <div className="h00 text-54 text-center">
                 THANKS FOR THE
                 <br />
                 PANTHR LOVE.
-              </h2>
-              <p className="text-center f4">Please confirm your password</p>
+              </div>
+              <div className="f4 text-center">Please confirm your password</div>
               <br />
             </div>
 
@@ -52,17 +52,15 @@ class SignUpConfirmPage extends React.Component<Props> {
               <br />
             </div>
 
-            <div className="footer mt-40 margin-footer">
-              <Button
-                label="Sign in"
-                type={ShapesSize.full}
-                color={Colors.primary}
-                gradient
-                bold
-                onClick={(): any => {
-                  this.props.history.push('/home/profile');
-                }}
-              />
+            <div className="footer mt-5 margin-footer">
+              <IonRouterLink routerLink="/sign-in" routerDirection="back">
+                <Button
+                  size={Sizes.lg}
+                  gradient={true}
+                  label="Sign In"
+                  type={ShapesSize.full}
+                />
+              </IonRouterLink>
             </div>
           </div>
         </div>

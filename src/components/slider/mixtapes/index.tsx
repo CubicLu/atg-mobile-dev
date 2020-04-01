@@ -63,15 +63,13 @@ class SliderMixtapesComponent extends React.Component<Props> {
     };
 
     return (
-      <div className="slider mixtapes">
-        <Slider {...settings}>
-          {playlists.map(
-            (data, i): React.ReactNode => (
-              <CardMixtapes mixtape={data} key={i} index={i + 1} menu={menu} />
-            )
-          )}
-        </Slider>
-      </div>
+      <Slider {...settings}>
+        {playlists.map(
+          (data, i): React.ReactNode => (
+            <CardMixtapes mixtape={data} key={i} index={i + 1} menu={menu} />
+          )
+        )}
+      </Slider>
     );
   }
 }

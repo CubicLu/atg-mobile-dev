@@ -6,7 +6,7 @@ interface Props {}
 class ProfileMixtapesPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <div className="profile-mixtapes">
+      <div className="profile-mixtapes mt-2">
         <SliderMixtapes />
       </div>
     );

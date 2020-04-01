@@ -50,8 +50,6 @@ class VideoPlayerComponent extends React.Component<Props, State> {
           'timeupdate',
           this.updateCurrentTime.bind(this)
         );
-
-
       }
       this.showControl(true);
     }
@@ -104,6 +102,21 @@ class VideoPlayerComponent extends React.Component<Props, State> {
         this.video.requestFullscreen();
       }
     }
+  }
+
+  setCurrentTimeVideo(event: number): void {
+    let currentTimeNumber = this.state.currentTimeNumber;
+    let value = this.state.currentTime;
+    if (this.video) {
+      this.video.currentTime = event;
+      const time = this.formatTime(Math.round(event));
+      currentTimeNumber = Math.round(event);
+      value = `${time.minutes}:${time.seconds}`;
+    }
+    this.setState({
+      currentTime: value,
+      currentTimeNumber: currentTimeNumber
+    });
   }
 
   updateCurrentTime(): void {
@@ -199,6 +212,13 @@ class VideoPlayerComponent extends React.Component<Props, State> {
           min="0"
           type="range"
           step="1"
+          onChange={(event): void => {
+            if (event.target) {
+              if (event.target.value) {
+                this.setCurrentTimeVideo(Number(event.target.value));
+              }
+            }
+          }}
           max={this.state.videoDuration}
         />
       </div>

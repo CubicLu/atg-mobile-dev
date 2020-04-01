@@ -127,7 +127,11 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
       <div className="chat-container h-100">
         <div className="row close">
           <div className="col s12 flex-justify-content-end">
-            <ButtonIcon color={Colors.transparent} icon={<CloseIcon />} />
+            <ButtonIcon
+              color={Colors.transparent}
+              icon={<CloseIcon />}
+              onClick={this.setChat.bind(this, false)}
+            />
           </div>
         </div>
         <Chat />

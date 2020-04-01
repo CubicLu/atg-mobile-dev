@@ -51,10 +51,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
           this.updateCurrentTime.bind(this)
         );
 
-        this.video.addEventListener(
-          'timeupdate',
-          this.updateProgressBar.bind(this)
-        );
+
       }
       this.showControl(true);
     }
@@ -99,7 +96,15 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     };
   }
 
-  updateProgressBar(): void {}
+  toggleFullscreen(): void {
+    if (this.video) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        this.video.requestFullscreen();
+      }
+    }
+  }
 
   updateCurrentTime(): void {
     let value = this.state.currentTime;
@@ -135,7 +140,10 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     return (
       <div className="row top-buttons">
         <div className="col s6">
-          <ButtonIcon icon={<FullscreenIcon />} />
+          <ButtonIcon
+            icon={<FullscreenIcon />}
+            onClick={this.toggleFullscreen.bind(this)}
+          />
         </div>
         <div className="col s6 flex-justify-content-end">
           <ButtonIcon icon={<CloseIcon />} />

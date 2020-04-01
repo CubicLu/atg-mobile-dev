@@ -225,6 +225,15 @@
     }
 }
 
+.station{
+    &.circle{
+        height: 90px;
+        width: 90px;
+        min-height: 90px;
+        min-width: 90px;
+    }
+}
+
 .eras{
     display: flex;
     overflow-x: scroll;

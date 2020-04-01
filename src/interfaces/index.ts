@@ -362,19 +362,20 @@ export interface VideoInterface {
   time: number | string;
   datePublished: Date;
 }
-export interface GenreInterface {
+
+export type RadioSection = 'Genre' | 'Vibe' | 'Era';
+export interface ChannelInterface {
+  id: string;
+  type: RadioSection;
+  name: string;
+  icon?: string;
+  image?: string;
+  color: string;
+  target?: string;
+  tags?: string[];
+}
+export interface StationInterface {
   id: string;
   name: string;
   image: string;
-  color1: string;
-  color2: string;
-}
-export interface EraInterface {
-  name: string;
-  color: string;
-}
-export interface VibeInterface {
-  icon: string;
-  name: string;
-  color: string;
 }

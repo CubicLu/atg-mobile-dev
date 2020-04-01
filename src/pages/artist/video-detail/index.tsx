@@ -27,13 +27,24 @@ interface DispatchProps {
 interface MatchParams {
   id: string;
 }
+
+interface State {
+  readonly chatOpened: boolean;
+}
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistVideoDetailPage extends React.Component<Props, {}> {
+class ArtistVideoDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      chatOpened: true
+    };
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.currentArtist == null) {
@@ -48,7 +59,11 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
       <div className="bottom-tiles fluid">
         <div
           className="tile"
-          onClick={(): void => {}}
+          onClick={(): void => {
+            this.props.history.push(
+              `/home/artist/${this.props.match.params.id}/deep-dive`
+            );
+          }}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
           )}
@@ -57,7 +72,11 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
         </div>
         <div
           className="tile"
-          onClick={(): void => {}}
+          onClick={(): void => {
+            this.props.history.push(
+              `/home/community/${this.props.match.params.id}`
+            );
+          }}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
           )}
@@ -67,7 +86,9 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
         <div
           className="tile"
           onClick={(): void => {
-            this.props.history.push('/home/track/default/2/1');
+            this.props.history.push(
+              `/home/artist/${this.props.match.params.id}`
+            );
           }}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
@@ -79,13 +100,50 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
     );
   }
 
+  setChat(condition = false): void {
+    this.setState({ chatOpened: condition });
+  }
+
   renderButtons(): React.ReactNode {
     return (
       <div className="row">
         <div className="col s12 flex-justify-center buttons">
           <ButtonIcon color={Colors.orange} icon={<StarIcon />} />
           <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
-          <ButtonIcon color={Colors.blue} icon={<ShareIcon />} />
+          <ButtonIcon
+            color={Colors.blue}
+            icon={<ShareIcon />}
+            onClick={this.setChat.bind(this, true)}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  renderChat(): React.ReactNode {
+    return <div className="chat-container"></div>;
+  }
+
+  renderContent(): React.ReactNode {
+    return (
+      <div className="content-container ">
+        {this.renderButtons()}
+        <div className="row">
+          <div className="col s12">
+            <div className="row">
+              <div className="col s12">
+                <h1 className="f3">Happy</h1>
+                <p className="f6">
+                  Williams provided vocals for French duo Daft Punk’s 2013 album
+                  Random Access Memories, on the songs “Lose Yourself to Dance”
+                  and “Get Lucky”. After returning from the recording sessions
+                  in Paris, he attended a meeting with record label managers who
+                  said that the results were “spectacular” and that “Get Lucky”
+                  would be Daft Punk’s next single.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -111,28 +169,8 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
           />
           <div className="artist-video-detail-page space-between h-100">
             <VideoPlayer />
-            <div className="content-container ">
-              {this.renderButtons()}
-              <div className="row">
-                <div className="col s12">
-                  <div className="row">
-                    <div className="col s12">
-                      <h1 className="f3">Happy</h1>
-                      <p className="f6">
-                        Williams provided vocals for French duo Daft Punk’s 2013
-                        album Random Access Memories, on the songs “Lose
-                        Yourself to Dance” and “Get Lucky”. After returning from
-                        the recording sessions in Paris, he attended a meeting
-                        with record label managers who said that the results
-                        were “spectacular” and that “Get Lucky” would be Daft
-                        Punk’s next single.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {this.bottomTiles()}
+            {this.state.chatOpened ? this.renderChat() : this.renderContent()}
+            {!this.state.chatOpened && this.bottomTiles()}
           </div>
         </IonContent>
       </IonPage>

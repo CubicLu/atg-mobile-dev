@@ -42,15 +42,15 @@ class SignInPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          leftContent={<div className="h1 l1 no-wrap">SIGN IN</div>}
+          leftContent={<div className="h1 l08 no-wrap">SIGN IN</div>}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
-            <div className="flex-compass h-100" />
+            <div className="flex-compass fluid h-100" />
 
-            <div className="flex-compass h-100 south center fluid">
+            <div className="flex-compass fluid h-100 south center fluid">
               <div className="row" />
               <InputText type="text" placeholder={'User Name'} />
               <br />

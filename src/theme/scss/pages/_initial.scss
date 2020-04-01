@@ -21,15 +21,6 @@
     .margin-footer{
         margin-bottom: 120px;
     }
-    // .brand-subtitle{
-    //     font-size: pxToRem(30);
-    //     position: absolute;
-    //     margin-left: 0;
-    //     left: 70px;
-    //     bottom: -11px;
-    //     white-space: pre;
-    //     position: relative;
-    // }
     .form {
         margin-top: 25%;
         .form-title{
@@ -69,7 +60,7 @@
     }
     p{
         color: #5E7FB1;
-        font-size: pxToRem(16);
+        font-size: 16px;
         font-family: "Helvetica";
         &.didnt-receive{
             color: #9B9C9D;
@@ -112,11 +103,12 @@
     }
 
 
-    @media screen and (max-width: 360px) {
+    @media screen and (max-height: 668px) {
         .brand-title{
-            font-size: pxToRem(70);
+            font-size: 64px;
         }
         p{
+            font-size: 12px;
             margin-top: 0;
             margin-bottom: 0;
         }
@@ -124,6 +116,11 @@
 }
 .double-top{
     margin-top: 2 * $initial-margin;    
+}
+@media screen and (max-height: 668px) {
+    .double-top{
+        margin-top: 32px;
+    }
 }
 .initial-description{ 
     margin-top: 0px;

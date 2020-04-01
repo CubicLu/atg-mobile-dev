@@ -12,6 +12,12 @@ import { connect } from 'react-redux';
 import { ArtistInterface, CommentInterface } from '../../../interfaces';
 import { validateScrollHeader } from '../../../utils';
 
+interface State {
+  displayChat: boolean;
+  displayHeader: boolean;
+  currentGalleryComments: number;
+}
+
 interface StateProps {
   currentArtist: ArtistInterface | null;
   isPlaying: boolean;
@@ -34,13 +40,19 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistGalleryPhotoPage extends React.Component<Props> {
-  state = { displayChat: false, displayHeader: true,  currentGalleryComments: 10};
+class ArtistGalleryPhotoPage extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      displayChat: false,
+      displayHeader: true,
+      currentGalleryComments: 10
+    };
+  }
 
   callbackFunction = (childData: boolean, showHeader?: boolean): void => {
     this.setState({ displayChat: childData });
     if (showHeader) this.setState({ displayHeader: true });
-    console.log(this.props)
   };
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {

@@ -69,5 +69,5 @@ export const getArtistGalleryCommentsAPIFailure = (error): any => ({
 
 export const getArtistGalleryCommentsAPISuccess = (response): any => ({
   type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS,
-  payload: response.data
+  payload: response
 });

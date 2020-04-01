@@ -133,7 +133,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      event: action.payload.data
+      currentGalleryComments: action.payload.data
     };
   },
 

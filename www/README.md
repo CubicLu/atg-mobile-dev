@@ -1,1 +1,0 @@
-Folder need to exist even empty to use cordova

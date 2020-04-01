@@ -1,68 +1,41 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
+import { getSearchResultAPI } from '../../actions';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { BackgroundImage, Header, SearchIcon } from '../../components';
+import {
+  BackgroundImage,
+  Header,
+  HeaderOverlay,
+  SearchIcon,
+  SearchResultSection
+} from '../../components';
+import { ApplicationState } from '../../reducers';
+import { connect } from 'react-redux';
 
-interface Props extends RouteComponentProps {}
+interface DispatchProps {
+  getSearchResultAPI: (query: string) => void;
+}
+
+interface StateProps {
+  queryResult: string;
+}
+
+interface Props extends DispatchProps, StateProps, RouteComponentProps {}
 
 class SearchPage extends React.Component<Props> {
+  componentDidMount(): void {
+    this.props.getSearchResultAPI('all');
+  }
+
   filterResult = e => {
     if (e.target.value.length < 3) return;
-    console.log(e.target.value);
   };
 
-  queryResult = {
-    artists: [
-      {
-        name: 'Pharrell Williams',
-        avatar: 'url'
-      }
-    ],
-    albums: [
-      {
-        name: 'GIRL',
-        artist: 'Pharrell Williams',
-        cover: 'url'
-      }
-    ],
-    songs: [
-      {
-        name: 'Happy',
-        artist: 'Pharrell Williams',
-        cover: 'url'
-      }
-    ],
-    recommendations: [
-      {
-        name: 'Focus',
-        artist: 'H.E.R',
-        cover: 'url'
-      }
-    ],
-    eras: [
-      {
-        name: 'GIRL',
-        artist: 'Pharrell Williams',
-        cover: 'url'
-      }
-    ],
-    genres: [
-      {
-        name: 'GIRL',
-        artist: 'Pharrell Williams',
-        cover: 'url'
-      }
-    ],
-    vibes: [
-      {
-        name: 'GIRL',
-        artist: 'Pharrell Williams',
-        cover: 'url'
-      }
-    ]
-  };
+  private headerRef: React.RefObject<any> = React.createRef();
 
   render(): React.ReactNode {
+    const { queryResult } = this.props;
+
     return (
       <IonPage id="search-page">
         <Header
@@ -71,7 +44,16 @@ class SearchPage extends React.Component<Props> {
           rightCloseButton
           leftBackButton={false}
         />
-        <IonContent id="search-page" scrollY={false}>
+        <HeaderOverlay ref={this.headerRef} />
+        <IonContent
+          fullscreen={true}
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={(e: CustomEvent): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
+          id="search-page"
+        >
           <div className="search-page">
             <BackgroundImage
               gradient={`180deg,#1F0739,#1F0739`}
@@ -88,15 +70,30 @@ class SearchPage extends React.Component<Props> {
                 className="input text"
                 onChange={this.filterResult}
               />
-              <div className={'search-placeholder'}>
-                <SearchIcon />
-                <span className={'placeholder-text'}>
-                  AI PANTHR Search for Artist, Genre, Sub-genre and Era
-                </span>
-              </div>
-              <div className={'row'}>
-                <div className={'query-result'}>a</div>
-              </div>
+              {Object.keys(queryResult).length === 0 && (
+                <div className={'search-placeholder'}>
+                  <SearchIcon />
+                  <span className={'placeholder-text'}>
+                    AI PANTHR Search for Artist, Genre, Sub-genre and Era
+                  </span>
+                </div>
+              )}
+              {Object.keys(queryResult).length > 0 && (
+                <div className={'row'}>
+                  {Object.keys(queryResult).map(
+                    (prop: string, i: number): React.ReactNode => {
+                      console.log(queryResult[prop]);
+                      return (
+                        <SearchResultSection
+                          key={i}
+                          title={prop}
+                          content={queryResult[prop]}
+                        />
+                      );
+                    }
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </IonContent>
@@ -105,4 +102,15 @@ class SearchPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(SearchPage);
+const mapStateToProps = ({ searchAPI }: ApplicationState): StateProps => {
+  const { queryResult } = searchAPI;
+  return {
+    queryResult
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, {
+    getSearchResultAPI
+  })(SearchPage)
+);

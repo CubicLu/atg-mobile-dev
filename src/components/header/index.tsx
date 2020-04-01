@@ -112,7 +112,7 @@ class HeaderComponent extends React.Component<Props> {
             )}
 
             {leftTitle && (
-              <div className={`h2 l11 ${titleClassName ? titleClassName : ''}`}>
+              <div className={`h1 l11 ${titleClassName ? titleClassName : ''}`}>
                 {leftTitle}
               </div>
             )}

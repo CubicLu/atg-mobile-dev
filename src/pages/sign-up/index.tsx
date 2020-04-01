@@ -33,7 +33,11 @@ class SignUpPage extends React.Component<Props> {
             </div>
 
             <div className="flex-compass fluid h-100 medium">
+<<<<<<< HEAD
               <div className="col s12 mt-5">
+=======
+              <div className="col s12 mt-40">
+>>>>>>> 69661e365d4833ae812f3913c2ac191d01a9afd7
                 <InputText type="text" placeholder={'First Name'} />
               </div>
               <div className="row" />

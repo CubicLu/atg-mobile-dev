@@ -44,7 +44,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      chatOpened: true
+      chatOpened: false
     };
   }
 

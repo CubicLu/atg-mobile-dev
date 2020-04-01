@@ -142,8 +142,9 @@ class HeaderComponent extends React.Component<Props> {
 
             {title && (
               <div
-                className={`h2 l11 ${titleLeft ? 'title-left' : ''} 
-                ${titleClassName ? titleClassName : ''}`}
+                className={`h2 l11 ${titleLeft ? 'title-left' : ''} ${
+                  titleClassName ? titleClassName : ''
+                }`}
               >
                 {title}
               </div>

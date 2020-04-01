@@ -259,6 +259,7 @@
         height: 90px;
         width: 150px;
         max-width: 150px;
+        outline: 0px solid transparent;
     }
     .card-genre-col{
         width: 150px;
@@ -266,6 +267,7 @@
         min-width: 150px;
         overflow: hidden;
         display: block;
+        outline: 0px solid transparent;
     }
     .slick-slide{
         width: 100% !important;
@@ -318,5 +320,15 @@
             height: 84px;
             width: 84px;
         }
+    }
+}
+.card-station{
+    .card{
+        &.rounded{
+            border-radius: 20px;
+        }
+    &.video::after{
+        display: none;
+    }
     }
 }

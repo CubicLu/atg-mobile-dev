@@ -370,6 +370,8 @@ export interface ChannelInterface {
   name: string;
   icon?: string;
   image?: string;
+  title?: string;
+  subtitle?: string;
   color: string;
   target?: string;
   tags?: string[];
@@ -378,4 +380,6 @@ export interface StationInterface {
   id: string;
   name: string;
   image: string;
+  tags?: string[];
+  genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
 }

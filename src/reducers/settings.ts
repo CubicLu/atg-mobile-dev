@@ -284,6 +284,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/radio/filter',
       id: 'radioFilter',
       component: RadioFilterPage
+    },
+    {
+      path: '/home/radio/genre/:genre',
+      id: 'radioHome',
+      component: RadioPage
     }
   ],
 

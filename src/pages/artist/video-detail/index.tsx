@@ -4,7 +4,8 @@ import {
   BackgroundImage,
   VideoPlayer,
   ShareIcon,
-  ButtonIcon
+  ButtonIcon,
+  StarIcon
 } from '../../../components';
 import { ArtistInterface, Colors } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -82,7 +83,7 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
     return (
       <div className="row">
         <div className="col s12 flex-justify-center buttons">
-          <ButtonIcon color={Colors.orange} icon={<ShareIcon />} />
+          <ButtonIcon color={Colors.orange} icon={<StarIcon />} />
           <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
           <ButtonIcon color={Colors.blue} icon={<ShareIcon />} />
         </div>
@@ -108,9 +109,29 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className="artist-video-detail-page">
+          <div className="artist-video-detail-page space-between h-100">
             <VideoPlayer />
-            <div className="content-container">{this.renderButtons()}</div>
+            <div className="content-container ">
+              {this.renderButtons()}
+              <div className="row">
+                <div className="col s12">
+                  <div className="row">
+                    <div className="col s12">
+                      <h1 className="f3">Happy</h1>
+                      <p className="f6">
+                        Williams provided vocals for French duo Daft Punk’s 2013
+                        album Random Access Memories, on the songs “Lose
+                        Yourself to Dance” and “Get Lucky”. After returning from
+                        the recording sessions in Paris, he attended a meeting
+                        with record label managers who said that the results
+                        were “spectacular” and that “Get Lucky” would be Daft
+                        Punk’s next single.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             {this.bottomTiles()}
           </div>
         </IonContent>

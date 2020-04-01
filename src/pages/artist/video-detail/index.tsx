@@ -5,7 +5,9 @@ import {
   VideoPlayer,
   ShareIcon,
   ButtonIcon,
-  StarIcon
+  StarIcon,
+  Chat,
+  CloseIcon
 } from '../../../components';
 import { ArtistInterface, Colors } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -121,7 +123,16 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   renderChat(): React.ReactNode {
-    return <div className="chat-container"></div>;
+    return (
+      <div className="chat-container h-100">
+        <div className="row close">
+          <div className="col s12 flex-justify-content-end">
+            <ButtonIcon color={Colors.transparent} icon={<CloseIcon />} />
+          </div>
+        </div>
+        <Chat />
+      </div>
+    );
   }
 
   renderContent(): React.ReactNode {

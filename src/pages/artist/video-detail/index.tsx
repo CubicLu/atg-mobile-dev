@@ -1,11 +1,17 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import { BackgroundImage, VideoPlayer } from '../../../components';
-import { ArtistInterface } from '../../../interfaces';
+import {
+  BackgroundImage,
+  VideoPlayer,
+  ShareIcon,
+  ButtonIcon
+} from '../../../components';
+import { ArtistInterface, Colors } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { shadowTitle } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -35,6 +41,55 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
+
+  bottomTiles(): React.ReactNode {
+    return (
+      <div className="bottom-tiles fluid">
+        <div
+          className="tile"
+          onClick={(): void => {}}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+          )}
+        >
+          <span className="f6">Deep Dive</span>
+        </div>
+        <div
+          className="tile"
+          onClick={(): void => {}}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+          )}
+        >
+          <span className="f6">Community</span>
+        </div>
+        <div
+          className="tile"
+          onClick={(): void => {
+            this.props.history.push('/home/track/default/2/1');
+          }}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+          )}
+        >
+          <span className="f6">Artist Home</span>
+        </div>
+      </div>
+    );
+  }
+
+  renderButtons(): React.ReactNode {
+    return (
+      <div className="row">
+        <div className="col s12 justify-center">
+          <ButtonIcon color={Colors.orange} icon={<ShareIcon />} />
+          <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
+          <ButtonIcon color={Colors.blue} icon={<ShareIcon />} />
+        </div>
+      </div>
+    );
+  }
+
   render(): React.ReactNode {
     return (
       <IonPage id="artist-videos-page">
@@ -55,7 +110,8 @@ class ArtistVideoDetailPage extends React.Component<Props, {}> {
           />
           <div className="artist-video-detail-page">
             <VideoPlayer />
-            <div className="content-container"></div>
+            <div className="content-container">{this.renderButtons()}</div>
+            {this.bottomTiles()}
           </div>
         </IonContent>
       </IonPage>

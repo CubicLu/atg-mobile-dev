@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   Header,
   BackgroundImage,
@@ -10,7 +9,7 @@ import {
   SliderVideo
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
-interface Props extends RouteComponentProps {}
+interface Props {}
 class RadioPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
   render(): React.ReactNode {
@@ -20,8 +19,12 @@ class RadioPage extends React.Component<Props> {
     return (
       <IonPage id="radio-page">
         <HeaderOverlay ref={this.headerRef} />
-        <Header leftBackButton={false} rightActionButton={true}>
-          <div className="fixed-logo-left">
+        <Header
+          leftBackButton={false}
+          rightActionButton={true}
+          rightActionHref={'/home/radio/filter'}
+        >
+          <div className="absolute-logo-left">
             <span className="brand-title text-48 l05">panthr</span>
             <br />
             <span className="h3 mx-2 l08">AI-POWERED RADIO</span>
@@ -31,7 +34,6 @@ class RadioPage extends React.Component<Props> {
         <BackgroundImage
           gradient={`180deg,#7A41FF,#1B0334`}
           backgroundImage={reggaeUrl}
-          backgroundTopDark
           backgroundTop={false}
           backgroundBottom={false}
         />
@@ -93,4 +95,4 @@ class RadioPage extends React.Component<Props> {
   ];
 }
 
-export default withRouter(RadioPage);
+export default RadioPage;

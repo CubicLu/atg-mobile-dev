@@ -6,3 +6,46 @@ ion-tabbar {
         --ion-color-base: var(--ion-color-dark, #070707) !important;
     }
 }
+
+.atg-search {
+    &ion-searchbar{
+        --background: #fff;
+        --box-shadow: none;
+        --cancel-button-color: $search;
+        --color: $search;
+        --clear-button-color: $search;
+        --icon-color: $search;
+        --placeholder-color: $search;
+    }
+    background: #fff;
+    border: solid 1px #dfe5ef;
+    border-radius: 3px;
+    height: 44px;
+    .searchbar-input-container{
+        height: 44px;
+        .searchbar-input{
+            padding-left: 4px !important;
+            -webkit-padding-start: 4px !important;
+            padding-inline-start: 4px !important;
+            -webkit-margin-start: 0;
+            margin-inline-start: 0;
+            padding-right: 30px !important;
+            -webkit-padding-end: 30px !important;
+            padding-inline-end: 30px !important;
+            height: 44px;
+            width: calc(100% - 30px);
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+    }
+    .searchbar-clear-button{
+        background-color: white;
+        width: 30px;
+    }
+    ion-icon{
+        &.searchbar-search-icon{
+            right: 0px;
+            left: auto;
+        }
+    }
+}

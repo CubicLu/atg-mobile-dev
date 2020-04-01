@@ -51,7 +51,7 @@ class HomePage extends React.Component<Props> {
     const initial = (): JSX.Element => <Redirect to="/initial" />;
 
     if (!authenticated) {
-      return <Route path="/" render={initial} />;
+      return <Route render={initial} />;
     }
 
     return (

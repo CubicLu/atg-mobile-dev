@@ -362,3 +362,19 @@ export interface VideoInterface {
   time: number | string;
   datePublished: Date;
 }
+export interface GenreInterface {
+  id: string;
+  name: string;
+  image: string;
+  color1: string;
+  color2: string;
+}
+export interface EraInterface {
+  name: string;
+  color: string;
+}
+export interface VibeInterface {
+  icon: string;
+  name: string;
+  color: string;
+}

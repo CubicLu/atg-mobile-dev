@@ -64,7 +64,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.props.getArtistGalleryCommentsAPI(0, 'pharell-williams');
     if (this.props.currentArtist === null) {
       this.props.getArtistAPI(this.props.match.params.id);

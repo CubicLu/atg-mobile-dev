@@ -7,7 +7,8 @@ import {
   ButtonIcon,
   StarIcon,
   Chat,
-  CloseIcon
+  CloseIcon,
+  ChatMessageIcon
 } from '../../../components';
 import { ArtistInterface, Colors } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -113,9 +114,11 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <ButtonIcon color={Colors.orange} icon={<StarIcon />} />
           <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
           <ButtonIcon
-            color={Colors.blue}
-            icon={<ShareIcon />}
+            styles={{ position: 'relative' }}
+            color={Colors.cyan}
+            icon={<ChatMessageIcon width={22} height={20} />}
             onClick={this.setChat.bind(this, true)}
+            overlay={50}
           />
         </div>
       </div>

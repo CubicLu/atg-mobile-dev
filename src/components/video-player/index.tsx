@@ -4,6 +4,8 @@ import { ApplicationState } from '../../reducers';
 import { Nullable } from '../../types/common';
 import { ButtonIcon } from '..';
 import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
+import { ShapesSize } from '../../interfaces';
+import { IonRange } from '@ionic/react';
 
 interface Props {
   readonly onClickClose: Function;
@@ -155,15 +157,17 @@ class VideoPlayerComponent extends React.Component<Props, State> {
 
   renderTopButtons(): React.ReactNode {
     return (
-      <div className="row top-buttons">
+      <div className="row mt-05 mb-0">
         <div className="col s6">
           <ButtonIcon
+            type={ShapesSize.normal}
             icon={<FullscreenIcon />}
             onClick={this.toggleFullscreen.bind(this)}
           />
         </div>
         <div className="col s6 flex-justify-content-end">
           <ButtonIcon
+            type={ShapesSize.normal}
             icon={<CloseIcon />}
             onClick={(): void => {
               this.props.onClickClose();
@@ -204,42 +208,18 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     }
   }
 
-  renderProgressBar(): React.ReactNode {
-    return (
-      <div className="progress-bar">
-        <div className="seek-tooltip" id="seek-tooltip">
-          00:00
-        </div>
-        <progress
-          value={this.state.currentTimeNumber}
-          max={this.state.videoDuration}
-        ></progress>
-        <input
-          className="seek"
-          id="seek"
-          defaultValue={this.state.currentTimeNumber}
-          min="0"
-          type="range"
-          step="1"
-          onChange={(event): void => {
-            if (event.target) {
-              if (event.target.value) {
-                this.setCurrentTimeVideo(Number(event.target.value));
-              }
-            }
-          }}
-          max={this.state.videoDuration}
-        />
-      </div>
-    );
-  }
-
   renderBottom(): React.ReactNode {
     return (
-      <div className="bottom">
-        <time id="time-elapsed">{this.state.currentTime}</time>
-        {this.renderProgressBar()}
-        <time id="duration">{this.state.totalTime}</time>
+      <div className="progress-bar flex-wrap fluid p-1 pt-0 f8 l1">
+        <time className="mx-2" id="time-elapsed">{this.state.currentTime}</time>
+        <IonRange
+          className="m-0 p-0"
+          
+          min={0}
+          max={this.state.videoDuration}
+          onIonChange={(event): void => this.setCurrentTimeVideo(Number(event.detail.value))}
+        />
+        <time className="mx-2" id="duration">{this.state.totalTime}</time>
       </div>
     );
   }

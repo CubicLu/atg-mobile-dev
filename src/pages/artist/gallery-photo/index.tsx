@@ -27,7 +27,7 @@ interface StateProps {
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
-  getArtistGalleryCommentsAPI: (photoId: number, name: string) => void;
+  getArtistGalleryCommentsAPI: (photoId: number, username: string) => void;
 }
 
 interface MatchParams {

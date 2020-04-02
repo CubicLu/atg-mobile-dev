@@ -5,7 +5,9 @@ import { Nullable } from '../../types/common';
 import { ButtonIcon } from '..';
 import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
 
-interface Props {}
+interface Props {
+  readonly onClickClose: Function;
+}
 interface State {
   readonly showControls: boolean;
   readonly paused: boolean;
@@ -161,7 +163,12 @@ class VideoPlayerComponent extends React.Component<Props, State> {
           />
         </div>
         <div className="col s6 flex-justify-content-end">
-          <ButtonIcon icon={<CloseIcon />} />
+          <ButtonIcon
+            icon={<CloseIcon />}
+            onClick={(): void => {
+              this.props.onClickClose();
+            }}
+          />
         </div>
       </div>
     );

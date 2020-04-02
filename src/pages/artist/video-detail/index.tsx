@@ -180,7 +180,11 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             backgroundTopOpacity={0.7}
           />
           <div className="artist-video-detail-page space-between mb-50">
-            <VideoPlayer />
+            <VideoPlayer
+              onClickClose={(): void => {
+                this.props.history.goBack();
+              }}
+            />
             {this.state.chatOpened ? this.renderChat() : this.renderContent()}
             {!this.state.chatOpened && this.bottomTiles()}
           </div>

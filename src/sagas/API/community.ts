@@ -1,12 +1,12 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
-import { API } from './../../utils/api';
+import { API } from '../../utils/api';
 import {
   ActionType,
   CommunityArtistInterface,
   ArtistInterface,
   PostInterface,
   StorieInterface
-} from './../../interfaces';
+} from '../../interfaces';
 import {
   getCommunityPostsAPIFailure,
   getCommunityPostsAPISuccess,
@@ -18,7 +18,7 @@ import {
   getCommunityByArtistUsernameAPISuccess,
   getCommunityStoriesAPISuccess,
   getCommunityStoriesAPIFailure
-} from './../../actions';
+} from '../../actions';
 
 export const getCommunityPostsRequest = async (): Promise<PostInterface[]> =>
   await API.get('community/posts/post.json');

@@ -1,14 +1,16 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
-import { API } from './../../utils/api';
-import { ActionType, ArtistInterface } from './../../interfaces';
+import { API } from '../../utils/api';
+import { ActionType, ArtistInterface } from '../../interfaces';
 import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,
   getArtistAPISuccess,
   getArtistAPIFailure,
   getArtistEventAPISuccess,
-  getArtistEventAPIFailure
-} from './../../actions';
+  getArtistEventAPIFailure,
+  getArtistGalleryCommentsAPIFailure,
+  getArtistGalleryCommentsAPISuccess
+} from '../../actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
   await API.get('artist/all.json');
@@ -65,6 +67,37 @@ export function* getArtistEvent(): any {
   yield takeEvery(ActionType.GET_ARTIST_EVENT_API, getArtistEventAPI);
 }
 
+export const getArtistGalleryCommentsRequest = async (
+  photoId: number,
+  username: string
+): Promise<ArtistInterface[]> =>
+  await API.get(`artist/${username}/commentaries/${photoId}.json`);
+
+function* getArtistGalleryCommentsAPI({ payload }: any): any {
+  try {
+    const request = yield call(
+      getArtistGalleryCommentsRequest,
+      payload.photoId,
+      payload.username
+    );
+    yield put(getArtistGalleryCommentsAPISuccess(request));
+  } catch (error) {
+    yield put(getArtistGalleryCommentsAPIFailure(error));
+  }
+}
+
+export function* getArtistGalleryComments(): any {
+  yield takeEvery(
+    ActionType.GET_ARTIST_GALLERY_COMMENTS_API,
+    getArtistGalleryCommentsAPI
+  );
+}
+
 export default function* rootSaga(): any {
-  yield all([fork(getArtists), fork(getArtist), fork(getArtistEvent)]);
+  yield all([
+    fork(getArtists),
+    fork(getArtist),
+    fork(getArtistEvent),
+    fork(getArtistGalleryComments)
+  ]);
 }

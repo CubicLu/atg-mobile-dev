@@ -4,6 +4,7 @@ import createReducer from './../createReducer';
 const defaultState: ArtistReducerType = {
   artists: [],
   currentArtist: null,
+  currentGalleryComments: [],
   loading: false,
   successMessage: null,
   errorMessage: null,
@@ -108,6 +109,35 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   },
 
   [ActionType.GET_ARTIST_EVENT_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload
+    };
+  },
+
+  [ActionType.GET_ARTIST_GALLERY_COMMENTS_API](state: ArtistReducerType): any {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+
+  [ActionType.GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS](
+    state: ArtistReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      loading: false,
+      currentGalleryComments: action.payload.data
+    };
+  },
+
+  [ActionType.GET_ARTIST_GALLERY_COMMENTS_API_FAILURE](
     state: ArtistReducerType,
     action: Action<any>
   ): any {

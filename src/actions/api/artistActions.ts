@@ -53,3 +53,21 @@ export const getArtistEventAPISuccess = (response): any => ({
   type: ActionType.GET_ARTIST_EVENT_API_SUCCESS,
   payload: response
 });
+
+export const getArtistGalleryCommentsAPI = (
+  photoId: number,
+  username: string
+): any => ({
+  type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API,
+  payload: { photoId, username }
+});
+
+export const getArtistGalleryCommentsAPIFailure = (error): any => ({
+  type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API_FAILURE,
+  payload: error
+});
+
+export const getArtistGalleryCommentsAPISuccess = (response): any => ({
+  type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS,
+  payload: response
+});

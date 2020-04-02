@@ -17,7 +17,7 @@ class PhotoChatComponent extends React.Component<Props> {
     return (
       <div>
         {this.props.displayChat && (
-          <div style={{ maxHeight: 350, paddingBottom: 64 }}>
+          <div style={{ maxHeight: 350, paddingBottom: 64 }} className={'photo-chat-component'}>
             <div className="row photo-chat-header">
               <div className="col s10" />
               <div className="col">

@@ -23,7 +23,7 @@ interface StateProps {
 interface Props extends DispatchProps, StateProps, RouteComponentProps {}
 
 class SearchPage extends React.Component<Props> {
-  filterResult = e => {
+  filterResult = (e): void => {
     if (e.target.value.length < 3) return;
     this.props.getSearchResultAPI('all');
   };

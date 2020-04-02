@@ -4,7 +4,6 @@ import { ApplicationState } from '../../../reducers';
 import { CommentCoverInterface } from '../../../interfaces';
 import {
   ButtonIcon,
-  CloseIcon,
   ShareLineIcon,
   BalloonIcon,
   HeartIcon,

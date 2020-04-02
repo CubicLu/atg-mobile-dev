@@ -66,18 +66,21 @@ class RadioFilterPage extends React.Component<Props, State> {
       return array;
     }
 
-    const relatedStations = this.stations.filter(
-      (x: StationInterface): boolean =>
-        x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
-        x.genre.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
-        !!x.tags?.find((x): boolean =>
-          x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
-        )
-    ).map(x=> x.genre);
+    const relatedStations = this.stations
+      .filter(
+        (x: StationInterface): boolean =>
+          x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+          x.genre.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+          !!x.tags?.find((x): boolean =>
+            x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+          )
+      )
+      .map((x): any => x.genre); // fix me change to type
 
-    return array.filter((x: ChannelInterface): boolean =>
-      x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
-      (x.type === 'Genre' && relatedStations.toString().includes(x.name))
+    return array.filter(
+      (x: ChannelInterface): boolean =>
+        x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+        (x.type === 'Genre' && relatedStations.toString().includes(x.name))
     );
   }
   performSearch(value: string): void {

@@ -6,7 +6,8 @@ import {
   ButtonIcon,
   ShareLineIcon,
   BalloonIcon,
-  HeartIcon
+  HeartIcon,
+  Header
 } from '../../index';
 import { RouteComponentProps, withRouter } from 'react-router';
 
@@ -24,24 +25,17 @@ class PostCover extends React.Component<Props> {
           backgroundImage: `linear-gradient(transparent, black), url(${cover.url})`
         }}
       >
-        <div className="row close-btn">
-          <div className="col s6">
-            <ButtonIcon
-              icon={<CloseIcon />}
-              onClick={(): void => {
-                this.props.history.push(`/home/community/`);
-              }}
-            />
-          </div>
-        </div>
+        <Header
+          leftBackButton={false}
+          rightCloseButton={true}
+          rightCloseHref="/home/community"
+        />
         <div className="row button-container">
-          <div className="col s10">
-            <div className="action-btns row">
-              <div className="col s6 cover-btns">
-                <ButtonIcon icon={<ShareLineIcon />} />
-                <ButtonIcon icon={<BalloonIcon />} label={3} />
-                <ButtonIcon icon={<HeartIcon />} />
-              </div>
+          <div className="action-btns row">
+            <div className="col s6 cover-btns mx-1">
+              <ButtonIcon icon={<ShareLineIcon />} />
+              <ButtonIcon icon={<BalloonIcon />} label={3} />
+              <ButtonIcon icon={<HeartIcon />} />
             </div>
           </div>
         </div>

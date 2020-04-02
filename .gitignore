@@ -9,6 +9,7 @@
 # testing
 /coverage
 /simulation
+/simulation/*
 
 # production
 /build

@@ -28,7 +28,7 @@ class SliderStoriesComponent extends React.Component<Props> {
     return (
       <div className="row slider stories">
         <ul className="list inline">
-          {data?.map(
+          {data.slice(0, 5).map(
             (d, i): React.ReactNode => {
               return (
                 <li key={i}>

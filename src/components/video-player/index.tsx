@@ -211,15 +211,20 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   renderBottom(): React.ReactNode {
     return (
       <div className="progress-bar flex-wrap fluid p-1 pt-0 f8 l1">
-        <time className="mx-2" id="time-elapsed">{this.state.currentTime}</time>
+        <time className="mx-2" id="time-elapsed">
+          {this.state.currentTime}
+        </time>
         <IonRange
           className="m-0 p-0"
-          
           min={0}
           max={this.state.videoDuration}
-          onIonChange={(event): void => this.setCurrentTimeVideo(Number(event.detail.value))}
+          onIonChange={(event): void =>
+            this.setCurrentTimeVideo(Number(event.detail.value))
+          }
         />
-        <time className="mx-2" id="duration">{this.state.totalTime}</time>
+        <time className="mx-2" id="duration">
+          {this.state.totalTime}
+        </time>
       </div>
     );
   }

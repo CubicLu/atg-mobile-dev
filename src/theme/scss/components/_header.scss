@@ -4,6 +4,11 @@
     margin-left: $header-margin-left;
     margin-right: $header-margin-right;
     margin-bottom: $header-margin-bottom;
+    .title-left{
+        top: 12px;
+        left: 24px;
+        position: absolute;
+    }
     z-index: 10;
     display: flex;
     flex-direction: row;

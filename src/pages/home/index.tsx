@@ -7,13 +7,15 @@ import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   IonTabs,
   IonTabBar,
   IonTabButton,
-  IonRouterOutlet
+  IonRouterOutlet,
+  IonApp
 } from '@ionic/react';
+import { NotFoundPage, ProfilePage } from '..';
 
 interface StateProps {
   activeTab: string;
@@ -33,69 +35,55 @@ interface DispatchProps {
   ) => void;
 }
 
-interface Props extends StateProps, DispatchProps {
-  authenticated: boolean;
-}
+interface Props extends StateProps, DispatchProps {}
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
-    const {
-      modal,
-      activeTab,
-      tabs,
-      links,
-      loading,
-      authenticated
-    } = this.props;
-    const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
-    const initial = (): JSX.Element => <Redirect to="/initial" />;
-
-    if (!authenticated) {
-      return <Route path="/" render={initial} />;
-    }
-
+    const { modal, activeTab, tabs, links, loading } = this.props;
     return (
-      <IonReactRouter>
-        <LoaderFullscreen visible={loading} />
-        <Player />
-        {modal && (
-          <ModalSlide
-            onClose={(): void => this.props.updateSettingsModal(false, null)}
-            visible={modal.visible}
-            height={setHeight(40)}
-            className={modal.classname}
+      <IonApp>
+        <IonReactRouter>
+          <LoaderFullscreen visible={loading} />
+          <Player />
+          {modal && (
+            <ModalSlide
+              onClose={(): void => this.props.updateSettingsModal(false, null)}
+              visible={modal.visible}
+              height={setHeight(40)}
+              className={modal.classname}
+            >
+              {modal.content}
+            </ModalSlide>
+          )}
+
+          <IonTabs
+            onIonTabsDidChange={(event): void => {
+              this.props.updateSettingsProperty('activeTab', event.detail.tab);
+            }}
           >
-            {modal.content}
-          </ModalSlide>
-        )}
+            <IonRouterOutlet>
+              {links.map((p: LinksInterface, i: number): any => (
+                <Route exact path={p.path} component={p.component} key={i} />
+              ))}
+              {tabs.map((p: TabsInterface, i: number): any => (
+                <Route exact path={p.path} component={p.component} key={i} />
+              ))}
+              <Route exact path="/" component={ProfilePage} />
+              <Route path="*" component={NotFoundPage} />
+            </IonRouterOutlet>
 
-        <IonTabs
-          onIonTabsDidChange={(event): void => {
-            this.props.updateSettingsProperty('activeTab', event.detail.tab);
-          }}
-        >
-          <IonRouterOutlet>
-            {links.map((p: LinksInterface, i: number): any => (
-              <Route exact path={p.path} component={p.component} key={i} />
-            ))}
-            {tabs.map((p: TabsInterface, i: number): any => (
-              <Route exact path={p.path} component={p.component} key={i} />
-            ))}
-            <Route animated={false} exact path="/home" render={redirect} />
-            <Route render={redirect} />
-          </IonRouterOutlet>
-
-          <IonTabBar slot="bottom" color="dark">
-            {tabs.map((p: TabsInterface): any => (
-              <IonTabButton tab={p.id} href={p.path} key={p.id}>
-                {React.createElement(p.icon, {
-                  color: activeTab === p.id ? '#00BAFF' : '#FFF'
-                })}
-              </IonTabButton>
-            ))}
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
+            <IonTabBar slot="bottom" color="dark">
+              {tabs.map((p: TabsInterface): any => (
+                <IonTabButton tab={p.id} href={p.path} key={p.id}>
+                  {React.createElement(p.icon, {
+                    color: activeTab === p.id ? '#00BAFF' : '#FFF'
+                  })}
+                </IonTabButton>
+              ))}
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
     );
   }
 }

@@ -47,29 +47,32 @@ export default class App extends React.Component {
       this.authenticated = !!loggedUser;
       this.forceUpdate();
     });
-    const defaultRoute = (): any => (
-      <Redirect to={this.authenticated ? '/home/profile' : '/initial'} />
-    );
+
+    if (this.authenticated) {
+      return (
+        <Provider store={store}>
+          <HomePage />
+        </Provider>
+      );
+    }
+
     return (
       <Provider store={store}>
         <IonApp>
-          {this.authenticated && <HomePage authenticated={true} />}
-          {!this.authenticated && (
-            <IonReactRouter>
-              <IonRouterOutlet animated={false} id="notLogged" mode="ios">
-                <Route exact path="/initial" component={InitialPage} />
-                <Route exact path="/sign-in" component={SignInPage} />
-                <Route exact path="/sign-up" component={SignUpPage} />
-                <Route exact path="/enter-code" component={EnterCodePage} />
-                <Route
-                  exact
-                  path="/sign-up-confirm"
-                  component={SignUpConfirmPage}
-                />
-                <Route render={defaultRoute} />
-              </IonRouterOutlet>
-            </IonReactRouter>
-          )}
+          <IonReactRouter>
+            <IonRouterOutlet animated={false} id="notLogged" mode="ios">
+              <Route exact path="/initial" component={InitialPage} />
+              <Route exact path="/sign-in" component={SignInPage} />
+              <Route exact path="/sign-up" component={SignUpPage} />
+              <Route exact path="/enter-code" component={EnterCodePage} />
+              <Route
+                exact
+                path="/sign-up-confirm"
+                component={SignUpConfirmPage}
+              />
+              <Redirect from="*" to="/initial" />
+            </IonRouterOutlet>
+          </IonReactRouter>
         </IonApp>
       </Provider>
     );

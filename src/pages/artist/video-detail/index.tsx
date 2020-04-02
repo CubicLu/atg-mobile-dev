@@ -35,8 +35,8 @@ interface State {
 }
 interface Props
   extends StateProps,
-  DispatchProps,
-  RouteComponentProps<MatchParams> {}
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
 
 class ArtistVideoDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -144,15 +144,15 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
       <div className="content-container ">
         {this.renderButtons()}
         <div className="row mx-1">
-            <h1 className="f3">Happy</h1>
-            <p className="f6">
-              Williams provided vocals for French duo Daft Punk’s 2013 album
-              Random Access Memories, on the songs “Lose Yourself to Dance”
-              and “Get Lucky”. After returning from the recording sessions
-              in Paris, he attended a meeting with record label managers who
-              said that the results were “spectacular” and that “Get Lucky”
-              would be Daft Punk’s next single.
-            </p>
+          <h1 className="f3">Happy</h1>
+          <p className="f6">
+            Williams provided vocals for French duo Daft Punk’s 2013 album
+            Random Access Memories, on the songs “Lose Yourself to Dance” and
+            “Get Lucky”. After returning from the recording sessions in Paris,
+            he attended a meeting with record label managers who said that the
+            results were “spectacular” and that “Get Lucky” would be Daft Punk’s
+            next single.
+          </p>
         </div>
       </div>
     );
@@ -164,7 +164,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={(e) => this.headerRef.current?.handleParentScroll(e)}
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
         >
           <BackgroundImage
             gradient={`180deg,#1F0739,#1F0739`}
@@ -174,7 +176,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className="artist-video-detail-page space-between">
+          <div className="artist-video-detail-page space-between mb-50">
             <VideoPlayer />
             {this.state.chatOpened ? this.renderChat() : this.renderContent()}
             {!this.state.chatOpened && this.bottomTiles()}

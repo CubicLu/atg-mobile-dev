@@ -1,3 +1,4 @@
+import NotFoundPage from './404';
 import InitialPage from './initial';
 import SignUpPage from './sign-up';
 import HomePage from './home';
@@ -38,7 +39,10 @@ import CommunityDailyDripPage from './community/daily-drip';
 
 import CommunityAllArtistsPage from './community/all-artists';
 
+import RadioFilterPage from './radio/filter';
+
 export {
+  NotFoundPage,
   InitialPage,
   SignUpPage,
   HomePage,
@@ -74,5 +78,6 @@ export {
   ThankYouPage,
   ArtistVideoDetailPage,
   CommunityDailyDripPage,
-  CommunityAllArtistsPage
+  CommunityAllArtistsPage,
+  RadioFilterPage
 };

@@ -78,7 +78,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={this.handleScroll.bind(this)}
+          onIonScroll={(e): void => this.handleScroll(e)}
         >
           <div className={`artist-deep-dive-page`}>
             <div className={this.state.fixed ? 'row header-fixed' : 'row'}>
@@ -99,7 +99,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
               <Menu
                 tabs={deepDiveTabs}
                 activeId={activeDeepDiveTab}
-                onClick={this.handleMenu.bind(this)}
+                onClick={(e): void => this.handleMenu(e)}
               />
             </div>
           </div>

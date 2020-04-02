@@ -1,5 +1,5 @@
 .horizontal-menu{
-    width: 100%;
+    width: auto;
     display: flex;
     margin-top: 0;
     margin-bottom: 0;
@@ -55,7 +55,7 @@
     &.scroll{
         overflow-x: scroll;
         overflow-y: hidden;
-        justify-content: normal !important;
+        justify-content: normal;
         padding-left: $menu-padding;
     }
 }

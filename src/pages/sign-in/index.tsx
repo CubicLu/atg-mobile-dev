@@ -68,7 +68,7 @@ class SignInPage extends React.Component<Props> {
                   label="Sign In"
                   type={ShapesSize.full}
                   gradient={true}
-                  onClick={this.handleLogin.bind(this)}
+                  onClick={(): void => this.handleLogin()}
                 />
               </div>
             </div>

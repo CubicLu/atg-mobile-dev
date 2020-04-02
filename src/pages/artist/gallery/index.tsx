@@ -58,7 +58,7 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={(e: CustomEvent): void =>
+          onIonScroll={(e): void =>
             this.headerRef.current?.handleParentScroll(e)
           }
         >

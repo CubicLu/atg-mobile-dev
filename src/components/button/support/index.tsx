@@ -50,7 +50,7 @@ class ButtonSupportComponent extends React.Component<Props> {
         <Button
           id={id}
           className="mt-0"
-          onClick={onClick.bind(this)}
+          onClick={(): void => onClick()}
           color={supported ? Colors.supported : Colors.support}
           label={supported ? 'Supported' : 'Support'}
           type={type}

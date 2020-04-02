@@ -35,15 +35,16 @@ import {
   ThankYouPage,
   ArtistVideoDetailPage,
   CommunityDailyDripPage,
-  CommunityAllArtistsPage
+  CommunityAllArtistsPage,
+  ProfileMixtapesPage,
+  RadioFilterPage
 } from './../pages';
 import {
   MenuArtistList,
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon,
-  SliderMixtapes
+  RadioIcon
 } from './../components';
 import React from 'react';
 import { store } from '../store';
@@ -70,7 +71,7 @@ const defaultState: SettingsReducerType = {
       id: 'mixtapes',
       label: 'Mixtapes',
       icon: 'm',
-      component: SliderMixtapes
+      component: ProfileMixtapesPage
     },
     {
       id: 'friends',
@@ -284,6 +285,16 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/video',
       id: 'artistVideos',
       component: ArtistVideosPage
+    },
+    {
+      path: '/home/radio/filter',
+      id: 'radioFilter',
+      component: RadioFilterPage
+    },
+    {
+      path: '/home/radio/genre/:genre',
+      id: 'radioHome',
+      component: RadioPage
     }
   ],
 
@@ -301,7 +312,7 @@ const defaultState: SettingsReducerType = {
       component: CommunityPage
     },
     {
-      path: '/home/profile',
+      path: '/home',
       icon: ProfileIcon,
       id: 'profile',
       component: ProfilePage

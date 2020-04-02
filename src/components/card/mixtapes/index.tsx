@@ -59,7 +59,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                 <ButtonIcon
                   icon={<DotsThreeIcon />}
                   color={Colors.transparent}
-                  onClick={this.setMenu.bind(this)}
+                  onClick={(): void => this.setMenu()}
                 />
               )}
             </div>
@@ -82,7 +82,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                 <li>
                   <ButtonIcon
                     styles={{ backgroundColor: '#919296' }}
-                    onClick={this.setMenu.bind(this)}
+                    onClick={(): void => this.setMenu()}
                     icon={<CloseIcon width={14} height={14} strokeWidth={2} />}
                   />
                 </li>

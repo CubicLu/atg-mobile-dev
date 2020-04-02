@@ -24,7 +24,7 @@ export default class MenuComponent extends React.Component<Props> {
               <div
                 key={i}
                 className={activeId === data.id ? 'div active' : 'div'}
-                onClick={onClick.bind(this, data)}
+                onClick={(): void => onClick(data)}
               >
                 <span className="circle">{data.icon}</span>
                 <span className="label">{data.label}</span>

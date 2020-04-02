@@ -96,8 +96,8 @@ class PlayerComponent extends React.Component<Props> {
       gestureName: 'playerMove',
       gesturePriority: 20,
       passive: true,
-      onEnd: this.playerSwipe.bind(this),
-      onMove: this.playerPull.bind(this)
+      onEnd: this.playerSwipe,
+      onMove: this.playerPull
     };
     this.pullPlayerGesture = createGesture(gestureConfigMini);
     this.pullPlayerGesture.enable();
@@ -109,10 +109,10 @@ class PlayerComponent extends React.Component<Props> {
       .addElement(player)
       .duration(400)
       .easing('ease-in')
-      .fromTo('transform', 'translateY(100%)', 'translateY(0)');
+      .fromTo('transform', 'translate3d(0, 100%, 0)', 'translate3d(0, 0, 0)');
   }
 
-  playerSwipe(gesture: any): void {
+  playerSwipe = (gesture: any): void => {
     const validSwipeUp = !this.props.player.expanded && gesture.deltaY < -250;
     this.pullingInProgress = false;
     if (!this.props.player.expanded && !validSwipeUp) {
@@ -122,7 +122,7 @@ class PlayerComponent extends React.Component<Props> {
 
     const validSwipeDown = this.props.player.expanded && gesture.deltaY > 100;
     if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
-  }
+  };
 
   elasticBack(): void {
     new VigilAnimator({
@@ -139,11 +139,11 @@ class PlayerComponent extends React.Component<Props> {
     e?.preventDefault();
     const direction = this.props.player.expanded ? 'reverse' : 'normal';
     this.expansionInProgress = true;
+    this.elasticBack();
     if (direction === 'normal') this.props.togglePlayer();
     await this.expansePlayerAnimation.direction(direction).play();
     this.expansionInProgress = false;
     if (direction === 'reverse') this.props.togglePlayer();
-    this.elasticBack();
   }
 
   pauseSong(): void {
@@ -192,7 +192,7 @@ class PlayerComponent extends React.Component<Props> {
       : this.playNewAudio(playlist[currentIndex - 1]);
   }
 
-  playerPull(gesture: any): void {
+  playerPull = (gesture: any): void => {
     if (!this.pullingInProgress && window.innerHeight - gesture.startY > 110) {
       return;
     }
@@ -206,7 +206,7 @@ class PlayerComponent extends React.Component<Props> {
         `M 0 10 c 200-${Math.abs(gesture.deltaY)},400,0,400,0`
       );
     }
-  }
+  };
 
   miniPlayer(): React.ReactNode {
     const { playing, timeElapsed, song } = this.props.player;
@@ -254,12 +254,9 @@ class PlayerComponent extends React.Component<Props> {
         </div>
 
         <div className="row mini-bar">
-          <div
-            className="mini-bar-left"
-            onClick={this.togglePlayer.bind(this)}
-          />
+          <div className="mini-bar-left" onClick={this.togglePlayer} />
           <div className="no-padding mini-bar  mini-bar-content">
-            <div onClick={this.togglePlayer.bind(this)} className="infos">
+            <div onClick={this.togglePlayer} className="infos">
               <div className="song f7">{song?.name}</div>
               <div className="artist f7 neue">{song?.artist}</div>
             </div>
@@ -267,13 +264,16 @@ class PlayerComponent extends React.Component<Props> {
               <div className="mini-player-button">
                 <button
                   disabled={disabled}
-                  onClick={this.props.favoriteSong.bind(this)}
+                  onClick={(): void => this.props.favoriteSong()}
                 >
                   <StarIcon />
                 </button>
               </div>
               <div className="mini-player-button">
-                <button disabled={disabled} onClick={this.nextSong.bind(this)}>
+                <button
+                  disabled={disabled}
+                  onClick={(): void => this.nextSong()}
+                >
                   <NextIcon />
                 </button>
               </div>
@@ -360,7 +360,7 @@ class PlayerComponent extends React.Component<Props> {
       <div className="bottom-tiles fluid">
         <div
           className="tile"
-          onClick={this.props.setPlaylistPlayer.bind(this)}
+          onClick={(): void => this.props.setPlaylistPlayer()}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
           )}
@@ -369,7 +369,7 @@ class PlayerComponent extends React.Component<Props> {
         </div>
         <div
           className="tile"
-          onClick={this.props.setRadioPlaylistPlayer.bind(this)}
+          onClick={(): void => this.props.setRadioPlaylistPlayer()}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
           )}
@@ -435,7 +435,7 @@ class PlayerComponent extends React.Component<Props> {
             />
           }
           leftMinimizeButton={true}
-          leftMinimizeOnClick={this.togglePlayer.bind(this)}
+          leftMinimizeOnClick={(e): Promise<void> => this.togglePlayer(e)}
         />
         <div id="expanded-body" className="space-between h-100">
           <div className="m-4 mb-2 player-upper-half space-between">
@@ -469,6 +469,19 @@ class PlayerComponent extends React.Component<Props> {
 
     return (
       <>
+        <div id="full-player" className="full-player">
+          <BackgroundImage
+            gradient={`180deg,#aed8e5,#039e4a`}
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundTopOpacity={0.2}
+            backgroundBottom
+            backgroundBottomOrange={true}
+            backgroundBottomOpacity={0.6}
+          />
+          {expanded && this.fullPlayer()}
+        </div>
+        {expanded && this.fullPlayerButtons()}
         <div id="player" className="mini-player">
           <div id="pull" className="pull">
             <svg
@@ -490,20 +503,6 @@ class PlayerComponent extends React.Component<Props> {
 
           {!expanded && this.miniPlayer()}
         </div>
-
-        <div id="full-player" className="full-player">
-          <BackgroundImage
-            gradient={`180deg,#aed8e5,#039e4a`}
-            backgroundTop
-            backgroundTopDark={true}
-            backgroundTopOpacity={0.2}
-            backgroundBottom
-            backgroundBottomOrange={true}
-            backgroundBottomOpacity={0.6}
-          />
-          {expanded && this.fullPlayer()}
-        </div>
-        {expanded && this.fullPlayerButtons()}
       </>
     );
   }

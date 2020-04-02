@@ -56,8 +56,8 @@ interface State {
 
 interface Props
   extends StateProps,
-  DispatchProps,
-  RouteComponentProps<MatchParams> { }
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
 
 class CommunityPage extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -78,7 +78,7 @@ class CommunityPage extends React.Component<Props, State> {
       this.setBackgroundArtist();
       if (
         nextProps.match.params.artistId !==
-        this.props.currentCommunityArtist?.username ||
+          this.props.currentCommunityArtist?.username ||
         nextProps.match.params.artistId !== this.props.match.params.artistId ||
         (nextProps.currentCommunityArtist == null &&
           nextProps.match.params.artistId !== undefined &&
@@ -149,7 +149,7 @@ class CommunityPage extends React.Component<Props, State> {
         <Header
           leftBackButton={false}
           rightContent={
-            <div className="default-button dark" onClick={(): void => { }}>
+            <div className="default-button dark" onClick={(): void => {}}>
               <PlusIcon />
             </div>
           }
@@ -217,7 +217,9 @@ class CommunityPage extends React.Component<Props, State> {
         {this.renderHeader()}
         <IonContent>
           <div
-            className={`community-page mt-3 content` + (isPlaying && ' is-playing')}
+            className={
+              `community-page mt-3 content` + (isPlaying && ' is-playing')
+            }
           >
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (

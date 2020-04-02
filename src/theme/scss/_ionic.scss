@@ -23,6 +23,16 @@ ion-tabbar {
         width: 0;
     }
 }
+ion-app {
+    &.hide-tabs {
+        .mini-player {
+            display: none;
+        }
+        ion-tab-bar {
+            display: none;
+        }
+    }
+}
 .ion-color{
     &.ion-color-dark {
         --ion-color-base: var(--ion-color-dark, #070707) !important;

@@ -11,6 +11,7 @@ interface Props {
   data?: any[];
   size?: Sizes;
   type?: ShapesSize;
+  onClick?: (id: number) => void;
 }
 
 class SliderVideoComponent extends React.Component<Props> {
@@ -38,13 +39,17 @@ class SliderVideoComponent extends React.Component<Props> {
           {data.map(
             (d, i): React.ReactNode => (
               <CardVideo
+                key={i}
+                onClick={(id): void => {
+                  if (this.props.onClick !== undefined) this.props.onClick(id);
+                }}
                 type={type}
                 video={d.video}
                 image={d.image}
                 title={d.title}
                 time={d.time}
                 artist={d.artist}
-                key={i}
+                id={i}
                 size={size}
               />
             )

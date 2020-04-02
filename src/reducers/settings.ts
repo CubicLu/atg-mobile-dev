@@ -33,6 +33,7 @@ import {
   CommunityPostPage,
   TrackListPage,
   ThankYouPage,
+  ArtistVideoDetailPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   ProfileMixtapesPage,
@@ -274,6 +275,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/thank-you',
       id: 'thankYou',
       component: ThankYouPage
+    },
+    {
+      path: '/home/artist/:id/video/:videoId',
+      id: 'artistVideo',
+      component: ArtistVideoDetailPage
     },
     {
       path: '/home/artist/:id/video',

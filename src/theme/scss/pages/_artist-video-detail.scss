@@ -1,0 +1,28 @@
+.artist-video-detail-page{
+    .video-player-component{
+        top: 60px;
+        z-index: 2;
+    }
+
+    .content-container {
+        margin-top: 85px;
+
+        .buttons{
+            button{
+                margin-right: 30px;
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .chat-container{
+        margin-top: 65px;
+        background: #FFF;
+        .close{
+            background: #01add9;
+        }
+    }
+   
+}

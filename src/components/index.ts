@@ -36,6 +36,8 @@ import PostTextComponent from './post/post-text';
 import PostCommentsComponent from './post/post-comments';
 import ArtistPostComponent from './post';
 import SectionTitleComponent from './section-title';
+import VideoPlayerComponent from './video-player';
+import ChatComponent from './chat';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -92,7 +94,9 @@ export {
   PostTextComponent as PostText,
   PostCommentsComponent as PostComment,
   ArtistPostComponent as ArtistPost,
-  SectionTitleComponent as SectionTitle
+  SectionTitleComponent as SectionTitle,
+  VideoPlayerComponent as VideoPlayer,
+  ChatComponent as Chat
 };
 
 export {

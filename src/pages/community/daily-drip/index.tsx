@@ -91,7 +91,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
         <BackgroundImage
           backgroundImage={'https://loremflickr.com/500/1000/music'}
         />
-        <IonContent>
+        <IonContent scrollY={false}>
           <div
             className={`community-daily-drip-page space-between h-100 ${this
               .props.isPlaying && `is-playing`}`}

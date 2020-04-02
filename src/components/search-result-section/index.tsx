@@ -21,9 +21,14 @@ class SearchResultSectionComponent extends React.Component<Props> {
         {this.props.content.map(
           (data: SearchResult, i: number): React.ReactNode => (
             <div key={i} className={'row flex-align-center section'}>
-              <Avatar type={ShapesSize.circle} width={57} height={57} image={data.avatar}/>
+              <Avatar
+                type={ShapesSize.circle}
+                width={57}
+                height={57}
+                image={data.avatar}
+              />
               <div className={'column'}>
-                <span className={'section-title flex-align-center row'}>
+                <span className="section-title flex-align-center row">
                   {data.name}
                 </span>
                 <span className={'section-subtitle row'}>{data.artist}</span>
@@ -31,7 +36,7 @@ class SearchResultSectionComponent extends React.Component<Props> {
             </div>
           )
         )}
-        <hr />
+        <div className="mt-3 search-outline-purple" />
       </div>
     );
   }

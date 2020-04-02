@@ -4,9 +4,8 @@ ion-tabbar {
 *::-webkit-scrollbar {
     display: none;
 }
-ion-page, ion-content{
+.ion-page, ion-content{
     scrollbar-width: none !important;
-    text-rendering: optimizeSpeed !important;
     scroll-behavior: smooth !important;
     &::-webkit-scrollbar {
         height: 0;

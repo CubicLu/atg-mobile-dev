@@ -362,3 +362,24 @@ export interface VideoInterface {
   time: number | string;
   datePublished: Date;
 }
+
+export type RadioSection = 'Genre' | 'Vibe' | 'Era';
+export interface ChannelInterface {
+  id: string;
+  type: RadioSection;
+  name: string;
+  icon?: string;
+  image?: string;
+  title?: string;
+  subtitle?: string;
+  color: string;
+  target?: string;
+  tags?: string[];
+}
+export interface StationInterface {
+  id: string;
+  name: string;
+  image: string;
+  tags?: string[];
+  genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
+}

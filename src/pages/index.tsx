@@ -38,6 +38,8 @@ import CommunityDailyDripPage from './community/daily-drip';
 
 import CommunityAllArtistsPage from './community/all-artists';
 
+import RadioFilterPage from './radio/filter';
+
 export {
   NotFoundPage,
   InitialPage,
@@ -74,5 +76,6 @@ export {
   TrackListPage,
   ThankYouPage,
   CommunityDailyDripPage,
-  CommunityAllArtistsPage
+  CommunityAllArtistsPage,
+  RadioFilterPage
 };

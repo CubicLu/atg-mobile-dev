@@ -174,3 +174,34 @@
         @include plan-detail();
     }
 }
+.vibe-icon{
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+}
+
+.badge-row{
+    width: auto;
+    overflow-x: scroll;
+    max-height: 30px;
+    .badge-item{
+        margin-top: auto;
+        margin-bottom: auto;
+        line-height: 2;
+        width: 128px;
+        min-width: 128px;
+        max-width: 128px;
+        height: 30px;
+        max-height: 30px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: 25px;
+        background: #b5b5b5;
+        &.active{
+            background: #01add9;
+        }
+    }
+}

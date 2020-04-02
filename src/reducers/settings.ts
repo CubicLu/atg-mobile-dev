@@ -35,7 +35,8 @@ import {
   ThankYouPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
-  ProfileMixtapesPage
+  ProfileMixtapesPage,
+  RadioFilterPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -278,6 +279,16 @@ const defaultState: SettingsReducerType = {
       path: '/home/artist/:id/video',
       id: 'artistVideos',
       component: ArtistVideosPage
+    },
+    {
+      path: '/home/radio/filter',
+      id: 'radioFilter',
+      component: RadioFilterPage
+    },
+    {
+      path: '/home/radio/genre/:genre',
+      id: 'radioHome',
+      component: RadioPage
     }
   ],
 

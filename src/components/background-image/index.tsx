@@ -18,6 +18,7 @@ interface Props {
   backgroundTopDark: boolean;
   backgroundTopOpacity: number;
   backgroundBottom: boolean;
+  gradientOverlay?: boolean;
   backgroundBottomDark: boolean;
   backgroundBottomOpacity: number;
   backgroundBottomOrange: boolean;
@@ -56,7 +57,8 @@ class BackgroundImageComponent extends React.Component<Props> {
       className,
       styles,
       legend,
-      children
+      children,
+      gradientOverlay
     } = this.props;
 
     const topClass = 'background-top';
@@ -77,7 +79,9 @@ class BackgroundImageComponent extends React.Component<Props> {
 
     let imageArray: string[] = [];
     let classArray: string[] = ['background-image'];
-
+    gradientOverlay &&
+      gradient &&
+      imageArray.push(`linear-gradient(${gradient})`);
     imageUrl && imageArray.push(`url(${imageUrl})`);
     gradient && imageArray.push(`linear-gradient(${gradient})`);
     shadow && classArray.push('shadow');

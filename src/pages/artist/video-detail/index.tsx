@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { shadowTitle } from '../../../utils';
+import MinimizeIcon from '../../../components/icon/minimize';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -33,11 +34,12 @@ interface MatchParams {
 
 interface State {
   readonly chatOpened: boolean;
+  readonly chatExpanded: boolean;
 }
 interface Props
   extends StateProps,
-    DispatchProps,
-    RouteComponentProps<MatchParams> {}
+  DispatchProps,
+  RouteComponentProps<MatchParams> { }
 
 class ArtistVideoDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -45,7 +47,8 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      chatOpened: false
+      chatOpened: false,
+      chatExpanded: false
     };
   }
 
@@ -105,6 +108,12 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
 
   setChat(condition = false): void {
     this.setState({ chatOpened: condition });
+    if (!condition) {
+      this.setState({ chatExpanded: false });
+    }
+  }
+  expandChat(): void {
+    this.setState({ chatExpanded: !this.state.chatExpanded });
   }
 
   renderButtons(): React.ReactNode {
@@ -129,15 +138,27 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   renderChat(): React.ReactNode {
+    const { chatExpanded } = this.state;
+    const chevronClass = chatExpanded ? 'chevron-reverse' : 'chevron-normal';
+    const containerClass = chatExpanded ? 'chat-expanded' : '';
     return (
-      <div className="chat-container h-100">
+      <div className={`chat-container h-100 ${containerClass}`}>
         <div className="row close">
-          <div className="col s12 flex-justify-content-end">
-            <ButtonIcon
-              color={Colors.transparent}
-              icon={<CloseIcon />}
-              onClick={this.setChat.bind(this, false)}
-            />
+          <div className="mx-2 flex-justify-content-end">
+            <div className={`align-start ${chevronClass}`}>
+              <ButtonIcon
+                color={Colors.transparent}
+                icon={<MinimizeIcon />}
+                onClick={(): void => this.expandChat()}
+              />
+            </div>
+            <div className="align-end">
+              <ButtonIcon
+                color={Colors.transparent}
+                icon={<CloseIcon />}
+                onClick={(): void => this.setChat(false)}
+              />
+            </div>
           </div>
         </div>
         <Chat />

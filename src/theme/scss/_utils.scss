@@ -30,16 +30,16 @@
     flex-direction: column;
     display: flex;
     &.west{
-        align-items: flex-start;   
+        align-items: flex-start;
     }
     &.east{
-        align-items: flex-end;   
+        align-items: flex-end;
     }
     &.half{
-        align-items: center;   
+        align-items: center;
     }
     &.south{
-        justify-content: flex-end;   
+        justify-content: flex-end;
     }
     &.center{
         justify-content: center;
@@ -273,4 +273,3 @@
         height: 30vh;
     }
 }
-

@@ -48,7 +48,7 @@ class ArtistEventsPage extends React.Component<Props, {}> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={(e: CustomEvent): void =>
+          onIonScroll={(e): void =>
             this.headerRef.current?.handleParentScroll(e)
           }
         >

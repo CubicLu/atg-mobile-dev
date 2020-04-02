@@ -19,6 +19,20 @@ export function setHeight(original: number): number {
   }
 }
 
+export function totalRows(item: any[], itemPerRow: number): any[] {
+  const length = (item && item.length) || 0;
+  const total = Math.floor(length / itemPerRow) + 1;
+  const array = [...Array(total)];
+  return array;
+}
+export function fromThisRow(
+  arrayItem: number,
+  rowNumber: number,
+  itemPerRow: number
+): boolean {
+  return Math.floor(arrayItem / itemPerRow) === rowNumber;
+}
+
 export function shadowTitle(url: string): CSSProperties {
   return {
     backgroundImage: `linear-gradient(180deg, #ffffff00 40%, #000 100%), url(${url})`,

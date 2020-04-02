@@ -77,6 +77,30 @@ export class PlayButton extends React.Component<Props> {
     </svg>
   );
 }
+export class RadioPlayButton extends React.Component<Props> {
+  public static defaultProps = { color: '#FFF' };
+  render = (): React.ReactNode => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="64"
+      height="64"
+      viewBox="0 0 64 64"
+    >
+      <circle cx="32" cy="32" r="32" fill="#020202" style={{ opacity: 0.5 }} />
+      <g>
+        <path
+          d="M11.9 4.474a3 3 0 0 1 5.19 0l9.292 16.021A3 3 0 0 1 23.792 25H5.208a3 3 0 0 1-2.6-4.505z"
+          transform="rotate(90 15.25 32.75)"
+        />
+        <path
+          d="M14.5 4.98c-.173 0-.604.048-.865.498l-9.292 16.02c-.262.452-.088.85-.001 1.001.086.15.344.501.866.501h18.584c.522 0 .78-.35.866-.5.087-.151.26-.55-.001-1.002l-9.292-16.02c-.26-.45-.692-.499-.865-.499m0-2c1.009 0 2.017.499 2.595 1.495l9.292 16.02c1.16 2-.283 4.506-2.595 4.506H5.208c-2.312 0-3.755-2.505-2.595-4.505l9.292-16.02c.578-.997 1.586-1.496 2.595-1.496z"
+          fill={this.props.color}
+          transform="rotate(90 15.25 32.75)"
+        />
+      </g>
+    </svg>
+  );
+}
 export class PrevButton extends React.Component<Props> {
   public static defaultProps = { color: '#FFF' };
   render = (): React.ReactNode => (
@@ -332,6 +356,36 @@ export class SongInfoButton extends React.Component<Props> {
           fill={this.props.color}
         />
       </g>
+    </svg>
+  );
+}
+export class PlusButton extends React.Component<Props> {
+  public static defaultProps = { color: '#FFF' };
+  render = (): React.ReactNode => (
+    <svg width="48" height="48" viewBox="0 0 48 48">
+      <path
+        d="M34.121,17.061A17.061,17.061,0,1,1,17.063,0,17.057,17.057,0,0,1,34.121,17.061Z"
+        transform="translate(24 0) rotate(45)"
+        style={{ opacity: 0.25 }}
+      />
+      <line
+        y1="13.105"
+        x2="13.105"
+        transform="translate(24 15) rotate(45)"
+        fill="none"
+        stroke="#fff"
+        strokeMiterlimit="10"
+        strokeWidth="1"
+      />
+      <line
+        x1="13.105"
+        y1="13.105"
+        transform="translate(24 15) rotate(45)"
+        fill="none"
+        stroke="#fff"
+        strokeMiterlimit="10"
+        strokeWidth="1"
+      />
     </svg>
   );
 }

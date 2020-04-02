@@ -22,7 +22,7 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
     return (
       <div
         className={`col s${col} card album-gallery`}
-        onClick={onClick.bind(this)}
+        onClick={(): void => onClick()}
       >
         <div
           className={`image ${type}`}

@@ -1,15 +1,17 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonPage, IonButton } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import {
   BackgroundImage,
   BackgroundSignInImage,
   InputText,
-  Header
+  Header,
+  Button
 } from './../../components';
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
+import { ShapesSize, Sizes } from '../../interfaces';
 
 interface StateProps {}
 interface Props extends RouteComponentProps, DispatchProps {}
@@ -42,15 +44,15 @@ class SignInPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          leftContent={<div className="h1 l1 no-wrap">SIGN IN</div>}
+          leftContent={<div className="h1 l08 no-wrap">SIGN IN</div>}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
-            <div className="flex-compass h-100" />
+            <div className="flex-compass fluid h-100" />
 
-            <div className="flex-compass h-100 south center fluid">
+            <div className="flex-compass fluid h-100 south center fluid">
               <div className="row" />
               <InputText type="text" placeholder={'User Name'} />
               <br />
@@ -60,15 +62,14 @@ class SignInPage extends React.Component<Props> {
               </button>
 
               <div className="row" />
-              <div className="col s12 mt-40">
-                <IonButton
-                  className="primary gradient"
-                  size="default"
-                  onClick={this.handleLogin.bind(this)}
-                  expand="full"
-                >
-                  Sign In
-                </IonButton>
+              <div className="col s12 mt-5">
+                <Button
+                  size={Sizes.lg}
+                  label="Sign In"
+                  type={ShapesSize.full}
+                  gradient={true}
+                  onClick={(): void => this.handleLogin()}
+                />
               </div>
             </div>
 

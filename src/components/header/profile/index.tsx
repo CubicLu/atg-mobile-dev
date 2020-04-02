@@ -43,7 +43,7 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     },
     {
       text: 'Log out',
-      handler: this.handleLogout.bind(this)
+      handler: (): void => this.handleLogout()
     },
     {
       text: 'Cancel',

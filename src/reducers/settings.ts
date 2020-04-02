@@ -9,7 +9,6 @@ import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
   ProfileFriendsPage,
-  ProfileMixtapesPage,
   ProfileVaultPage,
   ArtistFeaturesPage,
   ArtistDiscographyPage,
@@ -34,8 +33,11 @@ import {
   CommunityPostPage,
   TrackListPage,
   ThankYouPage,
+  ArtistVideoDetailPage,
   CommunityDailyDripPage,
-  CommunityAllArtistsPage
+  CommunityAllArtistsPage,
+  ProfileMixtapesPage,
+  RadioFilterPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -275,9 +277,24 @@ const defaultState: SettingsReducerType = {
       component: ThankYouPage
     },
     {
+      path: '/home/artist/:id/video/:videoId',
+      id: 'artistVideo',
+      component: ArtistVideoDetailPage
+    },
+    {
       path: '/home/artist/:id/video',
       id: 'artistVideos',
       component: ArtistVideosPage
+    },
+    {
+      path: '/home/radio/filter',
+      id: 'radioFilter',
+      component: RadioFilterPage
+    },
+    {
+      path: '/home/radio/genre/:genre',
+      id: 'radioHome',
+      component: RadioPage
     }
   ],
 
@@ -295,7 +312,7 @@ const defaultState: SettingsReducerType = {
       component: CommunityPage
     },
     {
-      path: '/home/profile',
+      path: '/home',
       icon: ProfileIcon,
       id: 'profile',
       component: ProfilePage

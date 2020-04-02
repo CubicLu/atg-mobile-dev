@@ -6,11 +6,11 @@
     width: 100vw;
     padding-bottom: 20px !important;
 }
-.mt-40{
-    margin-top: 40px;
-}
 .fluid{
     width: 100%;
+}
+.full-width{
+    width: 100% !important;
 }
 .overflow-auto{
     overflow: auto;
@@ -18,8 +18,10 @@
 .flex{
     display: flex;
 }
+.search-outline{
+    border: solid 1px #5c1cc7;
+}
 .flex-compass{
-    width: 100%;
     align-self: center;
     justify-content: center;
     flex-direction: column;
@@ -86,20 +88,29 @@
 .px-2{ padding-left: 16px;padding-right: 16px; }
 .px-3{ padding-left: 24px;padding-right: 24px; }
 .px-12{ padding-left: 12px;padding-right: 12px; }
+.mx-auto{ margin-left: auto;margin-right: auto; }
+.my-auto{ margin-top: auto;margin-bottom: auto; }
 .mx-0{ margin-left: 0px;margin-right: 0px; }
 .mx-05{ margin-left: 4px;margin-right: 4px; }
+.ml-1{ margin-left: 8px;}
+.ml-2{ margin-left: 16px;}
+.ml-3{ margin-left: 24px;}
+.ml-4{ margin-left: 32px;}
 .mx-1{ margin-left: 8px;margin-right: 8px; }
 .mx-2{ margin-left: 16px;margin-right: 16px; }
+.mr-1{ margin-right: 8px; }
+.mr-2{ margin-right: 16px; }
 .mx-25{ margin-left: 20px;margin-right: 20px; }
 .mx-3{ margin-left: 24px;margin-right: 24px; }
 .mx-35{ margin-left: 28px;margin-right: 28px; }
 .mx-4{ margin-left: 32px;margin-right: 32px; }
+.my-auto{ margin-top: auto;margin-bottom: auto; }
 .my-0{ margin-top: 0px;margin-bottom: 0px; }
 .my-1{ margin-top: 8px;margin-bottom: 8px; }
 .my-2{ margin-top: 16px;margin-bottom: 16px; }
 .my-3{ margin-top: 24px;margin-bottom: 24px; }
 .my-4{ margin-top: 32px;margin-bottom: 32px; }
-.m-0{ margin: 0px; }
+.m-0{ margin: 0px !important; }
 .m-1{ margin: 8px; }
 .m-2{ margin: 16px; }
 .m-3{ margin: 24px; }
@@ -118,19 +129,46 @@
 .mb-3{ margin-bottom: 24px; }
 .mb-4{ margin-bottom: 32px; }
 .mb-5{ margin-bottom: 40px; }
+.mb-6{ margin-bottom: 48px; }
+.mb-50{ margin-bottom: 50px; }
+.mb-7{ margin-bottom: 56px; }
+.pb-0{ padding-bottom: 0px; }
+.pb-05{padding-bottom: 4px; }
+.pb-1{ padding-bottom: 8px; }
+.pb-2{ padding-bottom: 16px; }
+.pb-3{ padding-bottom: 24px; }
+.pb-4{ padding-bottom: 32px; }
+.pb-5{ padding-bottom: 40px; }
 .mt-0{ margin-top: 0px; }
+.mt-05{ margin-top: 4px; }
 .mt-1{ margin-top: 8px; }
+.mt-10{ margin-top: 10px; }
 .mt-2{ margin-top: 16px; }
 .mt-3{ margin-top: 24px; }
 .mt-4{ margin-top: 32px; }
-.mt-05{ margin-top: 4px; }
-.mt-5{ margin-top: 36px; }
+.mt-45{ margin-top: 36px; }
+.mt-5{ margin-top: 40px; }
+.mt-55{ margin-top: 44px; }
+.mt-6{ margin-top: 48px; }
 .mt-negative-1{ margin-top: -8px; }
 .mt-negative-2{ margin-top: -16px; }
 .pt-0{ padding-top: 0px; }
 .pt-1{ padding-top: 8px; }
 .p-10{
     padding: 10px;
+}
+.absolute-logo-left{
+    top: 44px;
+    left: 24px;
+    position: absolute;
+}
+.top-half{
+    width: 100%;
+    top: 0;
+    min-height: calc(50vh - 50px);
+    height: calc(50vh - 50px);
+    max-height: calc(50vh - 50px);
+    position: relative;
 }
 .flex-align-baseline{
     display: flex;
@@ -183,6 +221,10 @@
 }
 .align-end{
     margin-left: auto;
+}
+.container-top-bottom{
+    margin-top: $content-margin-top;
+    margin-bottom: $content-margin-bottom;
 }
 .content-container{
     margin-top: $content-margin-top;

@@ -35,10 +35,18 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
+const HEADER_ANIMATION_OFFSET = 220;
+
 class ArtistPage extends React.Component<Props, {}> {
   private blur: boolean = false;
   private lastOffset: number = 0;
+  private lastOffsetA: number = 0;
   private custom: CustomAnimation = {
+    animation: undefined,
+    progressStarted: false,
+    loaded: false
+  };
+  private customAlpha: CustomAnimation = {
     animation: undefined,
     progressStarted: false,
     loaded: false
@@ -53,12 +61,34 @@ class ArtistPage extends React.Component<Props, {}> {
   }
   componentWillUnmount(): void {
     this.custom.animation = undefined;
+    this.customAlpha.animation = undefined;
+  }
+  loadAnimationsAlpha(): void {
+    const normalMenu = document.querySelector('#horizontal-menu');
+    if (!normalMenu) return;
+    this.customAlpha.loaded = true;
+    this.customAlpha.animation = createAnimation()
+      .easing('ease-in')
+      .duration(1600)
+      .addAnimation([
+        createAnimation()
+          .addElement(document.querySelector('#fade-background')!)
+          .fromTo('opacity', '0', `1`),
+        createAnimation()
+          .addElement(document.querySelector('#ion-item-header')!)
+          .fromTo(
+            'transform',
+            'translate(0,0)',
+            `translate(0px, -${HEADER_ANIMATION_OFFSET}px)`
+          )
+      ]);
+    this.customAlpha.progressStarted = true;
+    this.customAlpha.animation.progressStart(true);
   }
   loadAnimations(): void {
     const normalMenu = document.querySelector('#horizontal-menu');
     if (!normalMenu) return;
     this.custom.loaded = true;
-    const itensHeader = document.querySelector('.offset-content')!;
     const supportButton = document.querySelector('#support-button')!;
     const artistTitle = document.querySelector('#artist-title')!;
     const aT = getFixedTranslatePoints(supportButton!, 16, 46, true);
@@ -66,14 +96,11 @@ class ArtistPage extends React.Component<Props, {}> {
     const menu = getFixedTranslatePoints(normalMenu!, 0, 80);
     this.custom.animation = createAnimation()
       .easing('ease-in')
-      .duration(1600)
+      .duration(400)
       .addAnimation([
         createAnimation()
           .addElement(document.querySelector('#support-bar')!)
           .fromTo('transform', 'translateX(0px)', 'translateX(250px)'),
-        createAnimation()
-          .addElement(document.querySelector('#fade-background')!)
-          .fromTo('opacity', '0', `1`),
         createAnimation()
           .addElement(supportButton)
           .fromTo(
@@ -94,28 +121,74 @@ class ArtistPage extends React.Component<Props, {}> {
             'transform',
             'translateY(0)',
             `translateY(${menu.translateY}px)`
-          ),
-        createAnimation()
-          .addElement(itensHeader)
-          .fromTo('marginTop', '0px', '-120px')
+          )
         //use values between 100 and 200 -> 80px less than throttle
       ]);
-    this.custom.progressStarted = true;
-    this.custom.animation.progressStart(true);
   }
 
-  handleScroll(event: any): void {
-    if (!this.custom.loaded) this.loadAnimations();
+  handleScrollEnd = (): void => {
+    if (!this.custom.progressStarted) {
+      return;
+    }
+
+    const ionContent = document.querySelector(
+      'ion-content'
+    )! as HTMLIonContentElement;
+
+    ionContent.scrollEvents = false;
+    ionContent.scrollY = false;
+    const shouldComplete = this.lastOffset > 0.5;
+    this.custom.animation
+      .progressEnd(shouldComplete ? 1 : 0, this.lastOffset)
+      .onFinish((): void => {
+        ionContent.scrollY = true;
+        ionContent.scrollEvents = true;
+      });
+    this.lastOffset = shouldComplete ? 1 : 0;
+    this.custom.progressStarted = false;
+  };
+
+  handleScroll = (event: CustomEvent): void => {
+    if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
+
+    if (!this.customAlpha.progressStarted) {
+      this.customAlpha.animation.progressStart();
+      this.customAlpha.progressStarted = true;
+    }
+
     //use values between 100 and 200 on divisor to throttle
-    const offset = Number(Math.min(event.detail.scrollTop / 200, 1).toFixed(2));
-    this.blur = event.detail.scrollTop > 200;
+    const offsetA = Number(
+      Math.min(event.detail.scrollTop / 200, 1).toFixed(2)
+    );
+    this.customAlpha.animation.progressStep(offsetA);
+    this.lastOffsetA = offsetA;
 
-    if (this.blur && this.lastOffset === 1) return;
-    this.custom.animation.progressStep(offset);
-    this.lastOffset = offset;
-  }
+    if (
+      event.detail.scrollTop >= HEADER_ANIMATION_OFFSET &&
+      !this.custom.loaded
+    ) {
+      this.loadAnimations();
+    }
+    if (this.custom.loaded) {
+      if (!this.custom.progressStarted) {
+        this.custom.animation.progressStart();
+        this.custom.progressStarted = true;
+      }
+      const topOffSet = Math.max(
+        0,
+        event.detail.scrollTop - HEADER_ANIMATION_OFFSET
+      );
 
-  handleMenu(event: MenuInterface): void {
+      const offset = Number(Math.min(topOffSet / 100, 1).toFixed(2));
+      if (this.lastOffset === 1 && event.detail.deltaY >= 0) {
+        return;
+      }
+      this.custom.animation.progressStep(offset);
+      this.lastOffset = offset;
+    }
+  };
+
+  handleMenu = (event: MenuInterface): void => {
     const { match, history, updateSettingsProperty } = this.props;
     if (event.route && event.isPage === true) {
       history.push(event.route.replace(':id', match.params.id));
@@ -124,7 +197,7 @@ class ArtistPage extends React.Component<Props, {}> {
     } else {
       updateSettingsProperty('activeArtistTab', event.id);
     }
-  }
+  };
 
   render(): React.ReactNode {
     if (!this.props.currentArtist) {
@@ -137,7 +210,7 @@ class ArtistPage extends React.Component<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackHref="/home/profile" />
+        <Header leftBackHref="/home" />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
@@ -161,7 +234,7 @@ class ArtistPage extends React.Component<Props, {}> {
           <Menu
             tabs={artistTabs}
             activeId={activeArtistTab}
-            onClick={this.handleMenu.bind(this)}
+            onClick={this.handleMenu}
           />
         </div>
         <IonContent
@@ -169,7 +242,8 @@ class ArtistPage extends React.Component<Props, {}> {
           scrollEvents={true}
           forceOverscroll={true}
           fullscreen={false}
-          onIonScroll={this.handleScroll.bind(this)}
+          onIonScroll={this.handleScroll}
+          onIonScrollEnd={this.handleScrollEnd}
         >
           <div className="offset-content" />
 

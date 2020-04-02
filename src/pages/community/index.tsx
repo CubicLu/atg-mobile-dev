@@ -153,7 +153,7 @@ class CommunityPage extends React.Component<Props, State> {
           }
           rightActionButton={true}
         >
-          <div className="community mx-3 mt-5">
+          <div className="community mx-3 mt-45">
             <div className="h2 community">Community</div>
             <div className="f6 no-wrap">Musical Goddess</div>
           </div>

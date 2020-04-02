@@ -40,6 +40,8 @@
 @import './components/support-by';
 @import './components/loader';
 @import './components/button-support';
+@import './components/video-player';
+@import './components/chat';
 @import './components/photo-chat';
 
 /* pages */
@@ -61,6 +63,7 @@
 @import './pages/community';
 @import './pages/thank-you';
 @import './pages/artist-videos';
+@import './pages/artist-video-detail';
 @import './pages/community-daily-drip-page';
 @import './pages/posts';
 @import './pages/community-all-artists';

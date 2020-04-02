@@ -12,6 +12,7 @@ interface Props extends RouteComponentProps {
   className?: string;
   title?: string | null;
   titleClassName?: string;
+  titleLeft?: boolean;
   leftBackButton?: boolean;
   top?: boolean;
   color?: string;
@@ -35,9 +36,12 @@ interface Props extends RouteComponentProps {
   rightInfoOnClick?: any;
   leftBackOnClick?: any;
   leftBackHref?: string;
+  rightActionHref?: string;
+  rightCloseHref?: string;
   translucent?: boolean;
   ios?: boolean;
   fixed?: boolean;
+  direction?: 'PUSH' | 'POP' | 'REPLACE';
   rightButtonGroup?: boolean;
   parentCallback?: Function;
   overlay?: string | number;
@@ -75,6 +79,18 @@ class HeaderComponent extends React.Component<Props> {
     return this.props.history.goBack();
   };
 
+  pushUrl(url: string): void {
+    const direction = this.props.direction || 'PUSH';
+    switch (direction) {
+      case 'PUSH':
+        return this.props.history.push(url);
+      case 'POP':
+        return this.props.history.goBack();
+      case 'REPLACE':
+        return this.props.history.replace(url);
+    }
+  }
+
   openChatPanel = (shouldDisplay: boolean): Function => {
     return this.props.parentCallback
       ? this.props.parentCallback(shouldDisplay)
@@ -94,6 +110,7 @@ class HeaderComponent extends React.Component<Props> {
       title,
       fixed,
       titleClassName,
+      titleLeft,
       rightContent,
       rightCloseButton,
       rightCloseOnClick,
@@ -108,7 +125,9 @@ class HeaderComponent extends React.Component<Props> {
       rightActionYellow,
       rightButtonGroup,
       children,
-      overlay
+      overlay,
+      rightActionHref,
+      rightCloseHref
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -134,8 +153,13 @@ class HeaderComponent extends React.Component<Props> {
 
           <div className="center">
             {centerContent}
+
             {title && (
-              <div className={`h2 l11 ${titleClassName ? titleClassName : ''}`}>
+              <div
+                className={`h2 l11 ${titleLeft ? 'title-left' : ''} ${
+                  titleClassName ? titleClassName : ''
+                }`}
+              >
                 {title}
               </div>
             )}
@@ -154,7 +178,11 @@ class HeaderComponent extends React.Component<Props> {
                 className={`default-button ${
                   rightActionYellow ? 'gold' : 'dark'
                 }`}
-                onClick={rightActionOnClick}
+                onClick={
+                  rightActionHref
+                    ? (): void => this.pushUrl(rightActionHref)
+                    : rightActionOnClick
+                }
               >
                 <DotsThreeIcon color={rightActionYellow ? '#000' : '#fff'} />
               </div>
@@ -176,7 +204,14 @@ class HeaderComponent extends React.Component<Props> {
               </div>
             )}
             {rightCloseButton && (
-              <div className="default-button dark" onClick={rightCloseOnClick}>
+              <div
+                className="default-button dark"
+                onClick={
+                  rightCloseHref
+                    ? (): void => this.pushUrl(rightCloseHref)
+                    : rightCloseOnClick
+                }
+              >
                 <CloseIcon />
               </div>
             )}

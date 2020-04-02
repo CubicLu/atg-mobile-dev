@@ -14,7 +14,6 @@
         border-bottom:1px solid #FFF;
     }
 }
-
 .card{
     &.image{
         margin: 0.5rem 0 0.5rem 0 !important;
@@ -29,7 +28,6 @@
         -o-background-size: cover;
         background-size: cover;
     }
-
     &.mixtapes{
         background: transparent;
         position: relative;
@@ -38,12 +36,9 @@
         border-radius: 0;
         padding-left: 10px;
         padding-right: 10px;
-
+        padding-top: 16px;
         .row{
             margin-bottom: 0 !important;
-        }
-        .cover{
-            padding: 15px 10px;
         }
         .tape{
             position: relative;
@@ -54,7 +49,6 @@
             -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
             -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
             box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-
             .background{
                 background-repeat: no-repeat;
                 background-position-x: center;
@@ -115,20 +109,7 @@
 
 
         }
-        .infos{
-            justify-content: center;
-            .playlist, .quantity{
-                color: #FFF;
-                font-family: "Helvetica";
-                display: flex;
-                justify-content: center;
-            }
-            .playlist{
-                font-size: 18px;
-            }
-        }
     }
-
     &.video{
         margin: 0.5rem 0 0.5rem 0 !important;
         height: 170px;
@@ -144,13 +125,12 @@
         &::after{
             content: attr(data-time);
             background: #000;
-            height: 25px;
+            height: 20px;
             width: 100%;
-            font-family: "Helvetica";
-            font-size: 14px;
+            font-size: 12px;
             white-space: nowrap;
             max-width: 48px;
-            padding: 3px 3px;
+            padding: 1px 4px;
             text-align: center;
             color: #FFF;
             display: block;
@@ -210,12 +190,6 @@
                 border-radius: 10px;
             }
         }
-       .label{
-           color: #FFF;
-           font-weight: bold;
-           font-family: 'Helvetica';
-           font-size: 14px;
-       }
        span{
             font-family: 'Helvetica';
             font-size: 12px;
@@ -238,25 +212,6 @@
             .col{
                 display: inline-flex;
             }
-
-            .user{
-                label{
-                    font-family: "Helvetica";
-                    font-size: pxToRem(12);
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: pxToRem(42);
-                    letter-spacing: normal;
-                    text-align: left;
-                    color: #ffffff;
-                    margin-left: 5px;
-                    &::before{
-                        content: "@";
-                        display: inline-flex;
-                    }
-                }
-            }
             .button{
                 display: inline-flex;
                 justify-content: space-between;            
@@ -267,6 +222,60 @@
             margin-bottom: 17px;
             width: 100%;
         }
+    }
+}
+
+.station{
+    &.circle{
+        height: 90px;
+        width: 90px;
+        min-height: 90px;
+        min-width: 90px;
+    }
+}
+
+.eras{
+    display: flex;
+    overflow-x: scroll;
+    border-right: 40px solid transparent;
+    .card-era{
+        height: 96px;
+        max-height: 96px;
+        min-width: 96px;
+        width: 96px;
+        border-radius: 50%;
+    }
+}
+.genres{
+    .card-genre{
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        border-radius: 10px;
+        height: 90px;
+        width: 150px;
+        max-width: 150px;
+        outline: 0px solid transparent;
+    }
+    .card-genre-col{
+        width: 150px;
+        max-width: 150px;
+        min-width: 150px;
+        overflow: hidden;
+        display: block;
+        outline: 0px solid transparent;
+    }
+    .slick-slide{
+        width: 100% !important;
+        overflow-x: scroll;
+    }
+    .slick-slide{
+        width: 720px;
+        display: flex;
     }
 }
 
@@ -306,10 +315,20 @@
         display: flex;
         flex-direction: column;
     }
-    @media screen and (max-width: 360px){
+    @media screen and (max-height: 568px){
         .calendar{
-            height: 80px;
-            width: 80px;
+            height: 84px;
+            width: 84px;
         }
+    }
+}
+.card-station{
+    .card{
+        &.rounded{
+            border-radius: 20px;
+        }
+    &.video::after{
+        display: none;
+    }
     }
 }

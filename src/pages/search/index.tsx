@@ -23,12 +23,9 @@ interface StateProps {
 interface Props extends DispatchProps, StateProps, RouteComponentProps {}
 
 class SearchPage extends React.Component<Props> {
-  componentDidMount(): void {
-    this.props.getSearchResultAPI('all');
-  }
-
   filterResult = e => {
     if (e.target.value.length < 3) return;
+    this.props.getSearchResultAPI('all');
   };
 
   private headerRef: React.RefObject<any> = React.createRef();
@@ -43,6 +40,7 @@ class SearchPage extends React.Component<Props> {
           titleClassName="search"
           rightCloseButton
           leftBackButton={false}
+          rightCloseOnClick={(): any => this.props.history.push('/home')}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent

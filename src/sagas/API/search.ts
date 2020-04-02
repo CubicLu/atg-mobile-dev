@@ -7,7 +7,7 @@ import {
 } from '../../actions';
 
 export const getSearchResultRequest = async (query): Promise<SearchInterface> =>
-  await API.get(`search/${query}.json`);
+  await API.get(`search/all.json`);
 
 function* getSearchResultAPI({ query }: any): ReturnType<any> {
   console.log(query)

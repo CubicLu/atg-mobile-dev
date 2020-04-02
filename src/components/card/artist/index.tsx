@@ -35,7 +35,7 @@ class CardArtistComponent extends React.Component<Props> {
         className="card-artist my-3 mx-2"
         style={{ backgroundImage: `url(${cover.main})` }}
       >
-        <div className="flex-space-around h-100 px-1">
+        <div className="space-between h-100 px-1">
           <div className="flex-justify-content-end px-1">
             <ButtonIcon
               color={Colors.transparent}

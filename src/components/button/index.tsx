@@ -5,6 +5,7 @@ import { ShapesSize, Colors, GradientDirection, Sizes } from '../../interfaces';
 interface Props {
   onClick: Function;
   label?: string;
+  className?: string;
   id?: string;
   color?: Colors;
   gradient?: boolean;
@@ -32,11 +33,12 @@ class ButtonComponent extends React.Component<Props> {
       ? this.props.gradientDirection
       : GradientDirection.horizontal;
     const buttonId = id || 'btn-id';
+    const customClass = this.props.className ? this.props.className : '';
     return (
       <button
         id={buttonId}
         onClick={onClick.bind(this)}
-        className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold}`}
+        className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold} ${customClass}`}
       >
         {label}
       </button>

@@ -45,81 +45,73 @@ class CardMixtapesComponent extends React.Component<Props, State> {
 
     return (
       <div className="card mixtapes">
-        <div className="row">
-          <div className="col s12 cover">
+        <div
+          className={'h1 tape'}
+          data-tapeindex={String(index).padStart(2, '0')}
+        >
+          {this.state.openMenu === false && (
             <div
-              className={'h1 tape'}
-              data-tapeindex={String(index).padStart(2, '0')}
+              className={`background ${menu === true ? '' : 'without-menu'}`}
+              style={{ backgroundImage: `url(${mixtape.cover})` }}
             >
-              {this.state.openMenu === false && (
-                <div
-                  className={`background ${
-                    menu === true ? '' : 'without-menu'
-                  }`}
-                  style={{ backgroundImage: `url(${mixtape.cover})` }}
-                >
-                  <ButtonIcon icon={<PlayIcon />} />
-                  {menu === true && (
-                    <ButtonIcon
-                      icon={<DotsThreeIcon />}
-                      color={Colors.transparent}
-                      onClick={this.setMenu.bind(this)}
-                    />
-                  )}
-                </div>
-              )}
-
-              {this.state.openMenu === true && (
-                <div
-                  className="background"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, #e9d3a3, #dcd6a7, #d1d7ac, #c6d9b3, #bed9bb, #b7dabf, #b1dbc4, #abdbca, #a1dcd0, #96ded7, #8cdfe0, #82dfe9)`
-                  }}
-                >
-                  <ul className="buttons">
-                    <li>
-                      <ButtonIcon
-                        color={Colors.red}
-                        icon={<TrashIcon width={15} height={15} />}
-                      />
-                    </li>
-                    <li>
-                      <ButtonIcon
-                        styles={{ backgroundColor: '#919296' }}
-                        onClick={this.setMenu.bind(this)}
-                        icon={
-                          <CloseIcon width={14} height={14} strokeWidth={2} />
-                        }
-                      />
-                    </li>
-                    <li>
-                      <ButtonIcon
-                        color={Colors.green}
-                        icon={<ShareIcon width={20} height={20} />}
-                      />
-                    </li>
-                    <li>
-                      <ButtonIcon
-                        styles={{ backgroundColor: '#015CAC' }}
-                        icon={<AddPlaylistIcon width={20} height={22} />}
-                      />
-                    </li>
-                    <li>
-                      <ButtonIcon
-                        styles={{ backgroundColor: '#F78330' }}
-                        icon={<StarIcon width={23} height={23} />}
-                      />
-                    </li>
-                  </ul>
-                </div>
+              <ButtonIcon icon={<PlayIcon />} />
+              {menu === true && (
+                <ButtonIcon
+                  icon={<DotsThreeIcon />}
+                  color={Colors.transparent}
+                  onClick={this.setMenu.bind(this)}
+                />
               )}
             </div>
-          </div>
+          )}
+
+          {this.state.openMenu === true && (
+            <div
+              className="background"
+              style={{
+                backgroundImage: `linear-gradient(90deg, #e9d3a3, #dcd6a7, #d1d7ac, #c6d9b3, #bed9bb, #b7dabf, #b1dbc4, #abdbca, #a1dcd0, #96ded7, #8cdfe0, #82dfe9)`
+              }}
+            >
+              <ul className="buttons">
+                <li>
+                  <ButtonIcon
+                    color={Colors.red}
+                    icon={<TrashIcon width={15} height={15} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    styles={{ backgroundColor: '#919296' }}
+                    onClick={this.setMenu.bind(this)}
+                    icon={<CloseIcon width={14} height={14} strokeWidth={2} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    color={Colors.green}
+                    icon={<ShareIcon width={20} height={20} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    styles={{ backgroundColor: '#015CAC' }}
+                    icon={<AddPlaylistIcon width={20} height={22} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    styles={{ backgroundColor: '#F78330' }}
+                    icon={<StarIcon width={23} height={23} />}
+                  />
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
-        <div className="row">
-          <div className="col s12 infos">
-            <span className="playlist">{mixtape.name}</span>
-            <span className="quantity">{mixtape.quantity} Songs</span>
+        <div className="flex-justify-center center-align">
+          <div className="f4 mt-2 l15">
+            {mixtape.name}
+            <div className="f6 l15">{mixtape.quantity} Songs</div>
           </div>
         </div>
       </div>

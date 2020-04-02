@@ -34,15 +34,19 @@ class ButtonPlanComponent extends React.Component<Props> {
         style={{ ...styles }}
         onClick={onClick.bind(this, plan)}
       >
-        <div className="price">
+        <div className="price m-1">
           <div>
-            <span>
+            <span className="h00 text-66 l1">
               <span className="currency">{'$'}</span>
               {price}
             </span>
           </div>
           <span className="f4">{name}</span>
-          <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
+          <ButtonIcon
+            className="m-0"
+            icon={<DotsThreeIcon />}
+            color={Colors.transparent}
+          />
         </div>
       </div>
     );

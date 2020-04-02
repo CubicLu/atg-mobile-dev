@@ -9,7 +9,12 @@ import {
   CardEvent,
   Avatar
 } from './../../../components';
-import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
+import {
+  EventInterface,
+  ShapesSize,
+  Colors,
+  Sizes
+} from './../../../interfaces';
 import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,
@@ -82,11 +87,11 @@ class EventDetailPage extends React.Component<Props, State> {
         >
           <Header
             rightCloseButton
+            title="Who's going"
             rightCloseOnClick={(): void => {
               this.props.updateArtistSetInitialProperty('event');
               this.props.history.goBack();
             }}
-            centerContent={<h1 className="title">{`Who's going`}</h1>}
           />
           <IonContent>
             <BackgroundImage
@@ -96,16 +101,12 @@ class EventDetailPage extends React.Component<Props, State> {
               backgroundBottomOpacity={0.15}
             />
             <div className="content-fixed" slot="fixed">
-              <div
-                className={`center-align badge-${
-                  this.state.willGo ? 'gray' : 'blue'
-                }`}
-              >
+              <div className={`flex-justify-center`}>
                 <Button
                   label={this.state.willGo ? "Can't go" : "I'm going"}
-                  color={this.state.willGo ? Colors.disable : Colors.secondary}
+                  color={this.state.willGo ? Colors.disable : Colors.blue}
+                  type={ShapesSize.badge}
                   gradient={true}
-                  bold
                   onClick={(): void => {
                     this.setState({ willGo: !this.state.willGo });
                   }}
@@ -128,21 +129,24 @@ class EventDetailPage extends React.Component<Props, State> {
                     return (
                       <IonItem key={i}>
                         <div className="row">
-                          <div className={`col s3 image ${opacity}`}>
+                          <div className={`col s2 no-padding ${opacity}`}>
                             <Avatar
                               type={ShapesSize.circle}
                               image={data.avatar}
-                              width={50}
-                              height={50}
+                              width={48}
+                              height={48}
                             />
                           </div>
-                          <div className={`col s6 info ${opacity}`}>
-                            <span className="user">{data.username}</span>
+                          <div className={`col s7 no-padding info ${opacity}`}>
+                            <span className="user f5">{data.username}</span>
                           </div>
-                          <div className="col s3 action confirm-blue">
+                          <div className="col s3 f6">
                             <Button
+                              className="mt-1"
                               gradient={true}
-                              color={Colors.secondary}
+                              color={Colors.blue}
+                              size={Sizes.md}
+                              type={ShapesSize.rounded}
                               label="Connect"
                             />
                           </div>

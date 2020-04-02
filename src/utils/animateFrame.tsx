@@ -113,10 +113,10 @@ export default class VigilAnimator {
       this.direction === 'reverse' && this.removeFixed();
       return;
     }
-    requestAnimationFrame(this.play.bind(this));
+    requestAnimationFrame((): void => this.play());
   }
 
-  elasticPlay(): void {
+  elasticPlay = (): void => {
     const rate = this.duration / 30;
     if (this.step >= 3) return this.onFinish();
     this.currentY =
@@ -145,6 +145,6 @@ export default class VigilAnimator {
       this.currentY = this.direction === 'normal' ? 0 : this.axisY;
       this.direction = this.direction === 'normal' ? 'reverse' : 'normal';
     }
-    requestAnimationFrame(this.elasticPlay.bind(this));
+    requestAnimationFrame(this.elasticPlay);
   }
 }

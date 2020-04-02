@@ -67,7 +67,7 @@ class ThankYouPage extends React.Component<Props> {
               <div className="col s12">
                 <p
                   onClick={(): void => {
-                    this.props.history.push(`/home/profile`);
+                    this.props.history.push(`/home`);
                   }}
                 >
                   Need to make changes? <br />

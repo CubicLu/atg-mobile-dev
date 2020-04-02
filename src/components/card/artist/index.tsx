@@ -40,16 +40,17 @@ class CardArtistComponent extends React.Component<Props> {
             <ButtonIcon
               color={Colors.transparent}
               icon={<DotsThreeIcon color={'#6a6565'} />}
-              onClick={updateSettingsModal.bind(
-                this,
-                true,
-                React.createElement(MenuFanSupportOptions, {
-                  artist: artist,
-                  onClick: updateSettingsModal.bind(this, false, null),
-                  background: 'background-tertiary-opacity95'
-                }),
-                'background-tertiary-opacity95'
-              )}
+              onClick={(): void =>
+                updateSettingsModal(
+                  true,
+                  React.createElement(MenuFanSupportOptions, {
+                    artist: artist,
+                    onClick: (): void => updateSettingsModal(false, null),
+                    background: 'background-tertiary-opacity95'
+                  }),
+                  'background-tertiary-opacity95'
+                )
+              }
             />
           </div>
 

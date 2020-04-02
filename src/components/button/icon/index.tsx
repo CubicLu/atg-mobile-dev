@@ -26,7 +26,7 @@ class ButtonIconComponent extends React.Component<Props> {
 
     return (
       <button
-        onClick={onClick.bind(this)}
+        onClick={(): void => onClick()}
         className={`btn icon ${type} ${color} ${isFixed} ${
           className ? className : ''
         }`}

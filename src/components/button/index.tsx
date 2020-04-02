@@ -37,7 +37,7 @@ class ButtonComponent extends React.Component<Props> {
     return (
       <button
         id={buttonId}
-        onClick={onClick.bind(this)}
+        onClick={(): void => onClick()}
         className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold} ${customClass}`}
       >
         {label}

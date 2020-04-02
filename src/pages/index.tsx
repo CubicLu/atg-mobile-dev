@@ -1,3 +1,4 @@
+import NotFoundPage from './404';
 import InitialPage from './initial';
 import SignUpPage from './sign-up';
 import HomePage from './home';
@@ -38,6 +39,7 @@ import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
 
 export {
+  NotFoundPage,
   InitialPage,
   SignUpPage,
   HomePage,

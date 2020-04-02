@@ -63,6 +63,7 @@ interface Props
 
 class ArtistBiographyPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
+  private content?: React.RefObject<HTMLIonContentElement> = React.createRef();
   private slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
   private titleRef: React.RefObject<CreateAnimation> = React.createRef();
 
@@ -158,18 +159,18 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     } = this.props;
     if (!biography) return <IonPage />;
 
-    const toggleAction = updateSettingsModal.bind(
-      this,
-      true,
-      React.createElement(BiographyList, {
-        items: artist.biography,
-        title: 'Biography',
-        username: artist.username,
-        onClick: (a: number): any => this.changeChapter(a),
-        background: 'background-white-base'
-      }),
-      'background-white-base'
-    );
+    const toggleAction = (): void =>
+      updateSettingsModal(
+        true,
+        React.createElement(BiographyList, {
+          items: artist.biography,
+          title: 'Biography',
+          username: artist.username,
+          onClick: (a: number): any => this.changeChapter(a),
+          background: 'background-white-base'
+        }),
+        'background-white-base'
+      );
     const activeBio = biography[this.state.currentPage];
 
     return (
@@ -204,12 +205,21 @@ class ArtistBiographyPage extends React.Component<Props, State> {
         />
 
         <IonContent
+          ref={this.content}
           scrollEvents={true}
           scrollY={true}
           scrollX={false}
-          onIonScroll={this.handleScroll.bind(this)}
+          onIonScroll={(e): void => this.handleScroll(e)}
         >
-          <IonSlides ref={this.slides} options={{ autoHeight: false }}>
+          <IonSlides
+            ref={this.slides}
+            mode="ios"
+            scrollbar={true}
+            options={{ autoHeight: false }}
+            onIonSlideWillChange={(): Promise<void> | undefined =>
+              this.content?.current?.scrollToTop(700)
+            }
+          >
             {biography.map((bio: BiographyInterface): any => (
               <IonSlide key={bio.chapter} className={bio.template}>
                 <div
@@ -250,13 +260,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                       : bio.leadParagraph}
                   </div>
 
-                  <div className="p-3">
-                    {bio.items && this.articleAlbum(bio.items)}
-                  </div>
+                  {bio.items && (
+                    <div className="p-3">{this.articleAlbum(bio.items)}</div>
+                  )}
 
-                  <div className="p-3">
-                    {bio.readMore && this.readMore(bio)}
-                  </div>
+                  {bio.readMore && (
+                    <div className="p-3">{this.readMore(bio)}</div>
+                  )}
 
                   {this.chapterFooter()}
                 </div>

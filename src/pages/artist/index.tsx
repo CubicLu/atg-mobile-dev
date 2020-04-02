@@ -137,7 +137,7 @@ class ArtistPage extends React.Component<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackHref="/home/profile" />
+        <Header leftBackHref="/home" />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
@@ -161,7 +161,7 @@ class ArtistPage extends React.Component<Props, {}> {
           <Menu
             tabs={artistTabs}
             activeId={activeArtistTab}
-            onClick={(e) => this.handleMenu(e) }
+            onClick={(e): void => this.handleMenu(e)}
           />
         </div>
         <IonContent
@@ -169,7 +169,7 @@ class ArtistPage extends React.Component<Props, {}> {
           scrollEvents={true}
           forceOverscroll={true}
           fullscreen={false}
-          onIonScroll={(e) => this.handleScroll(e) }
+          onIonScroll={(e): void => this.handleScroll(e)}
         >
           <div className="offset-content" />
 

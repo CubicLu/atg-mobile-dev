@@ -1,30 +1,31 @@
 ion-tabbar {
     --ion-safe-area-bottom: 0px;
 }
-.ion-color{
-    &.ion-color-dark {
-        --ion-color-base: var(--ion-color-dark, #070707) !important;
-    }
-}
 *::-webkit-scrollbar {
     display: none;
 }
-ion-page {
+ion-page, ion-content{
+    scrollbar-width: none !important;
+    text-rendering: optimizeSpeed !important;
+    scroll-behavior: smooth !important;
     &::-webkit-scrollbar {
         height: 0;
         width: 0;
         display: none;
-      }
-    
-      &::-webkit-scrollbar-thumb {
+    }
+    &::-webkit-scrollbar-thumb {
+        display: none !important;
         height: 0;
         width: 0;
-        display: none;
-      }
-    
-      &::-webkit-scrollbar-track {
+    }
+    &::-webkit-scrollbar-track {
+        display: none !important;
         height: 0;
         width: 0;
-        display: none;
-      }
+    }
+}
+.ion-color{
+    &.ion-color-dark {
+        --ion-color-base: var(--ion-color-dark, #070707) !important;
+    }
 }

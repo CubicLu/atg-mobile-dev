@@ -7,13 +7,14 @@ import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   IonTabs,
   IonTabBar,
   IonTabButton,
   IonRouterOutlet
 } from '@ionic/react';
+import { NotFoundPage } from '..';
 
 interface StateProps {
   activeTab: string;
@@ -33,27 +34,11 @@ interface DispatchProps {
   ) => void;
 }
 
-interface Props extends StateProps, DispatchProps {
-  authenticated: boolean;
-}
+interface Props extends StateProps, DispatchProps {}
 
 class HomePage extends React.Component<Props> {
   render(): React.ReactNode {
-    const {
-      modal,
-      activeTab,
-      tabs,
-      links,
-      loading,
-      authenticated
-    } = this.props;
-    const redirect = (): JSX.Element => <Redirect to="/home/profile" />;
-    const initial = (): JSX.Element => <Redirect to="/initial" />;
-
-    if (!authenticated) {
-      return <Route path="/" render={initial} />;
-    }
-
+    const { modal, activeTab, tabs, links, loading } = this.props;
     return (
       <IonReactRouter>
         <LoaderFullscreen visible={loading} />
@@ -81,8 +66,7 @@ class HomePage extends React.Component<Props> {
             {tabs.map((p: TabsInterface, i: number): any => (
               <Route exact path={p.path} component={p.component} key={i} />
             ))}
-            <Route animated={false} exact path="/home" render={redirect} />
-            <Route render={redirect} />
+            <Route path="*" component={NotFoundPage} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" color="dark">

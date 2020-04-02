@@ -6,3 +6,25 @@ ion-tabbar {
         --ion-color-base: var(--ion-color-dark, #070707) !important;
     }
 }
+*::-webkit-scrollbar {
+    display: none;
+}
+ion-page {
+    &::-webkit-scrollbar {
+        height: 0;
+        width: 0;
+        display: none;
+      }
+    
+      &::-webkit-scrollbar-thumb {
+        height: 0;
+        width: 0;
+        display: none;
+      }
+    
+      &::-webkit-scrollbar-track {
+        height: 0;
+        width: 0;
+        display: none;
+      }
+}

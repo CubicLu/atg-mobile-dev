@@ -48,9 +48,7 @@ class ArtistEventsPage extends React.Component<Props, {}> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={(e: CustomEvent): void =>
-            this.headerRef.current?.handleParentScroll(e)
-          }
+          onIonScroll={(e) => this.headerRef.current?.handleParentScroll(e)}
         >
           <div className="artist-events-page">
             <BackgroundImage backgroundImage={currentArtist.cover?.event} />

@@ -161,7 +161,7 @@ class ArtistPage extends React.Component<Props, {}> {
           <Menu
             tabs={artistTabs}
             activeId={activeArtistTab}
-            onClick={this.handleMenu.bind(this)}
+            onClick={(e) => this.handleMenu(e) }
           />
         </div>
         <IonContent
@@ -169,7 +169,7 @@ class ArtistPage extends React.Component<Props, {}> {
           scrollEvents={true}
           forceOverscroll={true}
           fullscreen={false}
-          onIonScroll={this.handleScroll.bind(this)}
+          onIonScroll={(e) => this.handleScroll(e) }
         >
           <div className="offset-content" />
 

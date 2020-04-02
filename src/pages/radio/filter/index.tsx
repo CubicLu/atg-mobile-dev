@@ -9,7 +9,7 @@ import {
 } from '../../../components';
 import { ChannelInterface, StationInterface } from '../../../interfaces';
 import Slider, { Settings } from 'react-slick';
-interface Props { }
+interface Props {}
 interface State {
   searchText?: string;
   selectedChannel?: ChannelInterface;

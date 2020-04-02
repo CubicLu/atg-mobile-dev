@@ -13,6 +13,7 @@
         white-space: pre-line;
     }
     .sky{
+        display: block;
         min-height: 240px;
         max-height: 360px;
     }
@@ -78,6 +79,10 @@
         }
         .article{
             margin-top: 32px;
+        }
+        .sky{
+            min-height: 375px;
+            max-height: 375px;
         }
     }
 

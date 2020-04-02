@@ -469,6 +469,19 @@ class PlayerComponent extends React.Component<Props> {
 
     return (
       <>
+        <div id="full-player" className="full-player">
+          <BackgroundImage
+            gradient={`180deg,#aed8e5,#039e4a`}
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundTopOpacity={0.2}
+            backgroundBottom
+            backgroundBottomOrange={true}
+            backgroundBottomOpacity={0.6}
+          />
+          {expanded && this.fullPlayer()}
+        </div>
+        {expanded && this.fullPlayerButtons()}
         <div id="player" className="mini-player">
           <div id="pull" className="pull">
             <svg
@@ -490,20 +503,6 @@ class PlayerComponent extends React.Component<Props> {
 
           {!expanded && this.miniPlayer()}
         </div>
-
-        <div id="full-player" className="full-player">
-          <BackgroundImage
-            gradient={`180deg,#aed8e5,#039e4a`}
-            backgroundTop
-            backgroundTopDark={true}
-            backgroundTopOpacity={0.2}
-            backgroundBottom
-            backgroundBottomOrange={true}
-            backgroundBottomOpacity={0.6}
-          />
-          {expanded && this.fullPlayer()}
-        </div>
-        {expanded && this.fullPlayerButtons()}
       </>
     );
   }

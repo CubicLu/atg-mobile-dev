@@ -164,7 +164,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={(e) => this.headerRef.current?.handleParentScroll(e)}
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
         >
           <BackgroundImage
             gradient={`180deg,#1F0739,#1F0739`}
@@ -174,7 +176,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className="artist-video-detail-page space-between">
+          <div className="artist-video-detail-page space-between mb-50">
             <VideoPlayer />
             {this.state.chatOpened ? this.renderChat() : this.renderContent()}
             {!this.state.chatOpened && this.bottomTiles()}

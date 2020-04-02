@@ -31,6 +31,7 @@ class BlankIcon extends React.Component<Props> {
             rx="3"
             transform="translate(527 -4470)"
             opacity={this.props.opacity}
+            fill={this.props.color}
           />
           <rect
             width={size}
@@ -38,6 +39,7 @@ class BlankIcon extends React.Component<Props> {
             rx="3"
             transform="translate(537 -4470)"
             opacity={this.props.opacity}
+            fill={this.props.color}
           />
         </g>
       </svg>

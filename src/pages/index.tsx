@@ -28,6 +28,7 @@ import ArtistSupportPage from './artist/support';
 import ArtistEventDetailPage from './artist/event-detail';
 import ArtistGalleryGridPage from './artist/gallery-grid';
 import ArtistGalleryPhotoPage from './artist/gallery-photo';
+import ArtistVideoDetailPage from './artist/video-detail';
 
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
@@ -71,6 +72,7 @@ export {
   ArtistGalleryPhotoPage,
   TrackListPage,
   ThankYouPage,
+  ArtistVideoDetailPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage
 };

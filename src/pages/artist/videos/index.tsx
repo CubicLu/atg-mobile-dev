@@ -42,6 +42,13 @@ class ArtistVideosPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
+
+  onOpenVideo(id: number): void {
+    this.props.history.push(
+      `/home/artist/${this.props.match.params.id}/video/${id}`
+    );
+  }
+
   render(): React.ReactNode {
     const { currentArtist } = this.props;
     return (
@@ -72,6 +79,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                     data={currentArtist?.videos?.recents}
                     size={Sizes.sm}
                     type={ShapesSize.normal}
+                    onClick={this.onOpenVideo.bind(this)}
                   />
                 </div>
               </React.Fragment>
@@ -82,6 +90,8 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 (value, i): React.ReactNode => {
                   return (
                     <CardVideo
+                      onClick={this.onOpenVideo.bind(this, i)}
+                      id={i}
                       key={i}
                       size={Sizes.lg}
                       type={ShapesSize.full}

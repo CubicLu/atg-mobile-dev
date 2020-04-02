@@ -140,7 +140,9 @@ class CommunityPage extends React.Component<Props, State> {
               />
             )
           }
-        />
+        >
+          <div className="community m-4">&nbsp;</div>
+        </Header>
       );
     } else
       return (
@@ -184,7 +186,7 @@ class CommunityPage extends React.Component<Props, State> {
   renderJoinButton(): React.ReactNode {
     if (!this.state.joined && this.state.isArtist) {
       return (
-        <div className="flex-justify-content-center">
+        <div className="flex-justify-content-center mb-2">
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
@@ -225,7 +227,7 @@ class CommunityPage extends React.Component<Props, State> {
                 <SectionTitle
                   title={isArtist ? 'DAILY DRIP' : 'ARTIST COMMUNITIES'}
                   viewAll={true}
-                  className="mx-3"
+                  className="mt-1 mx-3"
                   onClickAll={(): void => {
                     this.props.history.push(`/home/community/artist`);
                   }}

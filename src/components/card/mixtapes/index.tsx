@@ -108,7 +108,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
             </div>
           )}
         </div>
-        <div className="flex-justify-center center-align">
+        <div className="flex-justify-content-center center-align">
           <div className="f4 mt-2 l15">
             {mixtape.name}
             <div className="f6 l15">{mixtape.quantity} Songs</div>

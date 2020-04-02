@@ -216,6 +216,14 @@
                 display: inline-flex;
                 justify-content: space-between;            
             }
+
+            .user{
+                label{
+                    line-height: pxToRem(42);
+                    color: #ffffff;
+                    margin-left: 5px;
+                }
+            }
         }
 
         .row{

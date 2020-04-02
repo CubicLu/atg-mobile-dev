@@ -20,7 +20,7 @@ class SliderStoriesComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { data, imageKey, labelKey } = this.props;
+    const { data, imageKey, labelKey, onPressItem } = this.props;
     if (!data) return <div />;
     const image = imageKey ? 'image' : '';
     const label = labelKey ? 'label' : '';
@@ -38,7 +38,9 @@ class SliderStoriesComponent extends React.Component<Props> {
                       type={ShapesSize.circle}
                       width={110}
                       height={110}
-                      onClick={(): void => {}}
+                      onClick={(): void => {
+                        onPressItem && onPressItem(i);
+                      }}
                     />
                     <label>{d[label]}</label>
                   </div>

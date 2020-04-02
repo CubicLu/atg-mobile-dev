@@ -101,7 +101,7 @@ class EventDetailPage extends React.Component<Props, State> {
               backgroundBottomOpacity={0.15}
             />
             <div className="content-fixed" slot="fixed">
-              <div className={`flex-justify-center`}>
+              <div className={`flex-justify-content-center`}>
                 <Button
                   label={this.state.willGo ? "Can't go" : "I'm going"}
                   color={this.state.willGo ? Colors.disable : Colors.blue}

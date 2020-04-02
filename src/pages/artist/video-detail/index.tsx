@@ -111,7 +111,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     return (
       <div className="row">
         <div className="col s12 flex-justify-content-center buttons">
-          <ButtonIcon color={Colors.orange} icon={<StarIcon />} />
+          <ButtonIcon color={Colors.orange} icon={<StarIcon width={28} height={28} />} />
           <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
           <ButtonIcon
             styles={{ position: 'relative' }}

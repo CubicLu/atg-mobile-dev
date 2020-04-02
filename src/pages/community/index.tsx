@@ -56,8 +56,8 @@ interface State {
 
 interface Props
   extends StateProps,
-    DispatchProps,
-    RouteComponentProps<MatchParams> {}
+  DispatchProps,
+  RouteComponentProps<MatchParams> { }
 
 class CommunityPage extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -78,7 +78,7 @@ class CommunityPage extends React.Component<Props, State> {
       this.setBackgroundArtist();
       if (
         nextProps.match.params.artistId !==
-          this.props.currentCommunityArtist?.username ||
+        this.props.currentCommunityArtist?.username ||
         nextProps.match.params.artistId !== this.props.match.params.artistId ||
         (nextProps.currentCommunityArtist == null &&
           nextProps.match.params.artistId !== undefined &&
@@ -140,14 +140,16 @@ class CommunityPage extends React.Component<Props, State> {
               />
             )
           }
-        />
+        >
+          <div className="community m-4">&nbsp;</div>
+        </Header>
       );
     } else
       return (
         <Header
           leftBackButton={false}
           rightContent={
-            <div className="default-button dark" onClick={(): void => {}}>
+            <div className="default-button dark" onClick={(): void => { }}>
               <PlusIcon />
             </div>
           }
@@ -184,7 +186,7 @@ class CommunityPage extends React.Component<Props, State> {
   renderJoinButton(): React.ReactNode {
     if (!this.state.joined && this.state.isArtist) {
       return (
-        <div className="flex-justify-content-center">
+        <div className="flex-justify-content-center mb-2">
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
@@ -213,17 +215,17 @@ class CommunityPage extends React.Component<Props, State> {
           backgroundBottomOpacity={0.08}
         />
         {this.renderHeader()}
-        <div
-          className={`community-page content` + (isPlaying && ' is-playing')}
-        >
-          <IonContent>
+        <IonContent>
+          <div
+            className={`community-page mt-3 content` + (isPlaying && ' is-playing')}
+          >
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (
               <>
                 <SectionTitle
                   title={isArtist ? 'DAILY DRIP' : 'ARTIST COMMUNITIES'}
                   viewAll={true}
-                  className="mx-3"
+                  className="mt-1 mx-3"
                   onClickAll={(): void => {
                     this.props.history.push(`/home/community/artist`);
                   }}
@@ -248,8 +250,8 @@ class CommunityPage extends React.Component<Props, State> {
                 return <CardPost key={i} post={data} showUser={!isArtist} />;
               }
             )}
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

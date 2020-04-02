@@ -17,6 +17,9 @@ export enum ActionType {
   GET_ARTIST_EVENT_API = 'GET_ARTIST_EVENT_API',
   GET_ARTIST_EVENT_API_FAILURE = 'GET_ARTIST_EVENT_API_FAILURE',
   GET_ARTIST_EVENT_API_SUCCESS = 'GET_ARTIST_EVENT_API_SUCCESS',
+  GET_ARTIST_GALLERY_COMMENTS_API = 'GET_ARTIST_GALLERY_COMMENTS_API',
+  GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS = 'GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS',
+  GET_ARTIST_GALLERY_COMMENTS_API_FAILURE = 'GET_ARTIST_GALLERY_COMMENTS_API_FAILURE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
   TOGGLE_PLAYER = 'TOGGLE_PLAYER',
   PLAY_SONG = 'PLAY_SONG',
@@ -48,7 +51,10 @@ export enum ActionType {
   GET_COMMUNITY_COMMENTARIES_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_API_SUCCESS',
   GET_COMMUNITY_COMMENTARIES_COVER_API = 'GET_COMMUNITY_COMMENTARIES_COVER_API',
   GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE = 'GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE',
-  GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS'
+  GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS',
+  GET_SEARCH_RESULT_API = 'GET_SEARCH_RESULT_API',
+  GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
+  GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS'
 }
 
 export interface TabsInterface {
@@ -86,6 +92,9 @@ export interface ArtistInterface {
   };
 }
 
+export interface SearchInterface {
+  result: object[] | null;
+}
 export interface ArtistCoverInterface {
   main: string | undefined;
   background: string | undefined;
@@ -144,6 +153,7 @@ export interface ArtistReducerType {
   artists: ArtistInterface[];
   event: EventInterface | null;
   currentArtist: ArtistInterface | null;
+  currentGalleryComments: CommentInterface[];
   loading: boolean;
   successMessage: string | null;
   errorMessage: string | null;
@@ -160,6 +170,10 @@ export interface UserInterface {
 
 export interface AuthReducerType {
   loggedUser: UserInterface | undefined;
+}
+
+export interface SearchReducerType {
+  queryResult: string | '';
 }
 
 export interface SongInterface {
@@ -222,9 +236,9 @@ export interface PostInterface {
 }
 
 export interface CommentInterface {
-  text: string;
+  text?: string;
   user: UserInterface;
-  replies: CommentInterface[] | null;
+  replies?: CommentInterface[] | null;
 }
 
 export interface CommentCoverInterface {
@@ -291,7 +305,8 @@ export enum Colors {
   primary = 'primary',
   secondary = 'secondary',
   tertiary = 'tertiary',
-  grayTransparent = 'gray-transparent'
+  grayTransparent = 'gray-transparent',
+  cyan = 'cyan'
 }
 
 export interface DiscographyInterface {

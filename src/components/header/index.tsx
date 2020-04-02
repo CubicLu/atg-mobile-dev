@@ -1,10 +1,12 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { BackIcon, DotsThreeIcon } from '..';
+import { BackIcon, ButtonIcon, DotsThreeIcon, ShareIcon, StarIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
 import { IonHeader } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 import { SongInfoButton } from '../icon/player';
+import { Colors } from '../../interfaces';
+import ChatMessageIcon from '../icon/chat-message';
 
 interface Props extends RouteComponentProps {
   className?: string;
@@ -39,7 +41,11 @@ interface Props extends RouteComponentProps {
   translucent?: boolean;
   ios?: boolean;
   fixed?: boolean;
+  leftTitle?: string;
   direction?: 'PUSH' | 'POP' | 'REPLACE';
+  rightButtonGroup?: boolean;
+  parentCallback?: Function;
+  overlay?: string | number;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -55,6 +61,7 @@ class HeaderComponent extends React.Component<Props> {
     rightAddButton: false,
     rightFilterButton: false,
     rightUserGroupButton: false,
+    rightButtonGroup: false,
     centerContent: null,
     rightContent: null,
     translucent: false,
@@ -85,6 +92,12 @@ class HeaderComponent extends React.Component<Props> {
     }
   }
 
+  openChatPanel = (shouldDisplay: boolean): Function => {
+    return this.props.parentCallback
+      ? this.props.parentCallback(shouldDisplay)
+      : null;
+  };
+
   render(): React.ReactNode {
     const top = this.props.top ? 'header-top' : '';
     const {
@@ -111,9 +124,12 @@ class HeaderComponent extends React.Component<Props> {
       rightInfoButton,
       rightInfoOnClick,
       rightActionYellow,
+      leftTitle,
+      rightButtonGroup,
+      children,
+      overlay,
       rightActionHref,
-      rightCloseHref,
-      children
+      rightCloseHref
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -125,6 +141,12 @@ class HeaderComponent extends React.Component<Props> {
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
                 <BackIcon />
+              </div>
+            )}
+
+            {leftTitle && (
+              <div className={`h1 l11 ${titleClassName ? titleClassName : ''}`}>
+                {leftTitle}
               </div>
             )}
 
@@ -206,10 +228,35 @@ class HeaderComponent extends React.Component<Props> {
                 <SongInfoButton />
               </div>
             )}
+
+            {rightButtonGroup && (
+              <ul className="list inline">
+                <li>
+                  <ButtonIcon
+                    color={Colors.orange}
+                    icon={<StarIcon width={24} height={24} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    color={Colors.green}
+                    icon={<ShareIcon width={22} height={20} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    color={Colors.cyan}
+                    icon={<ChatMessageIcon width={22} height={20} />}
+                    onClick={this.openChatPanel.bind(this, true)}
+                    overlay={overlay}
+                  />
+                </li>
+              </ul>
+            )}
           </div>
         </div>
 
-        <>{children}</>
+        <div>{children}</div>
       </IonHeader>
     );
   }

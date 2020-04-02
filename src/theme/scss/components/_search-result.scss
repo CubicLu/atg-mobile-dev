@@ -1,0 +1,52 @@
+.search-result {
+  .section-name {
+    width: 256px;
+    height: 40px;
+    font-family: Industria;
+    font-size: 36px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+  }
+
+  .section {
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    width: 235px;
+    height: 33px;
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+  }
+  .section-subtitle {
+    @extend .section-title;
+    font-size: 12px;
+  }
+  .avatar {
+    margin: 8px;
+  }
+
+  .row{
+    margin-bottom: 0;
+  }
+
+  hr {
+    background: #31106e;
+    color: #31106e;
+  }
+}

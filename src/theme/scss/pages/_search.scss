@@ -1,0 +1,25 @@
+.search-page {
+  .search-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 117px;
+
+    #search {
+      margin-bottom: 16px;
+    }
+    .placeholder-text {
+      width: 314px;
+      height: 53px;
+      font-family: Helvetica;
+      font-size: 18px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-align: center;
+      color: #ffffff;
+    }
+  }
+}

@@ -51,7 +51,10 @@ export enum ActionType {
   GET_COMMUNITY_COMMENTARIES_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_API_SUCCESS',
   GET_COMMUNITY_COMMENTARIES_COVER_API = 'GET_COMMUNITY_COMMENTARIES_COVER_API',
   GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE = 'GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE',
-  GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS'
+  GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS',
+  GET_SEARCH_RESULT_API = 'GET_SEARCH_RESULT_API',
+  GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
+  GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS'
 }
 
 export interface TabsInterface {
@@ -89,6 +92,9 @@ export interface ArtistInterface {
   };
 }
 
+export interface SearchInterface {
+  result: object[] | null;
+}
 export interface ArtistCoverInterface {
   main: string | undefined;
   background: string | undefined;
@@ -164,6 +170,10 @@ export interface UserInterface {
 
 export interface AuthReducerType {
   loggedUser: UserInterface | undefined;
+}
+
+export interface SearchReducerType {
+  queryResult: string | '';
 }
 
 export interface SongInterface {

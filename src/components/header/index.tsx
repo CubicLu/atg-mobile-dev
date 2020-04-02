@@ -41,6 +41,7 @@ interface Props extends RouteComponentProps {
   translucent?: boolean;
   ios?: boolean;
   fixed?: boolean;
+  leftTitle?: string;
   direction?: 'PUSH' | 'POP' | 'REPLACE';
   rightButtonGroup?: boolean;
   parentCallback?: Function;
@@ -123,6 +124,7 @@ class HeaderComponent extends React.Component<Props> {
       rightInfoButton,
       rightInfoOnClick,
       rightActionYellow,
+      leftTitle,
       rightButtonGroup,
       children,
       overlay,
@@ -139,6 +141,12 @@ class HeaderComponent extends React.Component<Props> {
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
                 <BackIcon />
+              </div>
+            )}
+
+            {leftTitle && (
+              <div className={`h1 l11 ${titleClassName ? titleClassName : ''}`}>
+                {leftTitle}
               </div>
             )}
 

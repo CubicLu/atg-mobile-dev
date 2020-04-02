@@ -4,13 +4,15 @@ import { artistReducer } from './api/artistReducer';
 import { authReducer } from './api/authReducer';
 import { playerReducer } from './playerReducer';
 import { communityReducer } from './api/communityReducer';
+import { searchReducer } from './api/searchReducer';
 import {
   SettingsReducerType,
   AuthReducerType,
   ArtistReducerType,
   PlayerReducerType,
-  CommunityReducerType
-} from './../interfaces';
+  CommunityReducerType,
+  SearchReducerType
+} from '../interfaces';
 
 export interface ApplicationState {
   settings: SettingsReducerType;
@@ -18,6 +20,7 @@ export interface ApplicationState {
   authAPI: AuthReducerType;
   player: PlayerReducerType;
   communityAPI: CommunityReducerType;
+  searchAPI: SearchReducerType;
 }
 
 export const rootReducers = combineReducers<ApplicationState>({
@@ -25,5 +28,6 @@ export const rootReducers = combineReducers<ApplicationState>({
   artistAPI: artistReducer,
   authAPI: authReducer,
   player: playerReducer,
-  communityAPI: communityReducer
+  communityAPI: communityReducer,
+  searchAPI: searchReducer
 });

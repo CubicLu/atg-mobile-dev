@@ -10,7 +10,6 @@ export const getSearchResultRequest = async (query): Promise<SearchInterface> =>
   await API.get(`search/all.json`);
 
 function* getSearchResultAPI({ query }: any): ReturnType<any> {
-  console.log(query)
   try {
     const request = yield call(getSearchResultRequest, query);
     yield put(getSearchResultAPISuccess(request));

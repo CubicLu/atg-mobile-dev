@@ -25,14 +25,18 @@ class PostCover extends React.Component<Props> {
           backgroundImage: `linear-gradient(transparent, black), url(${cover.url})`
         }}
       >
-        <Header leftBackButton={false} rightCloseButton={true} rightCloseHref="/home/community" />
+        <Header
+          leftBackButton={false}
+          rightCloseButton={true}
+          rightCloseHref="/home/community"
+        />
         <div className="row button-container">
-            <div className="action-btns row">
-              <div className="col s6 cover-btns mx-1">
-                <ButtonIcon icon={<ShareLineIcon />} />
-                <ButtonIcon icon={<BalloonIcon />} label={3} />
-                <ButtonIcon icon={<HeartIcon />} />
-              </div>
+          <div className="action-btns row">
+            <div className="col s6 cover-btns mx-1">
+              <ButtonIcon icon={<ShareLineIcon />} />
+              <ButtonIcon icon={<BalloonIcon />} label={3} />
+              <ButtonIcon icon={<HeartIcon />} />
+            </div>
           </div>
         </div>
       </div>

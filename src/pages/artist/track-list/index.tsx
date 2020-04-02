@@ -106,7 +106,7 @@ class TrackListPage extends React.Component<Props> {
                   backgroundSize: 'contain'
                 }}
               />
-              <div className="f3 l2">{this.playlist?.name}&nbsp;</div>
+              <div className="mt-2 f3 l2">{this.playlist?.name}&nbsp;</div>
               <div className="f6">{this.playlist?.owner}&nbsp;</div>
             </div>
 

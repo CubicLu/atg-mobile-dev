@@ -1,11 +1,10 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
 import { BackgroundImage, Button } from './../../components';
 import CheckIcon from '../../components/icon/check';
 import { Colors, Sizes, GradientDirection } from '../../interfaces';
 
-interface Props extends RouteComponentProps {
+interface Props {
   artistId: string;
 }
 
@@ -46,34 +45,25 @@ class ThankYouPage extends React.Component<Props> {
                 </div>
               </div>
               <div className="row">
-                <div className="col s12">
+                <IonRouterLink routerLink="/home" routerDirection="back">
                   <Button
                     bold
                     size={Sizes.lg}
                     gradientDirection={GradientDirection.vertical}
                     label="Continue Listening"
                     gradient={true}
-                    onClick={(): void => {
-                      this.props.history.push(
-                        `/home/artist/${this.props.artistId}`
-                      );
-                    }}
                     color={Colors.secondary}
                   />
-                </div>
+                </IonRouterLink>
               </div>
             </div>
             <div className="row link">
-              <div className="col s12">
-                <p
-                  onClick={(): void => {
-                    this.props.history.push(`/home`);
-                  }}
-                >
+              <IonRouterLink routerLink="/home" routerDirection="back">
+                <p>
                   Need to make changes? <br />
                   Go to your account.
                 </p>
-              </div>
+              </IonRouterLink>
             </div>
           </div>
         </IonContent>
@@ -82,4 +72,4 @@ class ThankYouPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(ThankYouPage);
+export default ThankYouPage;

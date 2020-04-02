@@ -282,7 +282,7 @@ class RadioFilterPage extends React.Component<Props, State> {
           titleClassName={classTitle}
           leftBackOnClick={this.selectChannel.bind(this, undefined)}
           leftBackButton={!!selectedChannel}
-          rightCloseButton={!selectedChannel}
+          rightCloseButton={true}
           rightCloseHref={'/home/radio'}
           direction="POP"
         />

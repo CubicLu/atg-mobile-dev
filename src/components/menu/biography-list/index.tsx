@@ -41,7 +41,7 @@ class BiographyListComponent extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={this.props.onClick.bind(this)}
+          rightCloseOnClick={(): void => this.props.onClick()}
           color={Colors.transparent}
         />
         <div className={`modal-header ${this.props.background}`}>

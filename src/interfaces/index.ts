@@ -350,14 +350,16 @@ export interface EventWhoIsGoingInterface extends UserInterface {}
 
 export enum ShapesSize {
   rounded = 'rounded',
+  badge = 'badge',
   circle = 'circle',
   normal = 'normal',
-  full = 'full'
+  full = 'fluid'
 }
 export enum Sizes {
   xs = 'xs',
   sm = 'sm',
   md = 'md',
+  full = 'full-width',
   lg = 'lg',
   xl = 'xl'
 }
@@ -370,4 +372,25 @@ export interface VideoInterface {
   video: string;
   time: number | string;
   datePublished: Date;
+}
+
+export type RadioSection = 'Genre' | 'Vibe' | 'Era';
+export interface ChannelInterface {
+  id: string;
+  type: RadioSection;
+  name: string;
+  icon?: string;
+  image?: string;
+  title?: string;
+  subtitle?: string;
+  color: string;
+  target?: string;
+  tags?: string[];
+}
+export interface StationInterface {
+  id: string;
+  name: string;
+  image: string;
+  tags?: string[];
+  genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
 }

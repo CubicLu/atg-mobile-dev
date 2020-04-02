@@ -1,9 +1,14 @@
 import React from 'react';
-import { IonPage, IonButton } from '@ionic/react';
-import { BackgroundImage, BackgroundInitialImage } from './../../components';
+import { IonPage, IonRouterLink } from '@ionic/react';
+import {
+  BackgroundImage,
+  BackgroundInitialImage,
+  Button
+} from './../../components';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
 import { ApplicationState } from '../../reducers';
+import { Sizes, ShapesSize, Colors } from '../../interfaces';
 
 interface Props extends DispatchProps {}
 interface StateProps {}
@@ -40,24 +45,24 @@ class InitialPage extends React.Component<Props> {
 
             <div className="footer row fluid">
               <div className="row">
-                <IonButton
-                  className="primary gradient"
-                  size="large"
-                  routerLink="/sign-in"
-                  expand="full"
-                >
-                  Sign In
-                </IonButton>
+                <IonRouterLink routerLink="/sign-in" routerDirection="forward">
+                  <Button
+                    size={Sizes.lg}
+                    gradient={true}
+                    label="Sign In"
+                    type={ShapesSize.full}
+                  />
+                </IonRouterLink>
               </div>
               <div className="row">
-                <IonButton
-                  color="white"
-                  fill="clear"
-                  expand="full"
-                  routerLink="/sign-up"
-                >
-                  Create an account
-                </IonButton>
+                <IonRouterLink routerLink="/sign-up" routerDirection="forward">
+                  <Button
+                    size={Sizes.lg}
+                    label="Create an account"
+                    type={ShapesSize.full}
+                    color={Colors.transparent}
+                  />
+                </IonRouterLink>
               </div>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import NotFoundPage from './404';
 import InitialPage from './initial';
 import SignUpPage from './sign-up';
 import HomePage from './home';
@@ -28,6 +29,7 @@ import ArtistSupportPage from './artist/support';
 import ArtistEventDetailPage from './artist/event-detail';
 import ArtistGalleryGridPage from './artist/gallery-grid';
 import ArtistGalleryPhotoPage from './artist/gallery-photo';
+import ArtistVideoDetailPage from './artist/video-detail';
 
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
@@ -37,7 +39,10 @@ import CommunityDailyDripPage from './community/daily-drip';
 
 import CommunityAllArtistsPage from './community/all-artists';
 
+import RadioFilterPage from './radio/filter';
+
 export {
+  NotFoundPage,
   InitialPage,
   SignUpPage,
   HomePage,
@@ -71,6 +76,8 @@ export {
   ArtistGalleryPhotoPage,
   TrackListPage,
   ThankYouPage,
+  ArtistVideoDetailPage,
   CommunityDailyDripPage,
-  CommunityAllArtistsPage
+  CommunityAllArtistsPage,
+  RadioFilterPage
 };

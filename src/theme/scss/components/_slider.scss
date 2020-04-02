@@ -37,7 +37,7 @@
         }
         > .slick-slider{
             > .slick-list{
-                padding-left: 30px !important;
+                padding-left: 20px !important;
             }
         }
         .slick-slide {
@@ -97,4 +97,7 @@
             }
         }
     }
+}
+.slick-list-no-margin{
+    margin-left: -20px;
 }

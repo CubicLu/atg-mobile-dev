@@ -32,7 +32,7 @@ class BiographyContentComponent extends React.Component<Props> {
             true,
             React.createElement(MenuArtistList, {
               title: 'Biography',
-              onClick: this.props.updateSettingsModal.bind(this, false, null)
+              onClick: (): void => this.props.updateSettingsModal(false, null)
             }),
             'background-white-base'
           )

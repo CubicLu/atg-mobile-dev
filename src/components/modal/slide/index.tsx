@@ -29,7 +29,7 @@ class ModalSlideComponent extends React.Component<Props> {
         size={this.props.height}
         panelClassName={`${this.props.type} ${this.props.className}`}
         panelContainerClassName={` ${this.props.className}`}
-        backdropClicked={this.props.onClose.bind(this)}
+        backdropClicked={(): void => this.props.onClose()}
       >
         {this.props.children}
       </SlidingPanel>

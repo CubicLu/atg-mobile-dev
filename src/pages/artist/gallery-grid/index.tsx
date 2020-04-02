@@ -62,7 +62,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
               <div
                 className="col s4 img"
                 key={i}
-                onClick={this.onOpenImage.bind(this, item.image)}
+                onClick={(): void => this.onOpenImage(item.image)}
               >
                 <div
                   style={{
@@ -87,7 +87,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
           <div className="row">
             <div
               className="col s12 img"
-              onClick={this.onOpenImage.bind(this, image0)}
+              onClick={(): void => this.onOpenImage(image0)}
             >
               <div
                 style={{
@@ -99,7 +99,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
           <div className="row">
             <div
               className="col s12 img"
-              onClick={this.onOpenImage.bind(this, image1)}
+              onClick={(): void => this.onOpenImage(image1)}
             >
               <div
                 style={{
@@ -111,7 +111,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         </div>
         <div
           className="col s8 col2 img"
-          onClick={this.onOpenImage.bind(this, image2)}
+          onClick={(): void => this.onOpenImage(image2)}
         >
           <div
             style={{
@@ -130,7 +130,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
       <div className="row row1-col2" key={`row1-col2-${i}`}>
         <div
           className="col s8 img"
-          onClick={this.onOpenImage.bind(this, image0)}
+          onClick={(): void => this.onOpenImage(image0)}
         >
           <div
             style={{
@@ -140,7 +140,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         </div>
         <div
           className="col s4 img"
-          onClick={this.onOpenImage.bind(this, image1)}
+          onClick={(): void => this.onOpenImage(image1)}
         >
           <div
             style={{
@@ -208,14 +208,14 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
             fullscreen={true}
             scrollY={true}
             scrollEvents={true}
-            onIonScroll={(e: CustomEvent): void =>
+            onIonScroll={(e): void =>
               this.headerRef.current?.handleParentScroll(e)
             }
             style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#FFF' }}
           >
             <div className={`images`}>
               {cover !== undefined && (
-                <div key={0} onClick={this.onOpenImage.bind(this, cover)}>
+                <div key={0} onClick={(): void => this.onOpenImage(cover)}>
                   <IonImg src={cover} />
                 </div>
               )}

@@ -9,6 +9,7 @@ interface Props {
   styles?: object;
   fixed: boolean;
   label?: string | number;
+  className?: string;
 }
 
 class ButtonIconComponent extends React.Component<Props> {
@@ -21,12 +22,14 @@ class ButtonIconComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const isFixed = (this.props.fixed && ' fixed') || '';
-    const { onClick, type, color, styles, icon, label } = this.props;
+    const { onClick, type, color, styles, icon, label, className } = this.props;
 
     return (
       <button
-        onClick={onClick.bind(this)}
-        className={`btn icon ${type} ${color} ${isFixed}`}
+        onClick={(): void => onClick()}
+        className={`btn icon ${type} ${color} ${isFixed} ${
+          className ? className : ''
+        }`}
         style={{ ...styles }}
       >
         {icon}

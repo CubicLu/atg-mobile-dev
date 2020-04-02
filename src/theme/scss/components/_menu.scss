@@ -1,11 +1,12 @@
 .horizontal-menu{
-    width: 100%;
+    width: auto;
     display: flex;
     margin-top: 0;
     margin-bottom: 0;
     padding: 10px 0;
     text-align: center;
     &.center{
+        justify-content: space-evenly;
         width: auto;
         padding-left: 2*$menu-scroll-margin;
         padding-right: 2*$menu-scroll-margin;
@@ -14,7 +15,6 @@
             margin-right: $menu-scroll-margin;
             padding: 0px;
         }
-        justify-content: space-between;
     }
     .circle{
         margin-left: $menu-scroll-margin;
@@ -55,7 +55,7 @@
     &.scroll{
         overflow-x: scroll;
         overflow-y: hidden;
-        justify-content: normal !important;
+        justify-content: normal;
         padding-left: $menu-padding;
     }
 }

@@ -23,7 +23,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={this.props.onClick.bind(this)}
+          rightCloseOnClick={(): void => this.props.onClick()}
           color={Colors.transparent}
         />
 
@@ -33,7 +33,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
         </div>
 
         <div className="modal-content f5">
-          <ul className="">
+          <ul className="mt-2" style={{ minHeight: 50 }}>
             <li>
               Increase support
               <ButtonIcon

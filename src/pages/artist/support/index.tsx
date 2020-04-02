@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonPage, IonButton, IonContent } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   ArtistInterface,
   PlanInterface,
-  ShapesSize
+  ShapesSize,
+  Sizes,
+  Colors
 } from '../../../interfaces';
 import {
   BackgroundImage,
   Header,
   ButtonPlan,
-  Avatar
+  Avatar,
+  Button
 } from './../../../components';
 
 interface State {
@@ -159,22 +162,44 @@ class ArtistSupportPage extends React.Component<Props, State> {
         </div>
 
         <div className="margin-footer row fluid">
-          <div
-            className="ion-button button-large"
+          <Button
+            size={Sizes.lg}
+            label="Support Us"
+            type={ShapesSize.full}
+            color={Colors.support}
+            gradient={true}
             onClick={(): void =>
               history.push(`/home/thank-you`, { artistId: match.params.id })
             }
-          >
-            <IonButton className="support" size="large" expand="full">
-              Support Us
-            </IonButton>
-          </div>
+          />
         </div>
       </div>
     );
 
     return (
-      <IonPage>
+      <IonPage
+        id="support-page"
+        style={{
+          background: hasPlan
+            ? 'linear-gradient(180deg, #FDD105, #C16509)'
+            : 'linear-gradient(180deg, #2814484d, #281448a8, #281448)'
+        }}
+      >
+        {hasPlan ? (
+          <BackgroundImage
+            gradient="180deg, #FDD105, #C16509"
+            backgroundTop
+            backgroundTopDark={true}
+            backgroundBottom
+            backgroundBottomDark={false}
+            backgroundBottomOpacity={0.33}
+          />
+        ) : (
+          <BackgroundImage
+            gradient="180deg, #2814484d, #281448a8, #281448"
+            backgroundImage={currentArtist.supportImages?.background}
+          />
+        )}
         <Header
           leftBackButton={false}
           rightCloseButton={true}
@@ -182,21 +207,6 @@ class ArtistSupportPage extends React.Component<Props, State> {
         />
         <IonContent scrollY={true}>
           <div className={`artist-support-page h-100 ${planDetailClass}`}>
-            {hasPlan ? (
-              <BackgroundImage
-                gradient="180deg, #FDD105 0%, #C16509 100%"
-                backgroundTop
-                backgroundTopDark={true}
-                backgroundBottom
-                backgroundBottomDark={false}
-                backgroundBottomOpacity={0.33}
-              />
-            ) : (
-              <BackgroundImage
-                gradient="180deg, #28144800 30%, #281448 60%, #281448 100%"
-                backgroundImage={currentArtist.supportImages?.background}
-              />
-            )}
             {hasPlan ? detailPlan : allPlans}
           </div>
         </IonContent>

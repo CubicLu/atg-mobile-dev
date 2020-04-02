@@ -35,8 +35,8 @@ interface State {
 }
 interface Props
   extends StateProps,
-  DispatchProps,
-  RouteComponentProps<MatchParams> {}
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
 
 class ArtistVideoDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -144,15 +144,15 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
       <div className="content-container ">
         {this.renderButtons()}
         <div className="row mx-1">
-            <h1 className="f3">Happy</h1>
-            <p className="f6">
-              Williams provided vocals for French duo Daft Punk’s 2013 album
-              Random Access Memories, on the songs “Lose Yourself to Dance”
-              and “Get Lucky”. After returning from the recording sessions
-              in Paris, he attended a meeting with record label managers who
-              said that the results were “spectacular” and that “Get Lucky”
-              would be Daft Punk’s next single.
-            </p>
+          <h1 className="f3">Happy</h1>
+          <p className="f6">
+            Williams provided vocals for French duo Daft Punk’s 2013 album
+            Random Access Memories, on the songs “Lose Yourself to Dance” and
+            “Get Lucky”. After returning from the recording sessions in Paris,
+            he attended a meeting with record label managers who said that the
+            results were “spectacular” and that “Get Lucky” would be Daft Punk’s
+            next single.
+          </p>
         </div>
       </div>
     );

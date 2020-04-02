@@ -27,11 +27,12 @@ class RadioPage extends React.Component<Props> {
 
   getGenre(): void {
     const { genre } = this.props.match.params;
-    if (genre === this.paramGenre) return;
     this.currentGenre =
       this.genres.find(
-        (a): boolean => a.name.toLocaleLowerCase() === genre.toLocaleLowerCase()
+        (a): boolean =>
+          a?.name?.toLocaleLowerCase() === genre?.toLocaleLowerCase()
       ) || this.genres[0];
+    if (genre === this.paramGenre) return;
     this.paramGenre = genre;
     this.forceUpdate();
   }
@@ -57,7 +58,7 @@ class RadioPage extends React.Component<Props> {
         </Header>
 
         <BackgroundImage
-          gradientOverlay
+          gradientOverlay={true}
           gradient={this.currentGenre?.color}
           backgroundImage={this.currentGenre?.image}
           backgroundTop={false}

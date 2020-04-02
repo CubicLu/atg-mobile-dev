@@ -80,14 +80,14 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 </div>
               </React.Fragment>
             )}
-            <div className="row showcase">
+            <div className="row showcase ">
               <SectionTitle className="mx-2" title={'Showcase'} />
               {currentArtist?.videos?.showcase.map(
                 (value, i): React.ReactNode => {
                   return (
                     <CardVideo
                       key={i}
-                      size={Sizes.lg}
+                      size={Sizes.full}
                       type={ShapesSize.full}
                       time={value.time}
                       video={value.video}

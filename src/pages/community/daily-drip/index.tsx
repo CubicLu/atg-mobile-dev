@@ -48,7 +48,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
             />
             <span>panthrpicks</span>
           </div>
-          <div className="col s4 justify-content-end">
+          <div className="col s4 flex-justify-content-end">
             <ButtonIcon
               onClick={(): void => this.props.history.goBack()}
               icon={<CloseIcon />}
@@ -64,7 +64,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return (
       <div className="footer">
         <div className="row">
-          <div className="col s12 justify-center buttons">
+          <div className="col s12 flex-justify-content-center buttons">
             <ButtonIcon icon={<ShareLineIcon />} />
             <ButtonIcon icon={<BalloonIcon />} />
             <ButtonIcon icon={<StarIcon />} />

@@ -190,7 +190,7 @@
     flex-wrap: wrap-reverse;
     align-items: center;
 }
-.flex-justify-center{
+.flex-justify-content-center{
     display: flex;
     justify-content: center;
 }
@@ -204,6 +204,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .flex-row-reverse{
     display: flex;
     flex-direction: row-reverse;

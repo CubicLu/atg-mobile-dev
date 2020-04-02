@@ -30,6 +30,16 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return dots;
   }
 
+  componentWillUnmount(): void {
+    const ionApp = document.querySelector('ion-app') as HTMLElement;
+    ionApp.classList.remove('hide-tabs');
+  }
+
+  componentDidMount(): void {
+    const ionApp = document.querySelector('ion-app') as HTMLElement;
+    ionApp.classList.add('hide-tabs');
+  }
+
   renderHeader(): React.ReactNode {
     return (
       <div className="header">

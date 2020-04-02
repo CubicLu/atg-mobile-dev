@@ -118,7 +118,7 @@ class TrackListPage extends React.Component<Props> {
                       {song.trackNumber}
                     </div>
                     <div className="f5 track-song">{song.name}</div>
-                    <div className="flex-justify-center align-end">
+                    <div className="flex-justify-content-center align-end">
                       <AddTrackIcon />
                     </div>
                   </div>

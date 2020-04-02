@@ -79,7 +79,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return (
       <IonPage id="community-daily-drip-page">
         <BackgroundImage
-          backgroundImage={'https://loremflickr.com/1000/2000'}
+          backgroundImage={'https://loremflickr.com/500/1000/music'}
         />
         <IonContent>
           <div

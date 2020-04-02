@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { PostComment, CloseIcon, InputText, Button } from '../../components';
+import {
+  PostComment,
+  CloseIcon,
+  InputText,
+  Button,
+  ButtonIcon
+} from '../../components';
 import { Colors, CommentInterface } from '../../interfaces';
 interface Props {
   displayChat: boolean;
@@ -21,12 +27,13 @@ class PhotoChatComponent extends React.Component<Props> {
             style={{ maxHeight: 350, paddingBottom: 64 }}
             className={'photo-chat-component'}
           >
-            <div className="row photo-chat-header">
-              <div className="col s10" />
-              <div className="col">
-                <div onClick={this.closeChatPanel.bind(this, false)}>
-                  <CloseIcon width={24} height={24} />
-                </div>
+            <div className="row close photo-chat-header">
+              <div className="col s12 flex-justify-content-end">
+                <ButtonIcon
+                  color={Colors.transparent}
+                  icon={<CloseIcon />}
+                  onClick={this.closeChatPanel.bind(this, false)}
+                />
               </div>
             </div>
             <div className="row chat-section">

@@ -30,6 +30,16 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return dots;
   }
 
+  componentWillUnmount(): void {
+    const ionApp = document.querySelector('ion-app') as HTMLElement;
+    ionApp.classList.remove('hide-tabs');
+  }
+
+  componentDidMount(): void {
+    const ionApp = document.querySelector('ion-app') as HTMLElement;
+    ionApp.classList.add('hide-tabs');
+  }
+
   renderHeader(): React.ReactNode {
     return (
       <div className="header">
@@ -81,7 +91,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
         <BackgroundImage
           backgroundImage={'https://loremflickr.com/500/1000/music'}
         />
-        <IonContent>
+        <IonContent scrollY={false}>
           <div
             className={`community-daily-drip-page space-between h-100 ${this
               .props.isPlaying && `is-playing`}`}

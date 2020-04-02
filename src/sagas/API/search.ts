@@ -6,6 +6,7 @@ import {
   getSearchResultAPISuccess
 } from '../../actions';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getSearchResultRequest = async (query): Promise<SearchInterface> =>
   await API.get(`search/all.json`);
 

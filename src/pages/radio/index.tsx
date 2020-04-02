@@ -146,7 +146,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Reggae',
       title: 'EVERYTHING REGGAE',
       subtitle: 'BEATS OF THE ISLANDS',
-      color: `180deg,#ffc90d6e,#034627`,
+      color: `180deg,#bb9b00b5,#034627`,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/reggae.jpg'
     },

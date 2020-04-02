@@ -65,8 +65,19 @@ class RadioFilterPage extends React.Component<Props, State> {
     if (!(text && text.length > 2)) {
       return array;
     }
+
+    const relatedStations = this.stations.filter(
+      (x: StationInterface): boolean =>
+        x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+        x.genre.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+        !!x.tags?.find((x): boolean =>
+          x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+        )
+    ).map(x=> x.genre);
+
     return array.filter((x: ChannelInterface): boolean =>
-      x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+      x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+      (x.type === 'Genre' && relatedStations.toString().includes(x.name))
     );
   }
   performSearch(value: string): void {
@@ -291,7 +302,7 @@ class RadioFilterPage extends React.Component<Props, State> {
           }
         >
           <div className="container-top-bottom fluid">
-            {this.renderSearchBar()};
+            <>{!selectedChannel && this.renderSearchBar()};</>
             <>{!selectedChannel && this.renderGenres()};</>
             <>{!selectedChannel && this.renderEras()};</>
             <>{!selectedChannel && this.renderVibes()};</>

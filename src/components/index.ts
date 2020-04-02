@@ -39,6 +39,7 @@ import SectionTitleComponent from './section-title';
 import VideoPlayerComponent from './video-player';
 import ChatComponent from './chat';
 import SearchResultSectionComponent from './search-result-section';
+import PhotoChatComponent from './photo-chat';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -95,6 +96,7 @@ export {
   PostTextComponent as PostText,
   PostCommentsComponent as PostComment,
   ArtistPostComponent as ArtistPost,
+  PhotoChatComponent as PhotoChat,
   VideoPlayerComponent as VideoPlayer,
   ChatComponent as Chat,
   SectionTitleComponent as SectionTitle,

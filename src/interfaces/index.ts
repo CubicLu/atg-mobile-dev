@@ -17,6 +17,9 @@ export enum ActionType {
   GET_ARTIST_EVENT_API = 'GET_ARTIST_EVENT_API',
   GET_ARTIST_EVENT_API_FAILURE = 'GET_ARTIST_EVENT_API_FAILURE',
   GET_ARTIST_EVENT_API_SUCCESS = 'GET_ARTIST_EVENT_API_SUCCESS',
+  GET_ARTIST_GALLERY_COMMENTS_API = 'GET_ARTIST_GALLERY_COMMENTS_API',
+  GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS = 'GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS',
+  GET_ARTIST_GALLERY_COMMENTS_API_FAILURE = 'GET_ARTIST_GALLERY_COMMENTS_API_FAILURE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
   TOGGLE_PLAYER = 'TOGGLE_PLAYER',
   PLAY_SONG = 'PLAY_SONG',
@@ -150,6 +153,7 @@ export interface ArtistReducerType {
   artists: ArtistInterface[];
   event: EventInterface | null;
   currentArtist: ArtistInterface | null;
+  currentGalleryComments: CommentInterface[];
   loading: boolean;
   successMessage: string | null;
   errorMessage: string | null;
@@ -232,9 +236,9 @@ export interface PostInterface {
 }
 
 export interface CommentInterface {
-  text: string;
+  text?: string;
   user: UserInterface;
-  replies: CommentInterface[] | null;
+  replies?: CommentInterface[] | null;
 }
 
 export interface CommentCoverInterface {
@@ -301,7 +305,8 @@ export enum Colors {
   primary = 'primary',
   secondary = 'secondary',
   tertiary = 'tertiary',
-  grayTransparent = 'gray-transparent'
+  grayTransparent = 'gray-transparent',
+  cyan = 'cyan'
 }
 
 export interface DiscographyInterface {

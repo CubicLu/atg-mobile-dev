@@ -34,15 +34,15 @@
     box-shadow: none;
     text-align: center;
     background: #7a11f5;
-    &.gradient{ 
+    &.gradient{
         background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
     }
-    &.blue{ 
+    &.blue{
         background: linear-gradient(180deg, #01aed4 0%, #1853e0 100%);
     }
     &.primary {
         background: $primary;
-        &.gradient { 
+        &.gradient {
             background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
         }
     }
@@ -50,7 +50,7 @@
         position: fixed;
         z-index: 10;
     }
-    &.secondary { 
+    &.secondary {
         background: $secondary;
         color: #FFF;
         &.gradient { 
@@ -87,6 +87,9 @@
     }
     &.orange{
         background: #f78429;
+    }
+    &.cyan{
+      background: #01add9;
     }
     &.support{
         background: linear-gradient(90deg, #FF9766, #FC5F62);
@@ -134,7 +137,7 @@
     &.normal{
         height: 30px;
         line-height: 1.13;
-    } 
+    }
     &.large{
         height: 48px;
         font-size: 16px;
@@ -142,7 +145,7 @@
     &.icon {
         &.supported,&.support{
             text-transform: uppercase;
-        } 
+        }
         &.circle { 
            border-radius: 50%;
            height: 42px;
@@ -168,6 +171,17 @@
                 margin-top: 2px;
                 margin-bottom: 2px;
            }
+
+          div{
+            &.overlay{
+              position: absolute;
+              color: black;
+              z-index: 1;
+              font-weight: bold;
+              font-size: 10px;
+              top: 14px;
+            }
+          }
         }
     }
     &.plan{

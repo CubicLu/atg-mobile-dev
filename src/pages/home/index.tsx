@@ -14,7 +14,7 @@ import {
   IonTabButton,
   IonRouterOutlet
 } from '@ionic/react';
-import { NotFoundPage } from '..';
+import { NotFoundPage, ProfilePage } from '..';
 
 interface StateProps {
   activeTab: string;
@@ -66,6 +66,7 @@ class HomePage extends React.Component<Props> {
             {tabs.map((p: TabsInterface, i: number): any => (
               <Route exact path={p.path} component={p.component} key={i} />
             ))}
+            <Route exact path="/" component={ProfilePage} />
             <Route path="*" component={NotFoundPage} />
           </IonRouterOutlet>
 

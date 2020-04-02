@@ -208,7 +208,9 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
             fullscreen={true}
             scrollY={true}
             scrollEvents={true}
-            onIonScroll={(e) => this.headerRef.current?.handleParentScroll(e)}
+            onIonScroll={(e): void =>
+              this.headerRef.current?.handleParentScroll(e)
+            }
             style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#FFF' }}
           >
             <div className={`images`}>

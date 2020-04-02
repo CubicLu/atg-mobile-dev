@@ -58,7 +58,9 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
-          onIonScroll={(e) => this.headerRef.current?.handleParentScroll(e)}
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
         >
           <BackgroundImage
             gradient={`180deg,#1F0739,#1F0739`}

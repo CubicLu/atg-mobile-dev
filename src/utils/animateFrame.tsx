@@ -146,5 +146,5 @@ export default class VigilAnimator {
       this.direction = this.direction === 'normal' ? 'reverse' : 'normal';
     }
     requestAnimationFrame(this.elasticPlay);
-  }
+  };
 }

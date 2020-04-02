@@ -32,7 +32,7 @@ class ButtonPlanComponent extends React.Component<Props> {
       <div
         className={`btn plan circle ${color} ${active ? 'active' : ''}`}
         style={{ ...styles }}
-        onClick={(e): void => onClick(plan)}
+        onClick={(): void => onClick(plan)}
       >
         <div className="price m-1">
           <div>

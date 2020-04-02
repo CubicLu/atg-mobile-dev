@@ -163,18 +163,20 @@ class CommunityPage extends React.Component<Props, State> {
 
   renderTitleAndFilterPosts(): React.ReactNode {
     return (
-      <div className="row filter mx-3 fluid">
-        <span className="h1 p-0 letter-spacing-2 align-start">
+      <div className="row filter mx-3 flex">
+        <div className="h1 p-0 letter-spacing-2 align-start my-auto">
           {this.state.isArtist
             ? this.props.currentCommunityArtist?.name.toUpperCase()
             : 'MY'}{' '}
           COMMUNITY
-        </span>
-        <Button
-          type={ShapesSize.rounded}
-          color={Colors.transparentGray}
-          label={'Filter'}
-        />
+        </div>
+        <div className="align-end my-auto">
+          <Button
+            type={ShapesSize.rounded}
+            color={Colors.transparentGray}
+            label={'Filter'}
+          />
+        </div>
       </div>
     );
   }

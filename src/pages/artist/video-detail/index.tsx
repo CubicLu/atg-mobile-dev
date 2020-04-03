@@ -38,8 +38,8 @@ interface State {
 }
 interface Props
   extends StateProps,
-  DispatchProps,
-  RouteComponentProps<MatchParams> { }
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
 
 class ArtistVideoDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();

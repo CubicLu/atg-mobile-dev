@@ -106,7 +106,7 @@ class TrackListPage extends React.Component<Props> {
                   backgroundSize: 'contain'
                 }}
               />
-              <div className="f3 l2">{this.playlist?.name}&nbsp;</div>
+              <div className="mt-2 f3 l2">{this.playlist?.name}&nbsp;</div>
               <div className="f6">{this.playlist?.owner}&nbsp;</div>
             </div>
 
@@ -118,7 +118,7 @@ class TrackListPage extends React.Component<Props> {
                       {song.trackNumber}
                     </div>
                     <div className="f5 track-song">{song.name}</div>
-                    <div className="flex-justify-center align-end">
+                    <div className="flex-justify-content-center align-end">
                       <AddTrackIcon />
                     </div>
                   </div>

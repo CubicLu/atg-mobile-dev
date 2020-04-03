@@ -140,7 +140,9 @@ class CommunityPage extends React.Component<Props, State> {
               />
             )
           }
-        />
+        >
+          <div className="community m-4">&nbsp;</div>
+        </Header>
       );
     } else
       return (
@@ -163,18 +165,20 @@ class CommunityPage extends React.Component<Props, State> {
 
   renderTitleAndFilterPosts(): React.ReactNode {
     return (
-      <div className="row filter mx-3 fluid">
-        <span className="h1 p-0 letter-spacing-2 align-start">
+      <div className="row filter mx-3 flex">
+        <div className="h1 p-0 letter-spacing-2 align-start my-auto">
           {this.state.isArtist
             ? this.props.currentCommunityArtist?.name.toUpperCase()
             : 'MY'}{' '}
           COMMUNITY
-        </span>
-        <Button
-          type={ShapesSize.rounded}
-          color={Colors.transparentGray}
-          label={'Filter'}
-        />
+        </div>
+        <div className="align-end my-auto">
+          <Button
+            type={ShapesSize.rounded}
+            color={Colors.transparentGray}
+            label={'Filter'}
+          />
+        </div>
       </div>
     );
   }
@@ -182,7 +186,7 @@ class CommunityPage extends React.Component<Props, State> {
   renderJoinButton(): React.ReactNode {
     if (!this.state.joined && this.state.isArtist) {
       return (
-        <div className="flex-justify-center">
+        <div className="flex-justify-content-center mb-2">
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
@@ -211,17 +215,22 @@ class CommunityPage extends React.Component<Props, State> {
           backgroundBottomOpacity={0.08}
         />
         {this.renderHeader()}
-        <div
-          className={`community-page content` + (isPlaying && ' is-playing')}
-        >
-          <IonContent>
+        <IonContent>
+          <div
+            className={
+              `community-page mt-3 content` + (isPlaying && ' is-playing')
+            }
+          >
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (
               <>
                 <SectionTitle
                   title={isArtist ? 'DAILY DRIP' : 'ARTIST COMMUNITIES'}
                   viewAll={true}
-                  className="mx-3"
+                  className="mt-1 mx-3"
+                  onClickAll={(): void => {
+                    this.props.history.push(`/home/community/artist`);
+                  }}
                 />
                 <SliderStories
                   labelKey="label"
@@ -243,8 +252,8 @@ class CommunityPage extends React.Component<Props, State> {
                 return <CardPost key={i} post={data} showUser={!isArtist} />;
               }
             )}
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

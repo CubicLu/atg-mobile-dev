@@ -10,7 +10,7 @@ import {
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
 import { ChannelInterface } from '../../interfaces';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface Props extends RouteComponentProps<MatchParams> {}
 interface MatchParams {
@@ -146,7 +146,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Reggae',
       title: 'EVERYTHING REGGAE',
       subtitle: 'BEATS OF THE ISLANDS',
-      color: `180deg,#ffc90d6e,#034627`,
+      color: `180deg,#bb9b00b5,#034627`,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/reggae.jpg'
     },
@@ -195,4 +195,4 @@ class RadioPage extends React.Component<Props> {
   ];
 }
 
-export default RadioPage;
+export default withRouter(RadioPage);

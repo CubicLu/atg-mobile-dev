@@ -270,7 +270,7 @@
     }
     .infos{
         overflow: hidden; 
-        white-space: pre;
+        white-space: nowrap;
         height: $default-height-player;
         padding-bottom: 3px;
         padding-top: 2px;

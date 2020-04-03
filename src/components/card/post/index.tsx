@@ -45,7 +45,9 @@ class CardPostComponent extends React.Component<Props> {
                       width={42}
                       height={42}
                     />
-                    <label>{this.props.post.username} </label>
+                    <label className="text-12 my-auto">
+                      {this.props.post.username}
+                    </label>
                   </>
                 )}
               </div>

@@ -1,17 +1,18 @@
 import React from 'react';
-import { IonPage, IonContent, IonSearchbar, IonRouterLink } from '@ionic/react';
+import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
 import {
   Header,
   HeaderOverlay,
   BackgroundImage,
   SectionTitle,
-  ArrowRightIcon
+  ArrowRightIcon,
+  InputSearch
 } from '../../../components';
 import { ChannelInterface, StationInterface } from '../../../interfaces';
 import Slider, { Settings } from 'react-slick';
 interface Props {}
 interface State {
-  searchText?: string;
+  searchText: string;
   selectedChannel?: ChannelInterface;
   activeTag?: string;
 }
@@ -184,15 +185,11 @@ class RadioFilterPage extends React.Component<Props, State> {
           What would you like to listen to?
         </div>
         <div id="atg-search" className="mx-4 mt-3">
-          <IonSearchbar
-            className="atg-search px-4"
-            mode="ios"
+          <InputSearch
             placeholder="Search..."
-            clearIcon="close-sharp"
             debounce={150}
-            searchIcon="search-sharp"
             value={this.state.searchText}
-            onIonChange={(e): void => this.performSearch(e.detail.value!)}
+            onChange={(e): void => this.performSearch(e.detail.value!)}
           />
         </div>
         <div className="mt-3 search-outline" />

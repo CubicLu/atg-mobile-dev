@@ -40,6 +40,7 @@ import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
 
 import RadioFilterPage from './radio/filter';
+import MessagePage from './message';
 
 export {
   NotFoundPage,
@@ -79,5 +80,6 @@ export {
   ArtistVideoDetailPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
-  RadioFilterPage
+  RadioFilterPage,
+  MessagePage
 };

@@ -36,7 +36,7 @@ class MenuProfileList extends React.Component<Props> {
         />
 
         <div className={`modal-header ${this.props.background}`}>
-          <span className="h3 dark baskerville text-28">
+          <span className="h3 dark baskerville text-28 l175">
             {this.props.title}
           </span>
         </div>

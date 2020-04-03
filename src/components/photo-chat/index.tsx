@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   PostComment,
   CloseIcon,
@@ -25,9 +24,10 @@ class PhotoChatComponent extends React.Component<Props> {
     this.forceUpdate();
   }
 
-
   render(): React.ReactNode {
-    const chevronClass = this.chatExpanded ? 'chevron-reverse' : 'chevron-normal';
+    const chevronClass = this.chatExpanded
+      ? 'chevron-reverse'
+      : 'chevron-normal';
     const containerClass = this.chatExpanded ? 'chat-expanded' : '';
     return (
       <div>
@@ -38,7 +38,6 @@ class PhotoChatComponent extends React.Component<Props> {
           >
             <div className="row close photo-chat-header">
               <div className="mx-2 flex-justify-content-end">
-
                 <div className={`align-start ${chevronClass}`}>
                   <ButtonIcon
                     color={Colors.transparent}

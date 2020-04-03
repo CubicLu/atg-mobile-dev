@@ -2,5 +2,3 @@ src/serviceWorker.ts
 src/**/__tests__/**
 src/**/*.spec.tsx
 src/**/*.test.tsx
-src/components/icon/circles/index.tsx
-src/components/icon/add-queue/index.tsx

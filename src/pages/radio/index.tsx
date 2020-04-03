@@ -10,7 +10,7 @@ import {
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
 import { ChannelInterface } from '../../interfaces';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface Props extends RouteComponentProps<MatchParams> {}
 interface MatchParams {
@@ -195,4 +195,4 @@ class RadioPage extends React.Component<Props> {
   ];
 }
 
-export default RadioPage;
+export default withRouter(RadioPage);

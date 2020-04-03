@@ -37,7 +37,8 @@ import {
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   ProfileMixtapesPage,
-  RadioFilterPage
+  RadioFilterPage,
+  MessagePage
 } from './../pages';
 import {
   MenuArtistList,
@@ -295,6 +296,11 @@ const defaultState: SettingsReducerType = {
       path: '/home/radio/genre/:genre',
       id: 'radioHome',
       component: RadioPage
+    },
+    {
+      path: '/home/message',
+      id: 'message',
+      component: MessagePage
     }
   ],
 

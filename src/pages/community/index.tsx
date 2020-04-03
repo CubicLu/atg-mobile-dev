@@ -213,10 +213,12 @@ class CommunityPage extends React.Component<Props, State> {
           backgroundBottomOpacity={0.08}
         />
         {this.renderHeader()}
-        <div
-          className={`community-page content` + (isPlaying && ' is-playing')}
-        >
-          <IonContent>
+        <IonContent>
+          <div
+            className={
+              `community-page mt-3 content` + (isPlaying && ' is-playing')
+            }
+          >
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (
               <>
@@ -248,8 +250,8 @@ class CommunityPage extends React.Component<Props, State> {
                 return <CardPost key={i} post={data} showUser={!isArtist} />;
               }
             )}
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

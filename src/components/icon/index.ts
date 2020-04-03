@@ -10,7 +10,6 @@ import SupportIcon from './support';
 import PauseIcon from './pause';
 import StarIcon from './star';
 import NextIcon from './next';
-import CirclesIcon from './circles';
 import AddPlaylistIcon from './add-playlist';
 import MessageBalloonIcon from './message-balloon';
 import PlayIcon from './play';
@@ -42,7 +41,6 @@ export {
   PauseIcon,
   StarIcon,
   NextIcon,
-  CirclesIcon,
   AddPlaylistIcon,
   MessageBalloonIcon,
   PlayIcon,

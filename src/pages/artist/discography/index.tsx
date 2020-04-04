@@ -29,7 +29,7 @@ class ArtistDiscographyPage extends React.Component<Props> {
               <div
                 onClick={(): void =>
                   this.props.history.push(
-                    `/home/track/artist/${currentArtist.username}/${i}`
+                    `/track/artist/${currentArtist.username}/${i}`
                   )
                 }
                 key={i}

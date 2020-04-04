@@ -30,7 +30,7 @@ class PostCover extends React.Component<Props> {
             <ButtonIcon
               icon={<CloseIcon />}
               onClick={(): void => {
-                this.props.history.push(`/home/community/`);
+                this.props.history.push(`/community/`);
               }}
             />
           </div>

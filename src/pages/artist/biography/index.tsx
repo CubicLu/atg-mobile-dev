@@ -37,11 +37,7 @@ import { setHeight, validateScrollHeader } from '../../../utils';
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -94,7 +90,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     const slides = this.slides?.current;
     if (!slides) return;
     chapter ? slides.slideTo(chapter) : slides.slideNext();
-    this.props.updateSettingsModal(false, null);
+    this.props.updateSettingsModal(null);
   }
 
   chapterFooter(): React.ReactNode {
@@ -161,13 +157,11 @@ class ArtistBiographyPage extends React.Component<Props, State> {
 
     const toggleAction = (): void =>
       updateSettingsModal(
-        true,
         React.createElement(BiographyList, {
           items: artist.biography,
           title: 'Biography',
           username: artist.username,
-          onClick: (a: number): any => this.changeChapter(a),
-          background: 'background-white-base'
+          onClick: (a: number): any => this.changeChapter(a)
         }),
         'background-white-base'
       );
@@ -274,12 +268,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             ))}
           </IonSlides>
         </IonContent>
-        <ModalSlide
-          onClose={(): void => updateSettingsModal(false, null)}
-          visible={modal.visible}
-          height={setHeight(40)}
-          className={modal.classname}
-        >
+        <ModalSlide height={setHeight(40)} className={modal.classname}>
           {modal.content}
         </ModalSlide>
       </IonPage>

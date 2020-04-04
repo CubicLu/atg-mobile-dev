@@ -13,7 +13,8 @@ import {
   GestureConfig,
   Gesture,
   createAnimation,
-  IonRange
+  IonRange,
+  IonRouterLink
 } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
@@ -376,18 +377,20 @@ class PlayerComponent extends React.Component<Props> {
         >
           <span className="f6">Community</span>
         </div>
-        <div
-          className="tile"
-          onClick={(): void => {
-            this.props.history.push('/home/track/default/2/1');
-            this.togglePlayer(null);
-          }}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-          )}
+        <IonRouterLink
+          routerLink="'/track/default/2/1'"
+          routerDirection="forward"
         >
-          <span className="f6">Artist Home</span>
-        </div>
+          <div
+            className="tile"
+            onClick={(): Promise<void> => this.togglePlayer(null)}
+            style={shadowTitle(
+              'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+            )}
+          >
+            <span className="f6">Artist Home</span>
+          </div>
+        </IonRouterLink>
       </div>
     );
   }

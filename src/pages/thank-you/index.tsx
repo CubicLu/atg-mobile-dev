@@ -54,9 +54,7 @@ class ThankYouPage extends React.Component<Props> {
                     label="Continue Listening"
                     gradient={true}
                     onClick={(): void => {
-                      this.props.history.push(
-                        `/home/artist/${this.props.artistId}`
-                      );
+                      this.props.history.push(`/artist/${this.props.artistId}`);
                     }}
                     color={Colors.secondary}
                   />
@@ -67,7 +65,7 @@ class ThankYouPage extends React.Component<Props> {
               <div className="col s12">
                 <p
                   onClick={(): void => {
-                    this.props.history.push(`/home`);
+                    this.props.history.push(``);
                   }}
                 >
                   Need to make changes? <br />

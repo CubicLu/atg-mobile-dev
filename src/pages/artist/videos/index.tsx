@@ -45,7 +45,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
 
   onOpenVideo(id: number): void {
     this.props.history.push(
-      `/home/artist/${this.props.match.params.id}/video/${id}`
+      `/artist/${this.props.match.params.id}/video/${id}`
     );
   }
 

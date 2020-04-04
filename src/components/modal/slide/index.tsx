@@ -5,6 +5,7 @@ interface Props {
   type?: 'left' | 'right' | 'top' | 'bottom';
   visible: boolean;
   height?: number;
+  onClick?: Function;
   onClose: Function;
   onClosing?: Function;
   onOpen: Function;
@@ -18,6 +19,7 @@ class ModalSlideComponent extends React.Component<Props> {
     height: 30,
     onClose: (): void => {},
     onOpen: (): void => {},
+    onClick: (): void => {},
     className: ''
   };
 

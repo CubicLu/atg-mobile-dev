@@ -3,17 +3,15 @@ import { Avatar, Header } from './../../../components';
 import { IonActionSheet, ActionSheetButton } from '@ionic/react';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from '../../../actions';
-import { ApplicationState } from '../../../reducers';
 import { ShapesSize } from '../../../interfaces';
 
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
 }
-
-interface Props extends DispatchProps {}
 interface State {
   showProfileActions: boolean;
 }
+interface Props extends DispatchProps {}
 class HeaderProfileComponent extends React.Component<Props, State> {
   handleLogout(): void {
     this.props.updateAuthProperty('loggedUser', undefined);
@@ -83,12 +81,4 @@ class HeaderProfileComponent extends React.Component<Props, State> {
   }
 }
 
-interface StateProps {}
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
-
-export default connect(mapStateToProps, { updateAuthProperty })(
-  HeaderProfileComponent
-);
+export default connect(null, { updateAuthProperty })(HeaderProfileComponent);

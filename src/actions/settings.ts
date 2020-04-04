@@ -6,10 +6,9 @@ export const updateSettingsProperty = (property: string, value: any): any => ({
 });
 
 export const updateSettingsModal = (
-  visible: boolean,
   content: React.ReactNode,
   classname?: string
 ): any => ({
   type: ActionType.UPDATE_SETTINGS_MODAL,
-  payload: { visible, content, classname }
+  payload: { content, classname }
 });

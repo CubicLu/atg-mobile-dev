@@ -78,7 +78,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const planDetailClass = hasPlan ? ' detail mx-3' : '';
 
     const backButton = (): void => this.showDetail();
-    const closeButton = (): void => history.push(`/home/artist/${username}`);
+    const closeButton = (): void => history.push(`/artist/${username}`);
     const rightButton = hasPlan ? backButton : closeButton;
 
     const allPlans = (
@@ -169,7 +169,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             color={Colors.support}
             gradient={true}
             onClick={(): void =>
-              history.push(`/home/thank-you`, { artistId: match.params.id })
+              history.push(`/thank-you`, { artistId: match.params.id })
             }
           />
         </div>

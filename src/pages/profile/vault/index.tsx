@@ -5,7 +5,7 @@ import {
   ButtonIcon,
   AddPlaylistIcon,
   CloseIcon,
-  ButtonSupport
+  ButtonSupportIcon
 } from './../../../components';
 
 import {
@@ -43,10 +43,7 @@ class ProfileVaultPage extends React.Component<Props> {
                           <span className="artist">Ben Harper</span>
                         </div>
                         <div className="col s3 support">
-                          <ButtonSupport
-                            supported={i % 2 === 0}
-                            buttonType={'icon'}
-                          />
+                          <ButtonSupportIcon supported={i % 2 === 0} />
                         </div>
                       </div>
                     </IonItem>

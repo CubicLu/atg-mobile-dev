@@ -66,7 +66,7 @@ class HomePage extends React.Component<Props> {
               {links.map((p: LinksInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
-              <Redirect exact path="/" to="/profile" />
+              <Redirect exact path="" to="/profile" />
               <Route path="*" component={NotFoundPage} />
             </IonRouterOutlet>
 

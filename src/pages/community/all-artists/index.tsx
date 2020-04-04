@@ -41,20 +41,20 @@ class CommunityAllArtistsPage extends React.Component<Props> {
           title={'Artist Community'}
           titleClassName={`artist-name`}
           rightCloseButton={true}
-          rightCloseHref="/home/community"
+          rightCloseHref="/community"
         />
-        <div
-          className={
-            `community-all-artists-page content content-container` +
-            (this.props.isPlaying && ' is-playing')
-          }
-        >
-          <IonContent>
+        <IonContent>
+          <div
+            className={
+              `mt-5 community-all-artists-page content content-container` +
+              (this.props.isPlaying && ' is-playing')
+            }
+          >
             <div className="row">
               {this.props.stories.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <div key={i} className="col s4">
+                    <div key={i} className="col s4 no-padding">
                       <div>
                         <Avatar
                           image={data.image}
@@ -70,8 +70,8 @@ class CommunityAllArtistsPage extends React.Component<Props> {
                 }
               )}
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

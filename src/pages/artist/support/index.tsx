@@ -75,7 +75,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { username } = currentArtist;
     const { plan } = this.state;
     const hasPlan = !!plan;
-    const planDetailClass = hasPlan ? ' detail mx-3' : '';
+    const planDetailClass = hasPlan ? ' detail mt-7 mx-3' : '';
 
     const backButton = (): void => this.showDetail();
     const closeButton = (): void => history.push(`/artist/${username}`);
@@ -113,7 +113,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
       </div>
     );
     const detailPlan = (
-      <div className="space-between h-75">
+      <div className="flex-column-center">
         <div className="row fluid">
           <div className="col s4">
             <Avatar
@@ -205,7 +205,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
           rightCloseButton={true}
           rightCloseOnClick={rightButton}
         />
-        <IonContent scrollY={true}>
+        <IonContent fullscreen={true} scrollY={true}>
           <div className={`artist-support-page h-100 ${planDetailClass}`}>
             {hasPlan ? detailPlan : allPlans}
           </div>

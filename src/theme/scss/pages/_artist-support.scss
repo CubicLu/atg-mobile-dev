@@ -1,6 +1,5 @@
 .artist-support-page{
-    overflow: auto;
-    --background: transparent;
+    overflow: visible;
     .col{
         padding: 0;
         display: flex;
@@ -16,11 +15,8 @@
         .header{
             display: block;
         }
-        margin-top: $default-height-header;
-        margin-bottom: $default-height-header;
         .price{
             line-height: 1;
-            margin-left: 0;
             .currency{
                 vertical-align: middle;
             }

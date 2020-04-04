@@ -1,5 +1,8 @@
 import React from 'react';
-import { MenuFanSupportOptions, ButtonSupport } from './../../../components';
+import {
+  MenuFanSupportOptions,
+  ButtonSupportIcon
+} from './../../../components';
 import { updateSettingsModal } from './../../../actions';
 import { ArtistInterface } from './../../../interfaces';
 import { connect } from 'react-redux';
@@ -19,13 +22,13 @@ class CardArtistComponent extends React.Component<Props> {
         routerLink={`/artist/${this.props.artist.username}/support`}
         routerDirection="forward"
       >
-        <ButtonSupport buttonType={'icon'} supported={true} />
+        <ButtonSupportIcon supported={true} />
       </IonRouterLink>
     );
   }
   renderNotSupported(): React.ReactElement {
     return (
-      <ButtonSupport
+      <ButtonSupportIcon
         onClick={(): void =>
           this.props.updateSettingsModal(
             <MenuFanSupportOptions
@@ -35,7 +38,6 @@ class CardArtistComponent extends React.Component<Props> {
             'background-tertiary-opacity95'
           )
         }
-        buttonType={'icon'}
         supported={false}
       />
     );
@@ -50,7 +52,7 @@ class CardArtistComponent extends React.Component<Props> {
         className="card-artist my-3 mx-2"
         style={{ backgroundImage: `url(${cover.main})` }}
       >
-        <div className="flex-align-items-end h-100 px-2 pb-1">
+        <div className="flex-align-items-end h-100 px-2 pb-2">
           <div className="align-start">
             <IonRouterLink
               routerLink={`/artist/${username}`}

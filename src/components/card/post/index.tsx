@@ -33,7 +33,7 @@ class CardPostComponent extends React.Component<Props> {
                 onClick={(): void => {
                   if (this.props.showUser)
                     this.props.history.push(
-                      `/home/community/${this.props.post.username}`
+                      `/community/${this.props.post.username}`
                     );
                 }}
               >
@@ -57,7 +57,7 @@ class CardPostComponent extends React.Component<Props> {
                   icon={<BalloonIcon />}
                   label={this.props.post.commentsQuantity}
                   onClick={(): void => {
-                    history.push(`/home/community/comments/${1}`);
+                    history.push(`/community/comments/${1}`);
                   }}
                 />
                 <ButtonIcon icon={<HeartIcon />} />

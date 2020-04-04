@@ -76,8 +76,11 @@ class CommunityAllArtistsPage extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({ settings, communityAPI }: ApplicationState): StateProps => {
+
+const mapStateToProps = ({
+  settings,
+  communityAPI
+}: ApplicationState): StateProps => {
   const { isPlaying } = settings;
   const { stories, loading } = communityAPI;
   return { isPlaying, stories, loading };

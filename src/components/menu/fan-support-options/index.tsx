@@ -1,29 +1,31 @@
 import React from 'react';
 import { ButtonIcon, Header } from './../../../components';
 import { ArtistInterface, Colors, ShapesSize } from '../../../interfaces';
+import { updateSettingsModal } from './../../../actions';
 import {
   SupportIcon,
   StarIcon,
   AddPlaylistIcon,
   NetworkIcon
 } from '../../icon';
+import { connect } from 'react-redux';
 
-interface Props {
+interface Props extends DispatchProps {
   artist: ArtistInterface;
-  onClick: Function;
   background?: string;
+}
+interface DispatchProps {
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
 
 class MenuFanSupportOptionsComponent extends React.Component<Props> {
-  public static defaultProps = { onClick: (): void => {} };
-
   render(): React.ReactNode {
     return (
       <div className={`fan-support-options`}>
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.onClick()}
+          rightCloseOnClick={(): void => this.props.updateSettingsModal(null)}
           color={Colors.transparent}
         />
 
@@ -73,4 +75,6 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
   }
 }
 
-export default MenuFanSupportOptionsComponent;
+export default connect(null, { updateSettingsModal })(
+  MenuFanSupportOptionsComponent
+);

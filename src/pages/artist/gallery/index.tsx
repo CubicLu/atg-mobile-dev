@@ -78,7 +78,7 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
                     key={index}
                     onClick={(): void => {
                       this.props.history.push(
-                        `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
+                        `/artist/${this.props.currentArtist?.username}/gallery/${index}`
                       );
                     }}
                     image={data.cover}

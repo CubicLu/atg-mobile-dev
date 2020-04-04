@@ -18,14 +18,18 @@ interface DispatchProps {
 }
 
 class ProfilePage extends React.Component<Props> {
+  changeFanTab = (event: MenuInterface): void => {
+    if (event.id === this.props.activeFanTab) return;
+    this.props.updateSettingsProperty('activeFanTab', event.id);
+  };
+  renderActiveTab(): React.ReactNode {
+    const { fanTabs, activeFanTab } = this.props;
+    const tab = fanTabs.find((x): boolean => x.id === activeFanTab)!;
+    return React.createElement(tab.component, { key: tab.id });
+  }
+
   render(): React.ReactNode {
-    const {
-      isPlaying,
-      fanTabs,
-      activeFanTab,
-      updateSettingsProperty
-    } = this.props;
-    if (!fanTabs) return <IonPage />;
+    const { isPlaying, fanTabs, activeFanTab } = this.props;
     return (
       <IonPage id="profile-page">
         <IonContent id="profile-page" scrollY={false}>
@@ -42,15 +46,9 @@ class ProfilePage extends React.Component<Props> {
             <Menu
               tabs={fanTabs}
               activeId={activeFanTab}
-              onClick={(event: MenuInterface): void => {
-                return updateSettingsProperty('activeFanTab', event.id);
-              }}
+              onClick={this.changeFanTab}
             />
-            {fanTabs.map(
-              (data, i): React.ReactNode =>
-                data.id === activeFanTab &&
-                React.createElement(data.component, { key: i })
-            )}
+            {this.renderActiveTab()};
           </div>
         </IonContent>
       </IonPage>

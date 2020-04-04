@@ -2,20 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DotsThreeIcon, MenuArtistList } from './../../components';
 import { updateSettingsModal } from './../../actions';
-import { ApplicationState } from '../../reducers';
 import { ArtistInterface } from '../../interfaces';
 
-interface StateProps {}
-
 interface DispatchProps {
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
 
-interface Props extends StateProps, DispatchProps {
+interface Props extends DispatchProps {
   data?: ArtistInterface[];
   className?: string;
 }
@@ -31,12 +24,7 @@ class SupportByComponent extends React.Component<Props> {
         className={`support-by-component ${className}`}
         onClick={(): void =>
           updateSettingsModal(
-            true,
-            React.createElement(MenuArtistList, {
-              title: 'Artists Supporting',
-              onClick: (): void => this.props.updateSettingsModal(false, null),
-              background: 'background-white-base'
-            }),
+            <MenuArtistList title="Artists Supporting" />,
             'background-white-base'
           )
         }
@@ -58,10 +46,4 @@ class SupportByComponent extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
-export default connect(mapStateToProps, {
-  updateSettingsModal
-})(SupportByComponent);
+export default connect(null, { updateSettingsModal })(SupportByComponent);

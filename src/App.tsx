@@ -51,7 +51,9 @@ export default class App extends React.Component {
     if (this.authenticated) {
       return (
         <Provider store={store}>
-          <HomePage />
+          <IonApp>
+            <HomePage />
+          </IonApp>
         </Provider>
       );
     }
@@ -60,7 +62,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <IonApp>
           <IonReactRouter>
-            <IonRouterOutlet animated={false} id="notLogged" mode="ios">
+            <IonRouterOutlet id="notLogged" mode="ios">
               <Route exact path="/initial" component={InitialPage} />
               <Route exact path="/sign-in" component={SignInPage} />
               <Route exact path="/sign-up" component={SignUpPage} />

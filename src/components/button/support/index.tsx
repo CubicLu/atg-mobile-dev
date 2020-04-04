@@ -37,6 +37,7 @@ class ButtonSupportComponent extends React.Component<Props> {
       return (
         <div id={id} className="button-support-component">
           <ButtonIcon
+            onClick={(): void => onClick()}
             icon={<SupportIcon color={supported ? '#FC5F62' : '#fff'} />}
             color={supported ? Colors.supported : Colors.support}
           />

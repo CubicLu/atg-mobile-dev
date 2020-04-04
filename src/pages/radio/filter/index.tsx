@@ -242,7 +242,7 @@ class RadioFilterPage extends React.Component<Props, State> {
                 className={`col s4 no-padding p-1 flex-column-center mb-2 center-align`}
               >
                 <IonRouterLink
-                  routerLink={`/home/radio/genre/${station.genre.toLocaleLowerCase()}`}
+                  routerLink={`/radio/genre/${station.genre.toLocaleLowerCase()}`}
                   routerDirection="forward"
                 >
                   <>
@@ -283,7 +283,7 @@ class RadioFilterPage extends React.Component<Props, State> {
           leftBackOnClick={this.selectChannel.bind(this, undefined)}
           leftBackButton={!!selectedChannel}
           rightCloseButton={true}
-          rightCloseHref={'/home/radio'}
+          rightCloseHref={'/radio'}
           direction="POP"
         />
         <HeaderOverlay ref={this.headerRef} />

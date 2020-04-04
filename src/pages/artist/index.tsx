@@ -210,7 +210,7 @@ class ArtistPage extends React.Component<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackHref="/home" />
+        <Header leftBackHref="/" />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
@@ -225,9 +225,7 @@ class ArtistPage extends React.Component<Props, {}> {
             uppercase
             supported={artist.support}
             onClick={(): void => {
-              this.props.history.push(
-                `/home/artist/${artist.username}/support`
-              );
+              this.props.history.push(`/artist/${artist.username}/support`);
             }}
           />
 

@@ -197,21 +197,21 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         : undefined;
     return (
       <IonPage id="gallery-grid-page">
-        <div
-          className={`artist-gallery-grid-page ${this.props.isPlaying &&
-            'is-playing'}`}
-        >
-          <Header title={title} rightActionButton={true} />
-          <HeaderOverlay ref={this.headerRef} />
+        <Header title={title} rightActionButton={true} />
+        <HeaderOverlay ref={this.headerRef} />
 
-          <IonContent
-            fullscreen={true}
-            scrollY={true}
-            scrollEvents={true}
-            onIonScroll={(e): void =>
-              this.headerRef.current?.handleParentScroll(e)
-            }
-            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#FFF' }}
+        <IonContent
+          style={{ background: '#fff', '--background': '#fff' }}
+          fullscreen={true}
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
+        >
+          <div
+            className={`artist-gallery-grid-page ${this.props.isPlaying &&
+              'is-playing'}`}
           >
             <div className={`images`}>
               {cover !== undefined && (
@@ -227,8 +227,8 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
                 }
               )}
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }

@@ -4,7 +4,6 @@ import { ApplicationState } from './../../../reducers';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { getArtistAPI } from './../../../actions';
 import {
-  ShapesSize,
   ArtistInterface,
   PlaylistInterface,
   SongInterface

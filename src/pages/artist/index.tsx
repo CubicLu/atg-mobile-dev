@@ -5,7 +5,7 @@ import { IonContent, IonPage, createAnimation } from '@ionic/react';
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
-import { ArtistInterface, MenuInterface, ShapesSize } from '../../interfaces';
+import { ArtistInterface, MenuInterface } from '../../interfaces';
 import {
   updateArtistProperty,
   updateSettingsProperty,

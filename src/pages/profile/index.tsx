@@ -6,7 +6,6 @@ import { ApplicationState } from './../../reducers';
 import { MenuInterface } from '../../interfaces';
 interface StateProps {
   fanTabs: MenuInterface[];
-  isPlaying: boolean;
 }
 class ProfilePage extends React.Component<StateProps> {
   activeFanTab: string = 'artists';
@@ -16,7 +15,7 @@ class ProfilePage extends React.Component<StateProps> {
     this.forceUpdate();
   };
   render(): React.ReactNode {
-    const { isPlaying, fanTabs } = this.props;
+    const { fanTabs } = this.props;
     const activeTab = fanTabs.find((x): boolean => x.id === this.activeFanTab)!;
     return (
       <IonPage id="profile-page">
@@ -29,7 +28,7 @@ class ProfilePage extends React.Component<StateProps> {
             backgroundBottom
             backgroundBottomDark={false}
           />
-          <div className={`profile-page` + (isPlaying && ' is-playing')}>
+          <div className={`profile-page`}>
             <HeaderProfile />
             <Menu
               tabs={fanTabs}
@@ -45,8 +44,8 @@ class ProfilePage extends React.Component<StateProps> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { fanTabs, isPlaying } = settings;
-  return { fanTabs, isPlaying };
+  const { fanTabs } = settings;
+  return { fanTabs };
 };
 
 export default connect(mapStateToProps)(ProfilePage);

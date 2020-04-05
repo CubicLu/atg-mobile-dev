@@ -20,7 +20,6 @@ interface State {
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
   currentGalleryComments: CommentInterface[];
 }
 
@@ -113,10 +112,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
           style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
         >
           <div className={`artist-gallery-photo-page`}>
-            <div
-              style={{ marginTop: 100 }}
-              className={`${this.props.isPlaying && ' is-playing'}`}
-            >
+            <div style={{ marginTop: 100 }}>
               <IonImg src={this.getImage()} />
             </div>
           </div>
@@ -131,13 +127,9 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist, currentGalleryComments } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentGalleryComments, currentArtist, isPlaying };
+  return { currentGalleryComments, currentArtist };
 };
 
 export default withRouter(

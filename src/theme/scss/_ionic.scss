@@ -1,5 +1,10 @@
-ion-tabbar {
-    --ion-safe-area-bottom: 0px;
+ion-tab-bar {
+    // --ion-safe-area-bottom: 0px;
+    --border: 0px solid #000;
+    &.playing{
+        margin-top: 50px;
+        overflow: visible;
+    }
 }
 .tab-selected{
     svg{

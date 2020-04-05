@@ -13,13 +13,12 @@ import {
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 interface Props extends StateProps {}
 
 class ArtistFeaturesPage extends React.Component<Props> {
   render(): React.ReactNode {
-    const { currentArtist, isPlaying } = this.props;
+    const { currentArtist } = this.props;
     if (!currentArtist) return <div />;
 
     const {
@@ -31,7 +30,7 @@ class ArtistFeaturesPage extends React.Component<Props> {
     } = currentArtist;
 
     return (
-      <div className={`artist-features-page ${isPlaying ? 'is-playing' : ''}`}>
+      <div className={`artist-features-page`}>
         <div className="row" />
         <div className="row">
           <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />
@@ -78,13 +77,9 @@ class ArtistFeaturesPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default connect(mapStateToProps, {})(ArtistFeaturesPage);

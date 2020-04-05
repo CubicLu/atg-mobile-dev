@@ -25,7 +25,6 @@ interface State {
   willGo: boolean;
 }
 interface StateProps {
-  isPlaying: boolean;
   event: EventInterface | null;
 }
 
@@ -81,10 +80,7 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
-        <div
-          className={`artist-event-detail-page ${this.props.isPlaying &&
-            'is-playing'}`}
-        >
+        <div className={`artist-event-detail-page}`}>
           <Header
             rightCloseButton
             title="Who's going"
@@ -163,13 +159,9 @@ class EventDetailPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { event } = artistAPI;
-  const { isPlaying } = settings;
-  return { event, isPlaying };
+  return { event };
 };
 
 export default withRouter(

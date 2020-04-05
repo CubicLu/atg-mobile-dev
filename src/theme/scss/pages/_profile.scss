@@ -4,9 +4,6 @@
         height: calc(100% - 330px);
         overflow: scroll;
     }
-    &.is-playing{
-        margin-bottom: $default-height-player + 20;
-    }
     .slick-slider{
         margin-top: 16px;
         margin-bottom: 32px;

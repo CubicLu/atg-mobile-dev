@@ -16,7 +16,6 @@ import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -114,13 +113,9 @@ class ArtistVideosPage extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

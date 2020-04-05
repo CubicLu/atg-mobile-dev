@@ -55,7 +55,7 @@ class ArtistEventsPage extends React.Component<Props, {}> {
           <div className="artist-events-page">
             <BackgroundImage backgroundImage={currentArtist.cover?.event} />
             <HeaderOverlay ref={this.headerRef} />
-            <div className={`content-list is-playing'}`}>
+            <div className={`content-list`}>
               {currentArtist.events?.map(
                 (data, i): React.ReactNode => (
                   <CardEvent

@@ -106,7 +106,6 @@ export interface ArtistCoverInterface {
 export interface SettingsReducerType {
   tabs: TabsInterface[];
   links: LinksInterface[];
-  isPlaying: boolean;
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
   modal: ModalSlideInterface;

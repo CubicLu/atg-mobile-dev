@@ -9,7 +9,6 @@ import { GalleryInterface, ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -197,10 +196,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         : undefined;
     return (
       <IonPage id="gallery-grid-page">
-        <div
-          className={`artist-gallery-grid-page ${this.props.isPlaying &&
-            'is-playing'}`}
-        >
+        <div className={`artist-gallery-grid-page}`}>
           <Header title={title} rightActionButton={true} />
           <HeaderOverlay ref={this.headerRef} />
 
@@ -234,13 +230,9 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

@@ -31,6 +31,7 @@ class CardArtistComponent extends React.Component<Props> {
             <MenuFanSupportOptions
               background={'background-tertiary-opacity95'}
               artist={this.props.artist}
+              onClick={(): void => updateSettingsModal(false)}
             />,
             'background-tertiary-opacity95'
           )

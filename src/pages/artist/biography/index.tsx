@@ -10,7 +10,6 @@ import {
   CreateAnimation
 } from '@ionic/react';
 import {
-  ModalSlide,
   Header,
   BiographyList,
   ButtonIcon,
@@ -32,7 +31,7 @@ import {
   AlbumInterface,
   Colors
 } from '../../../interfaces';
-import { setHeight, validateScrollHeader } from '../../../utils';
+import { validateScrollHeader } from '../../../utils';
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -150,7 +149,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     const {
       currentArtist: artist,
       currentArtist: { biography },
-      modal,
       updateSettingsModal
     } = this.props;
     if (!biography) return <IonPage />;
@@ -268,9 +266,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             ))}
           </IonSlides>
         </IonContent>
-        <ModalSlide height={setHeight(40)} className={modal.classname}>
-          {modal.content}
-        </ModalSlide>
       </IonPage>
     );
   }

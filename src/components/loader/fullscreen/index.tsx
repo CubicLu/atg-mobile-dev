@@ -1,22 +1,24 @@
 import React from 'react';
-interface Props {
-  visible: boolean;
+import { connect } from 'react-redux';
+import { ApplicationState } from '../../../reducers';
+interface StateProps {
+  loading: boolean;
 }
-
-class LoaderFullscreenComponent extends React.Component<Props> {
-  public static defaultProps = {
-    visible: false
-  };
+class LoaderFullscreenComponent extends React.Component<StateProps> {
   render(): React.ReactNode {
-    if (this.props.visible) {
-      return (
-        <div className="loader">
-          <div className="icon"></div>
-        </div>
-      );
-    }
-    return null;
+    return (
+      <>
+        {this.props.loading && (
+          <div className="loader">
+            <div className="icon" />
+          </div>
+        )}
+      </>
+    );
   }
 }
-
-export default LoaderFullscreenComponent;
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+  const { loading } = artistAPI;
+  return { loading };
+};
+export default connect(mapStateToProps)(LoaderFullscreenComponent);

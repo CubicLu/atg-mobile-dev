@@ -7,8 +7,10 @@ export const updateSettingsProperty = (property: string, value: any): any => ({
 
 export const updateSettingsModal = (
   content: React.ReactNode,
-  classname?: string
+  className?: string,
+  height?: number,
+  onClick?: Function
 ): any => ({
   type: ActionType.UPDATE_SETTINGS_MODAL,
-  payload: { content, classname }
+  payload: { content, className, height, onClick }
 });

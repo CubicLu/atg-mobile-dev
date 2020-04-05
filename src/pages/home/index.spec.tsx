@@ -13,9 +13,7 @@ describe('HomePage render', () => {
     let component: any;
   
     beforeEach(() => {
-        store = mockStore({
-          settings: { activeTab: 'home '},
-        });
+        store = mockStore({});
 
         const history = createMemoryHistory()
         history.push('route')

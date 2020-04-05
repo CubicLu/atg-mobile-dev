@@ -2,18 +2,12 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  BackgroundImage,
-  Header
+  BackgroundImage
 } from './../../../components';
-import { updateSettingsModal } from './../../../actions';
 import { BiographyInterface, Colors } from '../../../interfaces';
-import { connect } from 'react-redux';
 import { LockedIcon } from '../../icon';
 
-interface DispatchProps {
-  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
-}
-interface Props extends DispatchProps {
+interface Props {
   onClick: Function;
   title: string;
   username: string;
@@ -21,7 +15,6 @@ interface Props extends DispatchProps {
   items?: BiographyInterface[];
 }
 class BiographyListComponent extends React.Component<Props> {
-  public static defaultProps = { onClick: (): void => {} };
   render(): React.ReactNode {
     return (
       <div className="menu-generic-list">
@@ -29,12 +22,6 @@ class BiographyListComponent extends React.Component<Props> {
           backgroundBottom
           backgroundBottomOrange={true}
           backgroundBottomOpacity={0.4}
-        />
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.onClick()}
-          color={Colors.transparent}
         />
         <div className={`modal-header ${this.props.background}`}>
           <span className="h2 dark baskerville">{this.props.title}</span>
@@ -71,6 +58,4 @@ class BiographyListComponent extends React.Component<Props> {
   }
 }
 
-export default connect(null, {
-  updateSettingsModal
-})(BiographyListComponent);
+export default BiographyListComponent;

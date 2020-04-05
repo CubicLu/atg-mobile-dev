@@ -1,63 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ModalSlide, Player, LoaderFullscreen } from './../../components';
-import { updateSettingsProperty, updateSettingsModal } from './../../actions';
 import { TabsInterface, LinksInterface } from '../../interfaces';
 import { ApplicationState } from '../../reducers';
-import { ModalSlideInterface } from '../../interfaces';
-import { setHeight } from '../../utils';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect } from 'react-router-dom';
+import { NotFoundPage } from '..';
 import {
   IonTabs,
   IonTabBar,
   IonTabButton,
   IonRouterOutlet
 } from '@ionic/react';
-import { NotFoundPage } from '..';
 
 interface StateProps {
-  activeTab: string;
   tabs: TabsInterface[];
   links: LinksInterface[];
-  isPlaying: boolean;
-  modal: ModalSlideInterface;
-  loading: boolean;
 }
 
-interface DispatchProps {
-  updateSettingsProperty: (property: string, value: any) => void;
-  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
-}
-
-interface Props extends StateProps, DispatchProps {}
-
-class HomePage extends React.Component<Props> {
-  renderModal(instance: ModalSlideInterface): React.ReactElement {
-    return (
-      <ModalSlide
-        onClose={(): void => this.props.updateSettingsModal(null)}
-        visible={!!instance.content}
-        height={setHeight(40)}
-        className={instance.classname}
-      >
-        {instance.content}
-      </ModalSlide>
-    );
-  }
-
+class HomePage extends React.Component<StateProps> {
+  activeTab: string = 'profile';
   render(): React.ReactNode {
-    const { modal, activeTab, tabs, links, loading } = this.props;
+    const { tabs, links } = this.props;
     return (
       <>
-        <LoaderFullscreen visible={loading} />
+        <LoaderFullscreen />
         <IonReactRouter>
-          {this.renderModal(modal)}
+          <ModalSlide />
           <Player />
           <IonTabs
-            onIonTabsDidChange={(event): void =>
-              this.props.updateSettingsProperty('activeTab', event.detail.tab)
-            }
+            onIonTabsDidChange={(event): void => {
+              this.activeTab = event.detail.tab;
+            }}
           >
             <IonRouterOutlet>
               {tabs.map((p: TabsInterface, i: number): any => (
@@ -70,10 +44,10 @@ class HomePage extends React.Component<Props> {
               <Route path="*" component={NotFoundPage} />
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom" color="dark" selectedTab={activeTab}>
+            <IonTabBar slot="bottom" color="dark" selectedTab={this.activeTab}>
               {tabs.map((p: TabsInterface): any => (
                 <IonTabButton tab={p.id} href={p.path} key={p.id}>
-                  <p.icon color={activeTab === p.id ? '#00BAFF' : '#FFF'} />
+                  <p.icon />
                 </IonTabButton>
               ))}
             </IonTabBar>
@@ -84,16 +58,9 @@ class HomePage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  artistAPI
-}: ApplicationState): StateProps => {
-  const { activeTab, tabs, links, isPlaying, modal } = settings;
-  const { loading } = artistAPI;
-  return { activeTab, tabs, links, isPlaying, modal, loading };
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+  const { tabs, links } = settings;
+  return { tabs, links };
 };
 
-export default connect(mapStateToProps, {
-  updateSettingsProperty,
-  updateSettingsModal
-})(HomePage);
+export default connect(mapStateToProps)(HomePage);

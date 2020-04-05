@@ -1,42 +1,49 @@
 import React from 'react';
 import SlidingPanel from 'react-sliding-side-panel';
-
-interface Props {
-  type?: 'left' | 'right' | 'top' | 'bottom';
-  visible: boolean;
-  height?: number;
-  onClick?: Function;
-  onClose: Function;
-  onClosing?: Function;
-  onOpen: Function;
-  className?: string;
+import { connect } from 'react-redux';
+import { updateSettingsModal } from './../../../actions';
+import { ApplicationState } from '../../../reducers';
+import { ModalSlideInterface } from '../../../interfaces';
+import { setHeight } from '../../../utils';
+import { Header } from '../..';
+interface DispatchProps {
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
-
+interface StateProps {
+  modal: ModalSlideInterface;
+}
+interface Props extends StateProps, DispatchProps {}
 class ModalSlideComponent extends React.Component<Props> {
-  public static defaultProps = {
-    type: 'bottom',
-    visible: false,
-    height: 30,
-    onClose: (): void => {},
-    onOpen: (): void => {},
-    onClick: (): void => {},
-    className: ''
-  };
-
   render(): React.ReactNode {
+    const { modalType, content, height, className } = this.props.modal;
+    const type = modalType || 'bottom';
+    const background = className || 'background-white-base';
+    const size = setHeight(height || 40);
+    const isOpen = !!content;
     return (
       <SlidingPanel
-        type={this.props.type}
-        isOpen={this.props.visible}
-        size={this.props.height}
-        panelClassName={`${this.props.type} ${this.props.className}`}
-        panelContainerClassName={` ${this.props.className}`}
-        backdropClicked={(): void => this.props.onClose()}
+        type={type}
+        panelClassName={`${'bottom'} ${background}`}
+        size={size}
+        isOpen={isOpen}
+        onClick={(): void => {}}
+        backdropClicked={(): void => this.props.updateSettingsModal(null)}
       >
-        {this.props.children}
+        <>
+          <Header
+            leftBackButton={false}
+            rightCloseButton={true}
+            rightCloseOnClick={(): void => this.props.updateSettingsModal(null)}
+          />
+          {content}
+        </>
       </SlidingPanel>
     );
   }
 }
-
-export default ModalSlideComponent;
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+  return { modal: settings.modal };
+};
+export default connect(mapStateToProps, { updateSettingsModal })(
+  ModalSlideComponent
+);

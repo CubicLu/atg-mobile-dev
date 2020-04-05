@@ -2,22 +2,18 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  BackgroundImage,
-  Header
+  BackgroundImage
 } from './../../../components';
 import { ArtistInterface, Colors } from '../../../interfaces';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { updateSettingsModal } from './../../../actions';
 import { IonRouterLink } from '@ionic/react';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
-interface DispatchProps {
-  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
-}
-interface Props extends StateProps, DispatchProps {
+interface Props extends StateProps {
+  onClick: Function;
   title: string;
   isSimilar?: boolean;
   background?: string;
@@ -29,9 +25,6 @@ class MenuArtistList extends React.Component<Props> {
     isSimilar: false
   };
 
-  closeModal(): void {
-    this.props.updateSettingsModal(null);
-  }
   render(): React.ReactNode {
     const { currentArtist, isSimilar } = this.props;
     if (!currentArtist) return <div />;
@@ -45,12 +38,6 @@ class MenuArtistList extends React.Component<Props> {
           backgroundBottom={true}
           backgroundBottomOrange={true}
           backgroundBottomOpacity={0.4}
-        />
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.closeModal()}
-          color={Colors.transparent}
         />
 
         <div className={`modal-header ${this.props.background}`}>
@@ -73,7 +60,7 @@ class MenuArtistList extends React.Component<Props> {
                     key={i}
                     routerLink={`/artist/${data.username}`}
                   >
-                    <li onClick={(): void => this.closeModal()}>
+                    <li onClick={(): void => this.props.onClick()}>
                       <div className="artist">
                         <div
                           className="avatar"
@@ -102,6 +89,4 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default connect(mapStateToProps, { updateSettingsModal })(
-  MenuArtistList
-);
+export default connect(mapStateToProps)(MenuArtistList);

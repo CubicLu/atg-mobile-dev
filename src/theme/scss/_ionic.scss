@@ -1,6 +1,16 @@
 ion-tabbar {
     --ion-safe-area-bottom: 0px;
 }
+.tab-selected{
+    svg{
+        path{
+            fill: #00BAFF;
+            &.logo{
+                stroke: #00BAFF;    
+            }
+        }
+    }
+}
 *::-webkit-scrollbar {
     display: none;
 }

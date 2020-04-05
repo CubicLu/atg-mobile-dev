@@ -220,10 +220,8 @@ class ArtistPage extends React.Component<Props, {}> {
           <br />
           <ButtonSupport
             id="support-button"
+            artist={artist}
             supported={artist.support}
-            onClick={(): void => {
-              this.props.history.push(`/artist/${artist.username}/support`);
-            }}
           />
 
           <Menu

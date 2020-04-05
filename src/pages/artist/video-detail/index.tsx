@@ -124,7 +124,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <ButtonIcon
             styles={{ position: 'relative' }}
             color={Colors.cyan}
-            icon={<ChatMessageIcon width={22} height={20} />}
+            icon={<ChatMessageIcon />}
             onClick={this.setChat.bind(this, true)}
             overlay={50}
           />

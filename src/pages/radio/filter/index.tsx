@@ -284,7 +284,7 @@ class RadioFilterPage extends React.Component<Props, State> {
           leftBackButton={!!selectedChannel}
           rightCloseButton={true}
           rightCloseHref={'/radio'}
-          direction="POP"
+          routerDirection="back"
         />
         <HeaderOverlay ref={this.headerRef} />
         <BackgroundImage

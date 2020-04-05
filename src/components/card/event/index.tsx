@@ -1,14 +1,13 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { EventInterface } from '../../../interfaces';
 import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
-import { IonAlert } from '@ionic/react';
+import { IonAlert, IonRouterLink } from '@ionic/react';
 
 interface State {
   show: boolean;
 }
 
-interface Props extends RouteComponentProps {
+interface Props {
   id: number;
   data: EventInterface | null;
   artistUsername: string | undefined;
@@ -43,6 +42,7 @@ class CardEventComponent extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { artistUsername: username, id } = this.props;
     return (
       <div className="card-event row">
         <div className="col s4 no-padding">
@@ -64,16 +64,12 @@ class CardEventComponent extends React.Component<Props, State> {
                 <ShareIcon width={20} height={35} />
                 <div className="l15 f6 text-13 no-wrap">Share</div>
               </li>
-              <li
-                onClick={(): void => {
-                  this.props.history.push(
-                    `/artist/${this.props.artistUsername}/event/${this.props.id}`
-                  );
-                }}
-              >
-                <UserGroupIcon width={25} height={35} />
-                <div className="l15 f6 text-13 no-wrap">{`Who's Going`}</div>
-              </li>
+              <IonRouterLink routerLink={`/artist/${username}/event/${id}`}>
+                <li>
+                  <UserGroupIcon width={25} height={35} />
+                  <div className="l15 f6 text-13 no-wrap">{`Who's Going`}</div>
+                </li>
+              </IonRouterLink>
               <li onClick={(): void => this.showMessage(true)}>
                 <TicketIcon height={35} />
                 <div className="l15 f6 text-13 no-wrap">Buy</div>
@@ -110,4 +106,4 @@ class CardEventComponent extends React.Component<Props, State> {
   }
 }
 
-export default withRouter(CardEventComponent);
+export default CardEventComponent;

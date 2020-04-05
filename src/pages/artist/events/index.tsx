@@ -44,7 +44,11 @@ class ArtistEventsPage extends React.Component<Props, {}> {
     if (!currentArtist) return <IonPage />;
     return (
       <IonPage id="events-page">
-        <Header title="Events" titleClassName="events" />
+        <Header
+          title="Events"
+          titleClassName="events"
+          leftBackHref={`/artist/${currentArtist.username}`}
+        />
         <IonContent
           scrollY={true}
           scrollEvents={true}

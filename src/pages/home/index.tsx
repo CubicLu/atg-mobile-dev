@@ -55,21 +55,30 @@ class HomePage extends React.Component<Props> {
           {this.renderModal(modal)}
           <Player />
           <IonTabs
-            onIonTabsDidChange={(event): void =>
-              this.props.updateSettingsProperty('activeTab', event.detail.tab)
-            }
+            onIonTabsDidChange={(event): void => {
+              event.detail.tab !== this.props.activeTab &&
+                this.props.updateSettingsProperty(
+                  'activeTab',
+                  event.detail.tab
+                );
+            }}
           >
             <IonRouterOutlet>
-              {tabs.map((p: TabsInterface, i: number): any => (
-                <Route exact path={p.path} component={p.component} key={i} />
+              {tabs.map((p: TabsInterface): any => (
+                <Route
+                  exact
+                  // render={e => <p.component /> }}
+                  path={p.path}
+                  component={p.component}
+                  key={p.id}
+                />
               ))}
               {links.map((p: LinksInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
-              <Redirect exact path="" to="/profile" />
-              <Route path="*" component={NotFoundPage} />
             </IonRouterOutlet>
-
+            <Redirect exact path="" to="/profile" />
+            <Route path="*" component={NotFoundPage} />
             <IonTabBar slot="bottom" color="dark" selectedTab={activeTab}>
               {tabs.map((p: TabsInterface): any => (
                 <IonTabButton tab={p.id} href={p.path} key={p.id}>

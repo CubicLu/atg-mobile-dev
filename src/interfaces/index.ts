@@ -352,7 +352,7 @@ export interface BiographyInterface {
 }
 
 export interface EventWhoIsGoingInterface extends UserInterface {}
-
+export type RouterLinkDirection = 'forward' | 'back' | 'root';
 export enum ShapesSize {
   rounded = 'rounded',
   badge = 'badge',

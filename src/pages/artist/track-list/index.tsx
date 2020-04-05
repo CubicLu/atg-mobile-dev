@@ -84,7 +84,7 @@ class TrackListPage extends React.Component<Props> {
             </div>
             {currentArtist && (
               <div className="center player-support">
-                <ButtonSupport />
+                <ButtonSupport artist={currentArtist} />
               </div>
             )}
             <div className="end" />

@@ -108,9 +108,7 @@ export interface SettingsReducerType {
   links: LinksInterface[];
   isPlaying: boolean;
   fanTabs: MenuInterface[];
-  activeFanTab: string;
   artistTabs: MenuInterface[];
-  activeArtistTab: string;
   modal: ModalSlideInterface;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;

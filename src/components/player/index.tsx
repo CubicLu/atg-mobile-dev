@@ -377,20 +377,22 @@ class PlayerComponent extends React.Component<Props> {
         >
           <span className="f6">Community</span>
         </div>
-        <IonRouterLink
-          routerLink="'/track/default/2/1'"
-          routerDirection="forward"
+        <div
+          className="tile"
+          onClick={(): Promise<void> => this.togglePlayer(null)}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+          )}
         >
-          <div
-            className="tile"
-            onClick={(): Promise<void> => this.togglePlayer(null)}
-            style={shadowTitle(
-              'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-            )}
+          <IonRouterLink
+            routerLink="'/track/default/2/1'"
+            routerDirection="forward"
           >
-            <span className="f6">Artist Home</span>
-          </div>
-        </IonRouterLink>
+            <div>
+              <span className="f6">Artist Home</span>
+            </div>
+          </IonRouterLink>
+        </div>
       </div>
     );
   }

@@ -41,7 +41,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
           title={'Artist Community'}
           titleClassName={`artist-name`}
           rightCloseButton={true}
-          rightCloseHref="/home/community"
+          rightCloseHref="/community"
         />
         <div
           className={

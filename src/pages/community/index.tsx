@@ -229,7 +229,7 @@ class CommunityPage extends React.Component<Props, State> {
                   viewAll={true}
                   className="mt-1 mx-3"
                   onClickAll={(): void => {
-                    this.props.history.push(`/home/community/artist`);
+                    this.props.history.push(`/community/artist`);
                   }}
                 />
                 <SliderStories

@@ -41,6 +41,7 @@ interface DispatchProps {
 interface StateProps {
   currentArtist: ArtistInterface | null;
   modal: ModalSlideInterface;
+  loading: boolean;
 }
 interface MatchParams {
   id: string;
@@ -67,11 +68,14 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.state = { currentPage: 0, blur: false };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.currentArtist == null) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
+  UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.loading) return;
+    if (this.props.loading) return;
+    if (
+      this.props.currentArtist == null ||
+      this.props.currentArtist.username !== next.match.params.id
+    ) {
+      this.props.getArtistAPI(next.match.params.id);
     }
   }
 
@@ -312,8 +316,8 @@ const mapStateToProps = ({
   artistAPI
 }: ApplicationState): StateProps => {
   const { modal } = settings;
-  const { currentArtist } = artistAPI;
-  return { currentArtist, modal };
+  const { currentArtist, loading } = artistAPI;
+  return { currentArtist, modal, loading };
 };
 
 export default connect(mapStateToProps, {

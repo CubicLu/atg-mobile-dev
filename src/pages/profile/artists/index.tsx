@@ -4,18 +4,16 @@ import { getArtistsAPI } from './../../../actions';
 import { ArtistInterface } from '../../../interfaces';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-
 interface StateProps {
   artists: ArtistInterface[];
 }
 interface DispatchProps {
   getArtistsAPI: () => any;
 }
-
 interface Props extends StateProps, DispatchProps {}
 class ProfileArtistsPage extends React.Component<Props> {
   UNSAFE_componentWillMount(): void {
-    this.props.getArtistsAPI();
+    this.props.artists.length === 0 && this.props.getArtistsAPI();
   }
 
   render(): React.ReactNode {

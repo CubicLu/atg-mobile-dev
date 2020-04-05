@@ -45,7 +45,7 @@ class ThankYouPage extends React.Component<Props> {
                 </div>
               </div>
               <div className="row">
-                <IonRouterLink routerLink="/home" routerDirection="back">
+                <IonRouterLink routerLink="/profile" routerDirection="back">
                   <Button
                     bold
                     size={Sizes.lg}
@@ -58,7 +58,7 @@ class ThankYouPage extends React.Component<Props> {
               </div>
             </div>
             <div className="row link">
-              <IonRouterLink routerLink="/home" routerDirection="back">
+              <IonRouterLink routerLink="/profile" routerDirection="back">
                 <p>
                   Need to make changes? <br />
                   Go to your account.

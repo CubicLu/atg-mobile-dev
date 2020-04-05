@@ -59,7 +59,6 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
-  activeFanTab: 'artists',
   isPlaying: true,
   fanTabs: [
     {
@@ -160,7 +159,6 @@ const defaultState: SettingsReducerType = {
       }
     }
   ],
-  activeArtistTab: 'features',
   plans: [
     {
       name: 'Basic',

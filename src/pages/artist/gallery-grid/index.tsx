@@ -196,7 +196,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         : undefined;
     return (
       <IonPage id="gallery-grid-page">
-        <div className={`artist-gallery-grid-page}`}>
+        <div className={`artist-gallery-grid-page`}>
           <Header title={title} rightActionButton={true} />
           <HeaderOverlay ref={this.headerRef} />
 

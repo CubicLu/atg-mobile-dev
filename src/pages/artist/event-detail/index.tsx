@@ -80,7 +80,7 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
-        <div className={`artist-event-detail-page}`}>
+        <div className={`artist-event-detail-page`}>
           <Header
             rightCloseButton
             title="Who's going"

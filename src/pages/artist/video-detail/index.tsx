@@ -7,7 +7,8 @@ import {
   ButtonIcon,
   StarIcon,
   Chat,
-  CloseIcon
+  CloseIcon,
+  ChatMessageIcon
 } from '../../../components';
 import { ArtistInterface, Colors } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -15,6 +16,7 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 import { shadowTitle } from '../../../utils';
+import MinimizeIcon from '../../../components/icon/minimize';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -32,6 +34,7 @@ interface MatchParams {
 
 interface State {
   readonly chatOpened: boolean;
+  readonly chatExpanded: boolean;
 }
 interface Props
   extends StateProps,
@@ -44,7 +47,8 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      chatOpened: false
+      chatOpened: false,
+      chatExpanded: false
     };
   }
 
@@ -104,18 +108,29 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
 
   setChat(condition = false): void {
     this.setState({ chatOpened: condition });
+    if (!condition) {
+      this.setState({ chatExpanded: false });
+    }
+  }
+  expandChat(): void {
+    this.setState({ chatExpanded: !this.state.chatExpanded });
   }
 
   renderButtons(): React.ReactNode {
     return (
       <div className="row">
-        <div className="col s12 flex-justify-center buttons">
-          <ButtonIcon color={Colors.orange} icon={<StarIcon />} />
+        <div className="col s12 flex-justify-content-center buttons">
+          <ButtonIcon
+            color={Colors.orange}
+            icon={<StarIcon width={28} height={28} />}
+          />
           <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
           <ButtonIcon
-            color={Colors.blue}
-            icon={<ShareIcon />}
+            styles={{ position: 'relative' }}
+            color={Colors.cyan}
+            icon={<ChatMessageIcon width={22} height={20} />}
             onClick={this.setChat.bind(this, true)}
+            overlay={50}
           />
         </div>
       </div>
@@ -123,15 +138,27 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   renderChat(): React.ReactNode {
+    const { chatExpanded } = this.state;
+    const chevronClass = chatExpanded ? 'chevron-reverse' : 'chevron-normal';
+    const containerClass = chatExpanded ? 'chat-expanded' : '';
     return (
-      <div className="chat-container h-100">
+      <div className={`chat-container h-100 ${containerClass}`}>
         <div className="row close">
-          <div className="col s12 flex-justify-content-end">
-            <ButtonIcon
-              color={Colors.transparent}
-              icon={<CloseIcon />}
-              onClick={this.setChat.bind(this, false)}
-            />
+          <div className="mx-2 flex-justify-content-end">
+            <div className={`align-start ${chevronClass}`}>
+              <ButtonIcon
+                color={Colors.transparent}
+                icon={<MinimizeIcon />}
+                onClick={(): void => this.expandChat()}
+              />
+            </div>
+            <div className="align-end">
+              <ButtonIcon
+                color={Colors.transparent}
+                icon={<CloseIcon />}
+                onClick={(): void => this.setChat(false)}
+              />
+            </div>
           </div>
         </div>
         <Chat />
@@ -177,7 +204,11 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             backgroundTopOpacity={0.7}
           />
           <div className="artist-video-detail-page space-between mb-50">
-            <VideoPlayer />
+            <VideoPlayer
+              onClickClose={(): void => {
+                this.props.history.goBack();
+              }}
+            />
             {this.state.chatOpened ? this.renderChat() : this.renderContent()}
             {!this.state.chatOpened && this.bottomTiles()}
           </div>

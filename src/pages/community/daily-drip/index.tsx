@@ -30,6 +30,16 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return dots;
   }
 
+  componentWillUnmount(): void {
+    const ionApp = document.querySelector('ion-app') as HTMLElement;
+    ionApp?.classList.remove('hide-tabs');
+  }
+
+  componentDidMount(): void {
+    const ionApp = document.querySelector('ion-app') as HTMLElement;
+    ionApp?.classList.add('hide-tabs');
+  }
+
   renderHeader(): React.ReactNode {
     return (
       <div className="header">
@@ -48,7 +58,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
             />
             <span>panthrpicks</span>
           </div>
-          <div className="col s4 justify-content-end">
+          <div className="col s4 flex-justify-content-end">
             <ButtonIcon
               onClick={(): void => this.props.history.goBack()}
               icon={<CloseIcon />}
@@ -64,7 +74,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return (
       <div className="footer">
         <div className="row">
-          <div className="col s12 justify-center buttons">
+          <div className="col s12 flex-justify-content-center buttons">
             <ButtonIcon icon={<ShareLineIcon />} />
             <ButtonIcon icon={<BalloonIcon />} />
             <ButtonIcon icon={<StarIcon />} />
@@ -79,9 +89,9 @@ class CommunityDailyDripPage extends React.Component<Props> {
     return (
       <IonPage id="community-daily-drip-page">
         <BackgroundImage
-          backgroundImage={'https://loremflickr.com/1000/2000'}
+          backgroundImage={'https://loremflickr.com/500/1000/music'}
         />
-        <IonContent>
+        <IonContent scrollY={false}>
           <div
             className={`community-daily-drip-page space-between h-100 ${this
               .props.isPlaying && `is-playing`}`}

@@ -66,8 +66,22 @@ class RadioFilterPage extends React.Component<Props, State> {
     if (!(text && text.length > 2)) {
       return array;
     }
-    return array.filter((x: ChannelInterface): boolean =>
-      x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+
+    const relatedStations = this.stations
+      .filter(
+        (x: StationInterface): boolean =>
+          x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+          x.genre.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+          !!x.tags?.find((x): boolean =>
+            x.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+          )
+      )
+      .map((x): any => x.genre); // fix me change to type
+
+    return array.filter(
+      (x: ChannelInterface): boolean =>
+        x.name.toLocaleLowerCase().includes(text.toLocaleLowerCase()) ||
+        (x.type === 'Genre' && relatedStations.toString().includes(x.name))
     );
   }
   performSearch(value: string): void {
@@ -265,7 +279,7 @@ class RadioFilterPage extends React.Component<Props, State> {
           titleClassName={classTitle}
           leftBackOnClick={this.selectChannel.bind(this, undefined)}
           leftBackButton={!!selectedChannel}
-          rightCloseButton={!selectedChannel}
+          rightCloseButton={true}
           rightCloseHref={'/home/radio'}
           direction="POP"
         />
@@ -288,7 +302,7 @@ class RadioFilterPage extends React.Component<Props, State> {
           }
         >
           <div className="container-top-bottom fluid">
-            {this.renderSearchBar()};
+            <>{!selectedChannel && this.renderSearchBar()};</>
             <>{!selectedChannel && this.renderGenres()};</>
             <>{!selectedChannel && this.renderEras()};</>
             <>{!selectedChannel && this.renderVibes()};</>

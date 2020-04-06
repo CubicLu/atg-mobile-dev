@@ -111,7 +111,7 @@ class TrackListPage extends React.Component<Props> {
                 (song: SongInterface, i: number): React.ReactElement => (
                   <div
                     onClick={(): void => this.props.setPlaylistPlayer()}
-                    className="flex-align-center row"
+                    className="flex-align-items-center row"
                     key={i}
                   >
                     <div className="f5 list-track-number">

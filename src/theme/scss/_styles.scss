@@ -44,6 +44,7 @@
 @import './components/chat';
 @import './components/search-result';
 @import './components/photo-chat';
+@import './components/chat-row';
 
 /* pages */
 @import './pages/initial';
@@ -70,3 +71,6 @@
 @import './pages/community-all-artists';
 @import './pages/community-post';
 @import './pages/search';
+@import './pages/message';
+@import './pages/message-chat';
+@import './pages/message-notifications';

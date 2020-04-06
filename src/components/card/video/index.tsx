@@ -42,7 +42,7 @@ class CardVideoComponent extends React.Component<Props> {
         {title && <span className="f4 my-1">{title}</span>}
         <br />
         {artist && (
-          <div className={'f6 l11 flex-align-center'}>
+          <div className={'f6 l11 flex-align-items-center'}>
             <span className="align-start">{artist.name}</span>
             <span className="align-end">
               <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />

@@ -41,6 +41,8 @@ import CommunityAllArtistsPage from './community/all-artists';
 
 import RadioFilterPage from './radio/filter';
 import MessagePage from './message';
+import MessageChatPage from './message/chat';
+import MessageNotificationsPage from './message/notifications';
 
 export {
   NotFoundPage,
@@ -81,5 +83,7 @@ export {
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   RadioFilterPage,
-  MessagePage
+  MessagePage,
+  MessageChatPage,
+  MessageNotificationsPage
 };

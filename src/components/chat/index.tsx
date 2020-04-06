@@ -2,35 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ApplicationState } from '../../reducers';
-import { Avatar, InputText, Button } from '..';
-import { ShapesSize, Colors } from '../../interfaces';
+import { InputText, Button, ChatRow } from '..';
+import { Colors, MessageInterface } from '../../interfaces';
 
-interface Props {}
+interface StateProps {
+  messagesSearch: MessageInterface[];
+}
+interface Props extends StateProps {}
 
 class ChatComponent extends React.Component<Props> {
-  renderMessage(data, i): React.ReactNode {
-    return (
-      <div className="row" key={i}>
-        <div className="col s2">
-          <Avatar width={36} height={36} type={ShapesSize.circle} />
-        </div>
-        <div className="col s8 info">
-          <span className="text-12">@girlpower</span>
-          <span className="text-14">
-            you guys definitely did the best, you guys definitely did the best
-          </span>
-        </div>
-      </div>
-    );
-  }
-
   render(): React.ReactNode {
     return (
       <div className="chat-component">
         <div className="messages">
-          {[{}, {}, {}, {}].map(
+          {this.props.messagesSearch.map(
             (data, i): React.ReactNode => {
-              return this.renderMessage(data, i);
+              return <ChatRow data={data} key={i} avatarSize={48} />;
             }
           )}
         </div>
@@ -43,7 +30,8 @@ class ChatComponent extends React.Component<Props> {
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): object => {
-  return {};
+const mapStateToProps = ({ profileAPI }: ApplicationState): StateProps => {
+  const { messagesSearch } = profileAPI;
+  return { messagesSearch };
 };
 export default connect(mapStateToProps, {})(ChatComponent);

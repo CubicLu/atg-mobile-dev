@@ -1,0 +1,24 @@
+.message-page{
+    &.content-fixed{
+        z-index: 2;
+        width: 100%;
+        padding-top: 90px;
+        height: 100%;
+    }
+
+    @include list-transparent;
+
+    ion-item{
+        --ion-background-color:transparent;
+        border-bottom: none;
+      }
+      ion-item-sliding{
+        &.item-sliding-active-slide{
+          ion-item{
+            --ion-background-color: #4d3f9e;
+            border-bottom: none;
+          } 
+        }
+      }
+
+}

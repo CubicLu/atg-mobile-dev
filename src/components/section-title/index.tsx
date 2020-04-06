@@ -15,7 +15,11 @@ export default class SectionTitleComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const { leftClassName, className } = this.props;
     return (
-      <div className={`flex-align-baseline row ${className ? className : ''}`}>
+      <div
+        className={`flex-align-items-baseline row ${
+          className ? className : ''
+        }`}
+      >
         <span
           className={`h1 p-0 letter-spacing-2 align-start ${
             leftClassName ? leftClassName : ''

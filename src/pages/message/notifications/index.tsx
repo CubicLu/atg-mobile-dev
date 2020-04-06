@@ -27,7 +27,7 @@ class MessageNotificationsPage extends React.Component<Props> {
               return (
                 <IonItem key={i}>
                   <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
-                    <div className={`fluid info pl-3`}>
+                    <div className={`col s12 info`}>
                       <span
                         className="text-18"
                         data-date={moment(data.sendAt).format('MM/DD/YY')}

@@ -33,7 +33,7 @@ class HomePage extends React.Component<StateProps> {
               this.activeTab = event.detail.tab;
             }}
           >
-            <IonRouterOutlet>
+            <IonRouterOutlet id="router">
               {tabs.map((p: TabsInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}

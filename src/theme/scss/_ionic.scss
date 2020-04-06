@@ -1,10 +1,14 @@
 ion-tab-bar {
-    // --ion-safe-area-bottom: 0px;
     --border: 0px solid #000;
-    &.playing{
-        margin-top: 50px;
-        overflow: visible;
-    }
+    margin-top: 0px;
+}
+.mini-player{
+    &.active + div {
+        ion-tab-bar {
+           margin-top: 44px;
+           overflow: visible;
+       }
+   }
 }
 .tab-selected{
     svg{

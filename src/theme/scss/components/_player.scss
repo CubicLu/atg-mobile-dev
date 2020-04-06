@@ -202,7 +202,14 @@
     }
 }
 .mini-player{
-    height: $default-height-player;
+    transition: height 100ms ease-in;
+    height: 0;
+    overflow: hidden;
+    &.active{
+        transition: height 100ms ease-in;
+        height: $default-height-player;
+        overflow: visible;
+    }
     background: linear-gradient(180deg, #22022f, #070707);
     position: absolute;
     z-index: 10;

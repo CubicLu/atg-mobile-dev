@@ -470,6 +470,7 @@ class PlayerComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { expanded } = this.props.player;
+    const active = this.props.player.song ? 'active' : '';
     if (!this.expansePlayerAnimation) this.createPlayerAnimation();
 
     return (
@@ -487,7 +488,8 @@ class PlayerComponent extends React.Component<Props> {
           {expanded && this.fullPlayer()}
         </div>
         {expanded && this.fullPlayerButtons()}
-        <div id="player" className="mini-player">
+
+        <div className={`mini-player ${active}`} id="player">
           <div id="pull" className="pull">
             <svg
               width="400"

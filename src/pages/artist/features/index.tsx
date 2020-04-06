@@ -10,13 +10,15 @@ import {
   SliderEvents,
   SectionTitle as Section
 } from './../../../components';
-
+import { setPlaylistPlayer } from './../../../actions/playerActions';
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
-interface Props extends StateProps {}
+interface DispatchProps extends StateProps {
+  setPlaylistPlayer: () => void;
+}
 
-class ArtistFeaturesPage extends React.Component<Props> {
+class ArtistFeaturesPage extends React.Component<DispatchProps> {
   render(): React.ReactNode {
     const { currentArtist } = this.props;
     if (!currentArtist) return <div />;
@@ -34,7 +36,12 @@ class ArtistFeaturesPage extends React.Component<Props> {
         <div className="row" />
         <div className="row">
           <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />
-          <List data={featuredTracks} label={'song'} id={'id'} />
+          <List
+            onClick={(): void => this.props.setPlaylistPlayer()}
+            data={featuredTracks}
+            label={'song'}
+            id={'id'}
+          />
         </div>
 
         {newReleases && (
@@ -63,7 +70,7 @@ class ArtistFeaturesPage extends React.Component<Props> {
         <div className="row mx-05" />
 
         {Array.isArray(events) && events.length > 0 && (
-          <div className="row">
+          <div>
             <Section
               className="mx-3"
               title={'UPCOMING EVENTS'}
@@ -82,4 +89,6 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default connect(mapStateToProps, {})(ArtistFeaturesPage);
+export default connect(mapStateToProps, { setPlaylistPlayer })(
+  ArtistFeaturesPage
+);

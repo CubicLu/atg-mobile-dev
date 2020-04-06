@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonList, IonItem } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import { ChatRow } from '../../../components';
 import { MenuInterface, NotificationInterface } from '../../../interfaces';
 import { updateSettingsProperty } from './../../../actions';
-
+import moment from 'moment';
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
 }
@@ -27,7 +26,21 @@ class MessageNotificationsPage extends React.Component<Props> {
             (data, i): React.ReactNode => {
               return (
                 <IonItem key={i}>
-                  <ChatRow data={data} avatarSize={48} showAvatar={false} />
+                  <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
+                    <div className={`fluid info pl-3`}>
+                      <span
+                        className="text-18"
+                        data-date={moment(data.sendAt).format('MM/DD/YY')}
+                      >
+                        {data.username}
+                      </span>
+                      <span className="text-16">
+                        {data.subject}
+                        <br />
+                        {data.message}
+                      </span>
+                    </div>
+                  </div>
                 </IonItem>
               );
             }

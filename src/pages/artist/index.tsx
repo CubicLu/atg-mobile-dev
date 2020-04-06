@@ -5,7 +5,7 @@ import { IonContent, IonPage, createAnimation } from '@ionic/react';
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
-import { ArtistInterface, MenuInterface, ShapesSize } from '../../interfaces';
+import { ArtistInterface, MenuInterface } from '../../interfaces';
 import { getArtistAPI } from './../../actions';
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -218,13 +218,8 @@ class ArtistPage extends React.Component<Props, {}> {
           <br />
           <ButtonSupport
             id="support-button"
-            buttonType={'text'}
-            type={ShapesSize.rounded}
-            uppercase
+            artist={artist}
             supported={artist.support}
-            onClick={(): void => {
-              this.props.history.push(`/artist/${artist.username}/support`);
-            }}
           />
 
           <Menu

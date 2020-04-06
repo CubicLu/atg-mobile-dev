@@ -32,7 +32,7 @@ import {
   updateElapsed
 } from './../../actions/playerActions';
 import { ApplicationState } from '../../reducers';
-import { PlayerReducerType, SongInterface, ShapesSize } from '../../interfaces';
+import { PlayerReducerType, SongInterface } from '../../interfaces';
 import {
   PlayButton,
   NextButton,
@@ -48,7 +48,6 @@ import {
 } from '../icon/player';
 import { PlayIcon } from '../icon';
 import VigilAnimator from '../../utils/animateFrame';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { shadowTitle } from '../../utils';
 
 interface StateProps {
@@ -68,7 +67,7 @@ interface DispatchProps {
   resumeSong: () => void;
   updateElapsed: (time: number) => void;
 }
-interface Props extends StateProps, DispatchProps, RouteComponentProps {}
+interface Props extends StateProps, DispatchProps {}
 
 class PlayerComponent extends React.Component<Props> {
   audio: HTMLAudioElement | undefined;
@@ -217,7 +216,11 @@ class PlayerComponent extends React.Component<Props> {
       <>
         {song && (
           <div className="progress">
-            <div className="bar" style={{ width: timeElapsed * 3.333 }} />
+            <IonRange
+              className="bar"
+              value={timeElapsed * 3.333}
+              onIonChange={(e: any): void => console.log(e.detail.value)}
+            />
           </div>
         )}
 
@@ -235,18 +238,18 @@ class PlayerComponent extends React.Component<Props> {
                 {playing ? (
                   <button
                     disabled={!song}
-                    className="player-button"
+                    className="mini-player-toggle"
                     onClick={(): void => this.pauseSong()}
                   >
-                    <PauseIcon />
+                    <PauseIcon color={'#fff'} opacity={0.75} />
                   </button>
                 ) : (
                   <button
                     disabled={!song}
-                    className="player-button"
+                    className="mini-player-toggle"
                     onClick={(): void => this.resumeSong()}
                   >
-                    <PlayIcon />
+                    <PlayIcon stroke={'#fff'} opacity={0.75} />
                   </button>
                 )}
               </div>
@@ -255,9 +258,15 @@ class PlayerComponent extends React.Component<Props> {
         </div>
 
         <div className="row mini-bar">
-          <div className="mini-bar-left" onClick={this.togglePlayer} />
+          <div
+            className="mini-bar-left"
+            onClick={(e): Promise<void> => this.togglePlayer(e)}
+          />
           <div className="no-padding mini-bar  mini-bar-content">
-            <div onClick={this.togglePlayer} className="infos">
+            <div
+              onClick={(e): Promise<void> => this.togglePlayer(e)}
+              className="infos"
+            >
               <div className="song f7">{song?.name}</div>
               <div className="artist f7 neue">{song?.artist}</div>
             </div>
@@ -290,7 +299,12 @@ class PlayerComponent extends React.Component<Props> {
     return (
       <div className="main-controls fluid">
         <div className="player-progress">
-          <div className="bar" style={{ width: timeElapsed * 3.333 }}></div>
+          <IonRange
+            className="bar"
+            value={timeElapsed * 3.333}
+            onIonChange={(e: any): void => console.log(e.detail.value)}
+          />
+
           <div className="elapsed f6">
             <span>
               {moment()
@@ -368,6 +382,7 @@ class PlayerComponent extends React.Component<Props> {
         >
           <span className="f6">Liner Notes</span>
         </div>
+
         <div
           className="tile"
           onClick={(): void => this.props.setRadioPlaylistPlayer()}
@@ -432,13 +447,7 @@ class PlayerComponent extends React.Component<Props> {
           leftBackButton={false}
           rightInfoButton={true}
           rightInfoOnClick={(): void => {}}
-          centerContent={
-            <ButtonSupport
-              buttonType={'text'}
-              uppercase
-              type={ShapesSize.rounded}
-            />
-          }
+          centerContent={<ButtonSupport artist={null} />}
           leftMinimizeButton={true}
           leftMinimizeOnClick={(e): Promise<void> => this.togglePlayer(e)}
         />
@@ -518,19 +527,17 @@ class PlayerComponent extends React.Component<Props> {
 const mapStateToProps = ({ player }: ApplicationState): StateProps => {
   return { player };
 };
-export default withRouter(
-  connect(mapStateToProps, {
-    setPlaylistPlayer,
-    setRadioPlaylistPlayer,
-    togglePlayer,
-    toggleShuffle,
-    toggleRepeat,
-    playSong,
-    favoriteSong,
-    pauseSong,
-    nextSong,
-    prevSong,
-    resumeSong,
-    updateElapsed
-  })(PlayerComponent)
-);
+export default connect(mapStateToProps, {
+  setPlaylistPlayer,
+  setRadioPlaylistPlayer,
+  togglePlayer,
+  toggleShuffle,
+  toggleRepeat,
+  playSong,
+  favoriteSong,
+  pauseSong,
+  nextSong,
+  prevSong,
+  resumeSong,
+  updateElapsed
+})(PlayerComponent);

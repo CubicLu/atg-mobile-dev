@@ -10,8 +10,8 @@ interface Props {
 class CloseIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
-    width: 15,
-    height: 15,
+    width: 16,
+    height: 16,
     strokeWidth: 1
   };
 
@@ -21,23 +21,21 @@ class CloseIcon extends React.Component<Props> {
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox={`0 0 ${this.props.width} ${this.props.height}`}
+        viewBox={`-1 -1 ${this.props.width} ${this.props.height}`}
         fill="#ffffff"
       >
-        <g transform="translate(0.354 0.354)">
+        <g>
           <line
-            y1="13.105"
-            x2="13.105"
-            transform="translate(0.354 0.354)"
+            y1="14"
+            x2="14"
             fill="none"
             stroke="#fff"
             strokeMiterlimit="10"
             strokeWidth="2"
           />
           <line
-            x1="13.105"
-            y1="13.105"
-            transform="translate(0.354 0.354)"
+            x1="14"
+            y1="14"
             fill="none"
             stroke="#fff"
             strokeMiterlimit="10"

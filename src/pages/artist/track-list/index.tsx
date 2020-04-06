@@ -4,7 +4,6 @@ import { ApplicationState } from './../../../reducers';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { getArtistAPI, setPlaylistPlayer } from './../../../actions';
 import {
-  ShapesSize,
   ArtistInterface,
   PlaylistInterface,
   SongInterface
@@ -86,11 +85,7 @@ class TrackListPage extends React.Component<Props> {
             </div>
             {currentArtist && (
               <div className="center player-support">
-                <ButtonSupport
-                  buttonType={'text'}
-                  uppercase
-                  type={ShapesSize.rounded}
-                />
+                <ButtonSupport artist={currentArtist} />
               </div>
             )}
             <div className="end" />

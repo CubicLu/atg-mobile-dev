@@ -170,11 +170,27 @@
             background-color: #363636;
             margin-bottom: 44px;
             position: relative;
-            border-left: 4px solid #ff00ff;
-            border-right: 4px solid #fcc505;
             .bar{
-                background: #FFFFFF;
+                border-left: 6px solid #ff00ff;
+                border-right:6px solid #fcc505;
+                max-height: 3px;
                 height: 3px;
+            }
+            .range-bar-active{
+                height: 3px;
+            }
+            ion-range{
+                padding: 0;
+                margin-left: 0;
+                margin-right: 0;
+                --bar-background: #000000;
+                --bar-background-active: #fff;
+                --knob-background: #ffffff00;
+                --knob-box-shadow: 2px 2px 3px 0 #00000000;
+                --knob-size: 80px;
+                --knob-handle-size: 80px;
+                --height: 3px;
+                --bar-height: 3px;
             }
             .elapsed{
                 display: flex;
@@ -250,8 +266,32 @@
         background-color: #363636;
         bottom: 0;
         .bar{
-            background: #FFFFFF;
+            border-left: 5px solid #ff00ff;
+            border-right: 5px solid #fcc505;
+            max-height: 3px;
             height: 3px;
+        }
+        .range-bar-active{
+            height: 3px;
+        }
+        .range-bar{
+            height: 3px;
+            margin-top: -1px;
+            border-left: 5px solid #ff00ff;
+            border-right: 5px solid #fcc505;
+        }
+        ion-range{
+            padding: 0;
+            margin-left: 0;
+            margin-right: 0;
+            --bar-background: #363636;
+            --bar-background-active: #fff;
+            --knob-background: #ffffff00;
+            --knob-box-shadow: 2px 2px 3px 0 #00000000;
+            --knob-size: 20px;
+            --knob-handle-size: 20px;
+            --height: 3px;
+            --bar-height: 3px;
         }
     }
     .mini-bar{
@@ -285,6 +325,16 @@
         .song,.artist{
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+    }
+    .mini-player-toggle{
+        background: #00000080;
+        border-radius: 50%;
+        border: 2px solid #42424280;
+        min-width: 38px;
+        min-height: 38px;
+        svg{
+            overflow: visible;
         }
     }
     .mini-right-buttons{

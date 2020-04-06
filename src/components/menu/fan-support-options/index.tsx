@@ -26,11 +26,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
           <ul className="mt-2" style={{ minHeight: 50 }}>
             <li>
               Increase support
-              <ButtonIcon
-                icon={<SupportIcon />}
-                color={Colors.support}
-                type={ShapesSize.circle}
-              />
+              <SupportIcon width={42} height={42} />
             </li>
             <li>
               Decrease support

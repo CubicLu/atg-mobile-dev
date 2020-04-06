@@ -33,17 +33,16 @@ class HomePage extends React.Component<StateProps> {
               this.activeTab = event.detail.tab;
             }}
           >
-            <IonRouterOutlet id="router">
+            <IonRouterOutlet>
               {tabs.map((p: TabsInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
               {links.map((p: LinksInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
-              <Redirect exact path="/" to="/profile" />
-              <Route path="*" component={NotFoundPage} />
             </IonRouterOutlet>
-
+            <Redirect exact path="" to="/profile" />
+            <Route path="*" component={NotFoundPage} />
             <IonTabBar slot="bottom" color="dark" selectedTab={this.activeTab}>
               {tabs.map((p: TabsInterface): any => (
                 <IonTabButton tab={p.id} href={p.path} key={p.id}>

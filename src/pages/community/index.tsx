@@ -189,8 +189,8 @@ class CommunityPage extends React.Component<Props, State> {
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
-            icon={<ChatMessageIcon height={12} />}
-            label={' Join Chat'}
+            icon={<ChatMessageIcon />}
+            label={'\u00A0 JOIN CHAT'}
             onClick={(): void => this.setState({ joined: true })}
           />
         </div>

@@ -1,46 +1,75 @@
 import React from 'react';
-import {} from './../';
-import { ShapesSize, Colors, GradientDirection, Sizes } from '../../interfaces';
+import { IonRouterLink } from '@ionic/react';
+import {
+  ShapesSize,
+  Colors,
+  GradientDirection,
+  Sizes,
+  RouterLinkDirection
+} from '../../interfaces';
 
 interface Props {
   onClick: Function;
   label?: string;
   className?: string;
   id?: string;
+  routerLink?: string;
+  routerDirection: RouterLinkDirection;
   color?: Colors;
-  gradient?: boolean;
   bold?: boolean;
   type?: ShapesSize;
   size?: Sizes;
+  gradient?: boolean;
   gradientDirection?: GradientDirection;
 }
 
 class ButtonComponent extends React.Component<Props> {
+  linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
   public static defaultProps = {
     onClick: (): any => {},
     gradient: false,
+    routerDirection: 'forward',
     type: ShapesSize.normal,
     bold: false,
     size: Sizes.md
   };
 
   render(): React.ReactNode {
-    const { onClick, color, type, label, id } = this.props;
-    let gradient = this.props.gradient ? 'gradient' : '';
-    let bold = this.props.bold ? 'bold' : '';
-    let size = this.props.size !== Sizes.md && Sizes.lg ? 'large' : '';
-    let gradientDirection = this.props.gradientDirection
-      ? this.props.gradientDirection
-      : GradientDirection.horizontal;
-    const buttonId = id || 'btn-id';
-    const customClass = this.props.className ? this.props.className : '';
+    const {
+      onClick,
+      color,
+      type,
+      label,
+      id,
+      routerLink: link,
+      routerDirection
+    } = this.props;
+    let pattern = this.props.gradient ? 'gradient ' : '';
+    pattern += this.props.bold ? 'bold ' : '';
+    pattern += this.props.size !== Sizes.md && Sizes.lg ? 'large ' : '';
+    pattern += this.props.className ? this.props.className : ' ';
+    if (this.props.gradient) {
+      pattern += ' ';
+      pattern += this.props.gradientDirection
+        ? this.props.gradientDirection
+        : GradientDirection.horizontal;
+    }
     return (
       <button
-        id={buttonId}
-        onClick={(): void => onClick()}
-        className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold} ${customClass}`}
+        id={id || 'btn-id'}
+        onClick={(): void => (link ? this.linkRef.current?.click() : onClick())}
+        className={`btn ${type} ${color} ${pattern.trim()}`}
       >
-        {label}
+        <span>
+          {label}
+          {link && (
+            <IonRouterLink
+              ref={this.linkRef}
+              routerLink={link}
+              routerDirection={routerDirection}
+            />
+          )}
+        </span>
       </button>
     );
   }

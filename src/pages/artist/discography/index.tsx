@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import { CardImage } from './../../../components';
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
-import { withRouter, RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
-interface Props extends StateProps, RouteComponentProps {}
-
-class ArtistDiscographyPage extends React.Component<Props> {
+class ArtistDiscographyPage extends React.Component<StateProps> {
   render(): React.ReactNode {
     const { currentArtist } = this.props;
     if (!currentArtist) return <div />;
@@ -21,15 +18,13 @@ class ArtistDiscographyPage extends React.Component<Props> {
         <div className="row">
           {discography?.map(
             (d, i): React.ReactNode => (
-              <div
-                onClick={(): void =>
-                  this.props.history.push(
-                    `/track/artist/${currentArtist.username}/${i}`
-                  )
-                }
-                key={i}
-              >
-                <CardImage key={i} image={d.cover} />
+              <div key={i}>
+                <CardImage
+                  key={i}
+                  routerLink={`/track/artist/${currentArtist.username}/${i}`}
+                  routerDirection="forward"
+                  image={d.cover}
+                />
               </div>
             )
           )}
@@ -44,4 +39,4 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default withRouter(connect(mapStateToProps)(ArtistDiscographyPage));
+export default connect(mapStateToProps)(ArtistDiscographyPage);

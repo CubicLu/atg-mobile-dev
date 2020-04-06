@@ -52,10 +52,14 @@ class EventDetailPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
+    if (this.props.event == null) {
+      this.props.getArtistEventAPI(
+        this.props.match.params.id,
+        this.props.match.params.eventId
+      );
+    } else if (
       nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.match.params.eventId !== this.props.match.params.eventId ||
-      nextProps.event == null
+      nextProps.match.params.eventId !== this.props.match.params.eventId
     ) {
       this.props.getArtistEventAPI(
         nextProps.match.params.id,
@@ -64,18 +68,9 @@ class EventDetailPage extends React.Component<Props, State> {
     }
   }
 
-  componentDidMount(): void {
-    if (this.props.event == null) {
-      this.props.getArtistEventAPI(
-        this.props.match.params.id,
-        this.props.match.params.eventId
-      );
-    }
-  }
-
-  componentWillUnmount(): void {
-    this.props.updateArtistSetInitialProperty('event');
-  }
+  // componentWillUnmount(): void {
+  //   this.props.updateArtistSetInitialProperty('event');
+  // }
 
   render(): React.ReactNode {
     return (
@@ -84,9 +79,11 @@ class EventDetailPage extends React.Component<Props, State> {
           <Header
             rightCloseButton
             title="Who's going"
+            leftBackHref={`/artist/${this.props.match.params.id}/event`}
+            rightCloseHref={`/artist/${this.props.match.params.id}/event`}
             rightCloseOnClick={(): void => {
-              this.props.updateArtistSetInitialProperty('event');
-              this.props.history.goBack();
+              console.log(2)
+              this.props.updateArtistSetInitialProperty('event')
             }}
           />
           <IonContent>

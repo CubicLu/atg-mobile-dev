@@ -26,6 +26,7 @@ import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
+import PublicProfileMenuList from './menu/public-menu';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
@@ -87,6 +88,7 @@ export {
   ListComponent as List,
   SupportByComponent as SupportBy,
   MenuArtistListComponent as MenuArtistList,
+  PublicProfileMenuList as MenuProfileList,
   CardAlbumGalleryComponent as CardAlbumGallery,
   LoaderFullscreenComponent as LoaderFullscreen,
   ButtonSupportComponent as ButtonSupport,

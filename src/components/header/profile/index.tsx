@@ -1,13 +1,18 @@
-import React from 'react';
-import { Avatar, Header } from './../../../components';
-import { IonActionSheet, ActionSheetButton } from '@ionic/react';
-import { connect } from 'react-redux';
-import { updateAuthProperty } from '../../../actions';
-import { ApplicationState } from '../../../reducers';
-import { ShapesSize } from '../../../interfaces';
+import React from "react";
+import { Avatar, Header, MenuProfileList } from "./../../../components";
+import { IonActionSheet, ActionSheetButton } from "@ionic/react";
+import { connect } from "react-redux";
+import { updateAuthProperty, updateSettingsModal } from "../../../actions";
+import { ApplicationState } from "../../../reducers";
+import { ShapesSize } from "../../../interfaces";
 
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
+  updateSettingsModal: (
+    visible: boolean,
+    content: React.ReactNode,
+    className?: string
+  ) => void;
 }
 
 interface Props extends DispatchProps {}
@@ -16,8 +21,8 @@ interface State {
 }
 class HeaderProfileComponent extends React.Component<Props, State> {
   handleLogout(): void {
-    this.props.updateAuthProperty('loggedUser', undefined);
-    window.location.href = '/initial';
+    this.props.updateAuthProperty("loggedUser", undefined);
+    window.location.href = "/initial";
   }
 
   constructor(props: Props) {
@@ -29,32 +34,47 @@ class HeaderProfileComponent extends React.Component<Props, State> {
 
   profileActions: ActionSheetButton[] = [
     {
-      text: 'My Public Profile',
-      role: 'destructive',
-      handler: (): void => console.log('Delete clicked')
+      text: "View my public profile",
+      role: "destructive",
+      handler: (): void => console.log("Delete clicked")
     },
     {
-      text: 'Edit Profile',
-      handler: (): void => console.log('Share clicked')
+      text: "Edit my public profile",
+      handler: (): void => console.log("Share clicked")
     },
     {
-      text: 'Improve Profile',
-      handler: (): void => console.log('Play clicked')
+      text: "Improve my public profile",
+      handler: (): void => console.log("Play clicked")
     },
     {
-      text: 'Log out',
+      text: "Log out",
       handler: (): void => this.handleLogout()
     },
     {
-      text: 'Cancel',
-      role: 'cancel',
-      handler: (): void => console.log('Cancel clicked')
+      text: "Cancel",
+      role: "cancel",
+      handler: (): void => console.log("Cancel clicked")
     }
   ];
 
   toggleProfileActions(opt: boolean = true): void {
     this.setState({ showProfileActions: opt });
   }
+
+  hideMenuListModal = () => this.props.updateSettingsModal(false, null);
+
+  showMenuListModal = () => {
+    this.props.updateSettingsModal(
+      true,
+      <MenuProfileList
+        title={"Public profile"}
+        onClick={this.hideMenuListModal}
+        background={"background-white-base"}
+        data={this.profileActions.slice(0, 3)}
+      />,
+      "background-white-base"
+    );
+  };
 
   render(): React.ReactNode {
     return (
@@ -66,18 +86,15 @@ class HeaderProfileComponent extends React.Component<Props, State> {
         />
 
         <div className="profile-center">
-          <Avatar
-            type={ShapesSize.circle}
-            onClick={(): any => this.toggleProfileActions()}
-          />
-          <IonActionSheet
-            onDidDismiss={(): any => this.toggleProfileActions(false)}
-            isOpen={this.state.showProfileActions}
-            buttons={this.profileActions}
-          />
+          <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
           <div className="f4 l15">Rosetta Throp</div>
           <div className="h00 l1 shadow">Musical Goddess</div>
         </div>
+        <IonActionSheet
+          onDidDismiss={(): any => this.toggleProfileActions(false)}
+          isOpen={this.state.showProfileActions}
+          buttons={this.profileActions}
+        />
       </div>
     );
   }
@@ -89,6 +106,7 @@ const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };
 
-export default connect(mapStateToProps, { updateAuthProperty })(
-  HeaderProfileComponent
-);
+export default connect(mapStateToProps, {
+  updateAuthProperty,
+  updateSettingsModal
+})(HeaderProfileComponent);

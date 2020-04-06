@@ -23,7 +23,8 @@ class ModalSlideComponent extends React.Component<Props> {
     return (
       <SlidingPanel
         type={type}
-        panelClassName={`${'bottom'} ${background}`}
+        panelContainerClassName={`${'bottom'} ${background}`}
+        className={`${'bottom'} ${background}`}
         size={size}
         isOpen={isOpen}
         onClick={(): void => {}}

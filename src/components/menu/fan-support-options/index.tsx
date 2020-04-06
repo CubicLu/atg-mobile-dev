@@ -19,7 +19,7 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
       <div className="fan-support-options">
         <div className={`modal-header py-2 ${this.props.background}`}>
           <div className="h0 l1">MY {this.props.artist.name}</div>
-          <div className="h2 l1">FAN SUPPORT OPTIONS</div>
+          <div className="h2 l08">FAN SUPPORT OPTIONS</div>
         </div>
 
         <div className="modal-content f5">

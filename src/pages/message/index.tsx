@@ -58,16 +58,20 @@ class MessagePage extends React.Component<Props> {
       activeMessageTab,
       updateSettingsProperty
     } = this.props;
+
     return (
       <IonPage id="message-page">
         <Header
           title="Messages"
           rightContent={
-            <ButtonIcon
-              type={ShapesSize.circle}
-              color={Colors.tertiary}
-              icon={<PlusIcon color={'#000'} width={20} height={20} />}
-            />
+            activeMessageTab == 'chat' ? (
+              <ButtonIcon
+                styles={{ width: 35, height: 35 }}
+                type={ShapesSize.circle}
+                color={Colors.tertiary}
+                icon={<PlusIcon color={'#000'} width={20} height={20} />}
+              />
+            ) : null
           }
         />
         <IonContent>

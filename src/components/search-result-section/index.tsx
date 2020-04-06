@@ -20,7 +20,7 @@ class SearchResultSectionComponent extends React.Component<Props> {
         <span className={'section-name'}>{this.props.title}</span>
         {this.props.content.map(
           (data: SearchResult, i: number): React.ReactNode => (
-            <div key={i} className={'row flex-align-center section'}>
+            <div key={i} className={'row flex-align-items-center section'}>
               <Avatar
                 type={ShapesSize.circle}
                 width={57}
@@ -28,7 +28,7 @@ class SearchResultSectionComponent extends React.Component<Props> {
                 image={data.avatar}
               />
               <div className={'column'}>
-                <span className="section-title flex-align-center row">
+                <span className="section-title flex-align-items-center row">
                   {data.name}
                 </span>
                 <span className={'section-subtitle row'}>{data.artist}</span>

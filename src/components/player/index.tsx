@@ -343,7 +343,7 @@ class PlayerComponent extends React.Component<Props> {
           </button>
         </div>
 
-        <div className="player-volume mt-4 flex-align-center">
+        <div className="player-volume mt-4 flex-align-items-center">
           <VolumeMuteButton />
           <IonRange
             value={7}

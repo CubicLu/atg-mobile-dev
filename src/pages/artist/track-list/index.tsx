@@ -113,7 +113,7 @@ class TrackListPage extends React.Component<Props> {
             <div id="songs" className="mt-3">
               {this.playlist.items.map(
                 (song: SongInterface, i: number): React.ReactElement => (
-                  <div className="flex-align-center row" key={i}>
+                  <div className="flex-align-items-center row" key={i}>
                     <div className="f5 list-track-number">
                       {song.trackNumber}
                     </div>

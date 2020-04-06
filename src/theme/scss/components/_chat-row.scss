@@ -1,0 +1,43 @@
+.chat-row-component{
+    &.not-read{
+        position: relative;
+        &::before{
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #00a957;
+            content: "";
+            position: absolute;
+            top: 15px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+    .info{
+        color: #FFF;
+
+        
+        span{
+            display: block;
+            line-height: 16px;
+            font-family: "Montserrat";
+            word-wrap: break-word;
+            &:first-child{
+                position: relative;
+                &::before{
+                    content: "@";
+                    display: inline-block;
+                }
+                &::after{
+                    content: attr(data-date);
+                    display: inline-block;
+                    position: absolute;
+                    right: 0;
+                }
+                color: #7c8188;
+            }
+        }
+    }
+}

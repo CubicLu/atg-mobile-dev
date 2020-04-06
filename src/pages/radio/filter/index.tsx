@@ -144,7 +144,7 @@ class RadioFilterPage extends React.Component<Props, State> {
                 className="vibe flex row mt-1 f4"
                 key={i}
               >
-                <div className="align-start flex-align-center">
+                <div className="align-start flex-align-items-center">
                   <div
                     className="vibe-icon center-align mr-1"
                     style={{ background: vibe.color }}

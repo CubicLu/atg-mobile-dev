@@ -54,7 +54,8 @@ export enum ActionType {
   GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS = 'GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS',
   GET_SEARCH_RESULT_API = 'GET_SEARCH_RESULT_API',
   GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
-  GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS'
+  GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS',
+  UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -117,6 +118,8 @@ export interface SettingsReducerType {
   selectedPlan: PlanInterface | null;
   activeDeepDiveTab: string;
   deepDiveTabs: MenuInterface[];
+  messageTabs: MenuInterface[];
+  activeMessageTab: string;
 }
 
 export interface ScrollHeaderInterface {
@@ -398,4 +401,23 @@ export interface StationInterface {
   image: string;
   tags?: string[];
   genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
+}
+
+export interface ProfileReducerType {
+  messages: MessageInterface[];
+  notifications: NotificationInterface[];
+  notificationsSearch: NotificationInterface[];
+  messagesSearch: MessageInterface[];
+}
+
+export interface MessageInterface extends UserInterface {
+  message: string;
+  sendAt: Date;
+  read: boolean;
+}
+
+export interface NotificationInterface extends UserInterface {
+  message: string;
+  sendAt: Date;
+  read: boolean;
 }

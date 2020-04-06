@@ -91,7 +91,7 @@
     }
     .template-cover, .template-cover-video{
         .chapter-zero{
-            height: calc(100vh - #{$default-height-header});
+            height: 100vh;
             position: relative;
         }
     }

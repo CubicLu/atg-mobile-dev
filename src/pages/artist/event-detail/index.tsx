@@ -82,8 +82,7 @@ class EventDetailPage extends React.Component<Props, State> {
             leftBackHref={`/artist/${this.props.match.params.id}/event`}
             rightCloseHref={`/artist/${this.props.match.params.id}/event`}
             rightCloseOnClick={(): void => {
-              console.log(2)
-              this.props.updateArtistSetInitialProperty('event')
+              this.props.updateArtistSetInitialProperty('event');
             }}
           />
           <IonContent>

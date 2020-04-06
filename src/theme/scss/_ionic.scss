@@ -3,6 +3,14 @@ ion-tab-bar {
     margin-top: 0px;
 }
 .mini-player{
+    .pull{
+        display: none;
+    }
+    &.active{
+        .pull{
+            display: block;
+        }   
+    }
     &.active + div {
         ion-tab-bar {
            margin-top: 44px;

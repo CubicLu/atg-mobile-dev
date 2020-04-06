@@ -18,14 +18,15 @@ export default class CardArtistComponent extends React.Component<Props> {
       <div
         className="card-artist my-3 mx-2"
         style={{ backgroundImage: `url(${cover.main})` }}
-        onClick={(e): void => {
-          e.preventDefault();
-          this.linkRef.current!.click();
-        }}
       >
         <div className="flex-align-items-end h-100 px-2 pb-2">
           <div className="align-start">
-            <div className="h3 artist-card-name l12">{name}</div>
+            <div
+              onClick={(): void => this.linkRef.current!.click()}
+              className="h3 artist-card-name l12"
+            >
+              {name}
+            </div>
           </div>
           <div className="align-end">
             <ButtonSupportIcon artist={artist} supported={support} />

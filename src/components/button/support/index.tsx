@@ -31,6 +31,9 @@ class SupportComponent extends React.Component<ButtonProps> {
     if (!this.props.artist) return;
     this.props.updateSettingsModal(
       <MenuFanSupportOptions
+        onClick={(): void => {
+          this.linkRef.current?.click();
+        }}
         background={'background-tertiary-opacity95'}
         artist={this.props.artist!}
       />,
@@ -80,7 +83,7 @@ class SupportComponent extends React.Component<ButtonProps> {
       >
         <IonRouterLink
           ref={this.linkRef}
-          routerLink={`/artist/${this.props.artist?.username}`}
+          routerLink={`/artist/${this.props.artist?.username}/support`}
           routerDirection="root"
         />
       </Button>

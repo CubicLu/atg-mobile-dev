@@ -1,12 +1,4 @@
 .artist-gallery-grid-page{
-    
-    @include page;
-    
-    .background-top {
-        top: #{-$default-height-header};
-        position: absolute;
-    }
-
     .images{
         .row{
             margin-top: 3px;

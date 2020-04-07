@@ -24,12 +24,11 @@ class BlankIcon extends React.Component<Props> {
         height={this.props.height}
         viewBox={`0 0 ${this.props.width} ${this.props.height}`}
       >
-        <g transform="translate(-527 4470)">
+        <g>
           <rect
             width={size}
             height={this.props.height}
             rx="3"
-            transform="translate(527 -4470)"
             opacity={this.props.opacity}
             fill={this.props.color}
           />
@@ -37,7 +36,7 @@ class BlankIcon extends React.Component<Props> {
             width={size}
             height={this.props.height}
             rx="3"
-            transform="translate(537 -4470)"
+            transform="translate(10 0)"
             opacity={this.props.opacity}
             fill={this.props.color}
           />

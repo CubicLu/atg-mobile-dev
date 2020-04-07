@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Header, ProfileMenuList } from './../../../components';
+import { Avatar, Header, MenuProfileList } from './../../../components';
 import { connect } from 'react-redux';
 import { updateAuthProperty, updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
@@ -42,7 +42,7 @@ class HeaderProfileComponent extends React.Component<Props> {
 
   showMenuListModal = (): void => {
     this.props.updateSettingsModal(
-      <ProfileMenuList
+      <MenuProfileList
         title={'Public profile'}
         onClick={this.hideMenuListModal}
         background={'background-white-base'}

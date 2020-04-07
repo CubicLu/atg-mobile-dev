@@ -20,7 +20,7 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {
   data: profileActions;
 }
 
-class ProfileMenuList extends React.Component<Props> {
+class MenuProfileList extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): void => {},
     isSimilar: false
@@ -73,4 +73,4 @@ class ProfileMenuList extends React.Component<Props> {
   }
 }
 
-export default withRouter(ProfileMenuList);
+export default withRouter(MenuProfileList);

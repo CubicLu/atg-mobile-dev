@@ -5,9 +5,8 @@ import {
   BackgroundImage,
   Header
 } from './../../../components';
-import { Colors } from '../../../interfaces';
+import { Colors, profileActions } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ActionSheetButton } from '@ionic/react';
 
 interface StateProps {}
 
@@ -18,7 +17,7 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {
   title: string;
   isSimilar?: boolean;
   background?: string;
-  data: ActionSheetButton[];
+  data: profileActions;
 }
 
 class ProfileMenuList extends React.Component<Props> {
@@ -53,9 +52,9 @@ class ProfileMenuList extends React.Component<Props> {
           <ul>
             {data?.map(
               (item, i): React.ReactNode => {
-                const { text, handler } = item;
+                const { text, onClick } = item;
                 return (
-                  <li key={i} onClick={handler}>
+                  <li key={i} onClick={onClick}>
                     <div className="artist">
                       <div className="f4 dark">{text}</div>
                     </div>

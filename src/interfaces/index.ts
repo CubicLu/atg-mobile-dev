@@ -400,3 +400,8 @@ export interface StationInterface {
   tags?: string[];
   genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
 }
+
+export type profileActions = {
+  text: string;
+  onClick: () => void;
+}[];

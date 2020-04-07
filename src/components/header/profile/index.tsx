@@ -1,10 +1,9 @@
 import React from 'react';
 import { Avatar, Header, ProfileMenuList } from './../../../components';
-import { IonActionSheet, ActionSheetButton } from '@ionic/react';
 import { connect } from 'react-redux';
 import { updateAuthProperty, updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
-import { ShapesSize } from '../../../interfaces';
+import { ShapesSize, profileActions } from '../../../interfaces';
 
 interface StateProps {}
 
@@ -17,52 +16,27 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
-interface State {
-  showProfileActions: boolean;
-}
 interface Props extends DispatchProps {}
 
-class HeaderProfileComponent extends React.Component<Props, State> {
-  handleLogout(): void {
-    this.props.updateAuthProperty('loggedUser', undefined);
-    window.location.href = '/initial';
-  }
-
+class HeaderProfileComponent extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      showProfileActions: false
-    };
   }
 
-  profileActions: ActionSheetButton[] = [
+  profileActions: profileActions = [
     {
       text: 'View my public profile',
-      role: 'destructive',
-      handler: (): void => console.log('Delete clicked')
+      onClick: (): void => console.log('Delete clicked')
     },
     {
       text: 'Edit my public profile',
-      handler: (): void => console.log('Share clicked')
+      onClick: (): void => console.log('Share clicked')
     },
     {
       text: 'Improve my public profile',
-      handler: (): void => console.log('Play clicked')
-    },
-    {
-      text: 'Log out',
-      handler: (): void => this.handleLogout()
-    },
-    {
-      text: 'Cancel',
-      role: 'cancel',
-      handler: (): void => console.log('Cancel clicked')
+      onClick: (): void => console.log('Play clicked')
     }
   ];
-
-  toggleProfileActions(opt: boolean = true): void {
-    this.setState({ showProfileActions: opt });
-  }
 
   hideMenuListModal = (): void => this.props.updateSettingsModal(null);
 
@@ -72,7 +46,7 @@ class HeaderProfileComponent extends React.Component<Props, State> {
         title={'Public profile'}
         onClick={this.hideMenuListModal}
         background={'background-white-base'}
-        data={this.profileActions.slice(0, 3)}
+        data={this.profileActions}
       />,
       'background-white-base'
     );
@@ -81,22 +55,12 @@ class HeaderProfileComponent extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <div>
-        <Header
-          rightSettingsButton={true}
-          rightUserGroupButton={true}
-          rightSettingsOnClick={(): void => this.toggleProfileActions()}
-        />
-
+        <Header rightSettingsButton={true} rightUserGroupButton={true} />
         <div className="profile-center">
           <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
           <div className="f4 l15">Rosetta Throp</div>
           <div className="h00 l1 shadow">Musical Goddess</div>
         </div>
-        <IonActionSheet
-          onDidDismiss={(): any => this.toggleProfileActions(false)}
-          isOpen={this.state.showProfileActions}
-          buttons={this.profileActions}
-        />
       </div>
     );
   }

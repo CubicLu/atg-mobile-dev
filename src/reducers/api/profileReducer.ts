@@ -48,7 +48,8 @@ const notifications: NotificationInterface[] = [
     name: 'Steve',
     username: 'steverogers',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: true
+    read: true,
+    subject: 'Hello'
   },
   {
     message: 'are you Rock!',
@@ -56,7 +57,8 @@ const notifications: NotificationInterface[] = [
     name: 'Débora',
     username: 'debora',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: false
+    read: false,
+    subject: 'E-mail 1'
   },
   {
     message: 'Good!',
@@ -64,7 +66,8 @@ const notifications: NotificationInterface[] = [
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: false
+    read: false,
+    subject: 'Email 1'
   },
   {
     message: 'Good!',
@@ -72,7 +75,8 @@ const notifications: NotificationInterface[] = [
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: true
+    read: true,
+    subject: 'subject here'
   },
   {
     message: 'Good!',
@@ -80,7 +84,8 @@ const notifications: NotificationInterface[] = [
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: false
+    read: false,
+    subject: 'E-mail 2'
   },
   {
     message: 'Good!',
@@ -88,7 +93,8 @@ const notifications: NotificationInterface[] = [
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: true
+    read: true,
+    subject: 'E-mail 3'
   }
 ];
 

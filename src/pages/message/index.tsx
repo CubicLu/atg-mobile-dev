@@ -64,7 +64,7 @@ class MessagePage extends React.Component<Props> {
         <Header
           title="Messages"
           rightContent={
-            activeMessageTab == 'chat' ? (
+            activeMessageTab === 'chat' ? (
               <ButtonIcon
                 styles={{ width: 35, height: 35 }}
                 type={ShapesSize.circle}

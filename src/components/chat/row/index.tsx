@@ -41,12 +41,12 @@ class ChatRowComponent extends React.Component<Props> {
         )}
         <div className={`col s${colInfo} info`}>
           <span
-            className="text-12"
-            data-date={showDate ? moment(data.sendAt).format('MM/DD/YYYY') : ''}
+            className="text-14"
+            data-date={showDate ? moment(data.sendAt).format('MM/DD/YY') : ''}
           >
             {data.username}
           </span>
-          <span className="text-14">{data.message}</span>
+          <span className="text-16">{data.message}</span>
         </div>
       </div>
     );

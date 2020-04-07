@@ -2,43 +2,32 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  BackgroundImage,
-  Header
+  BackgroundImage
 } from './../../../components';
-import { updateSettingsModal } from './../../../actions';
 import { ArtistInterface, Colors } from '../../../interfaces';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { IonRouterLink } from '@ionic/react';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
-
-interface DispatchProps {
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
-}
-
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+interface Props extends StateProps {
   onClick: Function;
   title: string;
   isSimilar?: boolean;
   background?: string;
 }
-
 class MenuArtistList extends React.Component<Props> {
   public static defaultProps = {
-    onClick: (): void => {},
+    title: '',
+    background: 'background-white-base',
     isSimilar: false
   };
 
   render(): React.ReactNode {
     const { currentArtist, isSimilar } = this.props;
-    if (!currentArtist) return <div></div>;
+    if (!currentArtist) return <div />;
 
     let data = isSimilar
       ? currentArtist.similarArtist
@@ -49,12 +38,6 @@ class MenuArtistList extends React.Component<Props> {
           backgroundBottom={true}
           backgroundBottomOrange={true}
           backgroundBottomOpacity={0.4}
-        />
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.onClick()}
-          color={Colors.transparent}
         />
 
         <div className={`modal-header ${this.props.background}`}>
@@ -73,25 +56,24 @@ class MenuArtistList extends React.Component<Props> {
             {data?.map(
               (data, i): React.ReactNode => {
                 return (
-                  <li
+                  <IonRouterLink
                     key={i}
-                    onClick={(): void => {
-                      this.props.history.push(`/home/artist/${data.username}`);
-                      this.props.onClick();
-                    }}
+                    routerLink={`/artist/${data.username}`}
                   >
-                    <div className="artist">
-                      <div
-                        className="avatar"
-                        style={{ backgroundImage: `url(${data.cover})` }}
-                      ></div>
-                      <div className="f4 dark">{data.name}</div>
-                    </div>
-                    <ButtonIcon
-                      icon={<ArrowRightIcon color={'#000'} />}
-                      color={Colors.transparent}
-                    />
-                  </li>
+                    <li onClick={(): void => this.props.onClick()}>
+                      <div className="artist">
+                        <div
+                          className="avatar"
+                          style={{ backgroundImage: `url(${data.cover})` }}
+                        ></div>
+                        <div className="f4 dark">{data.name}</div>
+                      </div>
+                      <ButtonIcon
+                        icon={<ArrowRightIcon color={'#000'} />}
+                        color={Colors.transparent}
+                      />
+                    </li>
+                  </IonRouterLink>
                 );
               }
             )}
@@ -107,8 +89,4 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal
-  })(MenuArtistList)
-);
+export default connect(mapStateToProps)(MenuArtistList);

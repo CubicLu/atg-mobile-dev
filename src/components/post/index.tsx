@@ -15,7 +15,6 @@ import {
 } from '../../actions';
 
 interface StateProps {
-  isPlaying: boolean;
   currentPostComments: CommentInterface[] | null;
   loading: boolean;
   currentPostCover: CommentCoverInterface;
@@ -59,11 +58,9 @@ class ArtistPostComponent extends React.Component<Props> {
 }
 // eslint-disable-next-line
 const mapStateToProps = ({ settings, communityAPI}: ApplicationState): StateProps => {
-  const { isPlaying } = settings;
   const { currentPostComments, loading, currentPostCover } = communityAPI;
   return {
     currentPostComments,
-    isPlaying,
     loading,
     currentPostCover
   };

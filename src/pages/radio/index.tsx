@@ -48,7 +48,7 @@ class RadioPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightActionButton={true}
-          rightActionHref={'/home/radio/filter'}
+          rightActionHref={'/radio/filter'}
         >
           <div className="absolute-logo-left">
             <span className="brand-title text-48 l05">panthr</span>

@@ -40,7 +40,7 @@ class SearchPage extends React.Component<Props> {
           titleClassName="search"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): any => this.props.history.push('/home')}
+          rightCloseOnClick={(): any => this.props.history.push('/')}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent

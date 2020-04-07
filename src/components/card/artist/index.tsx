@@ -1,92 +1,43 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  DotsThreeIcon,
-  ButtonIcon,
-  MenuFanSupportOptions,
-  ButtonSupport
-} from './../../../components';
-import { updateArtistProperty, updateSettingsModal } from './../../../actions';
-import { ArtistInterface, Colors } from './../../../interfaces';
-import { connect } from 'react-redux';
-import { ApplicationState } from '../../../reducers';
+import { ButtonSupportIcon } from './../../../components';
+import { ArtistInterface } from './../../../interfaces';
+import { IonRouterLink } from '@ionic/react';
 
-interface StateProps {}
-interface DispatchProps {
-  updateArtistProperty: (property: string, value: any) => void;
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
-}
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+interface Props {
   artist: ArtistInterface;
   key: number;
 }
-class CardArtistComponent extends React.Component<Props> {
+export default class CardArtistComponent extends React.Component<Props> {
+  linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
   render(): React.ReactNode {
-    const { artist, updateSettingsModal, history } = this.props;
+    const { artist } = this.props;
     if (!artist) return <div />;
-    const { cover, username, support, name } = artist;
+    const { cover, support, name } = artist;
 
     return (
       <div
         className="card-artist my-3 mx-2"
         style={{ backgroundImage: `url(${cover.main})` }}
       >
-        <div className="space-between h-100">
-          <div className="flex-justify-content-end px-1">
-            <ButtonIcon
-              color={Colors.transparent}
-              icon={<DotsThreeIcon color={'#6a6565'} />}
-              onClick={(): void =>
-                updateSettingsModal(
-                  true,
-                  React.createElement(MenuFanSupportOptions, {
-                    artist: artist,
-                    onClick: (): void => updateSettingsModal(false, null),
-                    background: 'background-tertiary-opacity95'
-                  }),
-                  'background-tertiary-opacity95'
-                )
-              }
-            />
+        <div className="flex-align-items-end h-100 px-2 pb-2">
+          <div className="align-start">
+            <div
+              onClick={(): void => this.linkRef.current!.click()}
+              className="h3 artist-card-name l12"
+            >
+              {name}
+            </div>
           </div>
-
-          <div
-            className="flex-space-between-bottom mx-1 mb-1 l12"
-            onClick={(): void => {
-              history.action = 'POP';
-              history.replace(`/home/artist/${username}`);
-            }}
-          >
-            <div className="h3 artist-card-name l12 align-start">
-              <span>{name}</span>
-            </div>
-            <div className="align-end">
-              <ButtonSupport
-                buttonType={'icon'}
-                supported={support}
-                onClick={(): void => {
-                  history.push(`/home/artist/${username}/support`);
-                }}
-              />
-            </div>
+          <div className="align-end">
+            <ButtonSupportIcon artist={artist} supported={support} />
           </div>
         </div>
+        <IonRouterLink
+          ref={this.linkRef}
+          routerLink={`/artist/${artist?.username}`}
+          routerDirection="forward"
+        />
       </div>
     );
   }
 }
-const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { modal } = settings;
-  return { modal };
-};
-
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal,
-    updateArtistProperty
-  })(CardArtistComponent)
-);

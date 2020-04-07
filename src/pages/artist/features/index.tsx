@@ -10,16 +10,17 @@ import {
   SliderEvents,
   SectionTitle as Section
 } from './../../../components';
-
+import { setPlaylistPlayer } from './../../../actions/playerActions';
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
-interface Props extends StateProps {}
+interface DispatchProps extends StateProps {
+  setPlaylistPlayer: () => void;
+}
 
-class ArtistFeaturesPage extends React.Component<Props> {
+class ArtistFeaturesPage extends React.Component<DispatchProps> {
   render(): React.ReactNode {
-    const { currentArtist, isPlaying } = this.props;
+    const { currentArtist } = this.props;
     if (!currentArtist) return <div />;
 
     const {
@@ -31,11 +32,16 @@ class ArtistFeaturesPage extends React.Component<Props> {
     } = currentArtist;
 
     return (
-      <div className={`artist-features-page ${isPlaying ? 'is-playing' : ''}`}>
+      <div className={`artist-features-page`}>
         <div className="row" />
         <div className="row">
           <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />
-          <List data={featuredTracks} label={'song'} id={'id'} />
+          <List
+            onClick={(): void => this.props.setPlaylistPlayer()}
+            data={featuredTracks}
+            label={'song'}
+            id={'id'}
+          />
         </div>
 
         {newReleases && (
@@ -64,7 +70,7 @@ class ArtistFeaturesPage extends React.Component<Props> {
         <div className="row mx-05" />
 
         {Array.isArray(events) && events.length > 0 && (
-          <div className="row">
+          <div>
             <Section
               className="mx-3"
               title={'UPCOMING EVENTS'}
@@ -78,13 +84,11 @@ class ArtistFeaturesPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
-export default connect(mapStateToProps, {})(ArtistFeaturesPage);
+export default connect(mapStateToProps, { setPlaylistPlayer })(
+  ArtistFeaturesPage
+);

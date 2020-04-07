@@ -2,24 +2,12 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  BackgroundImage,
-  Header
+  BackgroundImage
 } from './../../../components';
-import { updateSettingsModal } from './../../../actions';
 import { BiographyInterface, Colors } from '../../../interfaces';
-import { connect } from 'react-redux';
-import { ApplicationState } from '../../../reducers';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { LockedIcon } from '../../icon';
-interface StateProps {}
-interface DispatchProps {
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
-}
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+
+interface Props {
   onClick: Function;
   title: string;
   username: string;
@@ -27,9 +15,6 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {
   items?: BiographyInterface[];
 }
 class BiographyListComponent extends React.Component<Props> {
-  public static defaultProps = {
-    onClick: (): void => {}
-  };
   render(): React.ReactNode {
     return (
       <div className="menu-generic-list">
@@ -37,12 +22,6 @@ class BiographyListComponent extends React.Component<Props> {
           backgroundBottom
           backgroundBottomOrange={true}
           backgroundBottomOpacity={0.4}
-        />
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.onClick()}
-          color={Colors.transparent}
         />
         <div className={`modal-header ${this.props.background}`}>
           <span className="h2 dark baskerville">{this.props.title}</span>
@@ -78,12 +57,5 @@ class BiographyListComponent extends React.Component<Props> {
     );
   }
 }
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
-};
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal
-  })(BiographyListComponent)
-);
+
+export default BiographyListComponent;

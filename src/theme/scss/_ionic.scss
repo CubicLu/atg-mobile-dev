@@ -1,5 +1,32 @@
-ion-tabbar {
-    --ion-safe-area-bottom: 0px;
+ion-tab-bar {
+    --border: 0px solid #000;
+    margin-top: 0px;
+}
+.mini-player{
+    .pull{
+        display: none;
+    }
+    &.active{
+        .pull{
+            display: block;
+        }   
+    }
+    &.active + div {
+        ion-tab-bar {
+           margin-top: 44px;
+           overflow: visible;
+       }
+   }
+}
+.tab-selected{
+    svg{
+        path{
+            fill: #00BAFF;
+            &.logo{
+                stroke: #00BAFF;    
+            }
+        }
+    }
 }
 *::-webkit-scrollbar {
     display: none;

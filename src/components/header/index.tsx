@@ -1,14 +1,13 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
 import { BackIcon, ButtonIcon, DotsThreeIcon, ShareIcon, StarIcon } from '..';
 import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
-import { IonHeader } from '@ionic/react';
+import { IonHeader, NavContext, NavContextState } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 import { SongInfoButton } from '../icon/player';
-import { Colors } from '../../interfaces';
+import { Colors, RouterLinkDirection } from '../../interfaces';
 import ChatMessageIcon from '../icon/chat-message';
 
-interface Props extends RouteComponentProps {
+interface Props {
   className?: string;
   title?: string | null;
   titleClassName?: string;
@@ -42,14 +41,21 @@ interface Props extends RouteComponentProps {
   ios?: boolean;
   fixed?: boolean;
   leftTitle?: string;
-  direction?: 'PUSH' | 'POP' | 'REPLACE';
+  routerDirection?: RouterLinkDirection;
   rightButtonGroup?: boolean;
   parentCallback?: Function;
   overlay?: string | number;
 }
 
 class HeaderComponent extends React.Component<Props> {
+  //using it instead of withRouter
+  context!: React.ContextType<typeof NavContext>;
+  static get contextType(): React.Context<NavContextState> {
+    return NavContext;
+  } //using it instead of withRouter
+
   public static defaultProps = {
+    direction: 'back',
     title: null,
     leftBackButton: true,
     leftContent: null,
@@ -71,25 +77,16 @@ class HeaderComponent extends React.Component<Props> {
 
   goBackClick = (ev: any): any => {
     if (this.props.leftBackOnClick) {
-      this.props.history.action = 'POP';
       return this.props.leftBackOnClick(ev);
-    } else if (this.props.leftBackHref) {
-      return this.props.history.push(this.props.leftBackHref);
     }
-    this.props.history.action = 'POP';
-    return this.props.history.goBack();
+    return this.context.goBack(
+      this.props.leftBackHref ? this.props.leftBackHref : undefined
+    );
   };
 
-  pushUrl(url: string): void {
-    const direction = this.props.direction || 'PUSH';
-    switch (direction) {
-      case 'PUSH':
-        return this.props.history.push(url);
-      case 'POP':
-        return this.props.history.goBack();
-      case 'REPLACE':
-        return this.props.history.replace(url);
-    }
+  pushUrl(url: string, direction?: RouterLinkDirection): void {
+    const routerDirection = direction || this.props.routerDirection || 'back';
+    this.context.navigate(url, routerDirection);
   }
 
   openChatPanel = (shouldDisplay: boolean): Function => {
@@ -129,7 +126,8 @@ class HeaderComponent extends React.Component<Props> {
       children,
       overlay,
       rightActionHref,
-      rightCloseHref
+      rightCloseHref,
+      routerDirection
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -198,7 +196,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightUserGroupButton && (
               <div
                 className="default-button"
-                onClick={(): any => this.props.history.push('/home/feed')}
+                onClick={(): any => this.pushUrl('/feed', 'forward')}
               >
                 <UserGroupIcon color={'#FFF'} height={23} width={23} />
               </div>
@@ -216,7 +214,7 @@ class HeaderComponent extends React.Component<Props> {
                 className="default-button dark"
                 onClick={
                   rightCloseHref
-                    ? (): void => this.pushUrl(rightCloseHref)
+                    ? (): void => this.pushUrl(rightCloseHref, routerDirection)
                     : rightCloseOnClick
                 }
               >
@@ -246,7 +244,7 @@ class HeaderComponent extends React.Component<Props> {
                 <li>
                   <ButtonIcon
                     color={Colors.cyan}
-                    icon={<ChatMessageIcon width={22} height={20} />}
+                    icon={<ChatMessageIcon />}
                     onClick={this.openChatPanel.bind(this, true)}
                     overlay={overlay}
                   />
@@ -255,10 +253,9 @@ class HeaderComponent extends React.Component<Props> {
             )}
           </div>
         </div>
-
         <div>{children}</div>
       </IonHeader>
     );
   }
 }
-export default withRouter(HeaderComponent);
+export default HeaderComponent;

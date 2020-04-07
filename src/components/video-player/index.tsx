@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../reducers';
 import { Nullable } from '../../types/common';
 import { ButtonIcon } from '..';
 import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
@@ -267,8 +266,5 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({ }: ApplicationState): object => {
-  return {};
-};
-export default connect(mapStateToProps, {})(VideoPlayerComponent);
+
+export default connect(null, {})(VideoPlayerComponent);

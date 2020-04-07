@@ -8,7 +8,6 @@ import { getCommunityStoriesAPI } from './../../../actions';
 import { StorieInterface, ShapesSize } from '../../../interfaces';
 
 interface StateProps {
-  isPlaying: boolean;
   stories: StorieInterface[];
   loading: boolean;
 }
@@ -41,20 +40,17 @@ class CommunityAllArtistsPage extends React.Component<Props> {
           title={'Artist Community'}
           titleClassName={`artist-name`}
           rightCloseButton={true}
-          rightCloseHref="/home/community"
+          rightCloseHref="/community"
         />
-        <div
-          className={
-            `community-all-artists-page content content-container` +
-            (this.props.isPlaying && ' is-playing')
-          }
-        >
-          <IonContent>
+        <IonContent>
+          <div
+            className={`mt-5 community-all-artists-page content content-container`}
+          >
             <div className="row">
               {this.props.stories.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <div key={i} className="col s4">
+                    <div key={i} className="col s4 no-padding">
                       <div>
                         <Avatar
                           image={data.image}
@@ -70,17 +66,16 @@ class CommunityAllArtistsPage extends React.Component<Props> {
                 }
               )}
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({ settings, communityAPI }: ApplicationState): StateProps => {
-  const { isPlaying } = settings;
+
+const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   const { stories, loading } = communityAPI;
-  return { isPlaying, stories, loading };
+  return { stories, loading };
 };
 
 export default withRouter(

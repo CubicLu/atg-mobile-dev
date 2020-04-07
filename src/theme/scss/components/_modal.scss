@@ -17,7 +17,6 @@
     .atg-header {
         padding-top: 16px;
         overflow: hidden;
-        background: white;
         margin-top: 0;
         margin-top: 0;
         margin-bottom: 0;
@@ -33,6 +32,54 @@
         border-top-right-radius: 20px;
         .background-bottom{
             z-index: 0;
+        }
+    }
+}
+.fan-support-options, .menu-artist-list, .menu-generic-list{
+    position: relative;
+    width: 100%;
+    overflow-y: hidden;
+    .artist{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        .avatar{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+}
+.modal-header{
+    z-index: 1;
+    padding-top: $menu-padding;
+    left:0.9*$menu-padding; 
+    right:0.9*$menu-padding; 
+    padding-left:0.1*$menu-padding; 
+    padding-right:0.1*$menu-padding; 
+    height: auto;
+    position: fixed;
+    .sub{
+        color: $gray-zambezi;
+    }
+}
+.modal-content{
+    margin-bottom: 40px;
+    margin-top: 90px;
+    padding-left:$menu-padding; 
+    padding-right:$menu-padding;
+    color: #333; 
+    ul{
+        li{
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: $menu-padding/2;
+            width: 100%;
+            button{
+                padding: 5px 10px;
+            }
         }
     }
 }

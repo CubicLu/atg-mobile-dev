@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -49,7 +48,6 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
     }
   }
   render(): React.ReactNode {
-    const { isPlaying } = this.props;
     return (
       <IonPage id="gallery-page">
         <Header title="Gallery" />
@@ -71,14 +69,14 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
             backgroundTopOpacity={0.7}
           />
           <div className={`content-container`}>
-            <div className={`row no-margin ${isPlaying && ' is-playing'}`}>
+            <div className={`row no-margin`}>
               {this.props.currentArtist?.gallery?.map(
                 (data, index): React.ReactNode => (
                   <CardAlbumGallery
                     key={index}
                     onClick={(): void => {
                       this.props.history.push(
-                        `/home/artist/${this.props.currentArtist?.username}/gallery/${index}`
+                        `/artist/${this.props.currentArtist?.username}/gallery/${index}`
                       );
                     }}
                     image={data.cover}
@@ -96,13 +94,9 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

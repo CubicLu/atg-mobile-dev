@@ -29,7 +29,6 @@ import MenuArtistListComponent from './menu/artist-list';
 import PublicProfileMenuList from './menu/public-menu';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
-import ButtonSupportComponent from './button/support';
 import SliderStoriesComponent from './slider/stories';
 import CardPostComponent from './card/post';
 import PostCoverComponent from './post/post-cover';
@@ -57,6 +56,11 @@ import MixtapeEuroHouseImage from './../assets/img/mixtapes/euro-house.png';
 import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
 import MixtapeMoonLightImage from './../assets/img/mixtapes/moon-light.png';
 import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
+import {
+  ButtonSupportIconComponent,
+  ButtonSupportComponent
+} from './button/support-button';
+
 export * from './icon';
 
 export {
@@ -91,6 +95,7 @@ export {
   PublicProfileMenuList as MenuProfileList,
   CardAlbumGalleryComponent as CardAlbumGallery,
   LoaderFullscreenComponent as LoaderFullscreen,
+  ButtonSupportIconComponent as ButtonSupportIcon,
   ButtonSupportComponent as ButtonSupport,
   SliderStoriesComponent as SliderStories,
   CardPostComponent as CardPost,

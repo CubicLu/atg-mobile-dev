@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonIcon, Header } from './../../../components';
+import { ButtonIcon } from './../../../components';
 import { ArtistInterface, Colors, ShapesSize } from '../../../interfaces';
 import {
   SupportIcon,
@@ -9,38 +9,24 @@ import {
 } from '../../icon';
 
 interface Props {
-  artist: ArtistInterface;
   onClick: Function;
+  artist: ArtistInterface;
   background?: string;
 }
-
 class MenuFanSupportOptionsComponent extends React.Component<Props> {
-  public static defaultProps = { onClick: (): void => {} };
-
   render(): React.ReactNode {
     return (
-      <div className={`fan-support-options`}>
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.onClick()}
-          color={Colors.transparent}
-        />
-
+      <div className="fan-support-options">
         <div className={`modal-header py-2 ${this.props.background}`}>
           <div className="h0 l1">MY {this.props.artist.name}</div>
-          <div className="h2 l1">FAN SUPPORT OPTIONS</div>
+          <div className="h2 l08">FAN SUPPORT OPTIONS</div>
         </div>
 
         <div className="modal-content f5">
           <ul className="mt-2" style={{ minHeight: 50 }}>
             <li>
               Increase support
-              <ButtonIcon
-                icon={<SupportIcon />}
-                color={Colors.support}
-                type={ShapesSize.circle}
-              />
+              <SupportIcon width={42} height={42} />
             </li>
             <li>
               Decrease support

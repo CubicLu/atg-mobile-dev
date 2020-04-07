@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { getArtistAPI } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage, IonContent } from '@ionic/react';
 import {
@@ -25,14 +25,11 @@ interface State {
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  artists: ArtistInterface[];
+  loading: boolean;
   plans: PlanInterface[];
-  selectedPlan: PlanInterface | null;
-  isPlaying: boolean;
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
 }
 interface MatchParams {
   id: string;
@@ -50,16 +47,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
       plan: null
     };
   }
-
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    }
-  }
-
-  componentDidMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
+  UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.loading) return;
+    if (this.props.loading) return;
+    if (
+      this.props.currentArtist == null ||
+      this.props.currentArtist.username !== next.match.params.id
+    ) {
+      this.props.getArtistAPI(next.match.params.id);
     }
   }
 
@@ -75,10 +70,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { username } = currentArtist;
     const { plan } = this.state;
     const hasPlan = !!plan;
-    const planDetailClass = hasPlan ? ' detail mx-3' : '';
+    const planDetailClass = hasPlan ? ' detail mt-7 mx-3' : '';
 
     const backButton = (): void => this.showDetail();
-    const closeButton = (): void => history.push(`/home/artist/${username}`);
+    const closeButton = (): void => history.push(`/artist/${username}`);
     const rightButton = hasPlan ? backButton : closeButton;
 
     const allPlans = (
@@ -113,7 +108,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
       </div>
     );
     const detailPlan = (
-      <div className="space-between h-75">
+      <div className="flex-column-center">
         <div className="row fluid">
           <div className="col s4">
             <Avatar
@@ -169,7 +164,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             color={Colors.support}
             gradient={true}
             onClick={(): void =>
-              history.push(`/home/thank-you`, { artistId: match.params.id })
+              history.push(`/thank-you`, { artistId: match.params.id })
             }
           />
         </div>
@@ -205,7 +200,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
           rightCloseButton={true}
           rightCloseOnClick={rightButton}
         />
-        <IonContent scrollY={true}>
+        <IonContent fullscreen={true} scrollY={true}>
           <div className={`artist-support-page h-100 ${planDetailClass}`}>
             {hasPlan ? detailPlan : allPlans}
           </div>
@@ -219,14 +214,11 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists } = artistAPI;
-  const { plans, selectedPlan, isPlaying } = settings;
-  return { currentArtist, artists, plans, selectedPlan, isPlaying };
+  const { currentArtist, loading } = artistAPI;
+  const { plans } = settings;
+  return { currentArtist, loading, plans };
 };
 
 export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty
-  })(ArtistSupportPage)
+  connect(mapStateToProps, { getArtistAPI })(ArtistSupportPage)
 );

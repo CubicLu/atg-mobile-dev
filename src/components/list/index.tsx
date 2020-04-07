@@ -5,6 +5,7 @@ interface Props {
   data?: any[];
   label: string;
   id: string;
+  onClick?: Function;
 }
 
 export default class ListComponent extends React.Component<Props> {
@@ -19,7 +20,11 @@ export default class ListComponent extends React.Component<Props> {
       <div className="mx-3 mb-0">
         {this.props.data.map(
           (data, i): React.ReactNode => (
-            <div className="flex row mt-1 f4" key={i}>
+            <div
+              onClick={(): void => this.props.onClick && this.props.onClick()}
+              className="flex row mt-1 f4"
+              key={i}
+            >
               {data[this.props.label]}
               <div className="align-end">
                 <ArrowRightIcon />

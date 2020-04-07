@@ -104,14 +104,10 @@ export interface ArtistCoverInterface {
 }
 
 export interface SettingsReducerType {
-  activeTab: string;
   tabs: TabsInterface[];
   links: LinksInterface[];
-  isPlaying: boolean;
   fanTabs: MenuInterface[];
-  activeFanTab: string;
   artistTabs: MenuInterface[];
-  activeArtistTab: string;
   modal: ModalSlideInterface;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;
@@ -126,11 +122,16 @@ export interface ScrollHeaderInterface {
   animation: 'normal' | 'reverse';
   validScroll?: boolean;
 }
-
+export type ModalType = 'left' | 'right' | 'top' | 'bottom';
 export interface ModalSlideInterface {
-  visible: boolean;
+  modalType?: ModalType;
   content: React.ReactNode;
-  classname?: string;
+  className?: string;
+  height?: number;
+  onClick?: Function;
+  onClose?: Function;
+  onClosing?: Function;
+  onOpen?: Function;
 }
 
 export interface MenuInterface {
@@ -352,7 +353,7 @@ export interface BiographyInterface {
 }
 
 export interface EventWhoIsGoingInterface extends UserInterface {}
-
+export type RouterLinkDirection = 'forward' | 'back' | 'root';
 export enum ShapesSize {
   rounded = 'rounded',
   badge = 'badge',

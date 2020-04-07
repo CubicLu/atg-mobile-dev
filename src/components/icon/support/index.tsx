@@ -1,100 +1,45 @@
 import React from 'react';
 
 interface Props {
-  color: string;
+  supported: boolean;
   width: number;
   height: number;
 }
 
 class SupportIcon extends React.Component<Props> {
   public static defaultProps = {
-    color: '#FFF',
-    width: 18,
-    height: 24
+    supported: true,
+    width: 40,
+    height: 40
   };
 
   render(): React.ReactNode {
+    const fillCircle = this.props.supported ? '#fff' : 'url(#linear-gradient)';
+    const fillInner = !this.props.supported ? '#fff' : 'url(#linear-gradient)';
     return (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox={`0 0 ${this.props.width} ${this.props.height}`}
+        viewBox={`-2 -2 38 38`}
       >
-        <g>
-          <path
-            d="M13,4.628V2.555a1.555,1.555,0,0,1,3.109,0V4.628"
-            transform="translate(-5.781)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <path
-            d="M19,4.628V2.555a1.555,1.555,0,0,1,3.109,0V4.628"
-            transform="translate(-8.672)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <path
-            d="M10.109,6.182A1.555,1.555,0,1,1,7,6.182V2.555a1.555,1.555,0,0,1,3.109,0Z"
-            transform="translate(-2.891)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <path
-            d="M4.109,8.182A1.527,1.527,0,0,1,2.555,9.737,1.527,1.527,0,0,1,1,8.182V4.555A1.527,1.527,0,0,1,2.555,3,1.527,1.527,0,0,1,4.109,4.555Z"
-            transform="translate(0 -0.964)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <path
-            d="M13.518,17.846V16.81a5.684,5.684,0,0,1,5.7-5.7H15.073A2.079,2.079,0,0,1,13,9.036V8h7.255a2.079,2.079,0,0,1,2.073,2.073v4.146a6.337,6.337,0,0,1-1.3,3.835l-1.658,2.125A3.193,3.193,0,0,0,18.7,22.1v6.633"
-            transform="translate(-5.781 -3.372)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <path
-            d="M1,13v5.182a8,8,0,0,0,1.555,4.664v8.292"
-            transform="translate(0 -5.781)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <line
-            y2="1"
-            transform="translate(7 19)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <line
-            y2="4"
-            transform="translate(7 21)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-          <line
-            x2="2"
-            transform="translate(3 17)"
-            fill="none"
-            stroke={this.props.color}
-            strokeMiterlimit="10"
-            strokeWidth="1"
-          />
-        </g>
+        <defs>
+          <linearGradient
+            id="linear-gradient"
+            y1="0.5"
+            x2="1"
+            y2="0.5"
+            gradientUnits="objectBoundingBox"
+          >
+            <stop offset="0" stopColor="#ff9766" />
+            <stop offset="1" stopColor="#fc5f62" />
+          </linearGradient>
+        </defs>
+        <circle fill={fillCircle} cx="18" cy="18" r="18" />
+        <path
+          fill={fillInner}
+          d="M58.929,13.613A12.171,12.171,0,0,0,52.906,5.38V1.871a1.922,1.922,0,0,0-3.843,0v2.6a1.919,1.919,0,0,0-2.4.386c-.029-.032-.052-.067-.083-.1a1.929,1.929,0,0,0-2.314-.289v-2.6A1.832,1.832,0,0,0,43.7.548,1.958,1.958,0,0,0,41.6.141a1.871,1.871,0,0,0-1.186,1.73V5.38a12.075,12.075,0,0,0-6.171,11.743,12.231,12.231,0,0,0,8.448,10.316A12.712,12.712,0,0,0,55.82,24.184c.212-.222.411-.452.6-.687a.472.472,0,0,0,.05-.06,11.918,11.918,0,0,0,2.455-9.824ZM47.144,6.082a.964.964,0,0,1,1.922,0v4.211a.95.95,0,0,1-.964.936.972.972,0,0,1-.248-.036A1.776,1.776,0,0,0,48.033,9.8a1.826,1.826,0,0,0-.892-1.1V6.082Zm-2.882,0a.964.964,0,0,1,1.922,0V8.429c-.027,0-.053-.008-.081-.008H44.261ZM41.379,1.871a.964.964,0,0,1,1.922,0v6.55h-.482a2.42,2.42,0,0,0-1.442.482V1.871Zm0,8.89a1.424,1.424,0,0,1,1.442-1.4H46.1a1.117,1.117,0,0,1,.373.065h.012a.964.964,0,0,1,.655.8.923.923,0,0,1-.255.706.975.975,0,0,1-.7.3H44.261a.474.474,0,0,0-.482.468c0,.193-.374.468-.964.468a.468.468,0,1,0,0,.936,1.947,1.947,0,0,0,1.808-.936h1.555a1.94,1.94,0,0,0,.957-.257,1.96,1.96,0,0,0,1.928.01,1.857,1.857,0,0,0,.964-1.624V1.871a.964.964,0,0,1,1.922,0V11.7a4.748,4.748,0,0,1-4.8,4.679h-.964a4.748,4.748,0,0,1-4.8-4.679Zm8.166,6.033v1.921H43.781V16.794a5.849,5.849,0,0,0,2.4.518h.964A5.849,5.849,0,0,0,49.546,16.794Zm-6.725,9.7a11.536,11.536,0,0,1-4.61-2.948A11.042,11.042,0,0,1,35.222,14.5a11.2,11.2,0,0,1,5.2-8.035V11.7a5.563,5.563,0,0,0,2.4,4.551v2.467a.95.95,0,0,0-.964.936v1.871a.95.95,0,0,0,.964.936v4.033Zm0-6.845h7.686v1.871H42.821Zm6.726,7.125a11.659,11.659,0,0,1-5.764,0V22.463h5.764Zm5.57-3.232a11.365,11.365,0,0,1-2.2,1.8,11.552,11.552,0,0,1-2.411,1.15V22.463A.964.964,0,0,0,51.333,22h1.436l2.411,1.479c-.021.019-.041.049-.063.069Zm-3.65-2.489v-.936h.964v.936Zm4.339,1.693-1.955-1.2.771-.416,1.626,1c-.142.212-.283.421-.442.625Zm-2.418-2.016v-.806l2.16-1.207.424.618Zm3.357.607-1.166-.721.858-.464a.939.939,0,0,0,.468-.6.916.916,0,0,0-.134-.739l-.423-.618a.98.98,0,0,0-1.277-.289l-2.29,1.279H51.334a.964.964,0,0,0-.827-.468V16.248a5.563,5.563,0,0,0,2.4-4.551V6.47a11.145,11.145,0,0,1,5.284,9.438,10.96,10.96,0,0,1-1.445,5.428Z"
+          transform="translate(-28.831 3.742)"
+        />
       </svg>
     );
   }

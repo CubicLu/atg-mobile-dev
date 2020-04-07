@@ -10,7 +10,6 @@ import {
   CreateAnimation
 } from '@ionic/react';
 import {
-  ModalSlide,
   Header,
   BiographyList,
   ButtonIcon,
@@ -32,20 +31,17 @@ import {
   AlbumInterface,
   Colors
 } from '../../../interfaces';
-import { setHeight, validateScrollHeader } from '../../../utils';
+import { validateScrollHeader } from '../../../utils';
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
   modal: ModalSlideInterface;
+  loading: boolean;
 }
 interface MatchParams {
   id: string;
@@ -72,11 +68,14 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.state = { currentPage: 0, blur: false };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.currentArtist == null) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
+  UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.loading) return;
+    if (this.props.loading) return;
+    if (
+      this.props.currentArtist == null ||
+      this.props.currentArtist.username !== next.match.params.id
+    ) {
+      this.props.getArtistAPI(next.match.params.id);
     }
   }
 
@@ -94,7 +93,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     const slides = this.slides?.current;
     if (!slides) return;
     chapter ? slides.slideTo(chapter) : slides.slideNext();
-    this.props.updateSettingsModal(false, null);
+    this.props.updateSettingsModal(null);
   }
 
   chapterFooter(): React.ReactNode {
@@ -154,20 +153,17 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     const {
       currentArtist: artist,
       currentArtist: { biography },
-      modal,
       updateSettingsModal
     } = this.props;
     if (!biography) return <IonPage />;
 
     const toggleAction = (): void =>
       updateSettingsModal(
-        true,
         React.createElement(BiographyList, {
           items: artist.biography,
           title: 'Biography',
           username: artist.username,
-          onClick: (a: number): any => this.changeChapter(a),
-          background: 'background-white-base'
+          onClick: (a: number): any => this.changeChapter(a)
         }),
         'background-white-base'
       );
@@ -274,14 +270,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             ))}
           </IonSlides>
         </IonContent>
-        <ModalSlide
-          onClose={(): void => updateSettingsModal(false, null)}
-          visible={modal.visible}
-          height={setHeight(40)}
-          className={modal.classname}
-        >
-          {modal.content}
-        </ModalSlide>
       </IonPage>
     );
   }
@@ -328,8 +316,8 @@ const mapStateToProps = ({
   artistAPI
 }: ApplicationState): StateProps => {
   const { modal } = settings;
-  const { currentArtist } = artistAPI;
-  return { currentArtist, modal };
+  const { currentArtist, loading } = artistAPI;
+  return { currentArtist, modal, loading };
 };
 
 export default connect(mapStateToProps, {

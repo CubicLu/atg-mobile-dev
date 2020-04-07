@@ -9,7 +9,6 @@ import { GalleryInterface, ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -48,7 +47,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
 
   onOpenImage(image: string): void {
     this.props.history.push({
-      pathname: `/home/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/image`,
+      pathname: `/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/image`,
       state: { image: image }
     });
   }
@@ -197,22 +196,18 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         : undefined;
     return (
       <IonPage id="gallery-grid-page">
-        <div
-          className={`artist-gallery-grid-page ${this.props.isPlaying &&
-            'is-playing'}`}
-        >
-          <Header title={title} rightActionButton={true} />
-          <HeaderOverlay ref={this.headerRef} />
+        <Header title={title} rightActionButton={true} />
+        <HeaderOverlay ref={this.headerRef} />
 
-          <IonContent
-            fullscreen={true}
-            scrollY={true}
-            scrollEvents={true}
-            onIonScroll={(e): void =>
-              this.headerRef.current?.handleParentScroll(e)
-            }
-            style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#FFF' }}
-          >
+        <IonContent
+          fullscreen={true}
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
+        >
+          <div className={`artist-gallery-grid-page`}>
             <div className={`images`}>
               {cover !== undefined && (
                 <div key={0} onClick={(): void => this.onOpenImage(cover)}>
@@ -227,20 +222,16 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
                 }
               )}
             </div>
-          </IonContent>
-        </div>
+          </div>
+        </IonContent>
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

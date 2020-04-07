@@ -5,7 +5,6 @@ import {
   BackgroundImage,
   Header
 } from "./../../../components";
-import { updateSettingsModal } from "../../../actions";
 import { Colors } from "../../../interfaces";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
@@ -13,13 +12,7 @@ import { ActionSheetButton } from "@ionic/react";
 
 interface StateProps {}
 
-interface DispatchProps {
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
-}
+interface DispatchProps {}
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps {
   onClick: Function;
@@ -84,8 +77,4 @@ class PublicProfileMenuList extends React.Component<Props> {
 
 const mapStateToProps = () => ({});
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal
-  })(PublicProfileMenuList)
-);
+export default withRouter(connect(mapStateToProps, {})(PublicProfileMenuList));

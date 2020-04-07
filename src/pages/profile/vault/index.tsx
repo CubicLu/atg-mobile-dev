@@ -1,13 +1,12 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { ShapesSize, Colors } from '../../../interfaces';
 import {
   Avatar,
   ButtonIcon,
   AddPlaylistIcon,
   CloseIcon,
-  ButtonSupport
+  ButtonSupportIcon
 } from './../../../components';
-
 import {
   IonList,
   IonItemSliding,
@@ -15,9 +14,8 @@ import {
   IonItem,
   IonContent
 } from '@ionic/react';
-import { ShapesSize, Colors } from '../../../interfaces';
 
-interface Props extends RouteComponentProps {}
+interface Props {}
 
 class ProfileVaultPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -43,9 +41,9 @@ class ProfileVaultPage extends React.Component<Props> {
                           <span className="artist">Ben Harper</span>
                         </div>
                         <div className="col s3 support">
-                          <ButtonSupport
+                          <ButtonSupportIcon
+                            artist={null}
                             supported={i % 2 === 0}
-                            buttonType={'icon'}
                           />
                         </div>
                       </div>
@@ -54,13 +52,13 @@ class ProfileVaultPage extends React.Component<Props> {
                       <ButtonIcon
                         icon={<AddPlaylistIcon />}
                         color={Colors.green}
+                        className="no-padding"
                         type={ShapesSize.normal}
                       />
                       <ButtonIcon
-                        icon={
-                          <CloseIcon width={15} height={15} strokeWidth={2} />
-                        }
+                        icon={<CloseIcon strokeWidth={2} />}
                         color={Colors.red}
+                        className="no-padding"
                         type={ShapesSize.normal}
                       />
                     </IonItemOptions>
@@ -75,4 +73,4 @@ class ProfileVaultPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(ProfileVaultPage);
+export default ProfileVaultPage;

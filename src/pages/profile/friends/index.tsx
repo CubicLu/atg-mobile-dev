@@ -62,10 +62,9 @@ class ProfileFriendsPage extends React.Component<Props> {
                   </IonItem>
                   <IonItemOptions side="end">
                     <ButtonIcon
-                      icon={
-                        <CloseIcon width={15} height={15} strokeWidth={2} />
-                      }
+                      icon={<CloseIcon strokeWidth={2} />}
                       color={Colors.red}
+                      className="no-padding"
                       type={ShapesSize.normal}
                     />
                   </IonItemOptions>

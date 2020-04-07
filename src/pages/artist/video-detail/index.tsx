@@ -20,7 +20,6 @@ import MinimizeIcon from '../../../components/icon/minimize';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -67,7 +66,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           className="tile"
           onClick={(): void => {
             this.props.history.push(
-              `/home/artist/${this.props.match.params.id}/deep-dive`
+              `/artist/${this.props.match.params.id}/deep-dive`
             );
           }}
           style={shadowTitle(
@@ -79,9 +78,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
         <div
           className="tile"
           onClick={(): void => {
-            this.props.history.push(
-              `/home/community/${this.props.match.params.id}`
-            );
+            this.props.history.push(`/community/${this.props.match.params.id}`);
           }}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
@@ -92,9 +89,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
         <div
           className="tile"
           onClick={(): void => {
-            this.props.history.push(
-              `/home/artist/${this.props.match.params.id}`
-            );
+            this.props.history.push(`/artist/${this.props.match.params.id}`);
           }}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
@@ -128,7 +123,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <ButtonIcon
             styles={{ position: 'relative' }}
             color={Colors.cyan}
-            icon={<ChatMessageIcon width={22} height={20} />}
+            icon={<ChatMessageIcon />}
             onClick={this.setChat.bind(this, true)}
             overlay={50}
           />
@@ -218,13 +213,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

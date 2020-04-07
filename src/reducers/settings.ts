@@ -51,9 +51,14 @@ import { store } from '../store';
 import LogoIcon from '../components/icon/logo';
 
 const defaultState: SettingsReducerType = {
-  activeTab: 'profile',
-  activeFanTab: 'artists',
-  isPlaying: true,
+  modal: {
+    content: null,
+    height: 40,
+    onClick: (): void => {},
+    onClose: (): void => {},
+    onClosing: (): void => {},
+    onOpen: (): void => {}
+  },
   fanTabs: [
     {
       id: 'artists',
@@ -92,7 +97,7 @@ const defaultState: SettingsReducerType = {
       label: 'Biography',
       icon: 'b',
       isPage: true,
-      route: '/home/artist/:id/biography'
+      route: '/artist/:id/biography'
     },
     {
       id: 'discography',
@@ -105,28 +110,28 @@ const defaultState: SettingsReducerType = {
       label: 'Gallery',
       icon: 'g',
       isPage: true,
-      route: '/home/artist/:id/gallery'
+      route: '/artist/:id/gallery'
     },
     {
       id: 'events',
       label: 'Events',
       icon: 'e',
       isPage: true,
-      route: '/home/artist/:id/event'
+      route: '/artist/:id/event'
     },
     {
       id: 'videos',
       label: 'Videos',
       icon: 'v',
       isPage: true,
-      route: '/home/artist/:id/video'
+      route: '/artist/:id/video'
     },
     {
       id: 'deep',
       label: 'Deep',
       icon: 'd',
       isPage: true,
-      route: '/home/artist/:id/deep-dive'
+      route: '/artist/:id/deep-dive'
     },
     {
       id: 'similar',
@@ -143,22 +148,16 @@ const defaultState: SettingsReducerType = {
               onClick: (): void => {
                 store.dispatch({
                   type: ActionType.UPDATE_SETTINGS_MODAL,
-                  payload: { visible: false, content: null }
+                  payload: { content: null }
                 });
               },
               background: 'background-white-base'
-            }),
-            classname: 'background-white-base'
+            })
           }
         });
       }
     }
   ],
-  activeArtistTab: 'features',
-  modal: {
-    visible: false,
-    content: null
-  },
   plans: [
     {
       name: 'Basic',
@@ -197,102 +196,107 @@ const defaultState: SettingsReducerType = {
 
   links: [
     {
-      path: '/home/artist/:id',
+      path: '/artist/:id',
       id: 'artistPage',
       component: ArtistPage
     },
     {
-      path: '/home/artist/:id/support',
+      path: '/',
+      id: 'profilePageInitial',
+      component: ProfilePage
+    },
+    {
+      path: '/artist/:id/support',
       id: 'artistSupport',
       component: ArtistSupportPage
     },
     {
-      path: '/home/artist/:id/gallery/:galleryId/image',
-      id: 'profile',
+      path: '/artist/:id/gallery/:galleryId/image',
+      id: 'profileGallery',
       component: ArtistGalleryPhotoPage
     },
     {
-      path: '/home/artist/:id/gallery/:galleryId',
-      id: 'profile',
+      path: '/artist/:id/gallery/:galleryId',
+      id: 'profileGalleryGrid',
       component: ArtistGalleryGridPage
     },
     {
-      path: '/home/artist/:id/deep-dive',
-      id: 'profile',
+      path: '/artist/:id/deep-dive',
+      id: 'artistDeepDive',
       component: ArtistDeepDivePage
     },
     {
-      path: '/home/artist/:id/event/:eventId',
-      id: 'profile',
+      path: '/artist/:id/event/:eventId',
+      id: 'artistEvent',
       component: ArtistEventDetailPage
     },
     {
-      path: '/home/artist/:id/gallery',
+      path: '/artist/:id/gallery',
       id: 'artistGallery',
       component: ArtistGalleryPage
     },
     {
-      path: '/home/artist/:id/biography',
+      path: '/artist/:id/biography',
       id: 'artistBiography',
       component: ArtistBiographyPage
     },
     {
-      path: '/home/artist/:id/event/:eventId',
+      path: '/artist/:id/event/:eventId',
       id: 'artistEventDetail',
       component: ArtistEventDetailPage
     },
     {
-      path: '/home/artist/:id/event',
+      path: '/artist/:id/event',
       id: 'artistEvents',
       component: ArtistEventsPage
     },
     {
-      path: '/home/community/comments/:id',
+      path: '/community/comments/:id',
       id: 'communityComments',
       component: CommunityPostPage
     },
     {
-      path: '/home/track/:reference/:referenceId/:id',
-      id: 'b',
+      path: '/track/:reference/:referenceId/:id',
+      id: 'tracklist',
       component: TrackListPage
     },
     {
-      path: '/home/community/:artistId/daily-drip/:dailyDripId',
-      id: 'community',
+      path: '/community/:artistId/daily-drip/:dailyDripId',
+      id: 'communityArtistDailyDrip',
       component: CommunityDailyDripPage
     },
     {
-      path: '/home/community/artist',
+      path: '/community/artist',
       id: 'communityArtist',
       component: CommunityAllArtistsPage
     },
     {
-      path: '/home/community/:artistId',
-      id: 'community',
+      path: '/community/:artistId',
+      id: 'communityArtist',
       component: CommunityPage
     },
     {
-      path: '/home/thank-you',
+      path: '/thank-you',
       id: 'thankYou',
       component: ThankYouPage
     },
     {
-      path: '/home/artist/:id/video/:videoId',
+      path: '/artist/:id/video/:videoId',
       id: 'artistVideo',
       component: ArtistVideoDetailPage
     },
     {
-      path: '/home/artist/:id/video',
+      path: '/artist/:id/video',
       id: 'artistVideos',
       component: ArtistVideosPage
     },
     {
-      path: '/home/radio/filter',
+      path: '/radio/filter',
       id: 'radioFilter',
       component: RadioFilterPage
     },
     {
-      path: '/home/radio/genre/:genre',
+      path: '/radio/genre/:genre',
       id: 'radioHome',
       component: RadioPage
     }
@@ -300,31 +304,31 @@ const defaultState: SettingsReducerType = {
 
   tabs: [
     {
-      path: '/home/feed',
+      path: '/feed',
       icon: LogoIcon,
       id: 'feed',
       component: FeedPage
     },
     {
-      path: '/home/community',
+      path: '/community',
       icon: MessageIcon,
       id: 'community',
       component: CommunityPage
     },
     {
-      path: '/home',
+      path: '/profile',
       icon: ProfileIcon,
       id: 'profile',
       component: ProfilePage
     },
     {
-      path: '/home/search',
+      path: '/search',
       icon: SearchIcon,
       id: 'search',
       component: SearchPage
     },
     {
-      path: '/home/radio',
+      path: '/radio',
       icon: RadioIcon,
       id: 'radio',
       component: RadioPage

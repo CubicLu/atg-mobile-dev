@@ -1,40 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { CardImage } from './../../../components';
-
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
-import { withRouter, RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
-
-interface DispatchProps {}
-
-interface Props extends StateProps, DispatchProps, RouteComponentProps {}
-
-class ArtistDiscographyPage extends React.Component<Props> {
+class ArtistDiscographyPage extends React.Component<StateProps> {
   render(): React.ReactNode {
-    const { isPlaying, currentArtist } = this.props;
+    const { currentArtist } = this.props;
     if (!currentArtist) return <div />;
     const { discography } = currentArtist;
 
     return (
-      <div className={`artist-discography-page ${isPlaying && ' is-playing'}`}>
+      <div className={`artist-discography-page`}>
         <div className="row">
           {discography?.map(
             (d, i): React.ReactNode => (
-              <div
-                onClick={(): void =>
-                  this.props.history.push(
-                    `/home/track/artist/${currentArtist.username}/${i}`
-                  )
-                }
-                key={i}
-              >
-                <CardImage key={i} image={d.cover} />
+              <div key={i}>
+                <CardImage
+                  key={i}
+                  routerLink={`/track/artist/${currentArtist.username}/${i}`}
+                  routerDirection="forward"
+                  image={d.cover}
+                />
               </div>
             )
           )}
@@ -44,13 +34,9 @@ class ArtistDiscographyPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
-export default withRouter(connect(mapStateToProps, {})(ArtistDiscographyPage));
+export default connect(mapStateToProps)(ArtistDiscographyPage);

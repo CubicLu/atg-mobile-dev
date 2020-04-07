@@ -5,21 +5,14 @@ import { IonContent, IonPage, createAnimation } from '@ionic/react';
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
-import { ArtistInterface, MenuInterface, ShapesSize } from '../../interfaces';
-import {
-  updateArtistProperty,
-  updateSettingsProperty,
-  getArtistAPI
-} from './../../actions';
+import { ArtistInterface, MenuInterface } from '../../interfaces';
+import { getArtistAPI } from './../../actions';
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  artists: ArtistInterface[];
   artistTabs: MenuInterface[];
-  activeArtistTab: string;
+  loading: boolean;
 }
 interface DispatchProps {
-  updateArtistProperty: (property: string, value: any) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
   getArtistAPI: (username: string) => void;
 }
 interface MatchParams {
@@ -52,11 +45,14 @@ class ArtistPage extends React.Component<Props, {}> {
     loaded: false
   };
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.currentArtist == null) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
+  UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.loading) return;
+    if (this.props.loading) return;
+    if (
+      this.props.currentArtist == null ||
+      this.props.currentArtist.username !== next.match.params.id
+    ) {
+      this.props.getArtistAPI(next.match.params.id);
     }
   }
   componentWillUnmount(): void {
@@ -188,29 +184,31 @@ class ArtistPage extends React.Component<Props, {}> {
     }
   };
 
+  activeTab: string = 'features';
   handleMenu = (event: MenuInterface): void => {
-    const { match, history, updateSettingsProperty } = this.props;
+    const { match, history } = this.props;
     if (event.route && event.isPage === true) {
-      history.push(event.route.replace(':id', match.params.id));
+      return history.push(event.route.replace(':id', match.params.id));
     } else if (event.onClick) {
-      event.onClick();
-    } else {
-      updateSettingsProperty('activeArtistTab', event.id);
+      return event.onClick();
     }
+    this.activeTab = event.id;
+    this.forceUpdate();
   };
-
   render(): React.ReactNode {
     if (!this.props.currentArtist) {
       return <IonPage style={artistBackground(null)} id="artist-page" />;
     }
-    const { currentArtist: artist, artistTabs, activeArtistTab } = this.props;
+
+    const { currentArtist: artist, artistTabs } = this.props;
+    const activeTab = artistTabs.find((x): boolean => x.id === this.activeTab)!;
     return (
       <IonPage
         id="artist-page"
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackHref="/home" />
+        <Header leftBackHref="/profile/" />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
@@ -220,20 +218,13 @@ class ArtistPage extends React.Component<Props, {}> {
           <br />
           <ButtonSupport
             id="support-button"
-            buttonType={'text'}
-            type={ShapesSize.rounded}
-            uppercase
+            artist={artist}
             supported={artist.support}
-            onClick={(): void => {
-              this.props.history.push(
-                `/home/artist/${artist.username}/support`
-              );
-            }}
           />
 
           <Menu
             tabs={artistTabs}
-            activeId={activeArtistTab}
+            activeId={this.activeTab}
             onClick={this.handleMenu}
           />
         </div>
@@ -247,11 +238,7 @@ class ArtistPage extends React.Component<Props, {}> {
         >
           <div className="offset-content" />
 
-          {artistTabs?.map(
-            (data, i): React.ReactNode =>
-              data.id === activeArtistTab &&
-              React.createElement(data.component, { key: i })
-          )}
+          <activeTab.component />
         </IonContent>
       </IonPage>
     );
@@ -262,18 +249,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists } = artistAPI;
-  const { artistTabs, activeArtistTab } = settings;
-  return {
-    currentArtist,
-    artists,
-    artistTabs,
-    activeArtistTab
-  };
+  const { currentArtist, loading } = artistAPI;
+  const { artistTabs } = settings;
+  return { currentArtist, artistTabs, loading };
 };
 
-export default connect(mapStateToProps, {
-  updateArtistProperty,
-  updateSettingsProperty,
-  getArtistAPI
-})(ArtistPage);
+export default connect(mapStateToProps, { getArtistAPI })(ArtistPage);

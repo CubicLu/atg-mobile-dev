@@ -9,16 +9,16 @@ import { ShapesSize } from "../../../interfaces";
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
   updateSettingsModal: (
-    visible: boolean,
     content: React.ReactNode,
-    className?: string
+    className?: string,
+    height?: number,
+    onClick?: Function
   ) => void;
 }
-
-interface Props extends DispatchProps {}
 interface State {
   showProfileActions: boolean;
 }
+interface Props extends DispatchProps {}
 class HeaderProfileComponent extends React.Component<Props, State> {
   handleLogout(): void {
     this.props.updateAuthProperty("loggedUser", undefined);
@@ -61,11 +61,10 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     this.setState({ showProfileActions: opt });
   }
 
-  hideMenuListModal = () => this.props.updateSettingsModal(false, null);
+  hideMenuListModal = () => this.props.updateSettingsModal(null);
 
   showMenuListModal = () => {
     this.props.updateSettingsModal(
-      true,
       <MenuProfileList
         title={"Public profile"}
         onClick={this.hideMenuListModal}

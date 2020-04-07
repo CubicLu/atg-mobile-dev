@@ -33,7 +33,6 @@ interface MatchParams {
   artistId: string;
 }
 interface StateProps {
-  isPlaying: boolean;
   posts: PostInterface[];
   loadingCommunity: boolean;
   stories: StorieInterface[];
@@ -190,8 +189,8 @@ class CommunityPage extends React.Component<Props, State> {
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
-            icon={<ChatMessageIcon height={12} />}
-            label={' Join Chat'}
+            icon={<ChatMessageIcon />}
+            label={'\u00A0 JOIN CHAT'}
             onClick={(): void => this.setState({ joined: true })}
           />
         </div>
@@ -202,7 +201,6 @@ class CommunityPage extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { isArtist } = this.state;
-    const { isPlaying } = this.props;
     return (
       <IonPage id="community-page">
         <BackgroundImage
@@ -216,11 +214,7 @@ class CommunityPage extends React.Component<Props, State> {
         />
         {this.renderHeader()}
         <IonContent>
-          <div
-            className={
-              `community-page mt-3 content` + (isPlaying && ' is-playing')
-            }
-          >
+          <div className={`community-page mt-3 content`}>
             {this.renderJoinButton()}
             {this.props.stories.length > 0 && (
               <>
@@ -229,7 +223,7 @@ class CommunityPage extends React.Component<Props, State> {
                   viewAll={true}
                   className="mt-1 mx-3"
                   onClickAll={(): void => {
-                    this.props.history.push(`/home/community/artist`);
+                    this.props.history.push(`/community/artist`);
                   }}
                 />
                 <SliderStories
@@ -239,7 +233,7 @@ class CommunityPage extends React.Component<Props, State> {
                   onPressItem={(id): void => {
                     if (this.state.isArtist) {
                       this.props.history.push(
-                        `/home/community/${this.props.match.params.artistId}/daily-drip/${id}`
+                        `/community/${this.props.match.params.artistId}/daily-drip/${id}`
                       );
                     }
                   }}
@@ -259,15 +253,10 @@ class CommunityPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  communityAPI
-}: ApplicationState): StateProps => {
-  const { isPlaying } = settings;
+const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   const { posts, stories, currentCommunityArtist } = communityAPI;
   const loadingCommunity = communityAPI.loading;
   return {
-    isPlaying,
     posts,
     loadingCommunity,
     stories,

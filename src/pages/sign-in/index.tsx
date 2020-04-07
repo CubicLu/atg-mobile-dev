@@ -8,7 +8,6 @@ import {
   Header,
   Button
 } from './../../components';
-import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
 import { ShapesSize, Sizes } from '../../interfaces';
@@ -28,7 +27,7 @@ class SignInPage extends React.Component<Props> {
       avatar:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg'
     });
-    this.props.history.push('/home');
+    this.props.history.push('');
   }
 
   render(): React.ReactNode {
@@ -88,9 +87,5 @@ class SignInPage extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
 
-export default connect(mapStateToProps, { updateAuthProperty })(SignInPage);
+export default connect(null, { updateAuthProperty })(SignInPage);

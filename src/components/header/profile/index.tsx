@@ -1,14 +1,13 @@
 import React from 'react';
 import { Avatar, Header, MenuProfileList } from './../../../components';
 import { connect } from 'react-redux';
-import { updateAuthProperty, updateSettingsModal } from '../../../actions';
+import { updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { ShapesSize, profileActions } from '../../../interfaces';
 
 interface StateProps {}
 
 interface DispatchProps {
-  updateAuthProperty: (property: string, value: any) => void;
   updateSettingsModal: (
     content: React.ReactNode,
     className?: string,
@@ -71,6 +70,5 @@ const mapStateToProps = ({}: ApplicationState): StateProps => {
 };
 
 export default connect(mapStateToProps, {
-  updateAuthProperty,
   updateSettingsModal
 })(HeaderProfileComponent);

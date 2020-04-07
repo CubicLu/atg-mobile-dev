@@ -1,23 +1,6 @@
 .chat-component{
     height: auto;
     background: #FFF;
-
-    .messages{
-        max-height: 200px;
-        width: 100%;
-        overflow-y: scroll;
-        .info{
-            span{
-                display: block;
-                line-height: 16px;
-                font-family: "Montserrat";
-                word-wrap: break-word;
-                &:first-child{
-                    color: #7c8188;
-                }
-            }
-        }
-    }
     
     .input{
         width: 100%;

@@ -196,7 +196,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightUserGroupButton && (
               <div
                 className="default-button"
-                onClick={(): any => this.pushUrl('/feed', 'forward')}
+                onClick={(): any => this.pushUrl('/message', 'forward')}
               >
                 <UserGroupIcon color={'#FFF'} height={23} width={23} />
               </div>

@@ -37,7 +37,10 @@ import {
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   ProfileMixtapesPage,
-  RadioFilterPage
+  RadioFilterPage,
+  MessagePage,
+  MessageChatPage,
+  MessageNotificationsPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -299,6 +302,11 @@ const defaultState: SettingsReducerType = {
       path: '/radio/genre/:genre',
       id: 'radioHome',
       component: RadioPage
+    },
+    {
+      path: '/message',
+      id: 'message',
+      component: MessagePage
     }
   ],
 
@@ -354,7 +362,22 @@ const defaultState: SettingsReducerType = {
       icon: 'c',
       component: ArtistDeepDiveCataloguePage
     }
-  ]
+  ],
+  messageTabs: [
+    {
+      id: 'chat',
+      label: 'Chat',
+      icon: '',
+      component: MessageChatPage
+    },
+    {
+      id: 'notifications',
+      label: 'Notifications',
+      icon: '',
+      component: MessageNotificationsPage
+    }
+  ],
+  activeMessageTab: 'chat'
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

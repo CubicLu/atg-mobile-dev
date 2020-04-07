@@ -40,6 +40,9 @@ import VideoPlayerComponent from './video-player';
 import ChatComponent from './chat';
 import SearchResultSectionComponent from './search-result-section';
 import PhotoChatComponent from './photo-chat';
+import InputSearchComponent from './input/search';
+import MenuMessageComponent from './menu/message';
+import ChatRowComponent from './chat/row';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -107,7 +110,10 @@ export {
   VideoPlayerComponent as VideoPlayer,
   ChatComponent as Chat,
   SectionTitleComponent as SectionTitle,
-  SearchResultSectionComponent as SearchResultSection
+  SearchResultSectionComponent as SearchResultSection,
+  InputSearchComponent as InputSearch,
+  MenuMessageComponent as MenuMessage,
+  ChatRowComponent as ChatRow
 };
 
 export {

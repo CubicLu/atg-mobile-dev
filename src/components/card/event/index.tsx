@@ -67,7 +67,7 @@ class CardEventComponent extends React.Component<Props, State> {
               <li
                 onClick={(): void => {
                   this.props.history.push(
-                    `/home/artist/${this.props.artistUsername}/event/${this.props.id}`
+                    `/artist/${this.props.artistUsername}/event/${this.props.id}`
                   );
                 }}
               >

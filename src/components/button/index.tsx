@@ -8,10 +8,10 @@ interface Props {
   className?: string;
   id?: string;
   color?: Colors;
-  gradient?: boolean;
   bold?: boolean;
   type?: ShapesSize;
   size?: Sizes;
+  gradient?: boolean;
   gradientDirection?: GradientDirection;
 }
 
@@ -26,19 +26,21 @@ class ButtonComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { onClick, color, type, label, id } = this.props;
-    let gradient = this.props.gradient ? 'gradient' : '';
-    let bold = this.props.bold ? 'bold' : '';
-    let size = this.props.size !== Sizes.md && Sizes.lg ? 'large' : '';
-    let gradientDirection = this.props.gradientDirection
-      ? this.props.gradientDirection
-      : GradientDirection.horizontal;
-    const buttonId = id || 'btn-id';
-    const customClass = this.props.className ? this.props.className : '';
+    let pattern = this.props.gradient ? 'gradient ' : '';
+    pattern += this.props.bold ? 'bold ' : '';
+    pattern += this.props.size !== Sizes.md && Sizes.lg ? 'large ' : '';
+    pattern += this.props.className ? this.props.className : ' ';
+    if (this.props.gradient) {
+      pattern += ' ';
+      pattern += this.props.gradientDirection
+        ? this.props.gradientDirection
+        : GradientDirection.horizontal;
+    }
     return (
       <button
-        id={buttonId}
+        id={id || 'btn-id'}
         onClick={(): void => onClick()}
-        className={`btn ${color} ${size} ${gradient} ${gradientDirection} ${type} ${bold} ${customClass}`}
+        className={`btn ${type} ${color} ${pattern.trim()}`}
       >
         {label}
       </button>

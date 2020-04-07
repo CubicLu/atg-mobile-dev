@@ -29,6 +29,7 @@ import MenuArtistListComponent from './menu/artist-list';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import ButtonSupportComponent from './button/support';
+import ButtonSupportIconComponent from './button/support-icon';
 import SliderStoriesComponent from './slider/stories';
 import CardPostComponent from './card/post';
 import PostCoverComponent from './post/post-cover';
@@ -90,6 +91,7 @@ export {
   CardAlbumGalleryComponent as CardAlbumGallery,
   LoaderFullscreenComponent as LoaderFullscreen,
   ButtonSupportComponent as ButtonSupport,
+  ButtonSupportIconComponent as ButtonSupportIcon,
   SliderStoriesComponent as SliderStories,
   CardPostComponent as CardPost,
   PostCoverComponent as PostCover,

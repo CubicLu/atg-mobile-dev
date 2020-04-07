@@ -190,8 +190,8 @@ class CommunityPage extends React.Component<Props, State> {
           <ButtonIcon
             color={Colors.support}
             type={ShapesSize.rounded}
-            icon={<ChatMessageIcon height={12} />}
-            label={' Join Chat'}
+            icon={<ChatMessageIcon />}
+            label={'Join Chat'}
             onClick={(): void => this.setState({ joined: true })}
           />
         </div>
@@ -229,7 +229,7 @@ class CommunityPage extends React.Component<Props, State> {
                   viewAll={true}
                   className="mt-1 mx-3"
                   onClickAll={(): void => {
-                    this.props.history.push(`/home/community/artist`);
+                    this.props.history.push(`/community/artist`);
                   }}
                 />
                 <SliderStories
@@ -239,7 +239,7 @@ class CommunityPage extends React.Component<Props, State> {
                   onPressItem={(id): void => {
                     if (this.state.isArtist) {
                       this.props.history.push(
-                        `/home/community/${this.props.match.params.artistId}/daily-drip/${id}`
+                        `/community/${this.props.match.params.artistId}/daily-drip/${id}`
                       );
                     }
                   }}

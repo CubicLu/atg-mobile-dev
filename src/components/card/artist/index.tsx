@@ -1,32 +1,49 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
-  DotsThreeIcon,
-  ButtonIcon,
   MenuFanSupportOptions,
-  ButtonSupport
+  ButtonSupportIcon
 } from './../../../components';
-import { updateArtistProperty, updateSettingsModal } from './../../../actions';
-import { ArtistInterface, Colors } from './../../../interfaces';
+import { updateSettingsModal } from './../../../actions';
+import { ArtistInterface } from './../../../interfaces';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../../reducers';
+import { IonRouterLink } from '@ionic/react';
 
-interface StateProps {}
 interface DispatchProps {
-  updateArtistProperty: (property: string, value: any) => void;
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+interface Props extends DispatchProps {
   artist: ArtistInterface;
   key: number;
 }
 class CardArtistComponent extends React.Component<Props> {
+  renderSupported(): React.ReactElement {
+    return (
+      <IonRouterLink
+        routerLink={`/artist/${this.props.artist.username}/support`}
+        routerDirection="forward"
+      >
+        <ButtonSupportIcon supported={true} />
+      </IonRouterLink>
+    );
+  }
+  renderNotSupported(): React.ReactElement {
+    return (
+      <ButtonSupportIcon
+        onClick={(): void =>
+          this.props.updateSettingsModal(
+            <MenuFanSupportOptions
+              background={'background-tertiary-opacity95'}
+              artist={this.props.artist}
+            />,
+            'background-tertiary-opacity95'
+          )
+        }
+        supported={false}
+      />
+    );
+  }
   render(): React.ReactNode {
-    const { artist, updateSettingsModal, history } = this.props;
+    const { artist } = this.props;
     if (!artist) return <div />;
     const { cover, username, support, name } = artist;
 
@@ -35,58 +52,22 @@ class CardArtistComponent extends React.Component<Props> {
         className="card-artist my-3 mx-2"
         style={{ backgroundImage: `url(${cover.main})` }}
       >
-        <div className="space-between h-100">
-          <div className="flex-justify-content-end px-1">
-            <ButtonIcon
-              color={Colors.transparent}
-              icon={<DotsThreeIcon color={'#6a6565'} />}
-              onClick={(): void =>
-                updateSettingsModal(
-                  true,
-                  React.createElement(MenuFanSupportOptions, {
-                    artist: artist,
-                    onClick: (): void => updateSettingsModal(false, null),
-                    background: 'background-tertiary-opacity95'
-                  }),
-                  'background-tertiary-opacity95'
-                )
-              }
-            />
+        <div className="flex-align-items-end h-100 px-2 pb-2">
+          <div className="align-start">
+            <IonRouterLink
+              routerLink={`/artist/${username}`}
+              routerDirection="root"
+            >
+              <div className="h3 artist-card-name l12">{name}</div>
+            </IonRouterLink>
           </div>
-
-          <div
-            className="flex-space-between-bottom mx-1 mb-1 l12"
-            onClick={(): void => {
-              history.action = 'POP';
-              history.replace(`/home/artist/${username}`);
-            }}
-          >
-            <div className="h3 artist-card-name l12 align-start">
-              <span>{name}</span>
-            </div>
-            <div className="align-end">
-              <ButtonSupport
-                buttonType={'icon'}
-                supported={support}
-                onClick={(): void => {
-                  history.push(`/home/artist/${username}/support`);
-                }}
-              />
-            </div>
+          <div className="align-end">
+            {support ? this.renderSupported() : this.renderNotSupported()}
           </div>
         </div>
       </div>
     );
   }
 }
-const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { modal } = settings;
-  return { modal };
-};
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal,
-    updateArtistProperty
-  })(CardArtistComponent)
-);
+export default connect(null, { updateSettingsModal })(CardArtistComponent);

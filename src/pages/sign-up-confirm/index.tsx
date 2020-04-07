@@ -25,7 +25,7 @@ class SignUpConfirmPage extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           leftContent={<div className="h1 l08 no-wrap">CONFIRM</div>}
-          rightCloseOnClick={(): any => this.props.history.push('/home')}
+          rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 
         <div className="initial-page-fullscreen double-top">

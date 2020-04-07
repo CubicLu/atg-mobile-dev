@@ -85,11 +85,7 @@ class TrackListPage extends React.Component<Props> {
             </div>
             {currentArtist && (
               <div className="center player-support">
-                <ButtonSupport
-                  buttonType={'text'}
-                  uppercase
-                  type={ShapesSize.rounded}
-                />
+                <ButtonSupport />
               </div>
             )}
             <div className="end" />

@@ -7,15 +7,14 @@ import { ApplicationState } from '../../reducers';
 import { ModalSlideInterface } from '../../interfaces';
 import { setHeight } from '../../utils';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import {
   IonTabs,
   IonTabBar,
   IonTabButton,
-  IonRouterOutlet,
-  IonApp
+  IonRouterOutlet
 } from '@ionic/react';
-import { NotFoundPage, ProfilePage } from '..';
+import { NotFoundPage } from '..';
 
 interface StateProps {
   activeTab: string;
@@ -28,62 +27,59 @@ interface StateProps {
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
 
 interface Props extends StateProps, DispatchProps {}
 
 class HomePage extends React.Component<Props> {
+  renderModal(instance: ModalSlideInterface): React.ReactElement {
+    return (
+      <ModalSlide
+        onClose={(): void => this.props.updateSettingsModal(null)}
+        visible={!!instance.content}
+        height={setHeight(40)}
+        className={instance.classname}
+      >
+        {instance.content}
+      </ModalSlide>
+    );
+  }
+
   render(): React.ReactNode {
     const { modal, activeTab, tabs, links, loading } = this.props;
     return (
-      <IonApp>
+      <>
+        <LoaderFullscreen visible={loading} />
         <IonReactRouter>
-          <LoaderFullscreen visible={loading} />
+          {this.renderModal(modal)}
           <Player />
-          {modal && (
-            <ModalSlide
-              onClose={(): void => this.props.updateSettingsModal(false, null)}
-              visible={modal.visible}
-              height={setHeight(40)}
-              className={modal.classname}
-            >
-              {modal.content}
-            </ModalSlide>
-          )}
-
           <IonTabs
-            onIonTabsDidChange={(event): void => {
-              this.props.updateSettingsProperty('activeTab', event.detail.tab);
-            }}
+            onIonTabsDidChange={(event): void =>
+              this.props.updateSettingsProperty('activeTab', event.detail.tab)
+            }
           >
             <IonRouterOutlet>
-              {links.map((p: LinksInterface, i: number): any => (
-                <Route exact path={p.path} component={p.component} key={i} />
-              ))}
               {tabs.map((p: TabsInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
-              <Route exact path="/" component={ProfilePage} />
+              {links.map((p: LinksInterface, i: number): any => (
+                <Route exact path={p.path} component={p.component} key={i} />
+              ))}
+              <Redirect exact path="" to="/profile" />
               <Route path="*" component={NotFoundPage} />
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom" color="dark">
+            <IonTabBar slot="bottom" color="dark" selectedTab={activeTab}>
               {tabs.map((p: TabsInterface): any => (
                 <IonTabButton tab={p.id} href={p.path} key={p.id}>
-                  {React.createElement(p.icon, {
-                    color: activeTab === p.id ? '#00BAFF' : '#FFF'
-                  })}
+                  <p.icon color={activeTab === p.id ? '#00BAFF' : '#FFF'} />
                 </IonTabButton>
               ))}
             </IonTabBar>
           </IonTabs>
         </IonReactRouter>
-      </IonApp>
+      </>
     );
   }
 }

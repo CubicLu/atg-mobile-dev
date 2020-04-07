@@ -1,8 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {} from '../../index';
-import {} from '../../../actions';
-import { ApplicationState } from '../../../reducers';
 
 interface Props {}
 class PostText extends React.Component<Props> {
@@ -15,8 +12,4 @@ class PostText extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): object => {
-  return {};
-};
-export default connect(mapStateToProps, {})(PostText);
+export default connect(null, {})(PostText);

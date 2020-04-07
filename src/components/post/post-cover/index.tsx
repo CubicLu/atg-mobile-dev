@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { ApplicationState } from '../../../reducers';
 import { CommentCoverInterface } from '../../../interfaces';
 import {
   ButtonIcon,
@@ -9,9 +7,8 @@ import {
   HeartIcon,
   Header
 } from '../../index';
-import { RouteComponentProps, withRouter } from 'react-router';
 
-interface Props extends RouteComponentProps {
+interface Props {
   cover: CommentCoverInterface;
 }
 
@@ -28,7 +25,7 @@ class PostCover extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseHref="/home/community"
+          rightCloseHref="/community"
         />
         <div className="row button-container">
           <div className="action-btns row">
@@ -43,9 +40,4 @@ class PostCover extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): object => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, {})(PostCover));
+export default PostCover;

@@ -48,7 +48,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
 
   onOpenImage(image: string): void {
     this.props.history.push({
-      pathname: `/home/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/image`,
+      pathname: `/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/image`,
       state: { image: image }
     });
   }

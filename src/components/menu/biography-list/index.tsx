@@ -8,18 +8,12 @@ import {
 import { updateSettingsModal } from './../../../actions';
 import { BiographyInterface, Colors } from '../../../interfaces';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../../reducers';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { LockedIcon } from '../../icon';
-interface StateProps {}
+
 interface DispatchProps {
-  updateSettingsModal: (
-    visible: boolean,
-    content: React.ReactNode,
-    className?: string
-  ) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+interface Props extends DispatchProps {
   onClick: Function;
   title: string;
   username: string;
@@ -27,9 +21,7 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {
   items?: BiographyInterface[];
 }
 class BiographyListComponent extends React.Component<Props> {
-  public static defaultProps = {
-    onClick: (): void => {}
-  };
+  public static defaultProps = { onClick: (): void => {} };
   render(): React.ReactNode {
     return (
       <div className="menu-generic-list">
@@ -78,12 +70,7 @@ class BiographyListComponent extends React.Component<Props> {
     );
   }
 }
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
-};
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal
-  })(BiographyListComponent)
-);
+
+export default connect(null, {
+  updateSettingsModal
+})(BiographyListComponent);

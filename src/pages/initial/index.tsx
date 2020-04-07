@@ -7,11 +7,9 @@ import {
 } from './../../components';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
-import { ApplicationState } from '../../reducers';
 import { Sizes, ShapesSize, Colors } from '../../interfaces';
 
 interface Props extends DispatchProps {}
-interface StateProps {}
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
 }
@@ -71,9 +69,5 @@ class InitialPage extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
 
-export default connect(mapStateToProps, { updateAuthProperty })(InitialPage);
+export default connect(null, { updateAuthProperty })(InitialPage);

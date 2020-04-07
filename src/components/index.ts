@@ -26,6 +26,7 @@ import ButtonPlanComponent from './button/plan';
 import ListComponent from './list';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
+import MenuProfileListComponent from './menu/profile-list';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import SliderStoriesComponent from './slider/stories';
@@ -77,6 +78,7 @@ export {
   HeaderComponent as Header,
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
+  MenuProfileListComponent as MenuProfileList,
   SliderImageComponent as SliderImage,
   SliderVideoComponent as SliderVideo,
   CardImageComponent as CardImage,

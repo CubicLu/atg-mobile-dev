@@ -1,22 +1,25 @@
 .avatar {
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    &.normal{
-    }
+  position: absolute;
+  top: 32px;
+  z-index: 9999;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  &.normal {
+  }
 
-    &.rounded{
-        border-radius: 5px;
-    }
+  &.rounded {
+    border-radius: 5px;
+  }
 
-    &.circle{
-        border-top-left-radius: 50% 50%;
-        border-top-right-radius: 50% 50%;
-        border-bottom-right-radius: 50% 50%;
-        border-bottom-left-radius: 50% 50%;
-    }
+  &.circle {
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+  }
 }

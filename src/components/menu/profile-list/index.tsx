@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
   BackgroundImage,
   Header
-} from "./../../../components";
-import { Colors } from "../../../interfaces";
-import { connect } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router";
-import { ActionSheetButton } from "@ionic/react";
+} from './../../../components';
+import { Colors } from '../../../interfaces';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { ActionSheetButton } from '@ionic/react';
 
 interface StateProps {}
 
@@ -22,7 +21,7 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {
   data: ActionSheetButton[];
 }
 
-class PublicProfileMenuList extends React.Component<Props> {
+class ProfileMenuList extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): void => {},
     isSimilar: false
@@ -61,7 +60,7 @@ class PublicProfileMenuList extends React.Component<Props> {
                       <div className="f4 dark">{text}</div>
                     </div>
                     <ButtonIcon
-                      icon={<ArrowRightIcon color={"#000"} />}
+                      icon={<ArrowRightIcon color={'#000'} />}
                       color={Colors.transparent}
                     />
                   </li>
@@ -75,6 +74,4 @@ class PublicProfileMenuList extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = () => ({});
-
-export default withRouter(connect(mapStateToProps, {})(PublicProfileMenuList));
+export default withRouter(ProfileMenuList);

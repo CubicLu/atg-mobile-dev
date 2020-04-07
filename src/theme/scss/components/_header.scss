@@ -1,94 +1,93 @@
 .atg-header {
-    --ion-safe-area-top: $header-margin-top;
-    margin-top: $header-margin-top;
-    margin-left: $header-margin-left;
-    margin-right: $header-margin-right;
-    margin-bottom: $header-margin-bottom;
-    .title-left{
-        top: 12px;
-        left: 24px;
-        position: absolute;
-    }
-    z-index: 10;
+  --ion-safe-area-top: $header-margin-top;
+  margin-top: $header-margin-top;
+  margin-left: $header-margin-left;
+  margin-right: $header-margin-right;
+  margin-bottom: $header-margin-bottom;
+  .title-left {
+    top: 12px;
+    left: 24px;
+    position: absolute;
+  }
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  &.fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+  &.header-top {
+    top: 0;
+  }
+  .default-button {
+    margin-top: $button-margin-top;
+    border-radius: 50%;
+    height: $header-button;
+    width: $header-button;
+    min-height: $header-button;
+    min-width: $header-button;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    //min-height: 44px;
-    &.fixed{
-        position: fixed;
-        left: 0;
-        right: 0;
+    justify-content: center;
+    align-items: center;
+    &.dark {
+      background: #0000004d;
     }
-    &.header-top{
-        top: 0;
+    &.gold {
+      background: #fcc505;
     }
-    .default-button{
-        margin-top: $button-margin-top;
-        border-radius: 50%;
-        height: $header-button;
-        width: $header-button;
-        min-height: $header-button;
-        min-width: $header-button;
-        color: #FFF;
-        cursor: pointer;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &.dark{
-            background: #0000004d;
-        }
-        &.gold{
-            background: #fcc505;
-        }
+  }
+  .start {
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+    min-width: 50px;
+    .default-button {
+      margin-left: 0;
+      margin-right: $button-margin-right;
     }
-    .start{
-        float: left;
-        display: flex;
-        justify-content: flex-start;
-        min-width: 50px;
-        .default-button{
-            margin-left: 0;
-            margin-right: $button-margin-right;
-        }
+  }
+  .center {
+    line-height: 1.1;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .end {
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 50px;
+    .default-button {
+      margin-right: 0;
+      margin-left: $button-margin-right;
     }
-    .center{
-        line-height: 1.1;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-    }
-    .end{
-        float: right;
-        display: flex;
-        justify-content: flex-end;
-        min-width: 50px;
-        .default-button{
-            margin-right: 0;
-            margin-left: $button-margin-right;
-        }
-    }
-    svg{
-        z-index: 1;
-    }
+  }
+  svg {
+    z-index: 1;
+  }
 
-    .community-artist-name{
-        font-size: 30px;
-        line-height: 34px;
-        font-family: "Industria";
-        margin-left: 8px;
-        font-weight: 600;
-        color: white;
-        text-align: left;
-        text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
-        width: 100%;
-        opacity: 1;
-        animation-name: fadeInOpacity;
-        animation-timing-function: ease-in;
-        animation-duration: 400ms;
-        &.hide{
-            opacity: 0;
-        }
+  .community-artist-name {
+    font-size: 30px;
+    line-height: 34px;
+    font-family: "Industria";
+    margin-left: 8px;
+    font-weight: 600;
+    color: white;
+    text-align: left;
+    text-shadow: 0 3px 1px rgba(0, 0, 0, 0.16);
+    width: 100%;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-timing-function: ease-in;
+    animation-duration: 400ms;
+    &.hide {
+      opacity: 0;
     }
+  }
 }

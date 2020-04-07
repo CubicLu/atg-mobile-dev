@@ -1,10 +1,12 @@
-import React from "react";
-import { Avatar, Header, MenuProfileList } from "./../../../components";
-import { IonActionSheet, ActionSheetButton } from "@ionic/react";
-import { connect } from "react-redux";
-import { updateAuthProperty, updateSettingsModal } from "../../../actions";
-import { ApplicationState } from "../../../reducers";
-import { ShapesSize } from "../../../interfaces";
+import React from 'react';
+import { Avatar, Header, ProfileMenuList } from './../../../components';
+import { IonActionSheet, ActionSheetButton } from '@ionic/react';
+import { connect } from 'react-redux';
+import { updateAuthProperty, updateSettingsModal } from '../../../actions';
+import { ApplicationState } from '../../../reducers';
+import { ShapesSize } from '../../../interfaces';
+
+interface StateProps {}
 
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
@@ -19,10 +21,11 @@ interface State {
   showProfileActions: boolean;
 }
 interface Props extends DispatchProps {}
+
 class HeaderProfileComponent extends React.Component<Props, State> {
   handleLogout(): void {
-    this.props.updateAuthProperty("loggedUser", undefined);
-    window.location.href = "/initial";
+    this.props.updateAuthProperty('loggedUser', undefined);
+    window.location.href = '/initial';
   }
 
   constructor(props: Props) {
@@ -34,26 +37,26 @@ class HeaderProfileComponent extends React.Component<Props, State> {
 
   profileActions: ActionSheetButton[] = [
     {
-      text: "View my public profile",
-      role: "destructive",
-      handler: (): void => console.log("Delete clicked")
+      text: 'View my public profile',
+      role: 'destructive',
+      handler: (): void => console.log('Delete clicked')
     },
     {
-      text: "Edit my public profile",
-      handler: (): void => console.log("Share clicked")
+      text: 'Edit my public profile',
+      handler: (): void => console.log('Share clicked')
     },
     {
-      text: "Improve my public profile",
-      handler: (): void => console.log("Play clicked")
+      text: 'Improve my public profile',
+      handler: (): void => console.log('Play clicked')
     },
     {
-      text: "Log out",
+      text: 'Log out',
       handler: (): void => this.handleLogout()
     },
     {
-      text: "Cancel",
-      role: "cancel",
-      handler: (): void => console.log("Cancel clicked")
+      text: 'Cancel',
+      role: 'cancel',
+      handler: (): void => console.log('Cancel clicked')
     }
   ];
 
@@ -61,17 +64,17 @@ class HeaderProfileComponent extends React.Component<Props, State> {
     this.setState({ showProfileActions: opt });
   }
 
-  hideMenuListModal = () => this.props.updateSettingsModal(null);
+  hideMenuListModal = (): void => this.props.updateSettingsModal(null);
 
-  showMenuListModal = () => {
+  showMenuListModal = (): void => {
     this.props.updateSettingsModal(
-      <MenuProfileList
-        title={"Public profile"}
+      <ProfileMenuList
+        title={'Public profile'}
         onClick={this.hideMenuListModal}
-        background={"background-white-base"}
+        background={'background-white-base'}
         data={this.profileActions.slice(0, 3)}
       />,
-      "background-white-base"
+      'background-white-base'
     );
   };
 
@@ -99,8 +102,6 @@ class HeaderProfileComponent extends React.Component<Props, State> {
   }
 }
 
-interface StateProps {}
-// eslint-disable-next-line
 const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };

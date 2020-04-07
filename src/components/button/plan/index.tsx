@@ -1,14 +1,7 @@
 import React from 'react';
 import { ButtonIcon, DotsThreeIcon } from './../../';
-
 import { Colors, PlanInterface } from '../../../interfaces';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-
-interface MatchParams {
-  id: string;
-}
-
-interface Props extends RouteComponentProps<MatchParams> {
+interface Props {
   onClick: Function;
   onClickDetail?: Function;
   styles?: object;
@@ -53,4 +46,4 @@ class ButtonPlanComponent extends React.Component<Props> {
   }
 }
 
-export default withRouter(ButtonPlanComponent);
+export default ButtonPlanComponent;

@@ -48,7 +48,6 @@ import {
 } from '../icon/player';
 import { PlayIcon } from '../icon';
 import VigilAnimator from '../../utils/animateFrame';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { shadowTitle } from '../../utils';
 
 interface StateProps {
@@ -68,7 +67,7 @@ interface DispatchProps {
   resumeSong: () => void;
   updateElapsed: (time: number) => void;
 }
-interface Props extends StateProps, DispatchProps, RouteComponentProps {}
+interface Props extends StateProps, DispatchProps {}
 
 class PlayerComponent extends React.Component<Props> {
   audio: HTMLAudioElement | undefined;
@@ -259,9 +258,15 @@ class PlayerComponent extends React.Component<Props> {
         </div>
 
         <div className="row mini-bar">
-          <div className="mini-bar-left" onClick={this.togglePlayer} />
+          <div
+            className="mini-bar-left"
+            onClick={(e): Promise<void> => this.togglePlayer(e)}
+          />
           <div className="no-padding mini-bar  mini-bar-content">
-            <div onClick={this.togglePlayer} className="infos">
+            <div
+              onClick={(e): Promise<void> => this.togglePlayer(e)}
+              className="infos"
+            >
               <div className="song f7">{song?.name}</div>
               <div className="artist f7 neue">{song?.artist}</div>
             </div>
@@ -387,7 +392,6 @@ class PlayerComponent extends React.Component<Props> {
         >
           <span className="f6">Community</span>
         </div>
-
         <div
           className="tile"
           onClick={(): Promise<void> => this.togglePlayer(null)}
@@ -399,7 +403,9 @@ class PlayerComponent extends React.Component<Props> {
             routerLink="'/track/default/2/1'"
             routerDirection="forward"
           >
-            <span className="f6">Artist Home</span>
+            <div>
+              <span className="f6">Artist Home</span>
+            </div>
           </IonRouterLink>
         </div>
       </div>
@@ -441,7 +447,7 @@ class PlayerComponent extends React.Component<Props> {
           leftBackButton={false}
           rightInfoButton={true}
           rightInfoOnClick={(): void => {}}
-          centerContent={<ButtonSupport />}
+          centerContent={<ButtonSupport artist={null} />}
           leftMinimizeButton={true}
           leftMinimizeOnClick={(e): Promise<void> => this.togglePlayer(e)}
         />
@@ -473,6 +479,7 @@ class PlayerComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { expanded } = this.props.player;
+    const active = this.props.player.song ? 'active' : '';
     if (!this.expansePlayerAnimation) this.createPlayerAnimation();
 
     return (
@@ -490,7 +497,8 @@ class PlayerComponent extends React.Component<Props> {
           {expanded && this.fullPlayer()}
         </div>
         {expanded && this.fullPlayerButtons()}
-        <div id="player" className="mini-player">
+
+        <div className={`mini-player ${active}`} id="player">
           <div id="pull" className="pull">
             <svg
               width="400"
@@ -519,19 +527,17 @@ class PlayerComponent extends React.Component<Props> {
 const mapStateToProps = ({ player }: ApplicationState): StateProps => {
   return { player };
 };
-export default withRouter(
-  connect(mapStateToProps, {
-    setPlaylistPlayer,
-    setRadioPlaylistPlayer,
-    togglePlayer,
-    toggleShuffle,
-    toggleRepeat,
-    playSong,
-    favoriteSong,
-    pauseSong,
-    nextSong,
-    prevSong,
-    resumeSong,
-    updateElapsed
-  })(PlayerComponent)
-);
+export default connect(mapStateToProps, {
+  setPlaylistPlayer,
+  setRadioPlaylistPlayer,
+  togglePlayer,
+  toggleShuffle,
+  toggleRepeat,
+  playSong,
+  favoriteSong,
+  pauseSong,
+  nextSong,
+  prevSong,
+  resumeSong,
+  updateElapsed
+})(PlayerComponent);

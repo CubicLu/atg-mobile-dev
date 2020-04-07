@@ -51,9 +51,14 @@ import { store } from '../store';
 import LogoIcon from '../components/icon/logo';
 
 const defaultState: SettingsReducerType = {
-  activeTab: 'profile',
-  activeFanTab: 'artists',
-  isPlaying: true,
+  modal: {
+    content: null,
+    height: 40,
+    onClick: (): void => {},
+    onClose: (): void => {},
+    onClosing: (): void => {},
+    onOpen: (): void => {}
+  },
   fanTabs: [
     {
       id: 'artists',
@@ -143,22 +148,16 @@ const defaultState: SettingsReducerType = {
               onClick: (): void => {
                 store.dispatch({
                   type: ActionType.UPDATE_SETTINGS_MODAL,
-                  payload: { visible: false, content: null }
+                  payload: { content: null }
                 });
               },
               background: 'background-white-base'
-            }),
-            classname: 'background-white-base'
+            })
           }
         });
       }
     }
   ],
-  activeArtistTab: 'features',
-  modal: {
-    visible: false,
-    content: null
-  },
   plans: [
     {
       name: 'Basic',

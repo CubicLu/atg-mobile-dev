@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { getArtistAPI } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage, IonContent } from '@ionic/react';
 import {
@@ -25,14 +25,11 @@ interface State {
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  artists: ArtistInterface[];
+  loading: boolean;
   plans: PlanInterface[];
-  selectedPlan: PlanInterface | null;
-  isPlaying: boolean;
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
 }
 interface MatchParams {
   id: string;
@@ -50,16 +47,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
       plan: null
     };
   }
-
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    }
-  }
-
-  componentDidMount(): void {
-    if (this.props.currentArtist == null) {
-      this.props.getArtistAPI(this.props.match.params.id);
+  UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.loading) return;
+    if (this.props.loading) return;
+    if (
+      this.props.currentArtist == null ||
+      this.props.currentArtist.username !== next.match.params.id
+    ) {
+      this.props.getArtistAPI(next.match.params.id);
     }
   }
 
@@ -219,14 +214,11 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, artists } = artistAPI;
-  const { plans, selectedPlan, isPlaying } = settings;
-  return { currentArtist, artists, plans, selectedPlan, isPlaying };
+  const { currentArtist, loading } = artistAPI;
+  const { plans } = settings;
+  return { currentArtist, loading, plans };
 };
 
 export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty
-  })(ArtistSupportPage)
+  connect(mapStateToProps, { getArtistAPI })(ArtistSupportPage)
 );

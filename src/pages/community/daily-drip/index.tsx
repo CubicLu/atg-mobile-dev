@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
-import { ApplicationState } from './../../../reducers';
 import {
   BackgroundImage,
   Avatar,
@@ -14,11 +12,7 @@ import {
   DotsThreeIcon
 } from '../../../components';
 import { ShapesSize } from '../../../interfaces';
-
-interface StateProps {
-  isPlaying: boolean;
-}
-interface Props extends RouteComponentProps, StateProps {}
+interface Props extends RouteComponentProps {}
 
 class CommunityDailyDripPage extends React.Component<Props> {
   renderDots(): React.ReactNode {
@@ -92,10 +86,7 @@ class CommunityDailyDripPage extends React.Component<Props> {
           backgroundImage={'https://loremflickr.com/500/1000/music'}
         />
         <IonContent scrollY={false}>
-          <div
-            className={`community-daily-drip-page space-between h-100 ${this
-              .props.isPlaying && `is-playing`}`}
-          >
+          <div className={`community-daily-drip-page space-between h-100`}>
             {this.renderHeader()}
             {this.renderFooter()}
           </div>
@@ -105,9 +96,4 @@ class CommunityDailyDripPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { isPlaying } = settings;
-  return { isPlaying };
-};
-
-export default withRouter(connect(mapStateToProps, {})(CommunityDailyDripPage));
+export default withRouter(CommunityDailyDripPage);

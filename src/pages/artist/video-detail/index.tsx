@@ -20,7 +20,6 @@ import MinimizeIcon from '../../../components/icon/minimize';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -124,7 +123,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <ButtonIcon
             styles={{ position: 'relative' }}
             color={Colors.cyan}
-            icon={<ChatMessageIcon width={22} height={20} />}
+            icon={<ChatMessageIcon />}
             onClick={this.setChat.bind(this, true)}
             overlay={50}
           />
@@ -214,13 +213,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

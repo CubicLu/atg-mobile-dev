@@ -24,7 +24,10 @@ class SupportByComponent extends React.Component<Props> {
         className={`support-by-component ${className}`}
         onClick={(): void =>
           updateSettingsModal(
-            <MenuArtistList title="Artists Supporting" />,
+            <MenuArtistList
+              onClick={(): void => updateSettingsModal(false)}
+              title="Artists Supporting"
+            />,
             'background-white-base'
           )
         }

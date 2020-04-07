@@ -13,7 +13,6 @@ import { ArtistInterface, MenuInterface } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
   deepDiveTabs: MenuInterface[];
   activeDeepDiveTab: string;
 }
@@ -126,10 +125,9 @@ const mapStateToProps = ({
   settings
 }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying, deepDiveTabs, activeDeepDiveTab } = settings;
+  const { deepDiveTabs, activeDeepDiveTab } = settings;
   return {
     currentArtist,
-    isPlaying,
     deepDiveTabs,
     activeDeepDiveTab
   };

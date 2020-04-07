@@ -44,7 +44,8 @@ export function shadowTitle(url: string): CSSProperties {
 export function artistBackground(
   artist: ArtistInterface | any,
   fade: boolean = false,
-  coverType: string = 'background'
+  coverType: string = 'background',
+  gradientOverlay: boolean = false
 ): CSSProperties {
   let backgroundImageArray: string[] = [];
   if (!artist)
@@ -64,6 +65,9 @@ export function artistBackground(
   const gradient = `180deg,${artist.backgroundGradient?.color1}00 0%,${artist.backgroundGradient?.color1}d1 45%,${artist.backgroundGradient?.color2} 100%`;
   if (fade) {
     backgroundImageArray.push('linear-gradient(180deg,#00000030,#00000030)');
+  }
+  if (gradientOverlay && gradient) {
+    backgroundImageArray.push(`linear-gradient(${gradient})`);
   }
   if (artist.cover[coverType]) {
     backgroundImageArray.push(`url(${artist.cover[coverType]})`);

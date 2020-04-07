@@ -45,7 +45,7 @@ class ThankYouPage extends React.Component<Props> {
                 </div>
               </div>
               <div className="row">
-                <IonRouterLink routerLink="/" routerDirection="back">
+                <IonRouterLink routerLink="/" routerDirection="root">
                   <Button
                     bold
                     size={Sizes.lg}

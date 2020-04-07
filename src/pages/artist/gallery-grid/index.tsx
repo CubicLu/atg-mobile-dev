@@ -9,7 +9,6 @@ import { GalleryInterface, ArtistInterface } from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  isPlaying: boolean;
 }
 
 interface DispatchProps {
@@ -201,7 +200,6 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         <HeaderOverlay ref={this.headerRef} />
 
         <IonContent
-          style={{ background: '#fff', '--background': '#fff' }}
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
@@ -209,10 +207,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <div
-            className={`artist-gallery-grid-page ${this.props.isPlaying &&
-              'is-playing'}`}
-          >
+          <div className={`artist-gallery-grid-page`}>
             <div className={`images`}>
               {cover !== undefined && (
                 <div key={0} onClick={(): void => this.onOpenImage(cover)}>
@@ -234,13 +229,9 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  const { isPlaying } = settings;
-  return { currentArtist, isPlaying };
+  return { currentArtist };
 };
 
 export default withRouter(

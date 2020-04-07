@@ -8,7 +8,6 @@ import { getCommunityStoriesAPI } from './../../../actions';
 import { StorieInterface, ShapesSize } from '../../../interfaces';
 
 interface StateProps {
-  isPlaying: boolean;
   stories: StorieInterface[];
   loading: boolean;
 }
@@ -45,10 +44,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
         />
         <IonContent>
           <div
-            className={
-              `mt-5 community-all-artists-page content content-container` +
-              (this.props.isPlaying && ' is-playing')
-            }
+            className={`mt-5 community-all-artists-page content content-container`}
           >
             <div className="row">
               {this.props.stories.map(
@@ -77,13 +73,9 @@ class CommunityAllArtistsPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  communityAPI
-}: ApplicationState): StateProps => {
-  const { isPlaying } = settings;
+const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   const { stories, loading } = communityAPI;
-  return { isPlaying, stories, loading };
+  return { stories, loading };
 };
 
 export default withRouter(

@@ -44,7 +44,11 @@ class ArtistEventsPage extends React.Component<Props, {}> {
     if (!currentArtist) return <IonPage />;
     return (
       <IonPage id="events-page">
-        <Header title="Events" titleClassName="events" />
+        <Header
+          title="Events"
+          titleClassName="events"
+          leftBackHref={`/artist/${currentArtist.username}`}
+        />
         <IonContent
           scrollY={true}
           scrollEvents={true}
@@ -55,7 +59,7 @@ class ArtistEventsPage extends React.Component<Props, {}> {
           <div className="artist-events-page">
             <BackgroundImage backgroundImage={currentArtist.cover?.event} />
             <HeaderOverlay ref={this.headerRef} />
-            <div className={`content-list is-playing'}`}>
+            <div className={`content-list`}>
               {currentArtist.events?.map(
                 (data, i): React.ReactNode => (
                   <CardEvent

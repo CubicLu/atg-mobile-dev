@@ -1,37 +1,25 @@
 import React from 'react';
-import { ButtonIcon, Header } from './../../../components';
+import { ButtonIcon } from './../../../components';
 import { ArtistInterface, Colors, ShapesSize } from '../../../interfaces';
-import { updateSettingsModal } from './../../../actions';
 import {
   SupportIcon,
   StarIcon,
   AddPlaylistIcon,
   NetworkIcon
 } from '../../icon';
-import { connect } from 'react-redux';
 
-interface Props extends DispatchProps {
+interface Props {
+  onClick: Function;
   artist: ArtistInterface;
   background?: string;
 }
-interface DispatchProps {
-  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
-}
-
 class MenuFanSupportOptionsComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <div className={`fan-support-options`}>
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.updateSettingsModal(null)}
-          color={Colors.transparent}
-        />
-
+      <div className="fan-support-options">
         <div className={`modal-header py-2 ${this.props.background}`}>
           <div className="h0 l1">MY {this.props.artist.name}</div>
-          <div className="h2 l1">FAN SUPPORT OPTIONS</div>
+          <div className="h2 l08">FAN SUPPORT OPTIONS</div>
         </div>
 
         <div className="modal-content f5">
@@ -71,6 +59,4 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
   }
 }
 
-export default connect(null, { updateSettingsModal })(
-  MenuFanSupportOptionsComponent
-);
+export default MenuFanSupportOptionsComponent;

@@ -3,33 +3,20 @@ import { connect } from 'react-redux';
 import { IonPage, IonContent } from '@ionic/react';
 import { BackgroundImage, HeaderProfile, Menu } from './../../components';
 import { ApplicationState } from './../../reducers';
-import { updateSettingsProperty } from './../../actions';
 import { MenuInterface } from '../../interfaces';
-
 interface StateProps {
-  activeFanTab: string;
   fanTabs: MenuInterface[];
-  isPlaying: boolean;
 }
-
-interface Props extends StateProps, DispatchProps {}
-interface DispatchProps {
-  updateSettingsProperty: (property: string, value: any) => void;
-}
-
-class ProfilePage extends React.Component<Props> {
+class ProfilePage extends React.Component<StateProps> {
+  activeFanTab: string = 'artists';
   changeFanTab = (event: MenuInterface): void => {
-    if (event.id === this.props.activeFanTab) return;
-    this.props.updateSettingsProperty('activeFanTab', event.id);
+    if (event.id === this.activeFanTab) return;
+    this.activeFanTab = event.id;
+    this.forceUpdate();
   };
-  renderActiveTab(): React.ReactNode {
-    const { fanTabs, activeFanTab } = this.props;
-    const tab = fanTabs.find((x): boolean => x.id === activeFanTab)!;
-    return React.createElement(tab.component, { key: tab.id });
-  }
-
   render(): React.ReactNode {
-    const { isPlaying, fanTabs, activeFanTab } = this.props;
+    const { fanTabs } = this.props;
+    const activeTab = fanTabs.find((x): boolean => x.id === this.activeFanTab)!;
     return (
       <IonPage id="profile-page">
         <IonContent id="profile-page" scrollY={false}>
@@ -41,14 +28,14 @@ class ProfilePage extends React.Component<Props> {
             backgroundBottom
             backgroundBottomDark={false}
           />
-          <div className={`profile-page` + (isPlaying && ' is-playing')}>
+          <div className={`profile-page`}>
             <HeaderProfile />
             <Menu
               tabs={fanTabs}
-              activeId={activeFanTab}
+              activeId={this.activeFanTab}
               onClick={this.changeFanTab}
             />
-            {this.renderActiveTab()};
+            {<activeTab.component />}
           </div>
         </IonContent>
       </IonPage>
@@ -57,10 +44,8 @@ class ProfilePage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { activeFanTab, fanTabs, isPlaying } = settings;
-  return { activeFanTab, fanTabs, isPlaying };
+  const { fanTabs } = settings;
+  return { fanTabs };
 };
 
-export default connect(mapStateToProps, {
-  updateSettingsProperty
-})(ProfilePage);
+export default connect(mapStateToProps)(ProfilePage);

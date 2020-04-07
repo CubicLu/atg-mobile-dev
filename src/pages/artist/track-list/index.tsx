@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { getArtistAPI } from './../../../actions';
+import { getArtistAPI, setPlaylistPlayer } from './../../../actions';
 import {
   ArtistInterface,
   PlaylistInterface,
@@ -19,6 +19,7 @@ interface StateProps {
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
   getArtistAPI: (username: string) => void;
+  setPlaylistPlayer: () => void;
 }
 type TrackReference = 'artist' | 'radio' | 'playlist' | 'mixtape' | 'default';
 interface MatchParams {
@@ -84,7 +85,7 @@ class TrackListPage extends React.Component<Props> {
             </div>
             {currentArtist && (
               <div className="center player-support">
-                <ButtonSupport />
+                <ButtonSupport artist={currentArtist} />
               </div>
             )}
             <div className="end" />
@@ -108,7 +109,11 @@ class TrackListPage extends React.Component<Props> {
             <div id="songs" className="mt-3">
               {this.playlist.items.map(
                 (song: SongInterface, i: number): React.ReactElement => (
-                  <div className="flex-align-center row" key={i}>
+                  <div
+                    onClick={(): void => this.props.setPlaylistPlayer()}
+                    className="flex-align-center row"
+                    key={i}
+                  >
                     <div className="f5 list-track-number">
                       {song.trackNumber}
                     </div>
@@ -266,5 +271,5 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getArtistAPI })(TrackListPage)
+  connect(mapStateToProps, { getArtistAPI, setPlaylistPlayer })(TrackListPage)
 );

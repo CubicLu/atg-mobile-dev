@@ -34,23 +34,6 @@
     box-shadow: none;
     text-align: center;
     background: #7a11f5;
-    
-    &.support,&.supported{
-        height: 30px; 
-        font-weight: 500;
-        box-shadow: 0 3px 6px 0 #00000029;
-        border-radius: 8px;
-        text-transform: uppercase;
-    }
-    &.support{
-        background: linear-gradient(90deg, #FF9766, #FC5F62);
-        color: #ffffff;
-    }
-    &.supported{
-        background: linear-gradient(90deg, #fff, #fff);
-        color: #FC5F62;
-    }
-
     &.gradient{
         background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
     }
@@ -87,6 +70,24 @@
         &.gradient { 
             background: linear-gradient(180deg, $tertiary 0%, $tertiary-gradient 100%);
         }
+    }
+    &.support,&.supported{
+        height: 30px; 
+        font-weight: 500;
+        box-shadow: 0 3px 6px 0 #00000029;
+        border-radius: 8px;
+        text-transform: uppercase;
+        &.large, &.fluid{
+            border-radius: 3px;
+        }
+    }
+    &.support{
+        background: linear-gradient(90deg, #FF9766, #FC5F62);
+        color: #ffffff;
+    }
+    &.supported{
+        background: linear-gradient(90deg, #fff, #fff);
+        color: #FC5F62;
     }
     &.transparent{ 
         background: transparent;

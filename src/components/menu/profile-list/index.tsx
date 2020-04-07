@@ -5,25 +5,18 @@ import {
   BackgroundImage,
   Header
 } from './../../../components';
-import { Colors, profileActions } from '../../../interfaces';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { Colors, ProfileActionsType } from '../../../interfaces';
 
-interface StateProps {}
-
-interface DispatchProps {}
-
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+interface Props {
   onClick: Function;
   title: string;
-  isSimilar?: boolean;
   background?: string;
-  data: profileActions;
+  data: ProfileActionsType[];
 }
 
 class MenuProfileList extends React.Component<Props> {
   public static defaultProps = {
-    onClick: (): void => {},
-    isSimilar: false
+    onClick: (): void => {}
   };
 
   render(): React.ReactNode {
@@ -55,7 +48,7 @@ class MenuProfileList extends React.Component<Props> {
                 const { text, onClick } = item;
                 return (
                   <li key={i} onClick={onClick}>
-                    <div className="artist">
+                    <div>
                       <div className="f4 dark">{text}</div>
                     </div>
                     <ButtonIcon
@@ -73,4 +66,4 @@ class MenuProfileList extends React.Component<Props> {
   }
 }
 
-export default withRouter(MenuProfileList);
+export default MenuProfileList;

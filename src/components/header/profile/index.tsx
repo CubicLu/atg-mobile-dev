@@ -3,7 +3,7 @@ import { Avatar, Header, MenuProfileList } from './../../../components';
 import { connect } from 'react-redux';
 import { updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
-import { ShapesSize, profileActions } from '../../../interfaces';
+import { ShapesSize, ProfileActionsType } from '../../../interfaces';
 
 interface StateProps {}
 
@@ -22,7 +22,7 @@ class HeaderProfileComponent extends React.Component<Props> {
     super(props);
   }
 
-  profileActions: profileActions = [
+  profileActions: ProfileActionsType[] = [
     {
       text: 'View my public profile',
       onClick: (): void => console.log('Delete clicked')

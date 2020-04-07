@@ -401,7 +401,7 @@ export interface StationInterface {
   genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
 }
 
-export type profileActions = {
+export interface ProfileActionsType {
   text: string;
   onClick: () => void;
-}[];
+};

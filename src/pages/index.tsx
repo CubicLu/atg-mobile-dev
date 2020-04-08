@@ -17,6 +17,7 @@ import ProfileVaultPage from './profile/vault';
 import CommunityPostPage from './community/post';
 import ArtistPage from './artist';
 import ThankYouPage from './thank-you';
+import SettingPage from './setting';
 
 import ArtistDeepDivePage from './artist/deep-dive';
 import ArtistFeaturesPage from './artist/features';
@@ -92,6 +93,7 @@ export {
   MessageNotificationsPage,
   RadioArtistPage,
   RadioHistoryPage,
+  SettingPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage
 };

@@ -38,6 +38,7 @@ import {
   CommunityAllArtistsPage,
   ProfileMixtapesPage,
   RadioFilterPage,
+  SettingPage,
   MessagePage,
   MessageChatPage,
   MessageNotificationsPage,
@@ -375,6 +376,11 @@ const defaultState: SettingsReducerType = {
       path: '/radio/:id/history',
       id: 'radioHistory',
       component: RadioHistoryPage
+    },
+    {
+      path: '/settings',
+      id: 'settings',
+      component: SettingPage
     }
   ],
 

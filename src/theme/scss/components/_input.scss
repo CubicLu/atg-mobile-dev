@@ -76,3 +76,7 @@ input[type="search"]:not(.browser-default) {
   align-items: center;
   margin-bottom: 25%;
 }
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked{
+  opacity: 1;
+}

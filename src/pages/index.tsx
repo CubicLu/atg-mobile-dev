@@ -45,6 +45,8 @@ import MessageChatPage from './message/chat';
 import MessageNotificationsPage from './message/notifications';
 import RadioArtistPage from './radio-artist';
 import RadioHistoryPage from './radio-artist/history';
+import MessageSelectContactPage from './message/select-contact';
+import MessageNotificationDetailPage from './message/notification-detail';
 
 export {
   NotFoundPage,
@@ -89,5 +91,7 @@ export {
   MessageChatPage,
   MessageNotificationsPage,
   RadioArtistPage,
-  RadioHistoryPage
+  RadioHistoryPage,
+  MessageSelectContactPage,
+  MessageNotificationDetailPage
 };

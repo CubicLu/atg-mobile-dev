@@ -53,7 +53,7 @@
     &.secondary {
         background: $secondary;
         color: #FFF;
-        &.gradient { 
+        &.gradient {
             &.vertical {
                 background: linear-gradient(180deg, $secondary 0%, #0767df 50%, $secondary-gradient 100%);
             }
@@ -62,17 +62,17 @@
             }
         }
     }
-    &.tertiary { 
+    &.tertiary {
         background: $tertiary;
         font-weight: 500;
         font-family: "Helvetica Neue";
         color: #000;
-        &.gradient { 
+        &.gradient {
             background: linear-gradient(180deg, $tertiary 0%, $tertiary-gradient 100%);
         }
     }
     &.support,&.supported{
-        height: 30px; 
+        height: 30px;
         font-weight: 500;
         box-shadow: 0 3px 6px 0 #00000029;
         border-radius: 8px;
@@ -89,7 +89,7 @@
         background: linear-gradient(90deg, #fff, #fff);
         color: #FC5F62;
     }
-    &.transparent{ 
+    &.transparent{
         background: transparent;
         color: #FFF;
     }
@@ -112,7 +112,7 @@
     &.disable{
         background: #717274;
         color: #FFF;
-        &.gradient { 
+        &.gradient {
             background: linear-gradient(90deg, #9c9d9d, #717274 99%);
         }
     }
@@ -142,7 +142,7 @@
         font-size: 16px;
     }
     &.icon {
-        &.circle { 
+        &.circle {
            border-radius: 50%;
            height: 42px;
            width: 42px;
@@ -175,7 +175,6 @@
     &.plan{
         @include plan-detail();
     }
-
     &.filter{
         background: rgba($color: #000000, $alpha: 0.25);
         span{

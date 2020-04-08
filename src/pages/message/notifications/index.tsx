@@ -17,15 +17,23 @@ interface StateProps {
 
 interface Props extends RouteComponentProps, StateProps, DispatchProps {}
 
-class MessageNotificationsPage extends React.Component<Props> {
+class MessageNotificationDetailPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonContent className="message-notifications-page">
         <IonList lines="none">
           {this.props.notificationsSearch.map(
             (data, i): React.ReactNode => {
+              let needAccept = i % 2 === 0;
               return (
-                <IonItem key={i}>
+                <IonItem
+                  key={i}
+                  onClick={(): void => {
+                    this.props.history.push(`/message/notification/${i}`, {
+                      needAccept: needAccept
+                    });
+                  }}
+                >
                   <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
                     <div className={`col s12 info`}>
                       <span
@@ -60,5 +68,5 @@ const mapStateToProps = ({ settings, profileAPI }: ApplicationState): StateProps
 export default withRouter(
   connect(mapStateToProps, {
     updateSettingsProperty
-  })(MessageNotificationsPage)
+  })(MessageNotificationDetailPage)
 );

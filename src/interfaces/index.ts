@@ -122,6 +122,8 @@ export interface SettingsReducerType {
   activeFanTab: string;
   activeProfileFriendTab: string;
   profileFriendTabs: MenuInterface[];
+  selectContactTabs: MenuInterface[];
+  activeSelectContactTab: string;
 }
 
 export interface ScrollHeaderInterface {
@@ -420,6 +422,12 @@ export interface ProfileReducerType {
   notifications: NotificationInterface[];
   notificationsSearch: NotificationInterface[];
   messagesSearch: MessageInterface[];
+  friends: UserInterface[];
+  friendsSearch: UserInterface[];
+  artists: UserInterface[];
+  artistsSearch: UserInterface[];
+  admins: UserInterface[];
+  adminsSearch: UserInterface[];
 }
 
 export interface MessageInterface extends UserInterface {

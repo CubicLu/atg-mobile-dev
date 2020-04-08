@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ApplicationState } from '../../reducers';
-import { InputText, Button, ChatRow } from '..';
+import { InputText, Button, RowChat } from '..';
 import { Colors, MessageInterface } from '../../interfaces';
 
 interface StateProps {
@@ -17,7 +17,7 @@ class ChatComponent extends React.Component<Props> {
         <div className="messages">
           {this.props.messagesSearch.map(
             (data, i): React.ReactNode => {
-              return <ChatRow data={data} key={i} avatarSize={48} />;
+              return <RowChat data={data} key={i} avatarSize={48} />;
             }
           )}
         </div>

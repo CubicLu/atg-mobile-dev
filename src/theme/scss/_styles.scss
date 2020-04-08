@@ -44,7 +44,7 @@
 @import './components/chat';
 @import './components/search-result';
 @import './components/photo-chat';
-@import './components/chat-row';
+@import './components/row';
 
 /* pages */
 @import './pages/initial';
@@ -76,4 +76,6 @@
 @import './pages/message';
 @import './pages/message-chat';
 @import './pages/message-notifications';
+@import './pages/message-select-contact';
+@import './pages/message-notification-detail';
 

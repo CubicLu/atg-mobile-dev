@@ -9,7 +9,7 @@ import {
   IonItemOptions
 } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import { ChatRow, ButtonIcon, CloseIcon } from '../../../components';
+import { RowChat, ButtonIcon, CloseIcon } from '../../../components';
 import {
   MenuInterface,
   Colors,
@@ -39,7 +39,7 @@ class MessageChatPage extends React.Component<Props> {
               return (
                 <IonItemSliding key={i} className="mt-1 mb-1">
                   <IonItem className="flex-align-items-center">
-                    <ChatRow
+                    <RowChat
                       data={data}
                       avatarSize={48}
                       showDate={true}

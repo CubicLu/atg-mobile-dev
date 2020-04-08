@@ -42,14 +42,17 @@ import {
   MessageChatPage,
   MessageNotificationsPage,
   RadioArtistPage,
-  RadioHistoryPage
+  RadioHistoryPage,
+  MessageSelectContactPage,
+  MessageNotificationDetailPage
 } from './../pages';
 import {
   MenuArtistList,
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon
+  RadioIcon,
+  ListUser
 } from './../components';
 import React from 'react';
 import { store } from '../store';
@@ -339,6 +342,26 @@ const defaultState: SettingsReducerType = {
       component: RadioPage
     },
     {
+      path: '/message/notification/:id',
+      id: 'message-notification',
+      component: MessageNotificationDetailPage
+    },
+    {
+      path: '/message/chat/new',
+      id: 'message-chat-new',
+      component: MessageSelectContactPage
+    },
+    {
+      path: '/message/chat/:id',
+      id: 'message-chat-by-id',
+      component: MessageSelectContactPage
+    },
+    {
+      path: '/message/select-contact',
+      id: 'message-select-contact',
+      component: MessageSelectContactPage
+    },
+    {
       path: '/message',
       id: 'message',
       component: MessagePage
@@ -422,7 +445,28 @@ const defaultState: SettingsReducerType = {
       component: MessageNotificationsPage
     }
   ],
-  activeMessageTab: 'chat'
+  activeMessageTab: 'chat',
+  selectContactTabs: [
+    {
+      label: 'Artists',
+      id: 'artists',
+      component: ListUser,
+      icon: ''
+    },
+    {
+      label: 'Friends',
+      id: 'friends',
+      component: ListUser,
+      icon: ''
+    },
+    {
+      label: 'Admins',
+      id: 'admins',
+      component: ListUser,
+      icon: ''
+    }
+  ],
+  activeSelectContactTab: 'friends'
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

@@ -42,9 +42,13 @@ import SearchResultSectionComponent from './search-result-section';
 import PhotoChatComponent from './photo-chat';
 import InputSearchComponent from './input/search';
 import MenuMessageComponent from './menu/message';
-import ChatRowComponent from './chat/row';
 import RadioPlayerComponent from './radio-player';
 import RadioPauseButtonComponent from './icon/radio-pause';
+import RowChatComponent from './row/chat';
+import MenuTabsComponent from './menu/tabs';
+import RowUserComponent from './row/user';
+import ListUserComponent from './list/user';
+import InputComboBoxComponent from './input/combo-box';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -115,9 +119,13 @@ export {
   SearchResultSectionComponent as SearchResultSection,
   InputSearchComponent as InputSearch,
   MenuMessageComponent as MenuMessage,
-  ChatRowComponent as ChatRow,
   RadioPlayerComponent as RadioPlayer,
-  RadioPauseButtonComponent as RadioPauseButton
+  RadioPauseButtonComponent as RadioPauseButton,
+  RowChatComponent as RowChat,
+  MenuTabsComponent as MenuTabs,
+  RowUserComponent as RowUser,
+  ListUserComponent as ListUser,
+  InputComboBoxComponent as InputComboBox
 };
 
 export {

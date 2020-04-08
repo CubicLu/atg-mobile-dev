@@ -12,7 +12,7 @@ interface Props {
   colAvatar?: number;
 }
 
-class ChatRowComponent extends React.Component<Props> {
+class RowChatComponent extends React.Component<Props> {
   public static defaultProps = {
     avatarSize: 36,
     read: true,
@@ -25,7 +25,7 @@ class ChatRowComponent extends React.Component<Props> {
     const { avatarSize, data, showDate, colInfo, colAvatar } = this.props;
     return (
       <div
-        className={`row w-100 chat-row-component ${
+        className={`row w-100 row-chat-component ${
           data.read ? '' : 'not-read'
         }`}
       >
@@ -52,4 +52,4 @@ class ChatRowComponent extends React.Component<Props> {
     );
   }
 }
-export default ChatRowComponent;
+export default RowChatComponent;

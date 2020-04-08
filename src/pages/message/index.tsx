@@ -125,7 +125,10 @@ class MessagePage extends React.Component<Props> {
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({ settings, profileAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  settings,
+  profileAPI
+}: ApplicationState): StateProps => {
   const { messageTabs, activeMessageTab } = settings;
   const { messages, notifications } = profileAPI;
   return { messageTabs, activeMessageTab, messages, notifications };

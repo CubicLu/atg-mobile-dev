@@ -171,7 +171,10 @@ class SelectContactPage extends React.Component<Props, State> {
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({ profileAPI, settings }: ApplicationState): object => {
+const mapStateToProps = ({
+  profileAPI,
+  settings
+}: ApplicationState): object => {
   const {
     artistsSearch,
     friendsSearch,

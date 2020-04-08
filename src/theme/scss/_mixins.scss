@@ -5,7 +5,7 @@
 }
 
 @mixin top-header {
-  .top-header{
+  .top-header {
     position: fixed;
     width: 100%;
     height: 100px;
@@ -19,7 +19,7 @@
     -webkit-backdrop-filter: blur(9.5px);
     backdrop-filter: blur(9.5px);
     background-color: #ffffff33;
-    &.biography{
+    &.biography {
       background-color: #ffd102cf;
       color: #5e7fb1;
       line-height: 1.8;
@@ -29,7 +29,7 @@
 
 @mixin on-circle($item-count, $circle-size, $item-size) {
   position: relative;
-  width:  $circle-size;
+  width: $circle-size;
   height: $circle-size;
   padding: 0;
   border-radius: 50%;
@@ -38,9 +38,9 @@
   > * {
     display: block;
     position: absolute;
-    top:  50%;
+    top: 50%;
     left: 50%;
-    width:  $item-size;
+    width: $item-size;
     height: $item-size;
     margin: -($item-size / 2);
 
@@ -49,8 +49,7 @@
 
     @for $i from 1 through $item-count {
       &:nth-of-type(#{$i}) {
-        transform:
-          rotate($rot * 1deg)
+        transform: rotate($rot * 1deg)
           translate($circle-size / 2)
           rotate($rot * -1deg);
       }
@@ -98,7 +97,7 @@
   background: rgba($color, $opacity);
 }
 
-@mixin plan-detail(){
+@mixin plan-detail() {
   // display: flex;
   // justify-content: center;
   // align-items: center;
@@ -110,13 +109,13 @@
     margin-bottom: 16px;
     color: #fff;
     border: 0px solid transparent;
-    &.active{
-      border: 6px solid #FFF;
+    &.active {
+      border: 6px solid #fff;
     }
   }
-  .price{
+  .price {
     font-size: pxToRem(72);
-    font-family: "Industria";
+    font-family: 'Industria';
     position: relative;
     font-weight: bold;
     line-height: 1;
@@ -124,26 +123,26 @@
     flex-direction: column;
     align-items: center;
     padding-top: 16px;
-    .currency{
+    .currency {
       font-size: 30px;
       vertical-align: middle;
     }
   }
-  @media screen and (max-height: 667px){
+  @media screen and (max-height: 667px) {
     &.circle {
       border-radius: 50%;
       height: 128px;
       width: 128px;
       margin-bottom: 16px;
       border: 7px solid transparent;
-      &.active{
-        border: 7px solid #FFF;
+      &.active {
+        border: 7px solid #fff;
       }
     }
   }
 }
 
-@mixin background-style(){
+@mixin background-style() {
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: center;
@@ -165,14 +164,22 @@
   }
   @keyframes #{$name} {
     @content;
-  } 
+  }
 }
 
 @mixin placeholder {
-  &::-webkit-input-placeholder {@content};
-  &:-moz-placeholder           {@content};
-  &::-moz-placeholder          {@content};
-  &:-ms-input-placeholder      {@content};
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
 }
 
 @mixin list-user{

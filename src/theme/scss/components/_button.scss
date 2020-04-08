@@ -1,236 +1,251 @@
 .btn {
-    &:hover {
-        box-shadow: none;
-    }
-    &.badge {
-        width: 110px;
-        background: #64e9ff;
-        border-radius: 8px;
-        font-weight: 600;
-        font-family: "Helvetica Neue";
-        &.gradient {
-            background: linear-gradient(90deg, #64e9ff, #0082ff);
-            &.disable {
-                background-image: linear-gradient(90deg, #9c9d9d, #717274);
-            }
-        }
-    }
-    color: #FFF;
-    font-family: "Helvetica";
-    text-transform: none;
-    font-size: 13px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    height: 30px;
-    line-height: 1.14;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    object-fit: contain;
+  &:hover {
     box-shadow: none;
-    text-align: center;
-    background-color: $primary;
+  }
+  &.badge {
+    width: 110px;
+    background: #64e9ff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Helvetica Neue';
     &.gradient {
-        background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
+      background: linear-gradient(90deg, #64e9ff, #0082ff);
+      &.disable {
+        background-image: linear-gradient(90deg, #9c9d9d, #717274);
+      }
     }
-    &.blue {
-        &.horizontal {
-            background: linear-gradient(90deg, #01aed4 0%, #1853e0 100%);
-        }
-        background: linear-gradient(180deg, #01aed4 0%, #1853e0 100%);
+  }
+  color: #fff;
+  font-family: 'Helvetica';
+  text-transform: none;
+  font-size: 13px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  height: 30px;
+  line-height: 1.14;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  box-shadow: none;
+  text-align: center;
+  background-color: $primary;
+  &.gradient {
+    background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
+  }
+  &.blue {
+    &.horizontal {
+      background: linear-gradient(90deg, #01aed4 0%, #1853e0 100%);
     }
-    &.primary {
-        background: $primary;
-        &.gradient {
-            background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
-        }
+    background: linear-gradient(180deg, #01aed4 0%, #1853e0 100%);
+  }
+  &.primary {
+    background: $primary;
+    &.gradient {
+      background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
     }
-    &.chat {
-        background: linear-gradient(90deg, #64e9ff 0%, #0082ff 100%);
+  }
+  &.chat {
+    background: linear-gradient(90deg, #64e9ff 0%, #0082ff 100%);
+  }
+  &.fixed {
+    position: fixed;
+    z-index: 10;
+  }
+  &.secondary {
+    background: $secondary;
+    color: #fff;
+    &.gradient {
+      &.vertical {
+        background: linear-gradient(
+          180deg,
+          $secondary 0%,
+          #0767df 50%,
+          $secondary-gradient 100%
+        );
+      }
+      &.horizontal {
+        background: linear-gradient(
+          90deg,
+          $secondary 0%,
+          $secondary-gradient 100%
+        );
+      }
     }
-    &.fixed {
-        position: fixed;
-        z-index: 10;
+  }
+  &.tertiary {
+    background: $tertiary;
+    font-weight: 500;
+    font-family: 'Helvetica Neue';
+    color: #000;
+    &.gradient {
+      background: linear-gradient(
+        180deg,
+        $tertiary 0%,
+        $tertiary-gradient 100%
+      );
     }
-    &.secondary {
-        background: $secondary;
-        color: #FFF;
-        &.gradient {
-            &.vertical {
-                background: linear-gradient(180deg, $secondary 0%, #0767df 50%, $secondary-gradient 100%);
-            }
-            &.horizontal {
-                background: linear-gradient(90deg, $secondary 0%, $secondary-gradient 100%);
-            }
-        }
-    }
-    &.tertiary {
-        background: $tertiary;
-        font-weight: 500;
-        font-family: "Helvetica Neue";
-        color: #000;
-        &.gradient {
-            background: linear-gradient(180deg, $tertiary 0%, $tertiary-gradient 100%);
-        }
-    }
-    &.support,&.supported {
-        height: 30px;
-        font-weight: 500;
-        box-shadow: 0 3px 6px 0 #00000029;
-        border-radius: 8px;
-        text-transform: uppercase;
-        &.large, &.fluid {
-            border-radius: 3px;
-        }
-    }
-    &.support {
-        background: linear-gradient(90deg, #FF9766, #FC5F62);
-        color: #ffffff;
-    }
-    &.supported {
-        background: linear-gradient(90deg, #fff, #fff);
-        color: #FC5F62;
-    }
-    &.transparent {
-        background: transparent;
-        color: #FFF;
-    }
-    &.transparent-gray {
-        background: #00000080;
-        color: #FFF;
-    }
-    &.green {
-        background: #00a850;
-    }
-    &.light-blue {
-        background: #00aedb;
-    }
-    &.orange {
-        background: #f78429;
-    }
-    &.cyan {
-      background: #01add9;
-    }
-    &.disable {
-        background: #717274;
-        color: #FFF;
-        &.gradient {
-            background: linear-gradient(90deg, #9c9d9d, #717274 99%);
-        }
-    }
-    &.gray-transparent {
-        background: transparent;
-        color: #b2b2b2;
-        border: none !important;
-        box-shadow: none !important;
-        font-size: 14px;
-    }
-    &.rounded {
-        border-radius: 8px;
-    }
+  }
+  &.support,
+  &.supported {
+    height: 30px;
+    font-weight: 500;
+    box-shadow: 0 3px 6px 0 #00000029;
+    border-radius: 8px;
+    text-transform: uppercase;
+    &.large,
     &.fluid {
-        padding: 0;
-        margin: 0;
+      border-radius: 3px;
     }
-    &.bold {
-        font-weight: 600;
-        font-family: "Helvetica Neue";
+  }
+  &.support {
+    background: linear-gradient(90deg, #ff9766, #fc5f62);
+    color: #ffffff;
+  }
+  &.supported {
+    background: linear-gradient(90deg, #fff, #fff);
+    color: #fc5f62;
+  }
+  &.transparent {
+    background: transparent;
+    color: #fff;
+  }
+  &.transparent-gray {
+    background: #00000080;
+    color: #fff;
+  }
+  &.green {
+    background: #00a850;
+  }
+  &.light-blue {
+    background: #00aedb;
+  }
+  &.orange {
+    background: #f78429;
+  }
+  &.cyan {
+    background: #01add9;
+  }
+  &.disable {
+    background: #717274;
+    color: #fff;
+    &.gradient {
+      background: linear-gradient(90deg, #9c9d9d, #717274 99%);
     }
-    &.normal {
-        height: 30px;
-        line-height: 1.13;
-    }
-    &.large {
-        height: 48px;
-        font-size: 16px;
-    }
-    &.icon {
-        &.circle {
-           border-radius: 50%;
-           height: 42px;
-           width: 42px;
-           padding: 0px;
-           align-items: center;
-           text-align: center;
-           display: flex;
-           justify-content: center;
-           align-content: center;
-           flex-direction: column;
-           span {
-                height: 10px;
-                line-height: 12px;
-                font-size: 10px;
-                margin-top: 2px;
-                margin-bottom: 2px;
-           }
-          div {
-            &.overlay {
-              position: absolute;
-              color: black;
-              z-index: 1;
-              font-weight: bold;
-              font-size: 10px;
-              top: 14px;
-            }
-            &.notificationCounter {
-              position: absolute;
-              color: white;
-              z-index: 1;
-              background-color: red;
-              border-radius: 25%;
-              min-width: 12px;
-              height: 12px;
-              align-self: flex-end;
-              font-size: 7pt;
-              top: 15px;
-              padding: 1px;
-            }
-          }
+  }
+  &.gray-transparent {
+    background: transparent;
+    color: #b2b2b2;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 14px;
+  }
+  &.rounded {
+    border-radius: 8px;
+  }
+  &.fluid {
+    padding: 0;
+    margin: 0;
+  }
+  &.bold {
+    font-weight: 600;
+    font-family: 'Helvetica Neue';
+  }
+  &.normal {
+    height: 30px;
+    line-height: 1.13;
+  }
+  &.large {
+    height: 48px;
+    font-size: 16px;
+  }
+  &.icon {
+    &.circle {
+      border-radius: 50%;
+      height: 42px;
+      width: 42px;
+      padding: 0px;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
+      span {
+        height: 10px;
+        line-height: 12px;
+        font-size: 10px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      div {
+        &.overlay {
+          position: absolute;
+          color: black;
+          z-index: 1;
+          font-weight: bold;
+          font-size: 10px;
+          top: 14px;
         }
+        &.notificationCounter {
+          position: absolute;
+          color: white;
+          z-index: 1;
+          background-color: red;
+          border-radius: 25%;
+          min-width: 12px;
+          height: 12px;
+          align-self: flex-end;
+          font-size: 7pt;
+          top: 15px;
+          padding: 1px;
+        }
+      }
     }
-    &.plan {
-        @include plan-detail();
-    }
+  }
+  &.plan {
+    @include plan-detail();
+  }
 
-    &.filter {
-        background: rgba($color: #000000, $alpha: 0.25);
-        span{
-            font-size: 17px;
-        }
+  &.filter {
+    background: rgba($color: #000000, $alpha: 0.25);
+    span {
+      font-size: 17px;
     }
+  }
 }
 .vibe-icon {
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    padding: 0;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  padding: 0;
 }
 
 .badge-row {
-    width: auto;
-    overflow-x: scroll;
+  width: auto;
+  overflow-x: scroll;
+  max-height: 30px;
+  .badge-item {
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 2;
+    width: 128px;
+    min-width: 128px;
+    max-width: 128px;
+    height: 30px;
     max-height: 30px;
-    .badge-item {
-        margin-top: auto;
-        margin-bottom: auto;
-        line-height: 2;
-        width: 128px;
-        min-width: 128px;
-        max-width: 128px;
-        height: 30px;
-        max-height: 30px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        border-radius: 25px;
-        background: #b5b5b5;
-        &.active {
-            background: #01add9;
-        }
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 25px;
+    background: #b5b5b5;
+    &.active {
+      background: #01add9;
     }
+  }
 }

@@ -33,7 +33,7 @@
     object-fit: contain;
     box-shadow: none;
     text-align: center;
-    background: #7a11f5;
+    background-color: linear-gradient(to right, #64e9ff, #0082ff 99%);
     &.gradient{
         background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
     }

@@ -40,7 +40,6 @@ interface StateProps {
 interface State {
   searchText: string;
 }
-
 interface Props extends RouteComponentProps, StateProps, DispatchProps {}
 
 const variables = {
@@ -49,6 +48,7 @@ const variables = {
   admins: 'adminsSearch'
 };
 class SelectContactPage extends React.Component<Props, State> {
+  private selected: any[] = [];
   constructor(props: Props) {
     super(props);
 
@@ -80,6 +80,34 @@ class SelectContactPage extends React.Component<Props, State> {
     this.setState({
       searchText: text
     });
+  }
+
+  getActiveTab(): React.ReactElement {
+    const menu = this.props.selectContactTabs.find(
+      (s): boolean => s.id === this.props.activeSelectContactTab
+    )!;
+
+    return (
+      <menu.component
+        showComboBox={true}
+        showRemove={false}
+        checkSelected={(event): void => console.log(event)}
+        showButtonPending={menu.id === 'friends'}
+        data={this.props[variables[menu.id]]}
+        onSelect={(event, data): void => this.toggleSelect(event, data)}
+      />
+    );
+  }
+  toggleSelect(event: CustomEvent, data: UserInterface): void {
+    const index = this.selected.findIndex(
+      (x): boolean => x.username === data.username
+    );
+    if (event.detail.checked && index === -1) {
+      this.selected.push(data);
+    } else if (!event.detail.checked && index > -1) {
+      this.selected.splice(index, 1);
+    }
+    console.log(this.selected);
   }
 
   render(): React.ReactNode {
@@ -114,58 +142,27 @@ class SelectContactPage extends React.Component<Props, State> {
             className="message-select-contact-page content-fixed"
             slot="fixed"
           >
-            <div className="row">
-              <div className="fluid">
-                <div className="p-3">
-                  <InputSearch
-                    onChange={(e): void => {
-                      this.onSearch(e);
-                    }}
-                    value={this.state.searchText}
-                    placeholder="Search"
-                    debounce={150}
-                  />
-                </div>
-              </div>
+            <div className="row fluid p-3">
+              <InputSearch
+                onChange={(e): void => this.onSearch(e)}
+                value={this.state.searchText}
+                placeholder="Search"
+                debounce={150}
+              />
             </div>
-            <div className="row">
-              <div className="fluid">
-                <MenuTabs
-                  onClick={(data): void => {
-                    this.props.updateSettingsProperty(
-                      'activeSelectContactTab',
-                      data.id
-                    );
-                  }}
-                  className=""
-                  activeId={activeSelectContactTab}
-                  tabs={selectContactTabs}
-                />
-              </div>
-            </div>
-            <IonContent>
-              {selectContactTabs?.map(
-                (data, i): React.ReactNode => {
-                  let array = this.props[variables[data.id]];
-                  return (
-                    data.id === activeSelectContactTab &&
-                    React.createElement(data.component, {
-                      key: i,
-                      data: array,
-                      showRemove: false,
-                      showComboBox: true,
-                      showButtonPending: data.id === 'friends',
-                      onSelect: (event, data): void => {
-                        console.log('event', event, 'event', data);
-                      },
-                      checkSelected: (event): void => {
-                        console.log('event2', event);
-                      }
-                    })
-                  );
-                }
-              )}
-            </IonContent>
+
+            <MenuTabs
+              activeId={activeSelectContactTab}
+              tabs={selectContactTabs}
+              onClick={(data): void =>
+                this.props.updateSettingsProperty(
+                  'activeSelectContactTab',
+                  data.id
+                )
+              }
+            />
+
+            <IonContent>{this.getActiveTab()}</IonContent>
           </div>
         </IonContent>
       </IonPage>

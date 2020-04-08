@@ -38,28 +38,24 @@ class RowUserComponent extends React.Component<Props> {
       onSelect
     } = this.props;
     let opacity = data.isFriend !== true ? 'opacity' : '';
-    console.log('showComboBox', showComboBox);
     return (
-      <div className="row mx-1 w-100 row-user-component">
-        <div className={`col s2 no-padding ${opacity}`}>
-          <Avatar
-            type={ShapesSize.circle}
-            width={48}
-            height={48}
-            image={data.avatar}
-          />
+      <div className="m-1 fluid flex-justify-content-end">
+        <div className={`align-start ${opacity}`}>
+          <div className="p-05 flex-align-items-center">
+            <Avatar
+              type={ShapesSize.circle}
+              width={48}
+              height={48}
+              image={data.avatar}
+            />
+            <span className="ml-2 f5">{data.username}</span>
+          </div>
         </div>
-        <div className={`col s7 no-padding info ${opacity}`}>
-          <span className="user f5">{data.username}</span>
-        </div>
-        <div className="col s3 flex-align-items-end flex-justify-content-end">
+        <div className="align-end no-padding flex-align-items-center my-auto mr-1">
           {data.isFriend !== true && showButtonPending && (
             <Button
-              className="mt-10"
-              gradient={true}
-              color={Colors.secondary}
+              className="my-auto"
               size={Sizes.md}
-              bold
               type={ShapesSize.rounded}
               label="Pending"
             />
@@ -72,7 +68,7 @@ class RowUserComponent extends React.Component<Props> {
           )}
           {showButtonConnect && (
             <Button
-              className="mt-10"
+              className="my-auto"
               gradient={true}
               color={Colors.secondary}
               size={Sizes.md}
@@ -84,11 +80,7 @@ class RowUserComponent extends React.Component<Props> {
           {showComboBox && data.isFriend === true && (
             <InputComboBox
               checked={selected}
-              onSelect={(event): void => {
-                if (onSelect) {
-                  onSelect(event, data);
-                }
-              }}
+              onSelect={(e): void => (onSelect ? onSelect(e, data) : {})}
             />
           )}
         </div>

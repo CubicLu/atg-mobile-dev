@@ -30,18 +30,18 @@ class ProfileFriendsPage extends React.Component<Props> {
               return (
                 <IonItemSliding key={i}>
                   <IonItem>
-                    <div className="row mx-1">
-                      <div className={`col s2 no-padding ${opacity}`}>
-                        <Avatar
-                          type={ShapesSize.circle}
-                          width={48}
-                          height={48}
-                        />
+                    <div className="m-1 fluid flex-justify-content-end">
+                      <div className={`align-start ${opacity}`}>
+                        <div className="p-05 flex-align-items-center">
+                          <Avatar
+                            type={ShapesSize.circle}
+                            width={48}
+                            height={48}
+                          />
+                          <span className="ml-2 f5">BassmanJeff</span>
+                        </div>
                       </div>
-                      <div className={`col s7 no-padding info ${opacity}`}>
-                        <span className="user f5">BassmanJeff</span>
-                      </div>
-                      <div className="col s3 flex-align-items-end flex-justify-content-end">
+                      <div className="align-end no-padding flex-align-items-center my-auto mr-1">
                         {data.friend === false ? (
                           <Button
                             className="mt-10"

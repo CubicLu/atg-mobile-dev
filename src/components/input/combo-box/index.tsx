@@ -1,30 +1,24 @@
 import React from 'react';
+import { IonCheckbox } from '@ionic/react';
 interface Props {
   checked: boolean;
   onSelect?: Function;
 }
-class InputComboBoxComponent extends React.Component<Props> {
+export default class InputComboBoxComponent extends React.Component<Props> {
   public static defaultProps = {
     checked: false,
-    onSelect: (): void => {}
+    onSelect: (): any => {}
   };
-
   render(): React.ReactNode {
-    const { checked, onSelect, ...rest } = this.props;
+    const { checked } = this.props;
+    const onSelect = this.props.onSelect!;
     return (
-      <input
-        {...rest}
-        type="checkbox"
-        className="filled-in"
+      <IonCheckbox
+        className="checkbox-icon my-1"
+        mode="md"
         checked={checked}
-        onClick={(event): void => {
-          if (onSelect) {
-            onSelect(event);
-          }
-        }}
+        onIonChange={(e: CustomEvent): void => onSelect(e)}
       />
     );
   }
 }
-
-export default InputComboBoxComponent;

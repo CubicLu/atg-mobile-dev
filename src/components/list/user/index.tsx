@@ -28,12 +28,7 @@ export default class ListComponent extends React.Component<Props> {
   };
 
   checkSelected(data): boolean {
-    if (this.props.checkSelected) {
-      let check = this.props.checkSelected(data);
-      return check;
-    }
-
-    return false;
+    return this.props.checkSelected ? this.props.checkSelected(data) : false;
   }
   render(): React.ReactNode {
     const {

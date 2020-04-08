@@ -381,6 +381,11 @@ const defaultState: SettingsReducerType = {
       path: '/settings',
       id: 'settings',
       component: SettingPage
+    },
+    {
+      path: '/me',
+      id: 'settings',
+      component: SettingPage
     }
   ],
 

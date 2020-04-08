@@ -17,7 +17,6 @@ import ProfileVaultPage from './profile/vault';
 import CommunityPostPage from './community/post';
 import ArtistPage from './artist';
 import ThankYouPage from './thank-you';
-import SettingPage from './setting';
 
 import ArtistDeepDivePage from './artist/deep-dive';
 import ArtistFeaturesPage from './artist/features';
@@ -40,6 +39,7 @@ import CommunityDailyDripPage from './community/daily-drip';
 
 import CommunityAllArtistsPage from './community/all-artists';
 
+import SettingPage from './setting';
 import RadioFilterPage from './radio/filter';
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
@@ -88,12 +88,12 @@ export {
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   RadioFilterPage,
+  SettingPage,
   MessagePage,
   MessageChatPage,
   MessageNotificationsPage,
   RadioArtistPage,
   RadioHistoryPage,
-  SettingPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage
 };

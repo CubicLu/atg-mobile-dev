@@ -169,6 +169,19 @@
               font-size: 10px;
               top: 14px;
             }
+            &.notificationCounter {
+              position: absolute;
+              color: white;
+              z-index: 1;
+              background-color: red;
+              border-radius: 25%;
+              min-width: 12px;
+              height: 12px;
+              align-self: flex-end;
+              font-size: 7pt;
+              top: 15px;
+              padding: 1px;
+            }
           }
         }
     }

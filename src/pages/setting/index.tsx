@@ -9,7 +9,7 @@ interface Props extends RouteComponentProps {}
 class SettingPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <IonPage id="blank-page">
+      <IonPage id="settings-page">
         <IonContent>Settings</IonContent>
       </IonPage>
     );

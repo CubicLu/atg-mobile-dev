@@ -71,7 +71,7 @@ class MessagePage extends React.Component<Props> {
                 color={Colors.tertiary}
                 icon={<PlusIcon color={'#000'} width={20} height={20} />}
                 onClick={(): void => {
-                  this.props.history.push('/home/message/select-contact');
+                  this.props.history.push('/message/select-contact');
                 }}
               />
             ) : null

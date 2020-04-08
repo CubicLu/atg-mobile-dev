@@ -3,10 +3,21 @@ import { connect } from 'react-redux';
 import { Nullable } from '../../types/common';
 import { ButtonIcon } from '..';
 import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
-import { ShapesSize } from '../../interfaces';
+import { ShapesSize, SongInterface } from '../../interfaces';
 import { IonRange } from '@ionic/react';
+import { pauseSong, playSong } from '../../actions';
+import { ApplicationState } from '../../reducers';
 
-interface Props {
+interface StateProps {
+  song?: SongInterface | undefined;
+}
+
+interface DispatchProps {
+  pauseSong: () => void;
+  playSong: (song: SongInterface) => any;
+}
+
+interface Props extends DispatchProps, StateProps {
   readonly onClickClose: Function;
 }
 interface State {
@@ -72,13 +83,18 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 
   togglePlay(): void {
+    const { pauseSong, playSong, song } = this.props;
     if (this.video) {
       if (this.video.paused || this.video.ended) {
+        pauseSong();
         this.video.play();
         this.setPaused(false, false);
       } else {
         this.video.pause();
         this.setPaused(true);
+        if (song) {
+          playSong(song);
+        }
       }
     }
   }
@@ -177,7 +193,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     );
   }
   renderButtonPlayOrPause(): React.ReactNode {
-    if (!this.state.paused && this.state.first === true) {
+    if (!this.state.paused && this.state.first) {
       return (
         <div className="play-button">
           <ButtonIcon
@@ -199,10 +215,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
       );
     } else {
       return (
-        <div
-          className="pause-button"
-          onClick={(): void => this.togglePlay()}
-        ></div>
+        <div className="pause-button" onClick={(): void => this.togglePlay()} />
       );
     }
   }
@@ -257,7 +270,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
             <source
               src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/videoplayback.mp4"
               type="video/mp4"
-            ></source>
+            />
           </video>
           {this.renderControls()}
         </div>
@@ -267,4 +280,11 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 }
 
-export default connect(null, {})(VideoPlayerComponent);
+const mapStateToProps = ({ player }: ApplicationState): StateProps | {} => {
+  const { song } = player;
+  return song ? { song } : {};
+};
+
+export default connect(mapStateToProps, { pauseSong, playSong })(
+  VideoPlayerComponent
+);

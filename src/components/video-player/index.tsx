@@ -9,7 +9,7 @@ import { pauseSong, playSong } from '../../actions';
 import { ApplicationState } from '../../reducers';
 
 interface StateProps {
-  song?: SongInterface | undefined;
+  song?: SongInterface;
 }
 
 interface DispatchProps {
@@ -280,9 +280,9 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ player }: ApplicationState): StateProps | {} => {
+const mapStateToProps = ({ player }: ApplicationState): StateProps => {
   const { song } = player;
-  return song ? { song } : {};
+  return { song };
 };
 
 export default connect(mapStateToProps, { pauseSong, playSong })(

@@ -40,7 +40,9 @@ import {
   RadioFilterPage,
   MessagePage,
   MessageChatPage,
-  MessageNotificationsPage
+  MessageNotificationsPage,
+  RadioArtistPage,
+  RadioHistoryPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -307,6 +309,16 @@ const defaultState: SettingsReducerType = {
       path: '/message',
       id: 'message',
       component: MessagePage
+    },
+    {
+      path: '/radio/artist',
+      id: 'radioArtist',
+      component: RadioArtistPage
+    },
+    {
+      path: '/radio/history',
+      id: 'radioHistory',
+      component: RadioHistoryPage
     }
   ],
 

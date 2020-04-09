@@ -383,7 +383,7 @@ export interface VideoInterface {
   datePublished: Date;
 }
 
-export type RadioSection = 'Genre' | 'Vibe' | 'Era';
+export type RadioSection = 'Genre' | 'Vibe' | 'Era' | 'Artist';
 export interface ChannelInterface {
   id: string;
   type: RadioSection;

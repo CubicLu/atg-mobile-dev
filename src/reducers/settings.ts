@@ -45,7 +45,8 @@ import {
   RadioArtistPage,
   RadioHistoryPage,
   MessageSelectContactPage,
-  MessageNotificationDetailPage
+  MessageNotificationDetailPage,
+  FriendPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -386,6 +387,11 @@ const defaultState: SettingsReducerType = {
       path: '/me',
       id: 'settings',
       component: SettingPage
+    },
+    {
+      path: '/friend',
+      id: 'friend',
+      component: FriendPage
     }
   ],
 

@@ -5,8 +5,11 @@ import {
   ButtonIcon,
   MessageBalloonIcon,
   CloseIcon,
-  Button
+  Button,
+  ArrowRightIcon
 } from './../../../components';
+import ProfileIcon from '../../../components/icon/profile';
+import { ShapesSize, Colors, Sizes } from '../../../interfaces';
 
 import {
   IonList,
@@ -15,7 +18,6 @@ import {
   IonItem,
   IonContent
 } from '@ionic/react';
-import { ShapesSize, Colors, Sizes } from '../../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -37,8 +39,18 @@ class ProfileFriendsPage extends React.Component<Props> {
                             type={ShapesSize.circle}
                             width={48}
                             height={48}
+                            onClick={(): any =>
+                              this.props.history.push('/friend')
+                            }
                           />
-                          <span className="ml-2 f5">BassmanJeff</span>
+                          <span
+                            className="ml-2 f5"
+                            onClick={(): any =>
+                              this.props.history.push('/friend')
+                            }
+                          >
+                            BassmanJeff
+                          </span>
                         </div>
                       </div>
                       <div className="align-end no-padding flex-align-items-center my-auto mr-1">
@@ -46,17 +58,29 @@ class ProfileFriendsPage extends React.Component<Props> {
                           <Button
                             className="mt-10"
                             gradient={true}
-                            color={Colors.tertiary}
+                            color={Colors.secondary}
                             size={Sizes.md}
                             type={ShapesSize.rounded}
                             label="PENDING"
                           />
                         ) : (
-                          <ButtonIcon
-                            icon={<MessageBalloonIcon />}
-                            color={Colors.transparent}
-                          />
+                          <div className={'flex'}>
+                            <ButtonIcon
+                              icon={<MessageBalloonIcon />}
+                              color={Colors.transparent}
+                            />
+                            <ButtonIcon
+                              icon={<ProfileIcon />}
+                              color={Colors.transparent}
+                              onClick={(): any =>
+                                this.props.history.push('/feed')
+                              }
+                            />
+                          </div>
                         )}
+                      </div>
+                      <div className="col s1 arrow">
+                        <ArrowRightIcon />
                       </div>
                     </div>
                   </IonItem>

@@ -59,6 +59,9 @@ class MessageChatPage extends React.Component<Props> {
               );
             }
           )}
+          <IonItem />
+          <IonItem />
+          <IonItem />
         </IonList>
       </IonContent>
     );

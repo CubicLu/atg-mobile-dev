@@ -22,31 +22,27 @@ class RowChatComponent extends React.Component<Props> {
     colAvatar: 2
   };
   render(): React.ReactNode {
-    const { avatarSize, data, showDate, colInfo, colAvatar } = this.props;
+    const { avatarSize, data, showDate } = this.props;
+    const read = data.read ? '' : 'not-read';
     return (
-      <div
-        className={`row my-1 mx-0 w-100 row-chat-component ${
-          data.read ? '' : 'not-read'
-        }`}
-      >
-        {this.props.showAvatar && (
-          <div className={`col s${colAvatar} flex-justify-content-end`}>
+      <div className={`row my-1 mx-0  fluid flex-justify-content-end ${read}`}>
+        <div className="flex align-start">
+          {this.props.showAvatar && (
             <Avatar
               width={avatarSize}
               height={avatarSize}
               type={ShapesSize.circle}
               image={data.avatar}
             />
+          )}
+          <div className="ml-2 flex-column">
+            <span className="f6 bold">@{data.username}</span>
+            <span className="f5">{data.message}</span>
           </div>
-        )}
-        <div className={`col s${colInfo} info`}>
-          <span
-            className="text-14"
-            data-date={showDate ? moment(data.sendAt).format('MM/DD/YY') : ''}
-          >
-            {data.username}
-          </span>
-          <span className="text-16">{data.message}</span>
+        </div>
+
+        <div className="align-end f7 timestamp">
+          {showDate && <span>{moment(data.sendAt).format('MM/DD/YY')}</span>}
         </div>
       </div>
     );

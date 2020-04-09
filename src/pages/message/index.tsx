@@ -78,7 +78,7 @@ class MessagePage extends React.Component<Props> {
             ) : null
           }
         />
-        <IonContent>
+        <IonContent className="mb-50" scrollY={false}>
           <BackgroundImage
             gradient={`180deg,#1F0739,#1F0739`}
             backgroundTop
@@ -87,20 +87,16 @@ class MessagePage extends React.Component<Props> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className="message-page content-fixed" slot="fixed">
-            <div className="row">
-              <div className="fluid">
-                <div className="p-3">
-                  <InputSearch
-                    onChange={(e): void => {
-                      this.onSearchOnNotificationsAndChat(e);
-                    }}
-                    value={''}
-                    placeholder="Search"
-                    debounce={150}
-                  />
-                </div>
-              </div>
+          <div className="message-page content-fixed">
+            <div className="m-3">
+              <InputSearch
+                onChange={(e): void => {
+                  this.onSearchOnNotificationsAndChat(e);
+                }}
+                value={''}
+                placeholder="Search"
+                debounce={150}
+              />
             </div>
             <div className="row">
               <div className="fluid">

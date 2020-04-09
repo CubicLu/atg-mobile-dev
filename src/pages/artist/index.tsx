@@ -60,7 +60,7 @@ class ArtistPage extends React.Component<Props, {}> {
     this.customAlpha.animation = undefined;
   }
   loadAnimationsAlpha(): void {
-    const normalMenu = document.querySelector('#horizontal-menu');
+    const normalMenu = document.querySelector('#artist-menu');
     if (!normalMenu) return;
     this.customAlpha.loaded = true;
     this.customAlpha.animation = createAnimation()
@@ -82,9 +82,8 @@ class ArtistPage extends React.Component<Props, {}> {
     this.customAlpha.animation.progressStart(true);
   }
   loadAnimations(): void {
-    const normalMenu = document.querySelector('#horizontal-menu');
-    if (!normalMenu) return;
     this.custom.loaded = true;
+    const normalMenu = document.querySelector('#artist-menu')!;
     const supportButton = document.querySelector('#support-button')!;
     const artistTitle = document.querySelector('#artist-title')!;
     const aT = getFixedTranslatePoints(supportButton!, 16, 46, true);
@@ -223,6 +222,7 @@ class ArtistPage extends React.Component<Props, {}> {
           />
 
           <Menu
+            id="artist-menu"
             tabs={artistTabs}
             activeId={this.activeTab}
             onClick={this.handleMenu}

@@ -20,7 +20,7 @@ interface Props extends RouteComponentProps, StateProps, DispatchProps {}
 class MessageNotificationDetailPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <IonContent className="message-notifications-page">
+      <IonContent className="message-notifications-page" scrollY={true}>
         <IonList lines="none">
           {this.props.notificationsSearch.map(
             (data, i): React.ReactNode => {
@@ -28,6 +28,7 @@ class MessageNotificationDetailPage extends React.Component<Props> {
               return (
                 <IonItem
                   key={i}
+                  style={{ maxHeight: 84, height: 84 }}
                   onClick={(): void => {
                     this.props.history.push(`/message/notification/${i}`, {
                       needAccept: needAccept
@@ -37,12 +38,12 @@ class MessageNotificationDetailPage extends React.Component<Props> {
                   <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
                     <div className={`col s12 info`}>
                       <span
-                        className="text-18"
+                        className="f4 bold"
                         data-date={moment(data.sendAt).format('MM/DD/YY')}
                       >
                         {data.username}
                       </span>
-                      <span className="text-16">
+                      <span className="f5">
                         {data.subject}
                         <br />
                         {data.message}
@@ -53,6 +54,9 @@ class MessageNotificationDetailPage extends React.Component<Props> {
               );
             }
           )}
+          <IonItem />
+          <IonItem />
+          <IonItem />
         </IonList>
       </IonContent>
     );

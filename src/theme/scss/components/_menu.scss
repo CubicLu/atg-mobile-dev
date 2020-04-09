@@ -62,6 +62,8 @@
     &.tabs{
         background: transparent;
         padding-bottom: 0;
+        padding-left: 0px;
+        padding-right: 0px;
         align-items: flex-end;
         &::after{
             background: #fff;
@@ -75,7 +77,7 @@
             z-index: 1;
         }
         div{
-            width: 106px;
+            width: 130px;
             height: 32px;
             position: relative;
             .label{

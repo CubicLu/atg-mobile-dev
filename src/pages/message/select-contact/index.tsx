@@ -142,7 +142,7 @@ class SelectContactPage extends React.Component<Props, State> {
             className="message-select-contact-page content-fixed"
             slot="fixed"
           >
-            <div className="row fluid p-3">
+            <div className="row m-3">
               <InputSearch
                 onChange={(e): void => this.onSearch(e)}
                 value={this.state.searchText}

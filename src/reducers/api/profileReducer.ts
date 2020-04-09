@@ -19,7 +19,7 @@ const messages: MessageInterface[] = [
   },
   {
     message: 'are you Rock!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-04-01'),
     name: 'Débora',
     username: 'debora',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -27,7 +27,7 @@ const messages: MessageInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-03-15'),
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -35,7 +35,7 @@ const messages: MessageInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-03-10'),
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -54,7 +54,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'are you Rock!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-04-01'),
     name: 'Débora',
     username: 'debora',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -63,7 +63,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-03-01'),
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -72,7 +72,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-02-21'),
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -81,7 +81,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-01-31'),
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -90,7 +90,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2019-04-01'),
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),

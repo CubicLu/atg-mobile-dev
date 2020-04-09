@@ -327,6 +327,7 @@ export enum Colors {
   yellow = 'yellow',
   gold = 'gold',
   blue = 'blue',
+  chat = 'chat',
   lightBlue = 'light-blue',
   supported = 'supported',
   disable = 'disable',

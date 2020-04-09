@@ -33,11 +33,14 @@
     object-fit: contain;
     box-shadow: none;
     text-align: center;
-    background-color: linear-gradient(to right, #64e9ff, #0082ff 99%);
+    background-color: $primary;
     &.gradient{
         background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
     }
     &.blue{
+        &.horizontal{
+            background: linear-gradient(90deg, #01aed4 0%, #1853e0 100%);
+        }
         background: linear-gradient(180deg, #01aed4 0%, #1853e0 100%);
     }
     &.primary {
@@ -45,6 +48,9 @@
         &.gradient {
             background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
         }
+    }
+    &.chat{
+        background: linear-gradient(90deg, #64e9ff 0%, #0082ff 100%);
     }
     &.fixed{
         position: fixed;

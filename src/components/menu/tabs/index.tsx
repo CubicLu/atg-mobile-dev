@@ -15,7 +15,7 @@ export default class MenuMessageComponent extends React.Component<Props> {
     const { tabs, onClick, activeId } = this.props;
 
     return (
-      <div id="horizontal-menu" className={'horizontal-menu tabs scroll'}>
+      <div className={'horizontal-menu tabs scroll'}>
         {tabs.map(
           (data, i): React.ReactNode => {
             return (

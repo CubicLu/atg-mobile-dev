@@ -5,17 +5,18 @@ interface Props {
   activeId: string | number;
   onClick: Function;
   className?: string;
+  id: string;
 }
 export default class MenuComponent extends React.Component<Props> {
-  public static defaultProps = { onClick: (): void => {} };
+  public static defaultProps = { onClick: (): void => {}, id: '' };
   render(): React.ReactNode {
     if (!this.props.tabs) return <ul />;
-    const { tabs, onClick, activeId } = this.props;
+    const { tabs, onClick, activeId, id } = this.props;
     const scroll = tabs.length > 4;
 
     return (
       <div
-        id="horizontal-menu"
+        id={id}
         className={'horizontal-menu ' + (scroll ? 'scroll' : 'center')}
       >
         {tabs.map(

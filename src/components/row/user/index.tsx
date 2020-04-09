@@ -57,10 +57,9 @@ class RowUserComponent extends React.Component<Props> {
               className="my-auto"
               size={Sizes.md}
               type={ShapesSize.rounded}
-              color={Colors.primary}
+              color={Colors.chat}
               label="Pending"
               bold
-              gradient
             />
           )}
           {showChat && (

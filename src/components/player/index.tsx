@@ -159,14 +159,21 @@ class PlayerComponent extends React.Component<Props> {
     if (hasSong) this.props.playSong(this.props.player.song!);
     else this.nextSong();
   }
-
+  seeking = false;
   playNewAudio(song: SongInterface): void {
     this.audio && this.pauseSong();
     this.audio = new Audio(song.url);
     if (this.audio) this.audio.play();
     this.props.playSong(song);
     this.audio.onended = (): void => this.nextSong();
+    this.audio.onseeking = (): void => {
+      this.seeking = true;
+    };
+    this.audio.onseeked = (): void => {
+      this.seeking = false;
+    };
     this.audio.ontimeupdate = (): void => {
+      if (this.seeking) return;
       this.props.updateElapsed(this.audio?.currentTime || 0);
     };
   }
@@ -295,27 +302,34 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   mainControls(): React.ReactNode {
-    const { playing, timeElapsed, song } = this.props.player;
+    const { playing, song } = this.props.player;
     return (
       <div className="main-controls fluid">
         <div className="player-progress">
           <IonRange
             className="bar"
-            value={timeElapsed * 3.333}
-            // onIonChange={(e: any): void => console.log(e.detail.value)}
+            // value={timeElapsed}
+            min={0}
+            max={30}
+            debounce={200}
+            onIonChange={(e: any): void => {
+              if (this.audio) {
+                this.audio.currentTime = Number(e.detail.value);
+              }
+            }}
           />
 
           <div className="elapsed f6">
             <span>
               {moment()
                 .minutes(0)
-                .second(timeElapsed)
+                .second(this.audio!.currentTime || 0)
                 .format('m:ss')}
             </span>
             <span>
               {moment()
                 .minutes(0)
-                .second(song?.duration || 0)
+                .second(30)
                 .format('m:ss')}
             </span>
           </div>

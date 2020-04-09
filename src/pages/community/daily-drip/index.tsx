@@ -80,33 +80,33 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
 
   renderHeader(): React.ReactNode {
     return (
-      <div className="header px-2">
-        <div className="dots my-1 flex-justify-content-center">
-          <div className="dots-container fluid">
-            <div className="dots-bar m-0 my-1" />
-            <div className="dots-now m-0 my-1" />
+      <div className="header">
+        <div className="px-2">
+          <div className="dots my-1 flex-justify-content-center">
+            <div className="dots-container fluid">
+              <div className="dots-bar m-0 my-1" />
+              <div className="dots-now m-0 my-1" />
+            </div>
           </div>
-        </div>
-        <div className="flex-justify-content-center">
-          <div className="align-start flex-align-items-center">
-            <Avatar
-              image={'https://loremflickr.com/50/50'}
-              type={ShapesSize.circle}
-              width={36}
-              height={36}
-            />
-            <span className="f5 bold mx-1">{this.state.dailyDrip?.name}</span>
-          </div>
-          <div className="align-end">
-            <ButtonIcon
-              icon={<CloseIcon />}
-              styles={{ width: 32, height: 32 }}
-              onClick={(): void =>
-                this.props.history.push(
-                  `/community/artist/${this.props.match?.params.artistId}`
-                )
-              }
-            />
+          <div className="flex-justify-content-center">
+            <div className="align-start flex-align-items-center">
+              <Avatar
+                image={'https://loremflickr.com/50/50'}
+                type={ShapesSize.circle}
+                width={36}
+                height={36}
+              />
+              <span className="f5 bold mx-1">{this.state.dailyDrip?.name}</span>
+            </div>
+            <div className="align-end">
+              <ButtonIcon
+                icon={<CloseIcon />}
+                styles={{ width: 32, height: 32 }}
+                onClick={(): void =>
+                  this.props.history.push(`/community/artist/pharrell-williams`)
+                }
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -194,7 +194,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
                   onIonSlideTouchEnd={(): void => this.startProgress()}
                   onIonSlideDrag={(): void => this.pauseProgress()}
                   onIonSlideTouchStart={(): void => this.pauseProgress()}
-                  onIonSlideDoubleTap={(): void => this.navigateOtherDrip(true)}
+                  // onIonSlideDoubleTap={(): void => this.navigateOtherDrip(true)}
                   onIonSlideReachStart={(): boolean => (this.first = true)}
                   onIonSlideReachEnd={(): boolean => (this.last = true)}
                   onIonSlideTap={(e: CustomEvent): void => this.click(e.detail)}

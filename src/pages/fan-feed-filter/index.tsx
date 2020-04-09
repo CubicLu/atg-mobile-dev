@@ -102,7 +102,12 @@ class FanFeedFilterPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="fan-feed-filter-page">
-        <Header rightCloseButton leftBackButton={false} title="Fan Feed" />
+        <Header
+          rightCloseButton={true}
+          rightCloseHref={'/community'}
+          leftBackButton={false}
+          title="Fan Feed"
+        />
         <IonContent>
           <BackgroundImage
             gradient={`180deg,#1F0739,#1F0739`}
@@ -113,17 +118,13 @@ class FanFeedFilterPage extends React.Component<Props, State> {
             backgroundTopOpacity={0.7}
           />
           <div className="fan-feed-filter-page content-fixed" slot="fixed">
-            <div className="row">
-              <div className="fluid">
-                <div className="p-3">
-                  <InputSearch
-                    onChange={(e): void => this.onSearch(e)}
-                    value={this.state.searchText}
-                    placeholder="Search"
-                    debounce={150}
-                  />
-                </div>
-              </div>
+            <div className="m-3">
+              <InputSearch
+                onChange={(e): void => this.onSearch(e)}
+                value={this.state.searchText}
+                placeholder="Search"
+                debounce={150}
+              />
             </div>
 
             <IonContent scrollY={true}>

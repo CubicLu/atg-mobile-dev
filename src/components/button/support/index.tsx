@@ -44,7 +44,8 @@ class SupportComponent extends React.Component<ButtonProps> {
   }
 
   renderIcon(): React.ReactNode {
-    const { artist, supported, className, id } = this.props;
+    const { supported, className, id } = this.props;
+    const username = this.props.artist?.username || 'pharell-williams';
     return (
       <div
         id={id}
@@ -59,7 +60,7 @@ class SupportComponent extends React.Component<ButtonProps> {
         </span>
         <IonRouterLink
           ref={this.linkRef}
-          routerLink={`/artist/${artist?.username}/support`}
+          routerLink={`/artist/${username}/support`}
           routerDirection="forward"
         />
       </div>
@@ -68,6 +69,7 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderButton(): React.ReactNode {
     const { supported, bold, id } = this.props;
+    const username = this.props.artist?.username || 'pharell-williams';
     return (
       <Button
         id={id}
@@ -81,7 +83,7 @@ class SupportComponent extends React.Component<ButtonProps> {
       >
         <IonRouterLink
           ref={this.linkRef}
-          routerLink={`/artist/${this.props.artist?.username}/support`}
+          routerLink={`/artist/${username}/support`}
           routerDirection="root"
         />
       </Button>

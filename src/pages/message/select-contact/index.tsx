@@ -117,6 +117,7 @@ class SelectContactPage extends React.Component<Props, State> {
         <Header
           title="Select Contact"
           leftBackButton
+          leftBackHref="/message"
           rightContent={
             <Button
               type={ShapesSize.normal}
@@ -142,7 +143,7 @@ class SelectContactPage extends React.Component<Props, State> {
             className="message-select-contact-page content-fixed"
             slot="fixed"
           >
-            <div className="row m-3">
+            <div className="m-3">
               <InputSearch
                 onChange={(e): void => this.onSearch(e)}
                 value={this.state.searchText}

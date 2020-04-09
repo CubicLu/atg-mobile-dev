@@ -105,7 +105,7 @@ export default class ListItemComponent extends React.Component<Props> {
       username,
       supported
     } = this.props;
-    const expand = this.props.expandArrow ? 'mr-05' : '';
+    const expand = this.props.expandArrow ? '' : '';
     return (
       <IonItem
         className={this.props.bottomBorder ? 'with-border' : ''}
@@ -163,7 +163,7 @@ export default class ListItemComponent extends React.Component<Props> {
             {this.props.pendingButton && (
               <Button
                 gradient={true}
-                color={Colors.tertiary}
+                color={Colors.blue}
                 size={Sizes.md}
                 type={ShapesSize.rounded}
                 label="PENDING"
@@ -197,10 +197,10 @@ export default class ListItemComponent extends React.Component<Props> {
             {this.props.expandArrow && (
               <div
                 className="arrow-expand"
-                onClick={(): void => {
+                onClick={(e): void => {
                   this.props.expandAction
                     ? this.props.expandAction()
-                    : this.openSlider(this.props.node);
+                    : this.openSlider(e);
                 }}
               >
                 <ArrowRightIcon />
@@ -213,7 +213,8 @@ export default class ListItemComponent extends React.Component<Props> {
   }
 
   openSlider(i): void {
-    let clickedSlider = document.querySelectorAll('ion-item-sliding')[i];
+    let clickedSlider =
+      i.currentTarget.parentElement.parentElement.parentElement.parentElement;
     if (clickedSlider.classList.contains('item-sliding-active-options-end')) {
       clickedSlider.close();
       return;

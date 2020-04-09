@@ -130,17 +130,20 @@ const artists: UserInterface[] = [
   {
     username: 'pharell-williams',
     name: 'pharell-williams',
+    isFriend: true,
     avatar:
       'https://loremflickr.com/50/50/pharell,williams?random=' + Math.random()
   },
   {
     username: 'demi',
     name: 'demi',
+    isFriend: true,
     avatar: 'https://loremflickr.com/50/50/demi,lovato?random=' + Math.random()
   },
   {
     username: 'milie-cyrus',
     name: 'pharell-williams',
+    isFriend: true,
     avatar: 'https://loremflickr.com/50/50/cyrus?random=' + Math.random()
   }
 ];

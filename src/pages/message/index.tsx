@@ -87,7 +87,7 @@ class MessagePage extends React.Component<Props> {
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className="message-page content-fixed">
+          <div className="message-page content-fixed" slot="fixed">
             <div className="m-3">
               <InputSearch
                 onChange={(e): void => {

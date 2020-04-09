@@ -477,6 +477,16 @@ class PlayerComponent extends React.Component<Props> {
     );
   }
 
+  componentDidUpdate(): void {
+    const { paused } = this.props.player;
+    if (paused && this.audio) {
+      this.audio.pause();
+    }
+    if (!paused && this.audio) {
+      this.audio.play();
+    }
+  }
+
   render(): React.ReactNode {
     const { expanded } = this.props.player;
     const active = this.props.player.song ? 'active' : '';

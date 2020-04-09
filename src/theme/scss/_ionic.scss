@@ -2,6 +2,75 @@ ion-tab-bar {
     --border: 0px solid #000;
     margin-top: 0px;
 }
+ion-list {
+    --ion-background-color:transparent;
+}
+ion-item{
+    --ion-background-color:transparent;
+    max-height: $ion-item-max-height;
+    height: $ion-item-max-height;
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    border-bottom: none;
+        &.with-border{
+            border-bottom: 1px solid #45187B;
+        }
+    }
+    .arrow-expand {
+        margin-left: 3px;
+        margin-right: 2px;
+        height: 20px;
+        position: absolute;
+        right: 8px;
+        .flip{
+            transform: scaleX(-1);
+        }
+    }
+    .opacity{
+    opacity: 0.5;
+    }
+    ion-item-options{
+        .btn.btn{
+            margin-top: 0;
+            border-radius: 0;
+            height: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: none;
+            &.with-border{
+                border-bottom: 1px solid #45187B;
+            }
+        }
+    }
+    .dark{
+        ion-item-sliding{
+            ion-item-options{
+                background: #201339;
+            }
+            ion-item{
+            --ion-background-color: #201339;
+            }
+        }
+    }
+    ion-item-sliding{
+        &.item-sliding-active-slide{
+            ion-item-options{
+                background: #4d3f9e;
+            }
+            ion-item{
+                --ion-background-color: #4d3f9e;
+                border-bottom: none;
+                &.with-border{
+                    border-bottom: 1px solid #45187B;
+                }
+            }
+        }
+    }
+
 .mini-player{
     .pull{
         display: none;
@@ -35,10 +104,10 @@ ion-checkbox{
     --border-color-checked: transparent;
     --border-radius: 3px;
     --border-style: solid;
-    --border-width: 3px;
+    --border-width: 2px;
     --checkmark-color: #1f0739;
     --checkmark-width: 3px;
-    --size: 24px;
+    --size: 20px;
     &.checkbox-icon{
         svg{
             display: none;

@@ -107,6 +107,22 @@ export interface ArtistCoverInterface {
   deepDive: string | undefined;
 }
 
+export interface DailyDripType {
+  id: string;
+  name: string;
+  total: number;
+  lastViewed: number;
+  artistUsername: string;
+  items: DailyDripItem[];
+}
+export interface DailyDripItem {
+  id: string;
+  createdAt: number;
+  dripType: 'image' | 'video';
+  href: string;
+  duration: number;
+}
+
 export interface SettingsReducerType {
   tabs: TabsInterface[];
   links: LinksInterface[];

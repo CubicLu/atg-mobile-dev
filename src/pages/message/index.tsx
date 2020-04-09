@@ -63,10 +63,11 @@ class MessagePage extends React.Component<Props> {
       <IonPage id="message-page">
         <Header
           title="Messages"
+          leftBackHref={'/profile'}
           rightContent={
             activeMessageTab === 'chat' ? (
               <ButtonIcon
-                styles={{ width: 35, height: 35 }}
+                styles={{ width: 30, height: 30 }}
                 type={ShapesSize.circle}
                 color={Colors.tertiary}
                 icon={<PlusIcon color={'#000'} width={20} height={20} />}

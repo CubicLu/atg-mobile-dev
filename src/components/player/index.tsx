@@ -219,7 +219,7 @@ class PlayerComponent extends React.Component<Props> {
             <IonRange
               className="bar"
               value={timeElapsed * 3.333}
-              onIonChange={(e: any): void => console.log(e.detail.value)}
+              // onIonChange={(e: any): void => console.log(e.detail.value)}
             />
           </div>
         )}
@@ -302,7 +302,7 @@ class PlayerComponent extends React.Component<Props> {
           <IonRange
             className="bar"
             value={timeElapsed * 3.333}
-            onIonChange={(e: any): void => console.log(e.detail.value)}
+            // onIonChange={(e: any): void => console.log(e.detail.value)}
           />
 
           <div className="elapsed f6">
@@ -362,7 +362,7 @@ class PlayerComponent extends React.Component<Props> {
           <VolumeMuteButton />
           <IonRange
             value={7}
-            onIonChange={(e: any): void => console.log(e.detail.value)}
+            // onIonChange={(e: any): void => console.log(e.detail.value)}
           />
           <VolumeButton />
         </div>

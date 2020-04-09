@@ -16,7 +16,7 @@ export default class MenuComponent extends React.Component<Props> {
     return (
       <div
         id="horizontal-menu"
-        className={'horizontal-menu ' + (scroll ? ' scroll' : 'center')}
+        className={'horizontal-menu ' + (scroll ? 'scroll' : 'center')}
       >
         {tabs.map(
           (data, i): React.ReactNode => {

@@ -34,6 +34,7 @@ import {
   TrackListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
+  CommunityArtistPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   ProfileMixtapesPage,
@@ -44,6 +45,7 @@ import {
   MessageNotificationsPage,
   RadioArtistPage,
   RadioHistoryPage,
+  FanFeedFilterPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage,
   FriendPage
@@ -304,7 +306,7 @@ const defaultState: SettingsReducerType = {
       component: TrackListPage
     },
     {
-      path: '/community/:artistId/daily-drip/:dailyDripId',
+      path: '/community/artist/:artistId/daily-drip/:dailyDripId',
       id: 'communityArtistDailyDrip',
       component: CommunityDailyDripPage
     },
@@ -314,9 +316,14 @@ const defaultState: SettingsReducerType = {
       component: CommunityAllArtistsPage
     },
     {
-      path: '/community/:artistId',
+      path: '/community',
       id: 'communityArtist',
       component: CommunityPage
+    },
+    {
+      path: '/community/artist/:artistId',
+      id: 'communityArtist',
+      component: CommunityArtistPage
     },
     {
       path: '/thank-you',
@@ -377,6 +384,11 @@ const defaultState: SettingsReducerType = {
       path: '/radio/:id/history',
       id: 'radioHistory',
       component: RadioHistoryPage
+    },
+    {
+      path: '/fan-feed-filter',
+      id: 'fan-feed-filter',
+      component: FanFeedFilterPage
     },
     {
       path: '/settings',

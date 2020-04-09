@@ -51,13 +51,16 @@ class RowUserComponent extends React.Component<Props> {
             <span className="ml-2 f5">{data.username}</span>
           </div>
         </div>
-        <div className="align-end no-padding flex-align-items-center my-auto mr-1">
+        <div className="align-end no-padding flex-align-items-center my-auto">
           {data.isFriend !== true && showButtonPending && (
             <Button
               className="my-auto"
               size={Sizes.md}
               type={ShapesSize.rounded}
+              color={Colors.primary}
               label="Pending"
+              bold
+              gradient
             />
           )}
           {showChat && (

@@ -25,7 +25,7 @@ class RowChatComponent extends React.Component<Props> {
     const { avatarSize, data, showDate, colInfo, colAvatar } = this.props;
     return (
       <div
-        className={`row w-100 row-chat-component ${
+        className={`row my-1 mx-0 w-100 row-chat-component ${
           data.read ? '' : 'not-read'
         }`}
       >

@@ -11,11 +11,9 @@ interface StateProps {
   stories: StorieInterface[];
   loading: boolean;
 }
-
 interface DispatchProps {
   getCommunityStoriesAPI: () => void;
 }
-
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class CommunityAllArtistsPage extends React.Component<Props> {
@@ -50,14 +48,21 @@ class CommunityAllArtistsPage extends React.Component<Props> {
               {this.props.stories.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <div key={i} className="col s4 no-padding">
+                    <div
+                      onClick={(): void =>
+                        this.props.history.push(
+                          '/community/artist/pharell-williams'
+                        )
+                      }
+                      key={i}
+                      className="col s4 no-padding"
+                    >
                       <div>
                         <Avatar
                           image={data.image}
                           type={ShapesSize.circle}
                           width={96}
                           height={96}
-                          onClick={(): void => {}}
                         />
                         <label>{data.label}</label>
                       </div>

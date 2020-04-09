@@ -33,7 +33,7 @@ class CardPostComponent extends React.Component<Props> {
                 onClick={(): void => {
                   if (this.props.showUser)
                     this.props.history.push(
-                      `/community/${this.props.post.username}`
+                      `/community/artist/${this.props.post.username}`
                     );
                 }}
               >

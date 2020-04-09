@@ -1,20 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, IonList, IonItem } from '@ionic/react';
+import { IonContent, IonPage, IonList } from '@ionic/react';
 import {
   Header,
   BackgroundImage,
   Button,
   CardEvent,
-  Avatar
+  ListItem
 } from './../../../components';
-import {
-  EventInterface,
-  ShapesSize,
-  Colors,
-  Sizes
-} from './../../../interfaces';
+import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
 import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,
@@ -68,10 +63,6 @@ class EventDetailPage extends React.Component<Props, State> {
     }
   }
 
-  // componentWillUnmount(): void {
-  //   this.props.updateArtistSetInitialProperty('event');
-  // }
-
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
@@ -110,38 +101,22 @@ class EventDetailPage extends React.Component<Props, State> {
                 data={this.props.event}
               />
               <div className="content-list">
-                <IonList lines="none" className="list users">
+                <IonList lines="none">
                   {this.props.event?.whoIsGoing?.map(
                     (data, i): React.ReactNode => {
-                      let opacity = data.isFriend === true ? '' : 'opacity';
                       return (
-                        <IonItem key={i}>
-                          <div className="row">
-                            <div className={`col s2 no-padding ${opacity}`}>
-                              <Avatar
-                                type={ShapesSize.circle}
-                                image={data.avatar}
-                                width={48}
-                                height={48}
-                              />
-                            </div>
-                            <div
-                              className={`col s7 no-padding info ${opacity}`}
-                            >
-                              <span className="user f5">{data.username}</span>
-                            </div>
-                            <div className="col s3 f6">
-                              <Button
-                                className="mt-1"
-                                gradient={true}
-                                color={Colors.blue}
-                                size={Sizes.md}
-                                type={ShapesSize.rounded}
-                                label="Connect"
-                              />
-                            </div>
-                          </div>
-                        </IonItem>
+                        <ListItem
+                          key={i}
+                          node={i}
+                          sliding={false}
+                          bottomBorder={false}
+                          // leftDisabled={!data.isFriend}
+                          hasAvatar={true}
+                          avatarImage={data.avatar}
+                          avatarSize={48}
+                          username={data.username}
+                          connectButton={true}
+                        />
                       );
                     }
                   )}

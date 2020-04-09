@@ -7,14 +7,16 @@ import {
   AddPlaylistIcon,
   NetworkIcon
 } from '../../icon';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-interface Props {
-  onClick: Function;
+interface Props extends RouteComponentProps {
   artist: ArtistInterface;
   background?: string;
+  onClose: () => void;
 }
 class MenuFanSupportOptionsComponent extends React.Component<Props> {
   render(): React.ReactNode {
+    const username = this.props.artist.username;
     return (
       <div className="fan-support-options">
         <div className={`modal-header py-2 ${this.props.background}`}>
@@ -24,11 +26,22 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
 
         <div className="modal-content f5">
           <ul className="mt-2" style={{ minHeight: 50 }}>
-            <li>
+            <li
+              onClick={(): void => {
+                this.props.history.push(`/artist/${username}/support`);
+                this.props.onClose();
+              }}
+            >
               Increase support
               <SupportIcon width={42} height={42} />
             </li>
-            <li>
+
+            <li
+              onClick={(): void => {
+                this.props.history.push(`/artist/${username}/support`);
+                this.props.onClose();
+              }}
+            >
               Decrease support
               <ButtonIcon
                 icon={<StarIcon width={25} />}
@@ -59,4 +72,4 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
   }
 }
 
-export default MenuFanSupportOptionsComponent;
+export default withRouter(MenuFanSupportOptionsComponent);

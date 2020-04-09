@@ -1,43 +1,57 @@
 .community-daily-drip-page{
     .header{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
         --ion-safe-area-top: $header-margin-top;
-        margin-top: $header-margin-top;
-        margin-left: $header-margin-left;
-        margin-right: $header-margin-right;
-        margin-bottom: $header-margin-bottom;
-
-        .row{
-            margin-bottom: 0;
-        }
-
-        .user-info{
-            display: inline-flex;
-            align-items: center;
-
-            span{
-                font-family: "Helvetica";
-                font-size: 16px;
-                font-weight: bold;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: 1.19;
-                letter-spacing: normal;
-                color: #ffffff;
-                margin-left: 5px;
-            }
-        }
+        padding-top: $header-margin-top;
+        padding-bottom: $header-margin-bottom;
     }
-
+      .dots-container {
+          overflow: hidden;
+          position: relative;
+      }
+      .dots-now {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 0;
+        background: radial-gradient(circle at 50% 3px, #fe0000 52%, transparent 55%);
+      }
+      .dots-bar {
+        position: relative;
+        background: radial-gradient(circle at 50% 3px, #fff 50%, transparent 52%);
+      }
+      .dots-bar, .dots-now{
+        
+        height: 6px; 
+        background-repeat: repeat-x;
+        background-size: 10px 6px;
+      }
     .footer{
-        .buttons{
-            .btn{
-                margin-right: 12px;
-                &:last-child{
-                    margin-right: 0;
-                }
-            }
-
-        }
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        bottom: 0;    
+    }
+    .swiper-pagination-bullets{
+        margin-bottom: 80px;
+    }
+    .button-prev, .button-next{
+        width: 100px;
+        z-index: 10;
+        position: fixed;
+        top: 120px;
+        bottom: 75px;
+    }
+    .button-next{
+        right: 0;
+    }
+    .button-prev{
+        left: 0;
     }
 }
 

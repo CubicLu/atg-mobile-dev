@@ -37,8 +37,8 @@ class MessageChatPage extends React.Component<Props> {
           {this.props.messagesSearch.map(
             (data, i): React.ReactNode => {
               return (
-                <IonItemSliding key={i} className="mt-1 mb-1">
-                  <IonItem className="flex-align-items-center">
+                <IonItemSliding key={i}>
+                  <IonItem className="my-auto flex-align-items-center dark">
                     <RowChat
                       data={data}
                       avatarSize={48}
@@ -49,9 +49,8 @@ class MessageChatPage extends React.Component<Props> {
                   </IonItem>
                   <IonItemOptions side="end">
                     <ButtonIcon
-                      icon={
-                        <CloseIcon width={15} height={15} strokeWidth={2} />
-                      }
+                      className="no-padding"
+                      icon={<CloseIcon strokeWidth={2} />}
                       color={Colors.red}
                       type={ShapesSize.normal}
                     />

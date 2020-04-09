@@ -19,6 +19,13 @@ export function setHeight(original: number): number {
   }
 }
 
+export function hideTabs(option: boolean): void {
+  const ionApp = document.querySelector('ion-app') as HTMLElement;
+  option
+    ? ionApp!.classList.add('hide-tabs')
+    : ionApp!.classList.remove('hide-tabs');
+}
+
 export function totalRows(item: any[], itemPerRow: number): any[] {
   const length = (item && item.length) || 0;
   const total = Math.floor(length / itemPerRow) + 1;

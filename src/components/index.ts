@@ -23,7 +23,7 @@ import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import BiographyListComponent from './menu/biography-list';
 import ButtonPlanComponent from './button/plan';
-import ListComponent from './list';
+import ListItemComponent from './list/item';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
 import MenuProfileListComponent from './menu/profile-list';
@@ -99,7 +99,7 @@ export {
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   BiographyListComponent as BiographyList,
   ButtonPlanComponent as ButtonPlan,
-  ListComponent as List,
+  ListItemComponent as ListItem,
   SupportByComponent as SupportBy,
   MenuArtistListComponent as MenuArtistList,
   CardAlbumGalleryComponent as CardAlbumGallery,

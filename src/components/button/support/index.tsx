@@ -31,11 +31,9 @@ class SupportComponent extends React.Component<ButtonProps> {
     if (!this.props.artist) return;
     this.props.updateSettingsModal(
       <MenuFanSupportOptions
-        onClick={(): void => {
-          this.linkRef.current?.click();
-        }}
         background={'background-tertiary-opacity95'}
         artist={this.props.artist!}
+        onClose={(): void => this.props.updateSettingsModal(false)}
       />,
       'background-tertiary-opacity95'
     );

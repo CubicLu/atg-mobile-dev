@@ -14,7 +14,7 @@ import { ChannelInterface } from '../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 interface MatchParams {
-  artistRadioId: string;
+  id: string;
 }
 interface StateProps {
   artistRadio: ChannelInterface[];
@@ -27,6 +27,11 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class RadioArtistPage extends React.Component<Props> {
+  componentDidMount(): void {
+    let artistRadioId = this.props.match.params.id;
+    //    this.props.getArtistRadioAPI(artistRadioId);    -SAGA
+    console.log(artistRadioId);
+  }
   private headerRef: React.RefObject<any> = React.createRef();
   render(): React.ReactNode {
     return (
@@ -87,7 +92,7 @@ class RadioArtistPage extends React.Component<Props> {
             title={`${this.artistRadio.name} RECOMENDS`}
             viewAll={false}
           />
-          <SliderRadio className="f0 l1" data={this.radios} />
+          <SliderRadio diameter={'72px'} className="f0 l1" data={this.radios} />
         </IonContent>
         <div className="row mt-4" />
       </IonPage>
@@ -104,33 +109,33 @@ class RadioArtistPage extends React.Component<Props> {
   };
   radios = [
     {
-      label: 'Pharrel Williams',
+      label: 'Luciano',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
-      label: 'R&B',
+      label: 'Bob Marley',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg'
     },
     {
-      label: 'Hip Hop',
+      label: 'Mishka',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg'
     },
     {
-      label: 'Soul',
+      label: 'UB40',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/soul.jpg'
     },
     {
-      label: 'Blues',
+      label: 'Matisyahu',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/blues.jpg'
     },
     {
-      label: 'Jazz',
+      label: 'Sean Paul',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
     },
     {
-      label: 'Funk',
+      label: 'Pharrel Williams',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg'
     }
   ];

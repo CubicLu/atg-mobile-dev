@@ -55,7 +55,8 @@ export enum ActionType {
   GET_SEARCH_RESULT_API = 'GET_SEARCH_RESULT_API',
   GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
   GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS',
-  UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY'
+  UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY',
+  SET_RADIO_ARTIST = 'SET_RADIO_ARTIST'
 }
 
 export interface TabsInterface {
@@ -427,4 +428,11 @@ export interface NotificationInterface extends UserInterface {
   sendAt: Date;
   read: boolean;
   subject: string;
+}
+
+export interface RadioReducerType {
+  radioArtist: ChannelInterface;
+  similarArtist?: ArtistInterface;
+  loading: boolean;
+  errorMessage: string | null;
 }

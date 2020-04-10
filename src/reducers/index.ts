@@ -12,9 +12,11 @@ import {
   PlayerReducerType,
   CommunityReducerType,
   SearchReducerType,
-  ProfileReducerType
+  ProfileReducerType,
+  RadioReducerType
 } from '../interfaces';
 import { profileReducer } from './api/profileReducer';
+import { radioReducer } from './api/radioReducer';
 
 export interface ApplicationState {
   settings: SettingsReducerType;
@@ -24,6 +26,7 @@ export interface ApplicationState {
   communityAPI: CommunityReducerType;
   searchAPI: SearchReducerType;
   profileAPI: ProfileReducerType;
+  radioAPI: RadioReducerType;
 }
 
 export const rootReducers = combineReducers<ApplicationState>({
@@ -33,5 +36,6 @@ export const rootReducers = combineReducers<ApplicationState>({
   player: playerReducer,
   communityAPI: communityReducer,
   searchAPI: searchReducer,
-  profileAPI: profileReducer
+  profileAPI: profileReducer,
+  radioAPI: radioReducer
 });

@@ -6,8 +6,7 @@ import {
   IonPage,
   IonList,
   IonItemSliding,
-  IonItem,
-  IonItemOptions
+  IonItem
 } from '@ionic/react';
 import { ApplicationState } from '../../../reducers';
 import {
@@ -15,8 +14,6 @@ import {
   Header,
   Avatar,
   ButtonSupportIcon,
-  ButtonIcon,
-  AddPlaylistIcon,
   CloseIcon
 } from '../../../components';
 import { ShapesSize, Colors } from '../../../interfaces';
@@ -67,7 +64,6 @@ class RadioHistoryPage extends React.Component<Props> {
                         </div>
                       </div>
                     </IonItem>
-                    
                   </IonItemSliding>
                 );
               }

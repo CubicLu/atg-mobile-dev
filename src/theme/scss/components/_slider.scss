@@ -22,12 +22,7 @@
     &.radio{
         .card{
             &.image{
-                &.circle{
-                    height: 110px;
-                    width: 110px;
-                    min-height: 110px;
-                    min-width: 110px;
-                }
+                &.circle{}
             }
         }
         .slick-track{

@@ -9,6 +9,7 @@ interface Props {
   scroll?: boolean;
   data?: any[];
   className?: string;
+  diameter?: string;
 }
 
 class SliderRadioComponent extends React.Component<Props> {

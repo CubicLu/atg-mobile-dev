@@ -10,17 +10,19 @@ interface Props {
   label?: string;
   routerLink?: string;
   routerDirection: RouterLinkDirection;
+  diameter?: string;
 }
 
 class CardImageComponent extends React.Component<Props> {
   public static defaultProps = {
     type: ShapesSize.normal,
     col: 6,
-    routerDirection: 'forward'
+    routerDirection: 'forward',
+    diameter: '110px'
   };
 
   render(): React.ReactNode {
-    const { col, type, image, label } = this.props;
+    const { col, type, image, label, diameter } = this.props;
     return (
       <div className={`col s${col}`}>
         <IonRouterLink
@@ -29,7 +31,13 @@ class CardImageComponent extends React.Component<Props> {
         >
           <div
             className={`card image ${type}`}
-            style={{ backgroundImage: `url(${image})` }}
+            style={{
+              backgroundImage: `url(${image})`,
+              height: diameter,
+              width: diameter,
+              minHeight: diameter,
+              minWidth: diameter
+            }}
           />
           <div className="f5 l2">{label}</div>
         </IonRouterLink>

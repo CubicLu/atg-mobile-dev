@@ -19,13 +19,33 @@ const defaultState: RadioReducerType = {
 };
 
 export const radioReducer = createReducer<RadioReducerType>(defaultState, {
-  [ActionType.SET_RADIO_ARTIST](
+  [ActionType.GET_RADIO_ARTIST](
     state: RadioReducerType,
     action: Action<any>
   ): any {
     return {
       ...state,
+      loading: true
+    };
+  },
+  [ActionType.GET_RADIO_ARTIST_SUCCESS](
+    state: RadioReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      loading: false,
       radioArtist: action.payload
+    };
+  },
+  [ActionType.GET_RADIO_ARTIST_FAILURE](
+    state: RadioReducerType,
+    action: Action<any>
+  ): any {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload
     };
   }
 });

@@ -316,7 +316,7 @@ const defaultState: SettingsReducerType = {
       component: RadioArtistPage
     },
     {
-      path: '/radio/history',
+      path: '/radio/:id/history',
       id: 'radioHistory',
       component: RadioHistoryPage
     }

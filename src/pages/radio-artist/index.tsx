@@ -1,5 +1,6 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
+import { connect } from 'react-redux';
 import {
   Header,
   BackgroundImage,
@@ -12,25 +13,33 @@ import {
 } from '../../components';
 import { ChannelInterface } from '../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { ApplicationState } from '../../reducers';
+import { getRadioArtistAPI } from './../../actions';
 
 interface MatchParams {
   id: string;
 }
 interface StateProps {
-  artistRadio: ChannelInterface[];
+  loading: boolean;
+  radioArtist: ChannelInterface;
 }
 
-interface DispatchProps {}
+interface DispatchProps {
+  getRadioArtistAPI: (id: string) => void;
+}
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
 class RadioArtistPage extends React.Component<Props> {
+  public artistRadioId = this.props.match.params.id;
   componentDidMount(): void {
-    let artistRadioId = this.props.match.params.id;
-    //    this.props.getArtistRadioAPI(artistRadioId);    -SAGA
-    console.log(artistRadioId);
+    this.props.getRadioArtistAPI(this.artistRadioId);
+  }
+  componentDidUpdate(prevProps): void {
+    if (this.props.match.params.id != prevProps.match.params.id)
+      this.props.getRadioArtistAPI(this.artistRadioId);
   }
   private headerRef: React.RefObject<any> = React.createRef();
   render(): React.ReactNode {
@@ -77,7 +86,9 @@ class RadioArtistPage extends React.Component<Props> {
               <span
                 className="mx-3 mt-2"
                 onClick={(): void => {
-                  this.props.history.push('/radio/history');
+                  this.props.history.push(
+                    `/radio/${this.props.match.params.id}/history`
+                  );
                 }}
               >
                 View History&nbsp;
@@ -85,7 +96,7 @@ class RadioArtistPage extends React.Component<Props> {
               </span>
             </div>
           </div>
-
+          <div className="row mt-4" />
           <SectionTitle
             className="mt-2 mx-3 mb-05"
             leftClassName="text-30"
@@ -94,7 +105,6 @@ class RadioArtistPage extends React.Component<Props> {
           />
           <SliderRadio diameter={'72px'} className="f0 l1" data={this.radios} />
         </IonContent>
-        <div className="row mt-4" />
       </IonPage>
     );
   }
@@ -140,5 +150,14 @@ class RadioArtistPage extends React.Component<Props> {
     }
   ];
 }
+const mapStateToProps = ({ radioAPI }: ApplicationState): StateProps => {
+  const { radioArtist, loading } = radioAPI;
+  return {
+    radioArtist,
+    loading
+  };
+};
 
-export default withRouter(RadioArtistPage);
+export default withRouter(
+  connect(mapStateToProps, { getRadioArtistAPI })(RadioArtistPage)
+);

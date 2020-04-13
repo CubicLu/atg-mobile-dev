@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonContent, IonAlert } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
   Header,
@@ -14,7 +14,11 @@ import {
 import { ChannelInterface, ArtistInterface } from '../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ApplicationState } from '../../reducers';
-import { getArtistAPI, getRadioArtistAPI } from './../../actions';
+import {
+  getArtistAPI,
+  getRadioArtistAPI,
+  setPlaylistPlayer
+} from './../../actions';
 
 interface MatchParams {
   id: string;
@@ -26,11 +30,13 @@ interface StateProps {
   loading: boolean;
   radioArtist: ChannelInterface;
   currentArtist: ArtistInterface | null;
+  playing: boolean;
 }
 
 interface DispatchProps {
   getRadioArtistAPI: (id: string) => void;
   getArtistAPI: (id: string) => void;
+  setPlaylistPlayer: () => void;
 }
 interface Props
   extends StateProps,
@@ -38,16 +44,11 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class RadioArtistPage extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      show: false
-    };
-  }
   refreshRadio(): void {
     let artistRadioId = this.props.match.params.id;
+    this.props.getArtistAPI(artistRadioId);
     let supported = this.props.currentArtist?.support;
-    if (!this.props.currentArtist || !supported) {
+    if (this.props.currentArtist && !supported) {
       this.props.history.push(`/artist/${this.props.match.params.id}`);
     }
     this.props.getRadioArtistAPI(artistRadioId);
@@ -59,11 +60,6 @@ class RadioArtistPage extends React.Component<Props, State> {
     if (this.props.match.params.id != prevProps.match.params.id)
       this.refreshRadio();
   }
-  showMessage(condition = false): void {
-    this.setState({
-      show: condition
-    });
-  }
   private headerRef: React.RefObject<any> = React.createRef();
   render(): React.ReactNode {
     return (
@@ -74,7 +70,11 @@ class RadioArtistPage extends React.Component<Props, State> {
           rightContent={
             <div
               className="mt-1 default-button gold"
-              onClick={(): void => this.showMessage(true)}
+              onClick={(): void =>
+                this.props.history.push(
+                  `/artist/${this.props.match.params.id}/event`
+                )
+              }
             >
               <TicketIcon color="#000000" />
             </div>
@@ -100,6 +100,8 @@ class RadioArtistPage extends React.Component<Props, State> {
           <div className="row mt-4" />
           <div className="row mt-4" />
           <RadioPlayer
+            onClick={(): void => this.props.setPlaylistPlayer()}
+            playing={this.props.playing}
             title={this.artistRadio.title}
             subtitle={this.artistRadio.subtitle}
           />
@@ -131,34 +133,11 @@ class RadioArtistPage extends React.Component<Props, State> {
           />
           <SliderRadio diameter={'72px'} className="f0 l1" data={this.radios} />
         </IonContent>
-        <IonAlert
-          isOpen={this.state.show}
-          onDidDismiss={(): void => this.showMessage(false)}
-          header={'Atention!'}
-          message={`You'll be redirect to external link, are you sure?`}
-          buttons={[
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              cssClass: 'secondary',
-              handler: (): void => {
-                this.showMessage();
-              }
-            },
-            {
-              text: 'Yes',
-              handler: (): void => {
-                window.open('https://google.com', '_blank');
-                this.showMessage();
-              }
-            }
-          ]}
-        />
       </IonPage>
     );
   }
   artistRadio = {
-    id: '0',
+    id: 'bob-marley',
     type: 'Artist',
     name: 'BOB MARLEY',
     title: 'EVERYTHING REGGAE',
@@ -168,18 +147,21 @@ class RadioArtistPage extends React.Component<Props, State> {
   };
   radios = [
     {
-      label: 'Luciano',
+      label: 'Pharrell Williams',
       image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
+      id: 'pharrell-williams'
     },
     {
       label: 'Bob Marley',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg'
+      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg',
+      id: 'bob-marley'
     },
     {
       label: 'Mishka',
       image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg'
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg',
+      id: 'mishka'
     },
     {
       label: 'UB40',
@@ -194,24 +176,32 @@ class RadioArtistPage extends React.Component<Props, State> {
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
     },
     {
-      label: 'Pharrel Williams',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg'
+      label: 'Luciano',
+      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg',
+      id: 'luciano'
     }
   ];
 }
 const mapStateToProps = ({
   radioAPI,
-  artistAPI
+  artistAPI,
+  player
 }: ApplicationState): StateProps => {
   const { radioArtist, loading } = radioAPI;
   const { currentArtist } = artistAPI;
+  const { playing } = player;
   return {
     radioArtist,
     loading,
-    currentArtist
+    currentArtist,
+    playing
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, getRadioArtistAPI })(RadioArtistPage)
+  connect(mapStateToProps, {
+    getArtistAPI,
+    getRadioArtistAPI,
+    setPlaylistPlayer
+  })(RadioArtistPage)
 );

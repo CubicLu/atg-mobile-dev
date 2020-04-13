@@ -116,6 +116,9 @@ export interface SettingsReducerType {
   deepDiveTabs: MenuInterface[];
   messageTabs: MenuInterface[];
   activeMessageTab: string;
+  activeFanTab: string;
+  activeProfileFriendTab: string;
+  profileFriendTabs: MenuInterface[];
 }
 
 export interface ScrollHeaderInterface {

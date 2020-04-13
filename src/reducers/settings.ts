@@ -62,6 +62,7 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
+  activeFanTab: 'artists',
   fanTabs: [
     {
       id: 'artists',
@@ -85,6 +86,33 @@ const defaultState: SettingsReducerType = {
       id: 'friends',
       label: 'Friends',
       icon: 'f',
+      component: ProfileFriendsPage
+    }
+  ],
+  activeProfileFriendTab: 'fan-profile',
+  profileFriendTabs: [
+    {
+      id: 'fan-profile',
+      label: 'Fan Profile',
+      icon: 'f',
+      component: ProfileArtistsPage
+    },
+    {
+      id: 'artists',
+      label: 'Artists',
+      icon: 'a',
+      component: ProfileArtistsPage
+    },
+    {
+      id: 'mixtapes',
+      label: 'Mixtapes',
+      icon: 'm',
+      component: ProfileMixtapesPage
+    },
+    {
+      id: 'vault',
+      label: 'Vault',
+      icon: 'v',
       component: ProfileFriendsPage
     }
   ],
@@ -206,6 +234,11 @@ const defaultState: SettingsReducerType = {
     {
       path: '/',
       id: 'profilePageInitial',
+      component: ProfilePage
+    },
+    {
+      path: '/profile/:id',
+      id: 'profileFriend',
       component: ProfilePage
     },
     {

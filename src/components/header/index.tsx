@@ -1,11 +1,17 @@
 import React from 'react';
 import { BackIcon, ButtonIcon, DotsThreeIcon, ShareIcon, StarIcon } from '..';
-import { CloseIcon, SettingsIcon, UserGroupIcon, SupportIcon } from '../icon';
+import {
+  CloseIcon,
+  SettingsIcon,
+  UserGroupIcon,
+  SupportIcon,
+  BalloonIcon,
+  ChatMessageIcon
+} from '../icon';
 import { IonHeader, NavContext, NavContextState } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 import { SongInfoButton } from '../icon/player';
 import { Colors, RouterLinkDirection } from '../../interfaces';
-import ChatMessageIcon from '../icon/chat-message';
 
 interface Props {
   className?: string;
@@ -44,7 +50,12 @@ interface Props {
   routerDirection?: RouterLinkDirection;
   rightButtonGroup?: boolean;
   parentCallback?: Function;
-  overlay?: string | number;
+  overlay?: number;
+  notificationsNumber?: number;
+  rightChatButton?: boolean;
+  rightConnectedButton?: boolean;
+  rightFanFeedButton?: boolean;
+  rightNotificationButton?: boolean;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -72,7 +83,11 @@ class HeaderComponent extends React.Component<Props> {
     rightContent: null,
     translucent: false,
     ios: false,
-    fixed: true
+    fixed: true,
+    rightChatButton: false,
+    rightConnectedButton: false,
+    rightFanFeedButton: false,
+    rightNotificationButton: false
   };
 
   goBackClick = (ev: any): any => {
@@ -127,7 +142,10 @@ class HeaderComponent extends React.Component<Props> {
       overlay,
       rightActionHref,
       rightCloseHref,
-      routerDirection
+      routerDirection,
+      rightChatButton,
+      rightConnectedButton,
+      rightFanFeedButton
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -191,6 +209,31 @@ class HeaderComponent extends React.Component<Props> {
                 }
               >
                 <DotsThreeIcon color={rightActionYellow ? '#000' : '#fff'} />
+              </div>
+            )}
+
+            {rightConnectedButton && (
+              <div
+                className="default-button dark"
+                onClick={(): any => this.pushUrl('/message', 'forward')}
+              >
+                <UserGroupIcon width={20} height={15} />
+              </div>
+            )}
+            {rightChatButton && (
+              <div
+                className="default-button dark"
+                onClick={(): any => this.pushUrl('/message', 'forward')}
+              >
+                <BalloonIcon width={20} height={15} />
+              </div>
+            )}
+            {rightFanFeedButton && (
+              <div
+                className="default-button dark"
+                onClick={(): any => this.pushUrl('/message', 'forward')}
+              >
+                <StarIcon />
               </div>
             )}
             {rightUserGroupButton && (

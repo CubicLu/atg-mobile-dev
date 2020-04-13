@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { ShapesSize, ProfileActionsType } from '../../../interfaces';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface StateProps {}
 
@@ -15,13 +16,14 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
-interface Props extends DispatchProps {}
+interface Props extends DispatchProps, RouteComponentProps {
+  isFriend?: boolean;
+}
 
 class HeaderProfileComponent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+  public static defaultProps = {
+    isFriend: false
+  };
   profileActions: ProfileActionsType[] = [
     {
       text: 'View my public profile',
@@ -52,9 +54,22 @@ class HeaderProfileComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
+    const { isFriend } = this.props;
     return (
       <div>
-        <Header rightSettingsButton={true} rightUserGroupButton={true} />
+        <Header
+          rightSettingsButton={!isFriend}
+          rightUserGroupButton={!isFriend}
+          rightNotificationButton={!isFriend}
+          rightChatButton={isFriend}
+          rightConnectedButton={isFriend}
+          rightFanFeedButton={isFriend}
+          notificationsNumber={10}
+          rightSettingsOnClick={(): void =>
+            this.props.history.push('/settings')
+          }
+        />
+
         <div className="profile-center">
           <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
           <div className="f4 l15">Rosetta Throp</div>
@@ -69,6 +84,8 @@ const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };
 
-export default connect(mapStateToProps, {
-  updateSettingsModal
-})(HeaderProfileComponent);
+export default withRouter(
+  connect(mapStateToProps, {
+    updateSettingsModal
+  })(HeaderProfileComponent)
+);

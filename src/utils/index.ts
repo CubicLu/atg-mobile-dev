@@ -19,9 +19,9 @@ export function setHeight(original: number): number {
   }
 }
 
-export function hideTabs(option: boolean): void {
+export function hideTabs(add: boolean): void {
   const ionApp = document.querySelector('ion-app') as HTMLElement;
-  option
+  add
     ? ionApp!.classList.add('hide-tabs')
     : ionApp!.classList.remove('hide-tabs');
 }

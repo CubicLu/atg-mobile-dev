@@ -18,7 +18,7 @@ interface StateProps {
   links: LinksInterface[];
 }
 
-class HomePage extends React.Component<StateProps> {
+class HomePage extends React.PureComponent<StateProps> {
   activeTab: string = 'profile';
   render(): React.ReactNode {
     const { tabs, links } = this.props;
@@ -43,7 +43,12 @@ class HomePage extends React.Component<StateProps> {
             </IonRouterOutlet>
             <IonTabBar slot="bottom" color="dark" selectedTab={this.activeTab}>
               {tabs.map((p: TabsInterface): any => (
-                <IonTabButton tab={p.id} href={p.path} key={p.id}>
+                <IonTabButton
+                  selected={this.activeTab === p.id}
+                  tab={p.id}
+                  href={p.path}
+                  key={p.id}
+                >
                   <p.icon />
                 </IonTabButton>
               ))}

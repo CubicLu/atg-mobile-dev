@@ -128,36 +128,29 @@ const defaultState: SettingsReducerType = {
   artistTabs: [
     {
       id: 'features',
-      label: 'Features',
+      label: 'Featured',
       icon: 'f',
       component: ArtistFeaturesPage
     },
     {
       id: 'biography',
-      label: 'Biography',
+      label: 'Bio',
       icon: 'b',
       isPage: true,
       route: '/artist/:id/biography'
     },
     {
       id: 'discography',
-      label: 'Discography',
+      label: 'Albums',
       icon: 'd',
       component: ArtistDiscographyPage
     },
     {
       id: 'gallery',
-      label: 'Gallery',
+      label: 'Photos',
       icon: 'g',
       isPage: true,
       route: '/artist/:id/gallery'
-    },
-    {
-      id: 'events',
-      label: 'Events',
-      icon: 'e',
-      isPage: true,
-      route: '/artist/:id/event'
     },
     {
       id: 'videos',
@@ -167,15 +160,50 @@ const defaultState: SettingsReducerType = {
       route: '/artist/:id/video'
     },
     {
+      id: 'events',
+      label: 'Events',
+      icon: 'e',
+      isPage: true,
+      route: '/artist/:id/event'
+    },
+    {
       id: 'deep',
-      label: 'Deep',
+      label: 'Deep Dive',
       icon: 'd',
       isPage: true,
       route: '/artist/:id/deep-dive'
     },
     {
+      id: 'community',
+      label: 'Community',
+      icon: 'c',
+      isPage: true,
+      route: '/artist/:id/deep-dive'
+    },
+    {
+      id: 'radio',
+      label: 'Radio',
+      icon: 'r',
+      isPage: true,
+      route: '/artist/:id/deep-dive'
+    },
+    {
+      id: 'community',
+      label: 'Community',
+      icon: 'c',
+      isPage: true,
+      route: '/artist/:id/deep-dive'
+    },
+    {
+      id: 'radio',
+      label: 'Radio',
+      icon: 'r',
+      isPage: true,
+      route: '/artist/:id/deep-dive'
+    },
+    {
       id: 'similar',
-      label: 'Similar',
+      label: 'Matches ',
       icon: 's',
       onClick: (): void => {
         store.dispatch({

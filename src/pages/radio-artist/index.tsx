@@ -11,39 +11,47 @@ import {
   TicketIcon,
   ArrowRightIcon
 } from '../../components';
-import { ChannelInterface, ArtistInterface } from '../../interfaces';
+import {
+  ChannelInterface,
+  ArtistInterface,
+  SongInterface
+} from '../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ApplicationState } from '../../reducers';
 import {
   getArtistAPI,
   getRadioArtistAPI,
-  setPlaylistPlayer
+  setRadioPlaylistPlayer,
+  playSong,
+  pauseSong
 } from './../../actions';
 
 interface MatchParams {
   id: string;
 }
-interface State {
-  show: boolean;
-}
+
 interface StateProps {
   loading: boolean;
   radioArtist: ChannelInterface;
   currentArtist: ArtistInterface | null;
   playing: boolean;
+  paused: boolean;
+  song: SongInterface | undefined;
 }
 
 interface DispatchProps {
   getRadioArtistAPI: (id: string) => void;
   getArtistAPI: (id: string) => void;
-  setPlaylistPlayer: () => void;
+  setRadioPlaylistPlayer: () => void;
+  pauseSong: () => void;
+  playSong: (song: SongInterface) => void;
 }
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class RadioArtistPage extends React.Component<Props, State> {
+class RadioArtistPage extends React.Component<Props> {
   refreshRadio(): void {
     let artistRadioId = this.props.match.params.id;
     this.props.getArtistAPI(artistRadioId);
@@ -100,8 +108,12 @@ class RadioArtistPage extends React.Component<Props, State> {
           <div className="row mt-4" />
           <div className="row mt-4" />
           <RadioPlayer
-            onClick={(): void => this.props.setPlaylistPlayer()}
+            onPlayClick={(): void => this.props.setRadioPlaylistPlayer()}
+            onPauseClick={(): void => this.props.pauseSong()}
+            onResumeClick={(): void => this.props.playSong(this.props.song!)}
             playing={this.props.playing}
+            song={this.props.song}
+            paused={this.props.paused}
             title={this.artistRadio.title}
             subtitle={this.artistRadio.subtitle}
           />
@@ -189,12 +201,14 @@ const mapStateToProps = ({
 }: ApplicationState): StateProps => {
   const { radioArtist, loading } = radioAPI;
   const { currentArtist } = artistAPI;
-  const { playing } = player;
+  const { playing, paused, song } = player;
   return {
     radioArtist,
     loading,
     currentArtist,
-    playing
+    playing,
+    paused,
+    song
   };
 };
 
@@ -202,6 +216,8 @@ export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
     getRadioArtistAPI,
-    setPlaylistPlayer
+    setRadioPlaylistPlayer,
+    playSong,
+    pauseSong
   })(RadioArtistPage)
 );

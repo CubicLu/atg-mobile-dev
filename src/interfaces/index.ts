@@ -58,7 +58,8 @@ export enum ActionType {
   UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY',
   GET_RADIO_ARTIST = 'GET_RADIO_ARTIST',
   GET_RADIO_ARTIST_SUCCESS = 'GET_RADIO_ARTIST_SUCCESS',
-  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE'
+  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE',
+  UPDATE_AUTH_SIGN_UP_PROPERTY = 'UPDATE_AUTH_SIGN_UP_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -198,6 +199,7 @@ export interface UserInterface {
 
 export interface AuthReducerType {
   loggedUser: UserInterface | undefined;
+  signUpUser: SignUpInterface;
 }
 
 export interface SearchReducerType {
@@ -461,8 +463,12 @@ export interface NotificationInterface extends UserInterface {
 }
 
 export interface RadioReducerType {
-  radioArtist: ChannelInterface;
-  similarArtist?: ArtistInterface;
+  radioArtist: any;
   loading: boolean;
   errorMessage: string | null;
+}
+
+export interface SignUpInterface {
+  nickname: string;
+  email: string;
 }

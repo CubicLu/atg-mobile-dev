@@ -1,13 +1,83 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { IonPage, IonRouterLink } from '@ionic/react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { IonPage } from '@ionic/react';
 import { BackgroundImage, InputText, Header, Button } from './../../components';
-import { Sizes, ShapesSize } from '../../interfaces';
+import { Sizes, ShapesSize, SignUpInterface } from '../../interfaces';
+import { ApplicationState } from '../../reducers';
+import { updateAuthSignUpProperty } from './../../actions';
+import { validateEmail, validateNickname } from './../../utils/validation';
 
-interface Props extends RouteComponentProps {}
+interface State {
+  errors: {
+    nickname: string;
+    email: string;
+  };
+}
+interface StateProps {
+  signUpUser: SignUpInterface;
+}
 
-class SignUpPage extends React.Component<Props> {
+interface DispatchProps {
+  updateAuthSignUpProperty: (property: string, value: string) => void;
+}
+
+interface Props extends RouteComponentProps, StateProps, DispatchProps {}
+
+class SignUpPage extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: {
+        nickname: '',
+        email: ''
+      }
+    };
+  }
+
+  validateInput(input, text, inUse = false): void {
+    switch (input) {
+      case 'nickname':
+        if (!inUse) {
+          !validateNickname(text)
+            ? this.setMessageError(
+                input,
+                'Nickname contains invalid characters.'
+              )
+            : this.setMessageError(input, '');
+        } else {
+          this.setMessageError(input, 'Nickname is already taken.');
+        }
+        break;
+      case 'email':
+        !validateEmail(text)
+          ? this.setMessageError(input, 'Email format is invalid.')
+          : this.setMessageError(input, '');
+        break;
+      default:
+        return;
+    }
+  }
+
+  setMessageError(property, text): void {
+    this.setState({
+      errors: {
+        ...this.state.errors,
+        [property]: text
+      }
+    });
+  }
+
+  onSubmit(): void {
+    if (this.props.signUpUser.nickname === 'vigil') {
+      this.validateInput('nickname', 'vigil', true);
+    } else {
+      this.props.history.push('/enter-code');
+    }
+  }
+
   render(): React.ReactNode {
+    const { signUpUser } = this.props;
     return (
       <IonPage id="sign-up-page">
         <BackgroundImage
@@ -33,20 +103,39 @@ class SignUpPage extends React.Component<Props> {
             </div>
 
             <div className="flex-compass fluid h-100 medium">
-              <div className="col s12 mt-5">
-                <InputText type="text" placeholder={'First Name'} />
+              <div className="col s12">
+                <InputText
+                  type="text"
+                  placeholder={'Nickname'}
+                  onChangeText={(text): void => {
+                    this.props.updateAuthSignUpProperty('nickname', text);
+                    this.validateInput('nickname', text);
+                  }}
+                  defaultValue={signUpUser.nickname}
+                />
               </div>
-              <div className="row" />
+              <div className="col s12">
+                <span className="text-12 f0 text-white">
+                  {this.state.errors.nickname}
+                </span>
+              </div>
               <br />
               <div className="col s12">
-                <InputText type="text" placeholder={'Last Name'} />
+                <InputText
+                  type="text"
+                  placeholder={'E-mail'}
+                  defaultValue={signUpUser.email}
+                  onChangeText={(text): void => {
+                    this.props.updateAuthSignUpProperty('email', text);
+                    this.validateInput('email', text);
+                  }}
+                />
               </div>
-              <div className="row" />
-              <br />
               <div className="col s12">
-                <InputText type="text" placeholder={'E-mail'} />
+                <span className="text-12 f0 text-white">
+                  {this.state.errors.email}
+                </span>
               </div>
-              <div className="row" />
               <br />
               <br />
             </div>
@@ -60,14 +149,13 @@ class SignUpPage extends React.Component<Props> {
               </div>
 
               <div className="row mt-5" />
-              <IonRouterLink routerLink="/enter-code">
-                <Button
-                  size={Sizes.lg}
-                  label="Create an account"
-                  type={ShapesSize.full}
-                  gradient={true}
-                />
-              </IonRouterLink>
+              <Button
+                size={Sizes.lg}
+                label="Create an account"
+                type={ShapesSize.full}
+                gradient={true}
+                onClick={(): void => this.onSubmit()}
+              />
             </div>
           </div>
         </div>
@@ -76,4 +164,12 @@ class SignUpPage extends React.Component<Props> {
   }
 }
 
-export default SignUpPage;
+const mapStateToProps = ({ authAPI }: ApplicationState): StateProps => {
+  const { signUpUser } = authAPI;
+  return { signUpUser };
+};
+export default withRouter(
+  connect(mapStateToProps, {
+    updateAuthSignUpProperty
+  })(SignUpPage)
+);

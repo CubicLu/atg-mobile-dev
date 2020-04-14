@@ -31,7 +31,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 export default class App extends React.Component {
-  authenticated: boolean = true;
+  authenticated: boolean = false;
 
   UNSAFE_componentWillMount(): void {
     setupConfig({

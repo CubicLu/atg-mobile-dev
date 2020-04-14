@@ -16,7 +16,6 @@ class SliderRadioComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const { data, className, diameter } = this.props;
     if (!data) return <div />;
-    console.log(data);
     const settings: any = {
       dots: false,
       infinite: false,

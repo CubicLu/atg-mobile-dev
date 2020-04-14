@@ -131,7 +131,7 @@ class RadioArtistPage extends React.Component<Props, State> {
             title={`${this.artistRadio.name} RECOMENDS`}
             viewAll={false}
           />
-          <SliderRadio diameter={'72px'} className="f0 l1" data={this.radios} />
+          <SliderRadio diameter={'72px'} className="f6 l1" data={this.radios} />
         </IonContent>
       </IonPage>
     );

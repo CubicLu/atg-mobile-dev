@@ -1,5 +1,12 @@
 import React from 'react';
-import { BackIcon, ButtonIcon, DotsThreeIcon, ShareIcon, StarIcon } from '..';
+import {
+  BackIcon,
+  ButtonIcon,
+  DotsThreeIcon,
+  ShareIcon,
+  StarIcon,
+  Button
+} from '..';
 import {
   CloseIcon,
   SettingsIcon,
@@ -145,7 +152,8 @@ class HeaderComponent extends React.Component<Props> {
       routerDirection,
       rightChatButton,
       rightConnectedButton,
-      rightFanFeedButton
+      rightFanFeedButton,
+      rightFilterButton
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -268,6 +276,15 @@ class HeaderComponent extends React.Component<Props> {
               <div className="default-button" onClick={rightInfoOnClick}>
                 <SongInfoButton />
               </div>
+            )}
+
+            {rightFilterButton && (
+              <Button
+                onClick={rightInfoOnClick}
+                color={Colors.transparentGray}
+                label="Filter"
+                className="btn filter"
+              />
             )}
 
             {rightButtonGroup && (

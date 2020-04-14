@@ -113,7 +113,7 @@ const defaultState: SettingsReducerType = {
       id: 'vault',
       label: 'Vault',
       icon: 'v',
-      component: ProfileFriendsPage
+      component: ProfileVaultPage
     }
   ],
   artistTabs: [

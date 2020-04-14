@@ -66,16 +66,18 @@ class ProfilePage extends React.Component<Props> {
     return (
       <>
         <BackgroundImage
-          gradient="180deg, #8202b7cc 20%, #20043bcc 50%, #20043B 100%"
           backgroundImage={
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background.png'
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background-2.png'
           }
           backgroundBottom
-          gradientOverlay={true}
+          backgroundBottomOpacity={0.2}
           backgroundBottomDark={false}
         />
         <div className={`profile-page`}>
-          <HeaderProfile isFriend />
+          <HeaderProfile
+            isFriend
+            showFilter={activeProfileFriendTab === 'vault'}
+          />
           <Menu
             tabs={profileFriendTabs}
             activeId={activeProfileFriendTab}

@@ -18,11 +18,13 @@ interface DispatchProps {
 }
 interface Props extends DispatchProps, RouteComponentProps {
   isFriend?: boolean;
+  showFilter?: boolean;
 }
 
 class HeaderProfileComponent extends React.Component<Props> {
   public static defaultProps = {
-    isFriend: false
+    isFriend: false,
+    showFilter: false
   };
   profileActions: ProfileActionsType[] = [
     {
@@ -54,16 +56,17 @@ class HeaderProfileComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { isFriend } = this.props;
+    const { isFriend, showFilter } = this.props;
     return (
       <div>
         <Header
-          rightSettingsButton={!isFriend}
-          rightUserGroupButton={!isFriend}
-          rightNotificationButton={!isFriend}
-          rightChatButton={isFriend}
-          rightConnectedButton={isFriend}
-          rightFanFeedButton={isFriend}
+          rightSettingsButton={!isFriend && showFilter === false}
+          rightUserGroupButton={!isFriend && showFilter === false}
+          rightNotificationButton={!isFriend && showFilter === false}
+          rightChatButton={isFriend && showFilter === false}
+          rightConnectedButton={isFriend && showFilter === false}
+          rightFanFeedButton={isFriend && showFilter === false}
+          rightFilterButton={isFriend && showFilter === true}
           notificationsNumber={10}
           rightSettingsOnClick={(): void =>
             this.props.history.push('/settings')

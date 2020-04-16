@@ -72,7 +72,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
         {radio && (
           <React.Fragment>
             <Section className="mx-3" title={'PANTHR RADIO'} viewAll={true} />
-            <SliderRadio data={radio} />
+            <SliderRadio diameter="110px" data={radio} />
           </React.Fragment>
         )}
         <div className="row mx-05" />

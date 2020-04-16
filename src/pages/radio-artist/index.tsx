@@ -91,8 +91,8 @@ class RadioArtistPage extends React.Component<Props> {
         />
 
         <BackgroundImage
-          gradient={this.artistRadio.color}
-          backgroundImage={this.artistRadio.image}
+          gradient={`180deg, #ffc90d, #034627`}
+          backgroundImage={this.props.radioArtist.image}
           backgroundTop={false}
           backgroundBottom={true}
           backgroundBottomOpacity={0.3}
@@ -114,8 +114,8 @@ class RadioArtistPage extends React.Component<Props> {
             playing={this.props.playing}
             song={this.props.song}
             paused={this.props.paused}
-            title={this.artistRadio.title}
-            subtitle={this.artistRadio.subtitle}
+            title={this.props.radioArtist.title}
+            subtitle={this.props.radioArtist.subtitle}
           />
           <div className="flex-justify-content-end">
             <div className="flex left-align f6">
@@ -140,59 +140,18 @@ class RadioArtistPage extends React.Component<Props> {
           <SectionTitle
             className="mt-2 mx-3 mb-05"
             leftClassName="text-30"
-            title={`${this.artistRadio.name} RECOMENDS`}
+            title={`${this.props.radioArtist.name} RECOMENDS`}
             viewAll={false}
           />
-          <SliderRadio diameter={'72px'} className="f6 l1" data={this.radios} />
+          <SliderRadio
+            diameter={'72px'}
+            className="f6 l1"
+            data={this.props.radioArtist.similarStations}
+          />
         </IonContent>
       </IonPage>
     );
   }
-  artistRadio = {
-    id: 'bob-marley',
-    type: 'Artist',
-    name: 'BOB MARLEY',
-    title: 'EVERYTHING REGGAE',
-    subtitle: 'BEATS OF THE ISLANDS',
-    color: `180deg,#ffc90d, #034627`,
-    image: require('./../../assets/img/background/home-screen-v-14-b.png')
-  };
-  radios = [
-    {
-      label: 'Pharrell Williams',
-      image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
-      id: 'pharrell-williams'
-    },
-    {
-      label: 'Bob Marley',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg',
-      id: 'bob-marley'
-    },
-    {
-      label: 'Mishka',
-      image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg',
-      id: 'mishka'
-    },
-    {
-      label: 'UB40',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/soul.jpg'
-    },
-    {
-      label: 'Matisyahu',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/blues.jpg'
-    },
-    {
-      label: 'Sean Paul',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
-    },
-    {
-      label: 'Luciano',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg',
-      id: 'luciano'
-    }
-  ];
 }
 const mapStateToProps = ({
   radioAPI,

@@ -1,9 +1,31 @@
-ion-tab-bar {
-    --border: 0px solid #000;
-    margin-top: 0px;
-}
 ion-list {
     --ion-background-color:transparent;
+}
+ion-tab-bar {
+    height: 50px !important;
+    --border: 0px solid #000;
+    margin-top: 0px;
+    --ion-safe-area-bottom: calc(min(env(safe-area-inset-bottom), 10px));
+}
+.mini-player{
+    margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));
+    .pull{
+        display: none;
+    }
+    &.active{
+        .pull{
+            display: block;
+            svg{
+                margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));
+            }
+        }
+    }
+    &.active + div {
+        ion-tab-bar {
+           margin-top: 50px;
+           overflow: visible;
+       }
+   }
 }
 ion-item{
     --ion-background-color:transparent;
@@ -70,23 +92,6 @@ ion-item{
             }
         }
     }
-
-.mini-player{
-    .pull{
-        display: none;
-    }
-    &.active{
-        .pull{
-            display: block;
-        }   
-    }
-    &.active + div {
-        ion-tab-bar {
-           margin-top: 44px;
-           overflow: visible;
-       }
-   }
-}
 .tab-selected{
     svg{
         path{

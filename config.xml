@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.atg.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Panthr</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
+<<<<<<< HEAD
+    <description>Panthr Music</description>
+=======
+    <description>ATG Panthr</description>
+>>>>>>> 01daf32afc892ea014dca20ede040087fbc00ff4
+    <author email="vigil365.com" href="http://vigil365.com">Vigil</author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
@@ -16,12 +16,18 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="BackupWebStorage" value="local" />
+    <preference name="MediaTypesRequiringUserActionForPlayback" value="true" />
+    <preference name="AllowsAirPlayForMediaPlayback" value="false" />
+    <preference name="Orientation" value="portrait" />
+
     <platform name="android">
         <allow-intent href="market:*" />
-        <preference name="android-minSdkVersion" value="19" />
+        <preference name="android-minSdkVersion" value="22" />
+        <preference name="android-targetSdkVersion" value="29" />
         <preference name="SplashMaintainAspectRatio" value="true"/>
         <preference name="SplashShowOnlyFirstTime" value="true"/>
-        <!-- <preference name="Orientation" value="portrait" /> -->
+        <preference name="Orientation" value="portrait" />
         <icon background="res/icon/android/ldpi-background.png" density="ldpi" foreground="res/icon/android/ldpi-foreground.png" />
         <icon background="res/icon/android/mdpi-background.png" density="mdpi" foreground="res/icon/android/mdpi-foreground.png" />
         <icon background="res/icon/android/hdpi-background.png" density="hdpi" foreground="res/icon/android/hdpi-foreground.png" />
@@ -40,10 +46,19 @@
     <platform name="ios">
         <preference name="target-device" value="handset" />
         <preference name="WKWebViewOnly" value="true" />
-        <preference name="Orientation" value="portrait" />
-        <preference name="AllowInlineMediaPlayback" value="true"/>
+        <!-- <preference name="AllowInlineMediaPlayback" value="true"/> -->
+        <preference name="MediaTypesRequiringUserActionForPlayback" value="false" />
+        <preference name="KeyboardDisplayRequiresUserAction" value="false" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+        <array>
+            <string>audio</string>
+        </array>
+        </config-file>
+        <feature name="Media">
+            <param name="ios-package" value="CDVSound" />
+        </feature>
         <icon src="res/icon/ios/icon-1024.png" width="1024" height="1024"/>
         <icon src="res/icon/ios/icon-small.png" width="29" height="29"/>
         <icon src="res/icon/ios/icon-small@2x.png" width="58" height="58"/>

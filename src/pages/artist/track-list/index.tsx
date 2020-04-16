@@ -126,7 +126,7 @@ class TrackListPage extends React.Component<Props> {
               )}
             </div>
           </div>
-          <div className="bottom-tiles fluid mb-5">
+          <div className="bottom-tiles fluid">
             <div
               className="tile"
               style={shadowTitle(

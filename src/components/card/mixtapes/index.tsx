@@ -83,13 +83,13 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                   <ButtonIcon
                     styles={{ backgroundColor: '#919296' }}
                     onClick={(): void => this.setMenu()}
-                    icon={<CloseIcon width={14} height={14} strokeWidth={2} />}
+                    icon={<CloseIcon strokeWidth={2} />}
                   />
                 </li>
                 <li>
                   <ButtonIcon
                     color={Colors.green}
-                    icon={<ShareIcon width={20} height={20} />}
+                    icon={<ShareIcon width={17} height={22} />}
                   />
                 </li>
                 <li>

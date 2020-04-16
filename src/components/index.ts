@@ -9,6 +9,7 @@ import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
+import CordovaListComponent from './player/cordova-list';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
@@ -84,6 +85,7 @@ export {
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
+  CordovaListComponent as CordovaList,
   HeaderComponent as Header,
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,

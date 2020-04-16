@@ -29,16 +29,37 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
+import { hideTabs } from './utils';
+import { CordovaList } from './components';
 
 export default class App extends React.Component {
-  authenticated: boolean = false;
-
+  authenticated: boolean = true;
+  enableMedia?: boolean = false;
   UNSAFE_componentWillMount(): void {
+    this.loadCordova();
     setupConfig({
       animated: true,
       swipeBackEnabled: false
     });
   }
+
+  loadCordova(): void {
+    document.addEventListener('deviceready', (): void => {
+      console.log('cordova Loaded!');
+      (window as any).deviceready = true;
+      this.enableMedia = true;
+      this.forceUpdate();
+    });
+    window.addEventListener('keyboardWillHide', (): void => {
+      //@ts-ignore
+      // eslint-disable-next-line no-undef
+      Keyboard.isVisible && hideTabs(false);
+    });
+    window.addEventListener('keyboardWillShow', (): void => {
+      hideTabs(true);
+    });
+  }
+
   render(): React.ReactNode {
     store.subscribe((): void => {
       if (this.authenticated) return; //temporary to debug
@@ -53,6 +74,7 @@ export default class App extends React.Component {
         <Provider store={store}>
           <IonApp>
             <HomePage />
+            {this.enableMedia && <CordovaList />}
           </IonApp>
         </Provider>
       );

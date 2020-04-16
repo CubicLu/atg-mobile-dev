@@ -38,7 +38,7 @@ class HomePage extends React.PureComponent<StateProps> {
               {links.map((p: LinksInterface, i: number): any => (
                 <Route exact path={p.path} component={p.component} key={i} />
               ))}
-              <Redirect exact path="/" to="/profile" />
+              <Redirect exact path="/" to="/profile/" />
               <Route path="*" component={NotFoundPage} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom" color="dark" selectedTab={this.activeTab}>

@@ -11,6 +11,10 @@ interface StateProps {
 interface Props extends StateProps {}
 
 class ChatComponent extends React.Component<Props> {
+  focusInput(): void {
+    const input = document.getElementById('inputText');
+    input?.focus();
+  }
   render(): React.ReactNode {
     return (
       <div className="chat-component">
@@ -21,7 +25,7 @@ class ChatComponent extends React.Component<Props> {
             }
           )}
         </div>
-        <div className="input">
+        <div onClick={(): void => this.focusInput() } className="input">
           <InputText type={'text'} placeholder={'Start a chat'} />
           <Button label="Post" color={Colors.grayTransparent} bold={true} />
         </div>

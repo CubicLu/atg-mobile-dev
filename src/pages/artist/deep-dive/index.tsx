@@ -66,12 +66,11 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    if (!this.props.currentArtist) return <IonPage />;
     const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;
     return (
-      <IonPage id="artist-deep-dive-dive-page">
+      <IonPage id="artist-deep-dive-dive-page" style={{ Background: '#000' }}>
         <BackgroundImage
-          backgroundImage={currentArtist.cover.deepDive}
+          backgroundImage={currentArtist?.cover.deepDive}
           blur={this.state.fixed}
         />
         <IonContent
@@ -87,13 +86,13 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
                 centerContent={
                   <div className="center-col">
                     <div className="h2 l1">Deep Dive</div>
-                    <div className="f6 l1">{currentArtist.name}</div>
+                    <div className="f6 l1">{currentArtist?.name}</div>
                   </div>
                 }
               />
               <div className="title-container">
                 <div className="h000">Deep Dive</div>
-                <div className="f1">{currentArtist.name}</div>
+                <div className="f1">{currentArtist?.name}</div>
               </div>
               <Menu
                 tabs={deepDiveTabs}

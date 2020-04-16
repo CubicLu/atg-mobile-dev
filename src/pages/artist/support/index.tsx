@@ -69,7 +69,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { currentArtist, history, match } = this.props;
     const { plan } = this.state;
     const hasPlan = !!plan;
-    const planDetailClass = hasPlan ? ' detail mt-7 mx-3' : '';
+    const planDetailClass = hasPlan ? ' detail mt-10 mx-3' : '';
 
     const backButton = (): void => this.showDetail();
     const closeButton = (): void => history.goBack();

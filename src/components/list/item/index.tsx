@@ -82,7 +82,7 @@ export default class ListItemComponent extends React.Component<Props> {
         <IonItemOptions side="end">
           {this.props.optionRemove && (
             <ButtonIcon
-              icon={<CloseIcon strokeWidth={2} />}
+              icon={<CloseIcon strokeWidth={2} width={18} height={18} />}
               className="no-padding"
               color={Colors.red}
               type={ShapesSize.normal}

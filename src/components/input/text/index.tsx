@@ -11,6 +11,7 @@ class InputTextComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <input
+        id="inputText"
         type={this.props.type}
         placeholder={this.props.placeholder}
         defaultValue={this.props.defaultValue}

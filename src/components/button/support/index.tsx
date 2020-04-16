@@ -56,7 +56,7 @@ class SupportComponent extends React.Component<ButtonProps> {
       >
         <SupportIcon supported={supported} />
         <span className={`f8 no-wrap ${className ? className : ''}`}>
-          {supported ? 'Supported' : 'Support'}
+          {supported ? 'Supported' : 'Support!'}
         </span>
         <IonRouterLink
           ref={this.linkRef}
@@ -75,7 +75,7 @@ class SupportComponent extends React.Component<ButtonProps> {
         id={id}
         className="mt-0 l1"
         color={supported ? Colors.supported : Colors.support}
-        label={supported ? 'SUPPORTED' : 'SUPPORT'}
+        label={supported ? 'SUPPORTED' : 'SUPPORT!'}
         bold={bold}
         onClick={(): void =>
           supported ? this.supporting() : this.notSupporting()

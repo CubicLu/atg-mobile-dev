@@ -116,10 +116,14 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   toggleFullscreen(): void {
     if (this.video) {
       if (document.fullscreenElement) {
-        window.screen.orientation.lock('portrait');
+        //@ts-ignore
+        // eslint-disable-next-line no-restricted-globals
+        window.deviceready && screen.orientation.lock('landspace');
         document.exitFullscreen();
       } else {
-        window.screen.orientation.unlock();
+        //@ts-ignore
+        // eslint-disable-next-line no-restricted-globals
+        window.deviceready && screen.orientation.lock('portrait');
         this.video.requestFullscreen();
       }
     }

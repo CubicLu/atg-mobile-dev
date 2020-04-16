@@ -28,10 +28,9 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-const HEADER_ANIMATION_OFFSET = 220;
+const HEADER_ANIMATION_OFFSET = 200;
 
-class ArtistPage extends React.Component<Props, {}> {
-  private blur: boolean = false;
+class ArtistPage extends React.PureComponent<Props, {}> {
   private lastOffset: number = 0;
   private lastOffsetA: number = 0;
   private custom: CustomAnimation = {
@@ -58,24 +57,28 @@ class ArtistPage extends React.Component<Props, {}> {
   componentWillUnmount(): void {
     this.custom.animation = undefined;
     this.customAlpha.animation = undefined;
+    this.custom.loaded = false;
+    this.customAlpha.loaded = false;
+    this.lastOffset = 0;
+    this.lastOffsetA = 0;
   }
   loadAnimationsAlpha(): void {
     const normalMenu = document.querySelector('#artist-menu');
     if (!normalMenu) return;
     this.customAlpha.loaded = true;
-    this.customAlpha.animation = createAnimation()
+    this.customAlpha.animation = createAnimation('customAlpha')
       .easing('ease-in')
       .duration(1600)
       .addAnimation([
-        createAnimation()
+        createAnimation('background')
           .addElement(document.querySelector('#fade-background')!)
           .fromTo('opacity', '0', `1`),
-        createAnimation()
+        createAnimation('header')
           .addElement(document.querySelector('#ion-item-header')!)
           .fromTo(
             'transform',
-            'translate(0,0)',
-            `translate(0px, -${HEADER_ANIMATION_OFFSET}px)`
+            'translateY(0)',
+            `translateY(-${HEADER_ANIMATION_OFFSET}px)`
           )
       ]);
     this.customAlpha.progressStarted = true;
@@ -89,28 +92,28 @@ class ArtistPage extends React.Component<Props, {}> {
     const aT = getFixedTranslatePoints(supportButton!, 16, 46, true);
     const bT = getFixedTranslatePoints(artistTitle, 22, 38);
     const menu = getFixedTranslatePoints(normalMenu!, 0, 80);
-    this.custom.animation = createAnimation()
+    this.custom.animation = createAnimation('customAnime')
       .easing('ease-in')
       .duration(400)
       .addAnimation([
-        createAnimation()
+        createAnimation('supportbar')
           .addElement(document.querySelector('#support-bar')!)
           .fromTo('transform', 'translateX(0px)', 'translateX(250px)'),
-        createAnimation()
+        createAnimation('supportbutton')
           .addElement(supportButton)
           .fromTo(
             'transform',
             'translate(0,0)',
             `translate(${aT.translateX}px,${aT.translateY}px)`
           ),
-        createAnimation()
+        createAnimation('name')
           .addElement(artistTitle)
           .fromTo(
             'transform',
             'translate3d(0,0,0) scale(1)',
             `translate3d(${bT.translateX}px,${bT.translateY}px,0) scale(0.6)`
           ),
-        createAnimation()
+        createAnimation('menu')
           .addElement(normalMenu)
           .fromTo(
             'transform',
@@ -125,7 +128,7 @@ class ArtistPage extends React.Component<Props, {}> {
     if (!this.custom.progressStarted) {
       return;
     }
-
+    if (this.finishing) return;
     const ionContent = document.querySelector(
       'ion-content'
     )! as HTMLIonContentElement;
@@ -136,12 +139,23 @@ class ArtistPage extends React.Component<Props, {}> {
     this.custom.animation
       .progressEnd(shouldComplete ? 1 : 0, this.lastOffset)
       .onFinish((): void => {
+        this.setFinishing();
         ionContent.scrollY = true;
         ionContent.scrollEvents = true;
       });
     this.lastOffset = shouldComplete ? 1 : 0;
     this.custom.progressStarted = false;
+    this.customAlpha.progressStarted = false;
   };
+
+  finishing = false;
+  setFinishing(): void {
+    if (this.finishing) return;
+    this.finishing = true;
+    setTimeout((): void => {
+      if (this.finishing) this.finishing = false;
+    }, 200);
+  }
 
   handleScroll = (event: CustomEvent): void => {
     if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
@@ -164,23 +178,21 @@ class ArtistPage extends React.Component<Props, {}> {
     ) {
       this.loadAnimations();
     }
-    if (this.custom.loaded) {
-      if (!this.custom.progressStarted) {
-        this.custom.animation.progressStart();
-        this.custom.progressStarted = true;
-      }
-      const topOffSet = Math.max(
-        0,
-        event.detail.scrollTop - HEADER_ANIMATION_OFFSET
-      );
+    if (!this.custom.loaded) return;
+    if (this.finishing) return;
 
-      const offset = Number(Math.min(topOffSet / 100, 1).toFixed(2));
-      if (this.lastOffset === 1 && event.detail.deltaY >= 0) {
-        return;
-      }
-      this.custom.animation.progressStep(offset);
-      this.lastOffset = offset;
+    if (!this.custom.progressStarted) {
+      this.custom.animation.progressStart();
+      this.custom.progressStarted = true;
     }
+    const topOffSet = Math.max(
+      0,
+      event.detail.scrollTop - HEADER_ANIMATION_OFFSET
+    );
+
+    const offset = Number(Math.min(topOffSet / 100, 1).toFixed(2));
+    this.custom.animation.progressStep(offset);
+    this.lastOffset = offset;
   };
 
   activeTab: string = 'features';
@@ -231,7 +243,7 @@ class ArtistPage extends React.Component<Props, {}> {
         <IonContent
           scrollY={true}
           scrollEvents={true}
-          forceOverscroll={true}
+          forceOverscroll={false}
           fullscreen={false}
           onIonScroll={this.handleScroll}
           onIonScrollEnd={this.handleScrollEnd}

@@ -43,6 +43,8 @@ import PhotoChatComponent from './photo-chat';
 import InputSearchComponent from './input/search';
 import MenuMessageComponent from './menu/message';
 import ChatRowComponent from './chat/row';
+import RadioPlayerComponent from './radio-player';
+import RadioPauseButtonComponent from './icon/radio-pause';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -113,7 +115,9 @@ export {
   SearchResultSectionComponent as SearchResultSection,
   InputSearchComponent as InputSearch,
   MenuMessageComponent as MenuMessage,
-  ChatRowComponent as ChatRow
+  ChatRowComponent as ChatRow,
+  RadioPlayerComponent as RadioPlayer,
+  RadioPauseButtonComponent as RadioPauseButton
 };
 
 export {

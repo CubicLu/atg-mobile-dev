@@ -43,6 +43,8 @@ import RadioFilterPage from './radio/filter';
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
 import MessageNotificationsPage from './message/notifications';
+import RadioArtistPage from './radio-artist';
+import RadioHistoryPage from './radio-artist/history';
 
 export {
   NotFoundPage,
@@ -85,5 +87,7 @@ export {
   RadioFilterPage,
   MessagePage,
   MessageChatPage,
-  MessageNotificationsPage
+  MessageNotificationsPage,
+  RadioArtistPage,
+  RadioHistoryPage
 };

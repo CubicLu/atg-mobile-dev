@@ -9,13 +9,13 @@ interface Props {
   scroll?: boolean;
   data?: any[];
   className?: string;
+  diameter?: string;
 }
 
 class SliderRadioComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    const { data, className } = this.props;
+    const { data, className, diameter } = this.props;
     if (!data) return <div />;
-
     const settings: any = {
       dots: false,
       infinite: false,
@@ -35,6 +35,8 @@ class SliderRadioComponent extends React.Component<Props> {
                 image={d.image}
                 type={ShapesSize.circle}
                 key={i}
+                diameter={diameter}
+                routerLink={`/radio/${d.id}`}
                 col={2}
                 label={d.label}
               />

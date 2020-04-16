@@ -55,7 +55,10 @@ export enum ActionType {
   GET_SEARCH_RESULT_API = 'GET_SEARCH_RESULT_API',
   GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
   GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS',
-  UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY'
+  UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY',
+  GET_RADIO_ARTIST = 'GET_RADIO_ARTIST',
+  GET_RADIO_ARTIST_SUCCESS = 'GET_RADIO_ARTIST_SUCCESS',
+  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE'
 }
 
 export interface TabsInterface {
@@ -383,7 +386,7 @@ export interface VideoInterface {
   datePublished: Date;
 }
 
-export type RadioSection = 'Genre' | 'Vibe' | 'Era';
+export type RadioSection = 'Genre' | 'Vibe' | 'Era' | 'Artist';
 export interface ChannelInterface {
   id: string;
   type: RadioSection;
@@ -427,4 +430,11 @@ export interface NotificationInterface extends UserInterface {
   sendAt: Date;
   read: boolean;
   subject: string;
+}
+
+export interface RadioReducerType {
+  radioArtist: ChannelInterface;
+  similarArtist?: ArtistInterface;
+  loading: boolean;
+  errorMessage: string | null;
 }

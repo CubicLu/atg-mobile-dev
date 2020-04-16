@@ -5,6 +5,7 @@ import { authReducer } from './api/authReducer';
 import { playerReducer } from './playerReducer';
 import { communityReducer } from './api/communityReducer';
 import { searchReducer } from './api/searchReducer';
+import { feedReducer } from './api/feedReducer';
 import {
   SettingsReducerType,
   AuthReducerType,
@@ -13,6 +14,7 @@ import {
   CommunityReducerType,
   SearchReducerType,
   ProfileReducerType,
+  FeedReducerType,
   RadioReducerType
 } from '../interfaces';
 import { profileReducer } from './api/profileReducer';
@@ -26,6 +28,7 @@ export interface ApplicationState {
   communityAPI: CommunityReducerType;
   searchAPI: SearchReducerType;
   profileAPI: ProfileReducerType;
+  feedAPI: FeedReducerType;
   radioAPI: RadioReducerType;
 }
 
@@ -37,5 +40,6 @@ export const rootReducers = combineReducers<ApplicationState>({
   communityAPI: communityReducer,
   searchAPI: searchReducer,
   profileAPI: profileReducer,
+  feedAPI: feedReducer,
   radioAPI: radioReducer
 });

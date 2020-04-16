@@ -1,8 +1,9 @@
 import React from 'react';
 import { ListItem } from './../../../components';
 import { IonList, IonContent } from '@ionic/react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
-interface Props {}
+interface Props extends RouteComponentProps {}
 class ProfileFriendsPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
@@ -34,6 +35,7 @@ class ProfileFriendsPage extends React.Component<Props> {
                   pendingButton={!data.friend}
                   chatButton={data.friend}
                   expandArrow={true}
+                  avatarClick={(): void => this.props.history.push('/feed')}
                 />
               );
             }
@@ -44,4 +46,4 @@ class ProfileFriendsPage extends React.Component<Props> {
   }
 }
 
-export default ProfileFriendsPage;
+export default withRouter(ProfileFriendsPage);

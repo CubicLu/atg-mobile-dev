@@ -48,6 +48,7 @@ interface Props {
   expandAction?: () => void;
   leftContentAction?: () => void;
   rightContentAction?: () => void;
+  avatarClick?: () => void;
 }
 
 export default class ListItemComponent extends React.Component<Props> {
@@ -68,7 +69,8 @@ export default class ListItemComponent extends React.Component<Props> {
     supportButton: false,
     expandArrow: false,
     leftContentAction: (): void => {},
-    rightContentAction: (): void => {}
+    rightContentAction: (): void => {},
+    avatarClick: (): void => {}
   };
 
   sliding(item: React.ReactNode): React.ReactNode {
@@ -123,9 +125,14 @@ export default class ListItemComponent extends React.Component<Props> {
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}
                   height={this.props.avatarSize}
+                  onClick={this.props.avatarClick}
                 />
               )}
-              {username && <span className="ml-2 f5">{username}</span>}
+              {username && (
+                <span className="ml-2 f5" onClick={this.props.avatarClick}>
+                  {username}
+                </span>
+              )}
 
               {this.props.songName && this.props.artistName && (
                 <div className="ml-2 flex-column">

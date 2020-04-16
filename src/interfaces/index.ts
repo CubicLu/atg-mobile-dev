@@ -21,18 +21,26 @@ export enum ActionType {
   GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS = 'GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS',
   GET_ARTIST_GALLERY_COMMENTS_API_FAILURE = 'GET_ARTIST_GALLERY_COMMENTS_API_FAILURE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
+  ACTION_PLAYER = 'ACTION_PLAYER',
+  CORDOVA_ACTION_PLAYER = 'CORDOVA_ACTION_PLAYER',
   TOGGLE_PLAYER = 'TOGGLE_PLAYER',
+  TOGGLE_CURRENT_NEXT_SONG = 'TOGGLE_CURRENT_NEXT_SONG',
+  LOAD_NEXT_SONG = 'LOAD_NEXT_SONG',
+  FADING_OUT_SONG = 'FADING_OUT_SONG',
   PLAY_SONG = 'PLAY_SONG',
   NEXT_SONG = 'NEXT_SONG',
   PREV_SONG = 'PREV_SONG',
   STOP_SONG = 'STOP_SONG',
   PAUSE_SONG = 'PAUSE_SONG',
   RESUME_SONG = 'RESUME_SONG',
+  SEEK_TO_SONG = 'SEEK_TO_SONG',
   UPDATE_ELAPSED_SONG = 'UPDATE_ELAPSED_SONG',
+  UPDATE_MASTER_VOLUME = 'UPDATE_MASTER_VOLUME',
   FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS',
   TOGGLE_SHUFFLE_PLAYER = 'TOGGLE_SHUFFLE_PLAYER',
   TOGGLE_REPEAT_PLAYER = 'TOGGLE_REPEAT_PLAYER',
   FAVORITE_SONG = 'FAVORITE_SONG',
+  SET_PLAYLIST = 'SET_PLAYLIST',
   SET_PLAYLIST_PLAYER = 'SET_PLAYLIST_PLAYER',
   SET_RADIO_PLAYER = 'SET_RADIO_PLAYER',
   GET_COMMUNITY_POSTS_API = 'GET_COMMUNITY_POSTS_API',
@@ -56,10 +64,13 @@ export enum ActionType {
   GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
   GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS',
   UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY',
+  UPDATE_AUTH_SIGN_UP_PROPERTY = 'UPDATE_AUTH_SIGN_UP_PROPERTY',
+  GET_FEED_POSTS_API = 'GET_FEED_POSTS_API',
+  GET_FEED_POSTS_API_FAILURE = 'GET_FEED_POSTS_API_FAILURE',
+  GET_FEED_POSTS_API_SUCCESS = 'GET_FEED_POSTS_API_SUCCESS',
   GET_RADIO_ARTIST = 'GET_RADIO_ARTIST',
   GET_RADIO_ARTIST_SUCCESS = 'GET_RADIO_ARTIST_SUCCESS',
-  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE',
-  UPDATE_AUTH_SIGN_UP_PROPERTY = 'UPDATE_AUTH_SIGN_UP_PROPERTY'
+  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE'
 }
 
 export interface TabsInterface {
@@ -227,19 +238,35 @@ export interface PlaylistInterface {
   owner: string;
 }
 export interface PlayerReducerType {
+  playerAction?: string;
   expanded: boolean;
+  fadingOut: boolean;
   playing: boolean;
   paused: boolean;
-  song?: SongInterface;
-  playlist?: PlaylistInterface;
-  playlistIndex?: number;
-  timeElapsed: number;
+  stopped: boolean;
   canSkip: boolean;
   shuffle: boolean;
   repeat: boolean;
+  masterVolume: number;
+  timeElapsed: number;
+  song?: SongInterface;
+  next?: SongInterface;
+  playlist?: PlaylistInterface;
+  firstIndex: number;
 }
 
 export interface CommunityReducerType {
+  posts: PostInterface[];
+  stories: StorieInterface[];
+  currentCommunityArtist: CommunityArtistInterface | null;
+  loading: boolean;
+  errorMessage: string | null;
+  successMessage: string | null;
+  currentPostComments: CommentInterface[] | null;
+  currentPostCover: CommentCoverInterface;
+}
+
+export interface FeedReducerType {
   posts: PostInterface[];
   stories: StorieInterface[];
   currentCommunityArtist: CommunityArtistInterface | null;
@@ -256,6 +283,7 @@ export interface StorieInterface {
 }
 
 export interface CommunityArtistInterface extends UserInterface {}
+export interface FanFeedInterface extends UserInterface {}
 
 export interface PostInterface {
   username: string;
@@ -317,6 +345,22 @@ export interface PlanInterface {
   color: Colors;
   id: string | number;
   description: string;
+}
+
+export enum MediaCallback {
+  MEDIA_STATE = 1,
+  MEDIA_DURATION = 2,
+  MEDIA_POSITION = 3,
+  MEDIA_ERROR = 9
+}
+export enum MediaStatusCallback {
+  MEDIA_NONE = 0,
+  MEDIA_STARTING = 1,
+  MEDIA_RUNNING = 2,
+  MEDIA_PAUSED = 3,
+  MEDIA_STOPPED = 4,
+  MEDIA_ENDED = 5,
+  MEDIA_FADING_OUT = 6
 }
 
 export enum Colors {
@@ -462,13 +506,57 @@ export interface NotificationInterface extends UserInterface {
   subject: string;
 }
 
+export interface SignUpInterface {
+  nickname: string;
+  email: string;
+}
 export interface RadioReducerType {
   radioArtist: any;
   loading: boolean;
   errorMessage: string | null;
 }
 
-export interface SignUpInterface {
-  nickname: string;
-  email: string;
+export interface MediaType {
+  updateInterval: number;
+  getDuration(): number;
+  getPosition(): number;
+  getMediaState(): number;
+  getState(): string;
+  running(): any;
+  primary(): any;
+  getPaused(): boolean;
+  getPlaying(): boolean;
+  getEnded(): boolean;
+  getLoading(): boolean;
+  getStopped(): boolean;
+  getFadeIn(): boolean;
+  getFadeOut(): boolean;
+  getFadingOut(): boolean;
+  setFadeIn(value: boolean): void;
+  setFadeOut(value: boolean): void;
+  setFadingOut(value: boolean): void;
+  setForceFadeOut(value: boolean): void;
+  setFadeVolume(volume: number): void;
+  setFadeInOut(): void;
+  setFadeTime(seconds: number): void;
+  getMediaInstanceNumber(): number;
+  setMediaInstanceNumber(instance: number): void;
+  getMediaId(): string;
+  setMediaId(id: string): void;
+  updatePosition(): void;
+  updateAudioPosition(): void;
+  getVolume(): number;
+  getPrimary(): boolean;
+  setPrimary(value: boolean): void;
+  play(iosPlayOptions?: any): void;
+  pause(): void;
+  release(): void;
+  seekTo(position: number): void;
+  setVolume(volume: number): void;
+  stop(): void;
+  position: number;
+  duration: number;
+  mediaState: number;
+  id: any;
+  src: string;
 }

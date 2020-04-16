@@ -203,7 +203,7 @@
         border-radius: 20px;
 
         .info{
-            height: 100%;
+            height: 75%;
             display: inline-flex;
             justify-content: flex-end;
             align-items: flex-end;
@@ -224,6 +224,13 @@
                     margin-left: 5px;
                 }
             }
+        }
+
+        .ellipsis{
+            display: inline-flex;
+            justify-content: flex-end;
+            width: 92% !important;
+            margin-top: 16px;
         }
 
         .row{

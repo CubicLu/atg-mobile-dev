@@ -28,6 +28,11 @@ input[type="search"]:not(.browser-default) {
       border-bottom: none;
       box-shadow: none;
     }
+
+    &.error{
+      border: 2px solid #eb445a;
+      color: #eb445a;
+    }
   }
 }
 

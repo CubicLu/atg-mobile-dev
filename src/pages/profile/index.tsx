@@ -74,10 +74,7 @@ class ProfilePage extends React.Component<Props> {
           backgroundBottomDark={false}
         />
         <div className={`profile-page`}>
-          <HeaderProfile
-            isFriend
-            showFilter={activeProfileFriendTab === 'vault'}
-          />
+          <HeaderProfile isFriend />
           <Menu
             tabs={profileFriendTabs}
             activeId={activeProfileFriendTab}

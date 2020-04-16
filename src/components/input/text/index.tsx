@@ -4,24 +4,28 @@ interface Props {
   placeholder: string;
   defaultValue?: string;
   onChangeText?: (value) => void;
+  error?: boolean;
 }
 class InputTextComponent extends React.Component<Props> {
-  public static defaultProps = {};
+  public static defaultProps = {
+    error: false
+  };
 
   render(): React.ReactNode {
+    const { type, placeholder, defaultValue, onChangeText, error } = this.props;
     return (
       <input
+        type={type}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
         id="inputText"
-        type={this.props.type}
-        placeholder={this.props.placeholder}
-        defaultValue={this.props.defaultValue}
         onChange={(event): void => {
           let value = event.target.value;
-          if (this.props.onChangeText) {
-            this.props.onChangeText(value);
+          if (onChangeText) {
+            onChangeText(value);
           }
         }}
-        className="input text"
+        className={`input text ${error && 'error'}`}
       />
     );
   }

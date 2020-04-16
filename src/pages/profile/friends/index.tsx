@@ -10,14 +10,14 @@ class ProfileFriendsPage extends React.Component<Props> {
       <IonContent className="profile-friends-page">
         <IonList lines="none">
           {[
-            { name: 'Amanda', friend: true },
-            { name: 'Brian' },
-            { name: 'Chris', friend: true },
-            { name: 'Dexter', friend: true },
-            { name: 'Edmund' },
-            { name: 'Fabrizio', friend: true },
-            { name: 'Gustav' },
-            { name: 'Harold', friend: true }
+            { name: 'Amanda', friend: true, id: 'amanda' },
+            { name: 'Brian', id: 'amanda' },
+            { name: 'Chris', friend: true, id: 'amanda' },
+            { name: 'Dexter', friend: true, id: 'amanda' },
+            { name: 'Edmund', id: 'amanda' },
+            { name: 'Fabrizio', friend: true, id: 'amanda' },
+            { name: 'Gustav', id: 'amanda' },
+            { name: 'Harold', friend: true, id: 'amanda' }
           ].map(
             (data, i): React.ReactNode => {
               return (
@@ -35,7 +35,9 @@ class ProfileFriendsPage extends React.Component<Props> {
                   pendingButton={!data.friend}
                   chatButton={data.friend}
                   expandArrow={true}
-                  avatarClick={(): void => this.props.history.push('/feed')}
+                  avatarClick={(): void =>
+                    this.props.history.push('/profile/' + data.id)
+                  }
                 />
               );
             }

@@ -106,6 +106,7 @@ class SignUpPage extends React.Component<Props, State> {
               <div className="col s12">
                 <InputText
                   type="text"
+                  error={this.state.errors.nickname !== ''}
                   placeholder={'Nickname'}
                   onChangeText={(text): void => {
                     this.props.updateAuthSignUpProperty('nickname', text);
@@ -122,6 +123,7 @@ class SignUpPage extends React.Component<Props, State> {
               <br />
               <div className="col s12">
                 <InputText
+                  error={this.state.errors.email !== ''}
                   type="text"
                   placeholder={'E-mail'}
                   defaultValue={signUpUser.email}

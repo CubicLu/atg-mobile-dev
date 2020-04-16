@@ -181,28 +181,14 @@ const defaultState: SettingsReducerType = {
       label: 'Community',
       icon: 'c',
       isPage: true,
-      route: '/artist/:id/deep-dive'
+      route: '/community/artist/:id'
     },
     {
       id: 'radio',
       label: 'Radio',
       icon: 'r',
       isPage: true,
-      route: '/artist/:id/deep-dive'
-    },
-    {
-      id: 'community',
-      label: 'Community',
-      icon: 'c',
-      isPage: true,
-      route: '/artist/:id/deep-dive'
-    },
-    {
-      id: 'radio',
-      label: 'Radio',
-      icon: 'r',
-      isPage: true,
-      route: '/artist/:id/deep-dive'
+      route: '/radio'
     },
     {
       id: 'similar',

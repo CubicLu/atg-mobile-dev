@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { ShapesSize, ProfileActionsType } from '../../../interfaces';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface StateProps {}
 
@@ -15,13 +16,16 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
-interface Props extends DispatchProps {}
+interface Props extends DispatchProps, RouteComponentProps {
+  isFriend?: boolean;
+  showFilter?: boolean;
+}
 
 class HeaderProfileComponent extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+  public static defaultProps = {
+    isFriend: false,
+    showFilter: false
+  };
   profileActions: ProfileActionsType[] = [
     {
       text: 'View my public profile',
@@ -52,9 +56,23 @@ class HeaderProfileComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
+    const { isFriend, showFilter } = this.props;
     return (
       <div>
-        <Header rightSettingsButton={true} rightUserGroupButton={true} />
+        <Header
+          rightSettingsButton={!isFriend && showFilter === false}
+          rightUserGroupButton={!isFriend && showFilter === false}
+          rightNotificationButton={!isFriend && showFilter === false}
+          rightChatButton={isFriend && showFilter === false}
+          rightConnectedButton={isFriend && showFilter === false}
+          rightFanFeedButton={isFriend && showFilter === false}
+          rightFilterButton={isFriend && showFilter === true}
+          notificationsNumber={10}
+          rightSettingsOnClick={(): void =>
+            this.props.history.push('/settings')
+          }
+        />
+
         <div className="profile-center">
           <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
           <div className="f4 l15">Rosetta Throp</div>
@@ -69,6 +87,8 @@ const mapStateToProps = ({}: ApplicationState): StateProps => {
   return {};
 };
 
-export default connect(mapStateToProps, {
-  updateSettingsModal
-})(HeaderProfileComponent);
+export default withRouter(
+  connect(mapStateToProps, {
+    updateSettingsModal
+  })(HeaderProfileComponent)
+);

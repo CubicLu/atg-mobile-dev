@@ -175,6 +175,13 @@
     &.plan{
         @include plan-detail();
     }
+
+    &.filter{
+        background: rgba($color: #000000, $alpha: 0.25);
+        span{
+            font-size: 17px;
+        }
+    }
 }
 .vibe-icon{
     border-radius: 50%;

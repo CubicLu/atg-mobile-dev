@@ -30,15 +30,6 @@ interface Props {
   top?: boolean;
   color?: string;
   leftMinimizeButton?: boolean;
-  rightActionButton?: boolean;
-  rightCloseButton?: boolean;
-  rightSettingsButton?: boolean;
-  rightSupportButton?: boolean;
-  rightInfoButton?: boolean;
-  rightAddButton?: boolean;
-  rightFilterButton?: boolean;
-  rightUserGroupButton?: boolean;
-  rightActionYellow?: boolean;
   leftContent?: React.ReactNode;
   centerContent?: React.ReactNode;
   rightContent?: React.ReactNode;
@@ -64,6 +55,15 @@ interface Props {
   rightConnectedButton?: boolean;
   rightFanFeedButton?: boolean;
   rightNotificationButton?: boolean;
+  rightActionButton?: boolean;
+  rightCloseButton?: boolean;
+  rightSettingsButton?: boolean;
+  rightSupportButton?: boolean;
+  rightInfoButton?: boolean;
+  rightAddButton?: boolean;
+  rightFilterButton?: boolean;
+  rightUserGroupButton?: boolean;
+  rightActionYellow?: boolean;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -242,7 +242,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightFanFeedButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.pushUrl('/message', 'forward')}
+                onClick={(): any => this.pushUrl('/feed', 'forward')}
               >
                 <StarIcon />
               </div>

@@ -5,8 +5,6 @@ import { updateSettingsModal } from '../../../actions';
 import { ShapesSize, ProfileActionsType } from '../../../interfaces';
 import { withRouter, RouteComponentProps } from 'react-router';
 
-interface StateProps {}
-
 interface DispatchProps {
   updateSettingsModal: (
     content: React.ReactNode,
@@ -25,7 +23,6 @@ class HeaderProfileComponent extends React.Component<Props> {
     isFriend: false,
     showFilter: false
   };
-
   profileActions: ProfileActionsType[] = [
     {
       text: 'View my public profile',
@@ -75,7 +72,7 @@ class HeaderProfileComponent extends React.Component<Props> {
 
         <div className="profile-center">
           <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
-          <div className="f4 l15">Rosetta Throp</div>
+          <div className="f4 l15">Rosetta Throped</div>
           <div className="h00 l1 shadow">Musical Goddess</div>
         </div>
       </div>

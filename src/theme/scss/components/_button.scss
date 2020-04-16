@@ -1,16 +1,16 @@
 .btn {
-    &:hover{
+    &:hover {
         box-shadow: none;
     }
-    &.badge{
+    &.badge {
         width: 110px;
         background: #64e9ff;
         border-radius: 8px;
         font-weight: 600;
         font-family: "Helvetica Neue";
-        &.gradient{
+        &.gradient {
             background: linear-gradient(90deg, #64e9ff, #0082ff);
-            &.disable{
+            &.disable {
                 background-image: linear-gradient(90deg, #9c9d9d, #717274);
             }
         }
@@ -34,11 +34,11 @@
     box-shadow: none;
     text-align: center;
     background-color: $primary;
-    &.gradient{
+    &.gradient {
         background: linear-gradient(180deg, #7a11f5 0%, $primary-gradient 100%);
     }
-    &.blue{
-        &.horizontal{
+    &.blue {
+        &.horizontal {
             background: linear-gradient(90deg, #01aed4 0%, #1853e0 100%);
         }
         background: linear-gradient(180deg, #01aed4 0%, #1853e0 100%);
@@ -49,10 +49,10 @@
             background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
         }
     }
-    &.chat{
+    &.chat {
         background: linear-gradient(90deg, #64e9ff 0%, #0082ff 100%);
     }
-    &.fixed{
+    &.fixed {
         position: fixed;
         z-index: 10;
     }
@@ -77,74 +77,74 @@
             background: linear-gradient(180deg, $tertiary 0%, $tertiary-gradient 100%);
         }
     }
-    &.support,&.supported{
+    &.support,&.supported {
         height: 30px;
         font-weight: 500;
         box-shadow: 0 3px 6px 0 #00000029;
         border-radius: 8px;
         text-transform: uppercase;
-        &.large, &.fluid{
+        &.large, &.fluid {
             border-radius: 3px;
         }
     }
-    &.support{
+    &.support {
         background: linear-gradient(90deg, #FF9766, #FC5F62);
         color: #ffffff;
     }
-    &.supported{
+    &.supported {
         background: linear-gradient(90deg, #fff, #fff);
         color: #FC5F62;
     }
-    &.transparent{
+    &.transparent {
         background: transparent;
         color: #FFF;
     }
-    &.transparent-gray{
+    &.transparent-gray {
         background: #00000080;
         color: #FFF;
     }
-    &.green{
+    &.green {
         background: #00a850;
     }
-    &.light-blue{
+    &.light-blue {
         background: #00aedb;
     }
-    &.orange{
+    &.orange {
         background: #f78429;
     }
-    &.cyan{
+    &.cyan {
       background: #01add9;
     }
-    &.disable{
+    &.disable {
         background: #717274;
         color: #FFF;
         &.gradient {
             background: linear-gradient(90deg, #9c9d9d, #717274 99%);
         }
     }
-    &.gray-transparent{
+    &.gray-transparent {
         background: transparent;
         color: #b2b2b2;
         border: none !important;
         box-shadow: none !important;
         font-size: 14px;
     }
-    &.rounded{
+    &.rounded {
         border-radius: 8px;
     }
-    &.fluid{
+    &.fluid {
         padding: 0;
         margin: 0;
     }
-    &.bold{
+    &.bold {
         font-weight: 600;
         font-family: "Helvetica Neue";
     }
-    &.normal{
+    &.normal {
         height: 30px;
         line-height: 1.13;
     }
-    &.large{
+    &.large {
         height: 48px;
         font-size: 16px;
     }
@@ -160,15 +160,15 @@
            justify-content: center;
            align-content: center;
            flex-direction: column;
-           span{
+           span {
                 height: 10px;
                 line-height: 12px;
                 font-size: 10px;
                 margin-top: 2px;
                 margin-bottom: 2px;
            }
-          div{
-            &.overlay{
+          div {
+            &.overlay {
               position: absolute;
               color: black;
               z-index: 1;
@@ -192,28 +192,29 @@
           }
         }
     }
-    &.plan{
+    &.plan {
         @include plan-detail();
     }
-    &.filter{
+
+    &.filter {
         background: rgba($color: #000000, $alpha: 0.25);
         span{
             font-size: 17px;
         }
     }
 }
-.vibe-icon{
+.vibe-icon {
     border-radius: 50%;
     width: 42px;
     height: 42px;
     padding: 0;
 }
 
-.badge-row{
+.badge-row {
     width: auto;
     overflow-x: scroll;
     max-height: 30px;
-    .badge-item{
+    .badge-item {
         margin-top: auto;
         margin-bottom: auto;
         line-height: 2;
@@ -228,7 +229,7 @@
         white-space: nowrap;
         border-radius: 25px;
         background: #b5b5b5;
-        &.active{
+        &.active {
             background: #01add9;
         }
     }

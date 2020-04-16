@@ -30,6 +30,7 @@ interface Props {
   songName?: string;
   artistName?: string;
   hasAvatar: boolean;
+  avatarBadge: boolean;
   avatarSize?: number;
   node?: number;
   avatarImage?: string;
@@ -60,6 +61,7 @@ export default class ListItemComponent extends React.Component<Props> {
     bottomBorder: false,
     leftDisabled: false,
     hasAvatar: false,
+    avatarBadge: false,
     avatarSize: 48,
     avatarImage: undefined,
     pendingButton: false,
@@ -121,6 +123,7 @@ export default class ListItemComponent extends React.Component<Props> {
             <div className="p-05 flex-align-items-center">
               {this.props.hasAvatar && (
                 <Avatar
+                  badge={this.props.avatarBadge}
                   image={this.props.avatarImage}
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}

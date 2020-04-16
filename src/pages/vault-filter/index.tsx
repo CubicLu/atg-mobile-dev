@@ -23,7 +23,7 @@ class VaultFilterPage extends React.Component<Props> {
           titleClassName="filter"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void => this.props.history.push('/')}
+          rightCloseOnClick={(): void => this.props.history.goBack()}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
@@ -35,7 +35,7 @@ class VaultFilterPage extends React.Component<Props> {
           }
           id="search-page"
         >
-          <div className="search-page">
+          <div className="vault-filter-page">
             <BackgroundImage
               gradient={`180deg,#1F0739,#1F0739`}
               backgroundTop
@@ -85,7 +85,7 @@ class VaultFilterPage extends React.Component<Props> {
                   label={'Show by Era'}
                   action={e => console.log('view tracks:', e.detail.checked)}
                   type={'chip'}
-                  selectedChips={['90s', '80s', '70s', '60s']}
+                  selectedChips={['90s', '80s', '70s', '60s', '50s', '40s']}
                 />
                 <Button
                   color={Colors.tertiary}

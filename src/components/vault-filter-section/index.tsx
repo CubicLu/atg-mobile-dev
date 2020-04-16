@@ -33,7 +33,7 @@ class VaultFilterSectionComponent extends React.Component<Props> {
             color={'secondary'}
           />
         ) : (
-          <div className={'mt-1'}>
+          <div className={'mt-1'} style={{ display: 'inline-block' }}>
             {this.props.selectedChips?.map(
               (chip: string, i: number): React.ReactNode => (
                 <IonChip outline className={'chip mt-2'} key={i}>

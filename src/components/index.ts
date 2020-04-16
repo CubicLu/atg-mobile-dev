@@ -51,6 +51,8 @@ import RowUserComponent from './row/user';
 import ListUserComponent from './list/user';
 import InputComboBoxComponent from './input/combo-box';
 import VaultFilterSectionComponent from './vault-filter-section';
+import RadioPlayerComponent from './radio-player';
+import RadioPauseButtonComponent from './icon/radio-pause';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -129,7 +131,9 @@ export {
   RowUserComponent as RowUser,
   ListUserComponent as ListUser,
   InputComboBoxComponent as InputComboBox,
-  VaultFilterSectionComponent as VaultFilterSection
+  VaultFilterSectionComponent as VaultFilterSection,
+  RadioPlayerComponent as RadioPlayer,
+  RadioPauseButtonComponent as RadioPauseButton
 };
 
 export {

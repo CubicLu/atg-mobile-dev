@@ -55,6 +55,8 @@ import MessageNotificationDetailPage from './message/notification-detail';
 
 import FanFeedFilterPage from './fan-feed-filter';
 import VaultFilterPage from './vault-filter';
+import RadioArtistPage from './radio-artist';
+import RadioHistoryPage from './radio-artist/history';
 
 export {
   NotFoundPage,
@@ -106,5 +108,7 @@ export {
   MessageSelectContactPage,
   MessageNotificationDetailPage,
   FriendPage,
-  VaultFilterPage
+  VaultFilterPage,
+  RadioArtistPage,
+  RadioHistoryPage
 };

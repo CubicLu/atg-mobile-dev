@@ -41,10 +41,13 @@ ion-item{
     .arrow-expand {
         margin-left: 3px;
         margin-right: 2px;
-        height: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        height: 50px;
         position: absolute;
         right: 8px;
-        .flip{
+        width: 16px;
+        &.flip{
             transform: scaleX(-1);
         }
     }

@@ -31,6 +31,7 @@ interface Props {
   artistName?: string;
   hasAvatar: boolean;
   avatarBadge: boolean;
+  badgeColor?: Colors;
   avatarSize?: number;
   node?: number;
   avatarImage?: string;
@@ -124,6 +125,7 @@ export default class ListItemComponent extends React.Component<Props> {
               {this.props.hasAvatar && (
                 <Avatar
                   badge={this.props.avatarBadge}
+                  badgeColor={this.props.badgeColor}
                   image={this.props.avatarImage}
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}
@@ -206,7 +208,7 @@ export default class ListItemComponent extends React.Component<Props> {
 
             {this.props.expandArrow && (
               <div
-                className="arrow-expand"
+                className="arrow-expand flip"
                 onClick={(e): void => {
                   this.props.expandAction
                     ? this.props.expandAction()

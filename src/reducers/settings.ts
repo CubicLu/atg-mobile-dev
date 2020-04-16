@@ -49,7 +49,9 @@ import {
   MessageSelectContactPage,
   MessageNotificationDetailPage,
   FriendPage,
-  VaultFilterPage
+  VaultFilterPage,
+  RadioArtistPage,
+  RadioHistoryPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -438,6 +440,16 @@ const defaultState: SettingsReducerType = {
       path: '/vault-filter',
       id: 'vault-filter',
       component: VaultFilterPage
+    },
+    {
+      path: '/radio/:id',
+      id: 'radioArtist',
+      component: RadioArtistPage
+    },
+    {
+      path: '/radio/:id/history',
+      id: 'radioHistory',
+      component: RadioHistoryPage
     }
   ],
 

@@ -39,7 +39,7 @@ class CardImageComponent extends React.Component<Props> {
               minWidth: diameter
             }}
           />
-          <div className="f5 l2">{label}</div>
+          <div className="mt-15 f5 center-align">{label}</div>
         </IonRouterLink>
       </div>
     );

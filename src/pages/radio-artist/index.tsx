@@ -65,7 +65,7 @@ class RadioArtistPage extends React.Component<Props> {
     this.refreshRadio();
   }
   componentDidUpdate(prevProps): void {
-    if (this.props.match.params.id != prevProps.match.params.id)
+    if (this.props.match.params.id !== prevProps.match.params.id)
       this.refreshRadio();
   }
   private headerRef: React.RefObject<any> = React.createRef();
@@ -143,7 +143,7 @@ class RadioArtistPage extends React.Component<Props> {
             title={`${this.artistRadio.name} RECOMENDS`}
             viewAll={false}
           />
-          <SliderRadio diameter={'72px'} className="f6 l1" data={this.radios} />
+          <SliderRadio diameter={'72px'} data={this.radios} />
         </IonContent>
       </IonPage>
     );

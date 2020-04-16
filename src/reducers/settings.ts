@@ -48,7 +48,8 @@ import {
   FanFeedFilterPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage,
-  FriendPage
+  FriendPage,
+  VaultFilterPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -432,6 +433,11 @@ const defaultState: SettingsReducerType = {
       path: '/friend',
       id: 'friend',
       component: FriendPage
+    },
+    {
+      path: '/vault-filter',
+      id: 'vault-filter',
+      component: VaultFilterPage
     }
   ],
 

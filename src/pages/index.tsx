@@ -54,6 +54,7 @@ import MessageSelectContactPage from './message/select-contact';
 import MessageNotificationDetailPage from './message/notification-detail';
 
 import FanFeedFilterPage from './fan-feed-filter';
+import VaultFilterPage from './vault-filter';
 
 export {
   NotFoundPage,
@@ -104,5 +105,6 @@ export {
   FanFeedFilterPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage,
-  FriendPage
+  FriendPage,
+  VaultFilterPage
 };

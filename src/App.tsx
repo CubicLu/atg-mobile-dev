@@ -35,6 +35,7 @@ import { CordovaList } from './components';
 export default class App extends React.Component {
   authenticated: boolean = true;
   enableMedia?: boolean = false;
+
   UNSAFE_componentWillMount(): void {
     this.loadCordova();
     setupConfig({

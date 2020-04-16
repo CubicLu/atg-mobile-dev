@@ -1,11 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.atg.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Panthr</name>
-<<<<<<< HEAD
     <description>Panthr Music</description>
-=======
-    <description>ATG Panthr</description>
->>>>>>> 01daf32afc892ea014dca20ede040087fbc00ff4
     <author email="vigil365.com" href="http://vigil365.com">Vigil</author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />

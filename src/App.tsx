@@ -30,7 +30,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import { hideTabs } from './utils';
-import { CordovaList } from './components';
+// import { CordovaList } from './components';
 
 export default class App extends React.Component {
   authenticated: boolean = false;
@@ -75,7 +75,7 @@ export default class App extends React.Component {
         <Provider store={store}>
           <IonApp>
             <HomePage />
-            {this.enableMedia && <CordovaList />}
+            {/* {this.enableMedia && <CordovaList />} */}
           </IonApp>
         </Provider>
       );

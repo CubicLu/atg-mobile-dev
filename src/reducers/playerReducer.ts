@@ -260,8 +260,9 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
 
     return {
       ...state,
-      song: futurePlaylist.items[2],
-      next: futurePlaylist.items[3],
+      song: null,
+      // song: futurePlaylist.items[2],
+      // next: futurePlaylist.items[3],
       playlist: futurePlaylist,
       playerAction: ActionType.SET_PLAYLIST
     };
@@ -274,8 +275,9 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
 
     return {
       ...state,
-      song: euroPlaylist.items[0],
-      next: euroPlaylist.items[1],
+      song: null,
+      // song: euroPlaylist.items[0],
+      // next: euroPlaylist.items[1],
       playlist: euroPlaylist,
       playerAction: ActionType.SET_PLAYLIST
     };

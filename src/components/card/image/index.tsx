@@ -17,8 +17,7 @@ class CardImageComponent extends React.Component<Props> {
   public static defaultProps = {
     type: ShapesSize.normal,
     col: 6,
-    routerDirection: 'forward',
-    diameter: '110px'
+    routerDirection: 'forward'
   };
 
   render(): React.ReactNode {
@@ -39,7 +38,9 @@ class CardImageComponent extends React.Component<Props> {
               minWidth: diameter
             }}
           />
-          <div className="mt-15 f5 center-align">{label}</div>
+          <div className="mt-15 f5 center-align" style={{ width: diameter }}>
+            {label}
+          </div>
         </IonRouterLink>
       </div>
     );

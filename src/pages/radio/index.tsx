@@ -85,7 +85,11 @@ class RadioPage extends React.Component<Props> {
             </div>
           </div>
           <SectionTitle className="mt-2 mx-3" title="STATIONS" viewAll={true} />
-          <SliderRadio className="f6 l1" data={this.radios} />
+          <SliderRadio
+            className="f6 l1"
+            diameter={'110px'}
+            data={this.radios}
+          />
 
           <SectionTitle
             className="mt-2 mx-3"
@@ -98,7 +102,6 @@ class RadioPage extends React.Component<Props> {
             <SliderVideo data={this.radios} />
           </div>
         </IonContent>
-        <div className="row mt-4" />
       </IonPage>
     );
   }

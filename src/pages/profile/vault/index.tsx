@@ -15,10 +15,16 @@ import {
   IonContent
 } from '@ionic/react';
 
-interface Props {}
+interface Props {
+  isFriend: boolean;
+}
 
 class ProfileVaultPage extends React.Component<Props> {
+  public static defaultProps = {
+    isFriend: false
+  };
   render(): React.ReactNode {
+    const { isFriend } = this.props;
     return (
       <IonContent>
         <div className="profile-vault-page">
@@ -34,6 +40,8 @@ class ProfileVaultPage extends React.Component<Props> {
                             type={ShapesSize.circle}
                             width={50}
                             height={50}
+                            badge={i % 3 === 0 && isFriend}
+                            badgeColor={Colors.red}
                           />
                         </div>
                         <div className="col s6 info">
@@ -48,6 +56,7 @@ class ProfileVaultPage extends React.Component<Props> {
                         </div>
                       </div>
                     </IonItem>
+
                     <IonItemOptions side="end">
                       <ButtonIcon
                         icon={<AddPlaylistIcon />}
@@ -55,12 +64,14 @@ class ProfileVaultPage extends React.Component<Props> {
                         className="no-padding"
                         type={ShapesSize.normal}
                       />
-                      <ButtonIcon
-                        icon={<CloseIcon strokeWidth={2} />}
-                        color={Colors.red}
-                        className="no-padding"
-                        type={ShapesSize.normal}
-                      />
+                      {!isFriend && (
+                        <ButtonIcon
+                          icon={<CloseIcon strokeWidth={2} />}
+                          color={Colors.red}
+                          className="no-padding"
+                          type={ShapesSize.normal}
+                        />
+                      )}
                     </IonItemOptions>
                   </IonItemSliding>
                 );

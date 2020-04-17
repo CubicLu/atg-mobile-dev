@@ -10,8 +10,13 @@ interface StateProps {
 interface DispatchProps {
   getArtistsAPI: () => any;
 }
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps {
+  isFriend?: boolean;
+}
 class ProfileArtistsPage extends React.Component<Props> {
+  public static defaultProps = {
+    isFriend: false
+  };
   UNSAFE_componentWillMount(): void {
     this.props.artists.length === 0 && this.props.getArtistsAPI();
   }

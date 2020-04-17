@@ -9,6 +9,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  position: relative;
   &.rounded {
     border-radius: 5px;
   }
@@ -17,5 +18,17 @@
     border-top-right-radius: 50% 50%;
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
+  }
+
+  .badge{
+    position: absolute;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    right: 0;
   }
 }

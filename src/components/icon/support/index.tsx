@@ -14,22 +14,16 @@ class SupportIcon extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const fillCircle = this.props.supported ? '#fff' : 'url(#linear-gradient)';
-    const fillInner = !this.props.supported ? '#fff' : 'url(#linear-gradient)';
+    const fillCircle = this.props.supported ? '#fff' : 'url(#support-gradient)';
+    const fillInner = !this.props.supported ? '#fff' : 'url(#support-gradient)';
     return (
       <svg
         width={this.props.width}
         height={this.props.height}
-        viewBox={'-2 -2 38 38'}
+        viewBox={'-1 -1 38 38'}
       >
         <defs>
-          <linearGradient
-            id="linear-gradient"
-            y1="0.5"
-            x2="1"
-            y2="0.5"
-            gradientUnits="objectBoundingBox"
-          >
+          <linearGradient id="support-gradient" y1="0.5" x2="1" y2="0.5">
             <stop offset="0" stopColor="#ff9766" />
             <stop offset="1" stopColor="#fc5f62" />
           </linearGradient>

@@ -4,7 +4,8 @@ import {
   ButtonIcon,
   BalloonIcon,
   ShareLineIcon,
-  HeartIcon
+  HeartIcon,
+  DotsThreeIcon
 } from './../../../components';
 import { PostInterface, ShapesSize } from '../../../interfaces';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -25,6 +26,9 @@ class CardPostComponent extends React.Component<Props> {
           backgroundImage: `url(${this.props.post.image})`
         }}
       >
+        <div className="row ellipsis">
+          <ButtonIcon icon={<DotsThreeIcon />} />
+        </div>
         <div className="row info">
           <div className="col s12">
             <div className="row">
@@ -33,7 +37,7 @@ class CardPostComponent extends React.Component<Props> {
                 onClick={(): void => {
                   if (this.props.showUser)
                     this.props.history.push(
-                      `/community/${this.props.post.username}`
+                      `/community/artist/${this.props.post.username}`
                     );
                 }}
               >

@@ -3,7 +3,8 @@ import {
   ActionType,
   ProfileReducerType,
   MessageInterface,
-  NotificationInterface
+  NotificationInterface,
+  UserInterface
 } from './../../interfaces';
 import createReducer from './../createReducer';
 
@@ -18,7 +19,7 @@ const messages: MessageInterface[] = [
   },
   {
     message: 'are you Rock!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-04-01'),
     name: 'Débora',
     username: 'debora',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -26,7 +27,7 @@ const messages: MessageInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-03-15'),
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -34,7 +35,7 @@ const messages: MessageInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-03-10'),
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -53,7 +54,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'are you Rock!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-04-01'),
     name: 'Débora',
     username: 'debora',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -62,7 +63,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-03-01'),
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -71,7 +72,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-02-21'),
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -80,7 +81,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2020-01-31'),
     name: 'Vigil',
     username: 'vigil365',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -89,7 +90,7 @@ const notifications: NotificationInterface[] = [
   },
   {
     message: 'Good!',
-    sendAt: new Date(),
+    sendAt: new Date('2019-04-01'),
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
@@ -98,11 +99,66 @@ const notifications: NotificationInterface[] = [
   }
 ];
 
+const friends: UserInterface[] = [
+  {
+    name: 'Débora',
+    username: 'debora',
+    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    isFriend: true
+  },
+  {
+    name: 'vigil',
+    username: 'vigil',
+    avatar: 'https://loremflickr.com/50/50/man,face?random=' + Math.random()
+  },
+  {
+    name: 'Bruce',
+    username: 'brucebanner',
+    avatar: 'https://loremflickr.com/50/50/hulk?random=' + Math.random(),
+    isFriend: true
+  },
+  {
+    name: 'Steve',
+    username: 'steverogers',
+    avatar:
+      'https://loremflickr.com/50/50/steve,rogers?random=' + Math.random(),
+    isFriend: true
+  }
+];
+const admins: UserInterface[] = friends;
+const artists: UserInterface[] = [
+  {
+    username: 'pharell-williams',
+    name: 'pharell-williams',
+    isFriend: true,
+    avatar:
+      'https://loremflickr.com/50/50/pharell,williams?random=' + Math.random()
+  },
+  {
+    username: 'demi',
+    name: 'demi',
+    isFriend: true,
+    avatar: 'https://loremflickr.com/50/50/demi,lovato?random=' + Math.random()
+  },
+  {
+    username: 'milie-cyrus',
+    name: 'pharell-williams',
+    isFriend: true,
+    avatar: 'https://loremflickr.com/50/50/cyrus?random=' + Math.random()
+  }
+];
+
 const defaultState: ProfileReducerType = {
   messages: messages,
   notifications: notifications,
   notificationsSearch: notifications,
-  messagesSearch: messages
+  messagesSearch: messages,
+  friends: friends,
+  friendsSearch: friends,
+  artists: artists,
+  artistsSearch: artists,
+  admins: admins,
+  adminsSearch: admins
 };
 
 export const profileReducer = createReducer<ProfileReducerType>(defaultState, {

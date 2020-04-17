@@ -32,7 +32,7 @@ import {
   updateElapsed
 } from './../../actions/playerActions';
 import { ApplicationState } from '../../reducers';
-import { PlayerReducerType, SongInterface } from '../../interfaces';
+import { SongInterface, PlaylistInterface } from '../../interfaces';
 import {
   PlayButton,
   NextButton,
@@ -51,7 +51,15 @@ import VigilAnimator from '../../utils/animateFrame';
 import { shadowTitle } from '../../utils';
 
 interface StateProps {
-  player: PlayerReducerType;
+  expanded: boolean;
+  playing: boolean;
+  paused: boolean;
+  song?: SongInterface;
+  playlist?: PlaylistInterface;
+  timeElapsed: number;
+  canSkip: boolean;
+  shuffle: boolean;
+  repeat: boolean;
 }
 interface DispatchProps {
   setPlaylistPlayer: () => void;
@@ -69,7 +77,7 @@ interface DispatchProps {
 }
 interface Props extends StateProps, DispatchProps {}
 
-class PlayerComponent extends React.Component<Props> {
+class PlayerComponent extends React.PureComponent<Props> {
   audio: HTMLAudioElement | undefined;
   pullPlayerGesture: Gesture | undefined;
   pullingInProgress: boolean = false;
@@ -82,8 +90,8 @@ class PlayerComponent extends React.Component<Props> {
     this.createPlayerAnimation();
   }
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.player.song == null && nextProps.player.playlist != null) {
-      this.playNewAudio(nextProps.player.playlist.items[0]);
+    if (nextProps.song == null && nextProps.playlist != null) {
+      this.playNewAudio(nextProps.playlist.items[0]);
     }
   }
 
@@ -113,14 +121,14 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   playerSwipe = (gesture: any): void => {
-    const validSwipeUp = !this.props.player.expanded && gesture.deltaY < -250;
+    const validSwipeUp = !this.props.expanded && gesture.deltaY < -250;
     this.pullingInProgress = false;
-    if (!this.props.player.expanded && !validSwipeUp) {
+    if (!this.props.expanded && !validSwipeUp) {
       this.elasticBack();
       return;
     }
 
-    const validSwipeDown = this.props.player.expanded && gesture.deltaY > 100;
+    const validSwipeDown = this.props.expanded && gesture.deltaY > 100;
     if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
   };
 
@@ -137,7 +145,7 @@ class PlayerComponent extends React.Component<Props> {
   async togglePlayer(e: any): Promise<void> {
     if (this.expansionInProgress) return;
     e?.preventDefault();
-    const direction = this.props.player.expanded ? 'reverse' : 'normal';
+    const direction = this.props.expanded ? 'reverse' : 'normal';
     this.expansionInProgress = true;
     this.elasticBack();
     if (direction === 'normal') this.props.togglePlayer();
@@ -155,11 +163,10 @@ class PlayerComponent extends React.Component<Props> {
   resumeSong(): void {
     if (this.audio) this.audio.play();
 
-    const hasSong = this.props.player.song;
-    if (hasSong) this.props.playSong(this.props.player.song!);
+    const hasSong = this.props.song;
+    if (hasSong) this.props.playSong(this.props.song!);
     else this.nextSong();
   }
-
   playNewAudio(song: SongInterface): void {
     this.audio && this.pauseSong();
     this.audio = new Audio(song.url);
@@ -167,13 +174,15 @@ class PlayerComponent extends React.Component<Props> {
     this.props.playSong(song);
     this.audio.onended = (): void => this.nextSong();
     this.audio.ontimeupdate = (): void => {
-      this.props.updateElapsed(this.audio?.currentTime || 0);
+      if (Math.trunc(this.audio!.currentTime) !== this.props.timeElapsed) {
+        this.props.updateElapsed(Math.trunc(this.audio!.currentTime) || 0);
+      }
     };
   }
   nextSong(): void {
-    if (!this.props.player.playlist) return;
-    let playlist = this.props.player.playlist?.items;
-    const song = this.props.player.song;
+    if (!this.props.playlist) return;
+    let playlist = this.props.playlist?.items;
+    const song = this.props.song;
     let currentIndex = playlist.findIndex((x: any): any => x.id === song?.id);
 
     currentIndex === -1 || currentIndex === playlist.length - 1
@@ -182,9 +191,9 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   prevSong(): void {
-    if (!this.props.player.playlist) return;
-    let playlist = this.props.player.playlist?.items;
-    const song = this.props.player.song;
+    if (!this.props.playlist) return;
+    let playlist = this.props.playlist?.items;
+    const song = this.props.song;
     let currentIndex = playlist.findIndex((x: any): any => x.id === song?.id);
 
     currentIndex === 0
@@ -209,7 +218,7 @@ class PlayerComponent extends React.Component<Props> {
   };
 
   miniPlayer(): React.ReactNode {
-    const { playing, timeElapsed, song } = this.props.player;
+    const { playing, song } = this.props;
     const disabled = !song;
 
     return (
@@ -218,7 +227,9 @@ class PlayerComponent extends React.Component<Props> {
           <div className="progress">
             <IonRange
               className="bar"
-              value={timeElapsed * 3.333}
+              value={this.audio?.currentTime}
+              min={0}
+              max={30}
               onIonChange={(e: any): void => console.log(e.detail.value)}
             />
           </div>
@@ -238,15 +249,15 @@ class PlayerComponent extends React.Component<Props> {
                 {playing ? (
                   <button
                     disabled={!song}
-                    className="mini-player-toggle"
+                    className="mini-player-toggle p-0"
                     onClick={(): void => this.pauseSong()}
                   >
-                    <PauseIcon color={'#fff'} opacity={0.75} />
+                    <PauseIcon width={15} color={'#fff'} opacity={0.75} />
                   </button>
                 ) : (
                   <button
                     disabled={!song}
-                    className="mini-player-toggle"
+                    className="mini-player-toggle p-0"
                     onClick={(): void => this.resumeSong()}
                   >
                     <PlayIcon stroke={'#fff'} opacity={0.75} />
@@ -295,27 +306,36 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   mainControls(): React.ReactNode {
-    const { playing, timeElapsed, song } = this.props.player;
+    const { playing, song } = this.props;
     return (
       <div className="main-controls fluid">
         <div className="player-progress">
           <IonRange
             className="bar"
-            value={timeElapsed * 3.333}
-            onIonChange={(e: any): void => console.log(e.detail.value)}
+            value={this.audio?.currentTime || 0}
+            min={0}
+            max={30}
+            onIonChange={(e: any): void => {
+              if (
+                this.audio &&
+                Math.abs(e.detail.value - this.audio?.currentTime) > 1
+              ) {
+                this.audio.currentTime = e.detail.value;
+              }
+            }}
           />
 
           <div className="elapsed f6">
             <span>
               {moment()
                 .minutes(0)
-                .second(timeElapsed)
+                .second(this.audio?.currentTime || 0)
                 .format('m:ss')}
             </span>
             <span>
               {moment()
                 .minutes(0)
-                .second(song?.duration || 0)
+                .second(30)
                 .format('m:ss')}
             </span>
           </div>
@@ -362,7 +382,7 @@ class PlayerComponent extends React.Component<Props> {
           <VolumeMuteButton />
           <IonRange
             value={7}
-            onIonChange={(e: any): void => console.log(e.detail.value)}
+            // onIonChange={(e: any): void => console.log(e.detail.value)}
           />
           <VolumeButton />
         </div>
@@ -440,7 +460,7 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   fullPlayer(): React.ReactNode {
-    const { song, playlist } = this.props.player;
+    const { song, playlist } = this.props;
     return (
       <>
         <Header
@@ -478,7 +498,7 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   componentDidUpdate(): void {
-    const { paused } = this.props.player;
+    const { paused } = this.props;
     if (paused && this.audio) {
       this.audio.pause();
     }
@@ -488,15 +508,15 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const { expanded } = this.props.player;
-    const active = this.props.player.song ? 'active' : '';
+    const { expanded } = this.props;
+    const active = this.props.song ? 'active' : '';
     if (!this.expansePlayerAnimation) this.createPlayerAnimation();
 
     return (
       <>
         <div id="full-player" className="full-player">
           <BackgroundImage
-            gradient={`180deg,#aed8e5,#039e4a`}
+            gradient={'180deg,#aed8e5,#039e4a'}
             backgroundTop
             backgroundTopDark={true}
             backgroundTopOpacity={0.2}
@@ -516,14 +536,14 @@ class PlayerComponent extends React.Component<Props> {
               viewBox="0 0 400 10"
               style={{
                 position: 'fixed',
-                bottom: 98,
+                bottom: 99,
                 paddingLeft: 16,
                 paddingRight: 16,
                 width: '100%',
                 overflow: 'visible'
               }}
             >
-              <path id="a" d={`M 0 10 c 200-0, 400,0, 400,0`} fill="#22022f" />
+              <path id="a" d={'M 0 10 c 200-0, 400,0, 400,0'} fill="#22022f" />
             </svg>
           </div>
 
@@ -535,7 +555,29 @@ class PlayerComponent extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ player }: ApplicationState): StateProps => {
-  return { player };
+  const {
+    expanded,
+    playing,
+    paused,
+    song,
+    playlist,
+    timeElapsed,
+    canSkip,
+    shuffle,
+    repeat
+  } = player;
+
+  return {
+    expanded,
+    playing,
+    paused,
+    song,
+    playlist,
+    timeElapsed,
+    canSkip,
+    shuffle,
+    repeat
+  };
 };
 export default connect(mapStateToProps, {
   setPlaylistPlayer,

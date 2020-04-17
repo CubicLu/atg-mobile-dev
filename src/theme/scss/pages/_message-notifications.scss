@@ -34,9 +34,12 @@
                     content: attr(data-date);
                     display: inline-block;
                     position: absolute;
-                    right: 0;
+                    right: -8px;
+                    top: 8px;
                     font-size: 12px;
                     font-family: Helvetica;
+                    font-weight: normal;
+                    
                 }
                 color: #FFF;
                 font-weight: bold;

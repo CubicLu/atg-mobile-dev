@@ -1,0 +1,17 @@
+.fan-feed-filter-page{
+  ion-item{
+    border-bottom: 1px solid #45187B;
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+    &.content-fixed{
+        z-index: 2;
+        width: 100%;
+        padding-top: 90px;
+        height: 100%;
+    }
+    .header-list{
+      border-bottom: 1px solid #45187B;
+    }
+}

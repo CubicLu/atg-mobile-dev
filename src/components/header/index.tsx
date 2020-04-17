@@ -19,6 +19,7 @@ import { IonHeader, NavContext, NavContextState } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 import { SongInfoButton } from '../icon/player';
 import { Colors, RouterLinkDirection } from '../../interfaces';
+import NotificationIcon from '../icon/notification';
 
 interface Props {
   className?: string;
@@ -29,15 +30,6 @@ interface Props {
   top?: boolean;
   color?: string;
   leftMinimizeButton?: boolean;
-  rightActionButton?: boolean;
-  rightCloseButton?: boolean;
-  rightSettingsButton?: boolean;
-  rightSupportButton?: boolean;
-  rightInfoButton?: boolean;
-  rightAddButton?: boolean;
-  rightFilterButton?: boolean;
-  rightUserGroupButton?: boolean;
-  rightActionYellow?: boolean;
   leftContent?: React.ReactNode;
   centerContent?: React.ReactNode;
   rightContent?: React.ReactNode;
@@ -63,6 +55,15 @@ interface Props {
   rightConnectedButton?: boolean;
   rightFanFeedButton?: boolean;
   rightNotificationButton?: boolean;
+  rightActionButton?: boolean;
+  rightCloseButton?: boolean;
+  rightSettingsButton?: boolean;
+  rightSupportButton?: boolean;
+  rightInfoButton?: boolean;
+  rightAddButton?: boolean;
+  rightFilterButton?: boolean;
+  rightUserGroupButton?: boolean;
+  rightActionYellow?: boolean;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -86,6 +87,7 @@ class HeaderComponent extends React.Component<Props> {
     rightFilterButton: false,
     rightUserGroupButton: false,
     rightButtonGroup: false,
+    rightNotificationButton: false,
     centerContent: null,
     rightContent: null,
     translucent: false,
@@ -93,8 +95,7 @@ class HeaderComponent extends React.Component<Props> {
     fixed: true,
     rightChatButton: false,
     rightConnectedButton: false,
-    rightFanFeedButton: false,
-    rightNotificationButton: false
+    rightFanFeedButton: false
   };
 
   goBackClick = (ev: any): any => {
@@ -140,6 +141,7 @@ class HeaderComponent extends React.Component<Props> {
       rightSettingsOnClick,
       rightSupportButton,
       rightUserGroupButton,
+      rightNotificationButton,
       rightInfoButton,
       rightInfoOnClick,
       rightActionYellow,
@@ -147,6 +149,7 @@ class HeaderComponent extends React.Component<Props> {
       rightButtonGroup,
       children,
       overlay,
+      notificationsNumber,
       rightActionHref,
       rightCloseHref,
       routerDirection,
@@ -239,7 +242,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightFanFeedButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.pushUrl('/message', 'forward')}
+                onClick={(): any => this.pushUrl('/feed', 'forward')}
               >
                 <StarIcon />
               </div>
@@ -247,9 +250,22 @@ class HeaderComponent extends React.Component<Props> {
             {rightUserGroupButton && (
               <div
                 className="default-button"
-                onClick={(): any => this.pushUrl('/message', 'forward')}
+                onClick={(): any => this.pushUrl('/community', 'forward')}
               >
                 <UserGroupIcon color={'#FFF'} height={23} width={23} />
+              </div>
+            )}
+            {rightNotificationButton && (
+              <div
+                className="default-button"
+                onClick={(): any => this.pushUrl('/message', 'forward')}
+              >
+                <ButtonIcon
+                  color={Colors.transparent}
+                  icon={<NotificationIcon width={30} height={20} />}
+                  overlay={notificationsNumber}
+                  overlayClassName={'notificationCounter'}
+                />
               </div>
             )}
             {rightSettingsButton && (

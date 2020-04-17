@@ -23,7 +23,10 @@ class PhotoChatComponent extends React.Component<Props> {
     this.chatExpanded = !this.chatExpanded;
     this.forceUpdate();
   }
-
+  focusInput(): void {
+    const input = document.getElementById('inputText');
+    input?.focus();
+  }
   render(): React.ReactNode {
     const chevronClass = this.chatExpanded
       ? 'chevron-reverse'
@@ -62,7 +65,7 @@ class PhotoChatComponent extends React.Component<Props> {
                   }
                 )}
             </div>
-            <div className="chat-input">
+            <div onClick={(): void => this.focusInput()} className="chat-input">
               <InputText type={'text'} placeholder={'Start a chat'} />
               <Button label="Post" color={Colors.grayTransparent} bold={true} />
             </div>

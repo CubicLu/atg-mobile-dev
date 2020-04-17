@@ -111,7 +111,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
           onIonScroll={this.handleScroll.bind(this)}
           style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
         >
-          <div className={`artist-gallery-photo-page`}>
+          <div className={'artist-gallery-photo-page'}>
             <div style={{ marginTop: 100 }}>
               <IonImg src={this.getImage()} />
             </div>

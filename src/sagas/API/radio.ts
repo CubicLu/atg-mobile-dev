@@ -7,8 +7,9 @@ import {
 } from '../../actions';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const getRadioArtistRequest = async (id: string
-): Promise<ChannelInterface> => await API.get(`artist/pharell-williams.json`);
+export const getRadioArtistRequest = async (
+  id: string
+): Promise<ChannelInterface> => await API.get('artist/pharell-williams.json');
 
 function* getRadioArtistAPI({ payload }: any): ReturnType<any> {
   try {

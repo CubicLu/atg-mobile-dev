@@ -115,11 +115,11 @@
     }
 }
 .double-top{
-    margin-top: 2 * $initial-margin;    
+    padding-top: 2 * $initial-margin;
 }
 @media screen and (max-height: 668px) {
     .double-top{
-        margin-top: 32px;
+        padding-top: 32px;
     }
 }
 .initial-description{ 

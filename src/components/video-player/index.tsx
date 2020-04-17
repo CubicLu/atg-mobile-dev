@@ -49,8 +49,8 @@ class VideoPlayerComponent extends React.Component<Props, State> {
       showControls: false,
       paused: false,
       first: true,
-      currentTime: `00:00`,
-      totalTime: `00:00`,
+      currentTime: '00:00',
+      totalTime: '00:00',
       videoDuration: 0,
       currentTimeNumber: 0
     };
@@ -116,10 +116,14 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   toggleFullscreen(): void {
     if (this.video) {
       if (document.fullscreenElement) {
-        window.screen.orientation.lock('portrait');
+        //@ts-ignore
+        // eslint-disable-next-line no-restricted-globals
+        window.deviceready && screen.orientation.lock('landspace');
         document.exitFullscreen();
       } else {
-        window.screen.orientation.unlock();
+        //@ts-ignore
+        // eslint-disable-next-line no-restricted-globals
+        window.deviceready && screen.orientation.lock('portrait');
         this.video.requestFullscreen();
       }
     }
@@ -246,7 +250,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
       return null;
     }
     return (
-      <div className={`video-controls`} id="video-controls">
+      <div className={'video-controls'} id="video-controls">
         {this.renderButtonPlayOrPause()}
       </div>
     );

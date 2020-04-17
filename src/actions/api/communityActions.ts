@@ -82,3 +82,17 @@ export const getCommunityCommentsCoverAPISuccess = (response): any => ({
   type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS,
   payload: response
 });
+
+export const getFeedPostsAPI = (): any => ({
+  type: ActionType.GET_FEED_POSTS_API
+});
+
+export const getFeedPostsAPIFailure = (error): any => ({
+  type: ActionType.GET_FEED_POSTS_API_FAILURE,
+  payload: error
+});
+
+export const getFeedPostsAPISuccess = (response): any => ({
+  type: ActionType.GET_FEED_POSTS_API_SUCCESS,
+  payload: response
+});

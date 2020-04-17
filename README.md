@@ -37,6 +37,10 @@ ionic build
 cordova run android
 cordova run ios
 ```
+## INSTALL nightly packages
+npm install --global cordova@nightly
+cordova platform add ios@nightly
+cordova platform add android@nightly
 
 ## Note:
 You can still use any ionic or cordova command
@@ -48,3 +52,4 @@ ionic serve
 cordova plugin ls
 cordova platform update android --save
 ```
+

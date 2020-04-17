@@ -1,6 +1,6 @@
 .profile-page{
     height: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     ion-content, .content{
         height: calc(100% - 280px);
         overflow: scroll;
@@ -9,17 +9,23 @@
         margin-top: 16px;
         margin-bottom: 32px;
     }
-    .slick-dots li{
-        width: 12px;
-        margin: 0 2px;
-    }
-    .slick-dots li.slick-active button:before{
-        color: $tertiary;
-    }
-    .slick-dots li button:before{
-        color: rgba($color: #fff, $alpha: 0.5);
-        font-size: 8px;
-        width: 12px;
+    .slick-dots {
+        position: relative;
+        bottom: -4px;
+        padding: 0;
+        margin: 0;
+        & li{
+            width: 12px;
+            margin: 0 2px;
+        }
+        & li.slick-active button:before{
+            color: $tertiary;
+        }
+        & li button:before{
+            color: rgba($color: #fff, $alpha: 0.5);
+            font-size: 8px;
+            width: 12px;
+        }
     }
 }
 .profile-center{

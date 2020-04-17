@@ -2,11 +2,8 @@ import React from 'react';
 import { Avatar, Header, MenuProfileList } from './../../../components';
 import { connect } from 'react-redux';
 import { updateSettingsModal } from '../../../actions';
-import { ApplicationState } from '../../../reducers';
 import { ShapesSize, ProfileActionsType } from '../../../interfaces';
 import { withRouter, RouteComponentProps } from 'react-router';
-
-interface StateProps {}
 
 interface DispatchProps {
   updateSettingsModal: (
@@ -29,11 +26,11 @@ class HeaderProfileComponent extends React.Component<Props> {
   profileActions: ProfileActionsType[] = [
     {
       text: 'View my public profile',
-      onClick: (): void => console.log('Delete clicked')
+      onClick: (): void => this.props.history.push('/me')
     },
     {
       text: 'Edit my public profile',
-      onClick: (): void => console.log('Share clicked')
+      onClick: (): void => this.props.history.push('/settings')
     },
     {
       text: 'Improve my public profile',
@@ -75,7 +72,7 @@ class HeaderProfileComponent extends React.Component<Props> {
 
         <div className="profile-center">
           <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
-          <div className="f4 l15">Rosetta Throp</div>
+          <div className="f4 l15">Rosetta Throped</div>
           <div className="h00 l1 shadow">Musical Goddess</div>
         </div>
       </div>
@@ -83,12 +80,6 @@ class HeaderProfileComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
-
 export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsModal
-  })(HeaderProfileComponent)
+  connect(null, { updateSettingsModal })(HeaderProfileComponent)
 );

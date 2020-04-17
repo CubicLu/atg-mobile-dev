@@ -1,0 +1,59 @@
+.message-notification-detail-page{
+    color: #FFF;
+
+    .email-info{
+        display: inline-flex;
+        .circle-letter{
+            margin-bottom: 6px;
+            border-radius: 50%;
+            height: 42px !important;
+            width: 42px !important;
+            padding: 0px;
+            max-height: 42px;
+            max-width: 42px;
+            background-color: $tertiary;
+            font-family: "Industria";
+            font-weight: 600;
+            font-size: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            .circle{
+                line-height: 42px;
+                margin-bottom: 5px;
+            }
+
+            .text{
+                line-height: 42px;
+                margin-bottom: 5px;
+            }
+        }
+        .infos{
+            display: flex;
+            flex-direction: column;
+            line-height: 22px;
+
+            .subject{
+                font-weight: bold;
+            }
+        }
+
+    }
+
+    .images{
+        .image{
+            margin: 0.5rem 0 0.5rem 0 !important;
+            height: 165px;
+            min-height: 165px;
+            min-width: 165px;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    }
+}

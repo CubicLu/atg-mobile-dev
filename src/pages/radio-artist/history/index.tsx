@@ -1,33 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  IonContent,
-  IonPage,
-  IonList,
-  IonItemSliding,
-  IonItem,
-  IonItemOptions
-} from '@ionic/react';
-import { ApplicationState } from '../../../reducers';
+import { IonContent, IonPage, IonList } from '@ionic/react';
 import {
   BackgroundImage,
   Header,
-  Avatar,
-  ButtonSupportIcon,
-  CloseIcon,
   HeaderOverlay,
-  ButtonIcon,
-  AddPlaylistIcon
+  ListItem
 } from '../../../components';
-import { ShapesSize, Colors } from '../../../interfaces';
 
-interface Props extends RouteComponentProps {}
+interface Props {}
 
 class RadioHistoryPage extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
   private headerRef: React.RefObject<any> = React.createRef();
   render(): React.ReactNode {
     return (
@@ -48,44 +30,21 @@ class RadioHistoryPage extends React.Component<Props> {
               {this.historySongs.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <IonItemSliding key={i}>
-                      <IonItem>
-                        <div className="row">
-                          <div className="col s3 image">
-                            <Avatar
-                              image={data.image}
-                              type={ShapesSize.circle}
-                              width={50}
-                              height={50}
-                            />
-                          </div>
-                          <div className="col s6 info">
-                            <span className="song">{data.song}</span>
-                            <span className="artist">{data.artist}</span>
-                          </div>
-                          <div className="col s3 support">
-                            <ButtonSupportIcon
-                              artist={null}
-                              supported={i % 2 === 0}
-                            />
-                          </div>
-                        </div>
-                      </IonItem>
-                      <IonItemOptions side="end">
-                        <ButtonIcon
-                          icon={<AddPlaylistIcon />}
-                          color={Colors.green}
-                          className="no-padding"
-                          type={ShapesSize.normal}
-                        />
-                        <ButtonIcon
-                          icon={<CloseIcon strokeWidth={2} />}
-                          color={Colors.red}
-                          className="no-padding"
-                          type={ShapesSize.normal}
-                        />
-                      </IonItemOptions>
-                    </IonItemSliding>
+                    <ListItem
+                      key={i}
+                      node={i}
+                      sliding={true}
+                      bottomBorder={true}
+                      optionRemove={true}
+                      hasAvatar={true}
+                      avatarSize={48}
+                      avatarImage={data.image}
+                      songName={data.song}
+                      artistName={data.artist}
+                      expandArrow={true}
+                      supported={i % 2 === 0}
+                      supportButtonIcon={true}
+                    />
                   );
                 }
               )}
@@ -134,8 +93,4 @@ class RadioHistoryPage extends React.Component<Props> {
   ];
 }
 
-const mapStateToProps = ({}: ApplicationState): object => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, {})(RadioHistoryPage));
+export default RadioHistoryPage;

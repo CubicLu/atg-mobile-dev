@@ -61,15 +61,15 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
           }
         >
           <BackgroundImage
-            gradient={`180deg,#1F0739,#1F0739`}
+            gradient={'180deg,#1F0739,#1F0739'}
             backgroundTop
             backgroundBottom
             backgroundBottomDark={false}
             backgroundTopDark
             backgroundTopOpacity={0.7}
           />
-          <div className={`content-container`}>
-            <div className={`row no-margin`}>
+          <div className={'content-container'}>
+            <div className={'row no-margin'}>
               {this.props.currentArtist?.gallery?.map(
                 (data, index): React.ReactNode => (
                   <CardAlbumGallery

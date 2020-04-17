@@ -19,7 +19,7 @@ class PlusIcon extends React.Component<Props> {
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox={`0 0 19 19`}
+        viewBox={'0 0 19 19'}
       >
         <g
           id="Group_44"

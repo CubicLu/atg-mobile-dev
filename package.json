@@ -119,7 +119,6 @@
       },
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova-music-controls": {},
       "cordova-plugin-media": {
         "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
       }

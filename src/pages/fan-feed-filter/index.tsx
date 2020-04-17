@@ -133,7 +133,6 @@ class FanFeedFilterPage extends React.Component<Props, State> {
                 onSelect={(e, data): void => this.toggleSelect(e, data, false)}
                 sliding={false}
                 selectAll={this.everyResent}
-                checkSelected={(e): void => console.log(e)}
                 data={this.getResent()}
                 showComboBox
               />

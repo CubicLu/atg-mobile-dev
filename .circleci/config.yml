@@ -21,29 +21,20 @@ jobs:
 
       # Download and cache dependencies
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+          key: dependency-cache-{{ checksum "package-lock.json" }}
 
-      - run: 
-          name: "Install codecov"
-          command: sudo yarn global add codecov
-
-      - run: yarn install
+      - run:
+          name: install-npm-wee
+          command: npm install
 
       - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ./node_modules
 
       - run:
           name: Check syntax
           command: npm run lint
-
-      - run:
-          name: Run tests
-          command: npm test
 
       - run:
           name: Run audit
@@ -51,4 +42,4 @@ jobs:
 
       - run:
           name: Run tests coverage
-          command: npm run test -- --coverage && codecov -t 43f25114-d20b-4807-bff5-85bd795663b3 --disable=gcov --yml .codecov.yml
+          command: npm run test -- --ci --coverage --maxWorkers=2

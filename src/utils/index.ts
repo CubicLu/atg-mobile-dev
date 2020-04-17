@@ -117,7 +117,6 @@ export function getFixedTranslatePoints(
     ? element.getBoundingClientRect().right
     : element.getBoundingClientRect().left;
   initialY = element.getBoundingClientRect().top;
-  // console.log(element.offsetHeight, element.offsetTop, element.getBoundingClientRect().top)
   const eWidth = element.getBoundingClientRect().width;
   const elHeight = element.getBoundingClientRect().height;
 

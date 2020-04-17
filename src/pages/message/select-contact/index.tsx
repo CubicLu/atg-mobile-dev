@@ -91,7 +91,6 @@ class SelectContactPage extends React.Component<Props, State> {
       <menu.component
         showComboBox={true}
         showRemove={false}
-        checkSelected={(event): void => console.log(event)}
         showButtonPending={menu.id === 'friends'}
         data={this.props[variables[menu.id]]}
         onSelect={(event, data): void => this.toggleSelect(event, data)}
@@ -107,7 +106,6 @@ class SelectContactPage extends React.Component<Props, State> {
     } else if (!event.detail.checked && index > -1) {
       this.selected.splice(index, 1);
     }
-    console.log(this.selected);
   }
 
   render(): React.ReactNode {

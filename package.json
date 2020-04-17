@@ -86,8 +86,6 @@
     "@types/redux-mock-store": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
-    "cordova-android": "^9.0.0-nightly.2020.4.15.71f63d7b",
-    "cordova-ios": "^6.0.0-nightly.2020.4.15.fca1f3b5",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
@@ -99,6 +97,7 @@
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.0.1",
+    "jest-junit": "^10.0.0",
     "node-sass": "^4.13.1",
     "prettier": "^1.16.4",
     "react-styleguidist": "^11.0.5",
@@ -129,15 +128,12 @@
     ]
   },
   "jest": {
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "coverageReporters": [
-      "json",
-      "html"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules"
-    ]
+    "coverageThreshold": {
+      "global": {
+        "branches": 22,
+        "functions": 24,
+        "lines": 31
+      }
+    }
   }
 }

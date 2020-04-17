@@ -80,7 +80,6 @@ class SearchPage extends React.Component<Props> {
                 <div className={'row'}>
                   {Object.keys(queryResult).map(
                     (prop: string, i: number): React.ReactNode => {
-                      console.log(queryResult[prop]);
                       return (
                         <SearchResultSection
                           key={i}

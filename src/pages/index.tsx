@@ -48,8 +48,6 @@ import RadioFilterPage from './radio/filter';
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
 import MessageNotificationsPage from './message/notifications';
-import RadioArtistPage from './radio-artist';
-import RadioHistoryPage from './radio-artist/history';
 import MessageSelectContactPage from './message/select-contact';
 import MessageNotificationDetailPage from './message/notification-detail';
 
@@ -102,8 +100,6 @@ export {
   MessagePage,
   MessageChatPage,
   MessageNotificationsPage,
-  RadioArtistPage,
-  RadioHistoryPage,
   FanFeedFilterPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage,

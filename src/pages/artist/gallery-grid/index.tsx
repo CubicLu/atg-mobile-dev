@@ -207,8 +207,8 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <div className={`artist-gallery-grid-page`}>
-            <div className={`images`}>
+          <div className={'artist-gallery-grid-page'}>
+            <div className={'images'}>
               {cover !== undefined && (
                 <div key={0} onClick={(): void => this.onOpenImage(cover)}>
                   <IonImg src={cover} />

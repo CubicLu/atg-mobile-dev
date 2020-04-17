@@ -69,7 +69,8 @@ class CardMixtapesComponent extends React.Component<Props, State> {
             <div
               className="background"
               style={{
-                backgroundImage: `linear-gradient(90deg, #e9d3a3, #dcd6a7, #d1d7ac, #c6d9b3, #bed9bb, #b7dabf, #b1dbc4, #abdbca, #a1dcd0, #96ded7, #8cdfe0, #82dfe9)`
+                backgroundImage:
+                  'linear-gradient(90deg, #e9d3a3, #dcd6a7, #d1d7ac, #c6d9b3, #bed9bb, #b7dabf, #b1dbc4, #abdbca, #a1dcd0, #96ded7, #8cdfe0, #82dfe9)'
               }}
             >
               <ul className="buttons">

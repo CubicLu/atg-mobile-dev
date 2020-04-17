@@ -103,7 +103,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
                 icon={<CloseIcon />}
                 styles={{ width: 32, height: 32 }}
                 onClick={(): void =>
-                  this.props.history.push(`/community/artist/pharrell-williams`)
+                  this.props.history.push('/community/artist/pharrell-williams')
                 }
               />
             </div>
@@ -174,7 +174,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
     return (
       <IonPage style={{ background: '#000' }} id="community-daily-drip-page">
         <IonContent scrollY={false}>
-          <div className={`community-daily-drip-page space-between h-100`}>
+          <div className={'community-daily-drip-page space-between h-100'}>
             {this.renderHeader()}
             <React.Fragment>
               {slides && (

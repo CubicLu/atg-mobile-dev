@@ -56,7 +56,7 @@ class FeedPage extends React.Component<Props> {
         </Header>
 
         <IonContent>
-          <div className={`feed-page mt-3 content`}>
+          <div className={'feed-page mt-3 content'}>
             <div className="row filter mx-3 flex">
               <div className="h1 p-0 letter-spacing-2 align-start my-auto">
                 Amanda&apos;s feed
@@ -66,7 +66,7 @@ class FeedPage extends React.Component<Props> {
                   type={ShapesSize.rounded}
                   color={Colors.transparentGray}
                   label={'Filter'}
-                  onClick={(): void => hist.push(`fan-feed-filter`)}
+                  onClick={(): void => hist.push('fan-feed-filter')}
                 />
               </div>
             </div>

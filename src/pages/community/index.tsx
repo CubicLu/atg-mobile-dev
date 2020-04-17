@@ -67,14 +67,14 @@ class CommunityPage extends React.Component<Props> {
         </Header>
 
         <IonContent>
-          <div className={`community-page mt-3 content`}>
+          <div className={'community-page mt-3 content'}>
             {this.props.stories.length > 0 && (
               <React.Fragment>
                 <SectionTitle
                   title={'ARTIST COMMUNITIES'}
                   viewAll={true}
                   className="mt-1 mx-3"
-                  onClickAll={(): void => hist.push(`/community/artist`)}
+                  onClickAll={(): void => hist.push('/community/artist')}
                 />
                 <SliderStories
                   labelKey="label"
@@ -93,7 +93,7 @@ class CommunityPage extends React.Component<Props> {
                   type={ShapesSize.rounded}
                   color={Colors.transparentGray}
                   label={'Filter'}
-                  onClick={(): void => hist.push(`fan-feed-filter`)}
+                  onClick={(): void => hist.push('fan-feed-filter')}
                 />
               </div>
             </div>

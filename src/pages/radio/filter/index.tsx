@@ -104,7 +104,7 @@ class RadioFilterPage extends React.Component<Props, State> {
                   className="card-genre-col mx-1"
                 >
                   <div
-                    className={`card-genre mb-1`}
+                    className={'card-genre mb-1'}
                     style={{
                       backgroundImage: `linear-gradient(180deg,${genre.color}00,${genre.color}), url(${genre.image})`
                     }}
@@ -236,7 +236,9 @@ class RadioFilterPage extends React.Component<Props, State> {
             (station): React.ReactElement => (
               <div
                 key={station.id}
-                className={`col s4 no-padding p-1 flex-column-center mb-2 center-align`}
+                className={
+                  'col s4 no-padding p-1 flex-column-center mb-2 center-align'
+                }
               >
                 <IonRouterLink
                   routerLink={`/radio/genre/${station.genre.toLocaleLowerCase()}`}
@@ -245,7 +247,7 @@ class RadioFilterPage extends React.Component<Props, State> {
                   <>
                     <div
                       onClick={this.resetSearch}
-                      className={`station circle`}
+                      className={'station circle'}
                       style={{
                         background: `url(${station.image})`,
                         backgroundSize: 'cover',
@@ -269,7 +271,7 @@ class RadioFilterPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     const { selectedChannel } = this.state;
     const pageTitle = selectedChannel ? `${selectedChannel.name}` : 'Filter';
-    const classTitle = selectedChannel ? `ml-2` : '';
+    const classTitle = selectedChannel ? 'ml-2' : '';
 
     return (
       <IonPage id="radio-filter-page">
@@ -285,7 +287,7 @@ class RadioFilterPage extends React.Component<Props, State> {
         />
         <HeaderOverlay ref={this.headerRef} />
         <BackgroundImage
-          gradient={`180deg,#22143c,#1a1123`}
+          gradient={'180deg,#22143c,#1a1123'}
           backgroundTop
           backgroundBottom
           backgroundBottomDark={false}

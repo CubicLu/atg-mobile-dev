@@ -63,7 +63,7 @@ class TrackListPage extends React.Component<Props> {
         {currentArtist && <div className="fade-background blur" />}
         {!currentArtist && (
           <BackgroundImage
-            gradient={`180deg,#aed8e5,#039e4a`}
+            gradient={'180deg,#aed8e5,#039e4a'}
             backgroundTop
             backgroundTopDark={true}
             backgroundTopOpacity={0.2}
@@ -74,7 +74,7 @@ class TrackListPage extends React.Component<Props> {
         )}
 
         <IonHeader className="track-header ion-no-border">
-          <div className={`atg-header`}>
+          <div className={'atg-header'}>
             <div className="start">
               <div
                 className="default-button dark"

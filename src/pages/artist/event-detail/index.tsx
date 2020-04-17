@@ -66,7 +66,7 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page">
-        <div className={`artist-event-detail-page`}>
+        <div className={'artist-event-detail-page'}>
           <Header
             rightCloseButton
             title="Who's going"
@@ -78,13 +78,13 @@ class EventDetailPage extends React.Component<Props, State> {
           />
           <IonContent>
             <BackgroundImage
-              gradient={`180deg,#000,#20123a`}
+              gradient={'180deg,#000,#20123a'}
               backgroundBottom={true}
               backgroundBottomOrange={true}
               backgroundBottomOpacity={0.15}
             />
             <div className="content-fixed" slot="fixed">
-              <div className={`flex-justify-content-center`}>
+              <div className={'flex-justify-content-center'}>
                 <Button
                   label={this.state.willGo ? "Can't go" : "I'm going"}
                   color={this.state.willGo ? Colors.disable : Colors.blue}

@@ -65,7 +65,7 @@ class PhotoChatComponent extends React.Component<Props> {
                   }
                 )}
             </div>
-            <div onClick={(): void => this.focusInput() }className="chat-input">
+            <div onClick={(): void => this.focusInput()} className="chat-input">
               <InputText type={'text'} placeholder={'Start a chat'} />
               <Button label="Post" color={Colors.grayTransparent} bold={true} />
             </div>

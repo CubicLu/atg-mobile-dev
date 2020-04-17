@@ -49,9 +49,7 @@ import {
   MessageSelectContactPage,
   MessageNotificationDetailPage,
   FriendPage,
-  VaultFilterPage,
-  RadioArtistPage,
-  RadioHistoryPage
+  VaultFilterPage
 } from './../pages';
 import {
   MenuArtistList,

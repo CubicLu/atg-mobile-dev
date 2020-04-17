@@ -13,6 +13,7 @@
       "jest": true
     },
     "rules": {
+      "quotes": [2, "single", { "avoidEscape": true }],
       "prettier/prettier": ["error", { "singleQuote": true }],
       "@typescript-eslint/explicit-member-accessibility": "off",
       "@typescript-eslint/no-empty-interface": "off",

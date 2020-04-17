@@ -71,9 +71,9 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
         <div className="row">
           <div className="col s12 images">
             <div
-              className={`image`}
+              className={'image'}
               style={{
-                backgroundImage: `url(https://loremflickr.com/200/200/music)`
+                backgroundImage: 'url(https://loremflickr.com/200/200/music)'
               }}
             />
           </div>
@@ -123,7 +123,7 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
           }
         >
           <BackgroundImage
-            gradient={`180deg,#1F0739,#1F0739`}
+            gradient={'180deg,#1F0739,#1F0739'}
             backgroundTop
             backgroundBottom
             backgroundBottomDark={false}

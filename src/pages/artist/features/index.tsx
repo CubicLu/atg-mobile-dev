@@ -32,7 +32,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
     } = currentArtist;
 
     return (
-      <div className={`artist-features-page`}>
+      <div className={'artist-features-page'}>
         <div className="row" />
         <div className="row">
           <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />

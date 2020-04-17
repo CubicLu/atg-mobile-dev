@@ -78,7 +78,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
           scrollEvents={true}
           onIonScroll={(e): void => this.handleScroll(e)}
         >
-          <div className={`artist-deep-dive-page`}>
+          <div className={'artist-deep-dive-page'}>
             <div className={this.state.fixed ? 'row header-fixed' : 'row'}>
               <Header
                 rightActionButton
@@ -104,7 +104,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
 
           <div
             className={
-              `artist-deep-dive-page bottom` +
+              'artist-deep-dive-page bottom' +
               (this.state.fixed ? ' absolute' : '')
             }
           >

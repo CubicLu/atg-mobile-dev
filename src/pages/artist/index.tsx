@@ -72,7 +72,7 @@ class ArtistPage extends React.PureComponent<Props, {}> {
       .addAnimation([
         createAnimation('background')
           .addElement(document.querySelector('#fade-background')!)
-          .fromTo('opacity', '0', `1`),
+          .fromTo('opacity', '0', '1'),
         createAnimation('header')
           .addElement(document.querySelector('#ion-item-header')!)
           .fromTo(
@@ -223,7 +223,7 @@ class ArtistPage extends React.PureComponent<Props, {}> {
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
-          <h2 id="artist-title" className={`h00 m-0 inline-table l1 shadow`}>
+          <h2 id="artist-title" className={'h00 m-0 inline-table l1 shadow'}>
             {artist.name}
           </h2>
           <br />

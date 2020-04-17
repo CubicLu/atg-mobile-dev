@@ -516,7 +516,7 @@ class PlayerComponent extends React.PureComponent<Props> {
       <>
         <div id="full-player" className="full-player">
           <BackgroundImage
-            gradient={`180deg,#aed8e5,#039e4a`}
+            gradient={'180deg,#aed8e5,#039e4a'}
             backgroundTop
             backgroundTopDark={true}
             backgroundTopOpacity={0.2}
@@ -543,7 +543,7 @@ class PlayerComponent extends React.PureComponent<Props> {
                 overflow: 'visible'
               }}
             >
-              <path id="a" d={`M 0 10 c 200-0, 400,0, 400,0`} fill="#22022f" />
+              <path id="a" d={'M 0 10 c 200-0, 400,0, 400,0'} fill="#22022f" />
             </svg>
           </div>
 

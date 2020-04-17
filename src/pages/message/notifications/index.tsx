@@ -36,7 +36,7 @@ class MessageNotificationDetailPage extends React.Component<Props> {
                   }}
                 >
                   <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
-                    <div className={`col s12 info`}>
+                    <div className={'col s12 info'}>
                       <span
                         className="f4 bold"
                         data-date={moment(data.sendAt).format('MM/DD/YY')}

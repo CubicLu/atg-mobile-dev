@@ -163,7 +163,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
             color={Colors.support}
             gradient={true}
             onClick={(): void =>
-              history.push(`/thank-you`, { artistId: match.params.id })
+              history.push('/thank-you', { artistId: match.params.id })
             }
           />
         </div>

@@ -121,7 +121,7 @@ class CommunityArtistPage extends React.Component<Props, State> {
           leftBackOnClick={(): void => this.props.history.push('/community')}
           leftBackButton={true}
           title={this.props.currentCommunityArtist?.fullname}
-          titleClassName={`community-artist-name`}
+          titleClassName={'community-artist-name'}
           rightActionButton={this.state.joined ? false : true}
           rightContent={
             this.state.joined && (
@@ -138,7 +138,7 @@ class CommunityArtistPage extends React.Component<Props, State> {
         </Header>
 
         <IonContent>
-          <div className={`community-page mt-3 content`}>
+          <div className={'community-page mt-3 content'}>
             {!joined && this.renderJoinButton()}
 
             {this.props.stories.length > 0 && (
@@ -148,7 +148,7 @@ class CommunityArtistPage extends React.Component<Props, State> {
                   viewAll={true}
                   className="mt-1 mx-3"
                   onClickAll={(): void => {
-                    this.props.history.push(`/community/artist`);
+                    this.props.history.push('/community/artist');
                   }}
                 />
                 <SliderStories

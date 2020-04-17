@@ -20,7 +20,7 @@ class SupportIcon extends React.Component<Props> {
       <svg
         width={this.props.width}
         height={this.props.height}
-        viewBox={`-2 -2 38 38`}
+        viewBox={'-2 -2 38 38'}
       >
         <defs>
           <linearGradient

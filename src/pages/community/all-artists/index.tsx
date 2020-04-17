@@ -25,7 +25,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
     return (
       <IonPage id="community-all-artists-page">
         <BackgroundImage
-          gradient={`180deg,#230541,#180727`}
+          gradient={'180deg,#230541,#180727'}
           backgroundTopDark
           backgroundTop
           backgroundTopOpacity={0.5}
@@ -36,13 +36,15 @@ class CommunityAllArtistsPage extends React.Component<Props> {
         <Header
           leftBackButton={true}
           title={'Artist Community'}
-          titleClassName={`artist-name`}
+          titleClassName={'artist-name'}
           rightCloseButton={true}
           rightCloseHref="/community"
         />
         <IonContent>
           <div
-            className={`mt-5 community-all-artists-page content content-container`}
+            className={
+              'mt-5 community-all-artists-page content content-container'
+            }
           >
             <div className="row">
               {this.props.stories.map(

@@ -154,7 +154,7 @@ class RadioArtistPage extends React.Component<Props> {
     name: 'BOB MARLEY',
     title: 'EVERYTHING REGGAE',
     subtitle: 'BEATS OF THE ISLANDS',
-    color: `180deg,#ffc90d, #034627`,
+    color: '180deg,#ffc90d, #034627',
     image: require('./../../assets/img/background/home-screen-v-14-b.png')
   };
   radios = [

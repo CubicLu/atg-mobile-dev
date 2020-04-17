@@ -80,7 +80,7 @@ class MessagePage extends React.Component<Props> {
         />
         <IonContent className="mb-50" scrollY={false}>
           <BackgroundImage
-            gradient={`180deg,#1F0739,#1F0739`}
+            gradient={'180deg,#1F0739,#1F0739'}
             backgroundTop
             backgroundBottom
             backgroundBottomDark={false}

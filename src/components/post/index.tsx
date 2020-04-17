@@ -52,7 +52,7 @@ class ArtistPostComponent extends React.Component<Props> {
               return <PostComment comment={data} key={i} />;
             }
           )}
-        <div onClick={(): void => this.focusInput() } className="comment-input">
+        <div onClick={(): void => this.focusInput()} className="comment-input">
           <InputText type={'text'} placeholder={'Start a message'} />
           <Button label="Post" color={Colors.grayTransparent} bold={true} />
         </div>

@@ -54,14 +54,14 @@ class SearchPage extends React.Component<Props> {
         >
           <div className="search-page">
             <BackgroundImage
-              gradient={`180deg,#1F0739,#1F0739`}
+              gradient={'180deg,#1F0739,#1F0739'}
               backgroundTop
               backgroundBottom
               backgroundBottomDark={false}
               backgroundTopDark
               backgroundTopOpacity={0.7}
             />
-            <div className={`content-container`}>
+            <div className={'content-container'}>
               <input
                 placeholder={'Artist, Genre, sub-genre, era...'}
                 type={'text'}

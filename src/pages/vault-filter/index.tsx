@@ -37,14 +37,14 @@ class VaultFilterPage extends React.Component<Props> {
         >
           <div className="vault-filter-page">
             <BackgroundImage
-              gradient={`180deg,#1F0739,#1F0739`}
+              gradient={'180deg,#1F0739,#1F0739'}
               backgroundTop
               backgroundBottom
               backgroundBottomDark={false}
               backgroundTopDark
               backgroundTopOpacity={0.7}
             />
-            <div className={`content-container`}>
+            <div className={'content-container'}>
               <input
                 placeholder={'Filter My Vault'}
                 type={'text'}
@@ -55,35 +55,17 @@ class VaultFilterPage extends React.Component<Props> {
                 style={{ marginTop: 16, marginBottom: 16 }}
               />
               <div className={'row'}>
-                <VaultFilterSection
-                  label={'View Tracks'}
-                  action={e => console.log('view tracks:', e.detail.checked)}
-                  type={'toggle'}
-                />
-                <VaultFilterSection
-                  label={'View Videos'}
-                  action={e => console.log('view tracks:', e.detail.checked)}
-                  type={'toggle'}
-                />
-                <VaultFilterSection
-                  label={'View Photos'}
-                  action={e => console.log('view tracks:', e.detail.checked)}
-                  type={'toggle'}
-                />
-                <VaultFilterSection
-                  label={'Show Supported'}
-                  action={e => console.log('view tracks:', e.detail.checked)}
-                  type={'toggle'}
-                />
+                <VaultFilterSection label={'View Tracks'} type={'toggle'} />
+                <VaultFilterSection label={'View Videos'} type={'toggle'} />
+                <VaultFilterSection label={'View Photos'} type={'toggle'} />
+                <VaultFilterSection label={'Show Supported'} type={'toggle'} />
                 <VaultFilterSection
                   label={'Show by Genre'}
-                  action={e => console.log('view tracks:', e.detail.checked)}
                   type={'chip'}
                   selectedChips={['Rock', 'Country', 'Rap']}
                 />
                 <VaultFilterSection
                   label={'Show by Era'}
-                  action={e => console.log('view tracks:', e.detail.checked)}
                   type={'chip'}
                   selectedChips={['90s', '80s', '70s', '60s', '50s', '40s']}
                 />
@@ -93,7 +75,6 @@ class VaultFilterPage extends React.Component<Props> {
                   gradient
                   type={ShapesSize.rounded}
                   className={'ml-1 mt-5'}
-                  onClick={() => alert('reset')}
                 />
               </div>
             </div>

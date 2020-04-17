@@ -160,7 +160,7 @@ class PlayerComponent extends React.Component<Props> {
             width: '100%'
           }}
         >
-          <path id="a" d={`M 0 10 c 200-0, 400,0, 400,0`} fill="#22022f" />
+          <path id="a" d={'M 0 10 c 200-0, 400,0, 400,0'} fill="#22022f" />
         </svg>
       </div>
     );
@@ -411,7 +411,7 @@ class PlayerComponent extends React.Component<Props> {
       <React.Fragment>
         <div id="full-player" className="full-player">
           <BackgroundImage
-            gradient={`180deg,#aed8e5,#039e4a`}
+            gradient={'180deg,#aed8e5,#039e4a'}
             backgroundTop
             backgroundTopDark={true}
             backgroundTopOpacity={0.2}

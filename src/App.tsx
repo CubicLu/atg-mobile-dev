@@ -14,6 +14,7 @@ import {
 } from './pages';
 
 import './theme/scss/_styles.scss';
+import './theme/variables.css';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 

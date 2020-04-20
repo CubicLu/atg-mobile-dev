@@ -73,6 +73,7 @@ import {
   ButtonSupportIconComponent,
   ButtonSupportComponent
 } from './button/support-button';
+import NavBarTwoButtonsComponent from './navbar-two-buttons';
 
 export * from './icon';
 
@@ -132,7 +133,8 @@ export {
   InputComboBoxComponent as InputComboBox,
   VaultFilterSectionComponent as VaultFilterSection,
   InputToggleComponent as InputToggle,
-  InputChipComponent as InputChip
+  InputChipComponent as InputChip,
+  NavBarTwoButtonsComponent as NavbarTwoButtons
 };
 
 export {

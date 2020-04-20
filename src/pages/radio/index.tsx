@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
 import {
   Header,
   BackgroundImage,
@@ -91,15 +91,20 @@ class RadioPage extends React.Component<Props> {
             data={this.radios}
           />
 
-          <SectionTitle
-            className="mt-2 mx-3"
-            leftClassName="flex"
-            leftContent={<PlusButton />}
-            title="MY CUSTOM STATIONS"
-            viewAll={false}
-          />
+          <IonRouterLink
+            routerDirection="forward"
+            routerLink="/radio/station/create"
+          >
+            <SectionTitle
+              className="mt-2 mx-3"
+              leftClassName="flex"
+              leftContent={<PlusButton />}
+              title="MY CUSTOM STATIONS"
+              viewAll={false}
+            />
+          </IonRouterLink>
           <div className=" card-station">
-            <SliderVideo data={this.radios} />
+            <SliderVideo canEdit={true} data={this.radios} />
           </div>
         </IonContent>
       </IonPage>

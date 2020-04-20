@@ -28,7 +28,11 @@ ion-tab-bar {
    }
 }
 ion-item{
-    --ion-background-color:transparent;
+    --ion-background-color: transparent;
+    --background-activated: #45187B;
+    --background-activated-opacity: 1;
+    --border-color: transparent;
+    --color-activated: #fff;
     max-height: $ion-item-max-height;
     height: $ion-item-max-height;
     --padding-start: 16px;
@@ -36,6 +40,7 @@ ion-item{
     border-bottom: none;
         &.with-border{
             border-bottom: 1px solid #45187B;
+            --border-color: #45187B;
         }
     }
     .arrow-expand {
@@ -106,26 +111,46 @@ ion-item{
     }
 }
 ion-checkbox{
-    --background: transparent;
-    --border-color: #fff;
-    --background-checked: #01add9;
-    --border-color-checked: transparent;
-    --border-radius: 3px;
-    --border-style: solid;
-    --border-width: 2px;
-    --checkmark-color: #1f0739;
-    --checkmark-width: 3px;
-    --size: 20px;
-    &.checkbox-icon{
-        svg{
-            display: none;
+    &.square{
+        --background: transparent;
+        --border-color: #fff;
+        --background-checked: #01add9;
+        --border-color-checked: transparent;
+        --border-radius: 3px;
+        --border-style: solid;
+        --border-width: 2px;
+        --checkmark-color: #1f0739;
+        --checkmark-width: 3px;
+        --size: 20px;
+        &.checkbox-icon{
+            svg{
+                display: none;
+                path{
+                    transform: translate(-7px, -7px) scale(1.5);
+                }    
+            }
             path{
                 transform: translate(-7px, -7px) scale(1.5);
-            }    
+            }
         }
-        path{
-            transform: translate(-7px, -7px) scale(1.5);
-        }
+    }
+    &.rounded{
+        --background: transparent;
+        --border-color: #fff;
+        --border-style: solid;
+        --border-width: 1px;
+        --background-checked: #fcc505;
+        --border-color-checked: #fcc505;
+        --border-style-selected: solid;
+        --border-width-selected: 1px;
+        --size: 24px;
+        --checkmark-width: 2px;
+        --transition: none;
+    }
+}
+ion-reorder{
+    .reorder-icon{
+        opacity: 1;
     }
 }
 *::-webkit-scrollbar {

@@ -5,6 +5,7 @@ import SignInPage from './sign-in';
 import SignUpPage from './sign-up';
 import SignUpConfirmPage from './sign-up-confirm';
 import HomePage from './home';
+import HomeRouterPage from './home/router';
 
 import FeedPage from './feed';
 import FriendPage from './friend';
@@ -44,6 +45,9 @@ import ThankYouPage from './thank-you';
 import SettingPage from './setting';
 import RadioPage from './radio';
 import RadioFilterPage from './radio/filter';
+import RadioArtistPage from './radio-artist';
+import RadioHistoryPage from './radio-artist/history';
+import RadioStationEditPage from './radio/station-create';
 
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
@@ -53,8 +57,6 @@ import MessageNotificationDetailPage from './message/notification-detail';
 
 import FanFeedFilterPage from './fan-feed-filter';
 import VaultFilterPage from './vault-filter';
-import RadioArtistPage from './radio-artist';
-import RadioHistoryPage from './radio-artist/history';
 
 export {
   NotFoundPage,
@@ -64,6 +66,7 @@ export {
   SignUpPage,
   SignUpConfirmPage,
   HomePage,
+  HomeRouterPage,
   FeedPage,
   SearchPage,
   ProfilePage,
@@ -96,6 +99,7 @@ export {
   CommunityAllArtistsPage,
   RadioPage,
   RadioFilterPage,
+  RadioStationEditPage,
   SettingPage,
   MessagePage,
   MessageChatPage,

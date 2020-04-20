@@ -1,20 +1,31 @@
 import React from 'react';
+import { Sizes } from '../../../interfaces';
 interface Props {
-  type: 'text' | 'password';
-  placeholder: string;
-  defaultValue?: string;
-  onChangeText?: (value) => void;
-  error?: boolean;
+  readonly type: 'text' | 'password';
+  readonly placeholder: string;
+  readonly defaultValue?: string;
+  readonly onChangeText?: (value) => void;
+  readonly error?: boolean;
+  readonly size?: Sizes;
 }
 class InputTextComponent extends React.Component<Props> {
   public static defaultProps = {
-    error: false
+    error: false,
+    size: Sizes.md
   };
 
   render(): React.ReactNode {
-    const { type, placeholder, defaultValue, onChangeText, error } = this.props;
+    const {
+      type,
+      placeholder,
+      defaultValue,
+      onChangeText,
+      error,
+      size
+    } = this.props;
     return (
       <input
+        autoComplete="off"
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
@@ -25,7 +36,7 @@ class InputTextComponent extends React.Component<Props> {
             onChangeText(value);
           }
         }}
-        className={`input text ${error && 'error'}`}
+        className={`input text ${error && 'error'} ${size}`}
       />
     );
   }

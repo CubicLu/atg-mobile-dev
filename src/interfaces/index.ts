@@ -80,7 +80,10 @@ export enum ActionType {
   GET_FEED_POSTS_API_SUCCESS = 'GET_FEED_POSTS_API_SUCCESS',
   GET_RADIO_ARTIST = 'GET_RADIO_ARTIST',
   GET_RADIO_ARTIST_SUCCESS = 'GET_RADIO_ARTIST_SUCCESS',
-  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE'
+  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE',
+  TOGGLE_NAVBAR_TWOACTIONS = 'TOGGLE_NAVBAR_TWOACTIONS',
+  UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
+  UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -147,6 +150,7 @@ export interface DailyDripItem {
 
 export interface SettingsReducerType {
   tabs: TabsInterface[];
+  activeTab: string;
   links: LinksInterface[];
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
@@ -162,6 +166,17 @@ export interface SettingsReducerType {
   profileFriendTabs: MenuInterface[];
   selectContactTabs: MenuInterface[];
   activeSelectContactTab: string;
+}
+export interface NavbarReducerType {
+  navbarTwoButtons: NavbarTwoButtons;
+}
+
+export interface NavbarTwoButtons {
+  status: boolean;
+  leftLabel?: string;
+  rightLabel?: string;
+  leftAction?: Function;
+  rightAction?: Function;
 }
 
 export interface ScrollHeaderInterface {

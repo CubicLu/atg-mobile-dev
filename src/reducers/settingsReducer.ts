@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import {
-  Action,
-  ActionType,
-  SettingsReducerType,
-  Colors
-} from './../interfaces';
+import { Action, ActionType, SettingsReducerType, Colors } from '../interfaces';
 import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
@@ -49,8 +44,9 @@ import {
   MessageSelectContactPage,
   MessageNotificationDetailPage,
   FriendPage,
-  VaultFilterPage
-} from './../pages';
+  VaultFilterPage,
+  RadioStationEditPage
+} from '../pages';
 import {
   MenuArtistList,
   MessageIcon,
@@ -58,7 +54,7 @@ import {
   SearchIcon,
   RadioIcon,
   ListUser
-} from './../components';
+} from '../components';
 import React from 'react';
 import { store } from '../store';
 import LogoIcon from '../components/icon/logo';
@@ -72,6 +68,7 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
+  activeTab: 'profile',
   activeFanTab: 'artists',
   fanTabs: [
     {
@@ -361,6 +358,16 @@ const defaultState: SettingsReducerType = {
       component: RadioFilterPage
     },
     {
+      path: '/radio/station/edit/:id',
+      id: 'radioStationEdit',
+      component: RadioStationEditPage
+    },
+    {
+      path: '/radio/station/create',
+      id: 'radioStationEdit',
+      component: RadioStationEditPage
+    },
+    {
       path: '/radio/genre/:genre',
       id: 'radioHome',
       component: RadioPage
@@ -546,6 +553,7 @@ export const settingsReducer = createReducer<SettingsReducerType>(
         [action.payload.property]: action.payload.value
       };
     },
+
     [ActionType.UPDATE_SETTINGS_MODAL](
       state: SettingsReducerType,
       action: Action<any>

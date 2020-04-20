@@ -27,6 +27,7 @@ class InputCodeComponent extends React.Component<Props, State> {
         <div className="input-group">
           <div className="input-group-area">
             <input
+              autoComplete="off"
               type="tel"
               className="input code"
               defaultValue={this.state.value}

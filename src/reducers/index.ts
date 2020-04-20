@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { settingsReducer } from './settings';
+import { settingsReducer } from './settingsReducer';
 import { artistReducer } from './api/artistReducer';
 import { authReducer } from './api/authReducer';
 import { playerReducer } from './playerReducer';
@@ -17,13 +17,16 @@ import {
   ProfileReducerType,
   FriendReducerType,
   FeedReducerType,
-  RadioReducerType
+  RadioReducerType,
+  NavbarReducerType
 } from '../interfaces';
 import { profileReducer } from './api/profileReducer';
 import { radioReducer } from './api/radioReducer';
+import { navbarReducer } from './navbarReducer';
 
 export interface ApplicationState {
   settings: SettingsReducerType;
+  navbar: NavbarReducerType;
   artistAPI: ArtistReducerType;
   authAPI: AuthReducerType;
   player: PlayerReducerType;
@@ -37,6 +40,7 @@ export interface ApplicationState {
 
 export const rootReducers = combineReducers<ApplicationState>({
   settings: settingsReducer,
+  navbar: navbarReducer,
   artistAPI: artistReducer,
   authAPI: authReducer,
   player: playerReducer,

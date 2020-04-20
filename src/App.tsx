@@ -17,6 +17,7 @@ import './theme/scss/_styles.scss';
 import './theme/variables.css';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
+import './theme/variables.css';
 
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
@@ -31,10 +32,10 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import { hideTabs } from './utils';
-// import { CordovaList } from './components';
+import { CordovaList } from './components';
 
 export default class App extends React.Component {
-  authenticated: boolean = false;
+  authenticated: boolean = true;
   enableMedia?: boolean = false;
 
   UNSAFE_componentWillMount(): void {
@@ -76,7 +77,7 @@ export default class App extends React.Component {
         <Provider store={store}>
           <IonApp>
             <HomePage />
-            {/* {this.enableMedia && <CordovaList />} */}
+            {this.enableMedia && <CordovaList />}
           </IonApp>
         </Provider>
       );

@@ -65,7 +65,7 @@ class RadioArtistPage extends React.Component<Props> {
     this.refreshRadio();
   }
   componentDidUpdate(prevProps): void {
-    if (this.props.match.params.id != prevProps.match.params.id)
+    if (this.props.match.params.id !== prevProps.match.params.id)
       this.refreshRadio();
   }
   private headerRef: React.RefObject<any> = React.createRef();
@@ -91,7 +91,7 @@ class RadioArtistPage extends React.Component<Props> {
         />
 
         <BackgroundImage
-          gradient={`180deg, #ffc90d, #034627`}
+          gradient={this.props.radioArtist.color}
           backgroundImage={this.props.radioArtist.image}
           backgroundTop={false}
           backgroundBottom={true}

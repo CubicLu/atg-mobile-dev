@@ -8,8 +8,12 @@
 
 # testing
 /coverage
-/simulation
-/simulation/*
+simulation
+simulation/*
+/simulation/app-host.js
+/simulation/app-host.json
+/simulation/sim-host.js
+/simulation/sim-host.json
 
 # production
 /build

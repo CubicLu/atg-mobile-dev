@@ -43,7 +43,7 @@ class SignInPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          leftContent={<div className="h1 l08 no-wrap">SIGN IN</div>}
+          leftContent={<div className="h1 l08 no-wrap-pre">SIGN IN</div>}
           rightCloseOnClick={(): any => this.props.history.push('/initial')}
         />
 

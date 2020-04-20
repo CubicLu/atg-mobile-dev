@@ -1,25 +1,23 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   IonContent,
   IonPage,
   IonList,
-  IonItemSliding,
   IonItem,
-  IonItemOptions
+  IonItemOptions,
+  IonItemSliding
 } from '@ionic/react';
-import { ApplicationState } from '../../../reducers';
 import {
   BackgroundImage,
   Header,
-  Avatar,
-  ButtonSupportIcon,
-  CloseIcon,
   HeaderOverlay,
+  ButtonSupportIcon,
   ButtonIcon,
-  AddPlaylistIcon
+  CloseIcon,
+  AddPlaylistIcon,
+  Avatar
 } from '../../../components';
+import { RouteComponentProps, withRouter } from 'react-router';
 import {
   ShapesSize,
   Colors,
@@ -27,6 +25,8 @@ import {
   ArtistInterface
 } from '../../../interfaces';
 import { setRadioPlaylistPlayer } from './../../../actions';
+import { connect } from 'react-redux';
+import { ApplicationState } from '../../../reducers';
 
 interface StateProps {
   radioArtist: ChannelInterface;

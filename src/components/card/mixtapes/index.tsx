@@ -69,7 +69,8 @@ class CardMixtapesComponent extends React.Component<Props, State> {
             <div
               className="background"
               style={{
-                backgroundImage: `linear-gradient(90deg, #e9d3a3, #dcd6a7, #d1d7ac, #c6d9b3, #bed9bb, #b7dabf, #b1dbc4, #abdbca, #a1dcd0, #96ded7, #8cdfe0, #82dfe9)`
+                backgroundImage:
+                  'linear-gradient(90deg, #e9d3a3, #dcd6a7, #d1d7ac, #c6d9b3, #bed9bb, #b7dabf, #b1dbc4, #abdbca, #a1dcd0, #96ded7, #8cdfe0, #82dfe9)'
               }}
             >
               <ul className="buttons">
@@ -83,13 +84,13 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                   <ButtonIcon
                     styles={{ backgroundColor: '#919296' }}
                     onClick={(): void => this.setMenu()}
-                    icon={<CloseIcon width={14} height={14} strokeWidth={2} />}
+                    icon={<CloseIcon strokeWidth={2} />}
                   />
                 </li>
                 <li>
                   <ButtonIcon
                     color={Colors.green}
-                    icon={<ShareIcon width={20} height={20} />}
+                    icon={<ShareIcon width={17} height={22} />}
                   />
                 </li>
                 <li>

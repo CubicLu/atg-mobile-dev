@@ -32,7 +32,7 @@ class SliderStoriesComponent extends React.Component<Props> {
             (d, i): React.ReactNode => {
               return (
                 <li key={i}>
-                  <div>
+                  <div key={i}>
                     <Avatar
                       image={d[image]}
                       type={ShapesSize.circle}

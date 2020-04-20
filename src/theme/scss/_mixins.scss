@@ -27,24 +27,6 @@
   }
 }
 
-@mixin list-transparent {
-  ion-list {
-    --ion-background-color:transparent;
-  }
-  ion-item{
-    --ion-background-color:transparent;
-    border-bottom: 1px solid #45187B;
-  }
-  ion-item-sliding{
-    &.item-sliding-active-slide{
-      ion-item{
-        --ion-background-color: #4d3f9e;
-        border-bottom: 1px solid #45187B;
-      } 
-    }
-  }
-}
-
 @mixin on-circle($item-count, $circle-size, $item-size) {
   position: relative;
   width:  $circle-size;
@@ -191,49 +173,4 @@
   &:-moz-placeholder           {@content};
   &::-moz-placeholder          {@content};
   &:-ms-input-placeholder      {@content};
-}
-
-@mixin list-user{
-  @include list-transparent;
-  .row {
-      width: 100%;
-      margin-bottom: 5px;
-      margin-top: 5px;
-  }
-
-  .image{
-      display: flex;
-      justify-content: left;
-  }
-
-  .info{ 
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     height: 50px;
-      .user{
-          display: block;
-          &::before{
-            content: "@";
-          }
-      }
-  }
-
-  ion-item{
-    padding-right: 4px;
-  }
-  ion-item-options{
-    .btn{
-        margin-top: 0;
-        border-radius: 0;
-        height: 100%;
-        padding-left: 5px;
-        padding-right: 5px;
-        width: 70px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #45187B;
-    }
-  }
 }

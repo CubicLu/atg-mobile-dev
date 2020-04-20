@@ -34,22 +34,30 @@ import {
   TrackListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
+  CommunityArtistPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   ProfileMixtapesPage,
   RadioFilterPage,
+  SettingPage,
   MessagePage,
   MessageChatPage,
   MessageNotificationsPage,
   RadioArtistPage,
-  RadioHistoryPage
+  RadioHistoryPage,
+  FanFeedFilterPage,
+  MessageSelectContactPage,
+  MessageNotificationDetailPage,
+  FriendPage,
+  VaultFilterPage
 } from './../pages';
 import {
   MenuArtistList,
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon
+  RadioIcon,
+  ListUser
 } from './../components';
 import React from 'react';
 import { store } from '../store';
@@ -121,36 +129,29 @@ const defaultState: SettingsReducerType = {
   artistTabs: [
     {
       id: 'features',
-      label: 'Features',
+      label: 'Featured',
       icon: 'f',
       component: ArtistFeaturesPage
     },
     {
       id: 'biography',
-      label: 'Biography',
+      label: 'Bio',
       icon: 'b',
       isPage: true,
       route: '/artist/:id/biography'
     },
     {
       id: 'discography',
-      label: 'Discography',
+      label: 'Albums',
       icon: 'd',
       component: ArtistDiscographyPage
     },
     {
       id: 'gallery',
-      label: 'Gallery',
+      label: 'Photos',
       icon: 'g',
       isPage: true,
       route: '/artist/:id/gallery'
-    },
-    {
-      id: 'events',
-      label: 'Events',
-      icon: 'e',
-      isPage: true,
-      route: '/artist/:id/event'
     },
     {
       id: 'videos',
@@ -160,15 +161,36 @@ const defaultState: SettingsReducerType = {
       route: '/artist/:id/video'
     },
     {
+      id: 'events',
+      label: 'Events',
+      icon: 'e',
+      isPage: true,
+      route: '/artist/:id/event'
+    },
+    {
       id: 'deep',
-      label: 'Deep',
+      label: 'Deep Dive',
       icon: 'd',
       isPage: true,
       route: '/artist/:id/deep-dive'
     },
     {
+      id: 'community',
+      label: 'Community',
+      icon: 'c',
+      isPage: true,
+      route: '/community/artist/:id'
+    },
+    {
+      id: 'radio',
+      label: 'Radio',
+      icon: 'r',
+      isPage: true,
+      route: '/radio'
+    },
+    {
       id: 'similar',
-      label: 'Similar',
+      label: 'Matches ',
       icon: 's',
       onClick: (): void => {
         store.dispatch({
@@ -299,7 +321,7 @@ const defaultState: SettingsReducerType = {
       component: TrackListPage
     },
     {
-      path: '/community/:artistId/daily-drip/:dailyDripId',
+      path: '/community/artist/:artistId/daily-drip/:dailyDripId',
       id: 'communityArtistDailyDrip',
       component: CommunityDailyDripPage
     },
@@ -309,9 +331,14 @@ const defaultState: SettingsReducerType = {
       component: CommunityAllArtistsPage
     },
     {
-      path: '/community/:artistId',
+      path: '/community',
       id: 'communityArtist',
       component: CommunityPage
+    },
+    {
+      path: '/community/artist/:artistId',
+      id: 'communityArtist',
+      component: CommunityArtistPage
     },
     {
       path: '/thank-you',
@@ -339,9 +366,64 @@ const defaultState: SettingsReducerType = {
       component: RadioPage
     },
     {
+      path: '/message/notification/:id',
+      id: 'message-notification',
+      component: MessageNotificationDetailPage
+    },
+    {
+      path: '/message/chat/new',
+      id: 'message-chat-new',
+      component: MessageSelectContactPage
+    },
+    {
+      path: '/message/chat/:id',
+      id: 'message-chat-by-id',
+      component: MessageSelectContactPage
+    },
+    {
+      path: '/message/select-contact',
+      id: 'message-select-contact',
+      component: MessageSelectContactPage
+    },
+    {
       path: '/message',
       id: 'message',
       component: MessagePage
+    },
+    {
+      path: '/radio/:id',
+      id: 'radioArtist',
+      component: RadioArtistPage
+    },
+    {
+      path: '/radio/:id/history',
+      id: 'radioHistory',
+      component: RadioHistoryPage
+    },
+    {
+      path: '/fan-feed-filter',
+      id: 'fan-feed-filter',
+      component: FanFeedFilterPage
+    },
+    {
+      path: '/settings',
+      id: 'settings',
+      component: SettingPage
+    },
+    {
+      path: '/me',
+      id: 'settings',
+      component: SettingPage
+    },
+    {
+      path: '/friend',
+      id: 'friend',
+      component: FriendPage
+    },
+    {
+      path: '/vault-filter',
+      id: 'vault-filter',
+      component: VaultFilterPage
     },
     {
       path: '/radio/:id',
@@ -422,7 +504,28 @@ const defaultState: SettingsReducerType = {
       component: MessageNotificationsPage
     }
   ],
-  activeMessageTab: 'chat'
+  activeMessageTab: 'chat',
+  selectContactTabs: [
+    {
+      label: 'Artists',
+      id: 'artists',
+      component: ListUser,
+      icon: ''
+    },
+    {
+      label: 'Friends',
+      id: 'friends',
+      component: ListUser,
+      icon: ''
+    },
+    {
+      label: 'Admins',
+      id: 'admins',
+      component: ListUser,
+      icon: ''
+    }
+  ],
+  activeSelectContactTab: 'friends'
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

@@ -14,7 +14,7 @@ class ArtistDiscographyPage extends React.Component<StateProps> {
     const { discography } = currentArtist;
 
     return (
-      <div className={`artist-discography-page`}>
+      <div className={'artist-discography-page'}>
         <div className="row">
           {discography?.map(
             (d, i): React.ReactNode => (

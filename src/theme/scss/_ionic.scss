@@ -1,30 +1,130 @@
+ion-list {
+    --ion-background-color:transparent;
+}
 ion-tab-bar {
+    height: 50px !important;
     --border: 0px solid #000;
     margin-top: 0px;
+    --ion-safe-area-bottom: calc(min(env(safe-area-inset-bottom), 10px));
 }
 .mini-player{
+    margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));
     .pull{
         display: none;
     }
     &.active{
         .pull{
             display: block;
-        }   
+            svg{
+                margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));
+            }
+        }
     }
     &.active + div {
         ion-tab-bar {
-           margin-top: 44px;
+           margin-top: 50px;
            overflow: visible;
        }
    }
 }
+ion-item{
+    --ion-background-color:transparent;
+    max-height: $ion-item-max-height;
+    height: $ion-item-max-height;
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    border-bottom: none;
+        &.with-border{
+            border-bottom: 1px solid #45187B;
+        }
+    }
+    .arrow-expand {
+        margin-left: 3px;
+        margin-right: 2px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        height: auto;
+        position: absolute;
+        right: 8px;
+        width: 16px;
+        &.flip{
+            transform: scaleX(-1);
+        }
+    }
+    .opacity{
+    opacity: 0.5;
+    }
+    ion-item-options{
+        .btn.btn{
+            margin-top: 0;
+            border-radius: 0;
+            height: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: none;
+            &.with-border{
+                border-bottom: 1px solid #45187B;
+            }
+        }
+    }
+    .dark{
+        ion-item-sliding{
+            ion-item-options{
+                background: #201339;
+            }
+            ion-item{
+            --ion-background-color: #201339;
+            }
+        }
+    }
+    ion-item-sliding{
+        &.item-sliding-active-slide{
+            ion-item-options{
+                background: #4d3f9e;
+            }
+            ion-item{
+                --ion-background-color: #4d3f9e;
+                border-bottom: none;
+                &.with-border{
+                    border-bottom: 1px solid #45187B;
+                }
+            }
+        }
+    }
 .tab-selected{
     svg{
         path{
             fill: #00BAFF;
-            &.logo{
-                stroke: #00BAFF;    
+            &.logo-outline{
+                fill: #555;    
             }
+        }
+    }
+}
+ion-checkbox{
+    --background: transparent;
+    --border-color: #fff;
+    --background-checked: #01add9;
+    --border-color-checked: transparent;
+    --border-radius: 3px;
+    --border-style: solid;
+    --border-width: 2px;
+    --checkmark-color: #1f0739;
+    --checkmark-width: 3px;
+    --size: 20px;
+    &.checkbox-icon{
+        svg{
+            display: none;
+            path{
+                transform: translate(-7px, -7px) scale(1.5);
+            }    
+        }
+        path{
+            transform: translate(-7px, -7px) scale(1.5);
         }
     }
 }

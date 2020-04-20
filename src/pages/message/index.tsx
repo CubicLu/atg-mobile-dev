@@ -63,20 +63,24 @@ class MessagePage extends React.Component<Props> {
       <IonPage id="message-page">
         <Header
           title="Messages"
+          leftBackHref={'/profile'}
           rightContent={
             activeMessageTab === 'chat' ? (
               <ButtonIcon
-                styles={{ width: 35, height: 35 }}
+                styles={{ width: 30, height: 30 }}
                 type={ShapesSize.circle}
                 color={Colors.tertiary}
                 icon={<PlusIcon color={'#000'} width={20} height={20} />}
+                onClick={(): void => {
+                  this.props.history.push('/message/select-contact');
+                }}
               />
             ) : null
           }
         />
-        <IonContent>
+        <IonContent className="mb-50" scrollY={false}>
           <BackgroundImage
-            gradient={`180deg,#1F0739,#1F0739`}
+            gradient={'180deg,#1F0739,#1F0739'}
             backgroundTop
             backgroundBottom
             backgroundBottomDark={false}
@@ -84,19 +88,15 @@ class MessagePage extends React.Component<Props> {
             backgroundTopOpacity={0.7}
           />
           <div className="message-page content-fixed" slot="fixed">
-            <div className="row">
-              <div className="fluid">
-                <div className="p-3">
-                  <InputSearch
-                    onChange={(e): void => {
-                      this.onSearchOnNotificationsAndChat(e);
-                    }}
-                    value={''}
-                    placeholder="Search"
-                    debounce={150}
-                  />
-                </div>
-              </div>
+            <div className="m-3">
+              <InputSearch
+                onChange={(e): void => {
+                  this.onSearchOnNotificationsAndChat(e);
+                }}
+                value={''}
+                placeholder="Search"
+                debounce={150}
+              />
             </div>
             <div className="row">
               <div className="fluid">

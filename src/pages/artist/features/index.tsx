@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../interfaces';
 import {
-  List,
   SliderVideo,
   SliderMixtapes,
   SliderRadio,
   SliderEvents,
-  SectionTitle as Section
+  SectionTitle as Section,
+  ArrowRightIcon
 } from './../../../components';
 import { setPlaylistPlayer } from './../../../actions/playerActions';
 interface StateProps {
@@ -32,16 +32,24 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
     } = currentArtist;
 
     return (
-      <div className={`artist-features-page`}>
+      <div className={'artist-features-page'}>
         <div className="row" />
         <div className="row">
           <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />
-          <List
-            onClick={(): void => this.props.setPlaylistPlayer()}
-            data={featuredTracks}
-            label={'song'}
-            id={'id'}
-          />
+          {featuredTracks?.map(
+            (track, i): React.ReactNode => (
+              <div
+                onClick={(): void => this.props.setPlaylistPlayer()}
+                className="flex mx-3 mb-25 mt-1 f4 l11"
+                key={i}
+              >
+                {track.song}
+                <div className="align-end">
+                  <ArrowRightIcon />
+                </div>
+              </div>
+            )
+          )}
         </div>
 
         {newReleases && (
@@ -64,7 +72,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
         {radio && (
           <React.Fragment>
             <Section className="mx-3" title={'PANTHR RADIO'} viewAll={true} />
-            <SliderRadio data={radio} />
+            <SliderRadio diameter="110px" data={radio} />
           </React.Fragment>
         )}
         <div className="row mx-05" />

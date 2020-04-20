@@ -25,7 +25,7 @@ export default class MenuMessageComponent extends React.Component<Props> {
     } = this.props;
 
     return (
-      <div id="horizontal-menu" className={'horizontal-menu tabs scroll'}>
+      <div id="horizontal-menu" className={'horizontal-menu tabs'}>
         {tabs.map(
           (data, i): React.ReactNode => {
             let tooltipNotification =

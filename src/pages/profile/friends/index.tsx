@@ -1,74 +1,44 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import {
-  Avatar,
-  ButtonIcon,
-  MessageBalloonIcon,
-  CloseIcon,
-  Button
-} from './../../../components';
-
-import {
-  IonList,
-  IonItemSliding,
-  IonItemOptions,
-  IonItem,
-  IonContent
-} from '@ionic/react';
-import { ShapesSize, Colors, Sizes } from '../../../interfaces';
+import { ListItem } from './../../../components';
+import { IonList, IonContent } from '@ionic/react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 interface Props extends RouteComponentProps {}
-
 class ProfileFriendsPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonContent className="profile-friends-page">
         <IonList lines="none">
-          {[{ friend: false }, {}, {}, {}, {}, {}, {}, {}].map(
+          {[
+            { name: 'Amanda', friend: true, id: 'amanda' },
+            { name: 'Brian', id: 'amanda' },
+            { name: 'Chris', friend: true, id: 'amanda' },
+            { name: 'Dexter', friend: true, id: 'amanda' },
+            { name: 'Edmund', id: 'amanda' },
+            { name: 'Fabrizio', friend: true, id: 'amanda' },
+            { name: 'Gustav', id: 'amanda' },
+            { name: 'Harold', friend: true, id: 'amanda' }
+          ].map(
             (data, i): React.ReactNode => {
-              let opacity = data.friend === false ? 'opacity' : '';
               return (
-                <IonItemSliding key={i}>
-                  <IonItem>
-                    <div className="row mx-1">
-                      <div className={`col s2 no-padding ${opacity}`}>
-                        <Avatar
-                          type={ShapesSize.circle}
-                          width={48}
-                          height={48}
-                        />
-                      </div>
-                      <div className={`col s7 no-padding info ${opacity}`}>
-                        <span className="user f5">BassmanJeff</span>
-                      </div>
-                      <div className="col s3 flex-align-items-end flex-justify-content-end">
-                        {data.friend === false ? (
-                          <Button
-                            className="mt-10"
-                            gradient={true}
-                            color={Colors.tertiary}
-                            size={Sizes.md}
-                            type={ShapesSize.rounded}
-                            label="PENDING"
-                          />
-                        ) : (
-                          <ButtonIcon
-                            icon={<MessageBalloonIcon />}
-                            color={Colors.transparent}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </IonItem>
-                  <IonItemOptions side="end">
-                    <ButtonIcon
-                      icon={<CloseIcon strokeWidth={2} />}
-                      color={Colors.red}
-                      className="no-padding"
-                      type={ShapesSize.normal}
-                    />
-                  </IonItemOptions>
-                </IonItemSliding>
+                <ListItem
+                  key={i}
+                  node={i}
+                  sliding={true}
+                  bottomBorder={true}
+                  optionRemove={true}
+                  optionAddPlaylist={false}
+                  leftDisabled={!data.friend}
+                  username={data.name}
+                  hasAvatar={true}
+                  avatarSize={48}
+                  pendingButton={!data.friend}
+                  chatButton={data.friend}
+                  expandArrow={true}
+                  avatarClick={(): void =>
+                    this.props.history.push('/profile/' + data.id)
+                  }
+                />
               );
             }
           )}

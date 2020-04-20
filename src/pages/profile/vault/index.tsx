@@ -1,79 +1,62 @@
 import React from 'react';
-import { ShapesSize, Colors } from '../../../interfaces';
-import {
-  Avatar,
-  ButtonIcon,
-  AddPlaylistIcon,
-  CloseIcon,
-  ButtonSupportIcon
-} from './../../../components';
-import {
-  IonList,
-  IonItemSliding,
-  IonItemOptions,
-  IonItem,
-  IonContent
-} from '@ionic/react';
+import { Button, ListItem } from './../../../components';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { IonList, IonContent } from '@ionic/react';
+import { Colors } from '../../../interfaces';
 
-interface Props {
+interface Props extends RouteComponentProps {
   isFriend: boolean;
 }
-
 class ProfileVaultPage extends React.Component<Props> {
   public static defaultProps = {
     isFriend: false
   };
   render(): React.ReactNode {
-    const { isFriend } = this.props;
+    const { history, isFriend } = this.props;
+    const clickArtist = (): void => history.push('/artist/pharell-williams');
+    const clickSupport = (): void =>
+      history.push('/artist/pharell-williams/support');
     return (
       <IonContent>
         <div className="profile-vault-page">
+          <Button
+            color={Colors.transparentGray}
+            className={'row mt-2'}
+            label={'Filter'}
+            onClick={(): void => history.push('/vault-filter')}
+          />
           <IonList lines="none">
-            {[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}].map(
+            {[
+              { song: 'Blinding Lights', artist: 'The Weeknd', support: true },
+              { song: 'The Box', artist: 'Roddy Ricch' },
+              { song: 'DonÂ´t Start Now', artist: 'Dua Lipa', support: true },
+              { song: 'Circles', artist: 'Post Malone', support: true },
+              { song: 'Life is Good', artist: 'Future ft. Drake' },
+              { song: 'Adore You', artist: 'Harry Styles', support: true },
+              { song: 'Say So', artist: 'Doja Cat' },
+              { song: 'Intentions', artist: 'Justin Bieber', support: true }
+            ].map(
               (data, i): React.ReactNode => {
                 return (
-                  <IonItemSliding key={i}>
-                    <IonItem>
-                      <div className="row">
-                        <div className="col s3 image">
-                          <Avatar
-                            type={ShapesSize.circle}
-                            width={50}
-                            height={50}
-                            badge={i % 3 === 0 && isFriend}
-                            badgeColor={Colors.red}
-                          />
-                        </div>
-                        <div className="col s6 info">
-                          <span className="song">Jah Work</span>
-                          <span className="artist">Ben Harper</span>
-                        </div>
-                        <div className="col s3 support">
-                          <ButtonSupportIcon
-                            artist={null}
-                            supported={i % 2 === 0}
-                          />
-                        </div>
-                      </div>
-                    </IonItem>
-
-                    <IonItemOptions side="end">
-                      <ButtonIcon
-                        icon={<AddPlaylistIcon />}
-                        color={Colors.green}
-                        className="no-padding"
-                        type={ShapesSize.normal}
-                      />
-                      {!isFriend && (
-                        <ButtonIcon
-                          icon={<CloseIcon strokeWidth={2} />}
-                          color={Colors.red}
-                          className="no-padding"
-                          type={ShapesSize.normal}
-                        />
-                      )}
-                    </IonItemOptions>
-                  </IonItemSliding>
+                  <ListItem
+                    key={i}
+                    node={i}
+                    sliding={!data.support}
+                    bottomBorder={true}
+                    optionRemove={!isFriend}
+                    hasAvatar={true}
+                    avatarSize={48}
+                    avatarBadge={i % 3 === 0 && isFriend}
+                    badgeColor={Colors.red}
+                    optionAddPlaylist={true}
+                    songName={data.song}
+                    artistName={data.artist}
+                    expandArrow={!data.support}
+                    supported={!data.support}
+                    supportButtonIcon={true}
+                    songAction={clickArtist}
+                    expandAction={data.support ? clickSupport : undefined}
+                  />
                 );
               }
             )}
@@ -84,4 +67,4 @@ class ProfileVaultPage extends React.Component<Props> {
   }
 }
 
-export default ProfileVaultPage;
+export default withRouter(ProfileVaultPage);

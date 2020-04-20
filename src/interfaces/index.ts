@@ -21,18 +21,26 @@ export enum ActionType {
   GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS = 'GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS',
   GET_ARTIST_GALLERY_COMMENTS_API_FAILURE = 'GET_ARTIST_GALLERY_COMMENTS_API_FAILURE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
+  ACTION_PLAYER = 'ACTION_PLAYER',
+  CORDOVA_ACTION_PLAYER = 'CORDOVA_ACTION_PLAYER',
   TOGGLE_PLAYER = 'TOGGLE_PLAYER',
+  TOGGLE_CURRENT_NEXT_SONG = 'TOGGLE_CURRENT_NEXT_SONG',
+  LOAD_NEXT_SONG = 'LOAD_NEXT_SONG',
+  FADING_OUT_SONG = 'FADING_OUT_SONG',
   PLAY_SONG = 'PLAY_SONG',
   NEXT_SONG = 'NEXT_SONG',
   PREV_SONG = 'PREV_SONG',
   STOP_SONG = 'STOP_SONG',
   PAUSE_SONG = 'PAUSE_SONG',
   RESUME_SONG = 'RESUME_SONG',
+  SEEK_TO_SONG = 'SEEK_TO_SONG',
   UPDATE_ELAPSED_SONG = 'UPDATE_ELAPSED_SONG',
+  UPDATE_MASTER_VOLUME = 'UPDATE_MASTER_VOLUME',
   FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS',
   TOGGLE_SHUFFLE_PLAYER = 'TOGGLE_SHUFFLE_PLAYER',
   TOGGLE_REPEAT_PLAYER = 'TOGGLE_REPEAT_PLAYER',
   FAVORITE_SONG = 'FAVORITE_SONG',
+  SET_PLAYLIST = 'SET_PLAYLIST',
   SET_PLAYLIST_PLAYER = 'SET_PLAYLIST_PLAYER',
   SET_RADIO_PLAYER = 'SET_RADIO_PLAYER',
   GET_COMMUNITY_POSTS_API = 'GET_COMMUNITY_POSTS_API',
@@ -56,6 +64,10 @@ export enum ActionType {
   GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
   GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS',
   UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY',
+  UPDATE_AUTH_SIGN_UP_PROPERTY = 'UPDATE_AUTH_SIGN_UP_PROPERTY',
+  GET_FEED_POSTS_API = 'GET_FEED_POSTS_API',
+  GET_FEED_POSTS_API_FAILURE = 'GET_FEED_POSTS_API_FAILURE',
+  GET_FEED_POSTS_API_SUCCESS = 'GET_FEED_POSTS_API_SUCCESS',
   GET_RADIO_ARTIST = 'GET_RADIO_ARTIST',
   GET_RADIO_ARTIST_SUCCESS = 'GET_RADIO_ARTIST_SUCCESS',
   GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE'
@@ -107,6 +119,22 @@ export interface ArtistCoverInterface {
   deepDive: string | undefined;
 }
 
+export interface DailyDripType {
+  id: string;
+  name: string;
+  total: number;
+  lastViewed: number;
+  artistUsername: string;
+  items: DailyDripItem[];
+}
+export interface DailyDripItem {
+  id: string;
+  createdAt: number;
+  dripType: 'image' | 'video';
+  href: string;
+  duration: number;
+}
+
 export interface SettingsReducerType {
   tabs: TabsInterface[];
   links: LinksInterface[];
@@ -122,6 +150,8 @@ export interface SettingsReducerType {
   activeFanTab: string;
   activeProfileFriendTab: string;
   profileFriendTabs: MenuInterface[];
+  selectContactTabs: MenuInterface[];
+  activeSelectContactTab: string;
 }
 
 export interface ScrollHeaderInterface {
@@ -180,6 +210,7 @@ export interface UserInterface {
 
 export interface AuthReducerType {
   loggedUser: UserInterface | undefined;
+  signUpUser: SignUpInterface;
 }
 
 export interface SearchReducerType {
@@ -207,19 +238,35 @@ export interface PlaylistInterface {
   owner: string;
 }
 export interface PlayerReducerType {
+  playerAction?: string;
   expanded: boolean;
+  fadingOut: boolean;
   playing: boolean;
   paused: boolean;
-  song?: SongInterface;
-  playlist?: PlaylistInterface;
-  playlistIndex?: number;
-  timeElapsed: number;
+  stopped: boolean;
   canSkip: boolean;
   shuffle: boolean;
   repeat: boolean;
+  masterVolume: number;
+  timeElapsed: number;
+  song?: SongInterface;
+  next?: SongInterface;
+  playlist?: PlaylistInterface;
+  firstIndex: number;
 }
 
 export interface CommunityReducerType {
+  posts: PostInterface[];
+  stories: StorieInterface[];
+  currentCommunityArtist: CommunityArtistInterface | null;
+  loading: boolean;
+  errorMessage: string | null;
+  successMessage: string | null;
+  currentPostComments: CommentInterface[] | null;
+  currentPostCover: CommentCoverInterface;
+}
+
+export interface FeedReducerType {
   posts: PostInterface[];
   stories: StorieInterface[];
   currentCommunityArtist: CommunityArtistInterface | null;
@@ -236,6 +283,7 @@ export interface StorieInterface {
 }
 
 export interface CommunityArtistInterface extends UserInterface {}
+export interface FanFeedInterface extends UserInterface {}
 
 export interface PostInterface {
   username: string;
@@ -299,6 +347,22 @@ export interface PlanInterface {
   description: string;
 }
 
+export enum MediaCallback {
+  MEDIA_STATE = 1,
+  MEDIA_DURATION = 2,
+  MEDIA_POSITION = 3,
+  MEDIA_ERROR = 9
+}
+export enum MediaStatusCallback {
+  MEDIA_NONE = 0,
+  MEDIA_STARTING = 1,
+  MEDIA_RUNNING = 2,
+  MEDIA_PAUSED = 3,
+  MEDIA_STOPPED = 4,
+  MEDIA_ENDED = 5,
+  MEDIA_FADING_OUT = 6
+}
+
 export enum Colors {
   support = 'support',
   transparentGray = 'transparent-gray',
@@ -309,6 +373,7 @@ export enum Colors {
   yellow = 'yellow',
   gold = 'gold',
   blue = 'blue',
+  chat = 'chat',
   lightBlue = 'light-blue',
   supported = 'supported',
   disable = 'disable',
@@ -421,6 +486,12 @@ export interface ProfileReducerType {
   notifications: NotificationInterface[];
   notificationsSearch: NotificationInterface[];
   messagesSearch: MessageInterface[];
+  friends: UserInterface[];
+  friendsSearch: UserInterface[];
+  artists: UserInterface[];
+  artistsSearch: UserInterface[];
+  admins: UserInterface[];
+  adminsSearch: UserInterface[];
 }
 
 export interface MessageInterface extends UserInterface {
@@ -436,9 +507,57 @@ export interface NotificationInterface extends UserInterface {
   subject: string;
 }
 
+export interface SignUpInterface {
+  nickname: string;
+  email: string;
+}
 export interface RadioReducerType {
-  radioArtist: ChannelInterface;
-  similarArtist?: ArtistInterface;
+  radioArtist: any;
   loading: boolean;
   errorMessage: string | null;
+}
+
+export interface MediaType {
+  updateInterval: number;
+  getDuration(): number;
+  getPosition(): number;
+  getMediaState(): number;
+  getState(): string;
+  running(): any;
+  primary(): any;
+  getPaused(): boolean;
+  getPlaying(): boolean;
+  getEnded(): boolean;
+  getLoading(): boolean;
+  getStopped(): boolean;
+  getFadeIn(): boolean;
+  getFadeOut(): boolean;
+  getFadingOut(): boolean;
+  setFadeIn(value: boolean): void;
+  setFadeOut(value: boolean): void;
+  setFadingOut(value: boolean): void;
+  setForceFadeOut(value: boolean): void;
+  setFadeVolume(volume: number): void;
+  setFadeInOut(): void;
+  setFadeTime(seconds: number): void;
+  getMediaInstanceNumber(): number;
+  setMediaInstanceNumber(instance: number): void;
+  getMediaId(): string;
+  setMediaId(id: string): void;
+  updatePosition(): void;
+  updateAudioPosition(): void;
+  getVolume(): number;
+  getPrimary(): boolean;
+  setPrimary(value: boolean): void;
+  play(iosPlayOptions?: any): void;
+  pause(): void;
+  release(): void;
+  seekTo(position: number): void;
+  setVolume(volume: number): void;
+  stop(): void;
+  position: number;
+  duration: number;
+  mediaState: number;
+  id: any;
+  src: string;
 }

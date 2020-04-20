@@ -9,6 +9,7 @@ import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player';
+import CordovaListComponent from './player/cordova-list';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
@@ -23,7 +24,7 @@ import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import BiographyListComponent from './menu/biography-list';
 import ButtonPlanComponent from './button/plan';
-import ListComponent from './list';
+import ListItemComponent from './list/item';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
 import MenuProfileListComponent from './menu/profile-list';
@@ -42,9 +43,14 @@ import SearchResultSectionComponent from './search-result-section';
 import PhotoChatComponent from './photo-chat';
 import InputSearchComponent from './input/search';
 import MenuMessageComponent from './menu/message';
-import ChatRowComponent from './chat/row';
 import RadioPlayerComponent from './radio-player';
 import RadioPauseButtonComponent from './icon/radio-pause';
+import RowChatComponent from './row/chat';
+import MenuTabsComponent from './menu/tabs';
+import RowUserComponent from './row/user';
+import ListUserComponent from './list/user';
+import InputComboBoxComponent from './input/combo-box';
+import VaultFilterSectionComponent from './vault-filter-section';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -80,6 +86,7 @@ export {
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
+  CordovaListComponent as CordovaList,
   HeaderComponent as Header,
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
@@ -95,7 +102,7 @@ export {
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   BiographyListComponent as BiographyList,
   ButtonPlanComponent as ButtonPlan,
-  ListComponent as List,
+  ListItemComponent as ListItem,
   SupportByComponent as SupportBy,
   MenuArtistListComponent as MenuArtistList,
   CardAlbumGalleryComponent as CardAlbumGallery,
@@ -115,9 +122,14 @@ export {
   SearchResultSectionComponent as SearchResultSection,
   InputSearchComponent as InputSearch,
   MenuMessageComponent as MenuMessage,
-  ChatRowComponent as ChatRow,
   RadioPlayerComponent as RadioPlayer,
-  RadioPauseButtonComponent as RadioPauseButton
+  RadioPauseButtonComponent as RadioPauseButton,
+  RowChatComponent as RowChat,
+  MenuTabsComponent as MenuTabs,
+  RowUserComponent as RowUser,
+  ListUserComponent as ListUser,
+  InputComboBoxComponent as InputComboBox,
+  VaultFilterSectionComponent as VaultFilterSection
 };
 
 export {

@@ -9,8 +9,9 @@ interface Props {
   styles?: object;
   fixed: boolean;
   label?: string | number;
-  overlay?: string | number;
+  overlay?: number;
   className?: string;
+  overlayClassName?: string;
 }
 
 class ButtonIconComponent extends React.Component<Props> {
@@ -18,7 +19,8 @@ class ButtonIconComponent extends React.Component<Props> {
     onClick: (): any => {},
     color: Colors.transparentGray,
     type: ShapesSize.circle,
-    fixed: false
+    fixed: false,
+    overlayClassName: 'overlay'
   };
 
   render(): React.ReactNode {
@@ -31,6 +33,7 @@ class ButtonIconComponent extends React.Component<Props> {
       icon,
       label,
       overlay,
+      overlayClassName,
       className
     } = this.props;
 
@@ -45,7 +48,9 @@ class ButtonIconComponent extends React.Component<Props> {
         {icon}
         {label && <span>{label}</span>}
         {!!overlay && overlay >= 0 && (
-          <div className={'overlay'}>{overlay}</div>
+          <div className={overlayClassName}>
+            {overlay > 999 ? overlay / 1000 + 'k' : overlay}
+          </div>
         )}
       </button>
     );

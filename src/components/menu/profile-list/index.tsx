@@ -2,8 +2,7 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  BackgroundImage,
-  Header
+  BackgroundImage
 } from './../../../components';
 import { Colors, ProfileActionsType } from '../../../interfaces';
 
@@ -15,10 +14,6 @@ interface Props {
 }
 
 class MenuProfileList extends React.Component<Props> {
-  public static defaultProps = {
-    onClick: (): void => {}
-  };
-
   render(): React.ReactNode {
     const { data } = this.props;
     return (
@@ -27,12 +22,6 @@ class MenuProfileList extends React.Component<Props> {
           backgroundBottom={true}
           backgroundBottomOrange={true}
           backgroundBottomOpacity={0.4}
-        />
-        <Header
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.onClick()}
-          color={Colors.transparent}
         />
 
         <div className={`modal-header ${this.props.background}`}>

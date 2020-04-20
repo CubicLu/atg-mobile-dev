@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { ApplicationState } from '../../reducers';
-import { InputText, Button, ChatRow } from '..';
+import { InputText, Button, RowChat } from '..';
 import { Colors, MessageInterface } from '../../interfaces';
 
 interface StateProps {
@@ -11,17 +11,21 @@ interface StateProps {
 interface Props extends StateProps {}
 
 class ChatComponent extends React.Component<Props> {
+  focusInput(): void {
+    const input = document.getElementById('inputText');
+    input?.focus();
+  }
   render(): React.ReactNode {
     return (
       <div className="chat-component">
         <div className="messages">
           {this.props.messagesSearch.map(
             (data, i): React.ReactNode => {
-              return <ChatRow data={data} key={i} avatarSize={48} />;
+              return <RowChat data={data} key={i} avatarSize={48} />;
             }
           )}
         </div>
-        <div className="input">
+        <div onClick={(): void => this.focusInput()} className="input">
           <InputText type={'text'} placeholder={'Start a chat'} />
           <Button label="Post" color={Colors.grayTransparent} bold={true} />
         </div>

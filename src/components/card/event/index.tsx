@@ -67,7 +67,7 @@ class CardEventComponent extends React.Component<Props, State> {
               <IonRouterLink routerLink={`/artist/${username}/event/${id}`}>
                 <li>
                   <UserGroupIcon width={25} height={35} />
-                  <div className="l15 f6 text-13 no-wrap">{`Who's Going`}</div>
+                  <div className="l15 f6 text-13 no-wrap">{"Who's Going"}</div>
                 </li>
               </IonRouterLink>
               <li onClick={(): void => this.showMessage(true)}>
@@ -82,7 +82,7 @@ class CardEventComponent extends React.Component<Props, State> {
           isOpen={this.state.show}
           onDidDismiss={(): void => this.showMessage(false)}
           header={'Atention!'}
-          message={`You'll be redirect to external link, are you sure?`}
+          message={"You'll be redirect to external link, are you sure?"}
           buttons={[
             {
               text: 'Cancel',

@@ -85,7 +85,11 @@ class RadioPage extends React.Component<Props> {
             </div>
           </div>
           <SectionTitle className="mt-2 mx-3" title="STATIONS" viewAll={true} />
-          <SliderRadio className="f6 l1" data={this.radios} />
+          <SliderRadio
+            className="f6 l1"
+            diameter={'110px'}
+            data={this.radios}
+          />
 
           <SectionTitle
             className="mt-2 mx-3"
@@ -98,7 +102,6 @@ class RadioPage extends React.Component<Props> {
             <SliderVideo data={this.radios} />
           </div>
         </IonContent>
-        <div className="row mt-4" />
       </IonPage>
     );
   }
@@ -109,7 +112,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Default',
       title: 'EVERYTHING REGGAE',
       subtitle: 'BEATS OF THE ISLANDS',
-      color: `180deg,#7A41FF00,#1B0334`,
+      color: '180deg,#7A41FF00,#1B0334',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/default.jpg'
     },
@@ -119,7 +122,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Blues',
       title: 'KING BLACK ACID',
       subtitle: 'ROCKING YOUR SOUL',
-      color: `180deg,#00000021,#000`,
+      color: '180deg,#00000021,#000',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/blues.jpg'
     },
     {
@@ -128,7 +131,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Jazz',
       title: 'FOREVER JAZZ',
       subtitle: 'FREE PREVIEW',
-      color: `180deg,#ffffff70,#000`,
+      color: '180deg,#ffffff70,#000',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/jazz.jpg'
     },
     {
@@ -137,7 +140,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Funk',
       title: 'FUNK YOU UP!',
       subtitle: 'Listen Now',
-      color: `180deg, #ff966600, #ae7005`,
+      color: '180deg, #ff966600, #ae7005',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/funk.jpg'
     },
     {
@@ -146,7 +149,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Reggae',
       title: 'EVERYTHING REGGAE',
       subtitle: 'BEATS OF THE ISLANDS',
-      color: `180deg,#bb9b00b5,#034627`,
+      color: '180deg,#bb9b00b5,#034627',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/reggae.jpg'
     },
@@ -156,7 +159,7 @@ class RadioPage extends React.Component<Props> {
       name: 'Country',
       title: 'MUSIC FOR ALL',
       subtitle: 'Free Preview',
-      color: `180deg,#7A41FF00,#1B0334`,
+      color: '180deg,#7A41FF00,#1B0334',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/country.jpg'
     }

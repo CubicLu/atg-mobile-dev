@@ -1,4 +1,4 @@
-.chat-row-component{
+.row-chat-component{
     &.not-read{
         position: relative;
         &::before{
@@ -43,3 +43,4 @@
         }
     }
 }
+

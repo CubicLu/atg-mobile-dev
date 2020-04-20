@@ -31,11 +31,9 @@ class SupportComponent extends React.Component<ButtonProps> {
     if (!this.props.artist) return;
     this.props.updateSettingsModal(
       <MenuFanSupportOptions
-        onClick={(): void => {
-          this.linkRef.current?.click();
-        }}
         background={'background-tertiary-opacity95'}
         artist={this.props.artist!}
+        onClose={(): void => this.props.updateSettingsModal(false)}
       />,
       'background-tertiary-opacity95'
     );
@@ -46,7 +44,8 @@ class SupportComponent extends React.Component<ButtonProps> {
   }
 
   renderIcon(): React.ReactNode {
-    const { artist, supported, className, id } = this.props;
+    const { supported, className, id } = this.props;
+    const username = this.props.artist?.username || 'pharell-williams';
     return (
       <div
         id={id}
@@ -57,11 +56,11 @@ class SupportComponent extends React.Component<ButtonProps> {
       >
         <SupportIcon supported={supported} />
         <span className={`f8 no-wrap ${className ? className : ''}`}>
-          {supported ? 'Supported' : 'Support'}
+          {supported ? 'Supported' : 'Support!'}
         </span>
         <IonRouterLink
           ref={this.linkRef}
-          routerLink={`/artist/${artist?.username}/support`}
+          routerLink={`/artist/${username}/support`}
           routerDirection="forward"
         />
       </div>
@@ -70,12 +69,13 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderButton(): React.ReactNode {
     const { supported, bold, id } = this.props;
+    const username = this.props.artist?.username || 'pharell-williams';
     return (
       <Button
         id={id}
         className="mt-0 l1"
         color={supported ? Colors.supported : Colors.support}
-        label={supported ? 'SUPPORTED' : 'SUPPORT'}
+        label={supported ? 'SUPPORTED' : 'SUPPORT!'}
         bold={bold}
         onClick={(): void =>
           supported ? this.supporting() : this.notSupporting()
@@ -83,7 +83,7 @@ class SupportComponent extends React.Component<ButtonProps> {
       >
         <IonRouterLink
           ref={this.linkRef}
-          routerLink={`/artist/${this.props.artist?.username}/support`}
+          routerLink={`/artist/${username}/support`}
           routerDirection="root"
         />
       </Button>

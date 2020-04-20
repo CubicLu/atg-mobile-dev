@@ -187,6 +187,17 @@ export interface NavbarTwoButtons {
   leftAction?: Function;
   rightAction?: Function;
 }
+export interface NavbarReducerType {
+  navbarTwoButtons: NavbarTwoButtons;
+}
+
+export interface NavbarTwoButtons {
+  status: boolean;
+  leftLabel?: string;
+  rightLabel?: string;
+  leftAction?: Function;
+  rightAction?: Function;
+}
 
 export interface ScrollHeaderInterface {
   blur: boolean;
@@ -446,7 +457,7 @@ export enum Colors {
 }
 
 export interface DiscographyInterface {
-  albumId: number,
+  albumId: number;
   cover: string | undefined;
   name: string;
 }

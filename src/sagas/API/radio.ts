@@ -7,8 +7,9 @@ import {
 } from '../../actions';
 
 export const getRadioArtistRequest = async (
-  radioId: string
-): Promise<ChannelInterface> => await API.get(`radio/${radioId}.json`);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  id: string
+): Promise<ChannelInterface> => await API.get('artist/pharrell-williams.json');
 
 function* getRadioArtistAPI({ payload }: any): ReturnType<any> {
   try {

@@ -36,16 +36,10 @@ class VaultFilterPage extends React.Component<Props> {
           id="search-page"
         >
           <div className="vault-filter-page">
-            <BackgroundImage
-              gradient={'180deg,#1F0739,#1F0739'}
-              backgroundTop
-              backgroundBottom
-              backgroundBottomDark={false}
-              backgroundTopDark
-              backgroundTopOpacity={0.7}
-            />
+            <BackgroundImage default />
             <div className={'content-container'}>
               <input
+                autoComplete="off"
                 placeholder={'Filter My Vault'}
                 type={'text'}
                 className="input text"

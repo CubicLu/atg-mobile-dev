@@ -129,14 +129,7 @@ class SelectContactPage extends React.Component<Props, State> {
           }
         />
         <IonContent>
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div
             className="message-select-contact-page content-fixed"
             slot="fixed"

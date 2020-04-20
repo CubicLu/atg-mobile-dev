@@ -128,11 +128,11 @@ const friends: UserInterface[] = [
 const admins: UserInterface[] = friends;
 const artists: UserInterface[] = [
   {
-    username: 'pharell-williams',
-    name: 'pharell-williams',
+    username: 'pharrell-williams',
+    name: 'pharrell-williams',
     isFriend: true,
     avatar:
-      'https://loremflickr.com/50/50/pharell,williams?random=' + Math.random()
+      'https://loremflickr.com/50/50/pharrell,williams?random=' + Math.random()
   },
   {
     username: 'demi',
@@ -142,7 +142,7 @@ const artists: UserInterface[] = [
   },
   {
     username: 'milie-cyrus',
-    name: 'pharell-williams',
+    name: 'pharrell-williams',
     isFriend: true,
     avatar: 'https://loremflickr.com/50/50/cyrus?random=' + Math.random()
   }

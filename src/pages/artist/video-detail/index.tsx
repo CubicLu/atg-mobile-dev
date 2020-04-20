@@ -192,14 +192,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div className="artist-video-detail-page space-between mb-50">
             <VideoPlayer
               onClickClose={(): void => {

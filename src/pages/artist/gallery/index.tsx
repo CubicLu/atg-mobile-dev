@@ -73,14 +73,7 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div className={'content-container'}>
             <div className={'row no-margin'}>
               {this.props.currentArtist?.gallery?.map(

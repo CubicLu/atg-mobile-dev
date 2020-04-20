@@ -109,14 +109,7 @@ class FanFeedFilterPage extends React.Component<Props, State> {
           title="Fan Feed"
         />
         <IonContent>
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div className="fan-feed-filter-page content-fixed" slot="fixed">
             <div className="m-3">
               <InputSearch

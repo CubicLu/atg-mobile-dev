@@ -45,7 +45,7 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderIcon(): React.ReactNode {
     const { supported, className, id } = this.props;
-    const username = this.props.artist?.username || 'pharell-williams';
+    const username = this.props.artist?.username || 'pharrell-williams';
     return (
       <div
         id={id}
@@ -69,7 +69,7 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderButton(): React.ReactNode {
     const { supported, bold, id } = this.props;
-    const username = this.props.artist?.username || 'pharell-williams';
+    const username = this.props.artist?.username || 'pharrell-williams';
     return (
       <Button
         id={id}

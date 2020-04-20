@@ -13,9 +13,9 @@ class ProfileVaultPage extends React.Component<Props> {
   };
   render(): React.ReactNode {
     const { history, isFriend } = this.props;
-    const clickArtist = (): void => history.push('/artist/pharell-williams');
+    const clickArtist = (): void => history.push('/artist/pharrell-williams');
     const clickSupport = (): void =>
-      history.push('/artist/pharell-williams/support');
+      history.push('/artist/pharrell-williams/support');
     return (
       <IonContent>
         <div className="profile-vault-page">

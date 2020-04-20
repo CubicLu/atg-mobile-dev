@@ -53,7 +53,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
                     <div
                       onClick={(): void =>
                         this.props.history.push(
-                          '/community/artist/pharell-williams'
+                          '/community/artist/pharrell-williams'
                         )
                       }
                       key={i}

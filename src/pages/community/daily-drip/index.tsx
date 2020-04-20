@@ -227,7 +227,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       name: 'Ok Now',
       total: 9,
       lastViewed: -1,
-      artistUsername: 'pharell-williams',
+      artistUsername: 'pharrell-williams',
       items: [
         {
           createdAt: 1586187656148,
@@ -308,7 +308,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       name: 'Interviews',
       total: 6,
       lastViewed: -1,
-      artistUsername: 'pharell-williams',
+      artistUsername: 'pharrell-williams',
       items: [
         {
           createdAt: 1586187656148,
@@ -374,7 +374,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       name: 'New Single',
       total: 7,
       lastViewed: -1,
-      artistUsername: 'pharell-williams',
+      artistUsername: 'pharrell-williams',
       items: [
         {
           createdAt: 1586187656148,

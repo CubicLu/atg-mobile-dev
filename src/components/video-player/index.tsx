@@ -113,28 +113,33 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     };
   }
 
-  toggleFullscreen(): void {
+  toggleFullscreen = (): void => {
+    const video = this.video;
     const isIOS = isPlatform('ios');
-    if (this.video) {
+    if (video) {
       if (isIOS) {
         //@ts-ignore
-        // eslint-disable-next-line no-restricted-globals
-        this.video.webkitSetPresentationMode && this.video.webkitSetPresentationMode('fullscreen');
+        video.webkitSetPresentationMode &&
+          //@ts-ignore
+          video.webkitSetPresentationMode('fullscreen');
         return;
       }
-      if (document.fullscreenElement) {
-        //@ts-ignore
-        // eslint-disable-next-line no-restricted-globals
-        window.deviceready && screen.orientation.lock('landspace');
-        document.exitFullscreen();
-      } else {
-        //@ts-ignore
-        // eslint-disable-next-line no-restricted-globals
-        window.deviceready && screen.orientation.lock('portrait');
-        this.video.requestFullscreen();
+      if (!document.fullscreenElement) {
+        video.requestFullscreen();
       }
+
+      document.onfullscreenchange = (): void => {
+        if (!document.fullscreenElement) {
+          window.screen.orientation?.lock('portrait');
+          document.fullscreen &&
+            document.exitFullscreen &&
+            document.exitFullscreen();
+        } else {
+          window.screen.orientation.unlock();
+        }
+      };
     }
-  }
+  };
 
   setCurrentTimeVideo(event: number): void {
     let currentTimeNumber = this.state.currentTimeNumber;
@@ -188,7 +193,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
           <ButtonIcon
             type={ShapesSize.normal}
             icon={<FullscreenIcon />}
-            onClick={this.toggleFullscreen.bind(this)}
+            onClick={this.toggleFullscreen}
           />
         </div>
         <div className="col s6 flex-justify-content-end">

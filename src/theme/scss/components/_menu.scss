@@ -1,132 +1,132 @@
-.horizontal-menu{
+.horizontal-menu {
+  width: auto;
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px 0;
+  text-align: center;
+  &.center {
+    justify-content: space-evenly;
     width: auto;
+    padding-left: 2 * $menu-scroll-margin;
+    padding-right: 2 * $menu-scroll-margin;
+    .circle {
+      margin-left: $menu-scroll-margin;
+      margin-right: $menu-scroll-margin;
+      padding: 0px;
+    }
+  }
+  .circle {
+    margin-left: $menu-scroll-margin;
+    margin-right: $menu-scroll-margin;
+    margin-bottom: 6px;
+    border-radius: 50%;
+    height: 42px !important;
+    width: 42px !important;
+    padding: 0px;
+    max-height: 42px;
+    max-width: 42px;
+    background-color: $menu;
+    font-family: 'Industria';
+    font-weight: 600;
+    font-size: 42px;
     display: flex;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 10px 0;
-    text-align: center;
-    &.center{
-        justify-content: space-evenly;
-        width: auto;
-        padding-left: 2*$menu-scroll-margin;
-        padding-right: 2*$menu-scroll-margin;
-        .circle{
-            margin-left: $menu-scroll-margin;
-            margin-right: $menu-scroll-margin;
-            padding: 0px;
-        }
+    justify-content: center;
+    align-items: center;
+  }
+  .label {
+    font-family: 'Helvetica';
+    font-size: 14px;
+    color: $menu;
+    font-weight: 400;
+    border-bottom: 2px solid transparent;
+  }
+  .active {
+    .label {
+      font-weight: bold;
+      letter-spacing: -0.6px;
+      border-bottom: 2px solid $tertiary;
+      color: $tertiary;
     }
-    .circle{
-        margin-left: $menu-scroll-margin;
-        margin-right: $menu-scroll-margin;
-        margin-bottom: 6px;
-        border-radius: 50%;
-        height: 42px !important;
-        width: 42px !important;
-        padding: 0px;
-        max-height: 42px;
-        max-width: 42px;
-        background-color: $menu;
-        font-family: "Industria";
-        font-weight: 600;
-        font-size: 42px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .circle {
+      background: $tertiary;
     }
-    .label{
-        font-family: 'Helvetica';
-        font-size: 14px;
-        color: $menu;
-        font-weight: 400;
-        border-bottom: 2px solid transparent;
-    }
-    .active{
-        .label{
-            font-weight: bold;
-            letter-spacing: -0.6px;
-            border-bottom: 2px solid $tertiary;
-            color: $tertiary;
-        }
-        .circle{
-            background: $tertiary;
-        }
-    } 
-    &.scroll{
-        overflow-x: scroll;
-        overflow-y: hidden;
-        justify-content: normal;
-        padding-left: $menu-padding;
-    }
+  }
+  &.scroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    justify-content: normal;
+    padding-left: $menu-padding;
+  }
 
-    &.tabs{
-        height: 30px;
-        padding-top: 0;
-        background: transparent;
-        padding-bottom: 0;
-        padding-left: 0px;
-        padding-right: 0px;
-        align-items: flex-end;
-        &::after{
-            background: #fff;
-            height: 1px;
-            content: "";
+  &.tabs {
+    height: 30px;
+    padding-top: 0;
+    background: transparent;
+    padding-bottom: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    align-items: flex-end;
+    &::after {
+      background: #fff;
+      height: 1px;
+      content: '';
+      display: block;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+    div {
+      width: 130px;
+      height: 32px;
+      position: relative;
+      .label {
+        opacity: 0.4;
+      }
+
+      &.not-read {
+        .label {
+          &::before {
             display: block;
-            width: 100%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: red;
+            content: '';
             position: absolute;
+            top: 5px;
+            bottom: 0;
             left: 0;
             right: 0;
-            z-index: 1;
+          }
         }
-        div{
-            width: 130px;
-            height: 32px;
-            position: relative;
-            .label{
-                opacity: 0.4;
-            }
+      }
 
-            &.not-read{
-                .label{
-                    &::before{
-                        display: block;
-                        width: 8px;
-                        height: 8px;
-                        border-radius: 50%;
-                        background-color: red;
-                        content: "";
-                        position: absolute;
-                        top: 5px;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                    }
-                }
-            }
-
-            &.active{
-                .label{
-                    opacity: 1;
-                    border: none;
-                    color: #fff;
-                    font-weight: 400;
-                    font-weight: normal;
-                    font-stretch: normal;
-                    font-style: normal;
-                    line-height: 1.43;
-                    letter-spacing: normal;
-                }
-                &::after{
-                    height: 3px;
-                    display: block;
-                    content: "";
-                    background-color: $tertiary;
-                    z-index: 2;
-                    position: absolute;
-                    bottom: 0;
-                    width: 100%;
-                }
-            }
+      &.active {
+        .label {
+          opacity: 1;
+          border: none;
+          color: #fff;
+          font-weight: 400;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.43;
+          letter-spacing: normal;
         }
+        &::after {
+          height: 3px;
+          display: block;
+          content: '';
+          background-color: $tertiary;
+          z-index: 2;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+        }
+      }
     }
+  }
 }

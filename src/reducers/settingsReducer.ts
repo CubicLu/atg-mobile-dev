@@ -45,8 +45,9 @@ import {
   MessageNotificationDetailPage,
   FriendPage,
   VaultFilterPage,
+  VaultFilterGenrePage,
   RadioStationEditPage
-} from '../pages';
+} from './../pages';
 import {
   MenuArtistList,
   MessageIcon,
@@ -436,6 +437,11 @@ const defaultState: SettingsReducerType = {
       path: '/vault-filter',
       id: 'vault-filter',
       component: VaultFilterPage
+    },
+    {
+      path: '/vault-filter/genre',
+      id: 'vault-filter-genre',
+      component: VaultFilterGenrePage
     },
     {
       path: '/radio/:id',

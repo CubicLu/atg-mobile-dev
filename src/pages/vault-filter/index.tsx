@@ -23,7 +23,7 @@ class VaultFilterPage extends React.Component<Props> {
           titleClassName="filter"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void => this.props.history.goBack()}
+          rightCloseOnClick={(): void => this.props.history.push('/profile')}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent

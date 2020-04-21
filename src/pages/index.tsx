@@ -58,6 +58,8 @@ import MessageNotificationDetailPage from './message/notification-detail';
 import FanFeedFilterPage from './fan-feed-filter';
 import VaultFilterPage from './vault-filter';
 
+import VaultFilterGenrePage from './vault-filter/vault-filter-genre';
+
 export {
   NotFoundPage,
   InitialPage,
@@ -110,5 +112,6 @@ export {
   FriendPage,
   VaultFilterPage,
   RadioArtistPage,
-  RadioHistoryPage
+  RadioHistoryPage,
+  VaultFilterGenrePage
 };

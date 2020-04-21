@@ -577,6 +577,16 @@ export interface GalleryImageIndexInterface {
   index: number;
 }
 
+export interface GenreInterface {
+  name: string;
+  image: string;
+}
+
+export interface SubGenreInterface {
+  name: string;
+  selected: boolean;
+}
+
 export interface MediaType {
   updateInterval: number;
   getDuration(): number;

@@ -53,6 +53,9 @@ import InputComboBoxComponent from './input/combo-box';
 import VaultFilterSectionComponent from './vault-filter-section';
 import InputToggleComponent from './input/toggle';
 import InputChipComponent from './input/chip';
+import CardGenreComponent from './card/genre';
+import InputCheckboxComponent from './input/checkbox';
+import SubGenreModalComponent from './card/genre/subgenre';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -134,7 +137,10 @@ export {
   VaultFilterSectionComponent as VaultFilterSection,
   InputToggleComponent as InputToggle,
   InputChipComponent as InputChip,
-  NavBarTwoButtonsComponent as NavbarTwoButtons
+  NavBarTwoButtonsComponent as NavbarTwoButtons,
+  CardGenreComponent as CardGenre,
+  InputCheckboxComponent as InputCheckbox,
+  SubGenreModalComponent as SubGenreModal
 };
 
 export {

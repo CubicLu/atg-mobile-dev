@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { InputChip, InputToggle } from '../../components';
 import { ArrowRightIcon } from '../icon';
 
-interface Props {
+interface Props extends RouteComponentProps {
   label?: string;
   action?: any;
   type: 'chip' | 'toggle';
@@ -19,7 +20,12 @@ class VaultFilterSectionComponent extends React.Component<Props> {
         <div className={'col label flex fluid s9'}>
           {this.props.label}
           {this.props.type === 'chip' && (
-            <div style={{ position: 'absolute', right: 32 }}>
+            <div
+              style={{ position: 'absolute', right: 32 }}
+              onClick={(): void =>
+                this.props.history.push('/vault-filter/genre')
+              }
+            >
               <ArrowRightIcon />
             </div>
           )}
@@ -44,4 +50,4 @@ class VaultFilterSectionComponent extends React.Component<Props> {
   }
 }
 
-export default VaultFilterSectionComponent;
+export default withRouter(VaultFilterSectionComponent);

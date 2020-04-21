@@ -40,7 +40,7 @@ interface DispatchProps {
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class RadioHistoryPage extends React.Component<Props> {
-  onSongClick = (artistId, album: string): void => {
+  onSongClick = (artistId: string, album: string): void => {
     this.props.setRadioPlaylistPlayer();
     this.props.history.push(`/track/artist/${artistId}/${album}`);
   };

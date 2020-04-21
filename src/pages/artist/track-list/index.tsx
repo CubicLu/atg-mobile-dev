@@ -2,24 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { getArtistAPI, setPlaylistPlayer } from './../../../actions';
+import { getArtistAPI, playSong, setPlaylistPlayer } from './../../../actions';
 import {
   ArtistInterface,
   PlaylistInterface,
-  SongInterface
+  SongInterface,
+  PlayerReducerType
 } from '../../../interfaces';
 import { IonPage, IonContent, IonHeader } from '@ionic/react';
-import { BackgroundImage, ButtonSupport, BackIcon } from '../../../components';
+import {
+  BackgroundImage,
+  ButtonSupport,
+  BackIcon,
+  PulsatingDot
+} from '../../../components';
 import AddTrackIcon from '../../../components/icon/add-track';
 import { artistBackground, shadowTitle } from '../../../utils';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
+  player: PlayerReducerType;
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
   getArtistAPI: (username: string) => void;
-  setPlaylistPlayer: () => void;
+  setPlaylistPlayer: (
+    playList?: PlaylistInterface,
+    song?: SongInterface
+  ) => void;
+  playSong: (song: SongInterface) => void;
 }
 type TrackReference = 'artist' | 'radio' | 'playlist' | 'mixtape' | 'default';
 interface MatchParams {
@@ -46,7 +57,7 @@ class TrackListPage extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const { currentArtist } = this.props;
+    const { currentArtist, player } = this.props;
     const style = currentArtist ? artistBackground(currentArtist, true) : {};
     const type = this.props.match.params.reference;
     const discos = currentArtist && currentArtist.discography;
@@ -110,14 +121,22 @@ class TrackListPage extends React.Component<Props> {
               {this.playlist.items.map(
                 (song: SongInterface, i: number): React.ReactElement => (
                   <div
-                    onClick={(): void => this.props.setPlaylistPlayer()}
+                    onClick={(): void => {
+                      this.props.setPlaylistPlayer(this.playlist, song);
+                    }}
                     className="flex-align-items-center row"
                     key={i}
                   >
-                    <div className="f5 list-track-number">
-                      {song.trackNumber}
-                    </div>
+                    {player?.playing && player?.song?.id === song.id ? (
+                      <PulsatingDot />
+                    ) : (
+                      <div className="f5 list-track-number">
+                        {song.trackNumber}
+                      </div>
+                    )}
+
                     <div className="f5 track-song">{song.name}</div>
+
                     <div className="flex-justify-content-center align-end">
                       <AddTrackIcon />
                     </div>
@@ -265,11 +284,16 @@ class TrackListPage extends React.Component<Props> {
   };
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  artistAPI,
+  player
+}: ApplicationState): StateProps => {
   const { currentArtist } = artistAPI;
-  return { currentArtist };
+  return { currentArtist, player };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, setPlaylistPlayer })(TrackListPage)
+  connect(mapStateToProps, { getArtistAPI, setPlaylistPlayer, playSong })(
+    TrackListPage
+  )
 );

@@ -1,11 +1,15 @@
-import { ActionType, SongInterface, PlaylistInterface } from '../interfaces';
+import { ActionType, PlaylistInterface, SongInterface } from '../interfaces';
 
 export const togglePlayer = (): PlayerAction => {
   return { type: ActionType.TOGGLE_PLAYER };
 };
-export const setPlaylistPlayer = (): PlayerAction => {
-  return { type: ActionType.SET_PLAYLIST_PLAYER };
+export const setPlaylistPlayer = (
+  playList?: PlaylistInterface,
+  song?: SongInterface
+): any => {
+  return { type: ActionType.SET_PLAYLIST_PLAYER, playList, song };
 };
+
 export const setRadioPlaylistPlayer = (): PlayerAction => {
   return { type: ActionType.SET_RADIO_PLAYER };
 };

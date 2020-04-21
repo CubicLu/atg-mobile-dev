@@ -45,6 +45,7 @@ import InputSearchComponent from './input/search';
 import MenuMessageComponent from './menu/message';
 import RadioPlayerComponent from './radio-player';
 import RadioPauseButtonComponent from './icon/radio-pause';
+import PulsatingDot from './pulsating-dot';
 import RowChatComponent from './row/chat';
 import MenuTabsComponent from './menu/tabs';
 import RowUserComponent from './row/user';
@@ -91,7 +92,6 @@ export {
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
   MenuProfileListComponent as MenuProfileList,
-  SliderImageComponent as SliderImage,
   SliderVideoComponent as SliderVideo,
   CardImageComponent as CardImage,
   CardVideoComponent as CardVideo,
@@ -145,5 +145,6 @@ export {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeMoonLightImage,
-  MixtapeRebelRockImage
+  MixtapeRebelRockImage,
+  PulsatingDot
 };

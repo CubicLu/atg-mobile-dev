@@ -19,6 +19,9 @@ class InputTextComponent extends React.Component<Props> {
     autoFocus: false
   };
 
+  componentDidMount(): void {
+    // this.inputRef.current && focusInput(this.inputRef.current);
+  }
   render(): React.ReactNode {
     const {
       type,

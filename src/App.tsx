@@ -31,7 +31,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import { hideTabs } from './utils';
+import { hideKeyboard, showKeyboard, didShowKeyboard } from './utils';
 import { CordovaList } from './components';
 
 export default class App extends React.Component {
@@ -54,12 +54,13 @@ export default class App extends React.Component {
       this.forceUpdate();
     });
     window.addEventListener('keyboardWillHide', (): void => {
-      //@ts-ignore
-      // eslint-disable-next-line no-undef
-      Keyboard.isVisible && hideTabs(false);
+      window.cordova.plugins.Keyboard.isVisible && hideKeyboard();
     });
     window.addEventListener('keyboardWillShow', (): void => {
-      hideTabs(true);
+      showKeyboard();
+    });
+    window.addEventListener('keyboardDidShow', (): void => {
+      didShowKeyboard();
     });
   }
 

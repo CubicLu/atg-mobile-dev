@@ -19,11 +19,39 @@ export function setHeight(original: number): number {
   }
 }
 
+let currentInput: HTMLDivElement | undefined = undefined;
+let lockTabbar = false;
+export function preventChangeTabbar(prevent: boolean): void {
+  lockTabbar = prevent;
+}
 export function hideTabs(add: boolean): void {
   const ionApp = document.querySelector('ion-app') as HTMLElement;
   add
-    ? ionApp!.classList.add('hide-tabs')
-    : ionApp!.classList.remove('hide-tabs');
+    ? ionApp.classList.add('hide-tabs')
+    : ionApp.classList.remove('hide-tabs');
+}
+export function focusInput(input: HTMLDivElement): void {
+  if (!input) return;
+  currentInput = input;
+  input.focus();
+  input.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'start'
+  });
+}
+
+export function hideKeyboard(): void {
+  if (lockTabbar) return;
+  hideTabs(false);
+}
+export function showKeyboard(): void {
+  if (lockTabbar) return;
+  window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  hideTabs(true);
+}
+export function didShowKeyboard(): void {
+  currentInput && focusInput(currentInput);
 }
 
 export function totalRows(item: any[], itemPerRow: number): any[] {
@@ -47,7 +75,6 @@ export function shadowTitle(url: string): CSSProperties {
     backgroundRepeat: 'no-repeat'
   };
 }
-
 export function artistBackground(
   artist: ArtistInterface | any,
   fade: boolean = false,

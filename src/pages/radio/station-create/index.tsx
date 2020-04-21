@@ -23,6 +23,7 @@ import {
   toggleNavBarTwoActions
 } from '../../../actions';
 import { RouteChildrenProps } from 'react-router';
+import { hideTabs, preventChangeTabbar } from '../../../utils';
 interface MatchParams {
   id: string;
 }
@@ -82,8 +83,14 @@ const newStation = {
 class RadioStationEditPage extends React.Component<Props, State> {
   isEdit: boolean = false;
   editId?: string;
+  componentDidMount(): void {
+    const isEdit = !!this.props.match?.params?.id;
+    this.setState(isEdit ? { ...editedStation } : { ...newStation });
+  }
   ionViewWillEnter(): void {
     this.componentDidMount();
+    preventChangeTabbar(true);
+    hideTabs(true);
     this.props.updateNavBarTwoActions(
       'Delete Station',
       'Done',
@@ -91,11 +98,9 @@ class RadioStationEditPage extends React.Component<Props, State> {
       (): void => this.saveItems()
     );
   }
-  componentDidMount(): void {
-    const isEdit = !!this.props.match?.params?.id;
-    this.setState(isEdit ? { ...editedStation } : { ...newStation });
-  }
   ionViewWillLeave(): void {
+    hideTabs(false);
+    preventChangeTabbar(false);
     this.props.toggleNavBarTwoActions(false);
   }
   constructor(props: Props) {

@@ -35,11 +35,6 @@ class ArtistPostComponent extends React.Component<Props> {
     this.props.getCommunityCommentsAPI(this.props.id);
     this.props.getCommunityCommentsCoverAPI(this.props.id);
   }
-
-  focusInput(): void {
-    const input = document.getElementById('inputText');
-    input?.focus();
-  }
   render(): React.ReactNode {
     const { currentPostComments, currentPostCover } = this.props;
     return (
@@ -52,7 +47,7 @@ class ArtistPostComponent extends React.Component<Props> {
               return <PostComment comment={data} key={i} />;
             }
           )}
-        <div onClick={(): void => this.focusInput()} className="comment-input">
+        <div className="comment-input">
           <InputText type={'text'} placeholder={'Start a message'} />
           <Button label="Post" color={Colors.grayTransparent} bold={true} />
         </div>

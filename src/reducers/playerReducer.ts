@@ -253,17 +253,12 @@ const defaultState: PlayerReducerType = {
 };
 
 export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
-  [ActionType.SET_PLAYLIST_PLAYER](state: PlayerReducerType): any {
-    if (state.playlist?.id === futurePlaylist.id) {
-      return state;
-    }
-
+  [ActionType.SET_PLAYLIST_PLAYER](state: PlayerReducerType, action: any): any {
     return {
       ...state,
-      song: null,
-      // song: futurePlaylist.items[2],
-      // next: futurePlaylist.items[3],
-      playlist: futurePlaylist,
+      song: action.song || null,
+      playlist: action.playList || futurePlaylist,
+      playListIndex: 0,
       playerAction: ActionType.SET_PLAYLIST
     };
   },

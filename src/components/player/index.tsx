@@ -497,13 +497,16 @@ class PlayerComponent extends React.PureComponent<Props> {
     );
   }
 
-  componentDidUpdate(): void {
-    const { paused } = this.props;
+  componentDidUpdate(prevProps): void {
+    const { paused, song } = this.props;
     if (paused && this.audio) {
       this.audio.pause();
     }
     if (!paused && this.audio) {
       this.audio.play();
+    }
+    if (song?.url && prevProps.song?.url !== song?.url) {
+      this.playNewAudio(song);
     }
   }
 

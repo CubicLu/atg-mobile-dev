@@ -1,37 +1,20 @@
 .btn {
-  <<<<<<< head &.small {
+  &.normal {
+    height: 30px;
+    line-height: 1.13;
+  }
+  &.small {
     height: 28px;
     min-height: 28px;
     width: 28px;
     min-width: 28px;
     padding: 0;
   }
-  &.medium {
-    height: 36px !important;
-    min-height: 36px !important;
-    width: 36px !important;
-    min-width: 36px !important;
-    padding: 0;
+  &.lg {
+    height: 44px;
+    font-size: 16px;
   }
-  &.large {
-    height: 40px !important;
-    min-height: 40px !important;
-    width: 40px !important;
-    min-width: 40px !important;
-    padding: 0;
-  }
-  &.xlarge {
-    height: 42px !important;
-    min-height: 42px !important;
-    width: 42px !important;
-    min-width: 42px !important;
-    padding: 0;
-  }
-  =======>>>>>>>Merged
-    in
-    feature/ch1029/fan-inbox-system-notifications-friend-acceptance
-    (pull request #5)
-    &:hover {
+  &:hover {
     box-shadow: none;
   }
   &.badge {
@@ -137,20 +120,26 @@
   &.support {
     background: linear-gradient(90deg, #ff9766, #fc5f62);
     color: #ffffff;
+    &.lg {
+      height: 44px;
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
   &.supported {
     background: linear-gradient(90deg, #fff, #fff);
     color: #fc5f62;
+    &.lg {
+      height: 44px;
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
-  <<<<<<< head &.transparent-red {
+  &.transparent-red {
     background: transparent;
     color: #ff0000;
   }
-  =======>>>>>>>Merged
-    in
-    feature/ch1029/fan-inbox-system-notifications-friend-acceptance
-    (pull request #5)
-    &.transparent {
+  &.transparent {
     background: transparent;
     color: #fff;
   }
@@ -195,14 +184,6 @@
     font-weight: 600;
     font-family: 'Helvetica Neue';
   }
-  &.normal {
-    height: 30px;
-    line-height: 1.13;
-  }
-  &.large {
-    height: 48px;
-    font-size: 16px;
-  }
   &.icon {
     &.circle {
       border-radius: 50%;
@@ -229,16 +210,13 @@
           z-index: 1;
           font-weight: bold;
           font-size: 10px;
-          top: 14px;
+          height: 16px;
         }
         &.notificationCounter {
           position: absolute;
           color: white;
           z-index: 1;
-          <<<<<<<HEAD
           background-color: #fe0000;
-          =======background-color: red;
-          >>>>>>>Merged in feature/ch1029/fan-inbox-system-notifications-friend-acceptance (pull request #5)
           border-radius: 25%;
           min-width: 12px;
           height: 12px;
@@ -274,6 +252,7 @@
   width: $header-button;
   min-height: $header-button;
   min-width: $header-button;
+  padding: 0 !important;
   color: #fff;
   cursor: pointer;
   text-decoration: none;

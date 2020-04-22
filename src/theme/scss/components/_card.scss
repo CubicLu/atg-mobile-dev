@@ -155,6 +155,11 @@
     &.lg {
       height: 185px;
     }
+    &.rounded-frame {
+      border-radius: 10px;
+      border: 1px solid #6d6e6f;
+      background-color: #fff;
+    }
 
     &.full {
       width: 100%;

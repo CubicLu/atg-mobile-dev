@@ -552,7 +552,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       url:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Until+The+Sun+Comes.mp3',
       ISRC: 'GBBPB1201635'
-    },
+    }
   ]
 };
 

@@ -2,7 +2,7 @@ import { ActionType } from '../../interfaces';
 
 export const getRadioArtistAPI = (query: string): any => ({
   type: ActionType.GET_RADIO_ARTIST,
-  payload: { query }
+  payload: query
 });
 
 export const getRadioArtistAPISuccess = (response): any => ({

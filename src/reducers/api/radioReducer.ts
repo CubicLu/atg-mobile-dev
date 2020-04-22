@@ -32,7 +32,7 @@ export const radioReducer = createReducer<RadioReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      radioArtist: action.payload
+      radioArtist: action.payload.data
     };
   },
   [ActionType.GET_RADIO_ARTIST_FAILURE](

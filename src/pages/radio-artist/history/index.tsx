@@ -1,21 +1,55 @@
 import React from 'react';
-import { IonContent, IonPage, IonList } from '@ionic/react';
+import {
+  IonContent,
+  IonPage,
+  IonList,
+  IonItem,
+  IonItemOptions,
+  IonItemSliding
+} from '@ionic/react';
 import {
   BackgroundImage,
   Header,
   HeaderOverlay,
-  ListItem
+  ButtonSupportIcon,
+  ButtonIcon,
+  CloseIcon,
+  AddPlaylistIcon,
+  Avatar
 } from '../../../components';
+import { RouteComponentProps, withRouter } from 'react-router';
+import {
+  ShapesSize,
+  Colors,
+  ChannelInterface,
+  ArtistInterface
+} from '../../../interfaces';
+import { setRadioPlaylistPlayer } from './../../../actions';
+import { connect } from 'react-redux';
+import { ApplicationState } from '../../../reducers';
 
-interface Props {}
+interface StateProps {
+  radioArtist: ChannelInterface;
+  currentArtist: ArtistInterface;
+}
+
+interface DispatchProps {
+  setRadioPlaylistPlayer: () => void;
+}
+
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class RadioHistoryPage extends React.Component<Props> {
+  onSongClick = (artistId: string, album: string): void => {
+    this.props.setRadioPlaylistPlayer();
+    this.props.history.push(`/track/artist/${artistId}/${album}`);
+  };
   private headerRef: React.RefObject<any> = React.createRef();
   render(): React.ReactNode {
     return (
       <IonPage id="radio-history-page">
         <HeaderOverlay ref={this.headerRef} />
-        <Header leftBackButton={true} title={'Everything Reggae History'} />
+        <Header leftBackButton={true} title={this.props.radioArtist.title} />
         <BackgroundImage
           gradient="180deg,#261546,#0c090b"
           backgroundTopDark
@@ -30,21 +64,51 @@ class RadioHistoryPage extends React.Component<Props> {
               {this.historySongs.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <ListItem
-                      key={i}
-                      node={i}
-                      sliding={true}
-                      bottomBorder={true}
-                      optionRemove={true}
-                      hasAvatar={true}
-                      avatarSize={48}
-                      avatarImage={data.image}
-                      songName={data.song}
-                      artistName={data.artist}
-                      expandArrow={true}
-                      supported={i % 2 === 0}
-                      supportButtonIcon={true}
-                    />
+                    <IonItemSliding key={i}>
+                      <IonItem>
+                        <div className="row">
+                          <div
+                            onClick={(): void =>
+                              this.onSongClick(data.artistId, data.album)
+                            }
+                          >
+                            <div className="col s3 image">
+                              <Avatar
+                                image={data.image}
+                                type={ShapesSize.circle}
+                                width={50}
+                                height={50}
+                              />
+                            </div>
+                            <div className="col s6 info">
+                              <span className="song">{data.song}</span>
+                              <span className="artist">{data.artist}</span>
+                            </div>
+                          </div>
+                          <div className="col s3 support">
+                            <ButtonSupportIcon
+                              artist={this.props.currentArtist}
+                              id={data.artistId}
+                              supported={data.isSupported}
+                            />
+                          </div>
+                        </div>
+                      </IonItem>
+                      <IonItemOptions side="end">
+                        <ButtonIcon
+                          icon={<AddPlaylistIcon />}
+                          color={Colors.green}
+                          className="no-padding"
+                          type={ShapesSize.normal}
+                        />
+                        <ButtonIcon
+                          icon={<CloseIcon strokeWidth={2} />}
+                          color={Colors.red}
+                          className="no-padding"
+                          type={ShapesSize.normal}
+                        />
+                      </IonItemOptions>
+                    </IonItemSliding>
                   );
                 }
               )}
@@ -56,36 +120,46 @@ class RadioHistoryPage extends React.Component<Props> {
   }
   historySongs = [
     {
+      artistId: 'pharell-williams',
+      album: '5',
       song: 'When It Comes To You',
-      artist: 'Sean Paul',
-      isSupported: true,
+      artist: 'Pharrell Williams',
+      isSupported: false,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
+      artistId: 'pharell-williams',
+      album: '4',
       song: 'King Whithout A Crown',
-      artist: 'Matisyahu',
-      isSupported: true,
+      artist: 'Pharrell Williams',
+      isSupported: false,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
+      artistId: 'pharell-williams',
+      album: '3',
       song: 'Better Tomorrow',
-      artist: 'Luciano',
+      artist: 'Pharrell Williams',
       isSupported: true,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
+      artistId: 'pharell-williams',
+      album: '2',
       song: 'King Whithout A Crown',
-      artist: 'Matisyahu',
-      isSupported: true,
+      artist: 'Pharrell Williams',
+      isSupported: false,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
+      artistId: 'pharell-williams',
+      album: '1',
       song: 'King Whithout A Crown',
-      artist: 'Matisyahu',
+      artist: 'Pharrell Williams',
       isSupported: true,
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
@@ -93,4 +167,12 @@ class RadioHistoryPage extends React.Component<Props> {
   ];
 }
 
-export default RadioHistoryPage;
+const mapStateToProps = ({ radioAPI, artistAPI }: ApplicationState): object => {
+  const { radioArtist } = radioAPI;
+  const { currentArtist } = artistAPI;
+  return { radioArtist, currentArtist };
+};
+
+export default withRouter(
+  connect(mapStateToProps, { setRadioPlaylistPlayer })(RadioHistoryPage)
+);

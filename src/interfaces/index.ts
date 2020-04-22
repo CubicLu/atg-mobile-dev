@@ -466,6 +466,7 @@ export interface ChannelInterface {
   color: string;
   target?: string;
   tags?: string[];
+  similarStations?: string[];
 }
 export interface StationInterface {
   id: string;

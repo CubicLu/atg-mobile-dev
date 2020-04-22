@@ -169,7 +169,7 @@ class RadioPage extends React.Component<Props> {
       label: 'Pharrel Williams',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
-      id: 'pharell-williams'
+      id: 'pharrell-williams'
     },
     {
       label: 'R&B',

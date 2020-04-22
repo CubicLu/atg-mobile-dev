@@ -14,7 +14,7 @@ interface Props {
   selectAll?: boolean;
   showButtonConnect?: boolean;
   showButtonPending?: boolean;
-  selected?: boolean;
+  selected?: number[];
   itemClassName?: string;
 }
 
@@ -54,15 +54,17 @@ export default class ListComponent extends React.Component<Props> {
       showChat,
       showButtonConnect,
       itemClassName,
+      selected,
       ...rest
     } = this.props;
     const itemClass = itemClassName ? itemClassName : '';
+    let checked = selected?.findIndex((x): boolean => x === user.id) !== -1;
     return (
       <IonItem className={`my-auto flex-align-items-center ${itemClass}`}>
         <RowUser
           {...rest}
           data={user}
-          selected={this.props.selected || this.checkSelected(user)}
+          selected={checked}
           onSelect={this.props.onSelect}
           showButtonConnect={showButtonConnect}
           showButtonPending={showButtonPending}

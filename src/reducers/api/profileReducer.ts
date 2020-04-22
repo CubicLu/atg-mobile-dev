@@ -104,25 +104,29 @@ const friends: UserInterface[] = [
     name: 'Débora',
     username: 'debora',
     avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    isFriend: true
+    isFriend: true,
+    id: 1
   },
   {
     name: 'vigil',
     username: 'vigil',
-    avatar: 'https://loremflickr.com/50/50/man,face?random=' + Math.random()
+    avatar: 'https://loremflickr.com/50/50/man,face?random=' + Math.random(),
+    id: 2
   },
   {
     name: 'Bruce',
     username: 'brucebanner',
     avatar: 'https://loremflickr.com/50/50/hulk?random=' + Math.random(),
-    isFriend: true
+    isFriend: true,
+    id: 3
   },
   {
     name: 'Steve',
     username: 'steverogers',
     avatar:
       'https://loremflickr.com/50/50/steve,rogers?random=' + Math.random(),
-    isFriend: true
+    isFriend: true,
+    id: 4
   }
 ];
 const admins: UserInterface[] = friends;
@@ -158,7 +162,9 @@ const defaultState: ProfileReducerType = {
   artists: artists,
   artistsSearch: artists,
   admins: admins,
-  adminsSearch: admins
+  adminsSearch: admins,
+  friendsSelected: [],
+  resentSelected: []
 };
 
 export const profileReducer = createReducer<ProfileReducerType>(defaultState, {

@@ -239,6 +239,7 @@ export interface UserInterface {
   avatar?: string | undefined;
   username: string;
   isFriend?: boolean;
+  id?: number;
 }
 
 export interface AuthReducerType {
@@ -528,6 +529,8 @@ export interface ProfileReducerType {
   artistsSearch: UserInterface[];
   admins: UserInterface[];
   adminsSearch: UserInterface[];
+  friendsSelected: number[];
+  resentSelected: number[];
 }
 
 export interface MessageInterface extends UserInterface {

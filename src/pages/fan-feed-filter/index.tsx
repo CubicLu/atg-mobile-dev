@@ -20,6 +20,8 @@ interface State {
 interface StateProps {
   friends: UserInterface[];
   friendsSearch: UserInterface[];
+  friendsSelected: number[];
+  resentSelected: number[];
 }
 
 interface DispatchProps {
@@ -55,8 +57,28 @@ class FanFeedFilterPage extends React.Component<Props, State> {
   everyResent?: boolean;
   everyAll?: boolean;
   onSelectAll(e, key): void {
-    if (key === 'resent') this.everyResent = e.detail.checked;
-    if (key === 'all') this.everyAll = e.detail.checked;
+    if (key === 'everyResent') {
+      this.everyResent = e.detail.checked;
+      let resentAll: number[] = [];
+      if (this.everyResent) {
+        let data = this.getAll();
+        data.map((x): number | null =>
+          x.id && x.isFriend ? resentAll.push(x.id) : null
+        );
+      }
+      this.props.updateProfileProperty('resentSelected', resentAll);
+    }
+    if (key === 'everyAll') {
+      this.everyAll = e.detail.checked;
+      let everyAll: number[] = [];
+      if (this.everyAll) {
+        let data = this.getAll();
+        data.map((x): number | null =>
+          x.id && x.isFriend ? everyAll.push(x.id) : null
+        );
+      }
+      this.props.updateProfileProperty('friendsSelected', everyAll);
+    }
   }
 
   getResent(): UserInterface[] {
@@ -71,7 +93,10 @@ class FanFeedFilterPage extends React.Component<Props, State> {
       <div className="px-3 header-list flex-justify-content-end search-outline-contact">
         <div className="align-start text-36 title title-green">{title}</div>
         <div className="align-end flex-align-items-center">
-          <InputComboBox onSelect={(e): void => this.onSelectAll(e, key)} />
+          <InputComboBox
+            onSelect={(e): void => this.onSelectAll(e, key)}
+            checked={this[key]}
+          />
         </div>
       </div>
     );
@@ -94,10 +119,6 @@ class FanFeedFilterPage extends React.Component<Props, State> {
       array.splice(index, 1);
     }
   }
-  // isChecked(data, all: boolean = true): boolean {
-  //   const array = all ? this.allSelected : this.resentSelected;
-  //   return !!array.find((x): boolean => x.username === data.username);
-  // }
 
   render(): React.ReactNode {
     return (
@@ -121,22 +142,22 @@ class FanFeedFilterPage extends React.Component<Props, State> {
             </div>
 
             <IonContent scrollY={true}>
-              {this.renderTitle('Resent', 'resent')}
+              {this.renderTitle('Resent', 'everyResent')}
               <ListUser
                 onSelect={(e, data): void => this.toggleSelect(e, data, false)}
                 sliding={false}
-                selectAll={this.everyResent}
                 data={this.getResent()}
+                selected={this.props.resentSelected}
                 showComboBox
               />
 
               <div className="mb-5" />
-              {this.renderTitle('All', 'all')}
+              {this.renderTitle('All', 'everyAll')}
               <ListUser
                 onSelect={(e, data): void => this.toggleSelect(e, data, true)}
                 sliding={false}
-                selectAll={this.everyAll}
                 data={this.getAll()}
+                selected={this.props.friendsSelected}
                 showComboBox
               />
               <div className="pb-5" />
@@ -150,8 +171,13 @@ class FanFeedFilterPage extends React.Component<Props, State> {
 }
 // eslint-disable-next-line
 const mapStateToProps = ({ profileAPI }: ApplicationState): StateProps => {
-  const { friends, friendsSearch } = profileAPI;
-  return { friends, friendsSearch };
+  const {
+    friends,
+    friendsSearch,
+    friendsSelected,
+    resentSelected
+  } = profileAPI;
+  return { friends, friendsSearch, friendsSelected, resentSelected };
 };
 
 export default withRouter(

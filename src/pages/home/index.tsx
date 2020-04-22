@@ -16,15 +16,16 @@ import {
 interface StateProps {
   tabs: TabsInterface[];
   links: LinksInterface[];
+  loading: boolean;
 }
 
 class HomePage extends React.PureComponent<StateProps> {
   activeTab: string = 'profile';
   render(): React.ReactNode {
-    const { tabs, links } = this.props;
+    const { tabs, links, loading } = this.props;
     return (
       <>
-        <LoaderFullscreen />
+        <LoaderFullscreen loading={loading} />
         <IonReactRouter>
           <ModalSlide />
           <Player />
@@ -60,9 +61,13 @@ class HomePage extends React.PureComponent<StateProps> {
   }
 }
 
-const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  settings,
+  artistAPI
+}: ApplicationState): StateProps => {
+  const { loading } = artistAPI;
   const { tabs, links } = settings;
-  return { tabs, links };
+  return { tabs, links, loading };
 };
 
 export default connect(mapStateToProps)(HomePage);

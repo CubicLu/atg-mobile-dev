@@ -262,7 +262,7 @@ const defaultState: SettingsReducerType = {
     },
     {
       path: '/profile/:id',
-      id: 'profileFriend',
+      id: 'fanProfile',
       component: ProfilePage
     },
     {
@@ -391,6 +391,11 @@ const defaultState: SettingsReducerType = {
       component: MessagePage
     },
     {
+      path: '/profile/:id',
+      id: 'fanProfile',
+      component: ProfilePage
+    },
+    {
       path: '/radio/:id',
       id: 'radioArtist',
       component: RadioArtistPage
@@ -504,6 +509,7 @@ const defaultState: SettingsReducerType = {
       component: MessageNotificationsPage
     }
   ],
+
   activeMessageTab: 'chat',
   selectContactTabs: [
     {

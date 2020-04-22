@@ -64,6 +64,12 @@ export enum ActionType {
   GET_SEARCH_RESULT_API_FAILURE = 'GET_SEARCH_RESULT_API_FAILURE',
   GET_SEARCH_RESULT_API_SUCCESS = 'GET_SEARCH_RESULT_API_SUCCESS',
   UPDATE_PROFILE_PROPERTY = 'UPDATE_PROFILE_PROPERTY',
+  GET_FRIENDS_API = 'GET_FRIENDS_API',
+  GET_FRIEND_API = 'GET_FRIEND_API',
+  GET_FRIENDS_API_FAILURE = 'GET_FRIENDS_API_FAILURE',
+  GET_FRIENDS_API_SUCCESS = 'GET_FRIENDS_API_SUCCESS',
+  GET_FRIEND_API_SUCCESS = 'GET_FRIEND_API_SUCCESS',
+  GET_FRIEND_API_FAILURE = 'GET_FRIEND_API_FAILURE',
   UPDATE_AUTH_SIGN_UP_PROPERTY = 'UPDATE_AUTH_SIGN_UP_PROPERTY',
   GET_FEED_POSTS_API = 'GET_FEED_POSTS_API',
   GET_FEED_POSTS_API_FAILURE = 'GET_FEED_POSTS_API_FAILURE',
@@ -507,10 +513,30 @@ export interface NotificationInterface extends UserInterface {
   subject: string;
 }
 
+export interface FriendInterface {
+  name: string;
+  city: string;
+  followers: number;
+  friend: boolean;
+}
+
+export interface FriendReducerType {
+  friends: FriendInterface[];
+  currentFriend: FriendInterface | null;
+  loading: boolean;
+  successMessage: string | null;
+  errorMessage: string | null;
+}
+
+export interface GetFriendAPIInterface {
+  friendId: string;
+}
+
 export interface SignUpInterface {
   nickname: string;
   email: string;
 }
+
 export interface RadioReducerType {
   radioArtist: any;
   loading: boolean;

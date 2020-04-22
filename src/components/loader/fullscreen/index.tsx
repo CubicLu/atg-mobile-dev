@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { ApplicationState } from '../../../reducers';
-interface StateProps {
-  loading: boolean;
+
+interface Props {
+  loading?: boolean;
 }
-class LoaderFullscreenComponent extends React.Component<StateProps> {
+
+class LoaderFullscreenComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <>
@@ -17,8 +17,5 @@ class LoaderFullscreenComponent extends React.Component<StateProps> {
     );
   }
 }
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { loading } = artistAPI;
-  return { loading };
-};
-export default connect(mapStateToProps)(LoaderFullscreenComponent);
+
+export default LoaderFullscreenComponent;

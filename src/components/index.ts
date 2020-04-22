@@ -13,7 +13,6 @@ import CordovaListComponent from './player/cordova-list';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
-import SliderImageComponent from './slider/image';
 import SliderVideoComponent from './slider/video';
 import CardImageComponent from './card/image';
 import CardVideoComponent from './card/video';

@@ -157,3 +157,16 @@ export function validateScrollHeader(
 
   return { velocity, direction, validScroll, animation, blur };
 }
+
+export const addEndingToNumber = (num: number): string => {
+  const isMoreThanMillion = num >= 1000000;
+  const isMoreThanThousand = num > 999;
+  if (isMoreThanMillion) {
+    const result = num / 1000000;
+    return `${result.toFixed(1)}m`;
+  } else if (isMoreThanThousand) {
+    return `${Math.round(num / 1000)}k`;
+  } else {
+    return `${num}`;
+  }
+};

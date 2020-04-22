@@ -13,6 +13,7 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
+
 interface Props extends DispatchProps, RouteComponentProps {
   isFriend?: boolean;
   showFilter?: boolean;

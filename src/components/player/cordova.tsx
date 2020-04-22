@@ -6,7 +6,10 @@ import {
   NextIcon,
   Header,
   ButtonSupport,
-  BackgroundImage
+  BackgroundImage,
+  PlayIcon,
+  ForwardIcon,
+  ReplayIcon
 } from './../../components';
 import {
   createGesture,
@@ -48,7 +51,6 @@ import {
   VolumeMuteButton,
   VolumeButton
 } from '../icon/player';
-import { PlayIcon } from '../icon';
 import VigilAnimator from '../../utils/animateFrame';
 import { shadowTitle } from '../../utils';
 
@@ -83,6 +85,7 @@ interface DispatchProps {
   seekSongPosition: (time: number) => void;
   setPlayerAction: (action: string) => void;
 }
+
 interface Props extends StateProps, DispatchProps {}
 class PlayerComponent extends React.Component<Props> {
   pullPlayerGesture: Gesture | undefined;
@@ -256,6 +259,7 @@ class PlayerComponent extends React.Component<Props> {
     if (Math.abs(newPosition - this.props.timeElapsed) <= 1) return;
     this.props.seekSongPosition(newPosition);
   }
+
   mainControls(): React.ReactNode {
     const { playing, song } = this.props;
     return (
@@ -295,6 +299,13 @@ class PlayerComponent extends React.Component<Props> {
           >
             <PrevButton />
           </button>
+          <button
+            disabled={!song}
+            className="player-button"
+            onClick={(): void => this.seekSong(this.props.timeElapsed - 10)}
+          >
+            <ReplayIcon />
+          </button>
 
           {playing && (
             <button
@@ -314,6 +325,14 @@ class PlayerComponent extends React.Component<Props> {
               <PlayButton />
             </button>
           )}
+
+          <button
+            disabled={!song}
+            className="player-button"
+            onClick={(): void => this.seekSong(this.props.timeElapsed + 10)}
+          >
+            <ForwardIcon />
+          </button>
 
           <button
             disabled={!song}

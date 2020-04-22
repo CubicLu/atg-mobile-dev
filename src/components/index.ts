@@ -8,7 +8,7 @@ import AvatarComponent from './avatar';
 import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
-import PlayerComponent from './player';
+import PlayerComponent from './player/cordova';
 import CordovaListComponent from './player/cordova-list';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';

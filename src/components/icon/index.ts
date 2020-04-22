@@ -27,6 +27,8 @@ import ShareLineIcon from './share-line';
 import HeartIcon from './heart';
 import ChatMessageIcon from './chat-message';
 import FullscreenIcon from './fullscreen';
+import ReplayIcon from './replay';
+import ForwardIcon from './forward';
 
 export {
   MessageIcon,
@@ -57,5 +59,7 @@ export {
   ShareLineIcon,
   HeartIcon,
   ChatMessageIcon,
-  FullscreenIcon
+  FullscreenIcon,
+  ReplayIcon,
+  ForwardIcon
 };

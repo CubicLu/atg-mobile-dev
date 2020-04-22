@@ -4,7 +4,7 @@ import { Nullable } from '../../types/common';
 import { ButtonIcon } from '..';
 import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
 import { ShapesSize, SongInterface } from '../../interfaces';
-import { IonRange } from '@ionic/react';
+import { IonRange, isPlatform } from '@ionic/react';
 import { pauseSong, playSong } from '../../actions';
 import { ApplicationState } from '../../reducers';
 
@@ -114,7 +114,14 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 
   toggleFullscreen(): void {
+    const isIOS = isPlatform('ios');
     if (this.video) {
+      if (isIOS) {
+        //@ts-ignore
+        // eslint-disable-next-line no-restricted-globals
+        this.video.webkitSetPresentationMode && this.video.webkitSetPresentationMode('fullscreen');
+        return;
+      }
       if (document.fullscreenElement) {
         //@ts-ignore
         // eslint-disable-next-line no-restricted-globals

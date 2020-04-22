@@ -42,7 +42,7 @@
     <platform name="ios">
         <preference name="target-device" value="handset" />
         <preference name="WKWebViewOnly" value="true" />
-        <!-- <preference name="AllowInlineMediaPlayback" value="true"/> -->
+        <preference name="AllowInlineMediaPlayback" value="true"/>
         <preference name="MediaTypesRequiringUserActionForPlayback" value="false" />
         <preference name="KeyboardDisplayRequiresUserAction" value="false" />
         <allow-intent href="itms:*" />

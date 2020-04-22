@@ -12,6 +12,10 @@
 .full-width{
     width: 100% !important;
 }
+.overflow-x{
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
 .overflow-auto{
     overflow: auto;
 }
@@ -175,6 +179,7 @@
 .mt-negative-1{ margin-top: -8px; }
 .mt-negative-2{ margin-top: -16px; }
 .pt-0{ padding-top: 0px; }
+.pt-05{ padding-top: 4px; }
 .pt-1{ padding-top: 8px; }
 .pt-2{ padding-top: 16px; }
 .pl-3{ padding-left: 24px; }
@@ -271,6 +276,9 @@
 }
 .no-padding{
     padding: 0 -0.75rem !important; //used to nullify col padding
+}
+.no-shadow{
+    box-shadow: none;
 }
 
 .arrow-next{

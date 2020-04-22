@@ -17,6 +17,7 @@ interface Props {
   routerDirection: RouterLinkDirection;
   color?: Colors;
   bold?: boolean;
+  disabled: boolean;
   type?: ShapesSize;
   size?: Sizes;
   gradient?: boolean;
@@ -31,6 +32,7 @@ class ButtonComponent extends React.Component<Props> {
     routerDirection: 'forward',
     type: ShapesSize.normal,
     bold: false,
+    disabled: false,
     size: Sizes.md
   };
 
@@ -56,6 +58,7 @@ class ButtonComponent extends React.Component<Props> {
     }
     return (
       <button
+        disabled={this.props.disabled}
         id={id || 'btn-id'}
         onClick={(): void => (link ? this.linkRef.current?.click() : onClick())}
         className={`btn ${type} ${color} ${pattern.trim()}`}

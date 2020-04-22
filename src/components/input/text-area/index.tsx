@@ -1,6 +1,5 @@
 import React from 'react';
 import { Sizes } from '../../../interfaces';
-import { focusInput } from '../../../utils';
 interface Props {
   readonly type: 'text' | 'password';
   readonly placeholder: string;
@@ -10,18 +9,18 @@ interface Props {
   readonly error?: boolean;
   readonly size?: Sizes;
   readonly autoFocus: boolean;
+  readonly rows?: number;
 }
-class InputTextComponent extends React.Component<Props> {
-  inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+export default class InputTextAreaComponent extends React.Component<Props> {
   public static defaultProps = {
     error: false,
     size: Sizes.md,
-    autoFocus: false
+    autoFocus: false,
+    rows: 5
   };
 
   render(): React.ReactNode {
     const {
-      type,
       placeholder,
       defaultValue,
       onChangeText,
@@ -29,18 +28,18 @@ class InputTextComponent extends React.Component<Props> {
       size,
       className
     } = this.props;
+
     return (
-      <input
+      <textarea
+        rows={this.props.rows}
+        cols={80}
         className={`input text ${error && 'error'} ${size} ${className}`}
-        ref={this.inputRef}
-        onClick={(e): void => focusInput(e.currentTarget)}
         autoFocus={this.props.autoFocus}
         autoComplete="off"
-        type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={(event): void => {
-          let value = event.target.value;
+          let value = event.currentTarget.value;
           if (onChangeText) {
             onChangeText(value);
           }
@@ -49,5 +48,3 @@ class InputTextComponent extends React.Component<Props> {
     );
   }
 }
-
-export default InputTextComponent;

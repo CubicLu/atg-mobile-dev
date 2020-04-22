@@ -26,6 +26,7 @@ import {
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage,
   CommunityPostPage,
+  CommunityNewPostPage,
   TrackListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
@@ -312,6 +313,11 @@ const defaultState: SettingsReducerType = {
       path: '/community/comments/:id',
       id: 'communityComments',
       component: CommunityPostPage
+    },
+    {
+      path: '/community/post',
+      id: 'communityPost',
+      component: CommunityNewPostPage
     },
     {
       path: '/track/:reference/:referenceId/:id',

@@ -21,7 +21,7 @@ class ProfileVaultPage extends React.Component<Props> {
         <div className="profile-vault-page">
           <Button
             color={Colors.transparentGray}
-            className={'row mt-2'}
+            className={'row mt-2 mb-2'}
             label={'Filter'}
             onClick={(): void => history.push('/vault-filter')}
           />

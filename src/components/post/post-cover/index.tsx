@@ -16,27 +16,29 @@ class PostCover extends React.Component<Props> {
   render(): React.ReactNode {
     const { cover } = this.props;
     return (
-      <div
-        className="post-cover"
-        style={{
-          backgroundImage: `linear-gradient(transparent, black), url(${cover.url})`
-        }}
-      >
+      <>
         <Header
           leftBackButton={false}
           rightCloseButton={true}
           rightCloseHref="/community"
         />
-        <div className="row button-container">
-          <div className="action-btns row">
-            <div className="col s6 cover-btns mx-1">
+        <div
+          className="card post"
+          style={{
+            backgroundImage: `linear-gradient(transparent, black), url(${cover.url})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="h-100 flex-compass p-2 south east button-container action-btns">
+            <div className="flex">
               <ButtonIcon icon={<ShareLineIcon />} />
               <ButtonIcon icon={<BalloonIcon />} label={3} />
               <ButtonIcon icon={<HeartIcon />} />
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

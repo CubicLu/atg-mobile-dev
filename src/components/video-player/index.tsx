@@ -188,17 +188,17 @@ class VideoPlayerComponent extends React.Component<Props, State> {
 
   renderTopButtons(): React.ReactNode {
     return (
-      <div className="row mt-05 mb-0">
-        <div className="col s6">
+      <div className="flex-wrap mx-2 pt-05">
+        <div className="align-start">
           <ButtonIcon
-            type={ShapesSize.normal}
+            type={ShapesSize.small}
             icon={<FullscreenIcon />}
             onClick={this.toggleFullscreen}
           />
         </div>
-        <div className="col s6 flex-justify-content-end">
+        <div className="align-end flex-justify-content-end">
           <ButtonIcon
-            type={ShapesSize.normal}
+            type={ShapesSize.small}
             icon={<CloseIcon />}
             onClick={(): void => {
               this.props.onClickClose();
@@ -238,12 +238,12 @@ class VideoPlayerComponent extends React.Component<Props, State> {
 
   renderBottom(): React.ReactNode {
     return (
-      <div className="progress-bar flex-wrap fluid p-1 pt-0 f8 l1">
+      <div className="progress-bar flex-wrap fluid p-0 f8 l1 pb-1">
         <time className="mx-2" id="time-elapsed">
           {this.state.currentTime}
         </time>
         <IonRange
-          className="m-0 p-0"
+          className="m-0 p-0 video-range"
           min={0}
           max={this.state.videoDuration}
           onIonChange={(event): void =>

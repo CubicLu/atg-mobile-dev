@@ -55,7 +55,10 @@ class CommunityPage extends React.Component<Props> {
           leftBackButton={false}
           rightActionButton={true}
           rightContent={
-            <div className="default-button dark" onClick={(): void => {}}>
+            <div
+              className="default-button dark"
+              onClick={(): void => hist.push('/community/post')}
+            >
               <PlusIcon />
             </div>
           }

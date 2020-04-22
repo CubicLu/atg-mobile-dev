@@ -103,7 +103,7 @@ class RadioPage extends React.Component<Props> {
               viewAll={false}
             />
           </IonRouterLink>
-          <div className=" card-station">
+          <div className="card-station">
             <SliderVideo canEdit={true} data={this.radios} />
           </div>
         </IonContent>

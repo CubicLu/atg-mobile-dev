@@ -1,6 +1,7 @@
 import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
 import InputTextComponent from './input/text';
+import InputTextAreaComponent from './input/text-area';
 import InputCodeComponent from './input/code';
 import ButtonIconComponent from './button/icon';
 import HeaderProfileComponent from './header/profile';
@@ -37,7 +38,6 @@ import PostCommentsComponent from './post/post-comments';
 import ArtistPostComponent from './post';
 import SectionTitleComponent from './section-title';
 import VideoPlayerComponent from './video-player';
-import ChatComponent from './chat';
 import SearchResultSectionComponent from './search-result-section';
 import PhotoChatComponent from './photo-chat';
 import InputSearchComponent from './input/search';
@@ -84,6 +84,7 @@ export {
   ButtonComponent as Button,
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
+  InputTextAreaComponent as InputTextArea,
   ButtonIconComponent as ButtonIcon,
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
@@ -122,7 +123,6 @@ export {
   ArtistPostComponent as ArtistPost,
   PhotoChatComponent as PhotoChat,
   VideoPlayerComponent as VideoPlayer,
-  ChatComponent as Chat,
   SectionTitleComponent as SectionTitle,
   SearchResultSectionComponent as SearchResultSection,
   InputSearchComponent as InputSearch,

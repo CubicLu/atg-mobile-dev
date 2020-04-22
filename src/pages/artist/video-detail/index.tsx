@@ -6,34 +6,30 @@ import {
   ShareIcon,
   ButtonIcon,
   StarIcon,
-  Chat,
-  CloseIcon,
-  ChatMessageIcon
+  ChatMessageIcon,
+  PhotoChat
 } from '../../../components';
-import { ArtistInterface, Colors } from '../../../interfaces';
+import { ArtistInterface, Colors, CommentInterface } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { getArtistAPI, getArtistGalleryCommentsAPI } from '../../../actions';
 import { shadowTitle } from '../../../utils';
-import MinimizeIcon from '../../../components/icon/minimize';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
+  currentGalleryComments: CommentInterface[];
 }
-
-interface DispatchProps {
-  getArtistAPI: (username: string) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
-}
-
-interface MatchParams {
-  id: string;
-}
-
 interface State {
   readonly chatOpened: boolean;
   readonly chatExpanded: boolean;
+}
+interface DispatchProps {
+  getArtistAPI: (username: string) => void;
+  getArtistGalleryCommentsAPI: (videoId: number, username: string) => void;
+}
+interface MatchParams {
+  id: string;
 }
 interface Props
   extends StateProps,
@@ -44,7 +40,6 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
     super(props);
-
     this.state = {
       chatOpened: false,
       chatExpanded: false
@@ -52,10 +47,14 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.currentArtist == null) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
+    }
+  }
+  componentDidMount(): void {
+    this.props.getArtistGalleryCommentsAPI(0, 'pharrell-williams');
+    if (this.props.currentArtist === null) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 
@@ -104,10 +103,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   setChat(condition = false): void {
-    this.setState({ chatOpened: condition });
-    if (!condition) {
-      this.setState({ chatExpanded: false });
-    }
+    this.setState({ chatOpened: condition, chatExpanded: false });
   }
   expandChat(): void {
     this.setState({ chatExpanded: !this.state.chatExpanded });
@@ -115,60 +111,30 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
 
   renderButtons(): React.ReactNode {
     return (
-      <div className="row">
-        <div className="col s12 flex-justify-content-center buttons">
-          <ButtonIcon
-            color={Colors.orange}
-            icon={<StarIcon width={28} height={28} />}
-          />
-          <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
-          <ButtonIcon
-            styles={{ position: 'relative' }}
-            color={Colors.cyan}
-            icon={<ChatMessageIcon />}
-            onClick={this.setChat.bind(this, true)}
-            overlay={50}
-          />
-        </div>
+      <div className="flex-justify-content-center buttons">
+        <ButtonIcon
+          color={Colors.orange}
+          icon={<StarIcon width={28} height={28} />}
+        />
+        <div className="mx-1" />
+        <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
+        <div className="mx-1" />
+        <ButtonIcon
+          styles={{ position: 'relative' }}
+          color={Colors.cyan}
+          icon={<ChatMessageIcon />}
+          onClick={(): void => this.setChat(!this.state.chatOpened)}
+          overlay={50}
+        />
       </div>
     );
   }
-
-  renderChat(): React.ReactNode {
-    const { chatExpanded } = this.state;
-    const chevronClass = chatExpanded ? 'chevron-reverse' : 'chevron-normal';
-    const containerClass = chatExpanded ? 'chat-expanded' : '';
-    return (
-      <div className={`chat-container h-100 ${containerClass}`}>
-        <div className="row close">
-          <div className="mx-2 flex-justify-content-end">
-            <div className={`align-start ${chevronClass}`}>
-              <ButtonIcon
-                color={Colors.transparent}
-                icon={<MinimizeIcon />}
-                onClick={(): void => this.expandChat()}
-              />
-            </div>
-            <div className="align-end">
-              <ButtonIcon
-                color={Colors.transparent}
-                icon={<CloseIcon />}
-                onClick={(): void => this.setChat(false)}
-              />
-            </div>
-          </div>
-        </div>
-        <Chat />
-      </div>
-    );
-  }
-
   renderContent(): React.ReactNode {
     return (
-      <div className="content-container ">
-        {this.renderButtons()}
-        <div className="row mx-1">
-          <h1 className="f3">Happy</h1>
+      <>
+        <div className="row mt-2 mb-3 mx-3">
+          {this.renderButtons()}
+          <p className="f3">Happy</p>
           <p className="f6">
             Williams provided vocals for French duo Daft Punk’s 2013 album
             Random Access Memories, on the songs “Lose Yourself to Dance” and
@@ -178,13 +144,14 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             next single.
           </p>
         </div>
-      </div>
+      </>
     );
   }
 
   render(): React.ReactNode {
     return (
       <IonPage id="artist-videos-page">
+        <BackgroundImage default />
         <IonContent
           scrollY={true}
           scrollEvents={true}
@@ -192,30 +159,30 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <BackgroundImage default />
-          <div className="artist-video-detail-page space-between mb-50">
-            <VideoPlayer
-              onClickClose={(): void => {
-                this.props.history.goBack();
-              }}
-            />
-            {this.state.chatOpened ? this.renderChat() : this.renderContent()}
-            {!this.state.chatOpened && this.bottomTiles()}
-          </div>
+          <div className="mt-5" />
+          <VideoPlayer onClickClose={(): void => this.props.history.goBack()} />
+          {this.renderContent()}
+          {!this.state.chatOpened && this.bottomTiles()}
         </IonContent>
+
+        <PhotoChat
+          displayChat={this.state.chatOpened}
+          parentCallback={(): void => this.setChat(false)}
+          currentPostComments={this.props.currentGalleryComments}
+        />
       </IonPage>
     );
   }
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
+  const { currentArtist, currentGalleryComments } = artistAPI;
+  return { currentArtist, currentGalleryComments };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
-    updateSettingsProperty
+    getArtistGalleryCommentsAPI
   })(ArtistVideoDetailPage)
 );

@@ -25,7 +25,7 @@ class InputCodeComponent extends React.Component<Props, State> {
     return (
       <div className="enter-code-component">
         <div className="input-group">
-          <div className="input-group-area">
+          <div className="fluid">
             <input
               autoComplete="off"
               type="tel"

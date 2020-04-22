@@ -3,25 +3,23 @@ import { connect } from 'react-redux';
 import {
   Colors,
   CommentCoverInterface,
-  CommentInterface
+  CommentInterface,
+  Sizes
 } from '../../interfaces';
 import { ApplicationState } from '../../reducers';
 import { Button } from './../index';
 import { PostText, PostComment, InputText, PostCover } from '../index';
 import {
-  updateSettingsProperty,
   getCommunityCommentsAPI,
   getCommunityCommentsCoverAPI
 } from '../../actions';
 
 interface StateProps {
   currentPostComments: CommentInterface[] | null;
-  loading: boolean;
   currentPostCover: CommentCoverInterface;
 }
 
 interface DispatchProps {
-  updateSettingsProperty: (property: string, value: any) => void;
   getCommunityCommentsAPI: (postId) => void;
   getCommunityCommentsCoverAPI: (postId) => void;
 }
@@ -38,35 +36,41 @@ class ArtistPostComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const { currentPostComments, currentPostCover } = this.props;
     return (
-      <div>
+      <React.Fragment>
         <PostCover cover={currentPostCover} />
-        <PostText />
-        {!!currentPostComments &&
-          currentPostComments.map(
-            (data, i): React.ReactNode => {
-              return <PostComment comment={data} key={i} />;
-            }
-          )}
-        <div className="comment-input">
-          <InputText type={'text'} placeholder={'Start a message'} />
-          <Button label="Post" color={Colors.grayTransparent} bold={true} />
+        <PostText className="mx-2 mb-1" />
+
+        {currentPostComments?.map(
+          (data, i): React.ReactNode => (
+            <PostComment comment={data} key={i} />
+          )
+        )}
+
+        <div className="comment-input fluid flex-align-items-center">
+          <InputText
+            size={Sizes.sm}
+            className="f7 dark"
+            type={'text'}
+            placeholder={'Start a message'}
+          />
+          <span className="mb-1">
+            <Button label="Post" color={Colors.grayTransparent} bold={true} />
+          </span>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({ settings, communityAPI}: ApplicationState): StateProps => {
-  const { currentPostComments, loading, currentPostCover } = communityAPI;
+
+const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
+  const { currentPostComments, currentPostCover } = communityAPI;
   return {
     currentPostComments,
-    loading,
     currentPostCover
   };
 };
 
 export default connect(mapStateToProps, {
-  updateSettingsProperty,
   getCommunityCommentsAPI,
   getCommunityCommentsCoverAPI
 })(ArtistPostComponent);

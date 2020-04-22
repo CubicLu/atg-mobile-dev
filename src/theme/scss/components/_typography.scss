@@ -63,6 +63,13 @@ h6,.h6{ font-size: 16px }
     .neue{
         font-family: "Helvetica Neue";
     }
+    &.gray{
+        color: #7c8188;
+    }
+    &.reply{
+        color: #0e9ee2;
+        text-transform: uppercase;
+    }
 }
 .l05{ line-height: 0.5 !important }
 .l08{ line-height: 0.8 !important }

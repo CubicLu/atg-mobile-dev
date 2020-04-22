@@ -39,7 +39,9 @@ class AvatarComponent extends React.Component<Props> {
         style={{
           backgroundImage: `url(${image})`,
           width: width,
-          height: height
+          height: height,
+          minWidth: width,
+          minHeight: height
         }}
         className={`avatar ${type}`}
       >

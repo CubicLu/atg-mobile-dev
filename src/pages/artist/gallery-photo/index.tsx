@@ -43,7 +43,6 @@ interface StateProps {
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
   getArtistGalleryCommentsAPI: (photoId: number, username: string) => void;
   updateSettingsModal: (
     content: React.ReactNode,
@@ -91,20 +90,11 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     }
   };
 
-  callbackFunction = (childData: boolean, showHeader?: boolean): void => {
-    this.setState({ displayChat: childData });
-    if (showHeader) this.setState({ displayHeader: true });
-  };
-
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist === null
-    ) {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.getArtistAPI(nextProps.match.params.id);
     }
   }
-
   componentDidMount(): void {
     const {
       getArtistGalleryCommentsAPI,
@@ -197,6 +187,11 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     );
   };
 
+  callbackFunction = (childData: boolean, showHeader?: boolean): void => {
+    this.setState({ displayChat: childData });
+    if (showHeader) this.setState({ displayHeader: true });
+  };
+
   render(): React.ReactNode {
     const { match } = this.props;
     const imageSrc = this.getImage();
@@ -236,6 +231,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
             />
           </div>
         </IonContent>
+
         <PhotoChat
           displayChat={this.state.displayChat}
           parentCallback={this.callbackFunction}

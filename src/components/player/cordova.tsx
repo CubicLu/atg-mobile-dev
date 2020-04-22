@@ -108,6 +108,10 @@ class PlayerComponent extends React.Component<Props> {
       //song current is state.next and next is undefined,
       case ActionType.TOGGLE_CURRENT_NEXT_SONG:
         return this.actionToggleNextSong();
+      case ActionType.NEXT_SONG:
+        return this.clickPrevSong();
+      case ActionType.PREV_SONG:
+        return this.clickNextSong();
     }
   }
   actionToggleNextSong(): void {

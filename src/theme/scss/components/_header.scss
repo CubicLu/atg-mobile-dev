@@ -22,26 +22,6 @@
   &.header-top {
     top: 0;
   }
-  .default-button {
-    margin-top: $button-margin-top;
-    border-radius: 50%;
-    height: $header-button;
-    width: $header-button;
-    min-height: $header-button;
-    min-width: $header-button;
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &.dark {
-      background: #0000004d;
-    }
-    &.gold {
-      background: #fcc505;
-    }
-  }
   .start {
     float: left;
     display: flex;

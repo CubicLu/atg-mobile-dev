@@ -20,6 +20,7 @@ import ProfileVaultPage from './profile/vault';
 import CommunityPage from './community';
 import CommunityArtistPage from './community/artist';
 import CommunityPostPage from './community/post';
+import CommunityNewPostPage from './community/new-post';
 import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
 
@@ -97,6 +98,7 @@ export {
   CommunityPage,
   CommunityArtistPage,
   CommunityPostPage,
+  CommunityNewPostPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   RadioPage,

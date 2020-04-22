@@ -21,52 +21,50 @@ class CardPostComponent extends React.Component<Props> {
 
     return (
       <div
-        className="card post"
+        className="card post flex-column"
         style={{
           backgroundImage: `url(${this.props.post.image})`
         }}
       >
-        <div className="row ellipsis">
-          <ButtonIcon icon={<DotsThreeIcon />} />
+        <div className="px-2 fluid flex-compass east">
+          <div className="default-button dark">
+            <DotsThreeIcon />
+          </div>
         </div>
         <div className="row info">
-          <div className="col s12">
-            <div className="row">
-              <div
-                className="col s6 user"
-                onClick={(): void => {
-                  if (this.props.showUser)
-                    this.props.history.push(
-                      `/community/artist/${this.props.post.username}`
-                    );
-                }}
-              >
-                {this.props.showUser && (
-                  <>
-                    <Avatar
-                      image={this.props.post.avatar}
-                      type={ShapesSize.circle}
-                      width={42}
-                      height={42}
-                    />
-                    <label className="text-12 my-auto">
-                      {this.props.post.username}
-                    </label>
-                  </>
-                )}
-              </div>
-              <div className="col s6 button">
-                <ButtonIcon icon={<ShareLineIcon />} />
-                <ButtonIcon
-                  icon={<BalloonIcon />}
-                  label={this.props.post.commentsQuantity}
-                  onClick={(): void => {
-                    history.push(`/community/comments/${1}`);
-                  }}
+          <div
+            className="col s6 user"
+            onClick={(): void => {
+              if (this.props.showUser)
+                this.props.history.push(
+                  `/community/artist/${this.props.post.username}`
+                );
+            }}
+          >
+            {this.props.showUser && (
+              <>
+                <Avatar
+                  image={this.props.post.avatar}
+                  type={ShapesSize.circle}
+                  width={42}
+                  height={42}
                 />
-                <ButtonIcon icon={<HeartIcon />} />
-              </div>
-            </div>
+                <label className="text-12 my-auto">
+                  {this.props.post.username}
+                </label>
+              </>
+            )}
+          </div>
+          <div className="col s6 button">
+            <ButtonIcon icon={<ShareLineIcon />} />
+            <ButtonIcon
+              icon={<BalloonIcon />}
+              label={this.props.post.commentsQuantity}
+              onClick={(): void => {
+                history.push(`/community/comments/${1}`);
+              }}
+            />
+            <ButtonIcon icon={<HeartIcon />} />
           </div>
         </div>
       </div>

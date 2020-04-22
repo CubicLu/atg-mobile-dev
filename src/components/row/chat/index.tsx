@@ -10,6 +10,7 @@ interface Props {
   showDate?: boolean;
   colInfo?: number;
   colAvatar?: number;
+  className?: string;
 }
 
 class RowChatComponent extends React.Component<Props> {
@@ -25,7 +26,7 @@ class RowChatComponent extends React.Component<Props> {
     const { avatarSize, data, showDate } = this.props;
     const read = data.read ? '' : 'not-read';
     return (
-      <div className={`row my-1 mx-0  fluid flex-justify-content-end ${read}`}>
+      <div className={`row my-1 mx-0 fluid flex-justify-content-end ${read}`}>
         <div className="flex align-start">
           {this.props.showAvatar && (
             <Avatar
@@ -35,9 +36,9 @@ class RowChatComponent extends React.Component<Props> {
               image={data.avatar}
             />
           )}
-          <div className="ml-2 flex-column">
-            <span className="f6 bold">@{data.username}</span>
-            <span className="f5">{data.message}</span>
+          <div className={'ml-2 flex-column mt-05'}>
+            <span className="f7 bold l1 gray">@{data.username}</span>
+            <span className="f6 dark">{data.message}</span>
           </div>
         </div>
 

@@ -165,6 +165,11 @@
     &.rounded{
         border-radius: 10px;
     }
+    &.rounded-frame{
+        border-radius: 10px;
+        border: 1px solid #6d6e6f;
+        background-color: #fff;
+    }
 
     &.circle{
         border-radius: 50%;
@@ -224,13 +229,6 @@
                     margin-left: 5px;
                 }
             }
-        }
-
-        .ellipsis{
-            display: inline-flex;
-            justify-content: flex-end;
-            width: 92% !important;
-            margin-top: 16px;
         }
 
         .row{

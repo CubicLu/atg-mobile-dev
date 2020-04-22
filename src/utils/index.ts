@@ -41,6 +41,25 @@ export function focusInput(input: HTMLDivElement): void {
   });
 }
 
+export function convertIonicFileSrc(url: string): string {
+  if (!url) {
+    return url;
+  }
+  //@ts-ignore
+  const webviewUrl = window.WEBVIEW_SERVER_URL;
+
+  if (url.startsWith('/')) {
+    return webviewUrl + '/_app_file_' + url;
+  }
+  if (url.startsWith('file://')) {
+    return webviewUrl + url.replace('file://', '/_app_file_');
+  }
+  if (url.startsWith('content://')) {
+    return webviewUrl + url.replace('content:/', '/_app_content_');
+  }
+  return url;
+}
+
 export function hideKeyboard(): void {
   if (lockTabbar) return;
   hideTabs(false);

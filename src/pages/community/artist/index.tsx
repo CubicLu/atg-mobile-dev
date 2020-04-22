@@ -7,7 +7,8 @@ import {
   ButtonIcon,
   Button,
   ChatMessageIcon,
-  SectionTitle
+  SectionTitle,
+  HeaderOverlay
 } from './../../../components';
 import { ApplicationState } from './../../../reducers';
 import {
@@ -48,6 +49,7 @@ interface State {
 }
 
 class CommunityArtistPage extends React.Component<Props, State> {
+  private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
     super(props);
     this.state = { joined: false };
@@ -136,8 +138,12 @@ class CommunityArtistPage extends React.Component<Props, State> {
         >
           <div className="community m-4">&nbsp;</div>
         </Header>
-
-        <IonContent>
+        <IonContent
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
+        >
+          <HeaderOverlay ref={this.headerRef} />
           <div className={'community-page mt-3 content'}>
             {!joined && this.renderJoinButton()}
 

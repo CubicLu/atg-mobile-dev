@@ -191,7 +191,7 @@ class CommunityNewPostPage extends React.Component<Props, State> {
   }
   render(): React.ReactNode {
     return (
-      <IonPage id="community-new-post-page" className="community-post-page">
+      <IonPage id="community-new-post-page">
         <IonContent style={{ backgroundColor: '#fff' }}>
           {this.renderHeaderBar()}
 

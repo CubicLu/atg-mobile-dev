@@ -114,10 +114,6 @@ class ProfilePage extends React.Component<Props, State> {
       <>
         <BackgroundImage
           gradient="180deg,#652ddd,#2c0d5c"
-          backgroundTop={false}
-          backgroundBottom
-          backgroundBottomDark={false}
-          backgroundBottomOpacity={0.2}
           backgroundImage={
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background-2.png'
           }

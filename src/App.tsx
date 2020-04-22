@@ -54,7 +54,7 @@ export default class App extends React.Component {
       this.forceUpdate();
     });
     window.addEventListener('keyboardWillHide', (): void => {
-      window.cordova.plugins.Keyboard.isVisible && hideKeyboard();
+      window.Keyboard.isVisible && hideKeyboard();
     });
     window.addEventListener('keyboardWillShow', (): void => {
       showKeyboard();

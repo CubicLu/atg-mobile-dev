@@ -31,7 +31,9 @@ class VaultFilterSectionComponent extends React.Component<Props> {
           )}
         </div>
         {this.props.type === 'toggle' ? (
-          <InputToggle action={this.props.action} />
+          <div className="flex-justify-content-end">
+            <InputToggle action={this.props.action} />
+          </div>
         ) : (
           <div className={'mt-1'} style={{ display: 'inline-block' }}>
             {this.props.selectedChips?.map(

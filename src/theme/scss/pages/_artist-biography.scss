@@ -16,6 +16,7 @@
         display: block;
         min-height: 240px;
         max-height: 360px;
+        height: 240px;
     }
     .footer{
         min-height: 45px;
@@ -77,12 +78,10 @@
             padding-right: 4px;
             font-size: 24px;
         }
-        .article{
-            margin-top: 32px;
-        }
         .sky{
             min-height: 375px;
             max-height: 375px;
+            height: 375px;
         }
     }
 

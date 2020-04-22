@@ -1,9 +1,6 @@
 import React from 'react';
 
-interface StateProps {}
-interface Props extends StateProps {}
-
-class PulsatingDot extends React.Component<Props> {
+export default class PulsatingDotComponent extends React.Component<{}> {
   render(): React.ReactNode {
     return (
       <div className="ring-container">
@@ -13,5 +10,3 @@ class PulsatingDot extends React.Component<Props> {
     );
   }
 }
-
-export default PulsatingDot;

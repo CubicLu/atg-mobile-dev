@@ -178,16 +178,16 @@ ion-reorder{
 ion-app {
     &.hide-tabs {
         .mini-player {
-            display: none;
+            display: none !important;
         }
         ion-tab-bar {
-            display: none;
+            display: none !important;
         }
     }
 }
 .ion-color{
     &.ion-color-dark {
-        --ion-color-base: var(--ion-color-dark, #070707) !important;
+        --ion-color-base: var(--ion-color-dark, #0c090b) !important;
     }
 }
 

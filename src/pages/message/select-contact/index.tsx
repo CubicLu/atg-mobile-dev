@@ -14,7 +14,7 @@ import {
   Header,
   BackgroundImage,
   InputSearch,
-  MenuTabs
+  MenuMessage
 } from '../../../components';
 import {
   updateProfileProperty,
@@ -89,9 +89,10 @@ class SelectContactPage extends React.Component<Props, State> {
 
     return (
       <menu.component
-        showComboBox={true}
-        showRemove={false}
+        showComboBox={menu.id === 'friends'}
         showButtonPending={menu.id === 'friends'}
+        showRemove={false}
+        sliding={false}
         data={this.props[variables[menu.id]]}
         onSelect={(event, data): void => this.toggleSelect(event, data)}
       />
@@ -143,7 +144,7 @@ class SelectContactPage extends React.Component<Props, State> {
               />
             </div>
 
-            <MenuTabs
+            <MenuMessage
               activeId={activeSelectContactTab}
               tabs={selectContactTabs}
               onClick={(data): void =>

@@ -66,7 +66,7 @@ export function hideKeyboard(): void {
 }
 export function showKeyboard(): void {
   if (lockTabbar) return;
-  window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  window.Keyboard.hideFormAccessoryBar(true);
   hideTabs(true);
 }
 export function didShowKeyboard(): void {

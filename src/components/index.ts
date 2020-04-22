@@ -10,7 +10,8 @@ import CardArtistComponent from './card/artist';
 import CardMixtapesComponent from './card/mixtapes';
 import SliderMixtapesComponent from './slider/mixtapes';
 import PlayerComponent from './player/cordova';
-import CordovaListComponent from './player/cordova-list';
+import PlayerHTML5Component from './player';
+import CordovaMediaComponent from './player/cordova-media';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
@@ -32,10 +33,8 @@ import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import SliderStoriesComponent from './slider/stories';
 import CardPostComponent from './card/post';
-import PostCoverComponent from './post/post-cover';
 import PostTextComponent from './post/post-text';
 import PostCommentsComponent from './post/post-comments';
-import ArtistPostComponent from './post';
 import SectionTitleComponent from './section-title';
 import VideoPlayerComponent from './video-player';
 import SearchResultSectionComponent from './search-result-section';
@@ -44,9 +43,8 @@ import InputSearchComponent from './input/search';
 import MenuMessageComponent from './menu/message';
 import RadioPlayerComponent from './radio-player';
 import RadioPauseButtonComponent from './icon/radio-pause';
-import PulsatingDot from './pulsating-dot';
+import PulsatingDotComponent from './pulsating-dot';
 import RowChatComponent from './row/chat';
-import MenuTabsComponent from './menu/tabs';
 import RowUserComponent from './row/user';
 import ListUserComponent from './list/user';
 import InputComboBoxComponent from './input/combo-box';
@@ -93,7 +91,8 @@ export {
   CardMixtapesComponent as CardMixtapes,
   SliderMixtapesComponent as SliderMixtapes,
   PlayerComponent as Player,
-  CordovaListComponent as CordovaList,
+  PlayerHTML5Component as PlayerHTML5,
+  CordovaMediaComponent as CordovaList,
   HeaderComponent as Header,
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
@@ -117,10 +116,8 @@ export {
   ButtonSupportComponent as ButtonSupport,
   SliderStoriesComponent as SliderStories,
   CardPostComponent as CardPost,
-  PostCoverComponent as PostCover,
   PostTextComponent as PostText,
   PostCommentsComponent as PostComment,
-  ArtistPostComponent as ArtistPost,
   PhotoChatComponent as PhotoChat,
   VideoPlayerComponent as VideoPlayer,
   SectionTitleComponent as SectionTitle,
@@ -130,7 +127,6 @@ export {
   RadioPlayerComponent as RadioPlayer,
   RadioPauseButtonComponent as RadioPauseButton,
   RowChatComponent as RowChat,
-  MenuTabsComponent as MenuTabs,
   RowUserComponent as RowUser,
   ListUserComponent as ListUser,
   InputComboBoxComponent as InputComboBox,
@@ -138,6 +134,7 @@ export {
   InputToggleComponent as InputToggle,
   InputChipComponent as InputChip,
   NavBarTwoButtonsComponent as NavbarTwoButtons,
+  PulsatingDotComponent as PulsatingDot,
   CardGenreComponent as CardGenre,
   InputCheckboxComponent as InputCheckbox,
   SubGenreModalComponent as SubGenreModal
@@ -156,6 +153,5 @@ export {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeMoonLightImage,
-  MixtapeRebelRockImage,
-  PulsatingDot
+  MixtapeRebelRockImage
 };

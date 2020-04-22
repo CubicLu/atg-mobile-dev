@@ -25,7 +25,7 @@ export default class PhotoChatComponent extends React.Component<Props> {
   renderHeader(): React.ReactNode {
     const chevron = this.chatExpanded ? 'chevron-reverse' : 'chevron-normal';
     return (
-      <div className="row header px-1 flex">
+      <div className="mb-1 header px-1 flex">
         <div className={`align-start ${chevron}`}>
           <ButtonIcon
             color={Colors.transparent}

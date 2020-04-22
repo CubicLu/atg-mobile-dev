@@ -35,7 +35,7 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistGalleryPage extends React.Component<Props, {}> {
+class ArtistGalleryPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {

@@ -11,6 +11,7 @@ interface Props {
   colInfo?: number;
   colAvatar?: number;
   className?: string;
+  dark: boolean;
 }
 
 class RowChatComponent extends React.Component<Props> {
@@ -20,11 +21,14 @@ class RowChatComponent extends React.Component<Props> {
     showAvatar: true,
     showDate: false,
     colInfo: 8,
-    colAvatar: 2
+    colAvatar: 2,
+    dark: false
   };
   render(): React.ReactNode {
     const { avatarSize, data, showDate } = this.props;
     const read = data.read ? '' : 'not-read';
+    const grayUser = this.props.dark ? 'gray' : '';
+    const darkText = this.props.dark ? 'dark' : '';
     return (
       <div className={`row my-1 mx-0 fluid flex-justify-content-end ${read}`}>
         <div className="flex align-start">
@@ -36,9 +40,9 @@ class RowChatComponent extends React.Component<Props> {
               image={data.avatar}
             />
           )}
-          <div className={'ml-2 flex-column mt-05'}>
-            <span className="f7 bold l1 gray">@{data.username}</span>
-            <span className="f6 dark">{data.message}</span>
+          <div className={'ml-1 flex-column'}>
+            <span className={`f6 bold ${grayUser}`}>@{data.username}</span>
+            <span className={`f5 ${darkText}`}>{data.message}</span>
           </div>
         </div>
 

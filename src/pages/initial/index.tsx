@@ -25,7 +25,7 @@ class InitialPage extends React.Component<Props> {
         />
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
-            <div className="row h-25">
+            <div className="h-25">
               <div className="brand-title">panthr</div>
               <div className="mx-25 h2 bold">ARTIST-TO-FAN</div>
             </div>
@@ -41,8 +41,8 @@ class InitialPage extends React.Component<Props> {
               </span>
             </div>
 
-            <div className="footer row fluid">
-              <div className="row">
+            <div className="footer fluid h-16">
+              <div className="pb-1">
                 <IonRouterLink routerLink="/sign-in" routerDirection="forward">
                   <Button
                     size={Sizes.lg}
@@ -52,7 +52,7 @@ class InitialPage extends React.Component<Props> {
                   />
                 </IonRouterLink>
               </div>
-              <div className="row">
+              <div className="pb-2">
                 <IonRouterLink routerLink="/sign-up" routerDirection="forward">
                   <Button
                     size={Sizes.lg}

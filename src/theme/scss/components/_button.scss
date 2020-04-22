@@ -6,6 +6,27 @@
     min-width: 28px;
     padding: 0;
   }
+  &.medium{
+    height: 36px !important;
+    min-height: 36px !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    padding: 0;
+  }
+  &.large{
+    height: 40px !important;
+    min-height: 40px !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    padding: 0;
+  }
+  &.xlarge{
+    height: 42px !important;
+    min-height: 42px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    padding: 0;
+  }
   &:hover {
     box-shadow: none;
   }

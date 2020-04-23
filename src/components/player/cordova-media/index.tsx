@@ -23,32 +23,18 @@ import {
 declare global {
   interface Window {
     MusicControls: any;
-    Media: any;
-    cordovaList: MediaType[];
+    Media: MediaType | any;
   }
 }
 
 class CordovaMediaComponent extends React.Component<Props> {
-  cordovaList: MediaType[] = [];
   seeking: boolean = false;
   hasControls: boolean = false;
-  MEDIA_MSG = [
-    'None',
-    'Starting',
-    'Running',
-    'Paused',
-    'Stopped',
-    'Ended',
-    'FadingOut'
-  ];
   playOptions = {
     playAudioWhenScreenIsLocked: true,
     numberOfLoops: 1
   };
 
-  componentDidMount(): void {
-    window.cordovaList = this.cordovaList;
-  }
   componentDidUpdate(oldProps: Props): void {
     switch (this.props.playerAction) {
       case ActionType.SET_PLAYLIST:
@@ -86,7 +72,7 @@ class CordovaMediaComponent extends React.Component<Props> {
   actionSetPlaylist(): void {}
 
   actionPauseSong(): void {
-    this.cordovaList.forEach((song): void => song.pause());
+    window.Media.list().forEach((song): void => song.pause());
     this.musicControlsUpdate();
   }
   actionResumeSong(): void {
@@ -107,22 +93,24 @@ class CordovaMediaComponent extends React.Component<Props> {
     this.mainSong?.play(this.playOptions);
   }
   get mainSong(): MediaType | undefined {
-    return this.cordovaList.find((media): boolean => this.isCurrent(media));
+    return (
+      this.props.song?.id &&
+      window.Media.getByMediaId(this.props.song.id.toString())
+    );
   }
   get nextSong(): MediaType | undefined {
-    return this.cordovaList.find((media): boolean => this.isNext(media));
+    return (
+      this.props.next?.id &&
+      window.Media.getByMediaId(this.props.next.id.toString())
+    );
   }
   get runningSong(): MediaType[] {
-    const r = MediaStatusCallback.MEDIA_RUNNING;
-    return this.cordovaList.filter((x): boolean => x.getMediaState() === r);
+    return window.Media.running();
   }
   isCurrent(media: MediaType): boolean {
-    return media?.getMediaId() === this.props.song?.id;
+    return media.getMediaId() === this.props.song?.id;
   }
-  isNext(media: MediaType): boolean {
-    return media?.getMediaId() === this.props.next?.id;
-  }
-  positionCallback(remaining: number, media: MediaType): void {
+  positionCallback(remaining, media: MediaType): void {
     const position = media.getPosition() || 0;
     this.isCurrent(media) &&
       !isNaN(position) &&
@@ -146,12 +134,10 @@ class CordovaMediaComponent extends React.Component<Props> {
         console.log('Media Paused', media.id, media.src);
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
-        console.log('Media Stopped by user', media.id, media.src);
-        this.mediaCallbackStopped();
+        this.mediaCallbackEnded(media);
         break;
       case MediaStatusCallback.MEDIA_ENDED:
-        console.log('Media Ended', media.id, media.src);
-        this.mediaCallbackEnded();
+        this.mediaCallbackEnded(media);
         break;
       case MediaStatusCallback.MEDIA_FADING_OUT:
         console.log('Media FadingOut', media.id, media.src);
@@ -161,11 +147,8 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
     }
   }
-  mediaCallbackStopped(): void {
-    console.log(this.cordovaList.map((x): string => x.getState()));
-  }
-  mediaCallbackEnded(): void {
-    console.log(this.cordovaList.map((x): string => x.getState()));
+  mediaCallbackEnded(media): void {
+    console.log('song finished and ended', media.getMediaId(), media.src);
 
     if (this.runningSong!.length === 0) {
       console.log('no Running songs! pausing player');
@@ -193,9 +176,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     fadeIn: boolean = true,
     fadeOut: boolean = true
   ): void {
-    var instance = this.cordovaList.find(
-      (x): boolean => x.getMediaId() === song.id
-    );
+    var instance = window.Media.getByMediaId(song.id.toString());
     //first check if already exists...
     if (instance) {
       instance.getPosition() > 0 && instance.seekTo(0);
@@ -208,8 +189,8 @@ class CordovaMediaComponent extends React.Component<Props> {
     }
     const newInstance = new window.Media(
       song.url,
-      (): void => console.log('success', newInstance.getMediaId(), newInstance),
-      (): void => console.log('error', newInstance.getMediaId(), newInstance),
+      null,
+      null,
       (status): void => this.statusCallback(status, newInstance),
       (position): void => this.positionCallback(position, newInstance)
     ) as MediaType;
@@ -217,7 +198,6 @@ class CordovaMediaComponent extends React.Component<Props> {
     newInstance.setFadeIn(fadeIn);
     newInstance.setFadeOut(fadeOut);
     newInstance.setFadeTime(8);
-    this.cordovaList.push(newInstance);
   }
   mediaControlCreate(): void {
     const options = {

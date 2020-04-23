@@ -613,11 +613,12 @@ export interface SubEraInterface {
 }
 
 export interface MediaType {
-  updateInterval: number;
   getDuration(): number;
   getPosition(): number;
   getMediaState(): number;
   getState(): string;
+  getByMediaId(id: string): any;
+  list(): MediaType[];
   running(): any;
   primary(): any;
   getPaused(): boolean;
@@ -642,19 +643,15 @@ export interface MediaType {
   updatePosition(): void;
   updateAudioPosition(): void;
   getVolume(): number;
-  getPrimary(): boolean;
-  setPrimary(value: boolean): void;
   play(iosPlayOptions?: any): void;
   pause(): void;
   release(): void;
   seekTo(position: number): void;
   setVolume(volume: number): void;
   stop(): void;
-  position: number;
-  duration: number;
-  mediaState: number;
-  id: any;
+  id: string;
   src: string;
+  updateInterval: number;
 }
 export interface CameraOptions {
   quality?: number; // Picture quality in range 0-100. Default is 50

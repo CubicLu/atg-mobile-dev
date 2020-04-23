@@ -90,7 +90,7 @@ interface DispatchProps {
 }
 declare global {
   interface Window {
-    cordovaList: MediaType[];
+    Media: MediaType | any;
   }
 }
 interface Props extends StateProps, DispatchProps {}
@@ -131,14 +131,11 @@ class PlayerComponent extends React.Component<Props> {
     return this.props.loadNextSong(list[next]);
   }
   get mainSong(): MediaType | undefined {
-    const songId = this.props.song?.id;
-    return window.cordovaList?.find((m): boolean => m?.getMediaId() === songId);
+    return window.Media.getByMediaId(this.props.song?.id.toString());
   }
-
   currentIndex(list: SongInterface[]): number {
     return list.findIndex((x): any => x.id === this.props.song?.id);
   }
-
   clickPrevSong(): void {
     if (!this.props.paused && this.elapsed > 2) {
       return this.props.seekSongPosition(0);

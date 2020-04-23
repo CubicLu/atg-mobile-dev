@@ -145,7 +145,7 @@ class CommunityNewPostPage extends React.Component<Props, State> {
           (post, id): React.ReactElement => (
             <CardImage
               className="no-shadow"
-              canRemove={true}
+              canRemove={false}
               removeAction={(): void => this.removeImage(post.fileUrl)}
               selected={post.selected}
               selectAction={(): void => this.selectImage(post.fileUrl)}

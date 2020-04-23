@@ -48,7 +48,6 @@ class ButtonComponent extends React.Component<Props> {
     } = this.props;
     let pattern = this.props.gradient ? 'gradient ' : '';
     pattern += this.props.bold ? 'bold ' : '';
-    pattern += this.props.size !== Sizes.md && Sizes.lg ? 'large ' : '';
     pattern += this.props.className ? this.props.className : ' ';
     if (this.props.gradient) {
       pattern += ' ';

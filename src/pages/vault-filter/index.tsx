@@ -8,7 +8,7 @@ import {
   HeaderOverlay,
   VaultFilterSection
 } from '../../components';
-import { Colors, ShapesSize } from '../../interfaces';
+import { Colors, ShapesSize, Sizes } from '../../interfaces';
 
 interface Props extends RouteComponentProps {}
 
@@ -64,11 +64,11 @@ class VaultFilterPage extends React.Component<Props> {
                   selectedChips={['90s', '80s', '70s', '60s', '50s', '40s']}
                 />
                 <Button
+                  size={Sizes.full}
+                  label="Reset"
+                  type={ShapesSize.full}
                   color={Colors.tertiary}
-                  label={'Reset'}
                   gradient
-                  type={ShapesSize.rounded}
-                  className={'ml-1 mt-5'}
                 />
               </div>
             </div>

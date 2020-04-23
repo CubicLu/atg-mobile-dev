@@ -1,26 +1,26 @@
 .btn {
-  &.small{
+  &.small {
     height: 28px;
     min-height: 28px;
     width: 28px;
     min-width: 28px;
     padding: 0;
   }
-  &.medium{
+  &.medium {
     height: 36px !important;
     min-height: 36px !important;
     width: 36px !important;
     min-width: 36px !important;
     padding: 0;
   }
-  &.large{
+  &.large {
     height: 40px !important;
     min-height: 40px !important;
     width: 40px !important;
     min-width: 40px !important;
     padding: 0;
   }
-  &.xlarge{
+  &.xlarge {
     height: 42px !important;
     min-height: 42px !important;
     width: 42px !important;
@@ -277,7 +277,7 @@
   }
 }
 .btn-close {
-  svg{
+  svg {
     background: #fe0000;
     border-radius: 50%;
     border: 4px solid #fe0000;

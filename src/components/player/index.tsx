@@ -130,9 +130,6 @@ class PlayerComponent extends React.Component<Props> {
     const next = current < list.length - 1 ? current + 1 : 0;
     return this.props.loadNextSong(list[next]);
   }
-  get mainSong(): MediaType | undefined {
-    return window.Media.getByMediaId(this.props.song?.id.toString());
-  }
   currentIndex(list: SongInterface[]): number {
     return list.findIndex((x): any => x.id === this.props.song?.id);
   }
@@ -239,7 +236,7 @@ class PlayerComponent extends React.Component<Props> {
             onClick={(e): Promise<void> => this.togglePlayer(e)}
           />
           <div
-            className="flex-compass fluid"
+            className="mini-bar-content flex-compass fluid"
             onClick={(e): Promise<void> => this.togglePlayer(e)}
           >
             <span className="mini-bar-text f7">{song?.title}</span>
@@ -272,7 +269,7 @@ class PlayerComponent extends React.Component<Props> {
     return this.props.timeElapsed || 0;
   }
   get duration(): number {
-    return this.mainSong?.getDuration() || this.props.song?.duration || 300;
+    return this.props.song?.duration || 300;
   }
   mainControls(): React.ReactNode {
     const { playing, song } = this.props;

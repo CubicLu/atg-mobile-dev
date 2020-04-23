@@ -292,6 +292,9 @@
             min-width: 90px;
             height: $default-height-player;
         }
+        .mini-bar-content{
+            overflow: hidden;
+        }
         .mini-bar-text{
                 height: 15px;
                 white-space: nowrap;

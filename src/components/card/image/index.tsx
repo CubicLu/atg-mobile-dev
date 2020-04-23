@@ -64,7 +64,7 @@ class CardImageComponent extends React.Component<Props> {
             )}
 
             {this.props.selected !== undefined && (
-              <div className="flex-compass south east p-1 mt-2">
+              <div className={'flex-compass south east p-1 mt-1'}>
                 <IonCheckbox
                   mode="ios"
                   color="secondary"

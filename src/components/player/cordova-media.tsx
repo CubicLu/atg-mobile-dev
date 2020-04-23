@@ -169,6 +169,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     );
   }
   mediaCallbackStopped(media: MediaType): void {
+    console.log(media);
     // media.stop();
     // media.release();
   }

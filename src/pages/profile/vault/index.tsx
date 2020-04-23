@@ -14,8 +14,6 @@ class ProfileVaultPage extends React.Component<Props> {
   render(): React.ReactNode {
     const { history, isFriend } = this.props;
     const clickArtist = (): void => history.push('/artist/pharrell-williams');
-    const clickSupport = (): void =>
-      history.push('/artist/pharrell-williams/support');
     return (
       <IonContent>
         <div className="profile-vault-page">
@@ -168,9 +166,6 @@ class ProfileVaultPage extends React.Component<Props> {
                     supported={data.artist.support}
                     supportButtonIcon={true}
                     songAction={clickArtist}
-                    expandAction={
-                      data.artist.support ? clickSupport : undefined
-                    }
                   />
                 );
               }

@@ -12,7 +12,7 @@ import {
   getArtistAPI,
   setCurrentGallery,
   updateSettingsProperty
-} from '../../../actions';
+} from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 

@@ -5,14 +5,20 @@ import {
   Header,
   PhotoChat
 } from './../../../components';
-import { IonContent, IonPage, IonImg } from '@ionic/react';
+import {
+  IonContent,
+  IonPage,
+  IonImg,
+  Gesture,
+  GestureConfig
+} from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import {
   getArtistAPI,
   updateSettingsProperty,
   getArtistGalleryCommentsAPI,
-  updateSettingsModal,
   setCurrentGallery,
+  updateSettingsModal,
   setFullscreenImage,
   clearFullscreenImage
 } from '../../../actions';
@@ -67,6 +73,7 @@ interface Props
 
 class ArtistGalleryPhotoPage extends React.Component<Props, State> {
   private image: React.RefObject<HTMLDivElement>;
+  swipeGesture: Gesture | undefined;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -111,6 +118,49 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     if (!currentGallery) {
       setCurrentGallery(+match.params.galleryId);
     }
+    this.createSwipeGesture();
+  }
+
+  changePage = (increase?: boolean): void => {
+    const { match, history, setFullscreenImage } = this.props;
+    const resultIndex = increase
+      ? +match.params.imageId + 1
+      : +match.params.imageId - 1;
+    history.push(
+      `/artist/${match.params.id}/gallery/${match.params.galleryId}/image/${resultIndex}`
+    );
+    setFullscreenImage(resultIndex);
+  };
+
+  onSwipe = (gesture: any): void => {
+    let position = gesture.deltaX;
+    let id = Number(this.props.match.params.imageId);
+    let galleryLength = this.props.currentGallery?.length || 0;
+
+    if (position > 0) {
+      if (id !== 0) {
+        this.changePage(false);
+      }
+    } else if (position < 0) {
+      if (galleryLength !== id) {
+        this.changePage();
+      }
+    }
+  };
+
+  createSwipeGesture(): void {
+    const image = document.querySelector('#gallery-image-gesture');
+    if (!image) return;
+    const gestureConfigGesture: GestureConfig = {
+      el: image,
+      direction: 'x',
+      gestureName: 'swipeImageGalleryGesture',
+      gesturePriority: 20,
+      passive: true,
+      onEnd: this.onSwipe
+    };
+    this.swipeGesture = createGesture(gestureConfigGesture);
+    this.swipeGesture.enable();
   }
 
   componentDidUpdate(): void {
@@ -133,13 +183,23 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     }
   }
 
-  componentWillUnmount(): void {
-    this.props.clearFullscreenImage();
+  getImage(): any {
+    if (this.props.currentGallery !== null) {
+      let gallery = this.props.currentGallery;
+      let imageObj = gallery[this.props.match.params.imageId];
+      if (imageObj !== undefined) {
+        let image = imageObj.image;
+        if (image !== undefined) {
+          return image;
+        } else {
+          return;
+        }
+      }
+    }
   }
 
-  getImage(): any {
-    const { currentGallery, match } = this.props;
-    return currentGallery?.[+match.params.imageId]?.image;
+  componentWillUnmount(): void {
+    this.props.clearFullscreenImage();
   }
 
   handleScroll(event: CustomEvent<any>): void {
@@ -147,17 +207,6 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     if (!currentScroll.validScroll) return;
     this.setState({ displayHeader: !currentScroll.blur });
   }
-
-  changePage = (increase?: boolean): void => {
-    const { match, history, setFullscreenImage } = this.props;
-    const resultIndex = increase
-      ? +match.params.imageId + 1
-      : +match.params.imageId - 1;
-    history.push(
-      `/artist/${match.params.id}/gallery/${match.params.galleryId}/image/${resultIndex}`
-    );
-    setFullscreenImage(resultIndex);
-  };
 
   showFullScreenModal = (): void => {
     const { currentGallery, setFullscreenImage, match } = this.props;

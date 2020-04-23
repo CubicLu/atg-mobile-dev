@@ -83,7 +83,8 @@ export enum ActionType {
   GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE',
   TOGGLE_NAVBAR_TWOACTIONS = 'TOGGLE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
-  UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY'
+  UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
+  SET_CURRENT_GALLERY = 'SET_CURRENT_GALLERY'
 }
 
 export interface TabsInterface {
@@ -222,6 +223,7 @@ export interface MixtapeInterface {
 export interface ArtistReducerType {
   artists: ArtistInterface[];
   event: EventInterface | null;
+  currentGallery: GalleryImageInterface[] | null;
   currentArtist: ArtistInterface | null;
   currentGallery: GalleryImageInterface[] | null;
   fullScreenImage: string | null;
@@ -670,4 +672,20 @@ export interface Camera {
     cameraError: (message: string) => void,
     cameraOptions?: CameraOptions
   ): void;
+}
+export interface ActionCallbackInterface<T> {
+  type: ActionType;
+  payload?: T;
+}
+
+export interface GalleryImageInterface {
+  image: string;
+}
+
+export interface GalleryIdInterface {
+  galleryId: number;
+}
+
+export interface GalleryImageIndexInterface {
+  index: number;
 }

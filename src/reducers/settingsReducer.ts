@@ -148,7 +148,7 @@ const defaultState: SettingsReducerType = {
     {
       id: 'gallery',
       label: 'Photos',
-      icon: 'g',
+      icon: 'p',
       isPage: true,
       route: '/artist/:id/gallery'
     },

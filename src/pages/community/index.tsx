@@ -83,6 +83,9 @@ class CommunityPage extends React.Component<Props> {
                   labelKey="label"
                   imageKey="image"
                   data={this.props.stories}
+                  onPressItem={(): void => {
+                    hist.push('/community/artist/pharrell-williams');
+                  }}
                 />
               </React.Fragment>
             )}

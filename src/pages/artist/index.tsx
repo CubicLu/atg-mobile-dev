@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import {
-  IonContent,
-  IonPage,
-  createAnimation,
-  withIonLifeCycle
-} from '@ionic/react';
+import { IonContent, IonPage, createAnimation } from '@ionic/react';
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
@@ -274,6 +269,4 @@ const mapStateToProps = ({
   return { currentArtist, artistTabs, loading };
 };
 
-export default connect(mapStateToProps, { getArtistAPI })(
-  withIonLifeCycle(ArtistPage)
-);
+export default connect(mapStateToProps, { getArtistAPI })(ArtistPage);

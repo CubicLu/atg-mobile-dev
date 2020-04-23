@@ -11,9 +11,6 @@ interface Props extends RouteComponentProps {
 }
 
 class VaultFilterSectionComponent extends React.Component<Props> {
-  removeElement(i: number): void {
-    this.props.selectedChips?.splice(i, 1);
-  }
   render(): React.ReactNode {
     return (
       <div className={'vault-filter row'}>
@@ -23,7 +20,9 @@ class VaultFilterSectionComponent extends React.Component<Props> {
             <div
               style={{ position: 'absolute', right: 32 }}
               onClick={(): void =>
-                this.props.history.push('/vault-filter/genre')
+                this.props.label === 'Show by Genre'
+                  ? this.props.history.push('/vault-filter/genre')
+                  : this.props.history.push('/vault-filter/era')
               }
             >
               <ArrowRightIcon />
@@ -37,11 +36,14 @@ class VaultFilterSectionComponent extends React.Component<Props> {
         ) : (
           <div className={'mt-1'} style={{ display: 'inline-block' }}>
             {this.props.selectedChips?.map(
-              (chip: string, i: number): React.ReactNode => (
+              (chip: string, i): React.ReactNode => (
                 <InputChip
                   key={i}
                   label={chip}
-                  action={this.removeElement(i)}
+                  action={(): void => {
+                    this.props.selectedChips?.splice(i, 1);
+                    this.forceUpdate();
+                  }}
                 />
               )
             )}

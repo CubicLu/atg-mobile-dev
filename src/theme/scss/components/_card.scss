@@ -1,25 +1,55 @@
-.card-artist{
-    height: 140px;
+.card-artist {
+  height: 140px;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  border-radius: 10px;
+  -moz-box-shadow: inset 0 -45px 30px -20px #000000;
+  -webkit-box-shadow: inset 0 -45px 30px -20px #000000;
+  box-shadow: inset 0 -45px 30px -20px #000000;
+
+  .artist-card-name {
+    display: inline-block;
+    border-bottom: 1px solid #fff;
+  }
+}
+.card {
+  &.image {
+    margin: 0.5rem 0 0.5rem 0 !important;
+    height: 165px;
+    min-height: 165px;
+    min-width: 165px;
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    border-radius: 10px;
-    -moz-box-shadow: inset 0 -45px 30px -20px #000000;
-    -webkit-box-shadow: inset 0 -45px 30px -20px #000000;
-    box-shadow: inset 0 -45px 30px -20px #000000;
-
-    .artist-card-name{
-        display:inline-block;
-        border-bottom:1px solid #FFF;
+  }
+  &.mixtapes {
+    background: transparent;
+    position: relative;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 16px;
+    .row {
+      margin-bottom: 0 !important;
     }
-}
-.card{
-    &.image{
-        margin: 0.5rem 0 0.5rem 0 !important;
-        height: 165px;
-        min-height: 165px;
-        min-width: 165px;
+    .tape {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      margin: 0 auto;
+      border-radius: 50%;
+      -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+      .background {
         background-repeat: no-repeat;
         background-position-x: center;
         background-position-y: center;
@@ -27,141 +57,113 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-    }
-    &.mixtapes{
-        background: transparent;
+        top: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        border: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        button {
+          padding: 10px;
+          height: 50px;
+          width: 50px;
+        }
+
+        &.without-menu {
+          button:first-child {
+            margin-top: 0px;
+          }
+        }
+        button:first-child {
+          margin-top: 40px;
+        }
+
+        .buttons {
+          button {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+          }
+          button:first-child {
+            margin-top: 0;
+          }
+          @include on-circle(
+            $item-count: 4,
+            $circle-size: 100px,
+            $item-size: 35px
+          );
+        }
+      }
+
+      &::before {
+        content: attr(data-tapeindex) ".";
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.5);
         position: relative;
-        margin: 0;
-        box-shadow: none;
-        border-radius: 0;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 16px;
-        .row{
-            margin-bottom: 0 !important;
-        }
-        .tape{
-            position: relative;
-            height: 200px;
-            width: 200px;
-            margin: 0 auto;
-            border-radius: 50%;
-            -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-            .background{
-                background-repeat: no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;
-                top: 0;
-                position: absolute;
-                left: 0;
-                right: 0;
-                border: 0;
-                height: 100%;
-                width: 100%;
-                border-radius: 50%;
-                justify-content: center;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                button {
-                    padding: 10px;
-                    height: 50px;
-                    width: 50px;
-                }
-
-                &.without-menu{
-                    button:first-child{
-                        margin-top: 0px;
-                    }
-                }
-                button:first-child{
-                    margin-top: 40px;
-                }
-
-                .buttons{
-                    button{
-                        width: 35px;
-                        height: 35px;
-                        padding: 0;
-                    }
-                    button:first-child{
-                        margin-top: 0;
-                    }
-                    @include on-circle($item-count: 4, $circle-size: 100px, $item-size: 35px);
-                }
-
-            }
-
-            &::before{
-                content: attr(data-tapeindex) ".";
-                display: inline-block;
-                color: rgba(255, 255, 255, 0.5);
-                position: relative;
-                right: 18px;
-                bottom: 10px;
-            }
-
-
-        }
+        right: 18px;
+        bottom: 10px;
+      }
     }
-    &.video{
-        margin: 0.5rem 0 0.5rem 0 !important;
-        height: 170px;
-        width: 280px;
-        background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+  }
+  &.video {
+    margin: 0.5rem 0 0.5rem 0 !important;
+    height: 170px;
+    width: 280px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
-        &::after{
-            content: attr(data-time);
-            background: #000;
-            height: 20px;
-            width: 100%;
-            font-size: 12px;
-            white-space: nowrap;
-            max-width: 48px;
-            padding: 1px 4px;
-            text-align: center;
-            color: #FFF;
-            display: block;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-
-        &.rounded{
-            &::after{
-                border-top-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-        }
-
-        
-        &.sm{
-            height: 110px;
-            width: 190px;
-        }
-
-        &.lg{
-            height: 185px;
-        }
-
-        &.full{
-            width: 100%;
-        }
-
+    &::after {
+      content: attr(data-time);
+      background: #000;
+      height: 20px;
+      width: 100%;
+      font-size: 12px;
+      white-space: nowrap;
+      max-width: 48px;
+      padding: 1px 4px;
+      text-align: center;
+      color: #fff;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
     }
 
+    &.rounded {
+      &::after {
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+
+    &.sm {
+      height: 110px;
+      width: 190px;
+    }
+
+    &.lg {
+      height: 185px;
+    }
+
+    &.full {
+      width: 100%;
+    }
+  }
+
+  &.rounded {
+    border-radius: 10px;
+  }
     &.rounded{
         border-radius: 10px;
     }
@@ -171,156 +173,209 @@
         background-color: #fff;
     }
 
-    &.circle{
-        border-radius: 50%;
-    }
+  &.circle {
+    border-radius: 50%;
+  }
 
-    &.album-gallery{
-        background-color: transparent;
-        -moz-box-shadow: inset 0 -45px 30px -20px transparent;
-        -webkit-box-shadow: inset 0 -45px 30px -20px transparent;
-        box-shadow: inset 0 -45px 30px -20px transparent;
-        height: 240px;
-        .image{
-            margin: 0.5rem 0 0.5rem 0 !important;
-            height: 165px;
-            background-repeat: no-repeat;
-            background-position-x: center;
-            background-position-y: center;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            &.rounded{
-                border-radius: 10px;
-            }
-        }
-       span{
-            font-family: 'Helvetica';
-            font-size: 12px;
-            color: #919397;
-       }
-    }
-
-    &.post{
-        height: 290px;
-        border-radius: 20px;
-    }
-}
-
-.station{
-    &.circle{
-        height: 90px;
-        width: 90px;
-        min-height: 90px;
-        min-width: 90px;
-    }
-}
-
-.eras{
-    display: flex;
-    overflow-x: scroll;
-    border-right: 40px solid transparent;
-    .card-era{
-        height: 96px;
-        max-height: 96px;
-        min-width: 96px;
-        width: 96px;
-        border-radius: 50%;
-    }
-}
-.genres{
-    .card-genre{
-        background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+  &.album-gallery {
+    background-color: transparent;
+    -moz-box-shadow: inset 0 -45px 30px -20px transparent;
+    -webkit-box-shadow: inset 0 -45px 30px -20px transparent;
+    box-shadow: inset 0 -45px 30px -20px transparent;
+    height: 240px;
+    .image {
+      margin: 0.5rem 0 0.5rem 0 !important;
+      height: 165px;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      &.rounded {
         border-radius: 10px;
-        height: 90px;
-        width: 150px;
-        max-width: 150px;
-        outline: 0px solid transparent;
+      }
     }
-    .card-genre-col{
-        width: 150px;
-        max-width: 150px;
-        min-width: 150px;
-        overflow: hidden;
-        display: block;
-        outline: 0px solid transparent;
+    span {
+      font-family: "Helvetica";
+      font-size: 12px;
+      color: #919397;
     }
-    .slick-slide{
-        width: 100% !important;
-        overflow-x: scroll;
-    }
-    .slick-slide{
-        width: 720px;
-        display: flex;
-    }
-}
+  }
 
-.card-event{
-    background: transparent;
-    padding: $card-padding;
-    color: #000000;
-    min-height: 180px;
-    .white-text{ 
-        color: #fff; 
-        .list{
-            color: #fff;
-        }
-    }
-    .calendar{
-        border-radius: 50%;
-        height: 105px;
-        width: 105px;
-        &.color{
-            @include color-modifiers($attribute: 'background-color');
-        }
-        &.color-green-base{
-            background-color: #89C832;
-        }
-    }
-    .calendar-blue {
-        color: #01aed4;
-    }
-    .list {
-        margin-right: 8px;
-        width: 100%;
+  &.post {
+    height: 290px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+
+    .info {
+      height: 75%;
+      display: inline-flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      width: 100%;
+
+      .col {
+        display: inline-flex;
+      }
+      .button {
+        display: inline-flex;
         justify-content: space-between;
-    }
-    li{
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-    }
-    @media screen and (max-height: 568px){
-        .calendar{
-            height: 84px;
-            width: 84px;
+      }
+
+      .user {
+        label {
+          line-height: pxToRem(42);
+          color: #ffffff;
+          margin-left: 5px;
         }
+      }
     }
-}
-.card-station{
-    .card{
-        &.rounded{
-            border-radius: 20px;
-        }
-    &.video::after{
-        display: none;
+
+    .ellipsis {
+      display: inline-flex;
+      justify-content: flex-end;
+      width: 92% !important;
+      margin-top: 16px;
     }
+
+    .row {
+      margin-bottom: 17px;
+      width: 100%;
     }
+  }
 }
 
-.card-genre-filter {
+.station {
+  &.circle {
     height: 90px;
+    width: 90px;
+    min-height: 90px;
+    min-width: 90px;
+  }
+}
+
+.eras {
+  display: flex;
+  overflow-x: scroll;
+  border-right: 40px solid transparent;
+  .card-era {
+    height: 96px;
+    max-height: 96px;
+    min-width: 96px;
+    width: 96px;
+    border-radius: 50%;
+  }
+}
+.genres {
+  .card-genre {
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     border-radius: 10px;
+    height: 90px;
+    width: 150px;
+    max-width: 150px;
+    outline: 0px solid transparent;
+  }
+  .card-genre-col {
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+    overflow: hidden;
+    display: block;
+    outline: 0px solid transparent;
+  }
+  .slick-slide {
+    width: 100% !important;
+    overflow-x: scroll;
+  }
+  .slick-slide {
+    width: 720px;
+    display: flex;
+  }
+}
+
+.card-event {
+  background: transparent;
+  padding: $card-padding;
+  color: #000000;
+  min-height: 180px;
+  .white-text {
+    color: #fff;
+    .list {
+      color: #fff;
+    }
+  }
+  .calendar {
+    border-radius: 50%;
+    height: 105px;
+    width: 105px;
+    &.color {
+      @include color-modifiers($attribute: "background-color");
+    }
+    &.color-green-base {
+      background-color: #89c832;
+    }
+  }
+  .calendar-blue {
+    color: #01aed4;
+  }
+  .list {
+    margin-right: 8px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  li {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (max-height: 568px) {
+    .calendar {
+      height: 84px;
+      width: 84px;
+    }
+  }
+}
+.card-station {
+  .card {
+    &.rounded {
+      border-radius: 20px;
+    }
+    &.video::after {
+      display: none;
+    }
+  }
+}
+
+.card-genre-filter {
+  height: 90px;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.card-era {
+    margin: 16px 0;
+    .card-era-section {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        width: 144px;
+        height: 39px;
+        font-family: Industria;
+        font-size: 48px;
+        justify-content: end;
+        align-items: center;
+        padding-top: 32px;
+    }
 }

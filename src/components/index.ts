@@ -53,6 +53,7 @@ import InputChipComponent from './input/chip';
 import CardGenreComponent from './card/genre';
 import InputCheckboxComponent from './input/checkbox';
 import SubGenreModalComponent from './card/genre/subgenre';
+import CardEraComponent from './card/era';
 
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
@@ -135,7 +136,8 @@ export {
   PulsatingDotComponent as PulsatingDot,
   CardGenreComponent as CardGenre,
   InputCheckboxComponent as InputCheckbox,
-  SubGenreModalComponent as SubGenreModal
+  SubGenreModalComponent as SubGenreModal,
+  CardEraComponent as CardEra
 };
 
 export {

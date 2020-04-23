@@ -172,6 +172,7 @@ export interface SettingsReducerType {
   profileFriendTabs: MenuInterface[];
   selectContactTabs: MenuInterface[];
   activeSelectContactTab: string;
+  eraFilters: object[];
 }
 export interface NavbarReducerType {
   navbarTwoButtons: NavbarTwoButtons;
@@ -602,6 +603,11 @@ export interface GenreInterface {
 }
 
 export interface SubGenreInterface {
+  name: string;
+  selected: boolean;
+}
+
+export interface SubEraInterface {
   name: string;
   selected: boolean;
 }

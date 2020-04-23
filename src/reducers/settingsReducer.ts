@@ -47,7 +47,9 @@ import {
   FriendPage,
   VaultFilterPage,
   VaultFilterGenrePage,
-  RadioStationEditPage
+  RadioStationEditPage,
+  VaultFilterEraPage,
+  VaultFilterSubEraPage
 } from './../pages';
 import {
   MenuArtistList,
@@ -450,6 +452,16 @@ const defaultState: SettingsReducerType = {
       component: VaultFilterGenrePage
     },
     {
+      path: '/vault-filter/era',
+      id: 'vault-filter-era',
+      component: VaultFilterEraPage
+    },
+    {
+      path: '/vault-filter/era/sub-era',
+      id: 'vault-filter-sub-era',
+      component: VaultFilterSubEraPage
+    },
+    {
       path: '/radio/:id',
       id: 'radioArtist',
       component: RadioArtistPage
@@ -550,7 +562,8 @@ const defaultState: SettingsReducerType = {
       icon: ''
     }
   ],
-  activeSelectContactTab: 'friends'
+  activeSelectContactTab: 'friends',
+  eraFilters: []
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

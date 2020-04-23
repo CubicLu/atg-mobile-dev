@@ -8,14 +8,30 @@ import {
   HeaderOverlay,
   VaultFilterSection
 } from '../../components';
+import { ApplicationState } from '../../reducers';
+import { connect } from 'react-redux';
+import { updateSettingsProperty } from '../../actions';
 import { Colors, ShapesSize, Sizes } from '../../interfaces';
 
-interface Props extends RouteComponentProps {}
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
+
+interface StateProps {
+  eraFilters: object[];
+}
+interface Props extends RouteComponentProps, DispatchProps, StateProps {}
 
 class VaultFilterPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
+  selectedEras: string[] | undefined;
 
   render(): React.ReactNode {
+    // eslint-disable-next-line no-prototype-builtins
+    if (this.props.eraFilters.hasOwnProperty('undefined')) {
+      delete this.props.eraFilters['undefined'];
+    }
+    this.selectedEras = Object.keys(this.props.eraFilters);
     return (
       <IonPage id="vault-filter-page">
         <Header
@@ -61,7 +77,7 @@ class VaultFilterPage extends React.Component<Props> {
                 <VaultFilterSection
                   label={'Show by Era'}
                   type={'chip'}
-                  selectedChips={['90s', '80s', '70s', '60s', '50s', '40s']}
+                  selectedChips={this.selectedEras}
                 />
                 <Button
                   size={Sizes.full}
@@ -79,4 +95,13 @@ class VaultFilterPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(VaultFilterPage);
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+  const { eraFilters } = settings;
+  return { eraFilters };
+};
+
+export default withRouter(
+  connect(mapStateToProps, {
+    updateSettingsProperty
+  })(VaultFilterPage)
+);

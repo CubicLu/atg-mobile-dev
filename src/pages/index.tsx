@@ -60,6 +60,8 @@ import FanFeedFilterPage from './fan-feed-filter';
 import VaultFilterPage from './vault-filter';
 
 import VaultFilterGenrePage from './vault-filter/vault-filter-genre';
+import VaultFilterEraPage from './vault-filter/vault-filter-era';
+import VaultFilterSubEraPage from './vault-filter/vault-filter-era/vault-filter-sub-era';
 
 export {
   NotFoundPage,
@@ -115,5 +117,7 @@ export {
   VaultFilterPage,
   RadioArtistPage,
   RadioHistoryPage,
-  VaultFilterGenrePage
+  VaultFilterGenrePage,
+  VaultFilterEraPage,
+  VaultFilterSubEraPage
 };

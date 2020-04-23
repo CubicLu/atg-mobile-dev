@@ -13,7 +13,7 @@ class InputChipComponent extends React.Component<Props> {
         <IonIcon
           name="close-circle"
           className={'close-button'}
-          onClick={(): void => action}
+          onClick={action}
         />
       </IonChip>
     );

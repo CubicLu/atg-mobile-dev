@@ -249,6 +249,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         <HeaderOverlay ref={this.headerRef} />
 
         <IonContent
+          style={{ background: '#fff' }}
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}

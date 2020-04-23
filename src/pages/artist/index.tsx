@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import {
-  IonContent,
-  IonPage,
-  createAnimation,
-  withIonLifeCycle
-} from '@ionic/react';
+import { IonContent, IonPage, createAnimation } from '@ionic/react';
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
@@ -59,16 +54,14 @@ class ArtistPage extends React.PureComponent<Props, {}> {
       this.props.getArtistAPI(next.match.params.id);
     }
   }
-  ionViewDidEnter(): void {
+  componentDidMount(): void {
     if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
   }
-  ionViewDidLeave(): void {
-    this.custom.animation = undefined;
-    this.customAlpha.animation = undefined;
+  componentWillUnmount(): void {
+    this.custom?.animation?.destroy();
+    this.customAlpha?.animation?.destroy();
     this.custom.loaded = false;
     this.customAlpha.loaded = false;
-    this.lastOffset = 0;
-    this.lastOffsetA = 0;
   }
   loadAnimationsAlpha(): void {
     const normalMenu = document.querySelector('#artist-menu');
@@ -274,6 +267,4 @@ const mapStateToProps = ({
   return { currentArtist, artistTabs, loading };
 };
 
-export default connect(mapStateToProps, { getArtistAPI })(
-  withIonLifeCycle(ArtistPage)
-);
+export default connect(mapStateToProps, { getArtistAPI })(ArtistPage);

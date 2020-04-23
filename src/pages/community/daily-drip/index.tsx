@@ -194,7 +194,6 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
                   onIonSlideTouchEnd={(): void => this.startProgress()}
                   onIonSlideDrag={(): void => this.pauseProgress()}
                   onIonSlideTouchStart={(): void => this.pauseProgress()}
-                  // onIonSlideDoubleTap={(): void => this.navigateOtherDrip(true)}
                   onIonSlideReachStart={(): boolean => (this.first = true)}
                   onIonSlideReachEnd={(): boolean => (this.last = true)}
                   onIonSlideTap={(e: CustomEvent): void => this.click(e.detail)}

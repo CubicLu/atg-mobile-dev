@@ -3,15 +3,11 @@ import { ActionType, PlaylistInterface, SongInterface } from '../interfaces';
 export const togglePlayer = (): PlayerAction => {
   return { type: ActionType.TOGGLE_PLAYER };
 };
-export const setPlaylistPlayer = (
-  playList?: PlaylistInterface,
+export const setPlaylist = (
+  playlist: PlaylistInterface,
   song?: SongInterface
 ): any => {
-  return { type: ActionType.SET_PLAYLIST_PLAYER, playList, song };
-};
-
-export const setRadioPlaylistPlayer = (): PlayerAction => {
-  return { type: ActionType.SET_RADIO_PLAYER };
+  return { type: ActionType.SET_PLAYLIST, playlist, song };
 };
 export const toggleShuffle = (): PlayerAction => {
   return { type: ActionType.TOGGLE_SHUFFLE_PLAYER };
@@ -25,6 +21,9 @@ export const favoriteSong = (): PlayerAction => {
 export const toggleNextSong = (): PlayerAction => {
   return { type: ActionType.TOGGLE_CURRENT_NEXT_SONG };
 };
+export const setBufferingPlayer = (): PlayerAction => {
+  return { type: ActionType.LOADING_PLAYER };
+};
 export const fadingOutSong = (fadingOut: boolean = true): any => {
   return { type: ActionType.FADING_OUT_SONG, fadingOut };
 };
@@ -33,12 +32,6 @@ export const playSong = (song: SongInterface, next?: SongInterface): any => {
 };
 export const loadNextSong = (nextSong: SongInterface): any => {
   return { type: ActionType.LOAD_NEXT_SONG, nextSong };
-};
-export const setPlaylist = (
-  playlist: PlaylistInterface,
-  firstIndex: number = 0
-): any => {
-  return { type: ActionType.SET_PLAYLIST, playlist, firstIndex };
 };
 export const pauseSong = (): PlayerAction => {
   return { type: ActionType.PAUSE_SONG };
@@ -60,6 +53,9 @@ export const seekSongPosition = (seekTo: number): any => {
 };
 export const updateElapsed = (timeElapsed: number): any => {
   return { type: ActionType.UPDATE_ELAPSED_SONG, timeElapsed };
+};
+export const updateDuration = (duration: number): any => {
+  return { type: ActionType.UPDATE_SONG_DURATION, duration };
 };
 export const updateVolume = (masterVolume: number): any => {
   return { type: ActionType.UPDATE_MASTER_VOLUME, masterVolume };

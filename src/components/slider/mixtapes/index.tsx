@@ -9,13 +9,24 @@ import {
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { MixtapeInterface } from '../../../interfaces';
+import { MixtapeInterface, PlaylistInterface } from '../../../interfaces';
+import {
+  guitarPlaylist,
+  popPlaylist,
+  bluesPlaylist
+} from '../../../reducers/playerReducer';
+import { setPlaylist } from './../../../actions/playerActions';
+import { connect } from 'react-redux';
 
-interface Props {
+interface Props extends DispatchProps {
   title?: string;
   viewAll?: boolean;
   menu?: boolean;
   dots?: boolean;
+  playlists?: MixtapeInterface[];
+}
+interface DispatchProps {
+  setPlaylist: (playlist: PlaylistInterface) => void;
 }
 
 class SliderMixtapesComponent extends React.Component<Props> {
@@ -24,6 +35,24 @@ class SliderMixtapesComponent extends React.Component<Props> {
     dots: true
   };
   playlists: MixtapeInterface[] = [
+    {
+      cover: guitarPlaylist.cover,
+      name: guitarPlaylist.name,
+      quantity: guitarPlaylist.items.length,
+      playlist: guitarPlaylist
+    },
+    {
+      cover: popPlaylist.cover,
+      name: popPlaylist.name,
+      quantity: popPlaylist.items.length,
+      playlist: popPlaylist
+    },
+    {
+      cover: bluesPlaylist.cover,
+      name: bluesPlaylist.name,
+      quantity: bluesPlaylist.items.length,
+      playlist: bluesPlaylist
+    },
     {
       cover: MixtapeEuroHouseImage,
       name: 'Euro House',
@@ -47,9 +76,10 @@ class SliderMixtapesComponent extends React.Component<Props> {
   ];
 
   render(): React.ReactNode {
-    const { menu, dots } = this.props;
-    const playlists = this.playlists;
     if (!this.playlists) return <div />;
+
+    const { menu, dots, setPlaylist } = this.props;
+    const playlists = this.playlists;
 
     const settings: Settings = {
       dots: dots,
@@ -66,11 +96,17 @@ class SliderMixtapesComponent extends React.Component<Props> {
       <Slider {...settings}>
         {playlists.map(
           (data, i): React.ReactNode => (
-            <CardMixtapes mixtape={data} key={i} index={i + 1} menu={menu} />
+            <CardMixtapes
+              onClick={(): void => data.playlist && setPlaylist(data.playlist)}
+              mixtape={data}
+              key={i}
+              index={i + 1}
+              menu={menu}
+            />
           )
         )}
       </Slider>
     );
   }
 }
-export default SliderMixtapesComponent;
+export default connect(null, { setPlaylist })(SliderMixtapesComponent);

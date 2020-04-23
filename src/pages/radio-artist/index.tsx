@@ -14,17 +14,19 @@ import {
 import {
   ChannelInterface,
   ArtistInterface,
-  SongInterface
+  SongInterface,
+  PlaylistInterface
 } from '../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ApplicationState } from '../../reducers';
 import {
   getArtistAPI,
   getRadioArtistAPI,
-  setRadioPlaylistPlayer,
+  setPlaylist,
   playSong,
   pauseSong
 } from './../../actions';
+import { guitarPlaylist } from '../../reducers/playerReducer';
 
 interface MatchParams {
   id: string;
@@ -42,9 +44,9 @@ interface StateProps {
 interface DispatchProps {
   getRadioArtistAPI: (id: string) => void;
   getArtistAPI: (id: string) => void;
-  setRadioPlaylistPlayer: () => void;
   pauseSong: () => void;
   playSong: (song: SongInterface) => void;
+  setPlaylist: (playlist: PlaylistInterface, song?: SongInterface) => void;
 }
 interface Props
   extends StateProps,
@@ -108,7 +110,7 @@ class RadioArtistPage extends React.Component<Props> {
           <div className="row mt-4" />
           <div className="row mt-4" />
           <RadioPlayer
-            onPlayClick={(): void => this.props.setRadioPlaylistPlayer()}
+            onPlayClick={(): void => this.props.setPlaylist(guitarPlaylist)}
             onPauseClick={(): void => this.props.pauseSong()}
             onResumeClick={(): void => this.props.playSong(this.props.song!)}
             playing={this.props.playing}
@@ -175,7 +177,7 @@ export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
     getRadioArtistAPI,
-    setRadioPlaylistPlayer,
+    setPlaylist,
     playSong,
     pauseSong
   })(RadioArtistPage)

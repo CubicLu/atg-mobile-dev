@@ -22,10 +22,13 @@ interface Props extends StateProps {
 }
 class HomeRouterPage extends React.PureComponent<Props> {
   render(): React.ReactNode {
-    console.log('router render');
-    const { tabs, links, activeTab } = this.props;
+    const { tabs, links, activeTab, updateSettingsProperty } = this.props;
     return (
-      <IonTabs>
+      <IonTabs
+        onIonTabsDidChange={(e): void =>
+          updateSettingsProperty('activeTab', e.detail.tab)
+        }
+      >
         <IonRouterOutlet>
           {tabs.map((p: TabsInterface, i: number): any => (
             <Route exact path={p.path} component={p.component} key={i} />

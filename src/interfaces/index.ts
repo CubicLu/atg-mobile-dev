@@ -39,14 +39,13 @@ export enum ActionType {
   RESUME_SONG = 'RESUME_SONG',
   SEEK_TO_SONG = 'SEEK_TO_SONG',
   UPDATE_ELAPSED_SONG = 'UPDATE_ELAPSED_SONG',
+  UPDATE_SONG_DURATION = 'UPDATE_SONG_DURATION',
   UPDATE_MASTER_VOLUME = 'UPDATE_MASTER_VOLUME',
   FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS',
   TOGGLE_SHUFFLE_PLAYER = 'TOGGLE_SHUFFLE_PLAYER',
   TOGGLE_REPEAT_PLAYER = 'TOGGLE_REPEAT_PLAYER',
   FAVORITE_SONG = 'FAVORITE_SONG',
   SET_PLAYLIST = 'SET_PLAYLIST',
-  SET_PLAYLIST_PLAYER = 'SET_PLAYLIST_PLAYER',
-  SET_RADIO_PLAYER = 'SET_RADIO_PLAYER',
   GET_COMMUNITY_POSTS_API = 'GET_COMMUNITY_POSTS_API',
   GET_COMMUNITY_POSTS_API_FAILURE = 'GET_COMMUNITY_POSTS_API_FAILURE',
   GET_COMMUNITY_POSTS_API_SUCCESS = 'GET_COMMUNITY_POSTS_API_SUCCESS',
@@ -84,6 +83,7 @@ export enum ActionType {
   TOGGLE_NAVBAR_TWOACTIONS = 'TOGGLE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
+  LOADING_PLAYER = 'LOADING_PLAYER',
   SET_CURRENT_GALLERY = 'SET_CURRENT_GALLERY'
 }
 
@@ -218,6 +218,7 @@ export interface MixtapeInterface {
   name: string;
   quantity: number;
   cover: string | undefined;
+  playlist?: PlaylistInterface;
 }
 
 export interface ArtistReducerType {
@@ -254,14 +255,16 @@ export interface SearchReducerType {
 }
 
 export interface SongInterface {
-  id: string;
+  id: number;
+  title: string;
   album: string;
   artist: string;
-  name: string;
-  trackNumber: number;
   duration: number;
   cover: string;
+  coverArtist?: string;
+  trackNumber: number;
   url: string;
+  ISRC?: string;
   favorite?: boolean;
 }
 export interface PlaylistInterface {
@@ -272,10 +275,13 @@ export interface PlaylistInterface {
   cover: string;
   items: SongInterface[];
   owner: string;
+  color1?: string;
+  color2?: string;
 }
 export interface PlayerReducerType {
   playerAction?: string;
   expanded: boolean;
+  buffering: boolean;
   fadingOut: boolean;
   playing: boolean;
   paused: boolean;
@@ -625,8 +631,8 @@ export interface MediaType {
   setFadeTime(seconds: number): void;
   getMediaInstanceNumber(): number;
   setMediaInstanceNumber(instance: number): void;
-  getMediaId(): string;
-  setMediaId(id: string): void;
+  getMediaId(): number;
+  setMediaId(id: number): void;
   updatePosition(): void;
   updateAudioPosition(): void;
   getVolume(): number;

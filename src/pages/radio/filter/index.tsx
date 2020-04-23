@@ -249,7 +249,7 @@ class RadioFilterPage extends React.Component<Props, State> {
                       onClick={this.resetSearch}
                       className={'station circle'}
                       style={{
-                        background: `url(${station.image})`,
+                        backgroundImage: `url(${station.image})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

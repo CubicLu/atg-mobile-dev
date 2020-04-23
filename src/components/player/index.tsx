@@ -6,7 +6,10 @@ import {
   NextIcon,
   Header,
   ButtonSupport,
-  BackgroundImage
+  BackgroundImage,
+  PlayIcon,
+  ForwardIcon,
+  ReplayIcon
 } from './../../components';
 import {
   createGesture,
@@ -14,25 +17,31 @@ import {
   Gesture,
   createAnimation,
   IonRange,
-  IonRouterLink
+  IonRouterLink,
+  IonSpinner
 } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
-  setPlaylistPlayer,
-  setRadioPlaylistPlayer,
   togglePlayer,
   toggleShuffle,
   toggleRepeat,
   playSong,
+  loadNextSong,
   favoriteSong,
   pauseSong,
-  nextSong,
-  prevSong,
   resumeSong,
-  updateElapsed
+  updateElapsed,
+  updateVolume,
+  seekSongPosition,
+  setPlayerAction
 } from './../../actions/playerActions';
 import { ApplicationState } from '../../reducers';
-import { SongInterface, PlaylistInterface } from '../../interfaces';
+import {
+  SongInterface,
+  PlaylistInterface,
+  ActionType,
+  MediaType
+} from '../../interfaces';
 import {
   PlayButton,
   NextButton,
@@ -46,191 +55,149 @@ import {
   VolumeMuteButton,
   VolumeButton
 } from '../icon/player';
-import { PlayIcon } from '../icon';
 import VigilAnimator from '../../utils/animateFrame';
 import { shadowTitle } from '../../utils';
 
 interface StateProps {
   expanded: boolean;
   playing: boolean;
+  buffering: boolean;
   paused: boolean;
-  song?: SongInterface;
-  playlist?: PlaylistInterface;
-  timeElapsed: number;
   canSkip: boolean;
   shuffle: boolean;
   repeat: boolean;
+  timeElapsed: number;
+  masterVolume: number;
+  playerAction?: string;
+
+  song?: SongInterface;
+  next?: SongInterface;
+  playlist?: PlaylistInterface;
 }
 interface DispatchProps {
-  setPlaylistPlayer: () => void;
-  setRadioPlaylistPlayer: () => void;
   togglePlayer: () => void;
   toggleShuffle: () => void;
   toggleRepeat: () => void;
-  playSong: (song: SongInterface) => void;
+  playSong: (song: SongInterface, next?: SongInterface) => void;
+  loadNextSong: (song: SongInterface) => void;
   favoriteSong: () => void;
   pauseSong: () => void;
-  nextSong: () => void;
-  prevSong: () => void;
   resumeSong: () => void;
   updateElapsed: (time: number) => void;
+  updateVolume: (time: number) => void;
+  seekSongPosition: (time: number) => void;
+  setPlayerAction: (action: string) => void;
+}
+declare global {
+  interface Window {
+    cordovaList: MediaType[];
+  }
 }
 interface Props extends StateProps, DispatchProps {}
-
-class PlayerComponent extends React.PureComponent<Props> {
-  audio: HTMLAudioElement | undefined;
+class PlayerComponent extends React.Component<Props> {
   pullPlayerGesture: Gesture | undefined;
   pullingInProgress: boolean = false;
   expansePlayerAnimation: Animation | any;
   expansionInProgress: boolean = false;
   lastY?: number;
-
+  ionRange: React.RefObject<HTMLIonRangeElement> = React.createRef();
   componentDidMount(): void {
     this.createPlayerGesture();
     this.createPlayerAnimation();
   }
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.song == null && nextProps.playlist != null) {
-      this.playNewAudio(nextProps.playlist.items[0]);
+  componentDidUpdate(): void {
+    switch (this.props.playerAction) {
+      case ActionType.SET_PLAYLIST:
+        if (!this.props.song) return;
+        this.props.next
+          ? this.props.playSong(this.props.song!, this.props.next!)
+          : this.props.playSong(this.props.song!);
+        break;
+      //song current is state.next and next is undefined,
+      case ActionType.TOGGLE_CURRENT_NEXT_SONG:
+        return this.actionToggleNextSong();
+      case ActionType.NEXT_SONG:
+        return this.clickPrevSong();
+      case ActionType.PREV_SONG:
+        return this.clickNextSong();
     }
   }
+  actionToggleNextSong(): void {
+    let list = this.props.playlist?.items;
+    if (!list) return console.log('no list');
 
-  createPlayerGesture(): void {
-    const mini = document.querySelector('#player');
-    if (!mini) return;
-    const gestureConfigMini: GestureConfig = {
-      el: mini,
-      direction: 'y',
-      gestureName: 'playerMove',
-      gesturePriority: 20,
-      passive: true,
-      onEnd: this.playerSwipe,
-      onMove: this.playerPull
-    };
-    this.pullPlayerGesture = createGesture(gestureConfigMini);
-    this.pullPlayerGesture.enable();
+    const current = this.currentIndex(list);
+    const next = current < list.length - 1 ? current + 1 : 0;
+    return this.props.loadNextSong(list[next]);
   }
-  createPlayerAnimation(): void {
-    const player = document.querySelector('#full-player');
-    if (!player) return;
-    this.expansePlayerAnimation = createAnimation()
-      .addElement(player)
-      .duration(400)
-      .easing('ease-in')
-      .fromTo('transform', 'translate3d(0, 100%, 0)', 'translate3d(0, 0, 0)');
+  get mainSong(): MediaType | undefined {
+    const songId = this.props.song?.id;
+    return window.cordovaList?.find((m): boolean => m?.getMediaId() === songId);
   }
 
-  playerSwipe = (gesture: any): void => {
-    const validSwipeUp = !this.props.expanded && gesture.deltaY < -250;
-    this.pullingInProgress = false;
-    if (!this.props.expanded && !validSwipeUp) {
-      this.elasticBack();
-      return;
+  currentIndex(list: SongInterface[]): number {
+    return list.findIndex((x): any => x.id === this.props.song?.id);
+  }
+
+  clickPrevSong(): void {
+    if (!this.props.paused && this.elapsed > 2) {
+      return this.props.seekSongPosition(0);
     }
-
-    const validSwipeDown = this.props.expanded && gesture.deltaY > 100;
-    if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
-  };
-
-  elasticBack(): void {
-    new VigilAnimator({
-      element: document.getElementById('a')!,
-      axisY: Math.abs(this.lastY!),
-      axisX: 0,
-      duration: 500,
-      direction: 'normal'
-    }).elasticPlay();
+    const list = this.props.playlist!.items;
+    const current = this.currentIndex(list);
+    const prev = list[Math.max(current - 1, 0)];
+    const curr = list[current];
+    this.props.playSong(prev, curr);
   }
-
-  async togglePlayer(e: any): Promise<void> {
-    if (this.expansionInProgress) return;
-    e?.preventDefault();
-    const direction = this.props.expanded ? 'reverse' : 'normal';
-    this.expansionInProgress = true;
-    this.elasticBack();
-    if (direction === 'normal') this.props.togglePlayer();
-    await this.expansePlayerAnimation.direction(direction).play();
-    this.expansionInProgress = false;
-    if (direction === 'reverse') this.props.togglePlayer();
-  }
-
-  pauseSong(): void {
-    if (this.audio) {
-      this.audio.pause();
-      this.props.pauseSong();
-    }
+  clickNextSong(): void {
+    let list = this.props.playlist!.items;
+    if (!list) return;
+    const listsize = list.length - 1;
+    const current = this.currentIndex(list);
+    const next = current < listsize ? current + 1 : 0;
+    const second = next < listsize ? next + 1 : 0;
+    this.props.playSong(list[next], list[second]);
   }
   resumeSong(): void {
-    if (this.audio) this.audio.play();
-
-    const hasSong = this.props.song;
-    if (hasSong) this.props.playSong(this.props.song!);
-    else this.nextSong();
-  }
-  playNewAudio(song: SongInterface): void {
-    this.audio && this.pauseSong();
-    this.audio = new Audio(song.url);
-    if (this.audio) this.audio.play();
-    this.props.playSong(song);
-    this.audio.onended = (): void => this.nextSong();
-    this.audio.ontimeupdate = (): void => {
-      if (Math.trunc(this.audio!.currentTime) !== this.props.timeElapsed) {
-        this.props.updateElapsed(Math.trunc(this.audio!.currentTime) || 0);
-      }
-    };
-  }
-  nextSong(): void {
-    if (!this.props.playlist) return;
-    let playlist = this.props.playlist?.items;
-    const song = this.props.song;
-    let currentIndex = playlist.findIndex((x: any): any => x.id === song?.id);
-
-    currentIndex === -1 || currentIndex === playlist.length - 1
-      ? this.playNewAudio(playlist[0])
-      : this.playNewAudio(playlist[currentIndex + 1]);
+    return this.props.song ? this.props.resumeSong() : this.clickNextSong();
   }
 
-  prevSong(): void {
-    if (!this.props.playlist) return;
-    let playlist = this.props.playlist?.items;
-    const song = this.props.song;
-    let currentIndex = playlist.findIndex((x: any): any => x.id === song?.id);
-
-    currentIndex === 0
-      ? this.playNewAudio(playlist[playlist.length - 1])
-      : this.playNewAudio(playlist[currentIndex - 1]);
+  pullMiniPlayer(): React.ReactNode {
+    return (
+      <div id="pull" className="pull">
+        <svg
+          width="400"
+          height="10"
+          viewBox="0 0 400 10"
+          className="elastic-pull"
+          style={{
+            position: 'fixed',
+            bottom: 99,
+            paddingLeft: 16,
+            paddingRight: 16,
+            overflow: 'visible',
+            width: '100%'
+          }}
+        >
+          <path id="a" d={'M 0 10 c 200-0, 400,0, 400,0'} fill="#22022f" />
+        </svg>
+      </div>
+    );
   }
-
-  playerPull = (gesture: any): void => {
-    if (!this.pullingInProgress && window.innerHeight - gesture.startY > 110) {
-      return;
-    }
-    const svg = document.getElementById('a');
-    if (!svg) return;
-    this.pullingInProgress = true;
-    if (gesture.deltaY > -250 && gesture.deltaY < 0) {
-      this.lastY = gesture.deltaY;
-      svg.setAttribute(
-        'd',
-        `M 0 10 c 200-${Math.abs(gesture.deltaY)},400,0,400,0`
-      );
-    }
-  };
-
-  miniPlayer(): React.ReactNode {
-    const { playing, song } = this.props;
+  miniPlayerBottomBar(): React.ReactNode {
+    const { playing, expanded, song, buffering } = this.props;
     const disabled = !song;
-
+    if (expanded) return <div />;
     return (
       <>
         {song && (
-          <div className="progress">
+          <div className="player-progress mini">
             <IonRange
+              mode="ios"
               className="bar"
-              value={this.audio?.currentTime}
+              value={this.elapsed}
               min={0}
-              max={30}
-              onIonChange={(e: any): void => console.log(e.detail.value)}
+              max={this.duration}
             />
           </div>
         )}
@@ -246,11 +213,12 @@ class PlayerComponent extends React.PureComponent<Props> {
           >
             {!disabled && (
               <div className="icon">
+                {buffering && <IonSpinner className="blue-spin" name="dots" />}
                 {playing ? (
                   <button
                     disabled={!song}
                     className="mini-player-toggle p-0"
-                    onClick={(): void => this.pauseSong()}
+                    onClick={(): void => this.props.pauseSong()}
                   >
                     <PauseIcon width={15} color={'#fff'} opacity={0.75} />
                   </button>
@@ -260,7 +228,7 @@ class PlayerComponent extends React.PureComponent<Props> {
                     className="mini-player-toggle p-0"
                     onClick={(): void => this.resumeSong()}
                   >
-                    <PlayIcon stroke={'#fff'} opacity={0.75} />
+                    <PlayIcon opacity={0.75} />
                   </button>
                 )}
               </div>
@@ -268,60 +236,65 @@ class PlayerComponent extends React.PureComponent<Props> {
           </div>
         </div>
 
-        <div className="row mini-bar">
+        <div className="mini-bar">
           <div
             className="mini-bar-left"
             onClick={(e): Promise<void> => this.togglePlayer(e)}
           />
-          <div className="no-padding mini-bar  mini-bar-content">
-            <div
-              onClick={(e): Promise<void> => this.togglePlayer(e)}
-              className="infos"
+          <div
+            className="flex-compass fluid"
+            onClick={(e): Promise<void> => this.togglePlayer(e)}
+          >
+            <span className="mini-bar-text f7">{song?.title}</span>
+            <span className="mini-bar-text f7 neue">{song?.artist}</span>
+          </div>
+
+          <div className="mini-right-button">
+            <button
+              className={song?.favorite ? 'favorite' : ''}
+              disabled={disabled}
+              onClick={(): void => this.props.favoriteSong()}
             >
-              <div className="song f7">{song?.name}</div>
-              <div className="artist f7 neue">{song?.artist}</div>
-            </div>
-            <div className="mini-right-buttons">
-              <div className="mini-player-button">
-                <button
-                  disabled={disabled}
-                  onClick={(): void => this.props.favoriteSong()}
-                >
-                  <StarIcon />
-                </button>
-              </div>
-              <div className="mini-player-button">
-                <button
-                  disabled={disabled}
-                  onClick={(): void => this.nextSong()}
-                >
-                  <NextIcon />
-                </button>
-              </div>
-            </div>
+              <StarIcon />
+            </button>
+          </div>
+          <div className="mini-right-button mr-1">
+            <button
+              disabled={disabled}
+              onClick={(): void => this.clickNextSong()}
+            >
+              <NextIcon />
+            </button>
           </div>
         </div>
       </>
     );
   }
 
+  get elapsed(): number {
+    return this.props.timeElapsed || 0;
+  }
+  get duration(): number {
+    return this.mainSong?.getDuration() || this.props.song?.duration || 300;
+  }
   mainControls(): React.ReactNode {
     const { playing, song } = this.props;
+
+    const seekSong = (newPosition: number): void => {
+      this.props.seekSongPosition(newPosition);
+    };
     return (
       <div className="main-controls fluid">
-        <div className="player-progress">
+        <div className="player-progress full">
           <IonRange
+            ticks={false}
             className="bar"
-            value={this.audio?.currentTime || 0}
+            value={this.elapsed}
             min={0}
-            max={30}
-            onIonChange={(e: any): void => {
-              if (
-                this.audio &&
-                Math.abs(e.detail.value - this.audio?.currentTime) > 1
-              ) {
-                this.audio.currentTime = e.detail.value;
-              }
+            max={this.duration}
+            onIonChange={(e: CustomEvent): void => {
+              (e.target as Element)?.classList?.contains('range-pressed') &&
+                seekSong(e.detail.value);
             }}
           />
 
@@ -329,13 +302,13 @@ class PlayerComponent extends React.PureComponent<Props> {
             <span>
               {moment()
                 .minutes(0)
-                .second(this.audio?.currentTime || 0)
+                .second(this.elapsed)
                 .format('m:ss')}
             </span>
             <span>
               {moment()
                 .minutes(0)
-                .second(30)
+                .second(this.duration)
                 .format('m:ss')}
             </span>
           </div>
@@ -345,16 +318,23 @@ class PlayerComponent extends React.PureComponent<Props> {
           <button
             disabled={!song}
             className="player-button"
-            onClick={(): void => this.prevSong()}
+            onClick={(): void => this.clickPrevSong()}
           >
             <PrevButton />
+          </button>
+          <button
+            disabled={!song}
+            className="player-button"
+            onClick={(): void => seekSong(this.elapsed - 10)}
+          >
+            <ReplayIcon />
           </button>
 
           {playing && (
             <button
               disabled={!song}
               className="player-button"
-              onClick={(): void => this.pauseSong()}
+              onClick={(): void => this.props.pauseSong()}
             >
               <PauseButton />
             </button>
@@ -372,7 +352,15 @@ class PlayerComponent extends React.PureComponent<Props> {
           <button
             disabled={!song}
             className="player-button"
-            onClick={(): void => this.nextSong()}
+            onClick={(): void => seekSong(this.elapsed + 10)}
+          >
+            <ForwardIcon />
+          </button>
+
+          <button
+            disabled={!song}
+            className="player-button"
+            onClick={(): void => this.clickNextSong()}
           >
             <NextButton />
           </button>
@@ -381,57 +369,20 @@ class PlayerComponent extends React.PureComponent<Props> {
         <div className="player-volume mt-4 flex-align-items-center">
           <VolumeMuteButton />
           <IonRange
-            value={7}
-            // onIonChange={(e: any): void => console.log(e.detail.value)}
+            mode="ios"
+            min={0}
+            max={1}
+            step={0.05}
+            value={this.props.masterVolume}
+            onIonChange={(e: any): void =>
+              this.props.updateVolume(e.detail.value)
+            }
           />
           <VolumeButton />
         </div>
       </div>
     );
   }
-
-  bottomTiles(): React.ReactNode {
-    return (
-      <div className="bottom-tiles fluid">
-        <div
-          className="tile"
-          onClick={(): void => this.props.setPlaylistPlayer()}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-          )}
-        >
-          <span className="f6">Liner Notes</span>
-        </div>
-
-        <div
-          className="tile"
-          onClick={(): void => this.props.setRadioPlaylistPlayer()}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-          )}
-        >
-          <span className="f6">Community</span>
-        </div>
-        <div
-          className="tile"
-          onClick={(): Promise<void> => this.togglePlayer(null)}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-          )}
-        >
-          <IonRouterLink
-            routerLink="'/track/default/2/1'"
-            routerDirection="forward"
-          >
-            <div>
-              <span className="f6">Artist Home</span>
-            </div>
-          </IonRouterLink>
-        </div>
-      </div>
-    );
-  }
-
   fullPlayerButtons(): React.ReactNode {
     return (
       <div id="player-navbar-buttons" className="player-navbar-buttons">
@@ -458,7 +409,6 @@ class PlayerComponent extends React.PureComponent<Props> {
       </div>
     );
   }
-
   fullPlayer(): React.ReactNode {
     const { song, playlist } = this.props;
     return (
@@ -476,12 +426,12 @@ class PlayerComponent extends React.PureComponent<Props> {
             <div
               className="image radius"
               style={{
-                background: `url(${song?.cover})`,
+                backgroundImage: `url(${song?.cover})`,
                 backgroundSize: 'cover'
               }}
             />
             <div className="cover-infos mt-2">
-              <div className="f5 l2 mt-0">{song?.name}&nbsp;</div>
+              <div className="f5 l2 mt-0">{song?.title}&nbsp;</div>
               <div className="f6 l1">{song?.artist}&nbsp;</div>
               <div className="text-10 l2">&nbsp;</div>
               <div className="f6 l1">Source: {playlist?.name}&nbsp;</div>
@@ -496,27 +446,12 @@ class PlayerComponent extends React.PureComponent<Props> {
       </>
     );
   }
-
-  componentDidUpdate(prevProps): void {
-    const { paused, song } = this.props;
-    if (paused && this.audio) {
-      this.audio.pause();
-    }
-    if (!paused && this.audio) {
-      this.audio.play();
-    }
-    if (song?.url && prevProps.song?.url !== song?.url) {
-      this.playNewAudio(song);
-    }
-  }
-
   render(): React.ReactNode {
-    const { expanded } = this.props;
     const active = this.props.song ? 'active' : '';
     if (!this.expansePlayerAnimation) this.createPlayerAnimation();
 
     return (
-      <>
+      <React.Fragment>
         <div id="full-player" className="full-player">
           <BackgroundImage
             gradient={'180deg,#aed8e5,#039e4a'}
@@ -527,72 +462,173 @@ class PlayerComponent extends React.PureComponent<Props> {
             backgroundBottomOrange={true}
             backgroundBottomOpacity={0.6}
           />
-          {expanded && this.fullPlayer()}
+          {this.props.expanded && this.fullPlayer()}
+          {this.props.expanded && this.fullPlayerButtons()}
         </div>
-        {expanded && this.fullPlayerButtons()}
 
-        <div className={`mini-player ${active}`} id="player">
-          <div id="pull" className="pull">
-            <svg
-              width="400"
-              height="10"
-              viewBox="0 0 400 10"
-              style={{
-                position: 'fixed',
-                bottom: 99,
-                paddingLeft: 16,
-                paddingRight: 16,
-                width: '100%',
-                overflow: 'visible'
-              }}
-            >
-              <path id="a" d={'M 0 10 c 200-0, 400,0, 400,0'} fill="#22022f" />
-            </svg>
-          </div>
-
-          {!expanded && this.miniPlayer()}
+        <div id="player" className={`mini-player ${active}`}>
+          {this.pullMiniPlayer()}
+          {this.miniPlayerBottomBar()}
         </div>
-      </>
+      </React.Fragment>
+    );
+  }
+  async togglePlayer(e: any): Promise<void> {
+    if (this.expansionInProgress) return;
+    e?.preventDefault();
+    const direction = this.props.expanded ? 'reverse' : 'normal';
+    this.expansionInProgress = true;
+    this.elasticBack();
+    if (direction === 'normal') this.props.togglePlayer();
+    await this.expansePlayerAnimation.direction(direction).play();
+    this.expansionInProgress = false;
+    if (direction === 'reverse') this.props.togglePlayer();
+  }
+  playerPull = (gesture: any): void => {
+    if (!this.pullingInProgress && window.innerHeight - gesture.startY > 110) {
+      return;
+    }
+    const svg = document.getElementById('a');
+    if (!svg) return;
+    this.pullingInProgress = true;
+    if (gesture.deltaY > -250 && gesture.deltaY < 0) {
+      this.lastY = gesture.deltaY;
+      svg.setAttribute(
+        'd',
+        `M 0 10 c 200-${Math.abs(gesture.deltaY)},400,0,400,0`
+      );
+    }
+  };
+  createPlayerGesture(): void {
+    const mini = document.querySelector('#player');
+    if (!mini) return;
+    const gestureConfigMini: GestureConfig = {
+      el: mini,
+      direction: 'y',
+      gestureName: 'playerMove',
+      gesturePriority: 20,
+      passive: true,
+      onEnd: this.playerSwipe,
+      onMove: this.playerPull
+    };
+    this.pullPlayerGesture = createGesture(gestureConfigMini);
+    this.pullPlayerGesture.enable();
+  }
+  createPlayerAnimation(): void {
+    const player = document.querySelector('#full-player');
+    if (!player) return;
+    this.expansePlayerAnimation = createAnimation()
+      .addElement(player)
+      .duration(400)
+      .easing('ease-in')
+      .fromTo('transform', 'translate3d(0, 100%, 0)', 'translate3d(0, 0, 0)');
+  }
+  playerSwipe = (gesture: any): void => {
+    const validSwipeUp = !this.props.expanded && gesture.deltaY < -250;
+    this.pullingInProgress = false;
+    if (!this.props.expanded && !validSwipeUp) {
+      this.elasticBack();
+      return;
+    }
+
+    const validSwipeDown = this.props.expanded && gesture.deltaY > 100;
+    if (validSwipeDown || validSwipeUp) this.togglePlayer(null);
+  };
+  elasticBack(): void {
+    new VigilAnimator({
+      element: document.getElementById('a')!,
+      axisY: Math.abs(this.lastY!),
+      axisX: 0,
+      duration: 500,
+      direction: 'normal'
+    }).elasticPlay();
+  }
+  bottomTiles(): React.ReactNode {
+    return (
+      <div className="bottom-tiles fluid">
+        <div
+          className="tile"
+          onClick={(): Promise<void> => this.togglePlayer(null)}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
+          )}
+        >
+          <span className="f6">Liner Notes</span>
+        </div>
+
+        <div
+          className="tile"
+          onClick={(): Promise<void> => this.togglePlayer(null)}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
+          )}
+        >
+          <span className="f6">Community</span>
+        </div>
+        <div
+          className="tile"
+          onClick={(): Promise<void> => this.togglePlayer(null)}
+          style={shadowTitle(
+            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
+          )}
+        >
+          <IonRouterLink
+            routerLink="'/track/default/2/1'"
+            routerDirection="forward"
+          >
+            <div>
+              <span className="f6">Artist Home</span>
+            </div>
+          </IonRouterLink>
+        </div>
+      </div>
     );
   }
 }
-
 const mapStateToProps = ({ player }: ApplicationState): StateProps => {
   const {
     expanded,
     playing,
+    buffering,
     paused,
     song,
+    next,
     playlist,
     timeElapsed,
+    masterVolume,
     canSkip,
     shuffle,
-    repeat
+    repeat,
+    playerAction
   } = player;
 
   return {
     expanded,
     playing,
+    buffering,
     paused,
     song,
+    next,
     playlist,
     timeElapsed,
+    masterVolume,
     canSkip,
     shuffle,
-    repeat
+    repeat,
+    playerAction
   };
 };
 export default connect(mapStateToProps, {
-  setPlaylistPlayer,
-  setRadioPlaylistPlayer,
   togglePlayer,
   toggleShuffle,
   toggleRepeat,
   playSong,
+  loadNextSong,
   favoriteSong,
   pauseSong,
-  nextSong,
-  prevSong,
   resumeSong,
-  updateElapsed
+  updateElapsed,
+  updateVolume,
+  seekSongPosition,
+  setPlayerAction
 })(PlayerComponent);

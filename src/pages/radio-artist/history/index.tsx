@@ -22,11 +22,14 @@ import {
   ShapesSize,
   Colors,
   ChannelInterface,
-  ArtistInterface
+  ArtistInterface,
+  PlaylistInterface,
+  SongInterface
 } from '../../../interfaces';
-import { setRadioPlaylistPlayer } from './../../../actions';
+import { setPlaylist } from './../../../actions';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
+import { guitarPlaylist } from '../../../reducers/playerReducer';
 
 interface StateProps {
   radioArtist: ChannelInterface;
@@ -34,14 +37,14 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  setRadioPlaylistPlayer: () => void;
+  setPlaylist: (playlist: PlaylistInterface, song?: SongInterface) => void;
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class RadioHistoryPage extends React.Component<Props> {
   onSongClick = (artistId: string, album: string): void => {
-    this.props.setRadioPlaylistPlayer();
+    this.props.setPlaylist(guitarPlaylist, guitarPlaylist[0]);
     this.props.history.push(`/track/artist/${artistId}/${album}`);
   };
   private headerRef: React.RefObject<any> = React.createRef();
@@ -174,5 +177,5 @@ const mapStateToProps = ({ radioAPI, artistAPI }: ApplicationState): object => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { setRadioPlaylistPlayer })(RadioHistoryPage)
+  connect(mapStateToProps, { setPlaylist })(RadioHistoryPage)
 );

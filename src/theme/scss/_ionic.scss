@@ -10,6 +10,15 @@ ion-tab-bar {
     margin-top: 0px;
     --ion-safe-area-bottom: calc(min(env(safe-area-inset-bottom), 10px));
 }
+.blue-spin{
+    position: absolute;
+    background: #000000aa;
+    --color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transform: scale(2.4);
+}
 .mini-player{
     margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));
     .pull{

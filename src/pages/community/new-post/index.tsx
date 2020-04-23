@@ -117,7 +117,6 @@ class CommunityNewPostPage extends React.Component<Props, State> {
   }
   doPost(): void {
     this.validatePost();
-    console.log(this.state.errorMessage, this.selectedFiles);
     if (this.invalidPost || this.selectedFiles.length < 1) {
       return;
     }

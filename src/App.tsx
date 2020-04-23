@@ -32,7 +32,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import { hideKeyboard, showKeyboard, didShowKeyboard } from './utils';
-import { CordovaList } from './components';
+import { CordovaMedia } from './components';
 
 export default class App extends React.Component {
   authenticated: boolean = true;
@@ -78,7 +78,7 @@ export default class App extends React.Component {
         <Provider store={store}>
           <IonApp>
             <HomePage />
-            {this.enableMedia && <CordovaList />}
+            {this.enableMedia && <CordovaMedia />}
           </IonApp>
         </Provider>
       );

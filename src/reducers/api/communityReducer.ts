@@ -85,7 +85,10 @@ export const communityReducer = createReducer<CommunityReducerType>(
         currentCommunityArtist: {
           name: action.payload.data.name,
           fullname: action.payload.data.fullname,
-          username: action.payload.data.username
+          username: action.payload.data.username,
+          backgroundGradient: action.payload.data.backgroundGradient
+            ? action.payload.data.backgroundGradient
+            : null
         }
       };
     },

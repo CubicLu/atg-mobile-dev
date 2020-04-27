@@ -62,6 +62,7 @@
     "build-ios": "cordova build ios --prod --aot --optimizejs --release --platform=ios",
     "build-android": "cordova build android --prod --aot --optimizejs --platform=android",
     "test": "react-scripts test",
+    "coverage": "npm run test -- --ci --coverage --maxWorkers=2",
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "emulator:android": "cordova run android",
@@ -143,6 +144,7 @@
         "functions": 28,
         "lines": 34
       }
-    }
+    },
+    "collectCoverageFrom": ["src/**/*.{ts,js,tsx}"]
   }
 }

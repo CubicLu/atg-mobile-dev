@@ -325,7 +325,9 @@ export interface StorieInterface {
   label: string;
 }
 
-export interface CommunityArtistInterface extends UserInterface {}
+export interface CommunityArtistInterface extends UserInterface {
+  backgroundGradient: GradientColorsInterface | null;
+}
 export interface FanFeedInterface extends UserInterface {}
 
 export interface PostInterface {

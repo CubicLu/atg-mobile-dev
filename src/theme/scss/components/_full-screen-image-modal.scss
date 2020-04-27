@@ -1,0 +1,44 @@
+.react-transform-component {
+  height: 100% !important;
+  width: 100% !important;
+  .react-transform-element {
+    height: 100%;
+    width: 100%;
+    .full-screen-image {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      &__imageContainer {
+        width: 100%;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+.full-screen-image-icons {
+  &__leftIcon,
+  &__rightIcon {
+    position: absolute;
+    top: 48%;
+    z-index: 1;
+    background: #0000004d;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__leftIcon {
+    left: 2%;
+  }
+  &__rightIcon {
+    right: 2%;
+  }
+}

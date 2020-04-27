@@ -1,9 +1,19 @@
-import { Action, ActionType, ArtistReducerType } from './../../interfaces';
+import {
+  Action,
+  ActionType,
+  ArtistReducerType,
+  GalleryIdInterface,
+  GalleryImageIndexInterface
+} from '../../interfaces';
 import createReducer from './../createReducer';
+import { transformGalleryToFlatArr } from '../../utils/normalizers';
 
 const defaultState: ArtistReducerType = {
   artists: [],
   currentArtist: null,
+  currentGallery: null,
+  fullScreenImage: null,
+  fullScreenImageIndex: 0,
   currentGalleryComments: [],
   loading: false,
   successMessage: null,
@@ -145,6 +155,44 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
       ...state,
       loading: false,
       errorMessage: action.payload
+    };
+  },
+
+  [ActionType.SET_CURRENT_GALLERY](
+    state: ArtistReducerType,
+    action: Action<GalleryIdInterface>
+  ): any {
+    return {
+      ...state,
+      currentGallery: transformGalleryToFlatArr(
+        state.currentArtist?.gallery?.[action.payload.galleryId]
+      )
+    };
+  },
+  [ActionType.SET_FULLSCREEN_IMAGE](
+    state: ArtistReducerType,
+    action: Action<GalleryImageIndexInterface>
+  ): any {
+    return {
+      ...state,
+      fullScreenImage:
+        state.currentGallery?.[
+          action.payload.index - 1 >= 0 ? action.payload.index : 0
+        ]?.image,
+      fullScreenImageIndex: action.payload?.index
+    };
+  },
+  [ActionType.CLEAR_FULLSCREEN_IMAGE](state: ArtistReducerType): any {
+    return {
+      ...state,
+      fullScreenImage: null,
+      fullScreenImageIndex: 0
+    };
+  },
+  [ActionType.CLEAR_CURRENT_GALLERY](state: ArtistReducerType): any {
+    return {
+      ...state,
+      currentGallery: null
     };
   }
 });

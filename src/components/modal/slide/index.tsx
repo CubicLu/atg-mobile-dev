@@ -14,6 +14,19 @@ interface StateProps {
 }
 interface Props extends StateProps, DispatchProps {}
 class ModalSlideComponent extends React.Component<Props> {
+  rightCloseOnClick = (): void => {
+    //@ts-ignore
+    // eslint-disable-next-line no-restricted-globals,no-undef,no-undef
+    if (window.deviceready && StatusBar && !StatusBar.isVisible) {
+      //@ts-ignore
+      // eslint-disable-next-line no-restricted-globals,no-undef,no-undef
+      StatusBar.show();
+    }
+    // eslint-disable-next-line no-restricted-globals
+    screen.orientation.lock('portrait');
+    this.props.updateSettingsModal(null);
+  };
+
   render(): React.ReactNode {
     const { modalType, content, height, className } = this.props.modal;
     const type = modalType || 'bottom';
@@ -25,7 +38,7 @@ class ModalSlideComponent extends React.Component<Props> {
         type={type}
         panelContainerClassName={`${'bottom'} ${background}`}
         className={`${'bottom'} ${background}`}
-        size={size}
+        size={height || size}
         isOpen={isOpen}
         onClick={(): void => {}}
         backdropClicked={(): void => this.props.updateSettingsModal(null)}
@@ -34,7 +47,7 @@ class ModalSlideComponent extends React.Component<Props> {
           <Header
             leftBackButton={false}
             rightCloseButton={true}
-            rightCloseOnClick={(): void => this.props.updateSettingsModal(null)}
+            rightCloseOnClick={this.rightCloseOnClick}
           />
           {content}
         </>

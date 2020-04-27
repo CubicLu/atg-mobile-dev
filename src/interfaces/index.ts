@@ -20,6 +20,10 @@ export enum ActionType {
   GET_ARTIST_GALLERY_COMMENTS_API = 'GET_ARTIST_GALLERY_COMMENTS_API',
   GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS = 'GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS',
   GET_ARTIST_GALLERY_COMMENTS_API_FAILURE = 'GET_ARTIST_GALLERY_COMMENTS_API_FAILURE',
+  SET_CURRENT_GALLERY = 'SET_CURRENT_GALLERY',
+  CLEAR_CURRENT_GALLERY = 'CLEAR_CURRENT_GALLERY',
+  SET_FULLSCREEN_IMAGE = 'SET_FULLSCREEN_IMAGE',
+  CLEAR_FULLSCREEN_IMAGE = 'CLEAR_FULLSCREEN_IMAGE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
   ACTION_PLAYER = 'ACTION_PLAYER',
   CORDOVA_ACTION_PLAYER = 'CORDOVA_ACTION_PLAYER',
@@ -199,6 +203,9 @@ export interface ArtistReducerType {
   artists: ArtistInterface[];
   event: EventInterface | null;
   currentArtist: ArtistInterface | null;
+  currentGallery: GalleryImageInterface[] | null;
+  fullScreenImage: string | null;
+  fullScreenImageIndex: number;
   currentGalleryComments: CommentInterface[];
   loading: boolean;
   successMessage: string | null;
@@ -541,6 +548,18 @@ export interface RadioReducerType {
   radioArtist: any;
   loading: boolean;
   errorMessage: string | null;
+}
+
+export interface GalleryImageInterface {
+  image: string;
+}
+
+export interface GalleryIdInterface {
+  galleryId: number;
+}
+
+export interface GalleryImageIndexInterface {
+  index: number;
 }
 
 export interface MediaType {

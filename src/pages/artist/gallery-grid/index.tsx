@@ -2,18 +2,30 @@ import React from 'react';
 import { Header, HeaderOverlay } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import {
+  getArtistAPI,
+  setCurrentGallery,
+  updateSettingsProperty,
+  clearCurrentGallery
+} from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-import { GalleryInterface, ArtistInterface } from '../../../interfaces';
+import {
+  GalleryInterface,
+  ArtistInterface,
+  GalleryImageInterface
+} from '../../../interfaces';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
+  currentGallery: GalleryImageInterface[] | null;
 }
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
+  setCurrentGallery: (galleryId: number) => void;
+  clearCurrentGallery: () => void;
 }
 
 interface MatchParams {
@@ -40,14 +52,46 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
   }
 
   componentDidMount(): void {
-    if (this.props.currentArtist === null) {
-      this.props.getArtistAPI(this.props.match.params.id);
+    const {
+      currentArtist,
+      getArtistAPI,
+      match,
+      currentGallery,
+      setCurrentGallery
+    } = this.props;
+    if (currentArtist === null) {
+      getArtistAPI(match.params.id);
+    }
+    if (currentArtist && !currentGallery) {
+      setCurrentGallery(+match.params.galleryId);
+    }
+  }
+
+  componentDidUpdate(): void {
+    const {
+      currentArtist,
+      currentGallery,
+      match,
+      setCurrentGallery
+    } = this.props;
+    if (currentArtist && !currentGallery) {
+      setCurrentGallery(+match.params.galleryId);
     }
   }
 
   onOpenImage(image: string): void {
+    const { match, currentGallery } = this.props;
+    let index;
+    const current = currentGallery?.find(
+      (item): boolean => item.image === image
+    );
+    if (current) {
+      index = currentGallery?.indexOf(current);
+    }
     this.props.history.push({
-      pathname: `/artist/${this.props.match.params.id}/gallery/${this.props.match.params.galleryId}/image`,
+      pathname: `/artist/${match.params.id}/gallery/${
+        match.params.galleryId
+      }/image/${index ? index : 0}`,
       state: { image: image }
     });
   }
@@ -164,6 +208,12 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
     }
   }
 
+  backToGalleryPage = (): void => {
+    const { match, history, clearCurrentGallery } = this.props;
+    clearCurrentGallery();
+    history.push(`/artist/${match.params.id}/gallery`);
+  };
+
   render(): React.ReactNode {
     let title =
       this.props.currentArtist?.gallery !== undefined
@@ -196,7 +246,11 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         : undefined;
     return (
       <IonPage id="gallery-grid-page">
-        <Header title={title} rightActionButton={true} />
+        <Header
+          title={title}
+          rightActionButton={true}
+          leftBackOnClick={this.backToGalleryPage}
+        />
         <HeaderOverlay ref={this.headerRef} />
 
         <IonContent
@@ -230,12 +284,15 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
+  const { currentArtist, currentGallery } = artistAPI;
+  return { currentArtist, currentGallery };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, updateSettingsProperty })(
-    ArtistGalleryGridPage
-  )
+  connect(mapStateToProps, {
+    getArtistAPI,
+    updateSettingsProperty,
+    setCurrentGallery,
+    clearCurrentGallery
+  })(ArtistGalleryGridPage)
 );

@@ -8,7 +8,10 @@
 }
 .sliding-panel-container{
     .background-white-base{
-        background-color: #FFF,
+        background-color: #FFF;
+    }
+    .background-black-base{
+        background-color: #000000;
     }
     .background-tertiary-opacity95{
         opacity: 0.95;
@@ -22,7 +25,7 @@
         margin-bottom: 0;
         margin-right: 24px;
         margin-left: 24px;
-        
+
     }
     .leaving{
         opacity: 0;
@@ -54,10 +57,10 @@
 .modal-header{
     z-index: 1;
     padding-top: $menu-padding;
-    left:0.9*$menu-padding; 
-    right:0.9*$menu-padding; 
-    padding-left:0.1*$menu-padding; 
-    padding-right:0.1*$menu-padding; 
+    left:0.9*$menu-padding;
+    right:0.9*$menu-padding;
+    padding-left:0.1*$menu-padding;
+    padding-right:0.1*$menu-padding;
     height: auto;
     position: fixed;
     .sub{
@@ -67,9 +70,9 @@
 .modal-content{
     margin-bottom: 40px;
     margin-top: 90px;
-    padding-left:$menu-padding; 
+    padding-left:$menu-padding;
     padding-right:$menu-padding;
-    color: #333; 
+    color: #333;
     ul{
         li{
             display: inline-flex;

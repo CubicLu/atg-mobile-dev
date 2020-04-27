@@ -1,4 +1,9 @@
-import { ActionType } from './../../interfaces';
+import {
+  ActionType,
+  Action,
+  GalleryIdInterface,
+  GalleryImageIndexInterface
+} from '../../interfaces';
 
 export const updateArtistProperty = (property: string, value: any): any => ({
   type: ActionType.UPDATE_ARTIST_PROPERTY,
@@ -70,4 +75,30 @@ export const getArtistGalleryCommentsAPIFailure = (error): any => ({
 export const getArtistGalleryCommentsAPISuccess = (response): any => ({
   type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS,
   payload: response
+});
+
+export const setCurrentGallery = (
+  galleryId: number
+): Action<GalleryIdInterface> => ({
+  type: ActionType.SET_CURRENT_GALLERY,
+  payload: {
+    galleryId
+  }
+});
+
+export const setFullscreenImage = (
+  index: number
+): Action<GalleryImageIndexInterface> => ({
+  type: ActionType.SET_FULLSCREEN_IMAGE,
+  payload: {
+    index
+  }
+});
+
+export const clearFullscreenImage = (): { type: ActionType } => ({
+  type: ActionType.CLEAR_FULLSCREEN_IMAGE
+});
+
+export const clearCurrentGallery = (): { type: ActionType } => ({
+  type: ActionType.CLEAR_CURRENT_GALLERY
 });

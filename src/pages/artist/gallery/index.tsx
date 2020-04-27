@@ -8,7 +8,11 @@ import {
 import { IonContent, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ArtistInterface } from '../../../interfaces';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import {
+  getArtistAPI,
+  setCurrentGallery,
+  updateSettingsProperty
+} from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 
@@ -19,6 +23,7 @@ interface StateProps {
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
+  setCurrentGallery: (galleryId: number) => void;
 }
 
 interface MatchParams {
@@ -47,6 +52,14 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
+
+  handleOnClick = (index: number): (() => void) => (): void => {
+    this.props.history.push(
+      `/artist/${this.props.currentArtist?.username}/gallery/${index}`
+    );
+    return this.props.setCurrentGallery(index);
+  };
+
   render(): React.ReactNode {
     return (
       <IonPage id="gallery-page">
@@ -74,11 +87,7 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
                 (data, index): React.ReactNode => (
                   <CardAlbumGallery
                     key={index}
-                    onClick={(): void => {
-                      this.props.history.push(
-                        `/artist/${this.props.currentArtist?.username}/gallery/${index}`
-                      );
-                    }}
+                    onClick={this.handleOnClick(index)}
                     image={data.cover}
                     label={data.name}
                     quantity={data.quantity}
@@ -102,6 +111,7 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
 export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
-    updateSettingsProperty
+    updateSettingsProperty,
+    setCurrentGallery
   })(ArtistGalleryPage)
 );

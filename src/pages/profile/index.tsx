@@ -201,14 +201,7 @@ class ProfilePage extends React.Component<Props, State> {
     const { fanTabs, activeFanTab } = this.props;
     return (
       <>
-        <BackgroundImage
-          gradient="180deg,#652ddd,#2c0d5c"
-          backgroundTopDark
-          backgroundTop={true}
-          backgroundTopOpacity={0.33}
-          backgroundBottom
-          backgroundBottomDark={false}
-        />
+        <BackgroundImage default={true} />
         <div className={'profile-page'}>
           <HeaderProfile />
           <Menu

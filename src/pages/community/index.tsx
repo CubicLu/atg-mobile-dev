@@ -38,19 +38,10 @@ class CommunityPage extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const colors = ['#6A1EE4', '#1e053b'];
     const hist = this.props.history;
     return (
       <IonPage id="community-page">
-        <BackgroundImage
-          gradient={`180deg,${colors[0]},${colors[1]}`}
-          backgroundTopDark
-          backgroundTop
-          backgroundTopOpacity={0.25}
-          backgroundBottom
-          backgroundBottomDark={false}
-          backgroundBottomOpacity={0.08}
-        />
+        <BackgroundImage default={true} />
         <Header
           leftBackButton={false}
           rightActionButton={true}

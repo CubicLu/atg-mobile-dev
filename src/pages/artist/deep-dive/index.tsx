@@ -65,8 +65,14 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
     this.props.updateSettingsProperty('activeDeepDiveTab', event.id);
   }
 
+  getActiveDiveTab(): React.ReactNode {
+    return this.props.deepDiveTabs.find(
+      (d): boolean => d.id === this.props.activeDeepDiveTab
+    )?.component;
+  }
   render(): React.ReactNode {
     const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;
+    const fixed = this.state.fixed ? 'absolute' : '';
     return (
       <IonPage id="artist-deep-dive-dive-page" style={{ Background: '#000' }}>
         <BackgroundImage
@@ -102,17 +108,8 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
             </div>
           </div>
 
-          <div
-            className={
-              'artist-deep-dive-page bottom' +
-              (this.state.fixed ? ' absolute' : '')
-            }
-          >
-            {deepDiveTabs?.map(
-              (d, i): React.ReactNode =>
-                d.id === activeDeepDiveTab &&
-                React.createElement(d.component, { key: i })
-            )}
+          <div className={`artist-deep-dive-page bottom ${fixed}`}>
+            {this.getActiveDiveTab()}
           </div>
         </IonContent>
       </IonPage>

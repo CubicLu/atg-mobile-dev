@@ -37,13 +37,13 @@ class ProfileVaultPage extends React.Component<Props> {
                     support: false,
                     deepDive: ''
                   },
-                  username: 'pharell-williams'
+                  username: 'pharrell-williams'
                 }
               },
               {
                 song: 'The Box',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',
@@ -58,7 +58,7 @@ class ProfileVaultPage extends React.Component<Props> {
               {
                 song: 'Don´t Start Now',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',
@@ -73,7 +73,7 @@ class ProfileVaultPage extends React.Component<Props> {
               {
                 song: 'Circles',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',
@@ -88,7 +88,7 @@ class ProfileVaultPage extends React.Component<Props> {
               {
                 song: 'Life is Good',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',
@@ -103,7 +103,7 @@ class ProfileVaultPage extends React.Component<Props> {
               {
                 song: 'Adore You',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',
@@ -118,7 +118,7 @@ class ProfileVaultPage extends React.Component<Props> {
               {
                 song: 'Say So',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',
@@ -133,7 +133,7 @@ class ProfileVaultPage extends React.Component<Props> {
               {
                 song: 'Intentions',
                 artist: {
-                  username: 'pharell-williams',
+                  username: 'pharrell-williams',
                   cover: {
                     background: '',
                     main: '',

@@ -12,12 +12,23 @@ ion-tab-bar {
 }
 .blue-spin{
     position: absolute;
-    background: #000000aa;
+    background: #00000038;
     --color: white;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    transform: scale(2.4);
+    width: 40px;
+    height: 40px;
+    margin-top: -1px;
+    pointer-events: none;
+    user-select: none;
+}
+.white-spin{
+    position: absolute;
+    --color: #fff;
+    width: 58px;
+    height: 58px;
+    margin-top: -10px;
+    pointer-events: none;
+    user-select: none;
 }
 .mini-player{
     margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));

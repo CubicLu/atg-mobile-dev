@@ -99,8 +99,8 @@
 
 .player-navbar-buttons{
     position: fixed;
-    height: $default-height-player;
-    min-height: $default-height-player;
+    height: $default-player-navbar;
+    min-height: $default-player-navbar;
     bottom: 0;
     left: 0;
     right: 0;
@@ -108,9 +108,7 @@
     width: 100%;
     padding-left: 2px;
     padding-right: 2px;
-    display: inline-flex;
-    text-align: center;
-    justify-content: space-around;
+    display: flex;
     background-color: #000;
     span{opacity: 0.6}
     .navbar-button{
@@ -120,6 +118,12 @@
         padding-bottom: 4px;
         min-width: 20%;
         width: 20%;
+        &.favorite{
+            color: #facf42;
+            path{
+                fill: #facf42;
+            }
+        }
     }
 }
 .full-player{
@@ -133,7 +137,7 @@
     }
     top: 0;
     width: 100%;
-    padding-bottom: 50px;
+    padding-bottom: $default-player-navbar;
     position: absolute;
     overflow: hidden;
     height: 100%;
@@ -145,9 +149,12 @@
         height: 160px;
         text-align: center;
         .player-volume{
-            margin-left: -3px;
-            margin-right: -2px;
             display: flex;
+            .volume-button{
+                height: 20px;
+                margin-right: -4px;
+                margin-left: -4px;
+            }
             ion-range{
                 padding: 0;
                 margin-left: 8px;

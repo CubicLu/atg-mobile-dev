@@ -55,6 +55,10 @@ import InputCheckboxComponent from './input/checkbox';
 import SubGenreModalComponent from './card/genre/subgenre';
 import CardEraComponent from './card/era';
 
+import PlayerProgressBarComponent from '../components/player/progress-bar';
+import PlayerVolumeComponent from '../components/player/volume-bar';
+import MiniPlayerBarComponent from '../components/player/mini-player-bar';
+
 import BackgroundInitialImage from './../assets/img/background/initial/1.png';
 import BackgroundSignInImage from './../assets/img/background/sign-in/1.png';
 import BackgroundSignUpConfirmImage from './../assets/img/background/sign-up-confirm/1.png';
@@ -137,7 +141,10 @@ export {
   CardGenreComponent as CardGenre,
   InputCheckboxComponent as InputCheckbox,
   SubGenreModalComponent as SubGenreModal,
-  CardEraComponent as CardEra
+  CardEraComponent as CardEra,
+  PlayerProgressBarComponent as PlayerProgress,
+  PlayerVolumeComponent as PlayerVolume,
+  MiniPlayerBarComponent as MiniPlayerBar
 };
 
 export {

@@ -14,7 +14,8 @@ import {
   Header,
   BackgroundImage,
   InputSearch,
-  MenuMessage
+  MenuMessage,
+  ListUser
 } from '../../../components';
 import {
   updateProfileProperty,
@@ -88,7 +89,7 @@ class SelectContactPage extends React.Component<Props, State> {
     )!;
 
     return (
-      <menu.component
+      <ListUser
         showComboBox={menu.id === 'friends'}
         showButtonPending={menu.id === 'friends'}
         showRemove={false}

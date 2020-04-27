@@ -32,7 +32,7 @@ interface StateProps {
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
   getArtistAPI: (username: string) => void;
-  setPlaylist: (playlist: PlaylistInterface, song?: SongInterface) => void;
+  setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
 }
 type TrackReference = 'artist' | 'radio' | 'playlist' | 'mixtape' | 'default';
 interface MatchParams {

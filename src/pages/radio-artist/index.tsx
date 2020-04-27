@@ -26,7 +26,7 @@ import {
   playSong,
   pauseSong
 } from './../../actions';
-import { guitarPlaylist } from '../../reducers/playerReducer';
+import { guitarPlaylist as playlist } from '../../reducers/playerReducer';
 
 interface MatchParams {
   id: string;
@@ -46,7 +46,7 @@ interface DispatchProps {
   getArtistAPI: (id: string) => void;
   pauseSong: () => void;
   playSong: (song: SongInterface) => void;
-  setPlaylist: (playlist: PlaylistInterface, song?: SongInterface) => void;
+  setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
 }
 interface Props
   extends StateProps,
@@ -110,7 +110,9 @@ class RadioArtistPage extends React.Component<Props> {
           <div className="row mt-4" />
           <div className="row mt-4" />
           <RadioPlayer
-            onPlayClick={(): void => this.props.setPlaylist(guitarPlaylist)}
+            onPlayClick={(): void =>
+              this.props.setPlaylist(playlist, playlist.items[0])
+            }
             onPauseClick={(): void => this.props.pauseSong()}
             onResumeClick={(): void => this.props.playSong(this.props.song!)}
             playing={this.props.playing}

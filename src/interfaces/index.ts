@@ -2,6 +2,9 @@ export interface Action<T> {
   type: ActionType;
   payload: T;
 }
+export interface SingleAction {
+  type: ActionType;
+}
 
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
@@ -25,8 +28,6 @@ export enum ActionType {
   SET_FULLSCREEN_IMAGE = 'SET_FULLSCREEN_IMAGE',
   CLEAR_FULLSCREEN_IMAGE = 'CLEAR_FULLSCREEN_IMAGE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
-  ACTION_PLAYER = 'ACTION_PLAYER',
-  CORDOVA_ACTION_PLAYER = 'CORDOVA_ACTION_PLAYER',
   TOGGLE_PLAYER = 'TOGGLE_PLAYER',
   TOGGLE_CURRENT_NEXT_SONG = 'TOGGLE_CURRENT_NEXT_SONG',
   LOAD_NEXT_SONG = 'LOAD_NEXT_SONG',
@@ -83,8 +84,7 @@ export enum ActionType {
   TOGGLE_NAVBAR_TWOACTIONS = 'TOGGLE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
-  LOADING_PLAYER = 'LOADING_PLAYER',
-  SET_CURRENT_GALLERY = 'SET_CURRENT_GALLERY'
+  LOADING_PLAYER = 'LOADING_PLAYER'
 }
 
 export interface TabsInterface {
@@ -227,7 +227,6 @@ export interface ArtistReducerType {
   event: EventInterface | null;
   currentGallery: GalleryImageInterface[] | null;
   currentArtist: ArtistInterface | null;
-  currentGallery: GalleryImageInterface[] | null;
   fullScreenImage: string | null;
   fullScreenImageIndex: number;
   currentGalleryComments: CommentInterface[];
@@ -268,6 +267,19 @@ export interface SongInterface {
   ISRC?: string;
   favorite?: boolean;
 }
+export interface SetPlaylistInterface {
+  playlist: PlaylistInterface;
+  song: SongInterface;
+}
+export interface SeekPositionInteface {
+  seekTo: number;
+  increase: boolean;
+}
+export interface PlaySongInterface {
+  song: SongInterface;
+  nextSong?: SongInterface;
+}
+
 export interface PlaylistInterface {
   name: string;
   id: number;
@@ -282,7 +294,7 @@ export interface PlaylistInterface {
 export interface PlayerReducerType {
   playerAction?: string;
   expanded: boolean;
-  buffering: boolean;
+  starting: boolean;
   fadingOut: boolean;
   playing: boolean;
   paused: boolean;
@@ -292,6 +304,7 @@ export interface PlayerReducerType {
   repeat: boolean;
   masterVolume: number;
   timeElapsed: number;
+  duration: number;
   song?: SongInterface;
   next?: SongInterface;
   playlist?: PlaylistInterface;
@@ -622,7 +635,6 @@ export interface MediaType {
   getByMediaId(id: string): any;
   list(): MediaType[];
   running(): any;
-  primary(): any;
   getPaused(): boolean;
   getPlaying(): boolean;
   getEnded(): boolean;
@@ -633,18 +645,21 @@ export interface MediaType {
   getFadingOut(): boolean;
   setFadeIn(value: boolean): void;
   setFadeOut(value: boolean): void;
-  setFadingOut(value: boolean): void;
+
   setForceFadeOut(value: boolean): void;
+  setFadingOut(value: boolean): void;
+
   setFadeVolume(volume: number): void;
   setFadeInOut(): void;
   setFadeTime(seconds: number): void;
-  getMediaInstanceNumber(): number;
-  setMediaInstanceNumber(instance: number): void;
+
   getMediaId(): number;
   setMediaId(id: number): void;
+
   updatePosition(): void;
   updateAudioPosition(): void;
   getVolume(): number;
+
   play(iosPlayOptions?: any): void;
   pause(): void;
   release(): void;
@@ -653,7 +668,6 @@ export interface MediaType {
   stop(): void;
   id: string;
   src: string;
-  updateInterval: number;
 }
 export interface CameraOptions {
   quality?: number; // Picture quality in range 0-100. Default is 50

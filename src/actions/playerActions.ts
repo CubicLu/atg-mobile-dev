@@ -1,69 +1,75 @@
-import { ActionType, PlaylistInterface, SongInterface } from '../interfaces';
+import {
+  ActionType,
+  PlaylistInterface,
+  SongInterface,
+  Action,
+  SingleAction,
+  SeekPositionInteface,
+  SetPlaylistInterface,
+  PlaySongInterface
+} from '../interfaces';
 
-export const togglePlayer = (): PlayerAction => {
+export const togglePlayer = (): SingleAction => {
   return { type: ActionType.TOGGLE_PLAYER };
 };
-export const setPlaylist = (
-  playlist: PlaylistInterface,
-  song?: SongInterface
-): any => {
-  return { type: ActionType.SET_PLAYLIST, playlist, song };
-};
-export const toggleShuffle = (): PlayerAction => {
+export const toggleShuffle = (): SingleAction => {
   return { type: ActionType.TOGGLE_SHUFFLE_PLAYER };
 };
-export const toggleRepeat = (): PlayerAction => {
+export const toggleRepeat = (): SingleAction => {
   return { type: ActionType.TOGGLE_REPEAT_PLAYER };
 };
-export const favoriteSong = (): PlayerAction => {
+export const favoriteSong = (): SingleAction => {
   return { type: ActionType.FAVORITE_SONG };
 };
-export const toggleNextSong = (): PlayerAction => {
+export const toggleNextSong = (): SingleAction => {
   return { type: ActionType.TOGGLE_CURRENT_NEXT_SONG };
 };
-export const setBufferingPlayer = (): PlayerAction => {
-  return { type: ActionType.LOADING_PLAYER };
-};
-export const fadingOutSong = (fadingOut: boolean = true): any => {
-  return { type: ActionType.FADING_OUT_SONG, fadingOut };
-};
-export const playSong = (song: SongInterface, next?: SongInterface): any => {
-  return { type: ActionType.PLAY_SONG, song, nextSong: next };
-};
-export const loadNextSong = (nextSong: SongInterface): any => {
-  return { type: ActionType.LOAD_NEXT_SONG, nextSong };
-};
-export const pauseSong = (): PlayerAction => {
+export const pauseSong = (): SingleAction => {
   return { type: ActionType.PAUSE_SONG };
 };
-export const nextSong = (): PlayerAction => {
+export const nextSong = (): SingleAction => {
   return { type: ActionType.NEXT_SONG };
 };
-export const prevSong = (): PlayerAction => {
+export const prevSong = (): SingleAction => {
   return { type: ActionType.PREV_SONG };
 };
-export const stopSong = (): PlayerAction => {
+export const stopSong = (): SingleAction => {
   return { type: ActionType.STOP_SONG };
 };
-export const resumeSong = (): PlayerAction => {
+export const resumeSong = (): SingleAction => {
   return { type: ActionType.RESUME_SONG };
 };
-export const seekSongPosition = (seekTo: number): any => {
-  return { type: ActionType.SEEK_TO_SONG, seekTo };
-};
-export const updateElapsed = (timeElapsed: number): any => {
-  return { type: ActionType.UPDATE_ELAPSED_SONG, timeElapsed };
-};
-export const updateDuration = (duration: number): any => {
-  return { type: ActionType.UPDATE_SONG_DURATION, duration };
-};
-export const updateVolume = (masterVolume: number): any => {
-  return { type: ActionType.UPDATE_MASTER_VOLUME, masterVolume };
-};
-export const setPlayerAction = (playerAction: string): any => {
-  return { type: ActionType.ACTION_PLAYER, playerAction };
-};
 
-interface PlayerAction {
-  type: string;
-}
+export const setPlaylist = (
+  playlist: PlaylistInterface,
+  song: SongInterface
+): Action<SetPlaylistInterface> => {
+  return { type: ActionType.SET_PLAYLIST, payload: { playlist, song } };
+};
+export const playSong = (
+  song: SongInterface,
+  nextSong?: SongInterface
+): Action<PlaySongInterface> => {
+  return { type: ActionType.PLAY_SONG, payload: { song, nextSong } };
+};
+export const loadNextSong = (payload: SongInterface): Action<SongInterface> => {
+  return { type: ActionType.LOAD_NEXT_SONG, payload };
+};
+export const seekSongPosition = (
+  seekTo: number,
+  increase: boolean = false
+): Action<SeekPositionInteface> => {
+  return { type: ActionType.SEEK_TO_SONG, payload: { seekTo, increase } };
+};
+export const updateElapsed = (timeElapsed: number): Action<number> => {
+  return { type: ActionType.UPDATE_ELAPSED_SONG, payload: timeElapsed };
+};
+export const updateDuration = (duration: number): Action<number> => {
+  return { type: ActionType.UPDATE_SONG_DURATION, payload: duration };
+};
+export const updateVolume = (masterVolume: number): Action<number> => {
+  return { type: ActionType.UPDATE_MASTER_VOLUME, payload: masterVolume };
+};
+export const setStartingPlayer = (payload: boolean): Action<boolean> => {
+  return { type: ActionType.LOADING_PLAYER, payload };
+};

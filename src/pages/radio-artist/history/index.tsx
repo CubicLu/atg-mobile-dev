@@ -37,14 +37,14 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  setPlaylist: (playlist: PlaylistInterface, song?: SongInterface) => void;
+  setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class RadioHistoryPage extends React.Component<Props> {
   onSongClick = (artistId: string, album: string): void => {
-    this.props.setPlaylist(guitarPlaylist, guitarPlaylist[0]);
+    this.props.setPlaylist(guitarPlaylist, guitarPlaylist.items[0]);
     this.props.history.push(`/track/artist/${artistId}/${album}`);
   };
   private headerRef: React.RefObject<any> = React.createRef();
@@ -123,7 +123,7 @@ class RadioHistoryPage extends React.Component<Props> {
   }
   historySongs = [
     {
-      artistId: 'pharell-williams',
+      artistId: 'pharrell-williams',
       album: '5',
       song: 'When It Comes To You',
       artist: 'Pharrell Williams',
@@ -132,7 +132,7 @@ class RadioHistoryPage extends React.Component<Props> {
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
-      artistId: 'pharell-williams',
+      artistId: 'pharrell-williams',
       album: '4',
       song: 'King Whithout A Crown',
       artist: 'Pharrell Williams',
@@ -141,7 +141,7 @@ class RadioHistoryPage extends React.Component<Props> {
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
-      artistId: 'pharell-williams',
+      artistId: 'pharrell-williams',
       album: '3',
       song: 'Better Tomorrow',
       artist: 'Pharrell Williams',
@@ -150,7 +150,7 @@ class RadioHistoryPage extends React.Component<Props> {
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
-      artistId: 'pharell-williams',
+      artistId: 'pharrell-williams',
       album: '2',
       song: 'King Whithout A Crown',
       artist: 'Pharrell Williams',
@@ -159,7 +159,7 @@ class RadioHistoryPage extends React.Component<Props> {
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'
     },
     {
-      artistId: 'pharell-williams',
+      artistId: 'pharrell-williams',
       album: '1',
       song: 'King Whithout A Crown',
       artist: 'Pharrell Williams',

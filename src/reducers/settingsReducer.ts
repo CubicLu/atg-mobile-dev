@@ -56,8 +56,7 @@ import {
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon,
-  ListUser
+  RadioIcon
 } from '../components';
 import React from 'react';
 import { store } from '../store';
@@ -546,19 +545,16 @@ const defaultState: SettingsReducerType = {
     {
       label: 'Artists',
       id: 'artists',
-      component: ListUser,
       icon: ''
     },
     {
       label: 'Friends',
       id: 'friends',
-      component: ListUser,
       icon: ''
     },
     {
       label: 'Admins',
       id: 'admins',
-      component: ListUser,
       icon: ''
     }
   ],

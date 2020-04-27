@@ -2,7 +2,11 @@ import {
   ActionType,
   PlayerReducerType,
   PlaylistInterface,
-  SongInterface
+  SongInterface,
+  Action,
+  SetPlaylistInterface,
+  SeekPositionInteface,
+  PlaySongInterface
 } from './../interfaces';
 import createReducer from './createReducer';
 
@@ -450,13 +454,14 @@ export const popPlaylist: PlaylistInterface = {
 };
 
 const defaultState: PlayerReducerType = {
-  buffering: false,
+  starting: false,
   expanded: false,
   fadingOut: false,
   playing: false,
   paused: false,
   stopped: false,
   timeElapsed: 0,
+  duration: 0,
   masterVolume: 1,
   canSkip: true,
   shuffle: false,
@@ -464,43 +469,57 @@ const defaultState: PlayerReducerType = {
   firstIndex: 0
 };
 
+type RunningStatus = 'PLAY' | 'PAUSE' | 'STOP';
+interface RunningValues {
+  playing: boolean;
+  paused: boolean;
+  stopped: boolean;
+}
+//ensure that not forget to have only one of three toggled
+const getRunningStatus = (status: RunningStatus): RunningValues => {
+  return {
+    playing: status === 'PLAY',
+    paused: status === 'PAUSE',
+    stopped: status === 'STOP'
+  };
+};
+
 export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
   //oficial used with song, nextSong and first item
-  [ActionType.SET_PLAYLIST](state: PlayerReducerType, payload): any {
-    let samePlaylist = false;
-    if (state.playlist?.id === payload.playlist.id) {
-      samePlaylist = true;
-      if (state.song?.id === payload.song?.id) return state;
-    }
-    const playlist: PlaylistInterface = payload.playlist;
-    const song: SongInterface | undefined = payload.song;
-    //I always get the song and next song
-    //if there is no song, will retrieve -1, and then i get the first array (0);
-    //we retirieve the first index to know when reach end
+  [ActionType.SET_PLAYLIST](
+    state: PlayerReducerType,
+    action: Action<SetPlaylistInterface>
+  ): PlayerReducerType {
+    const { playlist, song } = action.payload;
+    let isSamePlaylist = state.playlist?.id === playlist.id;
+    if (isSamePlaylist && state.song?.id === song.id) return state;
+
+    console.log('prev playlist:', state.playlist?.name, 'new: ', playlist.name);
+    console.log('prev song: ', state.song?.title, 'new: ', song.title);
+
     let index = playlist.items.findIndex((s): boolean => s.id === song?.id);
-    const firstId = Math.max(0, index);
-    const nextId = firstId + 1 >= playlist.items.length ? 0 : firstId + 1;
+    const songIdx = Math.max(index, 0); //-1 becomes zero;
+    const nextIdx = songIdx + 1 < playlist.items.length ? songIdx + 1 : 0;
 
     return {
       ...state,
+      starting: true,
+      ...getRunningStatus('PLAY'),
       playlist: playlist,
-      firstIndex: firstId,
-      song: playlist.items[firstId],
-      next: playlist.items[nextId],
-      playing: true,
-      paused: false,
-      stopped: false,
+      firstIndex: songIdx,
+      song: playlist.items[songIdx],
+      duration: playlist.items[songIdx].duration,
+      next: playlist.items[nextIdx],
       timeElapsed: 0,
-      duration: playlist.items[firstId].duration,
-      playerAction: samePlaylist
-        ? ActionType.SET_PLAYLIST
-        : ActionType.PLAY_SONG
+      playerAction: ActionType.SET_PLAYLIST
     };
   },
-  [ActionType.FAVORITE_SONG](state: PlayerReducerType): any {
+
+  [ActionType.FAVORITE_SONG](state: PlayerReducerType): PlayerReducerType {
     if (!state.song) {
       return state;
     }
+
     let currentSong = state.song;
     currentSong.favorite = !state.song.favorite;
     return {
@@ -509,7 +528,7 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: undefined
     };
   },
-  [ActionType.RESUME_SONG](state: PlayerReducerType): any {
+  [ActionType.RESUME_SONG](state: PlayerReducerType): PlayerReducerType {
     return {
       ...state,
       playing: true,
@@ -518,26 +537,25 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: ActionType.RESUME_SONG
     };
   },
-  [ActionType.PAUSE_SONG](state: PlayerReducerType): any {
+  [ActionType.PAUSE_SONG](state: PlayerReducerType): PlayerReducerType {
     return {
       ...state,
-      playing: false,
-      paused: true,
-      stopped: false,
+      ...getRunningStatus('PAUSE'),
       playerAction: ActionType.PAUSE_SONG
     };
   },
-  [ActionType.STOP_SONG](state: PlayerReducerType): any {
+  [ActionType.STOP_SONG](state: PlayerReducerType): PlayerReducerType {
     return {
       ...state,
-      playing: false,
-      paused: false,
-      song: null,
+      ...getRunningStatus('STOP'),
+      song: undefined,
       expanded: false,
       playerAction: ActionType.STOP_SONG
     };
   },
-  [ActionType.TOGGLE_CURRENT_NEXT_SONG](state: PlayerReducerType): any {
+  [ActionType.TOGGLE_CURRENT_NEXT_SONG](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     return {
       ...state,
       song: state.next,
@@ -547,94 +565,97 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: ActionType.TOGGLE_CURRENT_NEXT_SONG
     };
   },
-  [ActionType.PLAY_SONG](state: PlayerReducerType, action: any): any {
-    return action.nextSong
-      ? {
-          ...state,
-          song: action.song,
-          next: action.nextSong,
-          playing: true,
-          paused: false,
-          timeElapsed: 0,
-          duration: action.song.duration,
-          playerAction: ActionType.PLAY_SONG
-        }
-      : {
-          ...state,
-          song: action.song,
-          next: undefined,
-          playing: true,
-          paused: false,
-          timeElapsed: 0,
-          duration: action.song.duration,
-          playerAction: ActionType.PLAY_SONG
-        };
-  },
-  [ActionType.LOAD_NEXT_SONG](state: PlayerReducerType, action: any): any {
+  [ActionType.PLAY_SONG](
+    state: PlayerReducerType,
+    action: Action<PlaySongInterface>
+  ): PlayerReducerType {
     return {
       ...state,
-      next: action.nextSong,
+      starting: true,
+      ...getRunningStatus('PLAY'),
+      song: action.payload.song,
+      next: action.payload.nextSong,
+      timeElapsed: 0,
+      duration: action.payload.song.duration,
+      playerAction: ActionType.PLAY_SONG
+    };
+  },
+  [ActionType.LOAD_NEXT_SONG](
+    state: PlayerReducerType,
+    action: Action<SongInterface>
+  ): PlayerReducerType {
+    return {
+      ...state,
+      next: action.payload,
       playerAction: ActionType.LOAD_NEXT_SONG
     };
   },
-  [ActionType.SEEK_TO_SONG](state: PlayerReducerType, action): any {
+  [ActionType.SEEK_TO_SONG](
+    state: PlayerReducerType,
+    action: Action<SeekPositionInteface>
+  ): PlayerReducerType {
+    const { increase, seekTo } = action.payload;
     return {
       ...state,
-      timeElapsed: action.seekTo,
+      timeElapsed: !increase ? seekTo : Math.max(state.timeElapsed + seekTo, 0),
       playerAction: ActionType.SEEK_TO_SONG
     };
   },
-  [ActionType.UPDATE_MASTER_VOLUME](state: PlayerReducerType, action): any {
+  [ActionType.UPDATE_MASTER_VOLUME](
+    state: PlayerReducerType,
+    action: Action<number>
+  ): PlayerReducerType {
     return {
       ...state,
-      masterVolume: action.masterVolume,
+      masterVolume: action.payload,
+      playerAction: ActionType.UPDATE_MASTER_VOLUME
+    };
+  },
+  [ActionType.UPDATE_ELAPSED_SONG](
+    state: PlayerReducerType,
+    action: Action<number>
+  ): PlayerReducerType {
+    return {
+      ...state,
+      timeElapsed: action.payload,
       playerAction: undefined
     };
   },
-  [ActionType.UPDATE_ELAPSED_SONG](state: PlayerReducerType, action: any): any {
+  [ActionType.UPDATE_SONG_DURATION](
+    state: PlayerReducerType,
+    action: Action<number>
+  ): PlayerReducerType {
     return {
       ...state,
-      timeElapsed: action.timeElapsed,
+      duration: action.payload,
       playerAction: undefined
     };
   },
-  [ActionType.UPDATE_SONG_DURATION](state: PlayerReducerType, act: any): any {
-    let song = state.song;
-    if (!song) return state;
-    song.duration = act.duration;
-    return {
-      ...state,
-      song: song
-    };
-  },
-  [ActionType.TOGGLE_SHUFFLE_PLAYER](state: PlayerReducerType): any {
+  [ActionType.TOGGLE_SHUFFLE_PLAYER](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     return {
       ...state,
       shuffle: !state.shuffle,
       playerAction: ActionType.TOGGLE_SHUFFLE_PLAYER
     };
   },
-  [ActionType.TOGGLE_REPEAT_PLAYER](state: PlayerReducerType): any {
+  [ActionType.TOGGLE_REPEAT_PLAYER](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     return {
       ...state,
       repeat: !state.repeat,
       playerAction: ActionType.TOGGLE_REPEAT_PLAYER
     };
   },
-  [ActionType.FADING_OUT_SONG](state: PlayerReducerType, action): any {
-    return {
-      ...state,
-      fadingOut: action.fadingOut,
-      playerAction: ActionType.FADING_OUT_SONG
-    };
+  [ActionType.TOGGLE_PLAYER](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, expanded: !state.expanded, playerAction: undefined };
   },
-  [ActionType.TOGGLE_PLAYER](state: PlayerReducerType): any {
-    return { ...state, expanded: !state.expanded };
-  },
-  [ActionType.LOADING_PLAYER](state: PlayerReducerType, action): any {
-    return { ...state, buffering: action.buffering };
-  },
-  [ActionType.ACTION_PLAYER](state: PlayerReducerType, action): any {
-    return { ...state, playerAction: action.playerAction };
+  [ActionType.LOADING_PLAYER](
+    state: PlayerReducerType,
+    action: Action<boolean>
+  ): PlayerReducerType {
+    return { ...state, starting: action.payload, playerAction: undefined };
   }
 });

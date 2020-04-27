@@ -5,11 +5,12 @@ import { rootSaga } from '../sagas';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const sagaMiddleware = createSagaMiddleware();
+const middleware = applyMiddleware(sagaMiddleware);
 
 const devTools =
   process.env.NODE_ENV === 'production' // eslint-disable-line no-undef
-    ? applyMiddleware(sagaMiddleware)
-    : composeWithDevTools(applyMiddleware(sagaMiddleware));
+    ? middleware
+    : composeWithDevTools(middleware);
 
 export const store = createStore(rootReducers, {}, devTools);
 

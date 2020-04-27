@@ -111,7 +111,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
       currentGallery,
       setCurrentGallery
     } = this.props;
-    getArtistGalleryCommentsAPI(0, 'pharell-williams');
+    getArtistGalleryCommentsAPI(0, 'pharrell-williams');
     if (currentArtist === null) {
       getArtistAPI(match.params.id);
     }
@@ -121,7 +121,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     this.createSwipeGesture();
   }
 
-  changePage = (increase?: boolean): void => {
+  changePage = (increase: boolean = true): void => {
     const { match, history, setFullscreenImage } = this.props;
     const resultIndex = increase
       ? +match.params.imageId + 1
@@ -136,13 +136,12 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     let position = gesture.deltaX;
     let id = Number(this.props.match.params.imageId);
     let galleryLength = this.props.currentGallery?.length || 0;
-
     if (position > 0) {
       if (id !== 0) {
         this.changePage(false);
       }
     } else if (position < 0) {
-      if (galleryLength !== id) {
+      if (galleryLength - 1 !== id) {
         this.changePage();
       }
     }
@@ -268,7 +267,11 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
             backgroundColor: '#000'
           }}
         >
-          <div className={'artist-gallery-photo-page'} ref={this.image}>
+          <div
+            className={'artist-gallery-photo-page'}
+            ref={this.image}
+            id="gallery-image-gesture"
+          >
             <div style={{ marginTop: 100 }}>
               {imageSrc && <IonImg src={imageSrc} alt={''} />}
             </div>

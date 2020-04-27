@@ -46,13 +46,9 @@ class CardGenreComponent extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({
-  settings,
-  artistAPI
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { modal } = settings;
-  const { loading } = artistAPI;
-  return { modal, loading };
+  return { modal };
 };
 
 export default connect(mapStateToProps, {

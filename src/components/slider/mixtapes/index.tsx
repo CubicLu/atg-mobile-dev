@@ -9,7 +9,11 @@ import {
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { MixtapeInterface, PlaylistInterface } from '../../../interfaces';
+import {
+  MixtapeInterface,
+  PlaylistInterface,
+  SongInterface
+} from '../../../interfaces';
 import {
   guitarPlaylist,
   popPlaylist,
@@ -26,7 +30,7 @@ interface Props extends DispatchProps {
   playlists?: MixtapeInterface[];
 }
 interface DispatchProps {
-  setPlaylist: (playlist: PlaylistInterface) => void;
+  setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
 }
 
 class SliderMixtapesComponent extends React.Component<Props> {
@@ -97,7 +101,10 @@ class SliderMixtapesComponent extends React.Component<Props> {
         {playlists.map(
           (data, i): React.ReactNode => (
             <CardMixtapes
-              onClick={(): void => data.playlist && setPlaylist(data.playlist)}
+              onClick={(): void => {
+                data.playlist &&
+                  setPlaylist(data.playlist, data.playlist.items[0]);
+              }}
               mixtape={data}
               key={i}
               index={i + 1}

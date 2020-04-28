@@ -67,8 +67,11 @@ class MessageChatPage extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({ settings, profileAPI }: ApplicationState): StateProps => {
+
+const mapStateToProps = ({
+  settings,
+  profileAPI
+}: ApplicationState): StateProps => {
   const { messageTabs, activeMessageTab } = settings;
   const { messagesSearch } = profileAPI;
   return { messageTabs, activeMessageTab, messagesSearch };

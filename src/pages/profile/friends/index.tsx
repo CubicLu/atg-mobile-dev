@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { ListItem, LoaderFullscreen } from './../../../components';
+import { ListItem } from './../../../components';
 
 import { IonList, IonContent } from '@ionic/react';
 import { ActionType, FriendInterface } from '../../../interfaces';
@@ -30,10 +30,9 @@ class ProfileFriendsPage extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { friends, loading } = this.props;
+    const { friends } = this.props;
     return (
       <>
-        <LoaderFullscreen loading={loading} />
         <IonContent className="profile-friends-page">
           <IonList lines="none">
             {friends &&

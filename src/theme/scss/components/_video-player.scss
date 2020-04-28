@@ -2,13 +2,9 @@
     position: relative;
     background: #000;
 
-    .top-buttons{
-        max-height: 36px;
-        height: 36px;
-    }
-
     .progress-bar{
         ion-range{
+            height: 20px;
             padding: 0;
             margin-left: 8px;
             margin-right: 8px;
@@ -16,7 +12,7 @@
             --bar-background-active: #00baff;
             --knob-background: #fff;
             --knob-box-shadow: 2px 2px 3px 0 #00000099;
-            --knob-size: 20px;
+            --knob-size: 16px;
         }
     }
 
@@ -24,13 +20,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        max-height: $video-player-height - 70;
-        min-height: $video-player-height - 70;
         position: relative;
          .video{
             width: 100%;
-            max-height: $video-player-height - 70;
-            min-height: $video-player-height - 70;
+            max-height: $video-player-height;
+            min-height: $video-player-height;
         }
     }
 

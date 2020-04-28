@@ -8,70 +8,79 @@ import {
   DotsThreeIcon
 } from './../../../components';
 import { PostInterface, ShapesSize } from '../../../interfaces';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { IonRouterLink } from '@ionic/react';
 
-interface Props extends RouteComponentProps {
+interface Props {
   post: PostInterface;
   showUser?: boolean;
+  showOptions?: boolean;
 }
 
-class CardPostComponent extends React.Component<Props> {
+export default class CardPostComponent extends React.Component<Props> {
+  public static defaultProps = {
+    showOptions: true
+  };
   render(): React.ReactNode {
-    const { history } = this.props;
+    const { post } = this.props;
 
     return (
       <div
-        className="card post"
+        className="card post flex-column space-between"
         style={{
-          backgroundImage: `url(${this.props.post.image})`
+          backgroundImage: `url(${post.image})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="row ellipsis">
-          <ButtonIcon icon={<DotsThreeIcon />} />
-        </div>
-        <div className="row info">
-          <div className="col s12">
-            <div className="row">
-              <div
-                className="col s6 user"
-                onClick={(): void => {
-                  if (this.props.showUser)
-                    this.props.history.push(
-                      `/community/artist/${this.props.post.username}`
-                    );
-                }}
-              >
-                {this.props.showUser && (
-                  <>
-                    <Avatar
-                      image={this.props.post.avatar}
-                      type={ShapesSize.circle}
-                      width={42}
-                      height={42}
-                    />
-                    <label className="text-12 my-auto">
-                      {this.props.post.username}
-                    </label>
-                  </>
-                )}
-              </div>
-              <div className="col s6 button">
-                <ButtonIcon icon={<ShareLineIcon />} />
-                <ButtonIcon
-                  icon={<BalloonIcon />}
-                  label={this.props.post.commentsQuantity}
-                  onClick={(): void => {
-                    history.push(`/community/comments/${1}`);
-                  }}
-                />
-                <ButtonIcon icon={<HeartIcon />} />
-              </div>
+        <div className="fluid flex-compass east">
+          {this.props.showOptions && (
+            <div className="mx-2 default-button dark btn large">
+              <DotsThreeIcon />
             </div>
-          </div>
+          )}
+        </div>
+        {this.renderPostInput()}
+      </div>
+    );
+  }
+  renderPostInput(): React.ReactNode {
+    const { showUser, post } = this.props;
+    return (
+      <div className="mx-2 flex-align-items-center pb-1">
+        {showUser && (
+          <IonRouterLink
+            routerDirection="forward"
+            routerLink={`/community/artist/${post.username}`}
+          >
+            <div className="align-start flex">
+              <Avatar
+                image={post.avatar}
+                type={ShapesSize.circle}
+                width={40}
+                height={40}
+              />
+              <label className="ml-1 f7 my-auto">{post.username}</label>
+            </div>
+          </IonRouterLink>
+        )}
+
+        <div className="align-end flex">
+          <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
+          <span className="mx-05" />
+          <IonRouterLink
+            routerDirection="forward"
+            routerLink={`/community/comments/${1}`}
+          >
+            <ButtonIcon
+              className="btn large"
+              icon={<BalloonIcon />}
+              label={post.commentsQuantity}
+            />
+          </IonRouterLink>
+          <span className="mx-05" />
+          <ButtonIcon className="btn large" icon={<HeartIcon />} />
         </div>
       </div>
     );
   }
 }
-
-export default withRouter(CardPostComponent);

@@ -1,10 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import {
-  Action,
-  ActionType,
-  SettingsReducerType,
-  Colors
-} from './../interfaces';
+import { Action, ActionType, SettingsReducerType, Colors } from '../interfaces';
 import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
@@ -31,6 +26,7 @@ import {
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage,
   CommunityPostPage,
+  CommunityNewPostPage,
   TrackListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
@@ -49,16 +45,19 @@ import {
   MessageSelectContactPage,
   MessageNotificationDetailPage,
   FriendPage,
-  VaultFilterPage
+  VaultFilterPage,
+  VaultFilterGenrePage,
+  RadioStationEditPage,
+  VaultFilterEraPage,
+  VaultFilterSubEraPage
 } from './../pages';
 import {
   MenuArtistList,
   MessageIcon,
   ProfileIcon,
   SearchIcon,
-  RadioIcon,
-  ListUser
-} from './../components';
+  RadioIcon
+} from '../components';
 import React from 'react';
 import { store } from '../store';
 import LogoIcon from '../components/icon/logo';
@@ -72,6 +71,7 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
+  activeTab: 'profile',
   activeFanTab: 'artists',
   fanTabs: [
     {
@@ -149,7 +149,7 @@ const defaultState: SettingsReducerType = {
     {
       id: 'gallery',
       label: 'Photos',
-      icon: 'g',
+      icon: 'p',
       isPage: true,
       route: '/artist/:id/gallery'
     },
@@ -316,6 +316,11 @@ const defaultState: SettingsReducerType = {
       component: CommunityPostPage
     },
     {
+      path: '/community/post',
+      id: 'communityPost',
+      component: CommunityNewPostPage
+    },
+    {
       path: '/track/:reference/:referenceId/:id',
       id: 'tracklist',
       component: TrackListPage
@@ -359,6 +364,16 @@ const defaultState: SettingsReducerType = {
       path: '/radio/filter',
       id: 'radioFilter',
       component: RadioFilterPage
+    },
+    {
+      path: '/radio/station/edit/:id',
+      id: 'radioStationEdit',
+      component: RadioStationEditPage
+    },
+    {
+      path: '/radio/station/create',
+      id: 'radioStationEdit',
+      component: RadioStationEditPage
     },
     {
       path: '/radio/genre/:genre',
@@ -429,6 +444,21 @@ const defaultState: SettingsReducerType = {
       path: '/vault-filter',
       id: 'vault-filter',
       component: VaultFilterPage
+    },
+    {
+      path: '/vault-filter/genre',
+      id: 'vault-filter-genre',
+      component: VaultFilterGenrePage
+    },
+    {
+      path: '/vault-filter/era',
+      id: 'vault-filter-era',
+      component: VaultFilterEraPage
+    },
+    {
+      path: '/vault-filter/era/sub-era',
+      id: 'vault-filter-sub-era',
+      component: VaultFilterSubEraPage
     },
     {
       path: '/radio/:id',
@@ -515,23 +545,21 @@ const defaultState: SettingsReducerType = {
     {
       label: 'Artists',
       id: 'artists',
-      component: ListUser,
       icon: ''
     },
     {
       label: 'Friends',
       id: 'friends',
-      component: ListUser,
       icon: ''
     },
     {
       label: 'Admins',
       id: 'admins',
-      component: ListUser,
       icon: ''
     }
   ],
-  activeSelectContactTab: 'friends'
+  activeSelectContactTab: 'friends',
+  eraFilters: []
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(
@@ -546,6 +574,7 @@ export const settingsReducer = createReducer<SettingsReducerType>(
         [action.payload.property]: action.payload.value
       };
     },
+
     [ActionType.UPDATE_SETTINGS_MODAL](
       state: SettingsReducerType,
       action: Action<any>

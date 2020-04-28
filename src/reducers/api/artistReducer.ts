@@ -25,7 +25,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.UPDATE_ARTIST_PROPERTY](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       [action.payload.property]: action.payload.value
@@ -35,7 +35,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.UPDATE_ARTIST_SET_INITIAL_PROPERTY](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       [action.payload]: defaultState[action.payload]
@@ -52,7 +52,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTISTS_API_SUCCESS](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -63,7 +63,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTISTS_API_FAILURE](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -71,7 +71,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ActionType.GET_ARTIST_API](state: ArtistReducerType): any {
+  [ActionType.GET_ARTIST_API](state: ArtistReducerType): ArtistReducerType {
     return {
       ...state,
       loading: true
@@ -81,7 +81,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTIST_API_SUCCESS](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -92,7 +92,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTIST_API_FAILURE](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -100,7 +100,9 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ActionType.GET_ARTIST_EVENT_API](state: ArtistReducerType): any {
+  [ActionType.GET_ARTIST_EVENT_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
     return {
       ...state,
       loading: true
@@ -110,7 +112,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTIST_EVENT_API_SUCCESS](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -121,7 +123,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTIST_EVENT_API_FAILURE](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -129,7 +131,9 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ActionType.GET_ARTIST_GALLERY_COMMENTS_API](state: ArtistReducerType): any {
+  [ActionType.GET_ARTIST_GALLERY_COMMENTS_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
     return {
       ...state,
       loading: true
@@ -139,7 +143,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,
@@ -150,7 +154,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   [ActionType.GET_ARTIST_GALLERY_COMMENTS_API_FAILURE](
     state: ArtistReducerType,
     action: Action<any>
-  ): any {
+  ): ArtistReducerType {
     return {
       ...state,
       loading: false,

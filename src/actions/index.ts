@@ -1,4 +1,5 @@
-export * from './settings';
+export * from './settingsActions';
+export * from './navbarActions';
 export * from './api/artistActions';
 export * from './api/authActions';
 export * from './playerActions';

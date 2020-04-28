@@ -192,7 +192,7 @@ class RadioFilterPage extends React.Component<Props, State> {
             onChange={(e): void => this.performSearch(e.detail.value!)}
           />
         </div>
-        <div className="mt-3 search-outline" />
+        <div className="mx-4 mt-3 search-outline" />
       </>
     );
   }
@@ -249,7 +249,7 @@ class RadioFilterPage extends React.Component<Props, State> {
                       onClick={this.resetSearch}
                       className={'station circle'}
                       style={{
-                        background: `url(${station.image})`,
+                        backgroundImage: `url(${station.image})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

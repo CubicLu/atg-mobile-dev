@@ -36,7 +36,7 @@ class SearchResultSectionComponent extends React.Component<Props> {
             </div>
           )
         )}
-        <div className="mt-3 search-outline-purple" />
+        <div className="mx-4 mt-3 search-outline-purple" />
       </div>
     );
   }

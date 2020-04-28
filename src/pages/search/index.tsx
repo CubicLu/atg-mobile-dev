@@ -53,16 +53,10 @@ class SearchPage extends React.Component<Props> {
           id="search-page"
         >
           <div className="search-page">
-            <BackgroundImage
-              gradient={'180deg,#1F0739,#1F0739'}
-              backgroundTop
-              backgroundBottom
-              backgroundBottomDark={false}
-              backgroundTopDark
-              backgroundTopOpacity={0.7}
-            />
+            <BackgroundImage default={true} />
             <div className={'content-container'}>
               <input
+                autoComplete="off"
                 placeholder={'Artist, Genre, sub-genre, era...'}
                 type={'text'}
                 className="input text"
@@ -80,7 +74,6 @@ class SearchPage extends React.Component<Props> {
                 <div className={'row'}>
                   {Object.keys(queryResult).map(
                     (prop: string, i: number): React.ReactNode => {
-                      console.log(queryResult[prop]);
                       return (
                         <SearchResultSection
                           key={i}

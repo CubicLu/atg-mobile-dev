@@ -10,11 +10,13 @@ import {
   ShareIcon,
   TrashIcon
 } from './../../icon';
+import { IonRouterLink } from '@ionic/react';
 
 interface Props {
   mixtape: MixtapeInterface;
   index: number;
   menu?: boolean;
+  onClick?: () => void;
 }
 
 interface State {
@@ -54,7 +56,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
               className={`background ${menu === true ? '' : 'without-menu'}`}
               style={{ backgroundImage: `url(${mixtape.cover})` }}
             >
-              <ButtonIcon icon={<PlayIcon />} />
+              <ButtonIcon onClick={this.props.onClick} icon={<PlayIcon />} />
               {menu === true && (
                 <ButtonIcon
                   icon={<DotsThreeIcon />}
@@ -109,12 +111,17 @@ class CardMixtapesComponent extends React.Component<Props, State> {
             </div>
           )}
         </div>
-        <div className="flex-justify-content-center center-align">
-          <div className="f4 mt-2 l15">
-            {mixtape.name}
-            <div className="f6 l15">{mixtape.quantity} Songs</div>
+        <IonRouterLink
+          routerDirection="forward"
+          routerLink={`/track/mixtape/${mixtape.playlist?.id || 0}/0`}
+        >
+          <div className="flex-justify-content-center center-align">
+            <div className="f4 mt-2 l15">
+              {mixtape.name}
+              <div className="f6 l15">{mixtape.quantity} Songs</div>
+            </div>
           </div>
-        </div>
+        </IonRouterLink>
       </div>
     );
   }

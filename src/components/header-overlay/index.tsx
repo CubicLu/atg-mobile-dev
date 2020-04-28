@@ -13,14 +13,17 @@ interface Props {
 }
 
 class HeaderOverlayComponent extends React.Component<Props> {
-  ref?: React.RefObject<HTMLDivElement> = React.createRef();
+  public ref?: React.RefObject<HTMLDivElement> = React.createRef();
   animationRef?: React.RefObject<CreateAnimation> = React.createRef();
   private lastValidScroll: ScrollHeaderInterface = {
     direction: 'scrollUp',
     blur: false,
     animation: 'reverse'
   };
-  public static defaultProps = {};
+
+  componentWillUnmount(): void {
+    this.animationRef?.current?.animation?.destroy();
+  }
 
   public handleParentScroll(event: CustomEvent<any>): void {
     this.playTopHeader(validateScrollHeader(event));

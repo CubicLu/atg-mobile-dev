@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import { BackgroundImage, Header, Avatar } from '../../../components';
+import {
+  BackgroundImage,
+  Header,
+  Avatar,
+  HeaderOverlay
+} from '../../../components';
 import { getCommunityStoriesAPI } from './../../../actions';
 import { StorieInterface, ShapesSize } from '../../../interfaces';
 
@@ -17,6 +22,7 @@ interface DispatchProps {
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class CommunityAllArtistsPage extends React.Component<Props> {
+  private hRef: React.RefObject<any> = React.createRef();
   componentDidMount(): void {
     this.props.getCommunityStoriesAPI();
   }
@@ -35,12 +41,18 @@ class CommunityAllArtistsPage extends React.Component<Props> {
         />
         <Header
           leftBackButton={true}
-          title={'Artist Community'}
-          titleClassName={'artist-name'}
+          title="Artist Community"
+          titleClassName="artist-name"
           rightCloseButton={true}
           rightCloseHref="/community"
         />
-        <IonContent>
+        <HeaderOverlay ref={this.hRef} />
+        <IonContent
+          fullscreen={true}
+          scrollY={true}
+          scrollEvents={true}
+          onIonScroll={(e): void => this.hRef.current?.handleParentScroll(e)}
+        >
           <div
             className={
               'mt-5 community-all-artists-page content content-container'
@@ -53,7 +65,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
                     <div
                       onClick={(): void =>
                         this.props.history.push(
-                          '/community/artist/pharell-williams'
+                          '/community/artist/pharrell-williams'
                         )
                       }
                       key={i}

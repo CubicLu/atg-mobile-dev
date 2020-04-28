@@ -8,6 +8,7 @@ import { ShapesSize, Sizes } from '../../../interfaces';
 interface Props {
   viewAll?: boolean;
   scroll?: boolean;
+  canEdit: boolean;
   data?: any[];
   size?: Sizes;
   type?: ShapesSize;
@@ -17,12 +18,13 @@ interface Props {
 class SliderVideoComponent extends React.Component<Props> {
   public static defaultProps = {
     scroll: false,
+    canEdit: false,
     size: Sizes.md,
     type: ShapesSize.rounded
   };
 
   render(): React.ReactNode {
-    const { data, size, type } = this.props;
+    const { data, size, type, onClick, canEdit } = this.props;
     if (!data) return <div />;
 
     const settings: Settings = {
@@ -40,9 +42,8 @@ class SliderVideoComponent extends React.Component<Props> {
             (d, i): React.ReactNode => (
               <CardVideo
                 key={i}
-                onClick={(id): void => {
-                  if (this.props.onClick !== undefined) this.props.onClick(id);
-                }}
+                canEdit={canEdit}
+                onClick={(id): void => onClick && onClick(id)}
                 type={type}
                 video={d.video}
                 image={d.image}

@@ -2,6 +2,9 @@ export interface Action<T> {
   type: ActionType;
   payload: T;
 }
+export interface SingleAction {
+  type: ActionType;
+}
 
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
@@ -25,8 +28,6 @@ export enum ActionType {
   SET_FULLSCREEN_IMAGE = 'SET_FULLSCREEN_IMAGE',
   CLEAR_FULLSCREEN_IMAGE = 'CLEAR_FULLSCREEN_IMAGE',
   UPDATE_ARTIST_SET_INITIAL_PROPERTY = 'UPDATE_ARTIST_SET_INITIAL_PROPERTY',
-  ACTION_PLAYER = 'ACTION_PLAYER',
-  CORDOVA_ACTION_PLAYER = 'CORDOVA_ACTION_PLAYER',
   TOGGLE_PLAYER = 'TOGGLE_PLAYER',
   TOGGLE_CURRENT_NEXT_SONG = 'TOGGLE_CURRENT_NEXT_SONG',
   LOAD_NEXT_SONG = 'LOAD_NEXT_SONG',
@@ -39,14 +40,13 @@ export enum ActionType {
   RESUME_SONG = 'RESUME_SONG',
   SEEK_TO_SONG = 'SEEK_TO_SONG',
   UPDATE_ELAPSED_SONG = 'UPDATE_ELAPSED_SONG',
+  UPDATE_SONG_DURATION = 'UPDATE_SONG_DURATION',
   UPDATE_MASTER_VOLUME = 'UPDATE_MASTER_VOLUME',
   FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS',
   TOGGLE_SHUFFLE_PLAYER = 'TOGGLE_SHUFFLE_PLAYER',
   TOGGLE_REPEAT_PLAYER = 'TOGGLE_REPEAT_PLAYER',
   FAVORITE_SONG = 'FAVORITE_SONG',
   SET_PLAYLIST = 'SET_PLAYLIST',
-  SET_PLAYLIST_PLAYER = 'SET_PLAYLIST_PLAYER',
-  SET_RADIO_PLAYER = 'SET_RADIO_PLAYER',
   GET_COMMUNITY_POSTS_API = 'GET_COMMUNITY_POSTS_API',
   GET_COMMUNITY_POSTS_API_FAILURE = 'GET_COMMUNITY_POSTS_API_FAILURE',
   GET_COMMUNITY_POSTS_API_SUCCESS = 'GET_COMMUNITY_POSTS_API_SUCCESS',
@@ -80,7 +80,11 @@ export enum ActionType {
   GET_FEED_POSTS_API_SUCCESS = 'GET_FEED_POSTS_API_SUCCESS',
   GET_RADIO_ARTIST = 'GET_RADIO_ARTIST',
   GET_RADIO_ARTIST_SUCCESS = 'GET_RADIO_ARTIST_SUCCESS',
-  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE'
+  GET_RADIO_ARTIST_FAILURE = 'GET_RADIO_ARTIST_FAILURE',
+  TOGGLE_NAVBAR_TWOACTIONS = 'TOGGLE_NAVBAR_TWOACTIONS',
+  UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
+  UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
+  LOADING_PLAYER = 'LOADING_PLAYER'
 }
 
 export interface TabsInterface {
@@ -94,6 +98,11 @@ export interface LinksInterface {
   icon?: any;
   id: string;
   component?: any;
+}
+export interface Photo {
+  filepath: string;
+  webviewPath?: string;
+  base64?: string;
 }
 
 export interface ArtistInterface {
@@ -147,6 +156,7 @@ export interface DailyDripItem {
 
 export interface SettingsReducerType {
   tabs: TabsInterface[];
+  activeTab: string;
   links: LinksInterface[];
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
@@ -162,6 +172,18 @@ export interface SettingsReducerType {
   profileFriendTabs: MenuInterface[];
   selectContactTabs: MenuInterface[];
   activeSelectContactTab: string;
+  eraFilters: object[];
+}
+export interface NavbarReducerType {
+  navbarTwoButtons: NavbarTwoButtons;
+}
+
+export interface NavbarTwoButtons {
+  status: boolean;
+  leftLabel?: string;
+  rightLabel?: string;
+  leftAction?: Function;
+  rightAction?: Function;
 }
 
 export interface ScrollHeaderInterface {
@@ -197,13 +219,14 @@ export interface MixtapeInterface {
   name: string;
   quantity: number;
   cover: string | undefined;
+  playlist?: PlaylistInterface;
 }
 
 export interface ArtistReducerType {
   artists: ArtistInterface[];
   event: EventInterface | null;
-  currentArtist: ArtistInterface | null;
   currentGallery: GalleryImageInterface[] | null;
+  currentArtist: ArtistInterface | null;
   fullScreenImage: string | null;
   fullScreenImageIndex: number;
   currentGalleryComments: CommentInterface[];
@@ -219,6 +242,7 @@ export interface UserInterface {
   avatar?: string | undefined;
   username: string;
   isFriend?: boolean;
+  id?: number;
 }
 
 export interface AuthReducerType {
@@ -231,16 +255,31 @@ export interface SearchReducerType {
 }
 
 export interface SongInterface {
-  id: string;
+  id: number;
+  title: string;
   album: string;
   artist: string;
-  name: string;
-  trackNumber: number;
   duration: number;
   cover: string;
+  coverArtist?: string;
+  trackNumber: number;
   url: string;
+  ISRC?: string;
   favorite?: boolean;
 }
+export interface SetPlaylistInterface {
+  playlist: PlaylistInterface;
+  song: SongInterface;
+}
+export interface SeekPositionInteface {
+  seekTo: number;
+  increase: boolean;
+}
+export interface PlaySongInterface {
+  song: SongInterface;
+  nextSong?: SongInterface;
+}
+
 export interface PlaylistInterface {
   name: string;
   id: number;
@@ -249,10 +288,13 @@ export interface PlaylistInterface {
   cover: string;
   items: SongInterface[];
   owner: string;
+  color1?: string;
+  color2?: string;
 }
 export interface PlayerReducerType {
   playerAction?: string;
   expanded: boolean;
+  starting: boolean;
   fadingOut: boolean;
   playing: boolean;
   paused: boolean;
@@ -262,6 +304,7 @@ export interface PlayerReducerType {
   repeat: boolean;
   masterVolume: number;
   timeElapsed: number;
+  duration: number;
   song?: SongInterface;
   next?: SongInterface;
   playlist?: PlaylistInterface;
@@ -295,7 +338,9 @@ export interface StorieInterface {
   label: string;
 }
 
-export interface CommunityArtistInterface extends UserInterface {}
+export interface CommunityArtistInterface extends UserInterface {
+  backgroundGradient: GradientColorsInterface | null;
+}
 export interface FanFeedInterface extends UserInterface {}
 
 export interface PostInterface {
@@ -380,6 +425,7 @@ export enum Colors {
   support = 'support',
   transparentGray = 'transparent-gray',
   transparent = 'transparent',
+  transparentRed = 'transparent-red',
   green = 'green',
   red = 'red',
   orange = 'orange',
@@ -443,9 +489,11 @@ export interface EventWhoIsGoingInterface extends UserInterface {}
 export type RouterLinkDirection = 'forward' | 'back' | 'root';
 export enum ShapesSize {
   rounded = 'rounded',
+  roundedFrame = 'rounded-frame',
   badge = 'badge',
   circle = 'circle',
   normal = 'normal',
+  small = 'small',
   full = 'fluid'
 }
 export enum Sizes {
@@ -505,6 +553,8 @@ export interface ProfileReducerType {
   artistsSearch: UserInterface[];
   admins: UserInterface[];
   adminsSearch: UserInterface[];
+  friendsSelected: number[];
+  resentSelected: number[];
 }
 
 export interface MessageInterface extends UserInterface {
@@ -562,14 +612,29 @@ export interface GalleryImageIndexInterface {
   index: number;
 }
 
+export interface GenreInterface {
+  name: string;
+  image: string;
+}
+
+export interface SubGenreInterface {
+  name: string;
+  selected: boolean;
+}
+
+export interface SubEraInterface {
+  name: string;
+  selected: boolean;
+}
+
 export interface MediaType {
-  updateInterval: number;
   getDuration(): number;
   getPosition(): number;
   getMediaState(): number;
   getState(): string;
+  getByMediaId(id: string): any;
+  list(): MediaType[];
   running(): any;
-  primary(): any;
   getPaused(): boolean;
   getPlaying(): boolean;
   getEnded(): boolean;
@@ -580,29 +645,72 @@ export interface MediaType {
   getFadingOut(): boolean;
   setFadeIn(value: boolean): void;
   setFadeOut(value: boolean): void;
-  setFadingOut(value: boolean): void;
+
   setForceFadeOut(value: boolean): void;
+  setFadingOut(value: boolean): void;
+
   setFadeVolume(volume: number): void;
   setFadeInOut(): void;
   setFadeTime(seconds: number): void;
-  getMediaInstanceNumber(): number;
-  setMediaInstanceNumber(instance: number): void;
-  getMediaId(): string;
-  setMediaId(id: string): void;
+
+  getMediaId(): number;
+  setMediaId(id: number): void;
+
   updatePosition(): void;
   updateAudioPosition(): void;
   getVolume(): number;
-  getPrimary(): boolean;
-  setPrimary(value: boolean): void;
+
   play(iosPlayOptions?: any): void;
   pause(): void;
   release(): void;
   seekTo(position: number): void;
   setVolume(volume: number): void;
   stop(): void;
-  position: number;
-  duration: number;
-  mediaState: number;
-  id: any;
+  id: string;
   src: string;
+}
+export interface CameraOptions {
+  quality?: number; // Picture quality in range 0-100. Default is 50
+  sourceType?: number; //1 Camera, 2. SavedPhotoAlbum, 0. PhotoLibrary
+  allowEdit?: boolean;
+  encodingType?: number; //0 JPEG 1 PNG
+  targetWidth?: number;
+  targetHeight?: number;
+  mediaType?: number; //0. PICTURE, 1.VIDEO, 2.ALLMEDIA
+  correctOrientation?: boolean; // Rotate to correct for the orientation */
+  saveToPhotoAlbum?: boolean; //save after capture
+  cameraDirection?: number; //1.back and 0.front
+  destinationType?: number;
+  /**
+   * Choose the format of the return value.
+   * Defined in navigator.camera.DestinationType. Default is FILE_URI.
+   *      DATA_URL : 0,   Return image as base64-encoded string
+   *      FILE_URI : 1,   Return image file URI
+   *      NATIVE_URI : 2  Return image native URI
+   *          (e.g., assets-library:// on iOS or content:// on Android)
+   */
+}
+export interface Camera {
+  cleanup(onSuccess: () => void, onError: (message: string) => void): void;
+  getPicture(
+    cameraSuccess: (data: string) => void,
+    cameraError: (message: string) => void,
+    cameraOptions?: CameraOptions
+  ): void;
+}
+export interface ActionCallbackInterface<T> {
+  type: ActionType;
+  payload?: T;
+}
+
+export interface GalleryImageInterface {
+  image: string;
+}
+
+export interface GalleryIdInterface {
+  galleryId: number;
+}
+
+export interface GalleryImageIndexInterface {
+  index: number;
 }

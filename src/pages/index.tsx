@@ -5,6 +5,7 @@ import SignInPage from './sign-in';
 import SignUpPage from './sign-up';
 import SignUpConfirmPage from './sign-up-confirm';
 import HomePage from './home';
+import HomeRouterPage from './home/router';
 
 import FeedPage from './feed';
 import FriendPage from './friend';
@@ -19,6 +20,7 @@ import ProfileVaultPage from './profile/vault';
 import CommunityPage from './community';
 import CommunityArtistPage from './community/artist';
 import CommunityPostPage from './community/post';
+import CommunityNewPostPage from './community/new-post';
 import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
 
@@ -44,6 +46,9 @@ import ThankYouPage from './thank-you';
 import SettingPage from './setting';
 import RadioPage from './radio';
 import RadioFilterPage from './radio/filter';
+import RadioArtistPage from './radio-artist';
+import RadioHistoryPage from './radio-artist/history';
+import RadioStationEditPage from './radio/station-create';
 
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
@@ -53,8 +58,10 @@ import MessageNotificationDetailPage from './message/notification-detail';
 
 import FanFeedFilterPage from './fan-feed-filter';
 import VaultFilterPage from './vault-filter';
-import RadioArtistPage from './radio-artist';
-import RadioHistoryPage from './radio-artist/history';
+
+import VaultFilterGenrePage from './vault-filter/vault-filter-genre';
+import VaultFilterEraPage from './vault-filter/vault-filter-era';
+import VaultFilterSubEraPage from './vault-filter/vault-filter-era/vault-filter-sub-era';
 
 export {
   NotFoundPage,
@@ -64,6 +71,7 @@ export {
   SignUpPage,
   SignUpConfirmPage,
   HomePage,
+  HomeRouterPage,
   FeedPage,
   SearchPage,
   ProfilePage,
@@ -92,10 +100,12 @@ export {
   CommunityPage,
   CommunityArtistPage,
   CommunityPostPage,
+  CommunityNewPostPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
   RadioPage,
   RadioFilterPage,
+  RadioStationEditPage,
   SettingPage,
   MessagePage,
   MessageChatPage,
@@ -106,5 +116,8 @@ export {
   FriendPage,
   VaultFilterPage,
   RadioArtistPage,
-  RadioHistoryPage
+  RadioHistoryPage,
+  VaultFilterGenrePage,
+  VaultFilterEraPage,
+  VaultFilterSubEraPage
 };

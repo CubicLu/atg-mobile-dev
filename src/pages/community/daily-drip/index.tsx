@@ -194,7 +194,6 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
                   onIonSlideTouchEnd={(): void => this.startProgress()}
                   onIonSlideDrag={(): void => this.pauseProgress()}
                   onIonSlideTouchStart={(): void => this.pauseProgress()}
-                  // onIonSlideDoubleTap={(): void => this.navigateOtherDrip(true)}
                   onIonSlideReachStart={(): boolean => (this.first = true)}
                   onIonSlideReachEnd={(): boolean => (this.last = true)}
                   onIonSlideTap={(e: CustomEvent): void => this.click(e.detail)}
@@ -227,7 +226,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       name: 'Ok Now',
       total: 9,
       lastViewed: -1,
-      artistUsername: 'pharell-williams',
+      artistUsername: 'pharrell-williams',
       items: [
         {
           createdAt: 1586187656148,
@@ -308,7 +307,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       name: 'Interviews',
       total: 6,
       lastViewed: -1,
-      artistUsername: 'pharell-williams',
+      artistUsername: 'pharrell-williams',
       items: [
         {
           createdAt: 1586187656148,
@@ -374,7 +373,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       name: 'New Single',
       total: 7,
       lastViewed: -1,
-      artistUsername: 'pharell-williams',
+      artistUsername: 'pharrell-williams',
       items: [
         {
           createdAt: 1586187656148,

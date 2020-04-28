@@ -12,7 +12,7 @@ import {
   getArtistAPI,
   setCurrentGallery,
   updateSettingsProperty
-} from '../../../actions';
+} from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 
@@ -35,7 +35,7 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-class ArtistGalleryPage extends React.Component<Props, {}> {
+class ArtistGalleryPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
@@ -73,14 +73,7 @@ class ArtistGalleryPage extends React.Component<Props, {}> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div className={'content-container'}>
             <div className={'row no-margin'}>
               {this.props.currentArtist?.gallery?.map(

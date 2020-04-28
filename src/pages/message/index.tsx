@@ -79,14 +79,7 @@ class MessagePage extends React.Component<Props> {
           }
         />
         <IonContent className="mb-50" scrollY={false}>
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div className="message-page content-fixed" slot="fixed">
             <div className="m-3">
               <InputSearch
@@ -101,9 +94,9 @@ class MessagePage extends React.Component<Props> {
             <div className="row">
               <div className="fluid">
                 <MenuMessage
-                  onClick={(data): void => {
-                    updateSettingsProperty('activeMessageTab', data.id);
-                  }}
+                  onClick={(data): void =>
+                    updateSettingsProperty('activeMessageTab', data.id)
+                  }
                   className=""
                   activeId={activeMessageTab}
                   tabs={messageTabs}
@@ -125,7 +118,10 @@ class MessagePage extends React.Component<Props> {
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({ settings, profileAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  settings,
+  profileAPI
+}: ApplicationState): StateProps => {
   const { messageTabs, activeMessageTab } = settings;
   const { messages, notifications } = profileAPI;
   return { messageTabs, activeMessageTab, messages, notifications };

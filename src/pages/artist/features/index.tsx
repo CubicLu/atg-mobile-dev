@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
-import { ArtistInterface } from '../../../interfaces';
+import {
+  ArtistInterface,
+  PlaylistInterface,
+  SongInterface
+} from '../../../interfaces';
 import {
   SliderVideo,
   SliderMixtapes,
@@ -10,17 +14,18 @@ import {
   SectionTitle as Section,
   ArrowRightIcon
 } from './../../../components';
-import { setPlaylistPlayer } from './../../../actions/playerActions';
+import { setPlaylist } from './../../../actions/playerActions';
+import { guitarPlaylist as playlist } from '../../../reducers/playerReducer';
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
 interface DispatchProps extends StateProps {
-  setPlaylistPlayer: () => void;
+  setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
 }
 
 class ArtistFeaturesPage extends React.Component<DispatchProps> {
   render(): React.ReactNode {
-    const { currentArtist } = this.props;
+    const { currentArtist, setPlaylist } = this.props;
     if (!currentArtist) return <div />;
 
     const {
@@ -39,7 +44,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
           {featuredTracks?.map(
             (track, i): React.ReactNode => (
               <div
-                onClick={(): void => this.props.setPlaylistPlayer()}
+                onClick={(): void => setPlaylist(playlist, playlist.items[i])}
                 className="flex mx-3 mb-25 mt-1 f4 l11"
                 key={i}
               >
@@ -97,6 +102,4 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default connect(mapStateToProps, { setPlaylistPlayer })(
-  ArtistFeaturesPage
-);
+export default connect(mapStateToProps, { setPlaylist })(ArtistFeaturesPage);

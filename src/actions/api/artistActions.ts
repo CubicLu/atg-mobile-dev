@@ -2,8 +2,9 @@ import {
   ActionType,
   Action,
   GalleryIdInterface,
-  GalleryImageIndexInterface
-} from '../../interfaces';
+  GalleryImageIndexInterface,
+  ActionCallbackInterface
+} from './../../interfaces';
 
 export const updateArtistProperty = (property: string, value: any): any => ({
   type: ActionType.UPDATE_ARTIST_PROPERTY,
@@ -79,7 +80,7 @@ export const getArtistGalleryCommentsAPISuccess = (response): any => ({
 
 export const setCurrentGallery = (
   galleryId: number
-): Action<GalleryIdInterface> => ({
+): ActionCallbackInterface<GalleryIdInterface> => ({
   type: ActionType.SET_CURRENT_GALLERY,
   payload: {
     galleryId

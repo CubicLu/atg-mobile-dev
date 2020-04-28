@@ -103,7 +103,7 @@ class SignUpPage extends React.Component<Props, State> {
             </div>
 
             <div className="flex-compass fluid h-100 medium">
-              <div className="col s12">
+              <div className="fluid">
                 <InputText
                   type="text"
                   error={this.state.errors.nickname !== ''}
@@ -115,13 +115,13 @@ class SignUpPage extends React.Component<Props, State> {
                   defaultValue={signUpUser.nickname}
                 />
               </div>
-              <div className="col s12">
+              <div className="fluid">
                 <span className="text-12 f0 text-white">
                   {this.state.errors.nickname}
                 </span>
               </div>
               <br />
-              <div className="col s12">
+              <div className="fluid">
                 <InputText
                   error={this.state.errors.email !== ''}
                   type="text"
@@ -133,7 +133,7 @@ class SignUpPage extends React.Component<Props, State> {
                   }}
                 />
               </div>
-              <div className="col s12">
+              <div className="fluid">
                 <span className="text-12 f0 text-white">
                   {this.state.errors.email}
                 </span>

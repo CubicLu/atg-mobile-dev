@@ -122,14 +122,7 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div className="message-notification-detail-page content-container">
             <div className="row">
               <div className="col s12">
@@ -176,7 +169,10 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({ settings, profileAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  settings,
+  profileAPI
+}: ApplicationState): StateProps => {
   const { messageTabs, activeMessageTab } = settings;
   const { notificationsSearch } = profileAPI;
   return { messageTabs, activeMessageTab, notificationsSearch };

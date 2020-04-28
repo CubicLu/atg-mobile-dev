@@ -1,4 +1,8 @@
 .fan-feed-filter-page{
+  ion-content{
+    --offset-bottom: -150px !important;
+  }
+
   ion-item{
     border-bottom: 1px solid #45187B;
     &:last-child{

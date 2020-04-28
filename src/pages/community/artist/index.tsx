@@ -7,7 +7,8 @@ import {
   ButtonIcon,
   Button,
   ChatMessageIcon,
-  SectionTitle
+  SectionTitle,
+  HeaderOverlay
 } from './../../../components';
 import { ApplicationState } from './../../../reducers';
 import {
@@ -48,6 +49,7 @@ interface State {
 }
 
 class CommunityArtistPage extends React.Component<Props, State> {
+  private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
     super(props);
     this.state = { joined: false };
@@ -103,18 +105,26 @@ class CommunityArtistPage extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { joined } = this.state;
-    const colors = ['#230541', '#180727'];
-
+    const { currentCommunityArtist } = this.props;
+    let color1 =
+      currentCommunityArtist?.backgroundGradient !== null
+        ? currentCommunityArtist?.backgroundGradient.color1
+        : '';
+    let color2 =
+      currentCommunityArtist?.backgroundGradient !== null
+        ? currentCommunityArtist?.backgroundGradient.color1
+        : '';
     return (
       <IonPage id="community-page">
         <BackgroundImage
-          gradient={`180deg,${colors[0]},${colors[1]}`}
+          gradient={`180deg,${color1},${color2}`}
           backgroundTopDark
           backgroundTop
           backgroundTopOpacity={0.5}
           backgroundBottom
           backgroundBottomDark={false}
           backgroundBottomOpacity={0.08}
+          default={currentCommunityArtist?.backgroundGradient === null}
         />
 
         <Header
@@ -136,8 +146,12 @@ class CommunityArtistPage extends React.Component<Props, State> {
         >
           <div className="community m-4">&nbsp;</div>
         </Header>
-
-        <IonContent>
+        <IonContent
+          onIonScroll={(e): void =>
+            this.headerRef.current?.handleParentScroll(e)
+          }
+        >
+          <HeaderOverlay ref={this.headerRef} />
           <div className={'community-page mt-3 content'}>
             {!joined && this.renderJoinButton()}
 

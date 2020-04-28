@@ -38,12 +38,12 @@ class MessageNotificationDetailPage extends React.Component<Props> {
                   <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
                     <div className={'col s12 info'}>
                       <span
-                        className="f4 bold"
+                        className="f5 bold"
                         data-date={moment(data.sendAt).format('MM/DD/YY')}
                       >
                         {data.username}
                       </span>
-                      <span className="f5">
+                      <span className="f6">
                         {data.subject}
                         <br />
                         {data.message}
@@ -56,14 +56,16 @@ class MessageNotificationDetailPage extends React.Component<Props> {
           )}
           <IonItem />
           <IonItem />
-          <IonItem />
         </IonList>
       </IonContent>
     );
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({ settings, profileAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  settings,
+  profileAPI
+}: ApplicationState): StateProps => {
   const { messageTabs, activeMessageTab } = settings;
   const { notificationsSearch } = profileAPI;
   return { messageTabs, activeMessageTab, notificationsSearch };

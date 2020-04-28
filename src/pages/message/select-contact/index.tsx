@@ -14,7 +14,8 @@ import {
   Header,
   BackgroundImage,
   InputSearch,
-  MenuTabs
+  MenuMessage,
+  ListUser
 } from '../../../components';
 import {
   updateProfileProperty,
@@ -88,11 +89,11 @@ class SelectContactPage extends React.Component<Props, State> {
     )!;
 
     return (
-      <menu.component
-        showComboBox={true}
-        showRemove={false}
-        checkSelected={(event): void => console.log(event)}
+      <ListUser
+        showComboBox={menu.id === 'friends'}
         showButtonPending={menu.id === 'friends'}
+        showRemove={false}
+        sliding={false}
         data={this.props[variables[menu.id]]}
         onSelect={(event, data): void => this.toggleSelect(event, data)}
       />
@@ -107,7 +108,6 @@ class SelectContactPage extends React.Component<Props, State> {
     } else if (!event.detail.checked && index > -1) {
       this.selected.splice(index, 1);
     }
-    console.log(this.selected);
   }
 
   render(): React.ReactNode {
@@ -131,14 +131,7 @@ class SelectContactPage extends React.Component<Props, State> {
           }
         />
         <IonContent>
-          <BackgroundImage
-            gradient={'180deg,#1F0739,#1F0739'}
-            backgroundTop
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundTopDark
-            backgroundTopOpacity={0.7}
-          />
+          <BackgroundImage default />
           <div
             className="message-select-contact-page content-fixed"
             slot="fixed"
@@ -152,7 +145,7 @@ class SelectContactPage extends React.Component<Props, State> {
               />
             </div>
 
-            <MenuTabs
+            <MenuMessage
               activeId={activeSelectContactTab}
               tabs={selectContactTabs}
               onClick={(data): void =>
@@ -171,7 +164,10 @@ class SelectContactPage extends React.Component<Props, State> {
   }
 }
 // eslint-disable-next-line
-const mapStateToProps = ({ profileAPI, settings }: ApplicationState): object => {
+const mapStateToProps = ({
+  profileAPI,
+  settings
+}: ApplicationState): object => {
   const {
     artistsSearch,
     friendsSearch,

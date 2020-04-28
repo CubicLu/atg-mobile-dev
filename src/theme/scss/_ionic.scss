@@ -1,3 +1,6 @@
+html {
+    --ion-font-family: 'Helvetica';
+}
 ion-list {
     --ion-background-color:transparent;
 }
@@ -6,6 +9,26 @@ ion-tab-bar {
     --border: 0px solid #000;
     margin-top: 0px;
     --ion-safe-area-bottom: calc(min(env(safe-area-inset-bottom), 10px));
+}
+.blue-spin{
+    position: absolute;
+    background: #00000038;
+    --color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -1px;
+    pointer-events: none;
+    user-select: none;
+}
+.white-spin{
+    position: absolute;
+    --color: #fff;
+    width: 58px;
+    height: 58px;
+    margin-top: -10px;
+    pointer-events: none;
+    user-select: none;
 }
 .mini-player{
     margin-bottom: calc(min(env(safe-area-inset-bottom), 10px));
@@ -28,7 +51,11 @@ ion-tab-bar {
    }
 }
 ion-item{
-    --ion-background-color:transparent;
+    --ion-background-color: transparent;
+    --background-activated: #45187B;
+    --background-activated-opacity: 1;
+    --border-color: transparent;
+    --color-activated: #fff;
     max-height: $ion-item-max-height;
     height: $ion-item-max-height;
     --padding-start: 16px;
@@ -36,6 +63,7 @@ ion-item{
     border-bottom: none;
         &.with-border{
             border-bottom: 1px solid #45187B;
+            --border-color: #45187B;
         }
     }
     .arrow-expand {
@@ -106,26 +134,46 @@ ion-item{
     }
 }
 ion-checkbox{
-    --background: transparent;
-    --border-color: #fff;
-    --background-checked: #01add9;
-    --border-color-checked: transparent;
-    --border-radius: 3px;
-    --border-style: solid;
-    --border-width: 2px;
-    --checkmark-color: #1f0739;
-    --checkmark-width: 3px;
-    --size: 20px;
-    &.checkbox-icon{
-        svg{
-            display: none;
+    &.square{
+        --background: transparent;
+        --border-color: #fff;
+        --background-checked: #01add9;
+        --border-color-checked: transparent;
+        --border-radius: 3px;
+        --border-style: solid;
+        --border-width: 2px;
+        --checkmark-color: #1f0739;
+        --checkmark-width: 3px;
+        --size: 20px;
+        &.checkbox-icon{
+            svg{
+                display: none;
+                path{
+                    transform: translate(-7px, -7px) scale(1.5);
+                }    
+            }
             path{
                 transform: translate(-7px, -7px) scale(1.5);
-            }    
+            }
         }
-        path{
-            transform: translate(-7px, -7px) scale(1.5);
-        }
+    }
+    &.rounded{
+        --background: transparent;
+        --border-color: #fff;
+        --border-style: solid;
+        --border-width: 1px;
+        --background-checked: #fcc505;
+        --border-color-checked: #fcc505;
+        --border-style-selected: solid;
+        --border-width-selected: 1px;
+        --size: 24px;
+        --checkmark-width: 2px;
+        --transition: none;
+    }
+}
+ion-reorder{
+    .reorder-icon{
+        opacity: 1;
     }
 }
 *::-webkit-scrollbar {
@@ -153,16 +201,16 @@ ion-checkbox{
 ion-app {
     &.hide-tabs {
         .mini-player {
-            display: none;
+            display: none !important;
         }
         ion-tab-bar {
-            display: none;
+            display: none !important;
         }
     }
 }
 .ion-color{
     &.ion-color-dark {
-        --ion-color-base: var(--ion-color-dark, #070707) !important;
+        --ion-color-base: var(--ion-color-dark, #0c090b) !important;
     }
 }
 

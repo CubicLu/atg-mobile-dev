@@ -1,0 +1,15 @@
+.navbar-two-buttons{
+    height: 65px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #120818;
+    .button-cancel{
+        color: #ff0000 !important;
+    }
+    .button-confirm{
+        color: #00baff !important;
+    }
+}

@@ -8,14 +8,30 @@ import {
   HeaderOverlay,
   VaultFilterSection
 } from '../../components';
-import { Colors, ShapesSize } from '../../interfaces';
+import { ApplicationState } from '../../reducers';
+import { connect } from 'react-redux';
+import { updateSettingsProperty } from '../../actions';
+import { Colors, ShapesSize, Sizes } from '../../interfaces';
 
-interface Props extends RouteComponentProps {}
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
+
+interface StateProps {
+  eraFilters: object[];
+}
+interface Props extends RouteComponentProps, DispatchProps, StateProps {}
 
 class VaultFilterPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
+  selectedEras: string[] | undefined;
 
   render(): React.ReactNode {
+    // eslint-disable-next-line no-prototype-builtins
+    if (this.props.eraFilters.hasOwnProperty('undefined')) {
+      delete this.props.eraFilters['undefined'];
+    }
+    this.selectedEras = Object.keys(this.props.eraFilters);
     return (
       <IonPage id="vault-filter-page">
         <Header
@@ -23,7 +39,7 @@ class VaultFilterPage extends React.Component<Props> {
           titleClassName="filter"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void => this.props.history.goBack()}
+          rightCloseOnClick={(): void => this.props.history.push('/profile')}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
@@ -36,16 +52,10 @@ class VaultFilterPage extends React.Component<Props> {
           id="search-page"
         >
           <div className="vault-filter-page">
-            <BackgroundImage
-              gradient={'180deg,#1F0739,#1F0739'}
-              backgroundTop
-              backgroundBottom
-              backgroundBottomDark={false}
-              backgroundTopDark
-              backgroundTopOpacity={0.7}
-            />
+            <BackgroundImage default />
             <div className={'content-container'}>
               <input
+                autoComplete="off"
                 placeholder={'Filter My Vault'}
                 type={'text'}
                 className="input text"
@@ -67,14 +77,14 @@ class VaultFilterPage extends React.Component<Props> {
                 <VaultFilterSection
                   label={'Show by Era'}
                   type={'chip'}
-                  selectedChips={['90s', '80s', '70s', '60s', '50s', '40s']}
+                  selectedChips={this.selectedEras}
                 />
                 <Button
+                  size={Sizes.full}
+                  label="Reset"
+                  type={ShapesSize.full}
                   color={Colors.tertiary}
-                  label={'Reset'}
                   gradient
-                  type={ShapesSize.rounded}
-                  className={'ml-1 mt-5'}
                 />
               </div>
             </div>
@@ -85,4 +95,13 @@ class VaultFilterPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(VaultFilterPage);
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+  const { eraFilters } = settings;
+  return { eraFilters };
+};
+
+export default withRouter(
+  connect(mapStateToProps, {
+    updateSettingsProperty
+  })(VaultFilterPage)
+);

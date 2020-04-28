@@ -19,11 +19,58 @@ export function setHeight(original: number): number {
   }
 }
 
+let currentInput: HTMLDivElement | undefined = undefined;
+let lockTabbar = false;
+export function preventChangeTabbar(prevent: boolean): void {
+  lockTabbar = prevent;
+}
 export function hideTabs(add: boolean): void {
   const ionApp = document.querySelector('ion-app') as HTMLElement;
   add
-    ? ionApp!.classList.add('hide-tabs')
-    : ionApp!.classList.remove('hide-tabs');
+    ? ionApp.classList.add('hide-tabs')
+    : ionApp.classList.remove('hide-tabs');
+}
+export function focusInput(input: HTMLDivElement): void {
+  if (!input) return;
+  currentInput = input;
+  input.focus();
+  input.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'start'
+  });
+}
+
+export function convertIonicFileSrc(url: string): string {
+  if (!url) {
+    return url;
+  }
+  //@ts-ignore
+  const webviewUrl = window.WEBVIEW_SERVER_URL;
+
+  if (url.startsWith('/')) {
+    return webviewUrl + '/_app_file_' + url;
+  }
+  if (url.startsWith('file://')) {
+    return webviewUrl + url.replace('file://', '/_app_file_');
+  }
+  if (url.startsWith('content://')) {
+    return webviewUrl + url.replace('content:/', '/_app_content_');
+  }
+  return url;
+}
+
+export function hideKeyboard(): void {
+  if (lockTabbar) return;
+  hideTabs(false);
+}
+export function showKeyboard(): void {
+  if (lockTabbar) return;
+  window.Keyboard.hideFormAccessoryBar(true);
+  hideTabs(true);
+}
+export function didShowKeyboard(): void {
+  currentInput && focusInput(currentInput);
 }
 
 export function totalRows(item: any[], itemPerRow: number): any[] {
@@ -47,7 +94,6 @@ export function shadowTitle(url: string): CSSProperties {
     backgroundRepeat: 'no-repeat'
   };
 }
-
 export function artistBackground(
   artist: ArtistInterface | any,
   fade: boolean = false,
@@ -117,7 +163,6 @@ export function getFixedTranslatePoints(
     ? element.getBoundingClientRect().right
     : element.getBoundingClientRect().left;
   initialY = element.getBoundingClientRect().top;
-  // console.log(element.offsetHeight, element.offsetTop, element.getBoundingClientRect().top)
   const eWidth = element.getBoundingClientRect().width;
   const elHeight = element.getBoundingClientRect().height;
 

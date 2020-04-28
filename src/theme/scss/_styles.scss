@@ -49,6 +49,8 @@
 @import './components/row';
 @import './components/vault-filter';
 @import './components/full-screen-image-modal';
+@import './components/navbar_twobuttons';
+@import "./components/sub-era";
 
 /* pages */
 @import './pages/initial';
@@ -83,4 +85,4 @@
 @import './pages/fan-feed-filter';
 @import './pages/message-select-contact';
 @import './pages/message-notification-detail';
-
+@import './pages/vault-filter-genre';

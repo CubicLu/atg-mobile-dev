@@ -248,9 +248,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                     by {bio.byline}
                   </div>
 
-                  {bio.skyline && <IonImg className="sky" src={bio.skyline} />}
+                  {bio.skyline && (
+                    <div className="sky">
+                      <IonImg className="sky" src={bio.skyline} />
+                    </div>
+                  )}
 
-                  <div className="p-3 mt-2 mb-2 h3 baskerville left-align article l15">
+                  <div className="p-3 mb-2 h3 baskerville left-align article l15">
                     {bio.leadParagraph === '.... details'
                       ? this.victoria
                       : bio.leadParagraph}

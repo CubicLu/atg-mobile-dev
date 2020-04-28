@@ -14,7 +14,7 @@ describe('ArtistPage render', () => {
               location={{ pathname: 'artist', search: "", state: {}, hash: ""}
               history={{ length: 1, action: "REPLACE"  }} 
               staticContext={} 
-              match={{params: { id: "pharell-williams"}}}
+              match={{params: { id: "pharrell-williams"}}}
             /> */}
             </Router>
           </Provider>,

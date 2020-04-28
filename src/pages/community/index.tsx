@@ -38,24 +38,18 @@ class CommunityPage extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const colors = ['#6A1EE4', '#1e053b'];
     const hist = this.props.history;
     return (
       <IonPage id="community-page">
-        <BackgroundImage
-          gradient={`180deg,${colors[0]},${colors[1]}`}
-          backgroundTopDark
-          backgroundTop
-          backgroundTopOpacity={0.25}
-          backgroundBottom
-          backgroundBottomDark={false}
-          backgroundBottomOpacity={0.08}
-        />
+        <BackgroundImage default={true} />
         <Header
           leftBackButton={false}
           rightActionButton={true}
           rightContent={
-            <div className="default-button dark" onClick={(): void => {}}>
+            <div
+              className="default-button dark"
+              onClick={(): void => hist.push('/community/post')}
+            >
               <PlusIcon />
             </div>
           }
@@ -80,6 +74,9 @@ class CommunityPage extends React.Component<Props> {
                   labelKey="label"
                   imageKey="image"
                   data={this.props.stories}
+                  onPressItem={(): void => {
+                    hist.push('/community/artist/pharrell-williams');
+                  }}
                 />
               </React.Fragment>
             )}

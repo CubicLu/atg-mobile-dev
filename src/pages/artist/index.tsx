@@ -54,20 +54,21 @@ class ArtistPage extends React.PureComponent<Props, {}> {
       this.props.getArtistAPI(next.match.params.id);
     }
   }
+  componentDidMount(): void {
+    if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
+  }
   componentWillUnmount(): void {
-    this.custom.animation = undefined;
-    this.customAlpha.animation = undefined;
+    this.custom?.animation?.destroy();
+    this.customAlpha?.animation?.destroy();
     this.custom.loaded = false;
     this.customAlpha.loaded = false;
-    this.lastOffset = 0;
-    this.lastOffsetA = 0;
   }
   loadAnimationsAlpha(): void {
     const normalMenu = document.querySelector('#artist-menu');
     if (!normalMenu) return;
     this.customAlpha.loaded = true;
     this.customAlpha.animation = createAnimation('customAlpha')
-      .easing('ease-in')
+      .easing('linear')
       .duration(1600)
       .addAnimation([
         createAnimation('background')

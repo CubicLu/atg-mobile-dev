@@ -13,35 +13,145 @@ class ProfileVaultPage extends React.Component<Props> {
   };
   render(): React.ReactNode {
     const { history, isFriend } = this.props;
-    const clickArtist = (): void => history.push('/artist/pharell-williams');
-    const clickSupport = (): void =>
-      history.push('/artist/pharell-williams/support');
+    const clickArtist = (): void => history.push('/artist/pharrell-williams');
     return (
       <IonContent>
         <div className="profile-vault-page">
           <Button
             color={Colors.transparentGray}
-            className={'row mt-2'}
+            className={'row mt-2 mb-2'}
             label={'Filter'}
             onClick={(): void => history.push('/vault-filter')}
           />
           <IonList lines="none">
             {[
-              { song: 'Blinding Lights', artist: 'The Weeknd', support: true },
-              { song: 'The Box', artist: 'Roddy Ricch' },
-              { song: 'DonÂ´t Start Now', artist: 'Dua Lipa', support: true },
-              { song: 'Circles', artist: 'Post Malone', support: true },
-              { song: 'Life is Good', artist: 'Future ft. Drake' },
-              { song: 'Adore You', artist: 'Harry Styles', support: true },
-              { song: 'Say So', artist: 'Doja Cat' },
-              { song: 'Intentions', artist: 'Justin Bieber', support: true }
+              {
+                song: 'Blinding Lights',
+                artist: {
+                  name: 'The Weeknd',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    support: false,
+                    deepDive: ''
+                  },
+                  username: 'pharrell-williams'
+                }
+              },
+              {
+                song: 'The Box',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Roddy Ricch',
+                  support: true
+                }
+              },
+              {
+                song: 'Don´t Start Now',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Dua Lipa',
+                  support: true
+                }
+              },
+              {
+                song: 'Circles',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Post Malone',
+                  support: true
+                }
+              },
+              {
+                song: 'Life is Good',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Future ft. Drake',
+                  support: false
+                }
+              },
+              {
+                song: 'Adore You',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Harry Styles',
+                  support: true
+                }
+              },
+              {
+                song: 'Say So',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Doja Cat',
+                  support: false
+                }
+              },
+              {
+                song: 'Intentions',
+                artist: {
+                  username: 'pharrell-williams',
+                  cover: {
+                    background: '',
+                    main: '',
+                    event: '',
+                    biography: '',
+                    deepDive: ''
+                  },
+                  name: 'Justin Bieber',
+                  support: true
+                }
+              }
             ].map(
               (data, i): React.ReactNode => {
                 return (
                   <ListItem
                     key={i}
                     node={i}
-                    sliding={!data.support}
+                    sliding={data.artist.support}
                     bottomBorder={true}
                     optionRemove={!isFriend}
                     hasAvatar={true}
@@ -50,12 +160,12 @@ class ProfileVaultPage extends React.Component<Props> {
                     badgeColor={Colors.red}
                     optionAddPlaylist={true}
                     songName={data.song}
-                    artistName={data.artist}
-                    expandArrow={!data.support}
-                    supported={!data.support}
+                    artistName={data.artist.name}
+                    expandArrow={data.artist.support}
+                    artist={data.artist}
+                    supported={data.artist.support}
                     supportButtonIcon={true}
                     songAction={clickArtist}
-                    expandAction={data.support ? clickSupport : undefined}
                   />
                 );
               }

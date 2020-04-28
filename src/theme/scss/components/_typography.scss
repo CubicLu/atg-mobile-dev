@@ -57,8 +57,18 @@ h6,.h6{ font-size: 16px }
     &.dark{
         color: #000;
     }
+    &.error{
+        color: #eb445a;
+    }
     .neue{
         font-family: "Helvetica Neue";
+    }
+    &.gray{
+        color: #7c8188;
+    }
+    &.reply{
+        color: #0e9ee2;
+        text-transform: uppercase;
     }
 }
 .l05{ line-height: 0.5 !important }

@@ -215,33 +215,28 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
   };
 
   render(): React.ReactNode {
+    const { match } = this.props;
     let title =
       this.props.currentArtist?.gallery !== undefined
-        ? this.props.currentArtist?.gallery[
-            this.props.match.params.galleryId
-          ] !== undefined
-          ? this.props.currentArtist?.gallery[this.props.match.params.galleryId]
-              .name
+        ? this.props.currentArtist?.gallery[match.params.galleryId] !==
+          undefined
+          ? this.props.currentArtist?.gallery[match.params.galleryId].name
           : 'Gallery'
         : 'Gallery';
 
     let items =
       this.props.currentArtist?.gallery !== undefined
-        ? this.props.currentArtist?.gallery[
-            this.props.match.params.galleryId
-          ] !== undefined
-          ? this.props.currentArtist?.gallery[this.props.match.params.galleryId]
-              .items
+        ? this.props.currentArtist?.gallery[match.params.galleryId] !==
+          undefined
+          ? this.props.currentArtist?.gallery[match.params.galleryId].items
           : []
         : [];
 
     let cover =
       this.props.currentArtist?.gallery !== undefined
-        ? this.props.currentArtist?.gallery[
-            this.props.match.params.galleryId
-          ] !== undefined
-          ? this.props.currentArtist?.gallery[this.props.match.params.galleryId]
-              .cover
+        ? this.props.currentArtist?.gallery[match.params.galleryId] !==
+          undefined
+          ? this.props.currentArtist?.gallery[match.params.galleryId].cover
           : undefined
         : undefined;
     return (
@@ -254,6 +249,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         <HeaderOverlay ref={this.headerRef} />
 
         <IonContent
+          style={{ background: '#fff' }}
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}

@@ -32,35 +32,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     playAudioWhenScreenIsLocked: true,
     numberOfLoops: 1
   };
-
-  componentDidMount(): void {
-    this.startMusicControls();
-  }
-  startMusicControls(): void {
-    window.MusicControls.create(
-      {
-        dismissable: false,
-        artist: '',
-        track: '',
-        album: '',
-        cover: '',
-        hasScrubbing: true,
-        elapsed: 0,
-        isPlaying: false,
-        duration: 10,
-        ticker: 'Now Playing ',
-        playIcon: 'media_play',
-        pauseIcon: 'media_pause',
-        prevIcon: 'media_prev',
-        nextIcon: 'media_next',
-        closeIcon: 'media_close',
-        notificationIcon: 'notification'
-      },
-      null
-    );
-    window.MusicControls.subscribe(this.mediaControlEvents);
-    window.MusicControls.listen();
-  }
+  activeMusicControls = false;
 
   componentDidUpdate(): void {
     switch (this.props.playerAction) {
@@ -157,7 +129,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     switch (status) {
       case MediaStatusCallback.MEDIA_STARTING:
         if (!this.isCurrent(media)) return;
-        console.log('Media Loaded', media.id, media.src);
+        console.log('Media Downloading', media.id, media.src);
         this.props.setStartingPlayer(true);
         break;
       case MediaStatusCallback.MEDIA_RUNNING:
@@ -169,12 +141,15 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
       case MediaStatusCallback.MEDIA_PAUSED:
         console.log('Media Paused', media.id, media.src);
+        this.updateMusicControls();
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
         this.mediaCallbackEnded(media);
+        this.updateMusicControls();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         this.mediaCallbackEnded(media);
+        this.updateMusicControls();
         break;
       case MediaStatusCallback.MEDIA_FADING_OUT:
         console.log('Media FadingOut', media.id, media.src);
@@ -257,9 +232,16 @@ class CordovaMediaComponent extends React.Component<Props> {
 
     window.MusicControls.create(
       options,
-      (): void => console.log('Music Controls created'),
-      (): void => console.log('Music Controls error')
+      (): void => {},
+      (e): void => console.log('Music Controls error', e)
     );
+    if (this.activeMusicControls) {
+      return;
+    } else {
+      window.MusicControls.subscribe(this.mediaControlEvents);
+      window.MusicControls.listen();
+      this.activeMusicControls = true;
+    }
   }
 
   updateMusicControls(): void {
@@ -268,72 +250,52 @@ class CordovaMediaComponent extends React.Component<Props> {
         elapsed: this.elapsed,
         isPlaying: this.props.playing
       },
-      (): void => console.log('Music Controls update success'),
-      (): void => console.log('Music Controls update error')
+      (): void => {},
+      (e): void => console.log('Music Controls error', e)
     );
   }
-  // musicControlsUpdate(): void {
-  //   setTimeout((): void => this.createMusicControls(), 50);
-  //   setTimeout((): void => this.updateMusicControls(), 100);
-  // }
   mediaControlEvents = (action: string): void => {
-    console.log('action', action);
-    try {
-      const { message } = JSON.parse(action);
-      switch (message) {
-        case 'music-controls-next':
-          console.log('mobile click on next');
-          return this.props.nextSong();
+    if (!action) return;
+    const { message } = JSON.parse(action);
+    switch (message) {
+      case 'music-controls-next':
+        return this.props.nextSong();
 
-        case 'music-controls-previous':
-          console.log('mobile click on prev');
-          return this.props.prevSong();
+      case 'music-controls-previous':
+        return this.props.prevSong();
 
-        case 'music-controls-pause':
-          console.log('mobile click on pause');
-          return this.props.pauseSong();
+      case 'music-controls-pause':
+        return this.props.pauseSong();
 
-        case 'music-controls-play':
-          console.log('mobile click on play');
-          return this.props.resumeSong();
+      case 'music-controls-play':
+        return this.props.resumeSong();
 
-        case 'music-controls-destroy':
-          console.log('mobile click on stop');
-          return this.props.pauseSong();
+      case 'music-controls-destroy':
+        return this.props.pauseSong();
 
-        // External controls (iOS only)
-        case 'music-controls-toggle-play-pause':
-          console.log('ios click on play-pause');
-          return this.props.playing
-            ? this.props.pauseSong()
-            : this.props.resumeSong();
+      // External controls (iOS only)
+      case 'music-controls-toggle-play-pause':
+        return this.props.playing
+          ? this.props.pauseSong()
+          : this.props.resumeSong();
 
-        case 'music-controls-seek-to':
-          console.log('seek to ' + JSON.parse(action).position);
-          return (
-            this.props.song &&
-            this.mainSong!.seekTo(JSON.parse(action).position * 1000)
-          );
+      case 'music-controls-seek-to':
+        return (
+          this.props.song &&
+          this.mainSong!.seekTo(JSON.parse(action).position * 1000)
+        );
 
-        // All media button events are listed below
-        // Headset events (Android only) bluetooth and headset
-        case 'music-controls-media-button':
-          console.log('android click on media button');
-          return this.props.pauseSong();
+      case 'music-controls-media-button':
+        return this.props.pauseSong();
 
-        case 'music-controls-headset-unplugged':
-          console.log('headset unplugged');
-          return this.props.pauseSong();
+      case 'music-controls-headset-unplugged':
+        return this.props.pauseSong();
 
-        case 'music-controls-headset-plugged':
-          console.log('headset plugged');
-          return this.props.pauseSong();
+      case 'music-controls-headset-plugged':
+        return this.props.pauseSong();
 
-        default:
-          return;
-      }
-    } catch (e) {
-      console.log('Problem with music Controls!!!', e);
+      default:
+        return;
     }
   };
 

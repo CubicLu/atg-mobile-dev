@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { TabsInterface, LinksInterface } from '../../../interfaces';
+import { TabsInterface, RouteInterface } from '../../../interfaces';
 import { ApplicationState } from '../../../reducers';
 import { Route, Redirect } from 'react-router-dom';
 import { NotFoundPage } from '../..';
@@ -14,7 +14,7 @@ import {
 
 interface StateProps {
   tabs: TabsInterface[];
-  links: LinksInterface[];
+  routes: RouteInterface[];
   activeTab: string;
 }
 interface Props extends StateProps {
@@ -22,7 +22,7 @@ interface Props extends StateProps {
 }
 class HomeRouterPage extends React.PureComponent<Props> {
   render(): React.ReactNode {
-    const { tabs, links, activeTab, updateSettingsProperty } = this.props;
+    const { tabs, routes, activeTab, updateSettingsProperty } = this.props;
     return (
       <IonTabs
         onIonTabsDidChange={(e): void =>
@@ -33,7 +33,7 @@ class HomeRouterPage extends React.PureComponent<Props> {
           {tabs.map((p: TabsInterface, i: number): any => (
             <Route exact path={p.path} component={p.component} key={i} />
           ))}
-          {links.map((p: LinksInterface, i: number): any => (
+          {routes.map((p: RouteInterface, i: number): any => (
             <Route exact path={p.path} component={p.component} key={i} />
           ))}
           <Redirect exact path="/" to="/profile/" />
@@ -57,8 +57,8 @@ class HomeRouterPage extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { tabs, links, activeTab } = settings;
-  return { tabs, links, activeTab };
+  const { tabs, routes, activeTab } = settings;
+  return { tabs, routes, activeTab };
 };
 export default connect(mapStateToProps, { updateSettingsProperty })(
   HomeRouterPage

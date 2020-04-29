@@ -4,6 +4,7 @@ import communitySagas from './API/community';
 import searchSagas from './API/search';
 import friendsSagas from './API/friends';
 import radioSagas from './API/radio';
+import dashboardSagas from './API/dashboard';
 
 export const rootSaga = function* root(): any {
   yield all([
@@ -11,6 +12,7 @@ export const rootSaga = function* root(): any {
     communitySagas(),
     searchSagas(),
     friendsSagas(),
-    radioSagas()
+    radioSagas(),
+    dashboardSagas()
   ]);
 };

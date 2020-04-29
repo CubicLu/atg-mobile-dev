@@ -63,6 +63,13 @@ import VaultFilterGenrePage from './vault-filter/vault-filter-genre';
 import VaultFilterEraPage from './vault-filter/vault-filter-era';
 import VaultFilterSubEraPage from './vault-filter/vault-filter-era/vault-filter-sub-era';
 
+import DashboardPage from './dashboard';
+import DashboardFilterPage from './dashboard/filter';
+import DashboardAnalyticPage from './dashboard/analytic';
+import DashboardRankingPage from './dashboard/ranking';
+import DashboardSupporterPage from './dashboard/supporter';
+import DashboardWalletPage from './dashboard/wallet';
+
 export {
   NotFoundPage,
   InitialPage,
@@ -119,5 +126,11 @@ export {
   RadioHistoryPage,
   VaultFilterGenrePage,
   VaultFilterEraPage,
-  VaultFilterSubEraPage
+  VaultFilterSubEraPage,
+  DashboardPage,
+  DashboardFilterPage,
+  DashboardAnalyticPage,
+  DashboardRankingPage,
+  DashboardSupporterPage,
+  DashboardWalletPage
 };

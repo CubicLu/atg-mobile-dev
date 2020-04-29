@@ -115,6 +115,7 @@ class PlayerComponent extends React.Component<Props> {
     this.props.playSong(prev, curr);
   }
   clickNextSong(): void {
+    console.log('Clicked on clickNextSong');
     let list = this.props.playlist!.items;
     if (!list) return;
     const listsize = list.length - 1;

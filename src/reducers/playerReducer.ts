@@ -652,6 +652,12 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
   [ActionType.TOGGLE_PLAYER](state: PlayerReducerType): PlayerReducerType {
     return { ...state, expanded: !state.expanded, playerAction: undefined };
   },
+  [ActionType.PREV_SONG](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, playerAction: ActionType.PREV_SONG };
+  },
+  [ActionType.NEXT_SONG](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, playerAction: ActionType.NEXT_SONG };
+  },
   [ActionType.LOADING_PLAYER](
     state: PlayerReducerType,
     action: Action<boolean>

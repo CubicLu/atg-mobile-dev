@@ -346,6 +346,11 @@ const defaultState: SettingsReducerType = {
       component: CommunityArtistPage
     },
     {
+      path: '/community/:userId',
+      id: 'communityFriend',
+      component: FeedPage
+    },
+    {
       path: '/thank-you',
       id: 'thankYou',
       component: ThankYouPage

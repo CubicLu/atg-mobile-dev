@@ -28,13 +28,7 @@
     height: 165px;
     min-height: 165px;
     min-width: 165px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    @include background-style();
   }
   &.mixtapes {
     background: transparent;
@@ -58,13 +52,7 @@
       -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
       box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
       .background {
-        background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+        @include background-style();
         top: 0;
         position: absolute;
         left: 0;
@@ -123,13 +111,7 @@
     margin: 0.5rem 0 0.5rem 0 !important;
     height: 170px;
     width: 280px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    @include background-style();
 
     &::after {
       content: attr(data-time);
@@ -194,13 +176,7 @@
     .image {
       margin: 0.5rem 0 0.5rem 0 !important;
       height: 165px;
-      background-repeat: no-repeat;
-      background-position-x: center;
-      background-position-y: center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
+      @include background-style();
       &.rounded {
         border-radius: 10px;
       }
@@ -253,6 +229,19 @@
       width: 100%;
     }
   }
+
+  &.graph{
+    background-image: linear-gradient(to bottom, #091558, #020412);
+    height: 250px;
+    max-width: 350px;
+    border-radius: 10px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    .image{
+      @include background-style();
+      height: 100%;
+    }
+  }
 }
 
 .station {
@@ -278,13 +267,7 @@
 }
 .genres {
   .card-genre {
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    @include background-style();
     border-radius: 10px;
     height: 90px;
     width: 150px;

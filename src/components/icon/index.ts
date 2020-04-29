@@ -29,6 +29,7 @@ import ChatMessageIcon from './chat-message';
 import FullscreenIcon from './fullscreen';
 import ReplayIcon from './replay';
 import ForwardIcon from './forward';
+import LogoIcon from './logo';
 import SupportStarIcon from './support-star';
 
 export {
@@ -63,5 +64,6 @@ export {
   FullscreenIcon,
   ReplayIcon,
   ForwardIcon,
+  LogoIcon,
   SupportStarIcon
 };

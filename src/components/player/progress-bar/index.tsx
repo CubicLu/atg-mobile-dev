@@ -25,7 +25,6 @@ class PlayerProgressBarComponent extends React.Component<Props> {
     this.seeking = true;
     setTimeout((): boolean => (this.seeking = false), 200);
     this.props.seekSongPosition(e.detail.value);
-    this.forceUpdate();
   }
   render(): React.ReactNode {
     const disabled = this.props.seekDisabled ? 'disabled' : '';

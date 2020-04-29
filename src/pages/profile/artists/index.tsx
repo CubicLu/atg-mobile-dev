@@ -10,22 +10,15 @@ interface StateProps {
 interface DispatchProps {
   getArtistsAPI: () => any;
 }
-interface Props extends StateProps, DispatchProps {
-  isFriend?: boolean;
-}
-class ProfileArtistsPage extends React.Component<Props> {
-  public static defaultProps = {
-    isFriend: false
-  };
+interface Props extends StateProps, DispatchProps {}
+class ProfileArtistsPage extends React.PureComponent<Props> {
   UNSAFE_componentWillMount(): void {
     this.props.artists.length === 0 && this.props.getArtistsAPI();
   }
-
   render(): React.ReactNode {
-    const { artists } = this.props;
     return (
       <div className="content">
-        {artists?.map(
+        {this.props.artists?.map(
           (data, i): React.ReactNode => (
             <CardArtist key={i} artist={data} />
           )

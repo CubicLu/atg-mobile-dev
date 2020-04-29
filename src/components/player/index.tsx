@@ -105,14 +105,13 @@ class PlayerComponent extends React.Component<Props> {
     return store.getState().player.duration;
   }
   clickPrevSong(): void {
-    if (!this.props.paused && this.timeElapsed > 2) {
+    if (this.props.playing && this.timeElapsed > 2) {
       return this.props.seekSongPosition(0, false);
     }
     const list = this.props.playlist!.items;
     const current = this.currentIndex(list);
     const prev = list[Math.max(current - 1, 0)];
-    const curr = list[current];
-    this.props.playSong(prev, curr);
+    this.props.playSong(prev, list[current]);
   }
   clickNextSong(): void {
     console.log('Clicked on clickNextSong');

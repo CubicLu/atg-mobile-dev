@@ -62,10 +62,9 @@ class CordovaMediaComponent extends React.Component<Props> {
   actionSeekSong(): void {
     if (!this.mainSong) return;
     const seek = Math.trunc(this.mainSong.getPosition());
-    if (Math.abs(this.elapsed - seek) <= 2) return;
-
-    this.mainSong.seekTo(this.props.timeElapsed * 1000);
-    this.updateMusicControls();
+    if (Math.abs(this.elapsed - seek) < 1.5) return;
+    this.mainSong.seekTo(this.elapsed * 1000);
+    this.updateElapsedMusicControls();
   }
   actionSetPlaylist(): void {
     console.log('Setplaylist, first song to play: ', this.props.song!.title);
@@ -74,23 +73,27 @@ class CordovaMediaComponent extends React.Component<Props> {
 
   actionPauseSong(): void {
     window.Media.list().forEach((song): void => song.pause());
-    this.updateMusicControls();
+    this.updatePlayingMusicControls();
   }
   actionResumeSong(): void {
     if (!this.props.song) return;
     this.mainSong!.play(this.playOptions);
-    this.updateMusicControls();
+    this.updateElapsedMusicControls();
   }
   actionPlaySong(): void {
     //Play Song is called when I click next or previous;
-    const fadeIn = this.runningSong.length > 0;
-    this.runningSong.forEach((song): void => {
-      song.setFadeTime(3);
-      song.setForceFadeOut(true);
-    });
-    const one = this.props.song! && this.cordovaMedia(this.props.song!, fadeIn);
-    one.play(this.playOptions);
 
+    this.runningSong.forEach((song): void => {
+      if (song.getPosition() >= 3) {
+        song.setFadeTime(3);
+        song.setForceFadeOut(true);
+      } else {
+        song.pause();
+      }
+    });
+    const song = this.props.song!;
+    const one = song && this.cordovaMedia(song, this.hasRunningSongs);
+    one.play(this.playOptions);
     this.props.next && this.cordovaMedia(this.props.next!, true);
     this.createMusicControls();
   }
@@ -102,6 +105,9 @@ class CordovaMediaComponent extends React.Component<Props> {
       this.props.next &&
       window.Media.getByMediaId(this.props.next.id.toString())
     );
+  }
+  get hasRunningSongs(): boolean {
+    return window.Media.running().length > 0;
   }
   get runningSong(): MediaType[] {
     return window.Media.running();
@@ -141,15 +147,15 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
       case MediaStatusCallback.MEDIA_PAUSED:
         console.log('Media Paused', media.id, media.src);
-        this.updateMusicControls();
+        this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
         this.mediaCallbackEnded(media);
-        this.updateMusicControls();
+        this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         this.mediaCallbackEnded(media);
-        this.updateMusicControls();
+        this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_FADING_OUT:
         console.log('Media FadingOut', media.id, media.src);
@@ -162,7 +168,7 @@ class CordovaMediaComponent extends React.Component<Props> {
   mediaCallbackEnded(media): void {
     console.log('song finished and ended', media.getMediaId(), media.src);
 
-    if (this.runningSong!.length === 0) {
+    if (this.hasRunningSongs === false) {
       console.log('no Running songs! pausing player');
       this.props.pauseSong();
     }
@@ -230,29 +236,24 @@ class CordovaMediaComponent extends React.Component<Props> {
       notificationIcon: 'notification'
     };
 
-    window.MusicControls.create(
-      options,
-      (): void => {},
-      (e): void => console.log('Music Controls error', e)
-    );
-    if (this.activeMusicControls) {
-      return;
-    } else {
-      window.MusicControls.subscribe(this.mediaControlEvents);
-      window.MusicControls.listen();
-      this.activeMusicControls = true;
-    }
+    window.MusicControls.create(options, null, null);
+    if (this.activeMusicControls) return;
+    window.MusicControls.subscribe(this.mediaControlEvents);
+    window.MusicControls.listen();
+    this.activeMusicControls = true;
   }
 
-  updateMusicControls(): void {
-    window.MusicControls.updateElapsed(
-      {
-        elapsed: this.elapsed,
-        isPlaying: this.props.playing
-      },
-      (): void => {},
-      (e): void => console.log('Music Controls error', e)
+  updatePlayingMusicControls(): void {
+    setTimeout(
+      (): void => window.MusicControls.updateIsPlaying(this.props.playing),
+      50
     );
+  }
+  updateElapsedMusicControls(): void {
+    setTimeout((): void => {
+      const opt = { elapsed: this.elapsed, isPlaying: this.props.playing };
+      window.MusicControls.updateElapsed(opt, null, null);
+    }, 50);
   }
   mediaControlEvents = (action: string): void => {
     if (!action) return;

@@ -37,7 +37,7 @@ export default class SectionTitleComponent extends React.Component<Props> {
             }}
           >
             View All&nbsp;
-            <ArrowRightIcon width={8} height={10} stroke={3} />
+            <ArrowRightIcon width={10} height={14} stroke={3} />
           </span>
         )}
       </div>

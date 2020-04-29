@@ -3,7 +3,8 @@ import {
   Colors,
   ShapesSize,
   Sizes,
-  ArtistInterface
+  ArtistInterface,
+  GradientDirection
 } from '../../../interfaces';
 import {
   ButtonIcon,
@@ -225,6 +226,7 @@ export default class ListItemComponent extends React.Component<Props> {
                 gradient={true}
                 color={Colors.blue}
                 size={Sizes.md}
+                gradientDirection={GradientDirection.horizontal}
                 type={ShapesSize.rounded}
                 label="Connect"
               />

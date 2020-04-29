@@ -143,11 +143,9 @@ class SignUpPage extends React.Component<Props, State> {
             </div>
 
             <div className="footer flex-compass h-100 north center">
-              <div className="left-align">
-                <p>
-                  By signing up you confirm that you have read and agree
-                  <b> General terms</b> and <b>Privacy policy</b>.
-                </p>
+              <div className="left-align f6 terms">
+                By signing up you confirm that you have read and agree
+                <b> General terms</b> and <b>Privacy policy</b>.
               </div>
 
               <div className="row mt-5" />

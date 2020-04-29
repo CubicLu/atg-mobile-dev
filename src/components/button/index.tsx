@@ -37,30 +37,31 @@ class ButtonComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const {
-      onClick,
-      color,
-      type,
-      label,
-      id,
-      routerLink: link,
-      routerDirection
-    } = this.props;
-    let pattern = this.props.gradient ? 'gradient ' : '';
-    pattern += this.props.bold ? 'bold ' : '';
-    pattern += this.props.className ? this.props.className : ' ';
+    const { onClick, label, routerLink: link, routerDirection } = this.props;
+
+    let pattern = this.props.gradient ? 'gradient' : '';
+    pattern += ' ';
+    pattern += this.props.bold ? 'bold' : '';
+    pattern += ' ';
+    pattern += this.props.size ? this.props.size : '';
+    pattern += ' ';
+    pattern += this.props.type ? this.props.type : '';
+    pattern += ' ';
+    pattern += this.props.color ? this.props.color : '';
+    pattern += ' ';
+    pattern += this.props.className ? this.props.className : '';
+    pattern += ' ';
     if (this.props.gradient) {
-      pattern += ' ';
       pattern += this.props.gradientDirection
         ? this.props.gradientDirection
         : GradientDirection.horizontal;
     }
     return (
       <button
+        id={this.props.id}
         disabled={this.props.disabled}
-        id={id || 'btn-id'}
         onClick={(): void => (link ? this.linkRef.current?.click() : onClick())}
-        className={`btn ${type} ${color} ${pattern.trim()}`}
+        className={`btn ${pattern.trim()} `}
       >
         <span>
           {label}

@@ -9,7 +9,12 @@ import {
   CardEvent,
   ListItem
 } from './../../../components';
-import { EventInterface, ShapesSize, Colors } from './../../../interfaces';
+import {
+  EventInterface,
+  ShapesSize,
+  Colors,
+  GradientDirection
+} from './../../../interfaces';
 import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,
@@ -90,6 +95,7 @@ class EventDetailPage extends React.Component<Props, State> {
                   color={this.state.willGo ? Colors.disable : Colors.blue}
                   type={ShapesSize.badge}
                   gradient={true}
+                  gradientDirection={GradientDirection.horizontal}
                   onClick={(): void => {
                     this.setState({ willGo: !this.state.willGo });
                   }}

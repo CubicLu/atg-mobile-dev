@@ -21,7 +21,7 @@ class ThankYouPage extends React.Component<Props> {
             backgroundBottomDark={false}
             backgroundBottomOpacity={0.33}
           />
-          <div className="thank-you-page px-3 pt-8 pb-6 space-between h-100 f1 center-align">
+          <div className="thank-you-page pt-8 pb-6 space-between h-100 f1 center-align">
             <div className="fluid">
               <CheckIcon />
               <div className="row mt-1 f0 l15">

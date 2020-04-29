@@ -16,7 +16,7 @@ import {
 } from '../../interfaces';
 import { updateSettingsProperty } from '../../actions';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { getFriendAPI, getFriendsAPI } from '../../actions/api/friendsActions';
+import { getFriendAPI } from '../../actions/api/friendsActions';
 import { addEndingToNumber } from '../../utils';
 
 interface State {
@@ -36,7 +36,6 @@ interface StateProps {
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
-  getFriendsAPI: () => Action<void>;
   getFriendAPI: (friendId: string) => Action<GetFriendAPIInterface>;
 }
 
@@ -51,9 +50,6 @@ class ProfilePage extends React.Component<Props, State> {
     this.state = {
       pending: false
     };
-  }
-  componentDidMount(): void {
-    this.props.getFriendsAPI();
   }
 
   componentDidUpdate(): void {
@@ -82,30 +78,9 @@ class ProfilePage extends React.Component<Props, State> {
     this.props.updateSettingsProperty('activeProfileFriendTab', event.id);
   };
 
-  renderActiveTab(): React.ReactNode {
-    const {
-      fanTabs,
-      activeFanTab,
-      profileFriendTabs,
-      activeProfileFriendTab,
-      match
-    } = this.props;
-
-    if (match.params.id !== undefined) {
-      const tab = profileFriendTabs.find(
-        (x): boolean => x.id === activeProfileFriendTab
-      )!;
-      return React.createElement(tab.component, {
-        key: tab.id,
-        isFriend: true
-      });
-    } else {
-      const tab = fanTabs.find((x): boolean => x.id === activeFanTab)!;
-      return React.createElement(tab.component, {
-        key: tab.id,
-        isFriend: false
-      });
-    }
+  renderActiveTab(tabs: MenuInterface[], activeId, isFriend): React.ReactNode {
+    const Tab = tabs.find((x): boolean => x.id === activeId)!.component;
+    return <Tab isFriend={isFriend} />;
   }
 
   renderProfileFriend(): React.ReactNode {
@@ -125,15 +100,20 @@ class ProfilePage extends React.Component<Props, State> {
             activeId={activeProfileFriendTab}
             onClick={this.changeProfileFriendTab}
           />
-          {this.renderActiveTab()};
+          {this.renderActiveTab(
+            profileFriendTabs,
+            activeProfileFriendTab,
+            false
+          )}
+          ;
         </div>
       </>
     );
   }
 
-  getCurrentFanIsFriend = (id: string): boolean => {
-    const friend = this.props.friends.find((item): boolean => item.name === id);
-    return friend ? friend.friend : false;
+  getCurrentFanIsFriend = (): boolean => {
+    const id = this.props.match.params.id;
+    return !!this.props.friends.find((f): boolean => f.name === id)?.friend;
   };
 
   togglePendingState = (): void => {
@@ -207,7 +187,7 @@ class ProfilePage extends React.Component<Props, State> {
             activeId={activeFanTab}
             onClick={this.changeFanTab}
           />
-          {this.renderActiveTab()};
+          {this.renderActiveTab(fanTabs, activeFanTab, true)};
         </div>
       </>
     );
@@ -220,7 +200,7 @@ class ProfilePage extends React.Component<Props, State> {
       <IonPage id="profile-page">
         <IonContent id="profile-page" scrollY={false}>
           {id
-            ? this.getCurrentFanIsFriend(id)
+            ? this.getCurrentFanIsFriend()
               ? this.renderProfileFriend()
               : this.renderNonFriendProfile()
             : this.renderMyProfile()}
@@ -253,7 +233,6 @@ const mapStateToProps = ({
 export default withRouter(
   connect(mapStateToProps, {
     updateSettingsProperty,
-    getFriendsAPI,
     getFriendAPI
   })(ProfilePage)
 );

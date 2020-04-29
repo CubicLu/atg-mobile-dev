@@ -2,6 +2,7 @@ import React from 'react';
 import { ButtonSupportIcon } from './../../../components';
 import { ArtistInterface } from './../../../interfaces';
 import { IonRouterLink } from '@ionic/react';
+import SupportStarIcon from '../../icon/support-star';
 
 interface Props {
   artist: ArtistInterface;
@@ -13,7 +14,6 @@ export default class CardArtistComponent extends React.Component<Props> {
     const { artist } = this.props;
     if (!artist) return <div />;
     const { cover, support, name } = artist;
-
     return (
       <div
         className="card-artist my-3 mx-2 pb-15"
@@ -21,6 +21,11 @@ export default class CardArtistComponent extends React.Component<Props> {
       >
         <div className="flex-align-items-end h-100 px-2">
           <div className="align-start">
+            {support && (
+              <div className="star">
+                <SupportStarIcon />
+              </div>
+            )}
             <div
               onClick={(): void => this.linkRef.current!.click()}
               className="h3 text-28 artist-card-name l12"

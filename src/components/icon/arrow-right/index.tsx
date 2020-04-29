@@ -10,31 +10,30 @@ interface Props {
 class ArrowRightIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#FFF',
-    width: 10,
-    height: 20,
+    width: 12,
+    height: 24,
     stroke: 2
   };
 
   render(): React.ReactNode {
     return (
       <svg
-        id="arrow-right"
+        style={{ overflow: 'visible' }}
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox="0 0 10.395 19.728"
+        viewBox="0 0 12 20"
       >
-        <g transform="translate(1.414 1.413)">
-          <path
-            d="M1682.057-3893.707l7.981,8.625-1.257,1.3-6.724,6.972"
-            transform="translate(-1682.057 3893.707)"
-            fill="none"
-            stroke={this.props.color}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={this.props.stroke}
-          />
-        </g>
+        <path
+          overflow="visible"
+          fill="none"
+          stroke={this.props.color}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={this.props.stroke}
+          d="M0,16,8,7.835,6.74,6.6,0,0"
+          transform="translate(2 5)"
+        />
       </svg>
     );
   }

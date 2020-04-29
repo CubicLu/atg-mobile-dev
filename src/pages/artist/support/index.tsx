@@ -157,8 +157,8 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
         <div className="margin-footer row fluid">
           <Button
-            size={Sizes.full}
-            label="Support Us"
+            size={Sizes.lg}
+            label="Support!"
             type={ShapesSize.full}
             color={Colors.support}
             gradient={true}

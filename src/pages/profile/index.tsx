@@ -173,20 +173,18 @@ class ProfilePage extends React.Component<Props, State> {
                     className={'not-connected'}
                     onClick={this.togglePendingState}
                   >
-                    <span>connect</span>
+                    <span>CONNECT</span>
                   </button>
                 ) : (
                   <button
                     className={'pending'}
                     onClick={this.togglePendingState}
                   >
-                    <span>pending</span>
+                    <span>PENDING</span>
                   </button>
                 )}
                 <p>
-                  <span className={'underline'}>
-                    {followers ? addEndingToNumber(followers) : '0'}
-                  </span>{' '}
+                  <span>{followers ? addEndingToNumber(followers) : '0'}</span>{' '}
                   Followers
                 </p>
               </div>

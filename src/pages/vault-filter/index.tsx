@@ -80,8 +80,8 @@ class VaultFilterPage extends React.Component<Props> {
                   selectedChips={this.selectedEras}
                 />
                 <Button
-                  size={Sizes.full}
-                  label="Reset"
+                  size={Sizes.md}
+                  label="RESET"
                   type={ShapesSize.full}
                   color={Colors.tertiary}
                   gradient

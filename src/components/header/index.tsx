@@ -307,18 +307,21 @@ class HeaderComponent extends React.Component<Props> {
               <ul className="list inline">
                 <li>
                   <ButtonIcon
+                    className="mt-15"
                     color={Colors.orange}
                     icon={<StarIcon width={24} height={24} />}
                   />
                 </li>
                 <li>
                   <ButtonIcon
+                    className="mt-15"
                     color={Colors.green}
                     icon={<ShareIcon width={22} height={20} />}
                   />
                 </li>
                 <li>
                   <ButtonIcon
+                    className="mt-15"
                     color={Colors.cyan}
                     icon={<ChatMessageIcon />}
                     onClick={this.openChatPanel.bind(this, true)}

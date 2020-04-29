@@ -1,6 +1,8 @@
 .thank-you-page{
     padding-top: $default-height-header;
-    
+    margin-left: 24px;
+    margin-right: 24px;
+    width: unset !important;
     overflow: hidden;
     h1{
         font-size: pxToRem(32);

@@ -1,14 +1,13 @@
 import React from 'react';
 import { CardGraph } from '../../../components';
 import { dashboardMock } from './../../../constants';
-import { IonContent } from '@ionic/react';
 
 interface Props {}
 
 class DashboardAnalyticPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <IonContent>
+      <div className="content">
         {dashboardMock.analytic?.map(
           (data, i): React.ReactNode => (
             <CardGraph key={i}>
@@ -19,7 +18,7 @@ class DashboardAnalyticPage extends React.Component<Props> {
             </CardGraph>
           )
         )}
-      </IonContent>
+      </div>
     );
   }
 }

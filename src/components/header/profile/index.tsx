@@ -61,6 +61,7 @@ class HeaderProfileComponent extends React.Component<Props> {
           rightSettingsButton={!isFriend && showFilter === false}
           rightUserGroupButton={!isFriend && showFilter === false}
           rightNotificationButton={!isFriend && showFilter === false}
+          rightDashboardButton={!isFriend && showFilter === false}
           rightChatButton={isFriend && showFilter === false}
           rightConnectedButton={isFriend && showFilter === false}
           rightFanFeedButton={isFriend && showFilter === false}

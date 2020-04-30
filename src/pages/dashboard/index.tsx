@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../reducers';
-import {
-  BackgroundImage,
-  Header,
-  LoaderFullscreen,
-  Menu
-} from '../../components';
+import { BackgroundImage, Header, Menu } from '../../components';
 import {
   getDashboardByArtistAPI,
   updateSettingsProperty
@@ -16,7 +11,6 @@ import {
 import { DashboardInterface, MenuInterface } from '../../interfaces';
 
 interface StateProps {
-  loading: boolean;
   dashboard: DashboardInterface | null;
   activeDashboardTab: string;
   dashboardTabs: MenuInterface[];
@@ -50,49 +44,41 @@ class DashboardPage extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const {
-      loading,
-      dashboard,
-      dashboardTabs,
-      activeDashboardTab
-    } = this.props;
-    if (dashboard === null) return <LoaderFullscreen loading={loading} />;
+    const { dashboard, dashboardTabs, activeDashboardTab } = this.props;
+    if (!dashboard) return <IonPage id="dashboard-page" />;
     return (
-      <IonPage id="dashboard-page">
-        <IonContent scrollY={false}>
-          <BackgroundImage
-            gradient="180deg, #101041a6, #101041a6"
-            gradientOverlay={true}
-            backgroundImage={dashboard.artist.cover.dashboard}
-            default={dashboard.artist.cover.dashboard === undefined}
-            backgroundTop={dashboard.artist.cover.dashboard === undefined}
-            backgroundBottom={dashboard.artist.cover.dashboard === undefined}
-          />
-          <div className={'dashboard-page'}>
-            <Header
-              className="dashboard-page-header"
-              centerContent={
-                <div className="m-4">
-                  <span className="title text-30 h0 l1">Dashboard</span>
-                  <br />
-                  <span className="text-14 f0 l1">{dashboard.artist.name}</span>
-                </div>
-              }
-              leftBackButton={true}
-              rightActionButton={true}
-              rightActionOnClick={(): void =>
-                this.props.history.push('dashboard/filter')
-              }
-            />
-            <Menu
-              tabs={dashboardTabs}
-              activeId={activeDashboardTab}
-              onClick={this.changeDashboardTab}
-            />
+      <IonPage id="dashboard-page" className={'dashboard-page'}>
+        <BackgroundImage
+          gradient="180deg, #101041a6, #101041a6"
+          gradientOverlay={true}
+          backgroundImage={dashboard.artist.cover.dashboard}
+          default={dashboard.artist.cover.dashboard === undefined}
+          backgroundTop={dashboard.artist.cover.dashboard === undefined}
+          backgroundBottom={dashboard.artist.cover.dashboard === undefined}
+        />
+        <Header
+          leftBackHref="/profile"
+          className="dashboard-page-header"
+          centerContent={
+            <div>
+              <span className="title text-30 h0 l1">Dashboard</span>
+              <br />
+              <span className="text-14 f0 l1">{dashboard.artist.name}</span>
+            </div>
+          }
+          leftBackButton={true}
+          rightActionButton={true}
+          rightActionOnClick={(): void =>
+            this.props.history.push('dashboard/filter')
+          }
+        />
+        <Menu
+          tabs={dashboardTabs}
+          activeId={activeDashboardTab}
+          onClick={this.changeDashboardTab}
+        />
 
-            {this.renderActiveTab()}
-          </div>
-        </IonContent>
+        <IonContent scrollY={true}>{this.renderActiveTab()}</IonContent>
       </IonPage>
     );
   }
@@ -102,9 +88,9 @@ const mapStateToProps = ({
   dashboardAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { loading, dashboard } = dashboardAPI;
+  const { dashboard } = dashboardAPI;
   const { activeDashboardTab, dashboardTabs } = settings;
-  return { loading, dashboard, activeDashboardTab, dashboardTabs };
+  return { dashboard, activeDashboardTab, dashboardTabs };
 };
 
 export default withRouter(

@@ -12,7 +12,7 @@ interface DispatchProps {
 }
 interface Props extends StateProps, DispatchProps {}
 class ProfileArtistsPage extends React.PureComponent<Props> {
-  UNSAFE_componentWillMount(): void {
+  componentDidMount(): void {
     this.props.artists.length === 0 && this.props.getArtistsAPI();
   }
   render(): React.ReactNode {

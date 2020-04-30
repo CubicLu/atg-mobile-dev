@@ -56,6 +56,7 @@ import CardGenreComponent from './card/genre';
 import InputCheckboxComponent from './input/checkbox';
 import SubGenreModalComponent from './card/genre/subgenre';
 import CardEraComponent from './card/era';
+import CardSubEraComponent from './card/era/sub-era';
 import CardGraphComponent from './card/graph';
 
 import PlayerProgressBarComponent from '../components/player/progress-bar';
@@ -150,6 +151,7 @@ export {
   PlayerProgressBarComponent as PlayerProgress,
   PlayerVolumeComponent as PlayerVolume,
   MiniPlayerBarComponent as MiniPlayerBar,
+  CardSubEraComponent as CardSubEra,
   CardGraphComponent as CardGraph
 };
 

@@ -19,12 +19,14 @@ interface DispatchProps {
 
 interface StateProps {
   eraFilters: object[];
+  genreFilters: object[];
 }
 interface Props extends RouteComponentProps, DispatchProps, StateProps {}
 
 class VaultFilterPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
   selectedEras: string[] | undefined;
+  selectedGenres: string[] | undefined;
 
   render(): React.ReactNode {
     // eslint-disable-next-line no-prototype-builtins
@@ -32,6 +34,7 @@ class VaultFilterPage extends React.Component<Props> {
       delete this.props.eraFilters['undefined'];
     }
     this.selectedEras = Object.keys(this.props.eraFilters);
+    this.selectedGenres = Object.assign(this.props.genreFilters);
     return (
       <IonPage id="vault-filter-page">
         <Header
@@ -72,7 +75,7 @@ class VaultFilterPage extends React.Component<Props> {
                 <VaultFilterSection
                   label={'Show by Genre'}
                   type={'chip'}
-                  selectedChips={['Rock', 'Country', 'Rap']}
+                  selectedChips={this.selectedGenres}
                 />
                 <VaultFilterSection
                   label={'Show by Era'}
@@ -96,8 +99,8 @@ class VaultFilterPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { eraFilters } = settings;
-  return { eraFilters };
+  const { eraFilters, genreFilters } = settings;
+  return { eraFilters, genreFilters };
 };
 
 export default withRouter(

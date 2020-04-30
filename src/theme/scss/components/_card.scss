@@ -15,8 +15,8 @@
     border-bottom: 1px solid #fff;
   }
 
-  .align-start{
-    .star{
+  .align-start {
+    .star {
       top: 10px;
       position: absolute;
     }
@@ -235,14 +235,14 @@
     }
   }
 
-  &.graph{
+  &.graph {
     background-image: linear-gradient(to bottom, #091558, #020412);
     height: 250px;
     max-width: 350px;
     border-radius: 10px;
     margin-left: auto !important;
     margin-right: auto !important;
-    .image{
+    .image {
       @include background-style();
       height: 100%;
     }

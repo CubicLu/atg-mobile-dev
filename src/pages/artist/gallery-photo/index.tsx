@@ -230,7 +230,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
   backToGalleryGrid = (): void => {
     const { match, history } = this.props;
     this.props.clearFullscreenImage();
-    history.push(
+    history.replace(
       `/artist/${match.params.id}/gallery/${match.params.galleryId}`
     );
   };

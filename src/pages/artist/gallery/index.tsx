@@ -65,7 +65,10 @@ class ArtistGalleryPage extends React.Component<Props> {
       <IonPage id="gallery-page">
         <Header
           title="Gallery"
-          leftBackHref={`/artist/${this.props.match.params.id}`}
+          leftBackOnClick={(): void =>
+            this.props.history.replace(`/artist/${this.props.match.params.id}`)
+          }
+          //leftBackHref={`/artist/${this.props.match.params.id}`}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent

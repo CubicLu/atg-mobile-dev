@@ -36,7 +36,8 @@ import {
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
-  DashboardFilterPage
+  DashboardFilterPage,
+  FeedPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -268,5 +269,10 @@ export const routes: RouteInterface[] = [
     path: '/dashboard/filter',
     id: 'filterDashboard',
     component: DashboardFilterPage
+  },
+  {
+    path: '/feed/:id',
+    id: 'feedFan',
+    component: FeedPage
   }
 ];

@@ -186,6 +186,7 @@ export interface SettingsReducerType {
   eraFilters: object[];
   activeDashboardTab: string;
   dashboardTabs: MenuInterface[];
+  notifications: number;
 }
 export interface NavbarReducerType {
   navbarTwoButtons: NavbarTwoButtons;

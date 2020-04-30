@@ -11,18 +11,27 @@ import {
   IonTabButton,
   IonRouterOutlet
 } from '@ionic/react';
+import ButtonIcon from '../../../components/button/icon';
+import { ProfileIcon } from '../../../components/icon';
 
 interface StateProps {
   tabs: TabsInterface[];
   routes: RouteInterface[];
   activeTab: string;
+  notifications: number;
 }
 interface Props extends StateProps {
   updateSettingsProperty: (property: string, value: string) => void;
 }
 class HomeRouterPage extends React.PureComponent<Props> {
   render(): React.ReactNode {
-    const { tabs, routes, activeTab, updateSettingsProperty } = this.props;
+    const {
+      tabs,
+      routes,
+      activeTab,
+      updateSettingsProperty,
+      notifications
+    } = this.props;
     return (
       <IonTabs
         onIonTabsDidChange={(e): void =>
@@ -47,7 +56,15 @@ class HomeRouterPage extends React.PureComponent<Props> {
               href={p.path}
               key={p.id}
             >
-              <p.icon />
+              {p.icon === ProfileIcon ? (
+                <ButtonIcon
+                  icon={<ProfileIcon />}
+                  overlay={notifications}
+                  overlayClassName={'notificationBadge'}
+                />
+              ) : (
+                <p.icon />
+              )}
             </IonTabButton>
           ))}
         </IonTabBar>
@@ -57,8 +74,8 @@ class HomeRouterPage extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { tabs, routes, activeTab } = settings;
-  return { tabs, routes, activeTab };
+  const { tabs, routes, activeTab, notifications } = settings;
+  return { tabs, routes, activeTab, notifications };
 };
 export default connect(mapStateToProps, { updateSettingsProperty })(
   HomeRouterPage

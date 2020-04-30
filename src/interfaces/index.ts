@@ -120,7 +120,7 @@ export interface ArtistInterface {
   avatar?: string;
   support?: boolean;
   username: string;
-  backgroundGradient?: GradientColorsInterface;
+  backgroundGradient?: GradientColorsInterface | null;
   featuredTracks?: FeaturedTrackInterface[];
   newReleases?: NewRealeseInterface[];
   events?: EventInterface[];
@@ -269,6 +269,7 @@ export interface SearchReducerType {
 
 export interface SongInterface {
   id: number;
+  backgroundGradient?: GradientColorsInterface;
   title: string;
   album: string;
   artist: string;

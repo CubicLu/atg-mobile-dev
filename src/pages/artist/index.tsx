@@ -7,6 +7,7 @@ import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface } from '../../interfaces';
 import { getArtistAPI } from './../../actions';
+
 interface StateProps {
   currentArtist: ArtistInterface | null;
   artistTabs: MenuInterface[];
@@ -207,6 +208,7 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     this.activeTab = event.id;
     this.forceUpdate();
   };
+
   render(): React.ReactNode {
     if (!this.props.currentArtist) {
       return <IonPage style={artistBackground(null)} id="artist-page" />;

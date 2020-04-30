@@ -48,6 +48,8 @@ import RowUserComponent from './row/user';
 import ListUserComponent from './list/user';
 import InputComboBoxComponent from './input/combo-box';
 import VaultFilterSectionComponent from './vault-filter-section';
+import PopUpModalComponent from './modal/pop-up/';
+import PremiumFeaturesModalContentComponent from './modal/pop-up/premium-features';
 import InputToggleComponent from './input/toggle';
 import InputChipComponent from './input/chip';
 import CardGenreComponent from './card/genre';
@@ -136,6 +138,8 @@ export {
   ListUserComponent as ListUser,
   InputComboBoxComponent as InputComboBox,
   VaultFilterSectionComponent as VaultFilterSection,
+  PopUpModalComponent as PopUpModal,
+  PremiumFeaturesModalContentComponent as PremiumFeaturesModalContent,
   InputToggleComponent as InputToggle,
   InputChipComponent as InputChip,
   NavBarTwoButtonsComponent as NavbarTwoButtons,

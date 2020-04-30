@@ -13,8 +13,21 @@ interface Props {
   username: string;
   background?: string;
   items?: BiographyInterface[];
+  name?: string;
+  handlePremiumModal: (modalType: string | null) => void;
 }
 class BiographyListComponent extends React.Component<Props> {
+  handleOnClick = (
+    item: BiographyInterface,
+    index: number
+  ): (() => void) => (): void => {
+    if (item.accessLevel && item.accessLevel > 0) {
+      this.props.handlePremiumModal('premiumFeatureModal');
+    } else {
+      this.props.onClick(index);
+    }
+  };
+
   render(): React.ReactNode {
     return (
       <div className="menu-generic-list">
@@ -32,7 +45,7 @@ class BiographyListComponent extends React.Component<Props> {
             {this.props.items &&
               this.props.items.map(
                 (data, i): React.ReactNode => (
-                  <li key={i} onClick={(): number => this.props.onClick(i)}>
+                  <li key={i} onClick={this.handleOnClick(data, i)}>
                     <div className="artist">
                       <div className="name">{data.name}</div>
                     </div>

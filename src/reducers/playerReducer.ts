@@ -428,10 +428,6 @@ export const popPlaylist: PlaylistInterface = {
       id: 701326572,
       title: 'Come Get It Bae',
       artist: 'Pharrell Williams',
-      backgroundGradient: {
-        color1: '#079848',
-        color2: '#136137'
-      },
       album: 'G I R L',
       duration: 209,
       cover:
@@ -457,6 +453,109 @@ export const popPlaylist: PlaylistInterface = {
       url:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C10+Shwayze+Ft+Cisco+-+You+Could+Be+My+Girl.mp3',
       ISRC: 'USA371377794'
+    }
+  ]
+};
+export const rivalSonsPlaylist: PlaylistInterface = {
+  name: 'Rival Sons',
+  id: 7516755396,
+  source: 'artist',
+  // color1: '#ffc90d',
+  // color2: '#034627',
+  sourceId: 7516755384,
+  cover:
+    'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rival-sons-playlist.jpg',
+  owner: 'Chris',
+  items: [
+    {
+      id: 12565421,
+      title: 'All Over The Road',
+      artist: 'Rival Sons',
+      album: 'Pressure & Time',
+      duration: 174,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/trackCover1.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover1.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/All+Over+The+Road.mp3',
+      ISRC: 'GBBPB1100027'
+    },
+    {
+      id: 12565422,
+      title: 'Do Your Worst',
+      artist: 'Rival Sons',
+      album: 'Do Your Worst',
+      duration: 211,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/trackCover2.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover1.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Do+Your+Worst.mp3',
+      ISRC: 'USAT21810416'
+    },
+    {
+      id: 12565423,
+      title: 'Face Of Light',
+      artist: 'Rival Sons',
+      album: 'Pressure & Time',
+      duration: 269,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/trackCover3.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover1.jpg',
+      trackNumber: 3,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Face+Of+Light.mp3',
+      ISRC: 'GBBPB1100349'
+    },
+    {
+      id: 12565424,
+      title: 'Keep On Swinging',
+      artist: 'Rival Sons',
+      album: 'Head Down',
+      duration: 332,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/defaultTrackCover.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover2.jpg',
+      trackNumber: 4,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Keep+On+Swinging.mp3',
+      ISRC: 'GBBPB1201568'
+    },
+    {
+      id: 12565425,
+      title: 'Open My Eyes',
+      artist: 'Rival Sons',
+      album: 'Great Western Valkyrie',
+      duration: 223,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/defaultTrackCover.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover3.jpg',
+      trackNumber: 5,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Open+My+Eyes.mp3',
+      ISRC: 'USDY41651904'
+    },
+    {
+      id: 12565426,
+      title: 'Until the Sun Comes',
+      artist: 'Rival Sons',
+      album: 'Head Down',
+      duration: 162,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/defaultTrackCover.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover2.jpg',
+      trackNumber: 6,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Until+The+Sun+Comes.mp3',
+      ISRC: 'GBBPB1201635'
     }
   ]
 };

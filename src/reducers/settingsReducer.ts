@@ -1,4 +1,9 @@
-import { Action, ActionType, SettingsReducerType } from '../interfaces';
+import {
+  Action,
+  ActionType,
+  SettingsReducerType,
+  ModalTypeInterface
+} from '../interfaces';
 import createReducer from './createReducer';
 import {
   contactTabs,
@@ -22,6 +27,7 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
+  popUpModal: null,
   activeTab: 'profile',
   activeFanTab: 'artists',
   fanTabs: myProfileTabs,
@@ -73,6 +79,16 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         modal: { ...action.payload }
+      };
+    },
+
+    [ActionType.UPDATE_POPUP_MODAL](
+      state: SettingsReducerType,
+      action: Action<ModalTypeInterface>
+    ): SettingsReducerType {
+      return {
+        ...state,
+        popUpModal: action.payload.modalType
       };
     }
   }

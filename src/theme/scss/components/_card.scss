@@ -15,8 +15,8 @@
     border-bottom: 1px solid #fff;
   }
 
-  .align-start{
-    .star{
+  .align-start {
+    .star {
       top: 10px;
       position: absolute;
     }
@@ -98,7 +98,7 @@
       }
 
       &::before {
-        content: attr(data-tapeindex) ".";
+        content: attr(data-tapeindex) '.';
         display: inline-block;
         color: rgba(255, 255, 255, 0.5);
         position: relative;
@@ -154,14 +154,14 @@
   &.rounded {
     border-radius: 10px;
   }
-    &.rounded{
-        border-radius: 10px;
-    }
-    &.rounded-frame{
-        border-radius: 10px;
-        border: 1px solid #6d6e6f;
-        background-color: #fff;
-    }
+  &.rounded {
+    border-radius: 10px;
+  }
+  &.rounded-frame {
+    border-radius: 10px;
+    border: 1px solid #6d6e6f;
+    background-color: #fff;
+  }
 
   &.circle {
     border-radius: 50%;
@@ -182,7 +182,7 @@
       }
     }
     span {
-      font-family: "Helvetica";
+      font-family: 'Helvetica';
       font-size: 12px;
       color: #919397;
     }
@@ -230,14 +230,14 @@
     }
   }
 
-  &.graph{
+  &.graph {
     background-image: linear-gradient(to bottom, #091558, #020412);
     height: 250px;
     max-width: 350px;
     border-radius: 10px;
     margin-left: auto !important;
     margin-right: auto !important;
-    .image{
+    .image {
       @include background-style();
       height: 100%;
     }
@@ -308,7 +308,7 @@
     height: 105px;
     width: 105px;
     &.color {
-      @include color-modifiers($attribute: "background-color");
+      @include color-modifiers($attribute: 'background-color');
     }
     &.color-green-base {
       background-color: #89c832;
@@ -356,16 +356,16 @@
 }
 
 .card-era {
-    margin: 16px 0;
-    .card-era-section {
-        color: white;
-        display: flex;
-        flex-direction: column;
-        width: 144px;
-        font-family: Industria;
-        font-size: 48px;
-        justify-content: flex-end;
-        align-items: center;
-        padding-top: 32px;
-    }
+  margin: 16px 0;
+  .card-era-section {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 144px;
+    font-family: Industria;
+    font-size: 48px;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 32px;
+  }
 }

@@ -1,4 +1,4 @@
-import { ActionType } from '../interfaces';
+import { ActionType, Action, ModalTypeInterface } from './../interfaces';
 
 export const updateSettingsProperty = (property: string, value: any): any => ({
   type: ActionType.UPDATE_SETTINGS_PROPERTY,
@@ -13,4 +13,11 @@ export const updateSettingsModal = (
 ): any => ({
   type: ActionType.UPDATE_SETTINGS_MODAL,
   payload: { content, className, height, onClick }
+});
+
+export const updatePopUpModal = (
+  modalType: string | null
+): Action<ModalTypeInterface> => ({
+  type: ActionType.UPDATE_POPUP_MODAL,
+  payload: { modalType }
 });

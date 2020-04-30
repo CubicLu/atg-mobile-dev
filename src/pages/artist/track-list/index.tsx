@@ -22,7 +22,8 @@ import { artistBackground, shadowTitle } from '../../../utils';
 import {
   guitarPlaylist,
   popPlaylist,
-  bluesPlaylist
+  bluesPlaylist,
+  rivalSonsPlaylist
 } from '../../../reducers/playerReducer';
 
 interface StateProps {
@@ -45,13 +46,13 @@ interface Props
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
-const lists = [popPlaylist, bluesPlaylist, guitarPlaylist];
+const lists = [popPlaylist, bluesPlaylist, guitarPlaylist, rivalSonsPlaylist];
 class TrackListPage extends React.Component<Props> {
   playlist: PlaylistInterface = lists[0];
   isArtist: boolean = false;
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    this.getPlaylistFromAPI(nextProps.match.params.referenceId);
+    this.getPlaylistFromAPI(nextProps.match.params.id);
     this.isArtist = this.props.match.params.reference === 'artist';
     if (!this.isArtist) {
       return;

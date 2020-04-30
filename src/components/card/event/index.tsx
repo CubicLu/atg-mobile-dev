@@ -58,7 +58,7 @@ class CardEventComponent extends React.Component<Props, State> {
         <div className="col s1" />
         <div className="col s7">
           <div className="row">
-          <div className="f4 l15 calendar-blue bold">{name}</div>
+            <div className="f4 l15 calendar-blue bold">{name}</div>
             <div className="f4 l15">{where}</div>
             <div className="f6 l15">{city}</div>
           </div>

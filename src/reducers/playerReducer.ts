@@ -428,10 +428,6 @@ export const popPlaylist: PlaylistInterface = {
       id: 701326572,
       title: 'Come Get It Bae',
       artist: 'Pharrell Williams',
-      backgroundGradient: {
-        color1: '#079848',
-        color2: '#136137'
-      },
       album: 'G I R L',
       duration: 209,
       cover:

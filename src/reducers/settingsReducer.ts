@@ -38,9 +38,18 @@ const defaultState: SettingsReducerType = {
   activeMessageTab: 'chat',
   selectContactTabs: contactTabs,
   activeSelectContactTab: 'friends',
-  eraFilters: [],
   dashboardTabs: dashboardTabs,
   activeDashboardTab: 'analytic',
+  eraFilters: [],
+  era: '',
+  subEra: [
+    {
+      name: '',
+      selected: false
+    }
+  ],
+  genreFilters: [],
+  selectedGenres: [],
   notifications: 10
 };
 

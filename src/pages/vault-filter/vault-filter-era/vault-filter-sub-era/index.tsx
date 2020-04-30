@@ -6,11 +6,12 @@ import {
   BackgroundImage,
   Header,
   HeaderOverlay,
-  CardGenre,
+  CardSubEra,
   InputCheckbox
 } from '../../../../components';
 import { ApplicationState } from '../../../../reducers';
 import { updateSettingsProperty } from '../../../../actions';
+import { SubEraInterface } from '../../../../interfaces';
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
@@ -18,30 +19,42 @@ interface DispatchProps {
 
 interface StateProps {
   eraFilters: object[];
+  era: string;
+  subEra: SubEraInterface[];
 }
 
 interface Props extends RouteComponentProps, StateProps, DispatchProps {}
 
 class VaultFilterSubEraPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
-  selectedSubEras: any = {};
 
   render(): React.ReactNode {
-    const state: any = this.props.history.location.state;
-    this.selectedSubEras[state?.era] = { subEras: [] };
+    if (!this.props.eraFilters[this.props.era]?.subEras)
+      this.props.eraFilters[this.props.era] = { subEras: [] };
+
+    const state: any = this.props;
+    if (state.eraFilters[state?.era]) {
+      state?.subEra?.forEach((item: any): void => {
+        if (
+          // @ts-ignore
+          state.eraFilters[state.era].subEras.some(
+            (r: any): boolean => r === item.name
+          )
+        ) {
+          item.selected = true;
+        }
+      });
+    }
     return (
       <IonPage id="vault-filter-genre-page">
         <Header
-          leftTitle={state.era}
+          leftTitle={state?.era}
           titleClassName="sub-era"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void =>
-            this.props.history.push({
-              pathname: '/vault-filter/era',
-              state: { selectedSubEras: this.selectedSubEras }
-            })
-          }
+          rightCloseOnClick={(): void => {
+            this.props.history.push('/vault-filter/era');
+          }}
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
@@ -64,11 +77,11 @@ class VaultFilterSubEraPage extends React.Component<Props> {
             />
             <div className={'content-container'}>
               <div className={'row'}>
-                {state.subEra?.map(
+                {state?.subEra?.map(
                   (data, i): React.ReactNode => {
                     return (
                       <div className={'col s6'} key={i}>
-                        <CardGenre
+                        <CardSubEra
                           name={data.name}
                           image={data.image}
                           shadowColor={data.color}
@@ -85,22 +98,25 @@ class VaultFilterSubEraPage extends React.Component<Props> {
                           <InputCheckbox
                             checked={data.selected}
                             action={(e): void => {
-                              let idx = this.selectedSubEras[
+                              let idx = state.eraFilters[
                                 state.era
+                                // @ts-ignore
                               ].subEras.indexOf(data.name);
                               if (e.currentTarget.checked && idx === -1) {
-                                this.selectedSubEras[state.era].subEras.push(
+                                // @ts-ignore
+                                state.eraFilters[state.era].subEras.push(
                                   data.name
                                 );
                               } else {
-                                this.selectedSubEras[state.era].subEras.splice(
+                                // @ts-ignore
+                                state.eraFilters[state.era].subEras.splice(
                                   idx,
                                   1
                                 );
                               }
                               this.props.updateSettingsProperty(
                                 'eraFilters',
-                                this.selectedSubEras
+                                state.eraFilters
                               );
                             }}
                           />
@@ -119,8 +135,8 @@ class VaultFilterSubEraPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { eraFilters } = settings;
-  return { eraFilters };
+  const { eraFilters, era, subEra } = settings;
+  return { eraFilters, era, subEra };
 };
 
 export default withRouter(

@@ -186,6 +186,10 @@ export interface SettingsReducerType {
   eraFilters: object[];
   activeDashboardTab: string;
   dashboardTabs: MenuInterface[];
+  era: string;
+  subEra: SubEraInterface[];
+  genreFilters: object[];
+  selectedGenres: string[];
   notifications: number;
 }
 export interface NavbarReducerType {

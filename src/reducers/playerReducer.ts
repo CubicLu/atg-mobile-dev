@@ -26,6 +26,10 @@ export const guitarPlaylist: PlaylistInterface = {
       title: "Rock N' Roll Is Free",
       artist: 'Ben Harper',
       album: "Give Till It's Gone",
+      backgroundGradient: {
+        color1: '#079848',
+        color2: '#136137'
+      },
       duration: 204,
       cover:
         'https://e-cdns-images.dzcdn.net/images/cover/262433a909f181c7343d8756b8a1a156/264x264-000000-80-0-0.jpg',
@@ -424,6 +428,10 @@ export const popPlaylist: PlaylistInterface = {
       id: 701326572,
       title: 'Come Get It Bae',
       artist: 'Pharrell Williams',
+      backgroundGradient: {
+        color1: '#079848',
+        color2: '#136137'
+      },
       album: 'G I R L',
       duration: 209,
       cover:

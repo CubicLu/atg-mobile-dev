@@ -27,6 +27,10 @@ declare global {
   }
 }
 
+const FADEOUT_NEXT = 1.5; //fadeout time when click on next song
+const FADEOUT_DEFAULT = 5; // fadeout when song ends naturally
+const MUSIC_CONTROLS_DELAY = 25; //time in ms - needed to reflect update on android/ios
+
 class CordovaMediaComponent extends React.Component<Props> {
   playOptions = {
     playAudioWhenScreenIsLocked: true,
@@ -82,10 +86,9 @@ class CordovaMediaComponent extends React.Component<Props> {
   }
   actionPlaySong(): void {
     //Play Song is called when I click next or previous;
-
     this.runningSong.forEach((song): void => {
-      if (song.getPosition() >= 3) {
-        song.setFadeTime(3);
+      if (song.getPosition() >= 2) {
+        song.setFadeTime(FADEOUT_NEXT);
         song.setForceFadeOut(true);
       } else {
         song.pause();
@@ -199,7 +202,7 @@ class CordovaMediaComponent extends React.Component<Props> {
       instance.setFadingOut(false);
       instance.setFadeIn(fadeIn);
       instance.setFadeOut(fadeOut);
-      instance.setFadeTime(8);
+      instance.setFadeTime(FADEOUT_DEFAULT);
       return instance;
     }
     const newInstance = new window.Media(
@@ -212,7 +215,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     newInstance.setMediaId(song.id);
     newInstance.setFadeIn(fadeIn);
     newInstance.setFadeOut(fadeOut);
-    newInstance.setFadeTime(8);
+    newInstance.setFadeTime(FADEOUT_DEFAULT);
     return newInstance;
   }
   createMusicControls(): void {
@@ -246,14 +249,14 @@ class CordovaMediaComponent extends React.Component<Props> {
   updatePlayingMusicControls(): void {
     setTimeout(
       (): void => window.MusicControls.updateIsPlaying(this.props.playing),
-      50
+      MUSIC_CONTROLS_DELAY
     );
   }
   updateElapsedMusicControls(): void {
     setTimeout((): void => {
       const opt = { elapsed: this.elapsed, isPlaying: this.props.playing };
       window.MusicControls.updateElapsed(opt, null, null);
-    }, 50);
+    }, MUSIC_CONTROLS_DELAY);
   }
   mediaControlEvents = (action: string): void => {
     if (!action) return;

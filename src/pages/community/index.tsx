@@ -44,7 +44,7 @@ class CommunityPage extends React.Component<Props> {
         <BackgroundImage default={true} />
         <Header
           leftBackButton={false}
-          rightActionButton={true}
+          rightActionButton={false}
           rightContent={
             <div
               className="default-button dark"

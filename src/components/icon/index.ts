@@ -1,4 +1,5 @@
 import MessageIcon from './message';
+import DashboardIcon from './dashboard';
 import PhoneWithHeadsetIcon from './phone-with-headset';
 import RadioIcon from './radio';
 import ProfileIcon from './profile';
@@ -34,6 +35,7 @@ import SupportStarIcon from './support-star';
 
 export {
   MessageIcon,
+  DashboardIcon,
   PhoneWithHeadsetIcon,
   RadioIcon,
   ProfileIcon,

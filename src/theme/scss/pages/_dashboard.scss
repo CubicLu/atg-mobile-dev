@@ -1,5 +1,4 @@
 .dashboard-page{
-    height: 100%;
     .dashboard-page-header{
         display: flex;
         align-items: center;
@@ -7,14 +6,7 @@
             margin-top: 0;
         }
     }
-    .horizontal-menu{
-        position: relative;
-        top: 130px;
-    }
-    ion-content, .content{
-        height: calc(100% - 130px);
-        overflow: scroll;
-        top: 130px;
-        position: relative;
+    ion-header{
+        height: 90px;
     }
 }

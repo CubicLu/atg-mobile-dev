@@ -13,7 +13,8 @@ import {
   UserGroupIcon,
   SupportIcon,
   BalloonIcon,
-  ChatMessageIcon
+  ChatMessageIcon,
+  DashboardIcon
 } from '../icon';
 import { IonHeader, NavContext, NavContextState } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
@@ -55,6 +56,7 @@ interface Props {
   rightConnectedButton?: boolean;
   rightFanFeedButton?: boolean;
   rightNotificationButton?: boolean;
+  rightDashboardButton?: boolean;
   rightActionButton?: boolean;
   rightCloseButton?: boolean;
   rightSettingsButton?: boolean;
@@ -88,6 +90,7 @@ class HeaderComponent extends React.Component<Props> {
     rightUserGroupButton: false,
     rightButtonGroup: false,
     rightNotificationButton: false,
+    rightDashboardButton: false,
     centerContent: null,
     rightContent: null,
     translucent: false,
@@ -142,6 +145,7 @@ class HeaderComponent extends React.Component<Props> {
       rightSupportButton,
       rightUserGroupButton,
       rightNotificationButton,
+      rightDashboardButton,
       rightInfoButton,
       rightInfoOnClick,
       rightActionYellow,
@@ -223,6 +227,14 @@ class HeaderComponent extends React.Component<Props> {
               </div>
             )}
 
+            {rightDashboardButton && (
+              <div
+                className="default-button dark"
+                onClick={(): any => this.pushUrl('/dashboard', 'forward')}
+              >
+                <DashboardIcon />
+              </div>
+            )}
             {rightConnectedButton && (
               <div
                 className="default-button dark"

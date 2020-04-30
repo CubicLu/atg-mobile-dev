@@ -11,6 +11,7 @@ export enum ActionType {
   UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
   UPDATE_AUTH_PROPERTY = 'UPDATE_AUTH_PROPERTY',
   UPDATE_SETTINGS_MODAL = 'UPDATE_SETTINGS_MODAL',
+  UPDATE_POPUP_MODAL = 'UPDATE_POPUP_MODAL',
   GET_ARTISTS_API = 'GET_ARTISTS_API',
   GET_ARTISTS_API_FAILURE = 'GET_ARTISTS_API_FAILURE',
   GET_ARTISTS_API_SUCCESS = 'GET_ARTISTS_API_SUCCESS',
@@ -161,6 +162,7 @@ export interface SettingsReducerType {
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
   modal: ModalSlideInterface;
+  popUpModal: string | null;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;
   activeDeepDiveTab: string;
@@ -600,6 +602,9 @@ export interface RadioReducerType {
   errorMessage: string | null;
 }
 
+export interface ModalTypeInterface {
+  modalType: string | null;
+}
 export interface GalleryImageInterface {
   image: string;
 }

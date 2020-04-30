@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Action, ActionType, SettingsReducerType, Colors } from '../interfaces';
+import {
+  Action,
+  ActionType,
+  SettingsReducerType,
+  Colors,
+  ModalTypeInterface
+} from './../interfaces';
+
 import createReducer from './createReducer';
 import {
   ProfileArtistsPage,
@@ -71,6 +78,7 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
+  popUpModal: null,
   activeTab: 'profile',
   activeFanTab: 'artists',
   fanTabs: [
@@ -582,6 +590,15 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         modal: { ...action.payload }
+      };
+    },
+    [ActionType.UPDATE_POPUP_MODAL](
+      state: SettingsReducerType,
+      action: Action<ModalTypeInterface>
+    ) {
+      return {
+        ...state,
+        popUpModal: action.payload.modalType
       };
     }
   }

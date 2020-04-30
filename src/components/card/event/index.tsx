@@ -2,6 +2,7 @@ import React from 'react';
 import { EventInterface } from '../../../interfaces';
 import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
 import { IonAlert, IonRouterLink } from '@ionic/react';
+import moment from 'moment';
 
 interface State {
   show: boolean;
@@ -42,21 +43,24 @@ class CardEventComponent extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    const { artistUsername: username, id } = this.props;
+    const { artistUsername: username, id, data } = this.props;
+
+    if (!data) return <div />;
+    const { name, city, where, date } = data;
     return (
       <div className="card-event row">
         <div className="col s4 no-padding">
           <div className={`calendar flex-column-center ${this.getColor()}`}>
-            <div className="f4 l1">FEB</div>
-            <div className="f00 l1">21</div>
+            <div className="f4 l1">{moment(date).format('MMM')}</div>
+            <div className="f00 l1">{moment(date).format('DD')}</div>
           </div>
         </div>
         <div className="col s1" />
         <div className="col s7">
           <div className="row">
-            <div className="f4 l15 calendar-blue bold">The Happy Tour</div>
-            <div className="f4 l15">Microsoft Theatre</div>
-            <div className="f6 l15">Los Angeles, CA</div>
+          <div className="f4 l15 calendar-blue bold">{name}</div>
+            <div className="f4 l15">{where}</div>
+            <div className="f6 l15">{city}</div>
           </div>
           <div className="row m-0">
             <ul className="list inline white-text">

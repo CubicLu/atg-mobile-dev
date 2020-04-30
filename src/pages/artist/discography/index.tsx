@@ -21,7 +21,7 @@ class ArtistDiscographyPage extends React.Component<StateProps> {
               <div key={i}>
                 <CardImage
                   key={i}
-                  routerLink={`/track/artist/${currentArtist.username}/${i}`}
+                  routerLink={`/track/artist/${currentArtist.username}/${d.albumId}`}
                   routerDirection="forward"
                   image={d.cover}
                 />

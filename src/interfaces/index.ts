@@ -446,6 +446,7 @@ export enum Colors {
 }
 
 export interface DiscographyInterface {
+  albumId: number,
   cover: string | undefined;
   name: string;
 }

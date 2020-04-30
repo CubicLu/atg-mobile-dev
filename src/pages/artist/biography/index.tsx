@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import {
   IonContent,
   IonSlides,
@@ -16,12 +16,15 @@ import {
   StarIcon,
   ShareIcon,
   ArrowRightIcon,
-  HeaderOverlay
+  HeaderOverlay,
+  PopUpModal,
+  PremiumFeaturesModalContent
 } from './../../../components';
 import {
   updateSettingsProperty,
   updateSettingsModal,
-  getArtistAPI
+  getArtistAPI,
+  updatePopUpModal
 } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import {
@@ -37,11 +40,13 @@ interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
   updateSettingsModal: (content: React.ReactNode, className?: string) => void;
+  updatePopUpModal: (modalType: string | null) => void;
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
   modal: ModalSlideInterface;
   loading: boolean;
+  popUpModal: string | null;
 }
 interface MatchParams {
   id: string;
@@ -148,23 +153,38 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     );
   }
 
+  handlePopUp = (modalType: string | null): void =>
+    this.props.updatePopUpModal(modalType);
+
+  transferToSupportPage = (): void => {
+    const { history, currentArtist, updateSettingsModal } = this.props;
+    if (currentArtist && currentArtist.username) {
+      updateSettingsModal(null, '');
+      this.handlePopUp(null);
+      history.push(`/artist/${currentArtist.username}/support`);
+    }
+  };
+
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <IonPage />;
     const {
       currentArtist: artist,
       currentArtist: { biography },
-      updateSettingsModal
+      updateSettingsModal,
+      popUpModal
     } = this.props;
     if (!biography) return <IonPage />;
 
     const toggleAction = (): void =>
       updateSettingsModal(
-        React.createElement(BiographyList, {
-          items: artist.biography,
-          title: 'Biography',
-          username: artist.username,
-          onClick: (a: number): any => this.changeChapter(a)
-        }),
+        <BiographyList
+          items={artist.biography}
+          name={artist?.name}
+          title={'Biography'}
+          username={artist.username}
+          onClick={(a: number): any => this.changeChapter(a)}
+          handlePremiumModal={this.handlePopUp}
+        />,
         'background-white-base'
       );
     const activeBio = biography[this.state.currentPage];
@@ -273,6 +293,22 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               </IonSlide>
             ))}
           </IonSlides>
+          {popUpModal && popUpModal === 'premiumFeatureModal' && (
+            <PopUpModal header={'PREMIUM FEATURES'}>
+              <PremiumFeaturesModalContent
+                title={`${artist.name} Radio`}
+                description={
+                  <>
+                    You must be support <span>{artist.name}</span> in order to
+                    listen!
+                  </>
+                }
+                artistAvatar={artist?.cover.event}
+                onDoneClick={(): void => this.handlePopUp(null)}
+                onSuccessClick={this.transferToSupportPage}
+              />
+            </PopUpModal>
+          )}
         </IonContent>
       </IonPage>
     );
@@ -319,13 +355,16 @@ const mapStateToProps = ({
   settings,
   artistAPI
 }: ApplicationState): StateProps => {
-  const { modal } = settings;
+  const { modal, popUpModal } = settings;
   const { currentArtist, loading } = artistAPI;
-  return { currentArtist, modal, loading };
+  return { currentArtist, modal, loading, popUpModal };
 };
 
-export default connect(mapStateToProps, {
-  updateSettingsProperty,
-  updateSettingsModal,
-  getArtistAPI
-})(ArtistBiographyPage);
+export default withRouter(
+  connect(mapStateToProps, {
+    updateSettingsProperty,
+    updateSettingsModal,
+    getArtistAPI,
+    updatePopUpModal
+  })(ArtistBiographyPage)
+);

@@ -49,7 +49,8 @@ const defaultState: SettingsReducerType = {
   activeSelectContactTab: 'friends',
   eraFilters: [],
   dashboardTabs: dashboardTabs,
-  activeDashboardTab: 'analytic'
+  activeDashboardTab: 'analytic',
+  notifications: 10
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

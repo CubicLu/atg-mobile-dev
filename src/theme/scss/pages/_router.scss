@@ -1,0 +1,13 @@
+.notificationBadge{
+  position: absolute;
+  color: white;
+  z-index: 1;
+  background-color: #fe0000;
+  border-radius: 25%;
+  min-width: 12px;
+  height: 12px;
+  align-self: flex-end;
+  font-size: 7pt;
+  top: 8px;
+  padding: 1px;
+}

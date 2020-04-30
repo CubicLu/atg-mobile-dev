@@ -102,7 +102,7 @@ export default class ListItemComponent extends React.Component<Props> {
           {this.props.communityFeedButton && (
             <IonRouterLink
               ref={this.linkRef}
-              routerLink={`/community/${username}`}
+              routerLink={`/feed/${username}`}
               routerDirection="root"
             >
               <ButtonIcon

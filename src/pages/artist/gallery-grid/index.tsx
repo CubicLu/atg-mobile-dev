@@ -211,7 +211,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
   backToGalleryPage = (): void => {
     const { match, history, clearCurrentGallery } = this.props;
     clearCurrentGallery();
-    history.push(`/artist/${match.params.id}/gallery`);
+    history.replace(`/artist/${match.params.id}/gallery`);
   };
 
   render(): React.ReactNode {

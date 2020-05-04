@@ -130,11 +130,11 @@ h6,.h6{ font-size: 16px }
     position: relative;
     line-height: 0.8;
 }
-.no-wrap{
-    white-space: pre-line;
-}
 .text-center{
     text-align: center;
+}
+.no-wrap{
+    white-space: nowrap;
 }
 .no-wrap-pre{
     white-space: pre;

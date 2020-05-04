@@ -1,19 +1,21 @@
-.thank-you-page{
-    padding-top: $default-height-header;
-    
-    overflow: hidden;
-    h1{
-        font-size: pxToRem(32);
+.thank-you-page {
+  padding-top: $default-height-header;
+  margin-left: 24px;
+  margin-right: 24px;
+  width: unset !important;
+  overflow: hidden;
+  h1 {
+    font-size: pxToRem(32);
+  }
+  h2 {
+    margin-bottom: pxToRem(40);
+    font-size: pxToRem(18);
+    margin-top: 0;
+  }
+  .link {
+    margin-top: pxToRem(20);
+    p {
+      font-size: pxToRem(14);
     }
-    h2{
-        margin-bottom: pxToRem(40);
-        font-size: pxToRem(18);
-        margin-top: 0;
-    }
-    .link{
-        margin-top:  pxToRem(20);
-        p{
-            font-size: pxToRem(14);
-        }
-    }
+  }
 }

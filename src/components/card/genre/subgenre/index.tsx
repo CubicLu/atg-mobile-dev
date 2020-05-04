@@ -2,9 +2,21 @@ import React from 'react';
 import { BackgroundImage, InputCheckbox } from '../../../../components';
 import { SubGenreInterface } from '../../../../interfaces';
 import { IonCheckbox } from '@ionic/react';
+import { updateSettingsProperty } from '../../../../actions';
+import { ApplicationState } from '../../../../reducers';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-interface Props {
-  title?: string;
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
+
+interface StateProps {
+  selectedGenres: string[];
+}
+
+interface Props extends StateProps, DispatchProps {
+  name: string;
   subGenres: SubGenreInterface[];
   background?: string;
 }
@@ -13,17 +25,14 @@ class SubGenreModalComponent extends React.Component<Props> {
   indeterminateState: boolean = false;
   selectAll: boolean = false;
   subGenres = this.props.subGenres;
-
   componentDidMount(): void {
     this.verifyCheckbox();
-    this.forceUpdate();
   }
 
   verifyCheckbox(): void {
     const allItems = this.subGenres.length;
     let selected = 0;
 
-    // eslint-disable-next-line
     this.subGenres.map((item: SubGenreInterface): void => {
       if (item.selected) selected++;
     });
@@ -39,6 +48,24 @@ class SubGenreModalComponent extends React.Component<Props> {
     }
     this.forceUpdate();
   }
+  selectGenre(): void {
+    let selectedGenresArray = this.props.selectedGenres;
+    if (!selectedGenresArray.includes(this.props.name)) {
+      selectedGenresArray.push(this.props.name);
+      this.props.updateSettingsProperty('genreFilters', selectedGenresArray);
+    }
+  }
+
+  unselectGenre(): void {
+    let selectedGenresArray = this.props.selectedGenres;
+    if (selectedGenresArray.includes(this.props.name)) {
+      selectedGenresArray.splice(
+        selectedGenresArray.indexOf(this.props.name),
+        1
+      );
+      this.props.updateSettingsProperty('genreFilters', selectedGenresArray);
+    }
+  }
   render(): React.ReactNode {
     return (
       <div className="menu-generic-list">
@@ -48,7 +75,7 @@ class SubGenreModalComponent extends React.Component<Props> {
           backgroundBottomOpacity={0.4}
         />
         <div className={`modal-header ${this.props.background}`}>
-          <span className="h2 dark baskerville">{this.props.title}</span>
+          <span className="h2 dark baskerville">{this.props.name}</span>
         </div>
 
         <div className="modal-content">
@@ -63,6 +90,7 @@ class SubGenreModalComponent extends React.Component<Props> {
                   this.subGenres.forEach((item: SubGenreInterface): void => {
                     item.selected = this.selectAll;
                   });
+                  this.selectAll ? this.selectGenre() : this.unselectGenre();
                   this.forceUpdate();
                 }}
                 mode={'md'}
@@ -79,6 +107,9 @@ class SubGenreModalComponent extends React.Component<Props> {
                     <InputCheckbox
                       action={(): void => {
                         this.subGenres[i].selected = !data.selected;
+                        this.subGenres[i].selected
+                          ? this.selectGenre()
+                          : this.unselectGenre();
                         this.verifyCheckbox();
                       }}
                       checked={data.selected}
@@ -93,4 +124,14 @@ class SubGenreModalComponent extends React.Component<Props> {
   }
 }
 
-export default SubGenreModalComponent;
+const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
+  const { selectedGenres } = settings;
+  return { selectedGenres };
+};
+
+export default withRouter(
+  // @ts-ignore
+  connect(mapStateToProps, {
+    updateSettingsProperty
+  })(SubGenreModalComponent)
+);

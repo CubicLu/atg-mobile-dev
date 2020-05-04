@@ -1,3 +1,7 @@
+import { AxiosResponse, AxiosError } from 'axios';
+
+export interface APIResponseInterface<T> extends AxiosResponse {}
+export interface APIErrorInterface<T> extends AxiosError {}
 export interface Action<T> {
   type: ActionType;
   payload: T;
@@ -85,7 +89,12 @@ export enum ActionType {
   TOGGLE_NAVBAR_TWOACTIONS = 'TOGGLE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
-  LOADING_PLAYER = 'LOADING_PLAYER'
+  LOADING_PLAYER = 'LOADING_PLAYER',
+  GET_DASHBOARD_BY_ARTIST_API = 'GET_DASHBOARD_BY_ARTIST_API',
+  GET_DASHBOARD_BY_ARTIST_API_FAILURE = 'GET_DASHBOARD_BY_ARTIST_API_FAILURE',
+  GET_DASHBOARD_BY_ARTIST_API_SUCCESS = 'GET_DASHBOARD_BY_ARTIST_API_SUCCESS',
+  UPDATE_DASHBOARD_PROPERTY = 'UPDATE_DASHBOARD_PROPERTY',
+  UPDATE_DASHBOARD_SET_INITIAL_PROPERTY = 'UPDATE_DASHBOARD_SET_INITIAL_PROPERTY'
 }
 
 export interface TabsInterface {
@@ -94,7 +103,7 @@ export interface TabsInterface {
   id: string;
   component: any;
 }
-export interface LinksInterface {
+export interface RouteInterface {
   path: string;
   icon?: any;
   id: string;
@@ -109,9 +118,10 @@ export interface Photo {
 export interface ArtistInterface {
   cover: ArtistCoverInterface;
   name: string;
+  avatar?: string;
   support?: boolean;
   username: string;
-  backgroundGradient?: GradientColorsInterface;
+  backgroundGradient?: GradientColorsInterface | null;
   featuredTracks?: FeaturedTrackInterface[];
   newReleases?: NewRealeseInterface[];
   events?: EventInterface[];
@@ -137,6 +147,7 @@ export interface ArtistCoverInterface {
   event: string | undefined;
   biography: string | undefined;
   deepDive: string | undefined;
+  dashboard?: string;
 }
 
 export interface DailyDripType {
@@ -158,7 +169,7 @@ export interface DailyDripItem {
 export interface SettingsReducerType {
   tabs: TabsInterface[];
   activeTab: string;
-  links: LinksInterface[];
+  routes: RouteInterface[];
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
   modal: ModalSlideInterface;
@@ -175,6 +186,13 @@ export interface SettingsReducerType {
   selectContactTabs: MenuInterface[];
   activeSelectContactTab: string;
   eraFilters: object[];
+  activeDashboardTab: string;
+  dashboardTabs: MenuInterface[];
+  era: string;
+  subEra: SubEraInterface[];
+  genreFilters: object[];
+  selectedGenres: string[];
+  notifications: number;
 }
 export interface NavbarReducerType {
   navbarTwoButtons: NavbarTwoButtons;
@@ -258,6 +276,7 @@ export interface SearchReducerType {
 
 export interface SongInterface {
   id: number;
+  backgroundGradient?: GradientColorsInterface;
   title: string;
   album: string;
   artist: string;
@@ -446,7 +465,7 @@ export enum Colors {
 }
 
 export interface DiscographyInterface {
-  albumId: number,
+  albumId: number;
   cover: string | undefined;
   name: string;
 }
@@ -719,4 +738,15 @@ export interface GalleryIdInterface {
 
 export interface GalleryImageIndexInterface {
   index: number;
+}
+
+export interface DashboardReducerType {
+  dashboard: DashboardInterface | null;
+  loading: boolean;
+  successMessage: string | null;
+  errorMessage: string | null;
+}
+
+export interface DashboardInterface {
+  artist: ArtistInterface;
 }

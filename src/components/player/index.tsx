@@ -105,16 +105,16 @@ class PlayerComponent extends React.Component<Props> {
     return store.getState().player.duration;
   }
   clickPrevSong(): void {
-    if (!this.props.paused && this.timeElapsed > 2) {
+    if (this.props.playing && this.timeElapsed > 2) {
       return this.props.seekSongPosition(0, false);
     }
     const list = this.props.playlist!.items;
     const current = this.currentIndex(list);
     const prev = list[Math.max(current - 1, 0)];
-    const curr = list[current];
-    this.props.playSong(prev, curr);
+    this.props.playSong(prev, list[current]);
   }
   clickNextSong(): void {
+    console.log('Clicked on clickNextSong');
     let list = this.props.playlist!.items;
     if (!list) return;
     const listsize = list.length - 1;
@@ -249,16 +249,27 @@ class PlayerComponent extends React.Component<Props> {
     );
   }
   fullPlayer(): React.ReactNode {
+    const { song } = this.props;
+    let color1 =
+      song?.backgroundGradient !== undefined
+        ? song.backgroundGradient.color1
+        : '';
+
+    let color2 =
+      song?.backgroundGradient !== undefined
+        ? song.backgroundGradient.color1
+        : '';
     return (
       <div id="full-player" className="full-player">
         <BackgroundImage
-          gradient={'180deg,#aed8e5,#039e4a'}
+          gradient={`180deg,${color1},${color2}`}
           backgroundTop
           backgroundTopDark={true}
           backgroundTopOpacity={0.2}
           backgroundBottom
           backgroundBottomOrange={true}
           backgroundBottomOpacity={0.6}
+          default={song?.backgroundGradient === undefined}
         />
         {this.props.expanded && (
           <React.Fragment>
@@ -288,11 +299,9 @@ class PlayerComponent extends React.Component<Props> {
   }
   render(): React.ReactNode {
     if (!this.expansePlayerAnimation) this.createPlayerAnimation();
-
     return (
       <React.Fragment>
         {this.fullPlayer()}
-
         <MiniPlayerBar
           togglePlayer={(): void => this.togglePlayer()}
           favoriteSong={(): void => this.props.favoriteSong()}

@@ -26,6 +26,10 @@ export const guitarPlaylist: PlaylistInterface = {
       title: "Rock N' Roll Is Free",
       artist: 'Ben Harper',
       album: "Give Till It's Gone",
+      backgroundGradient: {
+        color1: '#079848',
+        color2: '#136137'
+      },
       duration: 204,
       cover:
         'https://e-cdns-images.dzcdn.net/images/cover/262433a909f181c7343d8756b8a1a156/264x264-000000-80-0-0.jpg',
@@ -552,7 +556,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       url:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Until+The+Sun+Comes.mp3',
       ISRC: 'GBBPB1201635'
-    },
+    }
   ]
 };
 
@@ -754,6 +758,12 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
   },
   [ActionType.TOGGLE_PLAYER](state: PlayerReducerType): PlayerReducerType {
     return { ...state, expanded: !state.expanded, playerAction: undefined };
+  },
+  [ActionType.PREV_SONG](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, playerAction: ActionType.PREV_SONG };
+  },
+  [ActionType.NEXT_SONG](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, playerAction: ActionType.NEXT_SONG };
   },
   [ActionType.LOADING_PLAYER](
     state: PlayerReducerType,

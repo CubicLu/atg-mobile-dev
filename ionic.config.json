@@ -1,10 +1,10 @@
 {
-  "name": "react-cordova",
+  "name": "Panthr App",
+  "type": "react",
   "integrations": {
     "cordova": {
     }
   },
-  "type": "react",
   "hooks": {
     "build:after": "./scripts/build-after.js"
   }

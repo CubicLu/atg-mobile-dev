@@ -58,7 +58,7 @@ class RowUserComponent extends React.Component<Props> {
               size={Sizes.md}
               type={ShapesSize.rounded}
               color={Colors.chat}
-              label="Pending"
+              label="PENDING"
               bold
             />
           )}
@@ -76,7 +76,7 @@ class RowUserComponent extends React.Component<Props> {
               size={Sizes.md}
               bold
               type={ShapesSize.rounded}
-              label="Connect"
+              label="CONNECT"
             />
           )}
           {showComboBox && data.isFriend === true && (

@@ -12,6 +12,7 @@ interface DispatchProps {
 
 interface StateProps {
   eraFilters: object[];
+  era: string;
 }
 
 interface Props extends RouteComponentProps, StateProps, DispatchProps {
@@ -53,12 +54,21 @@ class CardEraComponent extends React.Component<Props> {
           height: 144,
           width: 144
         }}
-        onClick={(): void =>
+        onClick={(): void => {
+          this.props.updateSettingsProperty(
+            'eraFilters',
+            this.props.eraFilters
+          );
+          this.props.updateSettingsProperty('era', this.props.name);
+          this.props.updateSettingsProperty('subEra', this.props.subEra);
           this.props.history.push({
             pathname: '/vault-filter/era/sub-era',
-            state: { era: this.props.name, subEra: this.props.subEra }
-          })
-        }
+            state: {
+              era: state.name,
+              subEra: state.subEra
+            }
+          });
+        }}
       >
         <div className={'card-era-section'}>
           <span>{name}</span>
@@ -70,8 +80,8 @@ class CardEraComponent extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { eraFilters } = settings;
-  return { eraFilters };
+  const { eraFilters, era } = settings;
+  return { eraFilters, era };
 };
 
 export default withRouter(

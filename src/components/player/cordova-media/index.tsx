@@ -27,40 +27,16 @@ declare global {
   }
 }
 
+const FADEOUT_NEXT = 1.5; //fadeout time when click on next song
+const FADEOUT_DEFAULT = 5; // fadeout when song ends naturally
+const MUSIC_CONTROLS_DELAY = 25; //time in ms - needed to reflect update on android/ios
+
 class CordovaMediaComponent extends React.Component<Props> {
   playOptions = {
     playAudioWhenScreenIsLocked: true,
     numberOfLoops: 1
   };
-
-  componentDidMount(): void {
-    this.startMusicControls();
-  }
-  startMusicControls(): void {
-    window.MusicControls.create(
-      {
-        dismissable: false,
-        artist: '',
-        track: '',
-        album: '',
-        cover: '',
-        hasScrubbing: true,
-        elapsed: 0,
-        isPlaying: false,
-        duration: 10,
-        ticker: 'Now Playing ',
-        playIcon: 'media_play',
-        pauseIcon: 'media_pause',
-        prevIcon: 'media_prev',
-        nextIcon: 'media_next',
-        closeIcon: 'media_close',
-        notificationIcon: 'notification'
-      },
-      null
-    );
-    window.MusicControls.subscribe(this.mediaControlEvents);
-    window.MusicControls.listen();
-  }
+  activeMusicControls = false;
 
   componentDidUpdate(): void {
     switch (this.props.playerAction) {
@@ -90,10 +66,9 @@ class CordovaMediaComponent extends React.Component<Props> {
   actionSeekSong(): void {
     if (!this.mainSong) return;
     const seek = Math.trunc(this.mainSong.getPosition());
-    if (Math.abs(this.elapsed - seek) <= 2) return;
-
-    this.mainSong.seekTo(this.props.timeElapsed * 1000);
-    this.updateMusicControls();
+    if (Math.abs(this.elapsed - seek) < 1.5) return;
+    this.mainSong.seekTo(this.elapsed * 1000);
+    this.updateElapsedMusicControls();
   }
   actionSetPlaylist(): void {
     console.log('Setplaylist, first song to play: ', this.props.song!.title);
@@ -102,23 +77,26 @@ class CordovaMediaComponent extends React.Component<Props> {
 
   actionPauseSong(): void {
     window.Media.list().forEach((song): void => song.pause());
-    this.updateMusicControls();
+    this.updatePlayingMusicControls();
   }
   actionResumeSong(): void {
     if (!this.props.song) return;
     this.mainSong!.play(this.playOptions);
-    this.updateMusicControls();
+    this.updateElapsedMusicControls();
   }
   actionPlaySong(): void {
     //Play Song is called when I click next or previous;
-    const fadeIn = this.runningSong.length > 0;
     this.runningSong.forEach((song): void => {
-      song.setFadeTime(3);
-      song.setForceFadeOut(true);
+      if (song.getPosition() >= 2) {
+        song.setFadeTime(FADEOUT_NEXT);
+        song.setForceFadeOut(true);
+      } else {
+        song.pause();
+      }
     });
-    const one = this.props.song! && this.cordovaMedia(this.props.song!, fadeIn);
+    const song = this.props.song!;
+    const one = song && this.cordovaMedia(song, this.hasRunningSongs);
     one.play(this.playOptions);
-
     this.props.next && this.cordovaMedia(this.props.next!, true);
     this.createMusicControls();
   }
@@ -130,6 +108,9 @@ class CordovaMediaComponent extends React.Component<Props> {
       this.props.next &&
       window.Media.getByMediaId(this.props.next.id.toString())
     );
+  }
+  get hasRunningSongs(): boolean {
+    return window.Media.running().length > 0;
   }
   get runningSong(): MediaType[] {
     return window.Media.running();
@@ -157,7 +138,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     switch (status) {
       case MediaStatusCallback.MEDIA_STARTING:
         if (!this.isCurrent(media)) return;
-        console.log('Media Loaded', media.id, media.src);
+        console.log('Media Downloading', media.id, media.src);
         this.props.setStartingPlayer(true);
         break;
       case MediaStatusCallback.MEDIA_RUNNING:
@@ -169,12 +150,15 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
       case MediaStatusCallback.MEDIA_PAUSED:
         console.log('Media Paused', media.id, media.src);
+        this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
         this.mediaCallbackEnded(media);
+        this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         this.mediaCallbackEnded(media);
+        this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_FADING_OUT:
         console.log('Media FadingOut', media.id, media.src);
@@ -187,7 +171,7 @@ class CordovaMediaComponent extends React.Component<Props> {
   mediaCallbackEnded(media): void {
     console.log('song finished and ended', media.getMediaId(), media.src);
 
-    if (this.runningSong!.length === 0) {
+    if (this.hasRunningSongs === false) {
       console.log('no Running songs! pausing player');
       this.props.pauseSong();
     }
@@ -218,7 +202,7 @@ class CordovaMediaComponent extends React.Component<Props> {
       instance.setFadingOut(false);
       instance.setFadeIn(fadeIn);
       instance.setFadeOut(fadeOut);
-      instance.setFadeTime(8);
+      instance.setFadeTime(FADEOUT_DEFAULT);
       return instance;
     }
     const newInstance = new window.Media(
@@ -231,7 +215,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     newInstance.setMediaId(song.id);
     newInstance.setFadeIn(fadeIn);
     newInstance.setFadeOut(fadeOut);
-    newInstance.setFadeTime(8);
+    newInstance.setFadeTime(FADEOUT_DEFAULT);
     return newInstance;
   }
   createMusicControls(): void {
@@ -255,85 +239,67 @@ class CordovaMediaComponent extends React.Component<Props> {
       notificationIcon: 'notification'
     };
 
-    window.MusicControls.create(
-      options,
-      (): void => console.log('Music Controls created'),
-      (): void => console.log('Music Controls error')
-    );
+    window.MusicControls.create(options, null, null);
+    if (this.activeMusicControls) return;
+    window.MusicControls.subscribe(this.mediaControlEvents);
+    window.MusicControls.listen();
+    this.activeMusicControls = true;
   }
 
-  updateMusicControls(): void {
-    window.MusicControls.updateElapsed(
-      {
-        elapsed: this.elapsed,
-        isPlaying: this.props.playing
-      },
-      (): void => console.log('Music Controls update success'),
-      (): void => console.log('Music Controls update error')
+  updatePlayingMusicControls(): void {
+    setTimeout(
+      (): void => window.MusicControls.updateIsPlaying(this.props.playing),
+      MUSIC_CONTROLS_DELAY
     );
   }
-  // musicControlsUpdate(): void {
-  //   setTimeout((): void => this.createMusicControls(), 50);
-  //   setTimeout((): void => this.updateMusicControls(), 100);
-  // }
+  updateElapsedMusicControls(): void {
+    setTimeout((): void => {
+      const opt = { elapsed: this.elapsed, isPlaying: this.props.playing };
+      window.MusicControls.updateElapsed(opt, null, null);
+    }, MUSIC_CONTROLS_DELAY);
+  }
   mediaControlEvents = (action: string): void => {
-    console.log('action', action);
-    try {
-      const { message } = JSON.parse(action);
-      switch (message) {
-        case 'music-controls-next':
-          console.log('mobile click on next');
-          return this.props.nextSong();
+    if (!action) return;
+    const { message } = JSON.parse(action);
+    switch (message) {
+      case 'music-controls-next':
+        return this.props.nextSong();
 
-        case 'music-controls-previous':
-          console.log('mobile click on prev');
-          return this.props.prevSong();
+      case 'music-controls-previous':
+        return this.props.prevSong();
 
-        case 'music-controls-pause':
-          console.log('mobile click on pause');
-          return this.props.pauseSong();
+      case 'music-controls-pause':
+        return this.props.pauseSong();
 
-        case 'music-controls-play':
-          console.log('mobile click on play');
-          return this.props.resumeSong();
+      case 'music-controls-play':
+        return this.props.resumeSong();
 
-        case 'music-controls-destroy':
-          console.log('mobile click on stop');
-          return this.props.pauseSong();
+      case 'music-controls-destroy':
+        return this.props.pauseSong();
 
-        // External controls (iOS only)
-        case 'music-controls-toggle-play-pause':
-          console.log('ios click on play-pause');
-          return this.props.playing
-            ? this.props.pauseSong()
-            : this.props.resumeSong();
+      // External controls (iOS only)
+      case 'music-controls-toggle-play-pause':
+        return this.props.playing
+          ? this.props.pauseSong()
+          : this.props.resumeSong();
 
-        case 'music-controls-seek-to':
-          console.log('seek to ' + JSON.parse(action).position);
-          return (
-            this.props.song &&
-            this.mainSong!.seekTo(JSON.parse(action).position * 1000)
-          );
+      case 'music-controls-seek-to':
+        return (
+          this.props.song &&
+          this.mainSong!.seekTo(JSON.parse(action).position * 1000)
+        );
 
-        // All media button events are listed below
-        // Headset events (Android only) bluetooth and headset
-        case 'music-controls-media-button':
-          console.log('android click on media button');
-          return this.props.pauseSong();
+      case 'music-controls-media-button':
+        return this.props.pauseSong();
 
-        case 'music-controls-headset-unplugged':
-          console.log('headset unplugged');
-          return this.props.pauseSong();
+      case 'music-controls-headset-unplugged':
+        return this.props.pauseSong();
 
-        case 'music-controls-headset-plugged':
-          console.log('headset plugged');
-          return this.props.pauseSong();
+      case 'music-controls-headset-plugged':
+        return this.props.pauseSong();
 
-        default:
-          return;
-      }
-    } catch (e) {
-      console.log('Problem with music Controls!!!', e);
+      default:
+        return;
     }
   };
 

@@ -63,7 +63,13 @@ class ArtistGalleryPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage id="gallery-page">
-        <Header title="Gallery" />
+        <Header
+          title="Gallery"
+          leftBackOnClick={(): void =>
+            this.props.history.replace(`/artist/${this.props.match.params.id}`)
+          }
+          //leftBackHref={`/artist/${this.props.match.params.id}`}
+        />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
           fullscreen={true}

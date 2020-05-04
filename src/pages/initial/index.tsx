@@ -46,6 +46,7 @@ class InitialPage extends React.Component<Props> {
                 <IonRouterLink routerLink="/sign-in" routerDirection="forward">
                   <Button
                     size={Sizes.lg}
+                    color={Colors.primary}
                     gradient={true}
                     label="Sign In"
                     type={ShapesSize.full}

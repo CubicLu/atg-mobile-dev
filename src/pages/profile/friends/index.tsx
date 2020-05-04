@@ -53,6 +53,7 @@ class ProfileFriendsPage extends React.Component<Props> {
                       avatarSize={48}
                       pendingButton={!friend}
                       chatButton={friend}
+                      communityFeedButton={friend}
                       expandArrow={true}
                       avatarClick={this.goToLink(data)}
                     />

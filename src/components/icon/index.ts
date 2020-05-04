@@ -1,4 +1,5 @@
 import MessageIcon from './message';
+import DashboardIcon from './dashboard';
 import PhoneWithHeadsetIcon from './phone-with-headset';
 import RadioIcon from './radio';
 import ProfileIcon from './profile';
@@ -29,9 +30,12 @@ import ChatMessageIcon from './chat-message';
 import FullscreenIcon from './fullscreen';
 import ReplayIcon from './replay';
 import ForwardIcon from './forward';
+import LogoIcon from './logo';
+import SupportStarIcon from './support-star';
 
 export {
   MessageIcon,
+  DashboardIcon,
   PhoneWithHeadsetIcon,
   RadioIcon,
   ProfileIcon,
@@ -61,5 +65,7 @@ export {
   ChatMessageIcon,
   FullscreenIcon,
   ReplayIcon,
-  ForwardIcon
+  ForwardIcon,
+  LogoIcon,
+  SupportStarIcon
 };

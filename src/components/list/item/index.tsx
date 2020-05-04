@@ -3,7 +3,8 @@ import {
   Colors,
   ShapesSize,
   Sizes,
-  ArtistInterface
+  ArtistInterface,
+  GradientDirection
 } from '../../../interfaces';
 import {
   ButtonIcon,
@@ -16,7 +17,13 @@ import {
   ArrowRightIcon,
   ButtonSupport
 } from '../..';
-import { IonItemSliding, IonItem, IonItemOptions } from '@ionic/react';
+import {
+  IonItemSliding,
+  IonItem,
+  IonItemOptions,
+  IonRouterLink
+} from '@ionic/react';
+import { UserGroupIcon } from '../../icon';
 
 interface Props {
   sliding: boolean;
@@ -24,7 +31,7 @@ interface Props {
   optionRemove?: boolean;
   optionAddPlaylist?: boolean;
   bottomBorder: boolean;
-
+  communityFeedButton: boolean;
   leftDisabled: boolean;
   username?: string;
   songName?: string;
@@ -54,6 +61,7 @@ interface Props {
 }
 
 export default class ListItemComponent extends React.Component<Props> {
+  linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
   public static defaultProps = {
     sliding: false,
     artist: null,
@@ -73,14 +81,38 @@ export default class ListItemComponent extends React.Component<Props> {
     expandArrow: false,
     leftContentAction: (): void => {},
     rightContentAction: (): void => {},
-    avatarClick: (): void => {}
+    avatarClick: (): void => {},
+    communityFeedButton: false
   };
 
   sliding(item: React.ReactNode): React.ReactNode {
+    const { username } = this.props;
     return (
       <IonItemSliding className={this.props.slidingClassName}>
         {item}
         <IonItemOptions side="end">
+          {this.props.chatButton && (
+            <ButtonIcon
+              className="no-padding"
+              icon={<MessageBalloonIcon />}
+              color={Colors.transparent}
+              type={ShapesSize.normal}
+            />
+          )}
+          {this.props.communityFeedButton && (
+            <IonRouterLink
+              ref={this.linkRef}
+              routerLink={`/feed/${username}`}
+              routerDirection="root"
+            >
+              <ButtonIcon
+                className="no-padding"
+                icon={<UserGroupIcon />}
+                color={Colors.transparent}
+                type={ShapesSize.normal}
+              ></ButtonIcon>
+            </IonRouterLink>
+          )}
           {this.props.optionRemove && (
             <ButtonIcon
               icon={<CloseIcon strokeWidth={2} width={18} height={18} />}
@@ -165,13 +197,6 @@ export default class ListItemComponent extends React.Component<Props> {
           >
             {this.props.rightContent}
 
-            {this.props.chatButton && (
-              <ButtonIcon
-                icon={<MessageBalloonIcon />}
-                color={Colors.transparent}
-              />
-            )}
-
             {this.props.pendingButton && (
               <Button
                 gradient={true}
@@ -201,6 +226,7 @@ export default class ListItemComponent extends React.Component<Props> {
                 gradient={true}
                 color={Colors.blue}
                 size={Sizes.md}
+                gradientDirection={GradientDirection.horizontal}
                 type={ShapesSize.rounded}
                 label="Connect"
               />

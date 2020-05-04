@@ -25,9 +25,7 @@ class MenuProfileList extends React.Component<Props> {
         />
 
         <div className={`modal-header ${this.props.background}`}>
-          <span className="h3 dark baskerville text-28 l175">
-            {this.props.title}
-          </span>
+          <span className="h2 dark baskerville l175">{this.props.title}</span>
         </div>
 
         <div className="modal-content">
@@ -38,7 +36,7 @@ class MenuProfileList extends React.Component<Props> {
                 return (
                   <li key={i} onClick={onClick}>
                     <div>
-                      <div className="f4 dark">{text}</div>
+                      <div className="f5 dark">{text}</div>
                     </div>
                     <ButtonIcon
                       icon={<ArrowRightIcon color={'#000'} />}

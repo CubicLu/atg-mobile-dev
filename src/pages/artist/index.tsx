@@ -222,7 +222,9 @@ class ArtistPage extends React.PureComponent<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackHref="/profile/" />
+        <Header //leftBackHref={'/profile'}
+          leftBackOnClick={(): void => this.props.history.replace('/profile')}
+        />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">

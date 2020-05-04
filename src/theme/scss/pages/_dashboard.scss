@@ -1,0 +1,12 @@
+.dashboard-page{
+    .dashboard-page-header{
+        display: flex;
+        align-items: center;
+        .default-button{
+            margin-top: 0;
+        }
+    }
+    ion-header{
+        height: 90px;
+    }
+}

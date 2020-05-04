@@ -1,15 +1,3 @@
-import { AxiosResponse, AxiosError } from 'axios';
-
-export interface APIResponseInterface<T> extends AxiosResponse {}
-export interface APIErrorInterface<T> extends AxiosError {}
-export interface Action<T> {
-  type: ActionType;
-  payload: T;
-}
-export interface SingleAction {
-  type: ActionType;
-}
-
 export enum ActionType {
   UPDATE_SETTINGS_PROPERTY = 'UPDATE_SETTINGS_PROPERTY',
   UPDATE_ARTIST_PROPERTY = 'UPDATE_ARTIST_PROPERTY',
@@ -95,47 +83,6 @@ export enum ActionType {
   GET_DASHBOARD_BY_ARTIST_API_SUCCESS = 'GET_DASHBOARD_BY_ARTIST_API_SUCCESS',
   UPDATE_DASHBOARD_PROPERTY = 'UPDATE_DASHBOARD_PROPERTY',
   UPDATE_DASHBOARD_SET_INITIAL_PROPERTY = 'UPDATE_DASHBOARD_SET_INITIAL_PROPERTY'
-}
-
-export interface TabsInterface {
-  path: string;
-  icon: any;
-  id: string;
-  component: any;
-}
-export interface RouteInterface {
-  path: string;
-  icon?: any;
-  id: string;
-  component?: any;
-}
-export interface Photo {
-  filepath: string;
-  webviewPath?: string;
-  base64?: string;
-}
-
-export interface ArtistInterface {
-  cover: ArtistCoverInterface;
-  name: string;
-  avatar?: string;
-  support?: boolean;
-  username: string;
-  backgroundGradient?: GradientColorsInterface | null;
-  featuredTracks?: FeaturedTrackInterface[];
-  newReleases?: NewRealeseInterface[];
-  events?: EventInterface[];
-  radio?: RadioInterface[];
-  supportImages?: ArtistSupportImagesInterface;
-  discography?: DiscographyInterface[];
-  supportArtistFans?: ArtistInterface[];
-  similarArtist?: ArtistInterface[];
-  gallery?: GalleryInterface[];
-  biography?: BiographyInterface[];
-  videos?: {
-    recents: VideoInterface[];
-    showcase: VideoInterface[];
-  };
 }
 
 export interface SearchInterface {

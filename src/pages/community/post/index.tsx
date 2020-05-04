@@ -50,7 +50,7 @@ class CommunityPostPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseHref="/community"
+          rightClickGoBack={true}
         />
         <HeaderOverlay ref={this.hRef} />
         <IonContent

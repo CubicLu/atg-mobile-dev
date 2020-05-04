@@ -65,7 +65,12 @@ export default class CardPostComponent extends React.Component<Props> {
         )}
 
         <div className="align-end flex">
-          <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
+          <IonRouterLink
+            routerDirection="forward"
+            routerLink={'/community/share'}
+          >
+            <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
+          </IonRouterLink>
           <span className="mx-05" />
           <IonRouterLink
             routerDirection="forward"

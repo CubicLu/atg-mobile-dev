@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonContent, IonPage } from '@ionic/react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
 import {
   BackgroundImage,
   Button,
@@ -21,7 +20,7 @@ interface StateProps {
   eraFilters: object[];
   genreFilters: object[];
 }
-interface Props extends RouteComponentProps, DispatchProps, StateProps {}
+interface Props extends DispatchProps, StateProps {}
 
 class VaultFilterPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -42,7 +41,7 @@ class VaultFilterPage extends React.Component<Props> {
           titleClassName="filter"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void => this.props.history.push('/profile')}
+          rightCloseHref="/profile"
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
@@ -103,8 +102,6 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   return { eraFilters, genreFilters };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty
-  })(VaultFilterPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(VaultFilterPage);

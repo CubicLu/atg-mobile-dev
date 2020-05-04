@@ -153,6 +153,7 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
                   color={Colors.primary}
                   type={ShapesSize.normal}
                   bold
+                  onClick={(): void => this.props.history.push('/chat')}
                 />
               </div>
             </div>

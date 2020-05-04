@@ -83,6 +83,11 @@ class CommunityArtistPage extends React.Component<Props, State> {
             type={ShapesSize.rounded}
             color={Colors.transparentGray}
             label={'Filter'}
+            onClick={(): void =>
+              this.props.history.push(
+                '/community/artist/pharrell-williams/filter'
+              )
+            }
           />
         </div>
       </div>
@@ -128,8 +133,8 @@ class CommunityArtistPage extends React.Component<Props, State> {
         />
 
         <Header
-          leftBackOnClick={(): void => this.props.history.push('/community')}
           leftBackButton={true}
+          leftBackHref="/community"
           title={this.props.currentCommunityArtist?.fullname}
           titleClassName={'community-artist-name'}
           rightActionButton={false}

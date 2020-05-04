@@ -37,7 +37,11 @@ import {
   VaultFilterEraPage,
   VaultFilterSubEraPage,
   DashboardFilterPage,
-  FeedPage
+  FeedPage,
+  CommunitySharePage,
+  CommunityArtistFilterPage,
+  ViewAllStationsPage,
+  ChatPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -196,6 +200,11 @@ export const routes: RouteInterface[] = [
     component: MessagePage
   },
   {
+    path: '/chat',
+    id: 'chat',
+    component: ChatPage
+  },
+  {
     path: '/profile/:id',
     id: 'fanProfile',
     component: ProfilePage
@@ -274,5 +283,30 @@ export const routes: RouteInterface[] = [
     path: '/feed/:id',
     id: 'feedFan',
     component: FeedPage
+  },
+  {
+    path: '/community/share',
+    id: 'communityShare',
+    component: CommunitySharePage
+  },
+  {
+    path: '/event/share',
+    id: 'communityShare',
+    component: CommunitySharePage
+  },
+  {
+    path: '/community/artist/:artistId/filter',
+    id: 'communityArtistFilter',
+    component: CommunityArtistFilterPage
+  },
+  {
+    path: '/share',
+    id: 'communityShare',
+    component: CommunitySharePage
+  },
+  {
+    path: '/radio/view-all',
+    id: 'viewAllStations',
+    component: ViewAllStationsPage
   }
 ];

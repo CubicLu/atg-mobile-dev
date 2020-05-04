@@ -125,7 +125,7 @@ class SelectContactPage extends React.Component<Props, State> {
               className="text-18"
               color={Colors.transparent}
               onClick={(): void => {
-                this.props.history.push('/message/chat/new');
+                this.props.history.push('/chat');
               }}
             />
           }

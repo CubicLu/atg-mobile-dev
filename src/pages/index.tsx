@@ -23,6 +23,8 @@ import CommunityPostPage from './community/post';
 import CommunityNewPostPage from './community/new-post';
 import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
+import CommunitySharePage from './community/share';
+import CommunityArtistFilterPage from './community/artist/filter';
 
 import ArtistPage from './artist';
 import ArtistDeepDivePage from './artist/deep-dive';
@@ -49,6 +51,7 @@ import RadioFilterPage from './radio/filter';
 import RadioArtistPage from './radio-artist';
 import RadioHistoryPage from './radio-artist/history';
 import RadioStationEditPage from './radio/station-create';
+import ViewAllStationsPage from './radio/view-all-stations';
 
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
@@ -69,6 +72,8 @@ import DashboardAnalyticPage from './dashboard/analytic';
 import DashboardRankingPage from './dashboard/ranking';
 import DashboardSupporterPage from './dashboard/supporter';
 import DashboardWalletPage from './dashboard/wallet';
+
+import ChatPage from './chat';
 
 export {
   NotFoundPage,
@@ -110,6 +115,8 @@ export {
   CommunityNewPostPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
+  CommunitySharePage,
+  CommunityArtistFilterPage,
   RadioPage,
   RadioFilterPage,
   RadioStationEditPage,
@@ -132,5 +139,7 @@ export {
   DashboardAnalyticPage,
   DashboardRankingPage,
   DashboardSupporterPage,
-  DashboardWalletPage
+  DashboardWalletPage,
+  ViewAllStationsPage,
+  ChatPage
 };

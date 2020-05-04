@@ -66,6 +66,7 @@ interface Props {
   rightFilterButton?: boolean;
   rightUserGroupButton?: boolean;
   rightActionYellow?: boolean;
+  rightClickGoBack?: boolean;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -98,7 +99,8 @@ class HeaderComponent extends React.Component<Props> {
     fixed: true,
     rightChatButton: false,
     rightConnectedButton: false,
-    rightFanFeedButton: false
+    rightFanFeedButton: false,
+    rightClickGoBack: false
   };
 
   goBackClick = (ev: any): any => {
@@ -160,7 +162,8 @@ class HeaderComponent extends React.Component<Props> {
       rightChatButton,
       rightConnectedButton,
       rightFanFeedButton,
-      rightFilterButton
+      rightFilterButton,
+      rightClickGoBack
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
@@ -292,7 +295,9 @@ class HeaderComponent extends React.Component<Props> {
               <div
                 className="default-button dark"
                 onClick={
-                  rightCloseHref
+                  rightClickGoBack
+                    ? this.goBackClick
+                    : rightCloseHref
                     ? (): void => this.pushUrl(rightCloseHref, routerDirection)
                     : rightCloseOnClick
                 }
@@ -329,6 +334,7 @@ class HeaderComponent extends React.Component<Props> {
                     className="mt-15"
                     color={Colors.green}
                     icon={<ShareIcon width={22} height={20} />}
+                    onClick={(): void => this.pushUrl('/share')}
                   />
                 </li>
                 <li>

@@ -235,47 +235,47 @@
   animation: #{$str};
 }
 
-@mixin list-user{
+@mixin list-user {
   @include list-transparent;
   .row {
-      width: 100%;
-      margin-bottom: 5px;
-      margin-top: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
   }
 
-  .image{
-      display: flex;
-      justify-content: left;
+  .image {
+    display: flex;
+    justify-content: left;
   }
 
-  .info{ 
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     height: 50px;
-      .user{
-          display: block;
-          &::before{
-            content: "@";
-          }
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50px;
+    .user {
+      display: block;
+      &::before {
+        content: '@';
       }
+    }
   }
 
-  ion-item{
+  ion-item {
     padding-right: 4px;
   }
-  ion-item-options{
-    .btn{
-        margin-top: 0;
-        border-radius: 0;
-        height: 100%;
-        padding-left: 5px;
-        padding-right: 5px;
-        width: 70px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #45187B;
+  ion-item-options {
+    .btn {
+      margin-top: 0;
+      border-radius: 0;
+      height: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #45187b;
     }
   }
 }

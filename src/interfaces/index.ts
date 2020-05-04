@@ -193,6 +193,7 @@ export interface SettingsReducerType {
   genreFilters: object[];
   selectedGenres: string[];
   notifications: number;
+  settingsMenu: MenuInterface[];
 }
 export interface NavbarReducerType {
   navbarTwoButtons: NavbarTwoButtons;
@@ -461,7 +462,8 @@ export enum Colors {
   secondary = 'secondary',
   tertiary = 'tertiary',
   grayTransparent = 'gray-transparent',
-  cyan = 'cyan'
+  cyan = 'cyan',
+  gray = 'gray'
 }
 
 export interface DiscographyInterface {

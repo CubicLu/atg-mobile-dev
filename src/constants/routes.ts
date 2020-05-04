@@ -30,7 +30,7 @@ import {
   RadioArtistPage,
   RadioHistoryPage,
   FanFeedFilterPage,
-  SettingPage,
+  SettingsPage,
   FriendPage,
   VaultFilterPage,
   VaultFilterGenrePage,
@@ -227,12 +227,12 @@ export const routes: RouteInterface[] = [
   {
     path: '/settings',
     id: 'settings',
-    component: SettingPage
+    component: SettingsPage
   },
   {
     path: '/me',
     id: 'settings',
-    component: SettingPage
+    component: SettingsPage
   },
   {
     path: '/friend',

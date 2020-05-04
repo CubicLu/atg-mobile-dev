@@ -15,7 +15,8 @@ import {
   artistTabs,
   myProfileTabs,
   profileFriendTabs,
-  dashboardTabs
+  dashboardTabs,
+  settingsMenu
 } from './../constants';
 
 const defaultState: SettingsReducerType = {
@@ -56,7 +57,8 @@ const defaultState: SettingsReducerType = {
   ],
   genreFilters: [],
   selectedGenres: [],
-  notifications: 10
+  notifications: 10,
+  settingsMenu: settingsMenu
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(

@@ -45,7 +45,7 @@ import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
 import TrackListPage from './artist/track-list';
 import ThankYouPage from './thank-you';
 
-import SettingPage from './setting';
+import SettingsPage from './settings';
 import RadioPage from './radio';
 import RadioFilterPage from './radio/filter';
 import RadioArtistPage from './radio-artist';
@@ -120,7 +120,7 @@ export {
   RadioPage,
   RadioFilterPage,
   RadioStationEditPage,
-  SettingPage,
+  SettingsPage,
   MessagePage,
   MessageChatPage,
   MessageNotificationsPage,

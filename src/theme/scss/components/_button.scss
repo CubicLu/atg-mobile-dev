@@ -159,6 +159,13 @@
   &.cyan {
     background: #01add9;
   }
+  &.gray {
+    background: #717274;
+    color: #fff;
+    &.gradient{
+      background: linear-gradient(to right, #9c9d9d, #717274 99%);
+    }
+  }
   &.disable {
     background: #717274;
     color: #fff;

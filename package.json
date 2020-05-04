@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "@ionic/react": "^5.0.7",
-    "@ionic/react-router": "^5.0.0",
+    "@ionic/react": "^5.1.0",
+    "@ionic/react-router": "^5.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^8.0.3",
@@ -23,6 +23,7 @@
     "cordova-custom-config": "^5.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-music-controls": "git+https://github.com/fenvalle/cordova-music-controls.git",
+    "cordova-plugin-media": "git+https://github.com/fenvalle/cordova-plugin-media.git",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",

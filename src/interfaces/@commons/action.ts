@@ -5,5 +5,5 @@ export interface Action<A, T = any> {
 
 export interface ActionProperty<T> {
   property: string;
-  payload: T;
+  value: T;
 }

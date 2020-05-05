@@ -1,62 +1,74 @@
 import {
-  ActionType,
   Action,
   GalleryIdInterface,
   GalleryImageIndexInterface,
-  ActionCallbackInterface
+  ActionCallbackInterface,
+  ArtistActionType,
+  ActionProperty,
+  ArtistInterface
 } from './../../interfaces';
+import { AxiosError } from 'axios';
 
-export const updateArtistProperty = (property: string, value: any): any => ({
-  type: ActionType.UPDATE_ARTIST_PROPERTY,
+export const updateArtistProperty = (
+  property: string,
+  value: any
+): Action<ArtistActionType.UPDATE_PROPERTY, ActionProperty<any>> => ({
+  type: ArtistActionType.UPDATE_PROPERTY,
   payload: { property, value }
 });
 
-export const updateArtistSetInitialProperty = (property: string): any => ({
-  type: ActionType.UPDATE_ARTIST_SET_INITIAL_PROPERTY,
+export const updateArtistSetInitialProperty = (
+  property: string
+): Action<ArtistActionType.UPDATE_SET_INITIAL_PROPERTY, string> => ({
+  type: ArtistActionType.UPDATE_SET_INITIAL_PROPERTY,
   payload: property
 });
 
-export const getArtistsAPI = (): any => ({
-  type: ActionType.GET_ARTISTS_API
+export const getAllAPI = (): Action<ArtistActionType.GET_ALL_API> => ({
+  type: ArtistActionType.GET_ALL_API
 });
 
-export const getArtistsAPIFailure = (error): any => ({
-  type: ActionType.GET_ARTISTS_API_FAILURE,
+export const getArtistsAPIFailure = (
+  error
+): Action<ArtistActionType.GET_ALL_API_FAILURE, AxiosError> => ({
+  type: ArtistActionType.GET_ALL_API_FAILURE,
   payload: error
 });
 
-export const getArtistsAPISuccess = (response): any => ({
-  type: ActionType.GET_ARTISTS_API_SUCCESS,
+export const getArtistsAPISuccess = (
+  response
+): Action<ArtistActionType.GET_ALL_API_SUCCESS, AxiosResponse<ArtistInterface[]>> => ({
+  type: ArtistActionType.GET_ALL_API_SUCCESS,
   payload: response
 });
 
 export const getArtistAPI = (username: string): any => ({
-  type: ActionType.GET_ARTIST_API,
+  type: ArtistActionType.GET_BY_USERNAME_API,
   payload: username
 });
 
 export const getArtistAPIFailure = (error): any => ({
-  type: ActionType.GET_ARTIST_API_FAILURE,
+  type: ArtistActionType.GET_BY_USERNAME_API_FAILURE,
   payload: error
 });
 
 export const getArtistAPISuccess = (response): any => ({
-  type: ActionType.GET_ARTIST_API_SUCCESS,
+  type: ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
   payload: response
 });
 
 export const getArtistEventAPI = (username: string, eventId: string): any => ({
-  type: ActionType.GET_ARTIST_EVENT_API,
+  type: ArtistActionType.GET_EVENT_API,
   payload: { username, eventId }
 });
 
 export const getArtistEventAPIFailure = (error): any => ({
-  type: ActionType.GET_ARTIST_EVENT_API_FAILURE,
+  type: ArtistActionType.GET_EVENT_API_FAILURE,
   payload: error
 });
 
 export const getArtistEventAPISuccess = (response): any => ({
-  type: ActionType.GET_ARTIST_EVENT_API_SUCCESS,
+  type: ArtistActionType.GET_EVENT_API_SUCCESS,
   payload: response
 });
 
@@ -64,24 +76,24 @@ export const getArtistGalleryCommentsAPI = (
   photoId: number,
   username: string
 ): any => ({
-  type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API,
+  type: ArtistActionType.GET_GALLERY_COMMENTS_API,
   payload: { photoId, username }
 });
 
 export const getArtistGalleryCommentsAPIFailure = (error): any => ({
-  type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API_FAILURE,
+  type: ArtistActionType.GET_GALLERY_COMMENTS_API_FAILURE,
   payload: error
 });
 
 export const getArtistGalleryCommentsAPISuccess = (response): any => ({
-  type: ActionType.GET_ARTIST_GALLERY_COMMENTS_API_SUCCESS,
+  type: ArtistActionType.GET_GALLERY_COMMENTS_API_SUCCESS,
   payload: response
 });
 
 export const setCurrentGallery = (
   galleryId: number
 ): ActionCallbackInterface<GalleryIdInterface> => ({
-  type: ActionType.SET_CURRENT_GALLERY,
+  type: ArtistActionType.SET_CURRENT_GALLERY,
   payload: {
     galleryId
   }
@@ -90,16 +102,16 @@ export const setCurrentGallery = (
 export const setFullscreenImage = (
   index: number
 ): Action<GalleryImageIndexInterface> => ({
-  type: ActionType.SET_FULLSCREEN_IMAGE,
+  type: ArtistActionType.SET_FULLSCREEN_IMAGE,
   payload: {
     index
   }
 });
 
 export const clearFullscreenImage = (): { type: ActionType } => ({
-  type: ActionType.CLEAR_FULLSCREEN_IMAGE
+  type: ArtistActionType.CLEAR_FULLSCREEN_IMAGE
 });
 
 export const clearCurrentGallery = (): { type: ActionType } => ({
-  type: ActionType.CLEAR_CURRENT_GALLERY
+  type: ArtistActionType.CLEAR_CURRENT_GALLERY
 });

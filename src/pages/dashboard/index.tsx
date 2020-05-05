@@ -29,17 +29,23 @@ class DashboardPage extends React.Component<Props> {
 
   changeDashboardTab = (event: MenuInterface): void => {
     if (event.id === this.props.activeDashboardTab) return;
+    const { history } = this.props;
+    if (event.route && event.isPage === true) {
+      return history.push(event.route);
+    }
+
     this.props.updateSettingsProperty('activeDashboardTab', event.id);
   };
 
   renderActiveTab = (): React.ReactNode => {
-    const { dashboardTabs, activeDashboardTab } = this.props;
+    const { dashboardTabs, activeDashboardTab, history } = this.props;
 
     const tab = dashboardTabs.find(
       (x): boolean => x.id === activeDashboardTab
     )!;
     return React.createElement(tab.component, {
-      key: tab.id
+      key: tab.id,
+      history,
     });
   };
 

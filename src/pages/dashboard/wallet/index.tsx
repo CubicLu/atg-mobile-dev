@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardGraph } from '../../../components';
-import { dashboardMock } from './../../../constants';
+import { walletMock } from './../../../constants';
 
 interface Props {
   history: {
@@ -12,7 +12,7 @@ class DashboardWalletPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className="content">
-        {dashboardMock.analytic?.map(
+        {walletMock?.map(
           (data, i): React.ReactNode => (
             <CardGraph key={i}>
               <div

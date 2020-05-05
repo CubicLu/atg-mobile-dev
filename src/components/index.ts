@@ -78,8 +78,6 @@ import MixtapeEuroHouseImage from './../assets/img/mixtapes/euro-house.png';
 import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
 import MixtapeMoonLightImage from './../assets/img/mixtapes/moon-light.png';
 import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
-import DashboardSalesPlaceholder from './../assets/img/dashboard/sales-placeholder.png';
-import DashboardSalesCountryPlaceholder from './../assets/img/dashboard/sales-countries-placeholder.png';
 import {
   ButtonSupportIconComponent,
   ButtonSupportComponent
@@ -170,7 +168,5 @@ export {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeMoonLightImage,
-  MixtapeRebelRockImage,
-  DashboardSalesPlaceholder,
-  DashboardSalesCountryPlaceholder
+  MixtapeRebelRockImage
 };

@@ -1,10 +1,8 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import {
-  DashboardSalesPlaceholder,
-  DashboardSalesCountryPlaceholder,
-  Header
-} from '../../../components';
+import { Header } from '../../../components';
+import { analyticsMock } from './../../../constants';
+
 interface Props {
   history: {
     goBack: Function
@@ -33,10 +31,10 @@ class DashboardAnalyticPage extends React.Component<Props> {
         />
         <IonContent>
           <div className="graph-placeholder chart">
-            <img src={DashboardSalesPlaceholder} alt=""/>
+            <img src={analyticsMock[0].dashboardSalesPlaceholder} alt=""/>
           </div>
           <div className="graph-placeholder map">
-            <img src={DashboardSalesCountryPlaceholder} alt=""/>
+            <img src={analyticsMock[1].dashboardSalesCountryPlaceholder} alt=""/>
           </div>
         </IonContent>
       </IonPage>

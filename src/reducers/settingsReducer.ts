@@ -48,7 +48,7 @@ const defaultState: SettingsReducerType = {
   selectContactTabs: contactTabs,
   activeSelectContactTab: 'friends',
   dashboardTabs: dashboardTabs,
-  activeDashboardTab: 'analytic',
+  activeDashboardTab: 'wallet',
   eraFilters: [],
   era: '',
   subEra: [

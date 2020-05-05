@@ -1,0 +1,15 @@
+.dashboard-analytics-page {
+    .graph-placeholder {
+        width: 100vw;
+        &.chart {
+            background: linear-gradient(to bottom, #091558,#020412);
+            background-color: #091558;
+            margin-top: -28px;
+        }
+        &.map{
+            padding-top: 19px;
+            padding-bottom: 19px;
+            background: linear-gradient(to bottom, rgba(251,255,219,0.3),rgba(182,249,252,0.3));
+        }
+    }
+}

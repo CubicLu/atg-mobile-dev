@@ -1,11 +1,30 @@
 import React from 'react';
-import { IonContent } from '@ionic/react';
+import { CardGraph } from '../../../components';
+import { dashboardMock } from './../../../constants';
 
-interface Props {}
+interface Props {
+  history: {
+    push: Function
+  };
+}
 
 class DashboardWalletPage extends React.Component<Props> {
   render(): React.ReactNode {
-    return <IonContent>blank</IonContent>;
+    return (
+      <div className="content">
+        {dashboardMock.analytic?.map(
+          (data, i): React.ReactNode => (
+            <CardGraph key={i}>
+              <div
+                className="image"
+                style={{ backgroundImage: `url(${data.image})` }}
+                onClick={() => this.props.history.push('/dashboard/analytics') }
+              ></div>
+            </CardGraph>
+          )
+        )}
+      </div>
+    );
   }
 }
 

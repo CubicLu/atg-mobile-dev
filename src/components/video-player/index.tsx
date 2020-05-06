@@ -19,6 +19,7 @@ interface DispatchProps {
 
 interface Props extends DispatchProps, StateProps {
   readonly onClickClose: Function;
+  videoUrl: string;
 }
 interface State {
   readonly showControls: boolean;
@@ -284,7 +285,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
             onLoadedMetadata={this.updateTotalTime.bind(this)}
           >
             <source
-              src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/videoplayback.mp4"
+              src={this.props.videoUrl}
               type="video/mp4"
             />
           </video>

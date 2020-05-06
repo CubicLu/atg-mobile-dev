@@ -53,9 +53,9 @@ export const artistTabs: MenuInterface[] = [
     route: '/artist/:id/deep-dive'
   },
   {
-    id: 'community',
-    label: 'Community',
-    icon: 'c',
+    id: 'social',
+    label: 'Social',
+    icon: 's',
     isPage: true,
     route: '/community/artist/:id'
   },

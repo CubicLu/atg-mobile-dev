@@ -1,124 +1,144 @@
-.artist-biography-page{
-    .text-orange{
-        color: #F78429;
+.artist-biography-page {
+  .text-orange {
+    color: #f78429;
+  }
+  .text-dark-red {
+    color: #7c283e;
+  }
+  .text-red {
+    color: #b32245;
+  }
+  .text-black {
+    color: #000;
+  }
+  .text-white {
+    color: #fff;
+  }
+  .footer {
+    min-height: 45px;
+    height: 45px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    .footer-buttons {
+      display: inline-flex;
+      margin-right: 4px;
     }
-    .text-dark-red{
-        color: #7c283e;
+    #arrow-right {
+      padding-top: 4px;
     }
-    .text-red{
-        color: #b32245;
+  }
+  .text-zambezi {
+    color: #5a5a5a;
+  }
+  .text {
+    white-space: pre-line;
+  }
+  .page-cover {
+    &.template-cover {
+      height: 100vh;
+      position: relative;
     }
-    .text-black{
-        color: #000;
+  }
+  .cover-feature {
+    bottom: 122px;
+    position: absolute;
+    right: 24px;
+  }
+  .name-feature {
+    font-size: pxToRem(66);
+    text-align: right;
+    text-transform: uppercase;
+    white-space: pre;
+    font-family: 'Industria';
+    font-weight: 600;
+    line-height: 1;
+    &.text-orange {
+      text-shadow: 0 5px 6px rgba(0, 0, 0, 0.4);
     }
-    .text-white{
-        color: #fff;
+  }
+  .sky-image-after {
+    display: block;
+    min-height: 320px;
+    max-height: 320px;
+    height: 320px;
+  }
+  .sky-image-before {
+    display: block;
+    min-height: 100vw;
+    max-height: 100vw;
+    height: 100vw;
+  }
+
+  .template-cover-video {
+    display: block;
+    .page-cover {
+      height: 100vh;
+      position: relative;
     }
-    .text-zambezi{
-        color: #5a5a5a;
+    .sub {
+      display: none;
     }
-    .text{
-        white-space: pre-line;
+    .name-feature {
+      display: none;
     }
-    .page-cover{
-        &.template-cover{
-            height: 100vh;
-            position: relative;
-        }
+    .read {
+      display: none;
     }
-    .cover-feature{
-        bottom: 122px;
+  }
+
+  .template-cover-half {
+    .page-cover {
+      height: 50vh;
+      margin-bottom: 50vh;
+
+      .cover-feature {
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin-top: 50vh;
+        height: 50vh;
         position: absolute;
-        right: 24px;
+        max-width: 100vw;
+        overflow: hidden;
+        background: linear-gradient(#231441, #080709);
+      }
     }
-    .name-feature{
-        font-size: pxToRem(66);
-        text-align: right;
-        text-transform: uppercase;
-        white-space: pre;
-        font-family: "Industria";
-        font-weight: 600;
-        line-height: 1;
-        &.text-orange{
-            text-shadow: 0 5px 6px rgba(0, 0, 0, 0.4);
-        }
+    .read {
+      display: none;
     }
-    .sky-image-after{
-        display: block;
-        min-height: 320px;
-        max-height: 320px;
-        height: 320px;
+    .headline {
+      font-size: 36px;
+      font-family: 'Baskerville Italic';
+      font-style: italic;
     }
-    .sky-image-before{
-        display: block;
-        min-height: 100vw;
-        max-height: 100vw;
-        height: 100vw;
+    .article {
+      font-family: 'Helvetica' !important;
+      font-size: 16px !important;
     }
-
-
-    .template-cover-video{
-        display: block;
-        .page-cover{
-            height: 100vh;
-            position: relative;
-        }
-        .sub{
-            display: none;
-        }
-        .name-feature{
-            display: none;
-        }
-        .read{
-            display: none;
-        }
+    .name-feature {
+      margin: 32px;
+      display: block;
+      font-size: 32px;
+      text-align: left;
+      font-family: 'Helvetica';
+      text-transform: none;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: normal;
+      margin-bottom: 12px;
     }
-
-    .template-cover-half{
-        .page-cover{
-            height: 50vh;
-            margin-bottom: 50vh;
-            
-            .cover-feature{
-                right: 0;
-                bottom: 0;
-                top: 0;
-                margin-top: 50vh;
-                height: 50vh;
-                position: absolute;
-                max-width: 100vw;
-                overflow: hidden;
-                background: linear-gradient(#231441, #080709);
-            }
-        }
-        .read{
-            display: none;
-        }
-        .headline{
-            font-size: 36px;
-            font-family: "Baskerville Italic";
-            font-style: italic;
-        }
-        .article{
-            font-family: 'Helvetica' !important;
-            font-size: 16px !important;
-        }
-        .name-feature{
-            margin: 32px;
-            display: block;
-            font-size: 32px;
-            text-align: left;
-            font-family: "Helvetica";
-            text-transform: none;
-            font-weight: 600;
-            line-height: 1.3;
-            white-space: normal;
-            margin-bottom: 12px;
-        }
-        .sub{
-            margin-left: 32px;
-            margin-right: 40px;
-            text-align: left;
-        }
+    .sub {
+      margin-left: 32px;
+      margin-right: 40px;
+      text-align: left;
     }
+  }
+  .member-photo {
+    border-radius: 10px;
+    overflow: hidden;
+  }
 }

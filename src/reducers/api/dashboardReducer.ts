@@ -1,10 +1,11 @@
 import {
   Action,
-  ActionType,
+  DashboardActionType,
   DashboardReducerType,
   DashboardInterface,
   APIResponseInterface,
-  APIErrorInterface
+  APIErrorInterface,
+  ActionProperty
 } from '../../interfaces';
 import createReducer from './../createReducer';
 
@@ -18,52 +19,52 @@ const defaultState: DashboardReducerType = {
 export const dashboardReducer = createReducer<DashboardReducerType>(
   defaultState,
   {
-    [ActionType.UPDATE_DASHBOARD_PROPERTY](
+    [DashboardActionType.UPDATE_PROPERTY](
       state: DashboardReducerType,
-      action: Action<any>
+      action: Action<DashboardActionType.UPDATE_PROPERTY, ActionProperty<any>>
     ): DashboardReducerType {
       return {
         ...state,
-        [action.payload.property]: action.payload.value
+        [action.payload!.property]: action.payload!.value
       };
     },
 
-    [ActionType.UPDATE_DASHBOARD_SET_INITIAL_PROPERTY](
+    [DashboardActionType.UPDATE_SET_INITIAL_PROPERTY](
       state: DashboardReducerType,
-      action: Action<any>
+      action: Action<DashboardActionType.UPDATE_SET_INITIAL_PROPERTY, string>
     ): DashboardReducerType {
       return {
         ...state,
-        [action.payload]: defaultState[action.payload]
+        [action.payload!]: defaultState[action.payload!]
       };
     },
 
-    [ActionType.GET_DASHBOARD_BY_ARTIST_API](state: DashboardReducerType): any {
+    [DashboardActionType.GET_BY_ARTIST_API](state: DashboardReducerType): DashboardReducerType {
       return {
         ...state,
         loading: true
       };
     },
 
-    [ActionType.GET_DASHBOARD_BY_ARTIST_API_SUCCESS](
+    [DashboardActionType.GET_BY_ARTIST_API_SUCCESS](
       state: DashboardReducerType,
-      action: Action<APIResponseInterface<DashboardInterface>>
+      action: Action<DashboardActionType.GET_BY_ARTIST_API_SUCCESS, APIResponseInterface<DashboardInterface>>
     ): DashboardReducerType {
       return {
         ...state,
         loading: false,
-        dashboard: action.payload.data
+        dashboard: action.payload!.response.data
       };
     },
 
-    [ActionType.GET_DASHBOARD_BY_ARTIST_API_FAILURE](
+    [DashboardActionType.GET_BY_ARTIST_API_FAILURE](
       state: DashboardReducerType,
-      action: Action<APIErrorInterface<any>>
+      action: Action<DashboardActionType.GET_BY_ARTIST_API_FAILURE, APIErrorInterface<any>>
     ): DashboardReducerType {
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload.message
+        errorMessage: action.payload!.response.data
       };
     }
   }

@@ -1,41 +1,41 @@
 import {
-  ActionType,
+  FriendActionType,
   Action,
   FriendInterface,
-  GetFriendAPIInterface
+  GetFriendAPIInterface,
+  APIErrorInterface,
+  APIResponseInterface,
 } from '../../interfaces';
 
-export const getFriendsAPI = (): { type: ActionType } => ({
-  type: ActionType.GET_FRIENDS_API
+export const getFriendsAPI = (): Action<FriendActionType.GET_ALL_API> => ({
+  type: FriendActionType.GET_ALL_API
 });
 
-export const getFriendsAPIFailure = (error: string): Action<string> => ({
-  type: ActionType.GET_FRIENDS_API_FAILURE,
+export const getFriendsAPIFailure = (error: APIErrorInterface<string>): Action<FriendActionType.GET_ALL_API_FAILURE, APIErrorInterface<string>> => ({
+  type: FriendActionType.GET_ALL_API_FAILURE,
   payload: error
 });
 
 export const getFriendsAPISuccess = (
-  response: FriendInterface[]
-): Action<FriendInterface[]> => ({
-  type: ActionType.GET_FRIENDS_API_SUCCESS,
+  response: APIResponseInterface<FriendInterface[]>
+): Action<FriendActionType.GET_ALL_API_SUCCESS, APIResponseInterface<FriendInterface[]>> => ({
+  type: FriendActionType.GET_ALL_API_SUCCESS,
   payload: response
 });
 
 export const getFriendAPI = (
   friendId: string
-): Action<GetFriendAPIInterface> => ({
-  type: ActionType.GET_FRIEND_API,
+):  Action<FriendActionType.GET_BY_ID_API, {friendId: string}> => ({
+  type: FriendActionType.GET_BY_ID_API,
   payload: { friendId }
 });
 
-export const getCurrentFriendAPISuccess = (response: {
-  data: FriendInterface;
-}): Action<{ data: FriendInterface }> => ({
-  type: ActionType.GET_FRIEND_API_SUCCESS,
+export const getCurrentFriendAPISuccess = (response: APIResponseInterface<FriendInterface>): Action<FriendActionType.GET_BY_ID_API_SUCCESS, APIResponseInterface<FriendInterface>> => ({
+  type: FriendActionType.GET_BY_ID_API_SUCCESS,
   payload: response
 });
 
-export const getCurrentFriendAPIFailure = (error: string): Action<string> => ({
-  type: ActionType.GET_FRIEND_API_FAILURE,
+export const getCurrentFriendAPIFailure = (error: APIErrorInterface<string>): Action<FriendActionType.GET_BY_ID_API_FAILURE, APIErrorInterface<string>> => ({
+  type: FriendActionType.GET_BY_ID_API_FAILURE,
   payload: error
 });

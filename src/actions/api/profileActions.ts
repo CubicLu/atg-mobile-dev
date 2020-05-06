@@ -1,9 +1,9 @@
-import { ActionType } from './../../interfaces';
+import { Action, ProfileActionType, ActionProperty } from './../../interfaces';
 
 export const updateProfileProperty = (
   property: string,
   value: any
-): object => ({
-  type: ActionType.UPDATE_PROFILE_PROPERTY,
+): Action<ProfileActionType.UPDATE_PROPERTY, ActionProperty<any>> => ({
+  type: ProfileActionType.UPDATE_PROPERTY,
   payload: { property, value }
 });

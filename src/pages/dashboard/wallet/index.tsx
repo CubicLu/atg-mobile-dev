@@ -4,7 +4,7 @@ import { walletMock } from './../../../constants';
 
 interface Props {
   history: {
-    push: Function
+    push: Function;
   };
 }
 
@@ -18,7 +18,9 @@ class DashboardWalletPage extends React.Component<Props> {
               <div
                 className="image"
                 style={{ backgroundImage: `url(${data.image})` }}
-                onClick={() => this.props.history.push('/dashboard/analytics') }
+                onClick={(): void =>
+                  this.props.history.push('/dashboard/analytics')
+                }
               ></div>
             </CardGraph>
           )

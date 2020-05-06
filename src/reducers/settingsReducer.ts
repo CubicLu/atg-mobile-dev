@@ -3,7 +3,6 @@ import {
   Action,
   ActionType,
   SettingsReducerType,
-  Colors,
   ModalTypeInterface
 } from './../interfaces';
 

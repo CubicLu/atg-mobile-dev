@@ -5,14 +5,17 @@ import { analyticsMock } from './../../../constants';
 
 interface Props {
   history: {
-    goBack: Function
+    goBack: Function;
   };
 }
 
 class DashboardAnalyticPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
-      <IonPage id="dashboard-analytics-page" className="dashboard-analytics-page">
+      <IonPage
+        id="dashboard-analytics-page"
+        className="dashboard-analytics-page"
+      >
         <Header
           leftBackHref="/profile"
           className="dashboard-page-header"
@@ -25,16 +28,17 @@ class DashboardAnalyticPage extends React.Component<Props> {
           }
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={(): void =>
-            this.props.history.goBack()
-          }
+          rightCloseOnClick={(): void => this.props.history.goBack()}
         />
         <IonContent>
           <div className="graph-placeholder chart">
-            <img src={analyticsMock[0].dashboardSalesPlaceholder} alt=""/>
+            <img src={analyticsMock[0].dashboardSalesPlaceholder} alt=" " />
           </div>
           <div className="graph-placeholder map">
-            <img src={analyticsMock[1].dashboardSalesCountryPlaceholder} alt=""/>
+            <img
+              src={analyticsMock[1].dashboardSalesCountryPlaceholder}
+              alt=" "
+            />
           </div>
         </IonContent>
       </IonPage>

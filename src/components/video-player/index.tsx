@@ -284,10 +284,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
             playsInline
             onLoadedMetadata={this.updateTotalTime.bind(this)}
           >
-            <source
-              src={this.props.videoUrl}
-              type="video/mp4"
-            />
+            <source src={this.props.videoUrl} type="video/mp4" />
           </video>
           {this.renderControls()}
         </div>

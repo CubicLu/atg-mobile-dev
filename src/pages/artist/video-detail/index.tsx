@@ -152,7 +152,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <div />;
     const {
-      match: { params: { videoId } },
+      match: {
+        params: { videoId }
+      },
       currentArtist: { videos }
     } = this.props;
     const videoUrl = videos?.recents[videoId];

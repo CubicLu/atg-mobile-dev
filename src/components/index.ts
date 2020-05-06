@@ -78,6 +78,9 @@ import MixtapeEuroHouseImage from './../assets/img/mixtapes/euro-house.png';
 import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
 import MixtapeMoonLightImage from './../assets/img/mixtapes/moon-light.png';
 import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
+
+import SplashScreenComponent from '../components/splash-screen';
+
 import {
   ButtonSupportIconComponent,
   ButtonSupportComponent
@@ -152,7 +155,8 @@ export {
   PlayerVolumeComponent as PlayerVolume,
   MiniPlayerBarComponent as MiniPlayerBar,
   CardSubEraComponent as CardSubEra,
-  CardGraphComponent as CardGraph
+  CardGraphComponent as CardGraph,
+  SplashScreenComponent as SplashScreen
 };
 
 export {

@@ -1,3 +1,6 @@
+import { UserInterface } from "../";
+import { GradientColorsInterface } from "../@commons";
+
 export interface CommunityDailyDripType {
   id: string;
   name: string;
@@ -12,4 +15,8 @@ export interface CommunityDailyDripItem {
   dripType: 'image' | 'video';
   href: string;
   duration: number;
+}
+
+export interface CommunityArtistInterface extends UserInterface {
+  backgroundGradient: GradientColorsInterface | null;
 }

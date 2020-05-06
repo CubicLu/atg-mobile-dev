@@ -31,9 +31,9 @@ import {
   ArtistInterface,
   ModalSlideInterface,
   BiographyInterface,
-  AlbumInterface,
-  Colors
+  AlbumInterface
 } from '../../../interfaces';
+import { Colors } from './../../../types';
 import { validateScrollHeader } from '../../../utils';
 
 interface DispatchProps {

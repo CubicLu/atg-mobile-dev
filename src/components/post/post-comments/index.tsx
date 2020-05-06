@@ -1,5 +1,6 @@
 import React from 'react';
-import { CommentInterface, ShapesSize } from '../../../interfaces';
+import { CommentInterface } from '../../../interfaces';
+import { ShapesSize } from '../../../types';
 import { Avatar, DotsThreeIcon } from '../../../components';
 
 interface Props {

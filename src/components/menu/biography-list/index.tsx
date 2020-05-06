@@ -2,10 +2,11 @@ import React from 'react';
 import {
   ButtonIcon,
   ArrowRightIcon,
-  BackgroundImage
+  BackgroundImage,
+  LockedIcon
 } from './../../../components';
-import { BiographyInterface, Colors } from '../../../interfaces';
-import { LockedIcon } from '../../icon';
+import { BiographyInterface } from '../../../interfaces';
+import { Colors } from '../../../types';
 
 interface Props {
   onClick: Function;

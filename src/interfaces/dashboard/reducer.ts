@@ -1,3 +1,5 @@
+import { DashboardInterface } from "./..";
+
 export interface DashboardReducerType {
     dashboard: DashboardInterface | null;
     loading: boolean;

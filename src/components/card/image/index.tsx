@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShapesSize, RouterLinkDirection } from '../../../interfaces';
+import { ShapesSize, RouterLinkDirection } from '../../../types';
 import { IonRouterLink, IonCheckbox } from '@ionic/react';
 import { CloseIcon } from '../..';
 

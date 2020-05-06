@@ -1,4 +1,4 @@
-import { ActionType, MenuInterface } from '../../interfaces';
+import {  SettingsActionType, MenuInterface } from '../../interfaces';
 import { ArtistFeaturesPage, ArtistDiscographyPage } from '../../pages';
 import { store } from '../../store';
 import React from 'react';
@@ -72,7 +72,7 @@ export const artistTabs: MenuInterface[] = [
     icon: 's',
     onClick: (): void => {
       store.dispatch({
-        type: ActionType.UPDATE_SETTINGS_MODAL,
+        type: SettingsActionType.UPDATE_MODAL,
         payload: {
           visible: true,
           content: React.createElement(MenuArtistList, {
@@ -80,7 +80,7 @@ export const artistTabs: MenuInterface[] = [
             isSimilar: true,
             onClick: (): void => {
               store.dispatch({
-                type: ActionType.UPDATE_SETTINGS_MODAL,
+                type: SettingsActionType.UPDATE_MODAL,
                 payload: { content: null }
               });
             },

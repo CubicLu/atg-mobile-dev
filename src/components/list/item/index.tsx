@@ -1,11 +1,13 @@
 import React from 'react';
 import {
+  ArtistInterface
+} from '../../../interfaces';
+import {
   Colors,
   ShapesSize,
   Sizes,
-  ArtistInterface,
   GradientDirection
-} from '../../../interfaces';
+} from '../../../types';
 import {
   ButtonIcon,
   CloseIcon,
@@ -15,7 +17,8 @@ import {
   Button,
   MessageBalloonIcon,
   ArrowRightIcon,
-  ButtonSupport
+  ButtonSupport,
+  UserGroupIcon
 } from '../..';
 import {
   IonItemSliding,
@@ -23,7 +26,6 @@ import {
   IonItemOptions,
   IonRouterLink
 } from '@ionic/react';
-import { UserGroupIcon } from '../../icon';
 
 interface Props {
   sliding: boolean;

@@ -1,13 +1,14 @@
 import React from 'react';
-import MinimizeIcon from '../icon/minimize';
 import {
   PostComment,
   CloseIcon,
   InputText,
   Button,
-  ButtonIcon
+  ButtonIcon,
+  MinimizeIcon
 } from '../../components';
-import { Colors, CommentInterface, Sizes } from '../../interfaces';
+import { CommentInterface } from '../../interfaces';
+import { Colors, Sizes } from '../../types';
 interface Props {
   displayChat: boolean;
   parentCallback?: Function;

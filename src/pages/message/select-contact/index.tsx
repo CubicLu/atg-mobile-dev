@@ -5,7 +5,9 @@ import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import {
   Colors,
-  ShapesSize,
+  ShapesSize
+} from '../../../types';
+import {
   MenuInterface,
   UserInterface
 } from '../../../interfaces';

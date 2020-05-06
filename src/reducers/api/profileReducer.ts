@@ -1,6 +1,6 @@
 import {
   Action,
-  ActionType,
+  ProfileActionType,
   ProfileReducerType,
   MessageInterface,
   NotificationInterface,
@@ -168,7 +168,7 @@ const defaultState: ProfileReducerType = {
 };
 
 export const profileReducer = createReducer<ProfileReducerType>(defaultState, {
-  [ActionType.UPDATE_PROFILE_PROPERTY](
+  [ProfileActionType.UPDATE_PROPERTY](
     state: ProfileReducerType,
     action: Action<any>
   ): any {

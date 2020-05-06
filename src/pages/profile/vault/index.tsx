@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ListItem } from './../../../components';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonList, IonContent } from '@ionic/react';
-import { Colors } from '../../../interfaces';
+import { Colors } from '../../../types';
 
 interface Props extends RouteComponentProps {
   isFriend: boolean;

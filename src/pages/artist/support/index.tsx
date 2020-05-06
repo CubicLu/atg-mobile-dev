@@ -6,11 +6,13 @@ import { ApplicationState } from './../../../reducers';
 import { IonPage, IonContent } from '@ionic/react';
 import {
   ArtistInterface,
-  PlanInterface,
+  PlanInterface
+} from '../../../interfaces';
+import {
   ShapesSize,
   Sizes,
   Colors
-} from '../../../interfaces';
+} from '../../../types';
 import {
   BackgroundImage,
   Header,

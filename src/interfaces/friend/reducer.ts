@@ -1,3 +1,5 @@
+import { FriendInterface } from "./../";
+
 export interface FriendReducerType {
     friends: FriendInterface[];
     currentFriend: FriendInterface | null;

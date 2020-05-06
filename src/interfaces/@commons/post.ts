@@ -1,3 +1,5 @@
+import { CommentInterface } from "./../";
+
 export interface PostInterface {
     username: string;
     avatar: string;

@@ -1,6 +1,6 @@
 import {
   Action,
-  ActionType,
+  FriendActionType,
   FriendInterface,
   FriendReducerType
 } from '../../interfaces';
@@ -15,13 +15,13 @@ const defaultState: FriendReducerType = {
 };
 
 export const friendReducer = createReducer<FriendReducerType>(defaultState, {
-  [ActionType.GET_FRIENDS_API](state: FriendReducerType): FriendReducerType {
+  [FriendActionType.GET_ALL_API](state: FriendReducerType): FriendReducerType {
     return {
       ...state,
       loading: true
     };
   },
-  [ActionType.GET_FRIENDS_API_SUCCESS](
+  [FriendActionType.GET_ALL_API_SUCCESS](
     state: FriendReducerType,
     action: Action<FriendInterface[]>
   ): FriendReducerType {
@@ -31,7 +31,7 @@ export const friendReducer = createReducer<FriendReducerType>(defaultState, {
       friends: action.payload
     };
   },
-  [ActionType.GET_FRIENDS_API_FAILURE](
+  [FriendActionType.GET_ALL_API_FAILURE](
     state: FriendReducerType,
     action: Action<string>
   ): FriendReducerType {
@@ -41,7 +41,7 @@ export const friendReducer = createReducer<FriendReducerType>(defaultState, {
       errorMessage: action.payload
     };
   },
-  [ActionType.GET_FRIEND_API_SUCCESS](
+  [FriendActionType.GET_BY_ID_API](
     state: FriendReducerType,
     action: Action<{ data: FriendInterface }>
   ): FriendReducerType {
@@ -52,7 +52,7 @@ export const friendReducer = createReducer<FriendReducerType>(defaultState, {
     };
   },
 
-  [ActionType.GET_FRIEND_API_FAILURE](
+  [FriendActionType.GET_BY_ID_API_FAILURE](
     state: FriendReducerType,
     action: Action<string>
   ): FriendReducerType {

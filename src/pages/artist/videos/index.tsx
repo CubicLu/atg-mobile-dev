@@ -8,7 +8,8 @@ import {
   CardVideo,
   SectionTitle
 } from '../../../components';
-import { Sizes, ShapesSize, ArtistInterface } from '../../../interfaces';
+import { Sizes, ShapesSize } from '../../../types';
+import { ArtistInterface } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';

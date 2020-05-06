@@ -2,7 +2,7 @@ import React from 'react';
 import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
 import { BackgroundImage, Button } from './../../components';
 import CheckIcon from '../../components/icon/check';
-import { Colors, Sizes, GradientDirection } from '../../interfaces';
+import { Colors, Sizes, GradientDirection } from '../../types';
 
 interface Props {
   artistId: string;

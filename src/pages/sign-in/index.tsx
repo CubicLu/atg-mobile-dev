@@ -10,7 +10,7 @@ import {
 } from './../../components';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
-import { ShapesSize, Sizes } from '../../interfaces';
+import { ShapesSize, Sizes } from '../../types';
 
 interface StateProps {}
 interface Props extends RouteComponentProps, DispatchProps {}

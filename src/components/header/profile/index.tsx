@@ -2,7 +2,8 @@ import React from 'react';
 import { Avatar, Header, MenuProfileList } from './../../../components';
 import { connect } from 'react-redux';
 import { updateSettingsModal } from '../../../actions';
-import { ShapesSize, ProfileActionsType } from '../../../interfaces';
+import { ShapesSize } from '../../../types';
+import { ProfileActionsType } from '../../../interfaces';
 import { withRouter, RouteComponentProps } from 'react-router';
 
 interface DispatchProps {

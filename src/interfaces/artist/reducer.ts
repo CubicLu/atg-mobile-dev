@@ -1,3 +1,5 @@
+import { ArtistInterface, GalleryImageInterface, EventInterface, CommentInterface } from "./../";
+
 export interface ArtistReducerType {
     artists: ArtistInterface[];
     event: EventInterface | null;

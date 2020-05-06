@@ -1,3 +1,5 @@
+import { GradientColorsInterface } from "./../";
+
 export interface SongInterface {
     id: number;
     backgroundGradient?: GradientColorsInterface;

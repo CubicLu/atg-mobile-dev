@@ -1,3 +1,5 @@
+import { ModalType } from "../../types";
+
 export interface ModalSlideInterface {
   modalType?: ModalType;
   content: React.ReactNode;

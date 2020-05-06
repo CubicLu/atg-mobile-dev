@@ -1,3 +1,5 @@
+import { CommentInterface, CommentCoverInterface, StorieInterface, CommunityArtistInterface, PostInterface } from "../";
+
 export interface CommunityReducerType {
     posts: PostInterface[];
     stories: StorieInterface[];

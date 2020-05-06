@@ -7,7 +7,7 @@ import {
   IonReorderGroup,
   withIonLifeCycle
 } from '@ionic/react';
-import { Sizes, ShapesSize } from '../../../interfaces';
+import { Sizes, ShapesSize } from '../../../types';
 import {
   Header,
   HeaderOverlay,

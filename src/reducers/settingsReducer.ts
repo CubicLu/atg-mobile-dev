@@ -1,6 +1,6 @@
 import {
   Action,
-  ActionType,
+  SettingsActionType,
   SettingsReducerType,
   ModalTypeInterface
 } from '../interfaces';
@@ -62,7 +62,7 @@ const defaultState: SettingsReducerType = {
 export const settingsReducer = createReducer<SettingsReducerType>(
   defaultState,
   {
-    [ActionType.UPDATE_SETTINGS_PROPERTY](
+    [SettingsActionType.UPDATE_PROPERTY](
       state: SettingsReducerType,
       action: Action<any>
     ): SettingsReducerType {
@@ -72,7 +72,7 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       };
     },
 
-    [ActionType.UPDATE_SETTINGS_MODAL](
+    [SettingsActionType.UPDATE_MODAL](
       state: SettingsReducerType,
       action: Action<any>
     ): SettingsReducerType {
@@ -82,7 +82,7 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       };
     },
 
-    [ActionType.UPDATE_POPUP_MODAL](
+    [SettingsActionType.UPDATE_POPUP_MODAL](
       state: SettingsReducerType,
       action: Action<ModalTypeInterface>
     ): SettingsReducerType {

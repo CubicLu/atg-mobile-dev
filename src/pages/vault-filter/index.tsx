@@ -11,7 +11,7 @@ import {
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
 import { updateSettingsProperty } from '../../actions';
-import { Colors, ShapesSize, Sizes } from '../../interfaces';
+import { Colors, ShapesSize, Sizes } from '../../types';
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;

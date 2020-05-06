@@ -19,9 +19,11 @@ import {
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
-  PostInterface,
   ShapesSize,
-  Colors,
+  Colors
+} from '../../../types';
+import {
+  PostInterface,
   StorieInterface,
   CommunityArtistInterface
 } from '../../../interfaces';

@@ -19,13 +19,15 @@ import {
 } from '../../../components';
 import { RouteComponentProps, withRouter } from 'react-router';
 import {
-  ShapesSize,
-  Colors,
   ChannelInterface,
   ArtistInterface,
   PlaylistInterface,
   SongInterface
 } from '../../../interfaces';
+import {
+  ShapesSize,
+  Colors
+} from '../../../types';
 import { setPlaylist } from './../../../actions';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';

@@ -1,3 +1,4 @@
+import  {UserInterface } from './../'
 export interface EventInterface {
     date: string | Date;
     where: string;

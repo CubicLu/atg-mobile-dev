@@ -1,13 +1,12 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { ActionType, FriendInterface } from '../../interfaces';
+import { FriendActionType, FriendInterface } from '../../interfaces';
 import {
   getFriendsAPIFailure,
   getFriendsAPISuccess,
   getCurrentFriendAPISuccess,
   getCurrentFriendAPIFailure
 } from '../../actions/api/friendsActions';
-import { AxiosError } from 'axios';
 
 const friends = {
   Amanda: {
@@ -30,27 +29,29 @@ export const getFriendsRequest = async (): Promise<FriendInterface[]> =>
 function* getFriendsAPI(): any {
   try {
     const request = yield call(getFriendsRequest);
-    yield put(getFriendsAPISuccess(request.data.data));
+    yield put(getFriendsAPISuccess(request));
   } catch (error) {
-    const axiosError = error as AxiosError<string>;
-    yield put(getFriendsAPIFailure(axiosError.message));
+    yield put(getFriendsAPIFailure(error));
   }
 }
 export function* getFriends(): any {
-  yield takeEvery(ActionType.GET_FRIENDS_API, getFriendsAPI);
+  yield takeEvery(FriendActionType.GET_ALL_API, getFriendsAPI);
 }
+
+export const getCurrentRequest = async (): Promise<FriendInterface[]> =>
+  await API.get('profile/friends.json');
 
 function* getCurrentFriendAPI({ payload: { friendId } }: any): ReturnType<any> {
   try {
-    yield put(getCurrentFriendAPISuccess({ data: friends[friendId] }));
+    const request = yield call(getFriendsRequest);
+    yield put(getCurrentFriendAPISuccess({ ...request, data: friends[friendId] }));
   } catch (error) {
-    const axiosError = error as AxiosError<string>;
-    yield put(getCurrentFriendAPIFailure(axiosError.message));
+    yield put(getCurrentFriendAPIFailure(error));
   }
 }
 
 export function* getArtist(): any {
-  yield takeEvery(ActionType.GET_FRIEND_API, getCurrentFriendAPI);
+  yield takeEvery(FriendActionType.GET_BY_ID_API, getCurrentFriendAPI);
 }
 
 export default function* rootSaga(): any {

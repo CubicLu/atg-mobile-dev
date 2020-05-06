@@ -1,3 +1,4 @@
+import { UserInterface } from './../'
 export interface CommentInterface {
     text?: string;
     user: UserInterface;

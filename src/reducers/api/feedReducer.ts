@@ -1,4 +1,4 @@
-import { Action, ActionType, FeedReducerType } from '../../interfaces';
+import { Action, FeedActionType, FeedReducerType, APIResponseInterface, APIErrorInterface } from '../../interfaces';
 import createReducer from './../createReducer';
 
 const defaultState: FeedReducerType = {
@@ -9,36 +9,37 @@ const defaultState: FeedReducerType = {
   successMessage: null,
   errorMessage: null,
   currentPostComments: null,
-  currentPostCover: { url: '' }
+  currentPostCover: { url: '' },
+  queryResult: ''
 };
 
 export const feedReducer = createReducer<FeedReducerType>(defaultState, {
-  [ActionType.GET_FEED_POSTS_API](state: FeedReducerType): any {
+  [FeedActionType.GET_ALL_POSTS_API](state: FeedReducerType): FeedReducerType {
     return {
       ...state,
       loading: true
     };
   },
 
-  [ActionType.GET_FEED_POSTS_API_SUCCESS](
+  [FeedActionType.GET_ALL_POSTS_API_SUCCESS](
     state: FeedReducerType,
-    action: Action<any>
-  ): any {
+    action: Action<FeedActionType.GET_ALL_POSTS_API_SUCCESS, APIResponseInterface<string>>
+  ): FeedReducerType {
     return {
       ...state,
       loading: false,
-      queryResult: action.payload.data
+      queryResult: action.payload!.response.data
     };
   },
 
-  [ActionType.GET_FEED_POSTS_API_FAILURE](
+  [FeedActionType.GET_ALL_POSTS_API_FAILURE](
     state: FeedReducerType,
-    action: Action<any>
-  ): any {
+    action: Action<FeedActionType.GET_ALL_POSTS_API_FAILURE, APIErrorInterface<string>>
+  ): FeedReducerType {
     return {
       ...state,
       loading: false,
-      errorMessage: action.payload
+      errorMessage: action.payload!.response.data
     };
   }
 });

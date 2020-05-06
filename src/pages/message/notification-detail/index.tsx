@@ -5,10 +5,12 @@ import { IonContent, IonPage, IonAlert } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import {
   MenuInterface,
-  NotificationInterface,
+  NotificationInterface
+} from '../../../interfaces';
+import {
   Colors,
   ShapesSize
-} from '../../../interfaces';
+} from '../../../types';
 import { updateSettingsProperty } from './../../../actions';
 import {
   BackgroundImage,

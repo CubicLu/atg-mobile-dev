@@ -7,7 +7,7 @@ import {
 } from './../../components';
 import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
-import { Sizes, ShapesSize, Colors } from '../../interfaces';
+import { Sizes, ShapesSize, Colors } from '../../types';
 
 interface Props extends DispatchProps {}
 interface DispatchProps {

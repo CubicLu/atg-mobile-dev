@@ -1,3 +1,5 @@
+import { SongInterface } from "./../";
+
 export interface PlaylistInterface {
     name: string;
     id: number;

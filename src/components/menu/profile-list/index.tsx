@@ -4,7 +4,8 @@ import {
   ArrowRightIcon,
   BackgroundImage
 } from './../../../components';
-import { Colors, ProfileActionsType } from '../../../interfaces';
+import { Colors } from '../../../types';
+import { ProfileActionsType } from '../../../interfaces';
 
 interface Props {
   onClick: Function;

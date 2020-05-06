@@ -10,11 +10,13 @@ import {
   ListItem
 } from './../../../components';
 import {
-  EventInterface,
+  EventInterface
+} from './../../../interfaces';
+import {
   ShapesSize,
   Colors,
   GradientDirection
-} from './../../../interfaces';
+} from './../../../types';
 import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,

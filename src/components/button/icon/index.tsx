@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShapesSize, Colors } from '../../../interfaces';
+import { ShapesSize, Colors } from '../../../types';
 
 interface Props {
   onClick: Function;

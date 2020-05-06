@@ -1,7 +1,7 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import {
-  ActionType,
+  CommunityActionType,
   CommunityArtistInterface,
   ArtistInterface,
   PostInterface,
@@ -33,7 +33,7 @@ function* getCommunityPostsAPI(): ReturnType<any> {
 }
 
 export function* getCommunityPosts(): any {
-  yield takeEvery(ActionType.GET_COMMUNITY_POSTS_API, getCommunityPostsAPI);
+  yield takeEvery(CommunityActionType.GET_POSTS_API, getCommunityPostsAPI);
 }
 
 export const getCommunityByArtistUsernameRequest = async (
@@ -52,7 +52,7 @@ function* getCommunityByArtistUsernameAPI({ payload }): ReturnType<any> {
 
 export function* getCommunityByArtistUsername(): any {
   yield takeEvery<any>(
-    ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API,
+    CommunityActionType.GET_BY_ARTIST_USERNAME_API,
     getCommunityByArtistUsernameAPI
   );
 }
@@ -70,7 +70,7 @@ function* getCommunityStoriesAPI(): ReturnType<any> {
 }
 
 export function* getCommunityStories(): any {
-  yield takeEvery(ActionType.GET_COMMUNITY_STORIES_API, getCommunityStoriesAPI);
+  yield takeEvery(CommunityActionType.GET_STORIES_API, getCommunityStoriesAPI);
 }
 
 export const getCommunityCommentsRequest = async (
@@ -89,7 +89,7 @@ function* getCommunityCommentsAPI({ payload }: any): any {
 
 export function* getCommunityComments(): any {
   yield takeEvery(
-    ActionType.GET_COMMUNITY_COMMENTARIES_API,
+    CommunityActionType.GET_COMMENTARIES_API,
     getCommunityCommentsAPI
   );
 }
@@ -110,7 +110,7 @@ function* getCommunityCommentsCoverAPI({ payload }: any): any {
 
 export function* getCommunityCover(): any {
   yield takeEvery(
-    ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API,
+    CommunityActionType.GET_COMMENTARIES_COVER_API,
     getCommunityCommentsCoverAPI
   );
 }

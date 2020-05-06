@@ -1,3 +1,5 @@
+import { GradientColorsInterface, EventInterface, RadioInterface, VideoInterface } from "./../";
+
 export interface ArtistInterface {
   cover: ArtistCoverInterface;
   name: string;
@@ -110,4 +112,9 @@ export interface GalleryIdInterface {
 
 export interface GalleryImageIndexInterface {
   index: number;
+}
+
+export interface ArtistSupportImagesInterface {
+  background: string | undefined;
+  avatar: string | undefined;
 }

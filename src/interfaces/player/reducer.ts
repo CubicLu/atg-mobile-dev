@@ -1,3 +1,5 @@
+import { SongInterface, PlaylistInterface } from "../";
+
 export interface PlayerReducerType {
     playerAction?: string;
     expanded: boolean;

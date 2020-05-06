@@ -1,3 +1,5 @@
+import { MessageInterface, NotificationInterface, UserInterface } from "../";
+
 export interface ProfileReducerType {
     messages: MessageInterface[];
     notifications: NotificationInterface[];

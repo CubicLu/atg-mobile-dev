@@ -16,7 +16,8 @@ import {
   StarIcon,
   DotsThreeIcon
 } from '../../../components';
-import { ShapesSize, DailyDripType, DailyDripItem } from '../../../interfaces';
+import { ShapesSize } from '../../../types';
+import { CommunityDailyDripType, CommunityDailyDripItem } from '../../../interfaces';
 import { RouteChildrenProps } from 'react-router';
 import { hideTabs } from '../../../utils';
 interface MatchParams {
@@ -24,7 +25,7 @@ interface MatchParams {
   dailyDripId: string;
 }
 interface State {
-  dailyDrip?: DailyDripType;
+  dailyDrip?: CommunityDailyDripType;
 }
 interface Props extends RouteChildrenProps<MatchParams> {}
 class CommunityDailyDripPage extends React.Component<Props, State> {
@@ -198,7 +199,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
                   onIonSlideReachEnd={(): boolean => (this.last = true)}
                   onIonSlideTap={(e: CustomEvent): void => this.click(e.detail)}
                 >
-                  {slides?.map((slide: DailyDripItem, i: number): any => (
+                  {slides?.map((slide: CommunityDailyDripItem, i: number): any => (
                     <IonSlide
                       key={i}
                       style={{
@@ -220,7 +221,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
     );
   }
 
-  drips: DailyDripType[] = [
+  drips: CommunityDailyDripType[] = [
     {
       id: '0',
       name: 'Ok Now',

@@ -2,7 +2,6 @@ import {
   FriendActionType,
   Action,
   FriendInterface,
-  GetFriendAPIInterface,
   APIErrorInterface,
   APIResponseInterface,
 } from '../../interfaces';

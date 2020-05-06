@@ -1,3 +1,5 @@
+import { PostInterface, StorieInterface, CommentInterface, CommentCoverInterface, CommunityArtistInterface } from "../";
+
 export interface FeedReducerType {
     posts: PostInterface[];
     stories: StorieInterface[];
@@ -7,4 +9,5 @@ export interface FeedReducerType {
     successMessage: string | null;
     currentPostComments: CommentInterface[] | null;
     currentPostCover: CommentCoverInterface;
+    queryResult: string;
   }

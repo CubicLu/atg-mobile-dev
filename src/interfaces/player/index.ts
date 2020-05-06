@@ -1,3 +1,4 @@
+import { PlaylistInterface, SongInterface } from "./../";
 
 
   export interface SetPlaylistInterface {

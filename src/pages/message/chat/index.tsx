@@ -12,10 +12,12 @@ import { ApplicationState } from './../../../reducers';
 import { RowChat, ButtonIcon, CloseIcon } from '../../../components';
 import {
   MenuInterface,
-  Colors,
-  ShapesSize,
   MessageInterface
 } from '../../../interfaces';
+import {
+  Colors,
+  ShapesSize
+} from '../../../types';
 import { updateSettingsProperty } from './../../../actions';
 
 interface DispatchProps {

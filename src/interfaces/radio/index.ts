@@ -1,3 +1,5 @@
+import { RadioSection } from "../../types";
+
 export interface RadioInterface {
     label: string;
     image: string | undefined;

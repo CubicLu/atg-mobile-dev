@@ -26,7 +26,7 @@ export const updateArtistSetInitialProperty = (
   payload: property
 });
 
-export const getAllAPI = (): Action<ArtistActionType.GET_ALL_API> => ({
+export const getArtistsAPI = (): Action<ArtistActionType.GET_ALL_API> => ({
   type: ArtistActionType.GET_ALL_API
 });
 
@@ -95,7 +95,7 @@ export const getArtistGalleryCommentsAPI = (
   payload: { photoId, username }
 });
 
-export const getArtistGalleryCommentsAPIFailure = (error: APIErrorInterface<string>): Action<ArtistActionType.GET_EVENT_API_FAILURE,APIErrorInterface<string>> => ({
+export const getArtistGalleryCommentsAPIFailure = (error: APIErrorInterface<string>): Action<ArtistActionType.GET_GALLERY_COMMENTS_API_FAILURE,APIErrorInterface<string>> => ({
   type: ArtistActionType.GET_GALLERY_COMMENTS_API_FAILURE,
   payload: error
 });

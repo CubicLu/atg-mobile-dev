@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { ActionType, ChannelInterface } from '../../interfaces';
+import { RadioActionType, ChannelInterface } from '../../interfaces';
 import {
   getRadioArtistAPIFailure,
   getRadioArtistAPISuccess
@@ -20,7 +20,7 @@ function* getRadioArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getRadioArtist(): any {
-  yield takeEvery(ActionType.GET_RADIO_ARTIST, getRadioArtistAPI);
+  yield takeEvery(RadioActionType.GET_BY_ARTIST_API, getRadioArtistAPI);
 }
 
 export default function* rootSaga(): any {

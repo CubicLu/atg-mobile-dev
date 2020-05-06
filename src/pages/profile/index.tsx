@@ -9,9 +9,7 @@ import {
 } from './../../components';
 import { ApplicationState } from '../../reducers';
 import {
-  Action,
   FriendInterface,
-  GetFriendAPIInterface,
   MenuInterface
 } from '../../interfaces';
 import { updateSettingsProperty } from '../../actions';
@@ -36,7 +34,7 @@ interface StateProps {
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
-  getFriendAPI: (friendId: string) => Action<GetFriendAPIInterface>;
+  getFriendAPI: (friendId: string) => void;
 }
 
 interface Props

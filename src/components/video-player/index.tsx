@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Nullable } from '../../types/common';
-import { ButtonIcon } from '..';
-import { PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '../icon';
-import { ShapesSize, SongInterface } from '../../interfaces';
+import { Nullable, ShapesSize } from './../../types';
+import { ButtonIcon, PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '..';
+import {  SongInterface } from '../../interfaces';
 import { IonRange, isPlatform } from '@ionic/react';
 import { pauseSong, playSong } from '../../actions';
 import { ApplicationState } from '../../reducers';

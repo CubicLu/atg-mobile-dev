@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar } from '../../';
-import { ShapesSize, MessageInterface } from '../../../interfaces';
+import { MessageInterface } from '../../../interfaces';
+import { ShapesSize } from '../../../types';
 import moment from 'moment';
 
 interface Props {

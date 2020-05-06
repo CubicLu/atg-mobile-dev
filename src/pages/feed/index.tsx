@@ -10,10 +10,12 @@ import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
   PostInterface,
-  StorieInterface,
+  StorieInterface
+} from '../../interfaces';
+import {
   ShapesSize,
   Colors
-} from '../../interfaces';
+} from '../../types';
 import { RouteChildrenProps } from 'react-router';
 
 interface StateProps {

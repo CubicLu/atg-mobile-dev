@@ -4,7 +4,8 @@ import {
   MenuFanSupportOptions,
   SupportIcon
 } from './../../../components';
-import { Colors, ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../interfaces';
+import { Colors } from '../../../types';
 import { connect } from 'react-redux';
 import { updateSettingsModal } from './../../../actions';
 import { IonRouterLink } from '@ionic/react';

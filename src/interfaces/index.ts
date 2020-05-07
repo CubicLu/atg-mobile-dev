@@ -22,6 +22,7 @@ export enum ActionType {
   GET_ARTIST_API = 'GET_ARTIST_API',
   GET_ARTIST_API_FAILURE = 'GET_ARTIST_API_FAILURE',
   GET_ARTIST_API_SUCCESS = 'GET_ARTIST_API_SUCCESS',
+  CLEAR_CURRENT_ARTIST = 'CLEAR_CURRENT_ARTIST',
   GET_ARTIST_EVENT_API = 'GET_ARTIST_EVENT_API',
   GET_ARTIST_EVENT_API_FAILURE = 'GET_ARTIST_EVENT_API_FAILURE',
   GET_ARTIST_EVENT_API_SUCCESS = 'GET_ARTIST_EVENT_API_SUCCESS',
@@ -90,6 +91,8 @@ export enum ActionType {
   UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
   LOADING_PLAYER = 'LOADING_PLAYER',
+  SHOW_TOAST = 'SHOW_TOAST',
+  HIDE_TOAST = 'HIDE_TOAST',
   GET_DASHBOARD_BY_ARTIST_API = 'GET_DASHBOARD_BY_ARTIST_API',
   GET_DASHBOARD_BY_ARTIST_API_FAILURE = 'GET_DASHBOARD_BY_ARTIST_API_FAILURE',
   GET_DASHBOARD_BY_ARTIST_API_SUCCESS = 'GET_DASHBOARD_BY_ARTIST_API_SUCCESS',
@@ -148,6 +151,7 @@ export interface ArtistCoverInterface {
   biography: string | undefined;
   deepDive: string | undefined;
   dashboard?: string;
+  videoCover?: string;
 }
 
 export interface DailyDripType {
@@ -173,6 +177,7 @@ export interface SettingsReducerType {
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
   modal: ModalSlideInterface;
+  showToast: boolean;
   popUpModal: string | null;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;

@@ -45,6 +45,10 @@ export const getArtistAPISuccess = (response): any => ({
   payload: response
 });
 
+export const clearCurrentArtist = (): { type: ActionType } => ({
+  type: ActionType.CLEAR_CURRENT_ARTIST
+});
+
 export const getArtistEventAPI = (username: string, eventId: string): any => ({
   type: ActionType.GET_ARTIST_EVENT_API,
   payload: { username, eventId }

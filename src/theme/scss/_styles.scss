@@ -53,6 +53,7 @@
 @import './components/full-screen-image-modal';
 @import './components/navbar_twobuttons';
 @import './components/sub-era';
+@import './components/toast';
 
 /* pages */
 @import './pages/initial';
@@ -72,6 +73,7 @@
 @import './pages/artist-deep-dive';
 @import './pages/artist-gallery-photo';
 @import './pages/artist-gallery-grid';
+@import './pages/artist-gateway';
 @import './pages/community';
 @import './pages/posts';
 @import './pages/community-all-artists';
@@ -89,5 +91,6 @@
 @import './pages/message-notification-detail';
 @import './pages/vault-filter-genre';
 @import './pages/dashboard';
+@import './pages/router';
 @import './pages/dashboard-analytics-page';
 @import './pages/router';

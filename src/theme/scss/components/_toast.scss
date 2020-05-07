@@ -1,0 +1,20 @@
+ion-toast::part(container) {
+  background: white;
+  border-radius: 5px;
+}
+
+ion-toast::part(message) {
+  font-size: 14px;
+  color: #000000;
+  text-align: center;
+}
+
+ion-toast::part(button) {
+  text-decoration: underline;
+}
+
+.custom-toast {
+  --max-width: 300px;
+  position: fixed;
+  top: -105px;
+}

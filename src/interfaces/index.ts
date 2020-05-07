@@ -91,6 +91,8 @@ export enum ActionType {
   UPDATE_NAVBAR_TWOACTIONS = 'UPDATE_NAVBAR_TWOACTIONS',
   UPDATE_NAVBAR_PROPERTY = 'UPDATE_NAVBAR_PROPERTY',
   LOADING_PLAYER = 'LOADING_PLAYER',
+  SHOW_TOAST = 'SHOW_TOAST',
+  HIDE_TOAST = 'HIDE_TOAST',
   GET_DASHBOARD_BY_ARTIST_API = 'GET_DASHBOARD_BY_ARTIST_API',
   GET_DASHBOARD_BY_ARTIST_API_FAILURE = 'GET_DASHBOARD_BY_ARTIST_API_FAILURE',
   GET_DASHBOARD_BY_ARTIST_API_SUCCESS = 'GET_DASHBOARD_BY_ARTIST_API_SUCCESS',
@@ -177,6 +179,7 @@ export interface SettingsReducerType {
   fanTabs: MenuInterface[];
   artistTabs: MenuInterface[];
   modal: ModalSlideInterface;
+  showToast: boolean;
   popUpModal: string | null;
   plans: PlanInterface[];
   selectedPlan: PlanInterface | null;

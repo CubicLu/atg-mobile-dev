@@ -13,12 +13,21 @@ import { ArtistInterface, Colors, CommentInterface } from '../../../interfaces';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { getArtistAPI, getArtistGalleryCommentsAPI } from '../../../actions';
 import BottomTilesComponent from '../../../components/bottom-tiles';
+import {
+  getArtistAPI,
+  getArtistGalleryCommentsAPI,
+  hideToastAction,
+  showToastAction,
+  updateSettingsProperty
+} from '../../../actions';
+import { shadowTitle } from '../../../utils';
+import ToastComponent from '../../../components/toast';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   currentGalleryComments: CommentInterface[];
+  showToast: boolean;
 }
 interface State {
   readonly chatOpened: boolean;
@@ -27,6 +36,9 @@ interface State {
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   getArtistGalleryCommentsAPI: (videoId: number, username: string) => void;
+  hideToastAction: () => void;
+  showToastAction: () => void;
+  updateSettingsProperty: (property: string, value: string) => void;
 }
 interface MatchParams {
   id: string;
@@ -65,12 +77,21 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     this.setState({ chatExpanded: !this.state.chatExpanded });
   }
 
+  toastClickHandler = (e): void => {
+    const { updateSettingsProperty, history } = this.props;
+    e.preventDefault();
+    updateSettingsProperty('activeFanTab', 'vault');
+    history.push('/profile');
+  };
+
   renderButtons(): React.ReactNode {
+    const { showToast } = this.props;
     return (
       <div className="flex-justify-content-center buttons">
         <ButtonIcon
           color={Colors.orange}
           icon={<StarIcon width={28} height={28} />}
+          onClick={this.props.showToastAction}
         />
         <div className="mx-1" />
         <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
@@ -82,6 +103,17 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           onClick={(): void => this.setChat(!this.state.chatOpened)}
           overlay={50}
         />
+        {showToast && (
+          <ToastComponent
+            clickId={'toastClick'}
+            clickHandler={this.toastClickHandler}
+            message={
+              '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
+            }
+            hideToast={hideToastAction}
+            classNames={'custom-toast'}
+          />
+        )}
       </div>
     );
   }
@@ -133,14 +165,21 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  artistAPI,
+  settings
+}: ApplicationState): StateProps => {
   const { currentArtist, currentGalleryComments } = artistAPI;
-  return { currentArtist, currentGalleryComments };
+  const { showToast } = settings;
+  return { currentArtist, currentGalleryComments, showToast };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
-    getArtistGalleryCommentsAPI
+    getArtistGalleryCommentsAPI,
+    hideToastAction,
+    updateSettingsProperty,
+    showToastAction
   })(ArtistVideoDetailPage)
 );

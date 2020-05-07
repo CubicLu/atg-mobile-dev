@@ -30,6 +30,7 @@ const defaultState: SettingsReducerType = {
     onClosing: (): void => {},
     onOpen: (): void => {}
   },
+  showToast: false,
   popUpModal: null,
   activeTab: 'profile',
   activeFanTab: 'artists',
@@ -91,6 +92,18 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         popUpModal: action.payload.modalType
+      };
+    },
+    [ActionType.SHOW_TOAST](state: SettingsReducerType) {
+      return {
+        ...state,
+        showToast: true
+      };
+    },
+    [ActionType.HIDE_TOAST](state: SettingsReducerType) {
+      return {
+        ...state,
+        showToast: false
       };
     }
   }

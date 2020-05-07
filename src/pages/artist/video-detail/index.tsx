@@ -183,7 +183,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    if (!this.props.currentArtist) return <div />;
+    if (!this.props.currentArtist) return <IonPage />;
     const {
       match: {
         params: { videoId }

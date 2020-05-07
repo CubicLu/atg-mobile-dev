@@ -15,12 +15,17 @@ interface StateProps {
   activeDashboardTab: string;
   dashboardTabs: MenuInterface[];
 }
-
+interface MatchParams {
+  id: string;
+}
 interface DispatchProps {
   getDashboardByArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: string) => void;
 }
-interface Props extends RouteComponentProps, DispatchProps, StateProps {}
+interface Props
+  extends RouteComponentProps<MatchParams>,
+    DispatchProps,
+    StateProps {}
 
 class DashboardPage extends React.Component<Props> {
   componentDidMount(): void {
@@ -69,6 +74,7 @@ class DashboardPage extends React.Component<Props> {
         />
         <Header
           leftBackHref="/profile"
+          routerDirection="root"
           className="dashboard-page-header"
           centerContent={
             <div>

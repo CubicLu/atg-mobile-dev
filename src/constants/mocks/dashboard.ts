@@ -21,6 +21,7 @@ export const walletMock = [
       'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/dashboard/change-supportes.png'
   }
 ];
+
 export const analyticsMock = [
   {
     dashboardSalesPlaceholder:

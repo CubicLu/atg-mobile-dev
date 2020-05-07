@@ -27,9 +27,36 @@ export default class HeaderProfileComponent extends React.Component<Props> {
       name: 'Improve my public profile'
     }
   ];
+  artistActions: GenericModalInterface[] = [
+    {
+      name: 'Rival Sons',
+      url: '/dashboard/menu/rival-sons'
+    },
+    {
+      name: 'Pharrell Williams',
+      url: '/dashboard/menu/pharrell-williams'
+    },
+    {
+      name: 'Bono Vox',
+      url: '/dashboard/menu/bono-vox'
+    }
+  ];
 
   hideMenuListModal = (): void => store.dispatch(updateSettingsModal(false));
+  hideArtistListModal = (): void => store.dispatch(updateSettingsModal(false));
 
+  showArtistListModal = (): void => {
+    store.dispatch(
+      updateSettingsModal(
+        <DefaultModal
+          title="Select an Artist"
+          onClick={this.hideArtistListModal}
+          data={this.artistActions}
+          overrideClick={true}
+        />
+      )
+    );
+  };
   showMenuListModal = (): void => {
     store.dispatch(
       updateSettingsModal(
@@ -51,12 +78,14 @@ export default class HeaderProfileComponent extends React.Component<Props> {
           rightUserGroupButton={!isFriend && showFilter === false}
           rightNotificationButton={!isFriend && showFilter === false}
           rightDashboardButton={!isFriend && showFilter === false}
+          rightDashboardOnClick={this.showArtistListModal}
           rightChatButton={isFriend && showFilter === false}
           rightConnectedButton={isFriend && showFilter === false}
           rightFanFeedButton={isFriend && showFilter === false}
           rightFilterButton={isFriend && showFilter === true}
           rightActionHref={'/settings'}
           notificationsNumber={10}
+          routerDirection="forward"
         />
 
         <div className="profile-center">

@@ -67,6 +67,7 @@ import VaultFilterEraPage from './vault-filter/vault-filter-era';
 import VaultFilterSubEraPage from './vault-filter/vault-filter-era/vault-filter-sub-era';
 
 import DashboardPage from './dashboard';
+import DashboardMenuPage from './dashboard/menu';
 import DashboardFilterPage from './dashboard/filter';
 import DashboardAnalyticPage from './dashboard/analytic';
 import DashboardRankingPage from './dashboard/ranking';
@@ -136,6 +137,7 @@ export {
   VaultFilterEraPage,
   VaultFilterSubEraPage,
   DashboardPage,
+  DashboardMenuPage,
   DashboardFilterPage,
   DashboardAnalyticPage,
   DashboardRankingPage,

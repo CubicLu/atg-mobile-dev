@@ -40,6 +40,7 @@ interface Props {
   rightContent?: React.ReactNode;
   rightActionOnClick?: any;
   rightCloseOnClick?: any;
+  rightDashboardOnClick?: any;
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
   rightInfoOnClick?: any;
@@ -76,7 +77,7 @@ interface Props {
 class HeaderComponent extends React.Component<Props> {
   static contextType = NavContext; //retrieving ionic context
   public static defaultProps = {
-    direction: 'back',
+    routerDirection: 'back',
     title: null,
     leftBackButton: true,
     leftContent: null,
@@ -241,7 +242,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightDashboardButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.routeNavigate('/dashboard', 'forward')}
+                onClick={this.props.rightDashboardOnClick}
               >
                 <DashboardIcon />
               </div>

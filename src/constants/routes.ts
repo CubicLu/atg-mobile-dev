@@ -35,6 +35,7 @@ import {
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
+  DashboardMenuPage,
   FeedPage,
   CommunitySharePage,
   CommunityArtistFilterPage,
@@ -49,6 +50,11 @@ export const routes: RouteInterface[] = [
   {
     path: '/artist/:id',
     id: 'artistPage',
+    component: ArtistPage
+  },
+  {
+    path: '/artist/:id/tab/:tab',
+    id: 'artistPageAlbum',
     component: ArtistPage
   },
   {
@@ -272,7 +278,12 @@ export const routes: RouteInterface[] = [
     component: RadioHistoryPage
   },
   {
-    path: '/dashboard',
+    path: '/dashboard/menu/:id',
+    id: 'artistDashboardMenu',
+    component: DashboardMenuPage
+  },
+  {
+    path: '/dashboard/artist/:id',
     id: 'artistDashboard',
     component: DashboardPage
   },

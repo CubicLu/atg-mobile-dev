@@ -6,26 +6,28 @@ import { MenuArtistList } from '../../components';
 
 export const artistTabs: MenuInterface[] = [
   {
-    id: 'features',
+    id: 'featured',
     label: 'Featured',
     icon: 'f',
+    isPage: false,
     component: ArtistFeaturesPage
   },
   {
-    id: 'biography',
+    id: 'bio',
     label: 'Bio',
     icon: 'b',
     isPage: true,
     route: '/artist/:id/biography'
   },
   {
-    id: 'discography',
+    id: 'albums',
     label: 'Albums',
-    icon: 'd',
+    icon: 'a',
+    isPage: false,
     component: ArtistDiscographyPage
   },
   {
-    id: 'gallery',
+    id: 'photos',
     label: 'Photos',
     icon: 'p',
     isPage: true,
@@ -46,16 +48,16 @@ export const artistTabs: MenuInterface[] = [
     route: '/artist/:id/event'
   },
   {
-    id: 'deep',
+    id: 'deepdive',
     label: 'Deep Dive',
     icon: 'd',
     isPage: true,
     route: '/artist/:id/deep-dive'
   },
   {
-    id: 'community',
-    label: 'Community',
-    icon: 'c',
+    id: 'social',
+    label: 'Social',
+    icon: 's',
     isPage: true,
     route: '/community/artist/:id'
   },
@@ -64,12 +66,12 @@ export const artistTabs: MenuInterface[] = [
     label: 'Radio',
     icon: 'r',
     isPage: true,
-    route: '/radio'
+    route: '/radio/:id'
   },
   {
-    id: 'similar',
+    id: 'matches',
     label: 'Matches ',
-    icon: 's',
+    icon: 'm',
     onClick: (): void => {
       store.dispatch({
         type: ActionType.UPDATE_SETTINGS_MODAL,

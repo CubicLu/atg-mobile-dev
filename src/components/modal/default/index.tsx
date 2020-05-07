@@ -12,8 +12,13 @@ interface Props {
   title: string;
   subtitle?: string;
   data: GenericModalInterface[];
+  overrideClick?: boolean;
 }
-export default class DefaultModal extends React.Component<Props> {
+export default class DefaultModalComponent extends React.Component<Props> {
+  handleClick(data): void {
+    if (data.url && !this.props.overrideClick) return;
+    this.props.onClick(data);
+  }
   render(): React.ReactNode {
     const { title, subtitle } = this.props;
     return (
@@ -45,7 +50,7 @@ export default class DefaultModal extends React.Component<Props> {
                   <li
                     key={i}
                     className="f6 dark"
-                    onClick={(): void => !data.url && this.props.onClick(data)}
+                    onClick={(): void => this.handleClick(data)}
                   >
                     {data.name}
                     <ButtonIcon

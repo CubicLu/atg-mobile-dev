@@ -15,7 +15,10 @@ interface Props {}
 interface State {
   selectedCountryCode: string | undefined;
 }
-export default class EventDetailPage extends React.Component<Props, State> {
+export default class DashboardSupporterPage extends React.Component<
+  Props,
+  State
+> {
   constructor(props: Props) {
     super(props);
     this.state = {

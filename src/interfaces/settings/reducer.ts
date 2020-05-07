@@ -34,4 +34,5 @@ export interface SettingsReducerType {
   genreFilters: object[];
   selectedGenres: string[];
   notifications: number;
+  settingsMenu: MenuInterface[];
 }

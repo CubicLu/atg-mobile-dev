@@ -309,26 +309,34 @@ export class ShareButton extends React.Component<Props> {
 export class VolumeButton extends React.Component<Props> {
   public static defaultProps = { color: '#FFF' };
   render = (): React.ReactNode => (
-    <svg width="20" height="20" viewBox="0 0 20 20">
-      <g>
-        <path
-          fill="#ffffffaa"
-          d="M7 7.042v3.65h2.633l3.291 3.042V4L9.633 7.042z"
-        />
-      </g>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fill="#ffffffaa"
+        d="M3,8.493v5.473H6.556L11,18.528V3.932L6.556,8.493ZM15,11.23a4.117,4.117,0,0,0-2.222-3.676V14.9A4.092,4.092,0,0,0,15,11.23Zm-2.222-8V5.109a6.437,6.437,0,0,1,0,12.242V19.23a8.163,8.163,0,0,0,6.222-8,8.163,8.163,0,0,0-6.222-8Z"
+        transform="translate(-2 -1.23)"
+      />
     </svg>
   );
 }
 export class VolumeMuteButton extends React.Component<Props> {
   public static defaultProps = { color: '#FFF' };
   render = (): React.ReactNode => (
-    <svg width="20" height="20" viewBox="0 0 20 20">
-      <g>
-        <path
-          fill="#ffffffaa"
-          d="M7 7.042v3.65h2.633l3.291 3.042V4L9.633 7.042z"
-        />
-      </g>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+    >
+      <path
+        fill="#ffffffaa"
+        d="M7,7.75v4.5h3.556L15,16V4L10.556,7.75Z"
+        transform="translate(-1)"
+      />
     </svg>
   );
 }

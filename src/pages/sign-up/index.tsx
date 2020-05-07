@@ -92,7 +92,7 @@ class SignUpPage extends React.Component<Props, State> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+          rightCloseHref="/initial"
         />
         <div className="initial-page-fullscreen double-top mb-4">
           <div className="space-between h-100">

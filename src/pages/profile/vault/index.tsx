@@ -11,9 +11,13 @@ class ProfileVaultPage extends React.Component<Props> {
   public static defaultProps = {
     isFriend: false
   };
+
+  handleArtistClick = (): void => {
+    this.props.history.push('/artist/gateway/pharrell-williams');
+  };
+
   render(): React.ReactNode {
     const { history, isFriend } = this.props;
-    const clickArtist = (): void => history.push('/artist/pharrell-williams');
     return (
       <IonContent>
         <div className="profile-vault-page">
@@ -165,7 +169,7 @@ class ProfileVaultPage extends React.Component<Props> {
                     artist={data.artist}
                     supported={data.artist.support}
                     supportButtonIcon={true}
-                    songAction={clickArtist}
+                    songAction={this.handleArtistClick}
                   />
                 );
               }

@@ -66,67 +66,63 @@ class EventDetailPage extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="event-detail-page">
-        <div className={'artist-event-detail-page'}>
-          <Header
-            rightCloseButton
-            title="Who's going"
-            leftBackHref={`/artist/${this.props.match.params.id}/event`}
-            rightCloseHref={`/artist/${this.props.match.params.id}/event`}
-            rightCloseOnClick={(): void => {
-              this.props.updateArtistSetInitialProperty('event');
-            }}
-          />
-          <IonContent>
-            <BackgroundImage
-              gradient={'180deg,#000,#20123a'}
-              backgroundBottom={true}
-              backgroundBottomOrange={true}
-              backgroundBottomOpacity={0.15}
+      <IonPage id="event-detail-page" className={'artist-event-detail-page'}>
+        <Header
+          rightCloseButton
+          title="Who's going"
+          leftBackHref={`/artist/${this.props.match.params.id}/event`}
+          rightCloseHref={`/artist/${this.props.match.params.id}/event`}
+          rightCloseOnClick={(): void => {
+            this.props.updateArtistSetInitialProperty('event');
+          }}
+        >
+          <div className={'mt-12 flex-justify-content-center'}>
+            <Button
+              label={this.state.willGo ? "Can't go" : "I'm going"}
+              color={this.state.willGo ? Colors.disable : Colors.blue}
+              type={ShapesSize.badge}
+              gradient={true}
+              gradientDirection={GradientDirection.horizontal}
+              onClick={(): void => {
+                this.setState({ willGo: !this.state.willGo });
+              }}
             />
-            <div className="content-fixed" slot="fixed">
-              <div className={'flex-justify-content-center'}>
-                <Button
-                  label={this.state.willGo ? "Can't go" : "I'm going"}
-                  color={this.state.willGo ? Colors.disable : Colors.blue}
-                  type={ShapesSize.badge}
-                  gradient={true}
-                  gradientDirection={GradientDirection.horizontal}
-                  onClick={(): void => {
-                    this.setState({ willGo: !this.state.willGo });
-                  }}
-                />
-              </div>
-              <CardEvent
-                id={Number(this.props.match.params.eventId)}
-                artistUsername={this.props.match.params.id}
-                data={this.props.event}
-              />
-              <div className="content-list">
-                <IonList lines="none">
-                  {this.props.event?.whoIsGoing?.map(
-                    (data, i): React.ReactNode => {
-                      return (
-                        <ListItem
-                          key={i}
-                          node={i}
-                          sliding={false}
-                          bottomBorder={false}
-                          // leftDisabled={!data.isFriend}
-                          hasAvatar={true}
-                          avatarImage={data.avatar}
-                          avatarSize={48}
-                          username={data.username}
-                          connectButton={true}
-                        />
-                      );
-                    }
-                  )}
-                </IonList>
-              </div>
-            </div>
-          </IonContent>
-        </div>
+          </div>
+          <CardEvent
+            id={Number(this.props.match.params.eventId)}
+            artistUsername={this.props.match.params.id}
+            data={this.props.event}
+          />
+        </Header>
+
+        <BackgroundImage
+          gradient={'180deg,#000,#20123a'}
+          backgroundBottom={true}
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.15}
+        />
+
+        <IonContent>
+          <IonList lines="none">
+            {this.props.event?.whoIsGoing?.map(
+              (data, i): React.ReactNode => {
+                return (
+                  <ListItem
+                    key={i}
+                    node={i}
+                    sliding={false}
+                    bottomBorder={false}
+                    hasAvatar={true}
+                    avatarImage={data.avatar}
+                    avatarSize={48}
+                    username={data.username}
+                    connectButton={true}
+                  />
+                );
+              }
+            )}
+          </IonList>
+        </IonContent>
       </IonPage>
     );
   }

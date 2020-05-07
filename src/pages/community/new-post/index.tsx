@@ -127,7 +127,7 @@ class CommunityNewPostPage extends React.Component<Props, State> {
     });
     this.props.history.push('/community');
   }
-  renderThumbnails(): React.ReactElement {
+  renderThumbnails(): React.ReactNode {
     return (
       <div id="images" className="mx-2 fluid flex row overflow-x">
         <div onClick={(): any => this.toggleCameraActions(true)}>
@@ -143,7 +143,7 @@ class CommunityNewPostPage extends React.Component<Props, State> {
         </div>
 
         {this.cameraFiles.map(
-          (post, id): React.ReactElement => (
+          (post, id): React.ReactNode => (
             <CardImage
               className="no-shadow"
               canRemove={false}
@@ -161,7 +161,7 @@ class CommunityNewPostPage extends React.Component<Props, State> {
       </div>
     );
   }
-  renderHeaderBar(): React.ReactElement {
+  renderHeaderBar(): React.ReactNode {
     return (
       <IonItem className="mx-0 mt-7">
         <div slot="start" className="f6">

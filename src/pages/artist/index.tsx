@@ -6,7 +6,7 @@ import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface } from '../../interfaces';
-import { getArtistAPI } from './../../actions';
+import { clearCurrentArtist, getArtistAPI } from './../../actions';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -15,9 +15,11 @@ interface StateProps {
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
+  clearCurrentArtist: () => void;
 }
 interface MatchParams {
   id: string;
+  tab: string;
 }
 interface CustomAnimation {
   animation: any;
@@ -45,7 +47,11 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     loaded: false
   };
 
+  activeTab: string = 'featured';
   UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.match.params.tab && this.activeTab !== next.match.params.tab) {
+      this.activeTab = next.match.params.tab;
+    }
     if (next.loading) return;
     if (this.props.loading) return;
     if (
@@ -197,7 +203,6 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     this.lastOffset = offset;
   };
 
-  activeTab: string = 'features';
   handleMenu = (event: MenuInterface): void => {
     const { match, history } = this.props;
     if (event.route && event.isPage === true) {
@@ -207,6 +212,12 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     }
     this.activeTab = event.id;
     this.forceUpdate();
+  };
+
+  handleBackClick = (): void => {
+    const { clearCurrentArtist, history } = this.props;
+    clearCurrentArtist();
+    history.replace('/profile');
   };
 
   render(): React.ReactNode {
@@ -223,7 +234,7 @@ class ArtistPage extends React.PureComponent<Props, {}> {
         className="saturate"
       >
         <Header //leftBackHref={'/profile'}
-          leftBackOnClick={(): void => this.props.history.replace('/profile')}
+          leftBackOnClick={this.handleBackClick}
         />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
@@ -271,4 +282,6 @@ const mapStateToProps = ({
   return { currentArtist, artistTabs, loading };
 };
 
-export default connect(mapStateToProps, { getArtistAPI })(ArtistPage);
+export default connect(mapStateToProps, { getArtistAPI, clearCurrentArtist })(
+  ArtistPage
+);

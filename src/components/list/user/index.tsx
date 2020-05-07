@@ -48,7 +48,7 @@ export default class ListComponent extends React.Component<Props> {
       </IonItemSliding>
     );
   }
-  ionItem(user: UserInterface): React.ReactElement {
+  ionItem(user: UserInterface): React.ReactNode {
     const {
       showButtonPending,
       showComboBox,

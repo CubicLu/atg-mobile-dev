@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { updateAuthProperty } from './../../actions';
 import { ShapesSize, Sizes } from '../../types';
 
-interface StateProps {}
 interface Props extends RouteComponentProps, DispatchProps {}
 interface DispatchProps {
   updateAuthProperty: (property: string, value: any) => void;
@@ -27,7 +26,7 @@ class SignInPage extends React.Component<Props> {
       avatar:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg'
     });
-    this.props.history.push('');
+    this.props.history.push('/');
   }
 
   render(): React.ReactNode {
@@ -44,7 +43,7 @@ class SignInPage extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           leftContent={<div className="h1 l08 no-wrap-pre">SIGN IN</div>}
-          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+          rightCloseHref="/initial"
         />
 
         <div className="initial-page-fullscreen double-top">

@@ -14,20 +14,21 @@ import CordovaMediaComponent from './player/cordova-media';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
+import DefaultModalComponent from './modal/default';
 import SliderVideoComponent from './slider/video';
 import CardImageComponent from './card/image';
 import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
+import SliderMembersComponent from './slider/members';
+import BottomTilesComponent from './bottom-tiles';
 import CardEventComponent from './card/event';
 import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
-import BiographyListComponent from './menu/biography-list';
 import ButtonPlanComponent from './button/plan';
 import ListItemComponent from './list/item';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
-import MenuProfileListComponent from './menu/profile-list';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import SliderStoriesComponent from './slider/stories';
@@ -78,6 +79,11 @@ import MixtapeEuroHouseImage from './../assets/img/mixtapes/euro-house.png';
 import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
 import MixtapeMoonLightImage from './../assets/img/mixtapes/moon-light.png';
 import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
+
+import SplashScreenComponent from '../components/splash-screen';
+
+import ContentLoader from 'react-content-loader';
+
 import {
   ButtonSupportIconComponent,
   ButtonSupportComponent
@@ -103,16 +109,17 @@ export {
   HeaderComponent as Header,
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
-  MenuProfileListComponent as MenuProfileList,
+  DefaultModalComponent as DefaultModal,
   SliderVideoComponent as SliderVideo,
   CardImageComponent as CardImage,
   CardVideoComponent as CardVideo,
   SliderRadioComponent as SliderRadio,
+  SliderMembersComponent as SliderMembers,
   SliderEventsComponent as SliderEvents,
   CardEventComponent as CardEvent,
+  BottomTilesComponent as BottomTiles,
   ModalSlideComponent as ModalSlide,
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
-  BiographyListComponent as BiographyList,
   ButtonPlanComponent as ButtonPlan,
   ListItemComponent as ListItem,
   SupportByComponent as SupportBy,
@@ -152,7 +159,8 @@ export {
   PlayerVolumeComponent as PlayerVolume,
   MiniPlayerBarComponent as MiniPlayerBar,
   CardSubEraComponent as CardSubEra,
-  CardGraphComponent as CardGraph
+  CardGraphComponent as CardGraph,
+  SplashScreenComponent as SplashScreen
 };
 
 export {
@@ -168,5 +176,6 @@ export {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeMoonLightImage,
-  MixtapeRebelRockImage
+  MixtapeRebelRockImage,
+  ContentLoader
 };

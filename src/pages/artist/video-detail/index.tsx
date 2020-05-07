@@ -15,7 +15,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getArtistAPI, getArtistGalleryCommentsAPI } from '../../../actions';
-import { shadowTitle } from '../../../utils';
+import BottomTilesComponent from '../../../components/bottom-tiles';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -57,50 +57,6 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     if (this.props.currentArtist === null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
-  }
-
-  bottomTiles(): React.ReactNode {
-    return (
-      <div className="bottom-tiles fluid">
-        <div
-          className="tile"
-          onClick={(): void => {
-            this.props.history.push(
-              `/artist/${this.props.match.params.id}/deep-dive`
-            );
-          }}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-          )}
-        >
-          <span className="f6">Deep Dive</span>
-        </div>
-        <div
-          className="tile"
-          onClick={(): void => {
-            this.props.history.push(
-              `/community/artist/${this.props.match.params.id}`
-            );
-          }}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-          )}
-        >
-          <span className="f6">Community</span>
-        </div>
-        <div
-          className="tile"
-          onClick={(): void => {
-            this.props.history.push(`/artist/${this.props.match.params.id}`);
-          }}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-          )}
-        >
-          <span className="f6">Artist Home</span>
-        </div>
-      </div>
-    );
   }
 
   setChat(condition = false): void {
@@ -163,7 +119,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <div className="mt-5" />
           <VideoPlayer onClickClose={(): void => this.props.history.goBack()} />
           {this.renderContent()}
-          {!this.state.chatOpened && this.bottomTiles()}
+          {!this.state.chatOpened && (
+            <BottomTilesComponent tiles={this.props.currentArtist?.tiles} />
+          )}
         </IonContent>
 
         <PhotoChat

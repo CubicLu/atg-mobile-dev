@@ -66,6 +66,9 @@ h6,.h6{ font-size: 16px }
     &.gray{
         color: #7c8188;
     }
+    &.active{
+        color: #fcc505;
+    }
     &.reply{
         color: #0e9ee2;
         text-transform: uppercase;
@@ -75,6 +78,8 @@ h6,.h6{ font-size: 16px }
 .l08{ line-height: 0.8 !important }
 .l1{ line-height: 1  !important }
 .l11{ line-height: 1.1  !important }
+.l13{ line-height: 1.3  !important }
+.l14{ line-height: 1.4  !important }
 .l15{ line-height: 1.5  !important }
 .l175{ line-height: 1.75  !important }
 .l2{ line-height: 2  !important }

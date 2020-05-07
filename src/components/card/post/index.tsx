@@ -9,7 +9,7 @@ import {
 } from './../../../components';
 import { PostInterface } from '../../../interfaces';
 import { ShapesSize } from '../../../types';
-import { IonRouterLink } from '@ionic/react';
+import { IonRouterLink, IonContent, IonSlides, IonSlide } from '@ionic/react';
 
 interface Props {
   post: PostInterface;
@@ -21,33 +21,86 @@ export default class CardPostComponent extends React.Component<Props> {
   public static defaultProps = {
     showOptions: true
   };
+
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+
   render(): React.ReactNode {
     const { post } = this.props;
-
     return (
       <div
         className="card post flex-column space-between"
         style={{
-          backgroundImage: `url(${post.image})`,
+          height: '290px',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="fluid flex-compass east">
+        <IonContent>
+          {Array.isArray(post.image) ? (
+            <IonSlides
+              pager={true}
+              options={this.slideOpts}
+              style={{
+                height: '290px',
+                position: 'relative',
+                borderRadius: '20px'
+              }}
+            >
+              {post.image.map(
+                (image, index): React.ReactNode => (
+                  <IonSlide
+                    key={index}
+                    className={'flex-compass space-between'}
+                    style={{
+                      backgroundImage: `url(${image})`,
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                      width: 'auto'
+                    }}
+                  />
+                )
+              )}
+            </IonSlides>
+          ) : (
+            <div
+              className="post flex-column space-between"
+              style={{
+                height: '290px',
+                backgroundImage: `url(${post.image})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                borderRadius: '20px'
+              }}
+            />
+          )}
+          {this.renderControls()}
+        </IonContent>
+      </div>
+    );
+  }
+
+  renderControls(): React.ReactNode {
+    return (
+      <>
+        <div className="absolute-dots-top-right">
           {this.props.showOptions && (
-            <div className="mx-2 default-button dark btn large">
+            <div className="default-button dark btn large">
               <DotsThreeIcon />
             </div>
           )}
         </div>
         {this.renderPostInput()}
-      </div>
+      </>
     );
   }
+
   renderPostInput(): React.ReactNode {
     const { showUser, post } = this.props;
     return (
-      <div className="mx-2 flex-align-items-center pb-1">
+      <div className="mx-2 flex-align-items-center pb-2 absolute-community-interactions">
         {showUser && (
           <IonRouterLink
             routerDirection="forward"
@@ -66,7 +119,12 @@ export default class CardPostComponent extends React.Component<Props> {
         )}
 
         <div className="align-end flex">
-          <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
+          <IonRouterLink
+            routerDirection="forward"
+            routerLink={'/community/share'}
+          >
+            <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
+          </IonRouterLink>
           <span className="mx-05" />
           <IonRouterLink
             routerDirection="forward"

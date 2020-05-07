@@ -104,6 +104,15 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
+  [ArtistActionType.CLEAR_CURRENT_ARTIST](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      currentArtist: null
+    };
+  },
+
   [ArtistActionType.GET_BY_USERNAME_API_FAILURE](
     state: ArtistReducerType,
     action: Action<

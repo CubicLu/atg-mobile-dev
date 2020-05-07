@@ -129,12 +129,12 @@ class VideoPlayerComponent extends React.Component<Props, State> {
 
       document.onfullscreenchange = (): void => {
         if (!document.fullscreenElement) {
-          window.screen.orientation?.lock('portrait');
+          window.deviceready && window.screen.orientation?.lock('portrait');
           document.fullscreen &&
             document.exitFullscreen &&
             document.exitFullscreen();
         } else {
-          window.screen.orientation.unlock();
+          window.deviceready && window.screen?.orientation?.unlock();
         }
       };
     }

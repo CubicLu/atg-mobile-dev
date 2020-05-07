@@ -74,6 +74,10 @@ export const getArtistAPISuccess = (
   payload: response
 });
 
+export const clearCurrentArtist = (): Action<ArtistActionType.CLEAR_CURRENT_ARTIST> => ({
+  type: ArtistActionType.CLEAR_CURRENT_ARTIST
+});
+
 export const getArtistEventAPI = (
   username: string,
   eventId: string

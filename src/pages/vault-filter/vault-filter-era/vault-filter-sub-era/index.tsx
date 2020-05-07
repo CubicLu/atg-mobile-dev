@@ -52,9 +52,7 @@ class VaultFilterSubEraPage extends React.Component<Props> {
           titleClassName="sub-era"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void => {
-            this.props.history.push('/vault-filter/era');
-          }}
+          rightCloseHref="/vault-filter/era"
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent

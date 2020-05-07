@@ -36,13 +36,12 @@ class ButtonIconComponent extends React.Component<Props> {
       overlayClassName,
       className
     } = this.props;
+    const custom = className ? className : '';
 
     return (
       <button
         onClick={(): void => onClick()}
-        className={`btn icon ${type} ${color} ${isFixed} ${
-          className ? className : ''
-        }`}
+        className={`btn icon ${type} ${color} ${isFixed} ${custom}`}
         style={{ ...styles }}
       >
         {icon}

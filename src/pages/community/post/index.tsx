@@ -49,7 +49,7 @@ class CommunityPostPage extends React.Component<Props> {
         <Header
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseHref="/community"
+          rightClickGoBack={true}
         />
         <HeaderOverlay ref={this.hRef} />
         <IonContent
@@ -75,7 +75,7 @@ class CommunityPostPage extends React.Component<Props> {
       </IonPage>
     );
   }
-  renderPostDescription(): React.ReactElement {
+  renderPostDescription(): React.ReactNode {
     return (
       <div className={'f6 dark mb-1 mx-2'}>
         GET THE MONEY - Cross The Line is the first song from Taylor Hawkins &
@@ -83,7 +83,7 @@ class CommunityPostPage extends React.Component<Props> {
       </div>
     );
   }
-  renderPostComments(): React.ReactElement {
+  renderPostComments(): React.ReactNode {
     return (
       <React.Fragment>
         {this.props.currentPostComments?.map(

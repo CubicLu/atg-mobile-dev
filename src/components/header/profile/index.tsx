@@ -1,13 +1,17 @@
 import React from 'react';
-import { Avatar, Header, MenuProfileList } from './../../../components';
-import { connect } from 'react-redux';
+import {
+  Avatar,
+  Header,
+  DefaultModal,
+  ContentLoader
+} from './../../../components';
+import { store } from '../../../store';
 import { updateSettingsModal } from '../../../actions';
 import { ShapesSize } from '../../../types';
-import { ProfileActionsType } from '../../../interfaces';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { GenericModalInterface } from '../../../interfaces';
 
 interface DispatchProps {
-  updateSettingsModal: (
+  updateSettingsModal?: (
     content: React.ReactNode,
     className?: string,
     height?: number,
@@ -15,46 +19,86 @@ interface DispatchProps {
   ) => void;
 }
 
-interface Props extends DispatchProps, RouteComponentProps {
+interface StateProps {
+  loading?: boolean;
+}
+
+interface Props extends DispatchProps {
   isFriend?: boolean;
   showFilter?: boolean;
 }
 
-class HeaderProfileComponent extends React.Component<Props> {
+export default class HeaderProfileComponent extends React.Component<Props> {
   public static defaultProps = {
     isFriend: false,
     showFilter: false
   };
-  profileActions: ProfileActionsType[] = [
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
+  profileActions: GenericModalInterface[] = [
     {
-      text: 'View my public profile',
-      onClick: (): void => this.props.history.push('/me')
+      name: 'View my public profile',
+      url: '/me'
     },
     {
-      text: 'Edit my public profile',
-      onClick: (): void => this.props.history.push('/settings')
+      name: 'Edit my public profile',
+      url: '/settings'
     },
     {
-      text: 'Improve my public profile',
-      onClick: (): void => console.log('Play clicked')
+      name: 'Improve my public profile'
+    }
+  ];
+  artistActions: GenericModalInterface[] = [
+    {
+      name: 'Rival Sons',
+      url: '/dashboard/menu/rival-sons'
+    },
+    {
+      name: 'Pharrell Williams',
+      url: '/dashboard/menu/pharrell-williams'
+    },
+    {
+      name: 'Bono Vox',
+      url: '/dashboard/menu/bono-vox'
     }
   ];
 
-  hideMenuListModal = (): void => this.props.updateSettingsModal(null);
+  hideMenuListModal = (): void => store.dispatch(updateSettingsModal(false));
+  hideArtistListModal = (): void => store.dispatch(updateSettingsModal(false));
 
+  showArtistListModal = (): void => {
+    store.dispatch(
+      updateSettingsModal(
+        <DefaultModal
+          title="Select a Band"
+          onClick={this.hideArtistListModal}
+          data={this.artistActions}
+          overrideClick={true}
+        />
+      )
+    );
+  };
   showMenuListModal = (): void => {
-    this.props.updateSettingsModal(
-      <MenuProfileList
-        title={'Public profile'}
-        onClick={this.hideMenuListModal}
-        background={'background-white-base'}
-        data={this.profileActions}
-      />,
-      'background-white-base'
+    store.dispatch(
+      updateSettingsModal(
+        <DefaultModal
+          title="Public Profile"
+          onClick={this.hideMenuListModal}
+          data={this.profileActions}
+        />
+      )
     );
   };
 
   render(): React.ReactNode {
+    if (!this.isReady) this.displayContent();
     const { isFriend, showFilter } = this.props;
     return (
       <div>
@@ -63,26 +107,41 @@ class HeaderProfileComponent extends React.Component<Props> {
           rightUserGroupButton={!isFriend && showFilter === false}
           rightNotificationButton={!isFriend && showFilter === false}
           rightDashboardButton={!isFriend && showFilter === false}
+          rightDashboardOnClick={this.showArtistListModal}
           rightChatButton={isFriend && showFilter === false}
           rightConnectedButton={isFriend && showFilter === false}
           rightFanFeedButton={isFriend && showFilter === false}
           rightFilterButton={isFriend && showFilter === true}
+          rightActionHref={'/settings'}
           notificationsNumber={10}
-          rightSettingsOnClick={(): void =>
-            this.props.history.push('/settings')
-          }
+          routerDirection="forward"
         />
-
         <div className="profile-center">
-          <Avatar type={ShapesSize.circle} onClick={this.showMenuListModal} />
-          <div className="f4 l15">Rosetta Throped</div>
-          <div className="h00 l1 shadow">Musical Goddess</div>
+          {!this.isReady ? (
+            <ContentLoader
+              speed={2}
+              width={400}
+              height={160}
+              viewBox="0 0 400 160"
+              backgroundColor="#ffffff0d"
+              foregroundColor="#ffffff26"
+            >
+              <circle cx="30" cy="30" r="30" />
+              <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
+              <rect x="0" y="100" rx="3" ry="3" width="200" height="31" />
+            </ContentLoader>
+          ) : (
+            <div>
+              <Avatar
+                type={ShapesSize.circle}
+                onClick={this.showMenuListModal}
+              />
+              <div className="f4 l15">Rosetta Throped</div>
+              <div className="h00 l1 shadow">Musical Goddess</div>
+            </div>
+          )}
         </div>
       </div>
     );
   }
 }
-
-export default withRouter(
-  connect(null, { updateSettingsModal })(HeaderProfileComponent)
-);

@@ -14,3 +14,8 @@ export interface ModalSlideInterface {
 export interface ModalTypeInterface {
   modalType: string | null;
 }
+
+export interface GenericModalInterface {
+  name: string;
+  url?: string;
+}

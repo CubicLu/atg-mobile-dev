@@ -2,8 +2,8 @@ import { MenuInterface } from '../../interfaces';
 import {
   DashboardAnalyticPage,
   DashboardWalletPage,
-  DashboardSupporterPage,
-  DashboardRankingPage
+  DashboardRankingPage,
+  DashboardSupporterPage
 } from '../../pages';
 export const dashboardTabs: MenuInterface[] = [
   {

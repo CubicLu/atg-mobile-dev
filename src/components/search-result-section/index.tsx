@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar } from '../../components';
 import { ShapesSize } from '../../types';
+import { IonRouterLink } from '@ionic/react';
 
 interface SearchResult {
   name?: string;
@@ -20,20 +21,22 @@ class SearchResultSectionComponent extends React.Component<Props> {
         <span className={'section-name'}>{this.props.title}</span>
         {this.props.content.map(
           (data: SearchResult, i: number): React.ReactNode => (
-            <div key={i} className={'row flex-align-items-center section'}>
-              <Avatar
-                type={ShapesSize.circle}
-                width={57}
-                height={57}
-                image={data.avatar}
-              />
-              <div className={'column'}>
-                <span className="section-title flex-align-items-center row">
-                  {data.name}
-                </span>
-                <span className={'section-subtitle row'}>{data.artist}</span>
+            <IonRouterLink key={i} routerLink="/artist/pharrell-williams">
+              <div className={'row flex-align-items-center section'}>
+                <Avatar
+                  type={ShapesSize.circle}
+                  width={57}
+                  height={57}
+                  image={data.avatar}
+                />
+                <div className={'column'}>
+                  <span className="section-title flex-align-items-center row">
+                    {data.name}
+                  </span>
+                  <span className={'section-subtitle row'}>{data.artist}</span>
+                </div>
               </div>
-            </div>
+            </IonRouterLink>
           )
         )}
         <div className="mx-4 mt-3 search-outline-purple" />

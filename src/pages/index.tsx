@@ -23,6 +23,8 @@ import CommunityPostPage from './community/post';
 import CommunityNewPostPage from './community/new-post';
 import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
+import CommunitySharePage from './community/share';
+import CommunityArtistFilterPage from './community/artist/filter';
 
 import ArtistPage from './artist';
 import ArtistDeepDivePage from './artist/deep-dive';
@@ -40,15 +42,17 @@ import ArtistVideoDetailPage from './artist/video-detail';
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
 import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
+import ArtistGatewayPage from './artist/gateway';
 import TrackListPage from './artist/track-list';
 import ThankYouPage from './thank-you';
 
-import SettingPage from './setting';
+import SettingsPage from './settings';
 import RadioPage from './radio';
 import RadioFilterPage from './radio/filter';
 import RadioArtistPage from './radio-artist';
 import RadioHistoryPage from './radio-artist/history';
 import RadioStationEditPage from './radio/station-create';
+import ViewAllStationsPage from './radio/view-all-stations';
 
 import MessagePage from './message';
 import MessageChatPage from './message/chat';
@@ -64,11 +68,16 @@ import VaultFilterEraPage from './vault-filter/vault-filter-era';
 import VaultFilterSubEraPage from './vault-filter/vault-filter-era/vault-filter-sub-era';
 
 import DashboardPage from './dashboard';
+import DashboardMenuPage from './dashboard/menu';
 import DashboardFilterPage from './dashboard/filter';
 import DashboardAnalyticPage from './dashboard/analytic';
 import DashboardRankingPage from './dashboard/ranking';
-import DashboardSupporterPage from './dashboard/supporter';
+import DashboardGraphSupporterPage from './dashboard/graphs/supporter';
 import DashboardWalletPage from './dashboard/wallet';
+import DashboardGraphSalesPage from './dashboard/graphs/sales';
+import DashboardSupporterPage from './dashboard/supporter';
+
+import ChatPage from './chat';
 
 export {
   NotFoundPage,
@@ -110,10 +119,12 @@ export {
   CommunityNewPostPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
+  CommunitySharePage,
+  CommunityArtistFilterPage,
   RadioPage,
   RadioFilterPage,
   RadioStationEditPage,
-  SettingPage,
+  SettingsPage,
   MessagePage,
   MessageChatPage,
   MessageNotificationsPage,
@@ -127,10 +138,16 @@ export {
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
+  ArtistGatewayPage,
   DashboardPage,
+  DashboardMenuPage,
   DashboardFilterPage,
   DashboardAnalyticPage,
   DashboardRankingPage,
-  DashboardSupporterPage,
-  DashboardWalletPage
+  DashboardGraphSupporterPage,
+  DashboardWalletPage,
+  ViewAllStationsPage,
+  ChatPage,
+  DashboardGraphSalesPage,
+  DashboardSupporterPage
 };

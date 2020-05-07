@@ -12,7 +12,8 @@ import {
   SliderRadio,
   SliderEvents,
   SectionTitle as Section,
-  ArrowRightIcon
+  ArrowRightIcon,
+  SliderMembers
 } from './../../../components';
 import { setPlaylist } from './../../../actions/playerActions';
 import { guitarPlaylist as playlist } from '../../../reducers/playerReducer';
@@ -33,11 +34,12 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
       newReleases,
       radio,
       events,
-      username
+      username,
+      bandMembers
     } = currentArtist;
 
     return (
-      <div className={'artist-features-page'}>
+      <div className={'artist-features-page mb-3'}>
         <div className="row" />
         <div className="row">
           <Section className="mx-3" title={'TOP TRACKS'} viewAll={true} />
@@ -90,6 +92,21 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               viewAll={true}
             />
             <SliderEvents data={[events![0]]} artistUsername={username} />
+          </div>
+        )}
+
+        {bandMembers && (
+          <div>
+            <Section
+              className="mx-3"
+              title={'BAND MEMBER BIOS'}
+              viewAll={false}
+            />
+            <SliderMembers
+              data={bandMembers}
+              size="100px"
+              labelClassName="f6"
+            />
           </div>
         )}
       </div>

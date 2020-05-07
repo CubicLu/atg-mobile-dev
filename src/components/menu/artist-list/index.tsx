@@ -34,7 +34,7 @@ class MenuArtistList extends React.Component<Props> {
       ? currentArtist.similarArtist
       : currentArtist.supportArtistFans;
     return (
-      <div className="menu-artist-list">
+      <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom={true}
           backgroundBottomOrange={true}
@@ -59,7 +59,7 @@ class MenuArtistList extends React.Component<Props> {
                 return (
                   <IonRouterLink
                     key={i}
-                    routerLink={`/artist/${data.username}`}
+                    routerLink={`/artist/gateway/${data.username}`}
                   >
                     <li onClick={(): void => this.props.onClick()}>
                       <div className="artist">

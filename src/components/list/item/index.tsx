@@ -129,7 +129,7 @@ export default class ListItemComponent extends React.Component<Props> {
     );
   }
 
-  itemList(): React.ReactElement {
+  itemList(): React.ReactNode {
     const {
       leftDisabled,
       artist,

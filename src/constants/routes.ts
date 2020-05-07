@@ -30,19 +30,32 @@ import {
   RadioArtistPage,
   RadioHistoryPage,
   FanFeedFilterPage,
-  SettingPage,
+  SettingsPage,
   FriendPage,
   VaultFilterPage,
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
+  DashboardMenuPage,
+  FeedPage,
+  CommunitySharePage,
+  CommunityArtistFilterPage,
+  ViewAllStationsPage,
+  ChatPage,
   DashboardFilterPage,
-  FeedPage
+  DashboardGraphSalesPage,
+  DashboardGraphSupporterPage,
+  ArtistGatewayPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
     path: '/artist/:id',
     id: 'artistPage',
+    component: ArtistPage
+  },
+  {
+    path: '/artist/:id/tab/:tab',
+    id: 'artistPageAlbum',
     component: ArtistPage
   },
   {
@@ -196,6 +209,11 @@ export const routes: RouteInterface[] = [
     component: MessagePage
   },
   {
+    path: '/chat',
+    id: 'chat',
+    component: ChatPage
+  },
+  {
     path: '/profile/:id',
     id: 'fanProfile',
     component: ProfilePage
@@ -218,12 +236,12 @@ export const routes: RouteInterface[] = [
   {
     path: '/settings',
     id: 'settings',
-    component: SettingPage
+    component: SettingsPage
   },
   {
     path: '/me',
     id: 'settings',
-    component: SettingPage
+    component: SettingsPage
   },
   {
     path: '/friend',
@@ -261,9 +279,19 @@ export const routes: RouteInterface[] = [
     component: RadioHistoryPage
   },
   {
-    path: '/dashboard',
+    path: '/dashboard/menu/:artistId',
+    id: 'artistDashboardMenu',
+    component: DashboardMenuPage
+  },
+  {
+    path: '/dashboard/:artistId',
     id: 'artistDashboard',
     component: DashboardPage
+  },
+  {
+    path: '/dashboard/:artistId/sales',
+    id: 'analyticDetailDashboard',
+    component: DashboardGraphSalesPage
   },
   {
     path: '/dashboard/filter',
@@ -274,5 +302,40 @@ export const routes: RouteInterface[] = [
     path: '/feed/:id',
     id: 'feedFan',
     component: FeedPage
+  },
+  {
+    path: '/dashboard/:artistId/supporter',
+    id: 'supporterDashboard',
+    component: DashboardGraphSupporterPage
+  },
+  {
+    path: '/community/share',
+    id: 'communityShare',
+    component: CommunitySharePage
+  },
+  {
+    path: '/event/share',
+    id: 'communityShare',
+    component: CommunitySharePage
+  },
+  {
+    path: '/community/artist/:artistId/filter',
+    id: 'communityArtistFilter',
+    component: CommunityArtistFilterPage
+  },
+  {
+    path: '/share',
+    id: 'communityShare',
+    component: CommunitySharePage
+  },
+  {
+    path: '/radio/view-all',
+    id: 'viewAllStations',
+    component: ViewAllStationsPage
+  },
+  {
+    path: '/artist/gateway/:artistId',
+    id: 'ArtistGatewayPage',
+    component: ArtistGatewayPage
   }
 ];

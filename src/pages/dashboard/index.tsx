@@ -15,12 +15,17 @@ interface StateProps {
   activeDashboardTab: string;
   dashboardTabs: MenuInterface[];
 }
-
+interface MatchParams {
+  artistId: string;
+}
 interface DispatchProps {
   getDashboardByArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: string) => void;
 }
-interface Props extends RouteComponentProps, DispatchProps, StateProps {}
+interface Props
+  extends RouteComponentProps<MatchParams>,
+    DispatchProps,
+    StateProps {}
 
 class DashboardPage extends React.Component<Props> {
   componentDidMount(): void {
@@ -28,8 +33,17 @@ class DashboardPage extends React.Component<Props> {
   }
 
   changeDashboardTab = (event: MenuInterface): void => {
-    if (event.id === this.props.activeDashboardTab) return;
+    const { history, activeDashboardTab } = this.props;
+    if (event.id === activeDashboardTab) return;
+    if (event.route && event.isPage === true) {
+      return history.push(
+        event.route.replace(':artistId', this.props.match.params.artistId)
+      );
+    }
     this.props.updateSettingsProperty('activeDashboardTab', event.id);
+    if (event.onClick) {
+      return event.onClick();
+    }
   };
 
   renderActiveTab = (): React.ReactNode => {
@@ -38,9 +52,13 @@ class DashboardPage extends React.Component<Props> {
     const tab = dashboardTabs.find(
       (x): boolean => x.id === activeDashboardTab
     )!;
-    return React.createElement(tab.component, {
-      key: tab.id
-    });
+
+    return (
+      !tab.isPage &&
+      React.createElement(tab.component, {
+        key: tab.id
+      })
+    );
   };
 
   render(): React.ReactNode {
@@ -58,6 +76,7 @@ class DashboardPage extends React.Component<Props> {
         />
         <Header
           leftBackHref="/profile"
+          routerDirection="root"
           className="dashboard-page-header"
           centerContent={
             <div>
@@ -68,9 +87,7 @@ class DashboardPage extends React.Component<Props> {
           }
           leftBackButton={true}
           rightActionButton={true}
-          rightActionOnClick={(): void =>
-            this.props.history.push('dashboard/filter')
-          }
+          rightActionHref="/dashboard/filter"
         />
         <Menu
           tabs={dashboardTabs}

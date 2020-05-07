@@ -203,6 +203,13 @@
       justify-content: center;
       align-content: center;
       flex-direction: column;
+      svg{
+        &.arrow{
+          height: 42px;
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+      }
       span {
         height: 10px;
         line-height: 12px;

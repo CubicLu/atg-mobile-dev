@@ -140,7 +140,7 @@ class TrackListPage extends React.Component<Props> {
     return (
       <div id="songs" className="mt-3">
         {this.playlist.items.map(
-          (song: SongInterface, i: number): React.ReactElement => (
+          (song: SongInterface, i: number): React.ReactNode => (
             <div
               key={i}
               className="flex-align-items-center row"

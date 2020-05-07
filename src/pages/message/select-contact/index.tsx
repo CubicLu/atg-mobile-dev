@@ -83,7 +83,7 @@ class SelectContactPage extends React.Component<Props, State> {
     });
   }
 
-  getActiveTab(): React.ReactElement {
+  getActiveTab(): React.ReactNode {
     const menu = this.props.selectContactTabs.find(
       (s): boolean => s.id === this.props.activeSelectContactTab
     )!;

@@ -10,7 +10,7 @@ interface Props {
   type: ShapesSize;
   col: number;
   label?: string;
-  innerContent?: React.ReactElement;
+  innerContent?: React.ReactNode;
   routerLink?: string;
   routerDirection: RouterLinkDirection;
   diameter?: string;

@@ -510,7 +510,8 @@ export interface BiographyInterface {
 }
 
 export interface EventWhoIsGoingInterface extends UserInterface {}
-export type RouterLinkDirection = 'forward' | 'back' | 'root';
+export type RouterLinkDirection = 'forward' | 'back' | 'root' | 'none';
+export type RouterLinkAction = 'push' | 'replace' | 'pop';
 export enum ShapesSize {
   rounded = 'rounded',
   roundedFrame = 'rounded-frame',
@@ -561,9 +562,9 @@ export interface StationInterface {
   genre: 'Blues' | 'Funk' | 'Jazz' | 'Soul' | 'Reggae' | 'Country';
 }
 
-export interface ProfileActionsType {
-  text: string;
-  onClick: () => void;
+export interface GenericModalInterface {
+  name: string;
+  url?: string;
 }
 
 export interface ProfileReducerType {

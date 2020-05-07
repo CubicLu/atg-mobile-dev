@@ -18,6 +18,7 @@ class ArrowRightIcon extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <svg
+        className="arrow"
         style={{ overflow: 'visible' }}
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
@@ -32,7 +33,7 @@ class ArrowRightIcon extends React.Component<Props> {
           strokeLinejoin="round"
           strokeWidth={this.props.stroke}
           d="M0,16,8,7.835,6.74,6.6,0,0"
-          transform="translate(2 5)"
+          transform="translate(2 2)"
         />
       </svg>
     );

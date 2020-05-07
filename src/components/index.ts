@@ -14,6 +14,7 @@ import CordovaMediaComponent from './player/cordova-media';
 import HeaderComponent from './header';
 import HeaderOverlayComponent from './header-overlay';
 import MenuComponent from './menu';
+import DefaultModalComponent from './modal/default';
 import SliderVideoComponent from './slider/video';
 import CardImageComponent from './card/image';
 import CardVideoComponent from './card/video';
@@ -27,7 +28,6 @@ import ButtonPlanComponent from './button/plan';
 import ListItemComponent from './list/item';
 import SupportByComponent from './support-by';
 import MenuArtistListComponent from './menu/artist-list';
-import MenuProfileListComponent from './menu/profile-list';
 import CardAlbumGalleryComponent from './card/album-gallery';
 import LoaderFullscreenComponent from './loader/fullscreen';
 import SliderStoriesComponent from './slider/stories';
@@ -106,7 +106,7 @@ export {
   HeaderComponent as Header,
   HeaderOverlayComponent as HeaderOverlay,
   MenuComponent as Menu,
-  MenuProfileListComponent as MenuProfileList,
+  DefaultModalComponent as DefaultModal,
   SliderVideoComponent as SliderVideo,
   CardImageComponent as CardImage,
   CardVideoComponent as CardVideo,

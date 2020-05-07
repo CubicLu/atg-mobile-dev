@@ -1,55 +1,44 @@
 import React from 'react';
-import { Avatar, Header, MenuProfileList } from './../../../components';
-import { connect } from 'react-redux';
+import { Avatar, Header, DefaultModal } from './../../../components';
+import { ShapesSize, GenericModalInterface } from '../../../interfaces';
+import { store } from '../../../store';
 import { updateSettingsModal } from '../../../actions';
-import { ShapesSize, ProfileActionsType } from '../../../interfaces';
-import { withRouter, RouteComponentProps } from 'react-router';
 
-interface DispatchProps {
-  updateSettingsModal: (
-    content: React.ReactNode,
-    className?: string,
-    height?: number,
-    onClick?: Function
-  ) => void;
-}
-
-interface Props extends DispatchProps, RouteComponentProps {
+interface Props {
   isFriend?: boolean;
   showFilter?: boolean;
 }
 
-class HeaderProfileComponent extends React.Component<Props> {
+export default class HeaderProfileComponent extends React.Component<Props> {
   public static defaultProps = {
     isFriend: false,
     showFilter: false
   };
-  profileActions: ProfileActionsType[] = [
+  profileActions: GenericModalInterface[] = [
     {
-      text: 'View my public profile',
-      onClick: (): void => this.props.history.push('/me')
+      name: 'View my public profile',
+      url: '/me'
     },
     {
-      text: 'Edit my public profile',
-      onClick: (): void => this.props.history.push('/settings')
+      name: 'Edit my public profile',
+      url: '/settings'
     },
     {
-      text: 'Improve my public profile',
-      onClick: (): void => console.log('Play clicked')
+      name: 'Improve my public profile'
     }
   ];
 
-  hideMenuListModal = (): void => this.props.updateSettingsModal(null);
+  hideMenuListModal = (): void => store.dispatch(updateSettingsModal(false));
 
   showMenuListModal = (): void => {
-    this.props.updateSettingsModal(
-      <MenuProfileList
-        title={'Public profile'}
-        onClick={this.hideMenuListModal}
-        background={'background-white-base'}
-        data={this.profileActions}
-      />,
-      'background-white-base'
+    store.dispatch(
+      updateSettingsModal(
+        <DefaultModal
+          title="Public Profile"
+          onClick={this.hideMenuListModal}
+          data={this.profileActions}
+        />
+      )
     );
   };
 
@@ -66,10 +55,8 @@ class HeaderProfileComponent extends React.Component<Props> {
           rightConnectedButton={isFriend && showFilter === false}
           rightFanFeedButton={isFriend && showFilter === false}
           rightFilterButton={isFriend && showFilter === true}
+          rightActionHref={'/settings'}
           notificationsNumber={10}
-          rightSettingsOnClick={(): void =>
-            this.props.history.push('/settings')
-          }
         />
 
         <div className="profile-center">
@@ -81,7 +68,3 @@ class HeaderProfileComponent extends React.Component<Props> {
     );
   }
 }
-
-export default withRouter(
-  connect(null, { updateSettingsModal })(HeaderProfileComponent)
-);

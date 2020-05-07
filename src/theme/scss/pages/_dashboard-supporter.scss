@@ -1,0 +1,28 @@
+.dashboard-supporter-page{
+    ion-header{
+        height: 395px;
+        background-image: url('https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/dashboard/supporters-graph.png'), linear-gradient(180deg, #071553,#0e0819);
+        background-size: contain;
+        background-position-y: bottom;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .content{
+        margin-bottom: 100px;
+        padding-bottom: 100px;
+        ion-item{
+            span{
+                color: #7c8188;
+                &.dark{
+                    color: black;
+                }
+            }
+        }
+    }
+    .nav-item{
+        width: 50%;
+        &.active {
+            border-bottom: 4px solid #5e7fb1;    
+        }
+    }
+}

@@ -2,8 +2,6 @@ import { RouteInterface } from './../interfaces';
 import {
   ArtistPage,
   ProfilePage,
-  DashboardPage,
-  DashboardFilterPage,
   ArtistSupportPage,
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage,
@@ -42,7 +40,10 @@ import {
   CommunityArtistFilterPage,
   ViewAllStationsPage,
   ChatPage,
-  DashboardAnalyticDetailPage
+  DashboardFilterPage,
+  DashboardAnalyticDetailPage,
+  DashboardSupporterPage,
+  DashboardPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -289,6 +290,11 @@ export const routes: RouteInterface[] = [
     path: '/feed/:id',
     id: 'feedFan',
     component: FeedPage
+  },
+  {
+    path: '/dashboard/supporter',
+    id: 'supporterDashboard',
+    component: DashboardSupporterPage
   },
   {
     path: '/community/share',

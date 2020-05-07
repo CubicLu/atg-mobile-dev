@@ -2,6 +2,7 @@ import { RouteInterface } from './../interfaces';
 import {
   ArtistPage,
   ProfilePage,
+  DashboardPage,
   ArtistSupportPage,
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage,
@@ -44,7 +45,7 @@ import {
   DashboardFilterPage,
   DashboardAnalyticDetailPage,
   DashboardSupporterPage,
-  DashboardPage
+  ArtistGatewayPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -331,5 +332,10 @@ export const routes: RouteInterface[] = [
     path: '/radio/view-all',
     id: 'viewAllStations',
     component: ViewAllStationsPage
+  },
+  {
+    path: '/artist/gateway/:artistId',
+    id: 'ArtistGatewayPage',
+    component: ArtistGatewayPage
   }
 ];

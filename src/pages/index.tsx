@@ -42,6 +42,7 @@ import ArtistVideoDetailPage from './artist/video-detail';
 import ArtistDeepDiveLyricsPage from './artist/deep-dive/lyrics';
 import ArtistDeepDivePedigreePage from './artist/deep-dive/pedigree';
 import ArtistDeepDiveCataloguePage from './artist/deep-dive/catalogue';
+import ArtistGatewayPage from './artist/gateway';
 import TrackListPage from './artist/track-list';
 import ThankYouPage from './thank-you';
 
@@ -136,6 +137,7 @@ export {
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
+  ArtistGatewayPage,
   DashboardPage,
   DashboardMenuPage,
   DashboardFilterPage,

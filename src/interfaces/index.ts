@@ -22,6 +22,7 @@ export enum ActionType {
   GET_ARTIST_API = 'GET_ARTIST_API',
   GET_ARTIST_API_FAILURE = 'GET_ARTIST_API_FAILURE',
   GET_ARTIST_API_SUCCESS = 'GET_ARTIST_API_SUCCESS',
+  CLEAR_CURRENT_ARTIST = 'CLEAR_CURRENT_ARTIST',
   GET_ARTIST_EVENT_API = 'GET_ARTIST_EVENT_API',
   GET_ARTIST_EVENT_API_FAILURE = 'GET_ARTIST_EVENT_API_FAILURE',
   GET_ARTIST_EVENT_API_SUCCESS = 'GET_ARTIST_EVENT_API_SUCCESS',
@@ -150,6 +151,7 @@ export interface ArtistCoverInterface {
   biography: string | undefined;
   deepDive: string | undefined;
   dashboard?: string;
+  videoCover?: string;
 }
 
 export interface DailyDripType {

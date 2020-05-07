@@ -24,6 +24,7 @@ class ArrowRightIcon extends React.Component<Props> {
         width={this.props.width}
         height={this.props.height}
         viewBox="0 0 12 20"
+        preserveAspectRatio="xMidYMin"
       >
         <path
           overflow="visible"

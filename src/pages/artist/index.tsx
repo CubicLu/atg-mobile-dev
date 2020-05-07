@@ -6,7 +6,7 @@ import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface } from '../../interfaces';
-import { getArtistAPI } from './../../actions';
+import { clearCurrentArtist, getArtistAPI } from './../../actions';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -15,6 +15,7 @@ interface StateProps {
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
+  clearCurrentArtist: () => void;
 }
 interface MatchParams {
   id: string;
@@ -213,6 +214,12 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     this.forceUpdate();
   };
 
+  handleBackClick = (): void => {
+    const { clearCurrentArtist, history } = this.props;
+    clearCurrentArtist();
+    history.replace('/profile');
+  };
+
   render(): React.ReactNode {
     if (!this.props.currentArtist) {
       return <IonPage style={artistBackground(null)} id="artist-page" />;
@@ -226,7 +233,9 @@ class ArtistPage extends React.PureComponent<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackHref="/profile" routerDirection="root" />
+        <Header //leftBackHref={'/profile'}
+          leftBackOnClick={this.handleBackClick}
+        />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
@@ -273,4 +282,6 @@ const mapStateToProps = ({
   return { currentArtist, artistTabs, loading };
 };
 
-export default connect(mapStateToProps, { getArtistAPI })(ArtistPage);
+export default connect(mapStateToProps, { getArtistAPI, clearCurrentArtist })(
+  ArtistPage
+);

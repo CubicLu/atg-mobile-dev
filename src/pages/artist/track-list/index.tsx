@@ -18,13 +18,14 @@ import {
   Header
 } from '../../../components';
 import AddTrackIcon from '../../../components/icon/add-track';
-import { artistBackground, shadowTitle } from '../../../utils';
+import { artistBackground } from '../../../utils';
 import {
   guitarPlaylist,
   popPlaylist,
   bluesPlaylist,
   rivalSonsPlaylist
 } from '../../../reducers/playerReducer';
+import BottomTilesComponent from '../../../components/bottom-tiles';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -103,37 +104,6 @@ class TrackListPage extends React.Component<Props> {
       )
     );
   }
-
-  renderTiles(): React.ReactNode {
-    return (
-      <div className="bottom-tiles fluid">
-        <div
-          className="tile"
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/deep-dive-background.png'
-          )}
-        >
-          <span className="f6">Deep Dive</span>
-        </div>
-        <div
-          className="tile"
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-          )}
-        >
-          <span className="f6">Community</span>
-        </div>
-        <div
-          className="tile"
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-          )}
-        >
-          <span className="f6">Artist Home</span>
-        </div>
-      </div>
-    );
-  }
   renderTracks(): React.ReactNode {
     const { playing, song } = this.props.player;
     const songId = (playing && song?.id) || -1;
@@ -196,7 +166,7 @@ class TrackListPage extends React.Component<Props> {
             {this.renderCover()}
             {this.renderTracks()}
           </div>
-          {this.props.currentArtist && this.renderTiles()}
+          <BottomTilesComponent tiles={this.props.currentArtist?.tiles} />
         </IonContent>
       </IonPage>
     );

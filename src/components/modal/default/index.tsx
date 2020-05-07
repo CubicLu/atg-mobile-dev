@@ -12,6 +12,7 @@ interface Props {
   title: string;
   subtitle?: string;
   data: GenericModalInterface[];
+  content?: React.ReactNode;
   overrideClick?: boolean;
 }
 export default class DefaultModalComponent extends React.Component<Props> {
@@ -39,6 +40,7 @@ export default class DefaultModalComponent extends React.Component<Props> {
         </div>
 
         <div className="modal-content">
+          {this.props.content}
           <ul>
             {this.props.data?.map(
               (data, i): React.ReactNode => (

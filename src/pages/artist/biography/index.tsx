@@ -11,12 +11,14 @@ import {
 } from '@ionic/react';
 import {
   Header,
-  BiographyList,
   ButtonIcon,
   StarIcon,
   ShareIcon,
   ArrowRightIcon,
   HeaderOverlay,
+  LockedIcon,
+  DefaultModal,
+  CardImage,
   PopUpModal,
   PremiumFeaturesModalContent
 } from './../../../components';
@@ -32,9 +34,11 @@ import {
   ModalSlideInterface,
   BiographyInterface,
   AlbumInterface,
-  Colors
+  Colors,
+  ShapesSize
 } from '../../../interfaces';
 import { validateScrollHeader } from '../../../utils';
+import BottomTilesComponent from '../../../components/bottom-tiles';
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -67,23 +71,17 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   private content?: React.RefObject<HTMLIonContentElement> = React.createRef();
   private slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
   private titleRef: React.RefObject<CreateAnimation> = React.createRef();
-
   constructor(props: Props) {
     super(props);
     this.state = { currentPage: 0, blur: false };
   }
-
   UNSAFE_componentWillReceiveProps(next: Props): void {
     if (next.loading) return;
     if (this.props.loading) return;
-    if (
-      this.props.currentArtist == null ||
-      this.props.currentArtist.username !== next.match.params.id
-    ) {
+    if (this.props.currentArtist?.username !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
     }
   }
-
   handleScroll(event: CustomEvent<any>): void {
     const currentScroll = validateScrollHeader(event, 180, 180);
     if (!currentScroll.validScroll) return;
@@ -93,64 +91,47 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     //used only in biography to fadeout BIOGRAPHY TITLE
     this.titleRef.current!.animation.direction(currentScroll.animation!).play();
   }
+  openChapterModal(): void {
+    this.props.updateSettingsModal(
+      <DefaultModal
+        onClick={(): void => {}}
+        title="Biography"
+        data={[]}
+        content={
+          <ul>
+            {this.props.currentArtist?.biography?.map(
+              (data, i): React.ReactNode => (
+                <li
+                  key={i}
+                  className="f6 dark"
+                  onClick={(): void => this.changeChapter(i)}
+                >
+                  {data.name}
 
+                  {data.accessLevel && data.accessLevel > 0 ? (
+                    <ButtonIcon
+                      icon={<LockedIcon color={'#000'} />}
+                      color={Colors.transparent}
+                    />
+                  ) : (
+                    <ButtonIcon
+                      icon={<ArrowRightIcon color={'#000'} />}
+                      color={Colors.transparent}
+                    />
+                  )}
+                </li>
+              )
+            )}
+          </ul>
+        }
+      />
+    );
+  }
   changeChapter(chapter?: number): void {
     const slides = this.slides?.current;
     if (!slides) return;
-    chapter ? slides.slideTo(chapter) : slides.slideNext();
+    isNaN(chapter!) ? slides.slideNext() : slides.slideTo(chapter!);
     this.props.updateSettingsModal(null);
-  }
-
-  chapterFooter(): React.ReactNode {
-    return (
-      <div className="row footer p-4 fluid mt-2 mb-4">
-        <div className="footer-buttons align-start">
-          <ButtonIcon
-            color={Colors.orange}
-            icon={<StarIcon width={24} height={24} />}
-          />
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <ButtonIcon
-            color={Colors.green}
-            icon={<ShareIcon width={22} height={20} />}
-          />
-        </div>
-        <div className="align-end" onClick={(): void => this.changeChapter()}>
-          <span className="f3 l15 dark">NEXT&nbsp;</span>
-          <ArrowRightIcon width={18} height={18} color={'#000'} />
-        </div>
-      </div>
-    );
-  }
-
-  articleAlbum(items: AlbumInterface[]): React.ReactNode {
-    return (
-      <div className="row no-margin">
-        {items.map((item: AlbumInterface, i: number): any => (
-          <div className="col s6 no-padding" key={i}>
-            <IonImg style={{ border: '4px solid #fff' }} src={item.image} />
-          </div>
-        ))}
-      </div>
-    );
-  }
-  readMore(activeBio: BiographyInterface): React.ReactNode {
-    return (
-      <div className="row">
-        <div className="readmore h00 dark mb-2">
-          {activeBio.readMore?.title}
-        </div>
-
-        {activeBio.readMore?.items.map(
-          (item: AlbumInterface, i: number): any => (
-            <div className="col s4 album no-padding center-align" key={i}>
-              <IonImg src={item.image} />
-              <span className="f6 dark read-more-label">{item.name}</span>
-            </div>
-          )
-        )}
-      </div>
-    );
   }
 
   handlePopUp = (modalType: string | null): void =>
@@ -169,31 +150,16 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     if (!this.props.currentArtist) return <IonPage />;
     const {
       currentArtist: artist,
-      currentArtist: { biography },
-      updateSettingsModal,
-      popUpModal
+      currentArtist: { biography }
     } = this.props;
     if (!biography) return <IonPage />;
-
-    const toggleAction = (): void =>
-      updateSettingsModal(
-        <BiographyList
-          items={artist.biography}
-          name={artist?.name}
-          title={'Biography'}
-          username={artist.username}
-          onClick={(a: number): any => this.changeChapter(a)}
-          handlePremiumModal={this.handlePopUp}
-        />,
-        'background-white-base'
-      );
-    const activeBio = biography[this.state.currentPage];
+    const bio = biography[this.state.currentPage];
 
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
         <Header
           rightActionButton={true}
-          rightActionOnClick={toggleAction}
+          rightActionOnClick={(): void => this.openChapterModal()}
           centerContent={
             <CreateAnimation
               duration={500}
@@ -204,12 +170,15 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                 toValue: '#00000000'
               }}
             >
-              <span className="baskerville h0 l1">{activeBio.title}</span>
+              <span className={`baskerville h0 text-${bio.titleColor} l08`}>
+                {bio.title}
+              </span>
             </CreateAnimation>
           }
         />
         <HeaderOverlay
           ref={this.headerRef}
+          className={`biography top-${bio.headerColor}`}
           content={
             <div className="m-4">
               <span className="text-18 l1">{artist.name}</span>
@@ -217,7 +186,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               <span className="text-14 l1">Biography</span>
             </div>
           }
-          className="biography"
         />
 
         <IonContent
@@ -230,92 +198,198 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           <IonSlides
             ref={this.slides}
             mode="ios"
-            scrollbar={true}
-            options={{ autoHeight: false }}
+            scrollbar={false}
+            options={{ autoHeight: true }}
             onIonSlideWillChange={(): Promise<void> | undefined =>
               this.content?.current?.scrollToTop(700)
             }
           >
-            {biography.map((bio: BiographyInterface): any => (
-              <IonSlide key={bio.chapter} className={bio.template}>
-                <div
-                  className={`chapter-zero ${bio.template}`}
-                  style={{
-                    backgroundImage: `url(${bio.cover}), linear-gradient(#231441, #080709)`,
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                  }}
-                >
-                  <div className="cover-feature">
-                    <h1 className="feature">
-                      {bio.name}
-                      <p className="read">Read&nbsp;</p>
-                    </h1>
-                    <h2 className="sub f4">{bio.subtitle}</h2>
-                  </div>
-                </div>
-
-                <div className="chapter left-align">
-                  {bio.nameHeadline && (
-                    <div className="p-3 mt-2 mb-0 f0 bold dark name-headline">
-                      {bio.nameHeadline}
-                    </div>
-                  )}
-
-                  <div className="m-3 mb-1 headline h000">{bio.headline}</div>
-
-                  <div className="mx-3 baskerville italic h4 dark">
-                    by {bio.byline}
-                  </div>
-
-                  {bio.skyline && (
-                    <div className="sky">
-                      <IonImg className="sky" src={bio.skyline} />
-                    </div>
-                  )}
-
-                  <div className="p-3 mb-2 h3 baskerville left-align article l15">
-                    {bio.leadParagraph === '.... details'
-                      ? this.victoria
-                      : bio.leadParagraph}
-                  </div>
-
-                  {bio.items && (
-                    <div className="p-3">{this.articleAlbum(bio.items)}</div>
-                  )}
-
-                  {bio.readMore && (
-                    <div className="p-3">{this.readMore(bio)}</div>
-                  )}
-
-                  {this.chapterFooter()}
-                </div>
+            {biography.map((b: BiographyInterface): any => (
+              <IonSlide
+                key={b.chapter}
+                style={{ display: 'block' }}
+                className={b.template}
+              >
+                {this.coverPage(b)}
+                {this.headline(b)}
+                {this.gallery(b.items)}
+                {this.readMore(b)}
+                {this.bandMembers()}
+                {this.bioFooter()}
+                <BottomTilesComponent tiles={artist.tiles} />
               </IonSlide>
             ))}
           </IonSlides>
-          {popUpModal && popUpModal === 'premiumFeatureModal' && (
-            <PopUpModal header={'PREMIUM FEATURES'}>
-              <PremiumFeaturesModalContent
-                title={`${artist.name} Radio`}
-                description={
-                  <>
-                    You must be support <span>{artist.name}</span> in order to
-                    listen!
-                  </>
-                }
-                artistAvatar={artist?.cover.event}
-                onDoneClick={(): void => this.handlePopUp(null)}
-                onSuccessClick={this.transferToSupportPage}
-              />
-            </PopUpModal>
-          )}
         </IonContent>
       </IonPage>
     );
   }
+  coverPage(bio: BiographyInterface): React.ReactNode {
+    return (
+      <div
+        className={`page-cover ${bio.template}`}
+        style={{
+          backgroundImage: `url(${bio.cover}), linear-gradient(#231441, #080709)`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {bio.name && (
+          <div className="cover-feature">
+            <h1 className={`name-feature text-${bio.featureColor}`}>
+              {bio.name}
+            </h1>
+
+            <p className="read mt-2 f4 my-auto right-align">
+              Read&nbsp;
+              <ArrowRightIcon width={10} height={14} stroke={3} />
+            </p>
+            <h2 className="sub l15 f4">{bio.subtitle}</h2>
+          </div>
+        )}
+      </div>
+    );
+  }
+  headline(bio: BiographyInterface): React.ReactNode {
+    return (
+      <div className="left-align">
+        {bio.nameHeadline && (
+          <div className={`p-3 mt-2 mb-0 f0 bold text-${bio.headlineColor}`}>
+            {bio.nameHeadline}
+          </div>
+        )}
+
+        {bio.skyline && bio.skylineBefore && (
+          <IonImg className="sky-image-before" src={bio.skyline} />
+        )}
+
+        <div className={'p-3 mb-1 headline h000 text-' + bio.headlineColor}>
+          {bio.headline}
+        </div>
+
+        <div className={`px-3 baskerville italic h4 text-${bio.textColor}`}>
+          by {bio.byline}
+        </div>
+
+        {bio.skyline && !bio.skylineBefore && (
+          <IonImg className="mt-2 sky-image-after" src={bio.skyline} />
+        )}
+
+        <div className={`p-3 h3 baskerville text l15 text-${bio.textColor}`}>
+          {bio.leadParagraph === '.... details'
+            ? this.victoria
+            : bio.leadParagraph}
+        </div>
+      </div>
+    );
+  }
+  gallery(items?: AlbumInterface[]): React.ReactNode {
+    if (!items) return;
+    return (
+      <div
+        className="p-3 row no-margin"
+        style={{ height: 'auto', minHeight: 500 }}
+      >
+        {items.map((item: AlbumInterface, i: number): any => (
+          <div className={`no-padding col s${item.cols || 4}`} key={i}>
+            <IonImg style={{ border: '4px solid #fff' }} src={item.image} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  readMore(bio: BiographyInterface): React.ReactNode {
+    if (!bio.readMore) return null;
+    return (
+      <div className="p-3">
+        <div className="row">
+          <div className="readmore h00 dark mb-2">{bio.readMore?.title}</div>
+
+          {bio.readMore?.items.map((item: AlbumInterface, i: number): any => (
+            <div
+              className={`album no-padding center-align col s${item.cols || 4}`}
+              key={i}
+            >
+              <IonImg src={item.image} />
+              <span className="f6 dark read-more-label">{item.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+  bandMembers(): React.ReactNode {
+    if (!this.props.currentArtist?.bandMembers) return null;
+    return (
+      <div className="py-3 px-2 h1 left-align text-black">
+        <span className="p-0 ml-1 letter-spacing-2">BAND MEMBER BIOS</span>
+        <div className="row">
+          {this.props.currentArtist.bandMembers.map(
+            (d, i): React.ReactNode => (
+              <CardImage
+                labelClassName="f6 dark"
+                image={d.image}
+                type={ShapesSize.rounded}
+                key={i}
+                diameter="100px"
+                routerLink={d.redirectUrl}
+                col={4}
+                label={d.name}
+              />
+            )
+          )}
+        </div>
+      </div>
+    );
+  }
+  bioFooter(): React.ReactNode {
+    return (
+      <div className="footer flex p-3 fluid mt-2 mb-2">
+        <ButtonIcon
+          color={Colors.orange}
+          icon={<StarIcon width={24} height={24} />}
+        />
+        <span className="mx-3" />
+        <ButtonIcon
+          color={Colors.green}
+          icon={<ShareIcon width={22} height={20} />}
+        />
+        <div
+          className="align-end flex"
+          onClick={(): void => this.changeChapter()}
+        >
+          <div className="f4 l15 dark my-auto mr-1">NEXT</div>
+          <div className="f0 l05 dark my-auto">&#10132;</div>
+        </div>
+      </div>
+    );
+  }
+  supportModal(): React.ReactNode {
+    const { popUpModal } = this.props;
+    const { currentArtist } = this.props;
+
+    return (
+      popUpModal === 'premiumFeatureModal' && (
+        <PopUpModal header={'PREMIUM FEATURES'}>
+          <PremiumFeaturesModalContent
+            title={`${currentArtist?.name} Radio`}
+            description={
+              <>
+                You must be support <span>{currentArtist?.name}</span> in order
+                to listen!
+              </>
+            }
+            artistAvatar={currentArtist?.cover.event}
+            onDoneClick={(): void => this.handlePopUp(null)}
+            onSuccessClick={this.transferToSupportPage}
+          />
+        </PopUpModal>
+      )
+    );
+  }
 
   private victoria = (
-    <div>
+    <div className="article">
       <p>
         <b>From: </b>Sacramento, California
       </p>
@@ -344,9 +418,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
         could signal a new direction for her upcoming ‘Jaguar’ EP, expected this
         year.
       </p>
-      <div>
-        <b>Key track:</b>‘Ass Like That’ (LMB)
-      </div>
     </div>
   );
 }

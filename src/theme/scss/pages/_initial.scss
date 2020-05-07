@@ -46,10 +46,10 @@
       font-size: pxToRem(18);
     }
 
-    input {
-      color: #757575;
-      letter-spacing: 0.2em;
-      text-align: center;
+    input{
+        color: #757575;
+        letter-spacing: 0.2em;
+        text-align: center;
     }
   }
   .center-align {
@@ -57,6 +57,9 @@
   }
   .left-align {
     text-align: left;
+  }
+  .right-align{
+      text-align: right;
   }
   .terms {
     color: #5e7fb1;

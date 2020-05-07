@@ -6,6 +6,7 @@ import { CloseIcon } from '../..';
 interface Props {
   image: string | undefined;
   className?: string;
+  labelClassName?: string;
   key: number;
   type: ShapesSize;
   col: number;
@@ -36,7 +37,8 @@ class CardImageComponent extends React.Component<Props> {
       diameter,
       selectAction,
       removeAction,
-      className
+      className,
+      labelClassName
     } = this.props;
     return (
       <div className={`col s${col}`}>
@@ -80,7 +82,10 @@ class CardImageComponent extends React.Component<Props> {
 
             {this.props.innerContent}
           </div>
-          <div className="mt-15 f5 center-align" style={{ width: diameter }}>
+          <div
+            className={`mt-15 f5 center-align ${labelClassName}`}
+            style={{ width: diameter }}
+          >
             {label}
           </div>
         </IonRouterLink>

@@ -29,6 +29,7 @@
     min-height: 165px;
     min-width: 165px;
     @include background-style();
+    background-repeat: repeat;
   }
   &.mixtapes {
     background: transparent;

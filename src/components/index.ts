@@ -20,10 +20,11 @@ import CardImageComponent from './card/image';
 import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
+import SliderMembersComponent from './slider/members';
+import BottomTilesComponent from './bottom-tiles';
 import CardEventComponent from './card/event';
 import ModalSlideComponent from './modal/slide';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
-import BiographyListComponent from './menu/biography-list';
 import ButtonPlanComponent from './button/plan';
 import ListItemComponent from './list/item';
 import SupportByComponent from './support-by';
@@ -113,11 +114,12 @@ export {
   CardImageComponent as CardImage,
   CardVideoComponent as CardVideo,
   SliderRadioComponent as SliderRadio,
+  SliderMembersComponent as SliderMembers,
   SliderEventsComponent as SliderEvents,
   CardEventComponent as CardEvent,
+  BottomTilesComponent as BottomTiles,
   ModalSlideComponent as ModalSlide,
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
-  BiographyListComponent as BiographyList,
   ButtonPlanComponent as ButtonPlan,
   ListItemComponent as ListItem,
   SupportByComponent as SupportBy,

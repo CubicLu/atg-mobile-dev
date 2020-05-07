@@ -116,6 +116,8 @@ export interface Photo {
 }
 
 export interface ArtistInterface {
+  bandMembers?: BandMemberInterface[];
+  tiles?: AlbumInterface[];
   cover: ArtistCoverInterface;
   name: string;
   avatar?: string;
@@ -482,6 +484,13 @@ export interface GalleryInterface {
 export interface AlbumInterface {
   image: string | undefined;
   name?: string;
+  cols?: number;
+  redirectUrl?: string;
+}
+
+export interface BandMemberInterface {
+  image: string;
+  name: string;
   redirectUrl?: string;
 }
 
@@ -491,20 +500,28 @@ export interface ReadMoreInterface {
 }
 
 export interface BiographyInterface {
+  chapter: number;
   template: string;
   title: string;
+  titleColor: string;
+  headerColor: string;
+
   name: string;
+  featureColor: string;
   subtitle?: string;
 
-  chapter: number;
   accessLevel: number;
 
   headline: string;
+  headlineColor: any;
+
   nameHeadline: string;
   cover: string;
   skyline?: string;
+  skylineBefore?: boolean;
   byline?: string;
   leadParagraph?: string;
+  textColor: string;
   items?: AlbumInterface[];
   readMore?: ReadMoreInterface;
 }

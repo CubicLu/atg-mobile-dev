@@ -36,7 +36,6 @@ class FeedPage extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const colors = ['#6A1EE4', '#1e053b'];
     const hist = this.props.history;
     return (
       <IonPage id="feed-page">

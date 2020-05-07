@@ -14,7 +14,6 @@ import {
   GestureConfig,
   Gesture,
   createAnimation,
-  IonRouterLink,
   IonSpinner
 } from '@ionic/react';
 import { connect } from 'react-redux';
@@ -48,8 +47,8 @@ import {
   RepeatButton
 } from '../icon/player';
 import VigilAnimator from '../../utils/animateFrame';
-import { shadowTitle } from '../../utils';
 import { store } from '../../store';
+import BottomTilesComponent from '../bottom-tiles';
 interface DispatchProps {
   togglePlayer: () => void;
   toggleShuffle: () => void;
@@ -289,7 +288,7 @@ class PlayerComponent extends React.Component<Props> {
               <div className="flex compass south center m-4 mt-2 mb-2">
                 {this.mainControls()}
               </div>
-              {this.bottomTiles()}
+              <BottomTilesComponent tiles={[]} />
             </div>
             {this.playerNavbar()}
           </React.Fragment>
@@ -388,47 +387,6 @@ class PlayerComponent extends React.Component<Props> {
       duration: 500,
       direction: 'normal'
     }).elasticPlay();
-  }
-  bottomTiles(): React.ReactNode {
-    return (
-      <div className="bottom-tiles fluid">
-        <div
-          className="tile"
-          onClick={(): void => this.togglePlayer()}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/happy.png'
-          )}
-        >
-          <span className="f6">Liner Notes</span>
-        </div>
-
-        <div
-          className="tile"
-          onClick={(): void => this.togglePlayer()}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-1/cover.png'
-          )}
-        >
-          <span className="f6">Community</span>
-        </div>
-        <div
-          className="tile"
-          onClick={(): void => this.togglePlayer()}
-          style={shadowTitle(
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'
-          )}
-        >
-          <IonRouterLink
-            routerLink="'/track/default/2/1'"
-            routerDirection="forward"
-          >
-            <div>
-              <span className="f6">Artist Home</span>
-            </div>
-          </IonRouterLink>
-        </div>
-      </div>
-    );
   }
 }
 interface StateProps {

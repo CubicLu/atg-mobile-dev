@@ -4,7 +4,6 @@ import {
   ProfilePage,
   DashboardPage,
   DashboardAnalyticPage,
-  DashboardFilterPage,
   ArtistSupportPage,
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage,
@@ -38,7 +37,9 @@ import {
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
-  FeedPage
+  DashboardFilterPage,
+  FeedPage,
+  ArtistGatewayPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -280,5 +281,10 @@ export const routes: RouteInterface[] = [
     path: '/feed/:id',
     id: 'feedFan',
     component: FeedPage
+  },
+  {
+    path: '/artist/gateway/:artistId',
+    id: 'ArtistGatewayPage',
+    component: ArtistGatewayPage
   }
 ];

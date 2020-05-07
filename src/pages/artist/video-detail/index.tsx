@@ -101,7 +101,9 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
         <div
           className="tile"
           onClick={(): void => {
-            this.props.history.push(`/artist/${this.props.match.params.id}`);
+            this.props.history.push(
+              `/artist/gateway/${this.props.match.params.id}`
+            );
           }}
           style={shadowTitle(
             'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/number_one.png'

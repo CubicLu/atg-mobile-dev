@@ -36,8 +36,8 @@ export default class MenuComponent extends React.Component<Props> {
             speed={2}
             width={400}
             viewBox="0 0 390 100"
-            backgroundColor="#54297966"
-            foregroundColor="#542979C1"
+            backgroundColor="#ffffff0d"
+            foregroundColor="#ffffff26"
           >
             <circle cy="30" cx="40" r="30" />
             <rect x="12" y="70" rx="3" ry="3" width="60" height="16" />

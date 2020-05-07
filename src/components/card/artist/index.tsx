@@ -32,8 +32,8 @@ export default class CardArtistComponent extends React.Component<Props> {
           <ContentLoader
             speed={2}
             viewBox="0 0 400 190"
-            backgroundColor="#54297966"
-            foregroundColor="#542979C1"
+            backgroundColor="#ffffff0d"
+            foregroundColor="#ffffff26"
           >
             <rect x="20" y="0" rx="8" ry="8" width="360" height="168" />
           </ContentLoader>

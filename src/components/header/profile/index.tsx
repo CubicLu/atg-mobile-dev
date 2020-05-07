@@ -122,8 +122,8 @@ export default class HeaderProfileComponent extends React.Component<Props> {
               width={400}
               height={160}
               viewBox="0 0 400 160"
-              backgroundColor="#54297966"
-              foregroundColor="#542979C1"
+              backgroundColor="#ffffff0d"
+              foregroundColor="#ffffff26"
             >
               <circle cx="30" cy="30" r="30" />
               <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />

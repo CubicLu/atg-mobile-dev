@@ -5,13 +5,14 @@ import { shadowTitle } from '../../utils';
 
 interface Props {
   tiles?: AlbumInterface[];
+  onClick?: () => void;
 }
 
 export default class BottomTilesComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    const { tiles } = this.props;
-    if (!tiles) return null;
-    if (tiles.length < 3) return null;
+    let { tiles, onClick } = this.props;
+    if (!tiles) tiles = this.default;
+    if (tiles.length < 3) tiles = this.default;
 
     return (
       <div className="bottom-tiles fluid">
@@ -22,7 +23,11 @@ export default class BottomTilesComponent extends React.Component<Props> {
               routerLink={tile.redirectUrl}
               routerDirection="forward"
             >
-              <div className="tile" style={shadowTitle(tile.image!)}>
+              <div
+                onClick={(): void => (onClick ? onClick() : undefined)}
+                className="tile"
+                style={shadowTitle(tile.image!)}
+              >
                 <div>
                   <span className="f6">{tile.name}</span>
                 </div>
@@ -33,4 +38,25 @@ export default class BottomTilesComponent extends React.Component<Props> {
       </div>
     );
   }
+
+  default = [
+    {
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/rival-sons/t4.jpg',
+      name: 'Deep Dive',
+      redirectUrl: '/artist/rival-sons/deep-dive'
+    },
+    {
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/rival-sons/t2.jpg',
+      name: 'Social',
+      redirectUrl: '/community/artist/rival-sons'
+    },
+    {
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/rival-sons/t3.jpg',
+      name: 'Artist Home',
+      redirectUrl: '/artist/rival-sons'
+    }
+  ];
 }

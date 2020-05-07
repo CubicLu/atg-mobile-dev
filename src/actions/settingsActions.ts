@@ -16,7 +16,7 @@ export const updateSettingsModal = (
 });
 
 export const updatePopUpModal = (
-  modalType: string | null
+  modalType: string | null = null
 ): Action<ModalTypeInterface> => ({
   type: ActionType.UPDATE_POPUP_MODAL,
   payload: { modalType }

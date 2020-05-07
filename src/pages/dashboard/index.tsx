@@ -87,7 +87,7 @@ class DashboardPage extends React.Component<Props> {
           }
           leftBackButton={true}
           rightActionButton={true}
-          rightActionHref="dashboard/filter"
+          rightActionHref="/dashboard/filter"
         />
         <Menu
           tabs={dashboardTabs}

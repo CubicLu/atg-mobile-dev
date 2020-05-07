@@ -288,7 +288,10 @@ class PlayerComponent extends React.Component<Props> {
               <div className="flex compass south center m-4 mt-2 mb-2">
                 {this.mainControls()}
               </div>
-              <BottomTilesComponent tiles={[]} />
+              <BottomTilesComponent
+                onClick={(): void => this.togglePlayer()}
+                tiles={[]}
+              />
             </div>
             {this.playerNavbar()}
           </React.Fragment>

@@ -43,8 +43,12 @@ import BottomTilesComponent from '../../../components/bottom-tiles';
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
-  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
-  updatePopUpModal: (modalType: string | null) => void;
+  updateSettingsModal: (
+    content: React.ReactNode,
+    className?: string,
+    height?: number
+  ) => void;
+  updatePopUpModal: (string: string | null) => void;
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -124,27 +128,50 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             )}
           </ul>
         }
-      />
+      />,
+      'background-white-base',
+      45
     );
   }
-  changeChapter(chapter?: number): void {
+  checkSupport(): void {
     const slides = this.slides?.current;
     if (!slides) return;
-    isNaN(chapter!) ? slides.slideNext() : slides.slideTo(chapter!);
+    if (!this.props.currentArtist!.biography!) return;
+    const slide = this.props.currentArtist!.biography![this.state.currentPage];
+    if (slide.accessLevel > 0) return this.toggleSupportModal();
+  }
+  changeChapter(specific?: number): void {
+    const slides = this.slides?.current;
+    if (!slides) return;
+    if (specific) {
+      const slide = this.props.currentArtist!.biography![specific];
+      if (slide.accessLevel > 0) return this.toggleSupportModal();
+      slides.slideTo(specific!);
+      this.props.updateSettingsModal(null);
+    } else {
+      let next = this.state.currentPage + 1;
+      const slide = this.props.currentArtist!.biography![next];
+      if (slide.accessLevel > 0) return this.toggleSupportModal();
+      console.log(slide.accessLevel);
+
+      slides.slideNext();
+      this.props.updateSettingsModal(null);
+    }
+  }
+
+  toggleSupportModal(): void {
+    this.props.updatePopUpModal('premiumFeatureModal');
     this.props.updateSettingsModal(null);
   }
 
-  handlePopUp = (modalType: string | null): void =>
-    this.props.updatePopUpModal(modalType);
-
-  transferToSupportPage = (): void => {
-    const { history, currentArtist, updateSettingsModal } = this.props;
+  transferToSupportPage(): void {
+    const { currentArtist, updateSettingsModal } = this.props;
     if (currentArtist && currentArtist.username) {
       updateSettingsModal(null, '');
-      this.handlePopUp(null);
-      history.push(`/artist/${currentArtist.username}/support`);
+      this.props.updatePopUpModal(null);
+      this.props.history.push(`/artist/${currentArtist.username}/support`);
     }
-  };
+  }
 
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <IonPage />;
@@ -200,6 +227,8 @@ class ArtistBiographyPage extends React.Component<Props, State> {
             mode="ios"
             scrollbar={false}
             options={{ autoHeight: true }}
+            onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
+            onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
             onIonSlideWillChange={(): Promise<void> | undefined =>
               this.content?.current?.scrollToTop(700)
             }
@@ -216,6 +245,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                 {this.readMore(b)}
                 {this.bandMembers()}
                 {this.bioFooter()}
+                {this.supportModal()}
                 <BottomTilesComponent tiles={artist.tiles} />
               </IonSlide>
             ))}
@@ -223,6 +253,16 @@ class ArtistBiographyPage extends React.Component<Props, State> {
         </IonContent>
       </IonPage>
     );
+  }
+  async updateSlide(updateIndex = true): Promise<void> {
+    if (!this.slides?.current) return;
+    if (updateIndex) {
+      const index = await this.slides.current.getActiveIndex();
+      this.setState({ currentPage: index });
+    }
+    setTimeout((): void => {
+      this.slides?.current?.updateAutoHeight();
+    }, 1500);
   }
   coverPage(bio: BiographyInterface): React.ReactNode {
     return (
@@ -380,8 +420,8 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               </>
             }
             artistAvatar={currentArtist?.cover.event}
-            onDoneClick={(): void => this.handlePopUp(null)}
-            onSuccessClick={this.transferToSupportPage}
+            onDoneClick={(): void => this.props.updatePopUpModal(null)}
+            onSuccessClick={(): void => this.transferToSupportPage()}
           />
         </PopUpModal>
       )

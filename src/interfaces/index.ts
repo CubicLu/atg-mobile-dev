@@ -368,7 +368,7 @@ export interface FanFeedInterface extends UserInterface {}
 export interface PostInterface {
   username: string;
   avatar: string;
-  image: string;
+  image: string | string[];
   commentsQuantity: number;
   comments: CommentInterface[];
 }

@@ -3,6 +3,8 @@ import {
   ArtistPage,
   ProfilePage,
   DashboardPage,
+  DashboardAnalyticPage,
+  DashboardFilterPage,
   ArtistSupportPage,
   ArtistGalleryPhotoPage,
   ArtistGalleryGridPage,
@@ -36,7 +38,6 @@ import {
   VaultFilterGenrePage,
   VaultFilterEraPage,
   VaultFilterSubEraPage,
-  DashboardFilterPage,
   FeedPage,
   CommunitySharePage,
   CommunityArtistFilterPage,
@@ -273,6 +274,11 @@ export const routes: RouteInterface[] = [
     path: '/dashboard',
     id: 'artistDashboard',
     component: DashboardPage
+  },
+  {
+    path: '/dashboard/analytics',
+    id: 'analyticsDashboard',
+    component: DashboardAnalyticPage
   },
   {
     path: '/dashboard/filter',

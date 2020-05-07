@@ -1,5 +1,5 @@
-import { UserInterface } from "../";
-import { GradientColorsInterface } from "../@commons";
+import { UserInterface } from '../';
+import { GradientColorsInterface } from '../@commons';
 
 export interface CommunityDailyDripType {
   id: string;

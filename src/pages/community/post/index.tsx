@@ -5,10 +5,7 @@ import {
   CommentCoverInterface,
   PostInterface
 } from '../../../interfaces';
-import {
-  Sizes,
-  Colors
-} from '../../../types';
+import { Sizes, Colors } from '../../../types';
 import { IonPage, IonContent } from '@ionic/react';
 import {
   Header,

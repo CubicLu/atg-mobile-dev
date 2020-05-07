@@ -7,9 +7,7 @@ import {
   MediaType,
   PlayerActionType
 } from '../../../interfaces';
-import {
-  MediaStatusCallback
-} from '../../../types';
+import { MediaStatusCallback } from '../../../types';
 import {
   setStartingPlayer,
   toggleNextSong,

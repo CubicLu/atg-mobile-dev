@@ -1,8 +1,4 @@
-import { 
-  AuthActionType, 
-  ActionProperty,
-  Action
-} from './../../interfaces';
+import { AuthActionType, ActionProperty, Action } from './../../interfaces';
 
 export const updateAuthProperty = (
   property: string,

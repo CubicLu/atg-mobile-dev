@@ -35,7 +35,7 @@ function* getFriendsAPI(): any {
   }
 }
 export function* getFriends(): any {
-  yield takeEvery(FriendActionType.GET_ALL_API, getFriendsAPI);
+  yield takeEvery(FriendActionType.GET_FRIENDS_ALL_API, getFriendsAPI);
 }
 
 export const getCurrentRequest = async (): Promise<FriendInterface[]> =>
@@ -44,16 +44,18 @@ export const getCurrentRequest = async (): Promise<FriendInterface[]> =>
 function* getCurrentFriendAPI({ payload: { friendId } }: any): ReturnType<any> {
   try {
     const request = yield call(getFriendsRequest);
-    yield put(getCurrentFriendAPISuccess({ ...request, data: friends[friendId] }));
+    yield put(
+      getCurrentFriendAPISuccess({ ...request, data: friends[friendId] })
+    );
   } catch (error) {
     yield put(getCurrentFriendAPIFailure(error));
   }
 }
 
-export function* getArtist(): any {
-  yield takeEvery(FriendActionType.GET_BY_ID_API, getCurrentFriendAPI);
+export function* getCurrentFriend(): any {
+  yield takeEvery(FriendActionType.GET_FRIEND_BY_ID_API, getCurrentFriendAPI);
 }
 
 export default function* rootSaga(): any {
-  yield all([fork(getFriends), fork(getArtist)]);
+  yield all([fork(getFriends), fork(getCurrentFriend)]);
 }

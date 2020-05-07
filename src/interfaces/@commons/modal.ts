@@ -1,4 +1,4 @@
-import { ModalType } from "../../types";
+import { ModalType } from '../../types';
 
 export interface ModalSlideInterface {
   modalType?: ModalType;

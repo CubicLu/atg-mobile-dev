@@ -8,14 +8,8 @@ import {
 } from '../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
-import {
-  PostInterface,
-  StorieInterface
-} from '../../interfaces';
-import {
-  ShapesSize,
-  Colors
-} from '../../types';
+import { PostInterface, StorieInterface } from '../../interfaces';
+import { ShapesSize, Colors } from '../../types';
 import { RouteChildrenProps } from 'react-router';
 
 interface StateProps {

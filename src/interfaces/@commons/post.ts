@@ -1,9 +1,9 @@
-import { CommentInterface } from "./../";
+import { CommentInterface } from './../';
 
 export interface PostInterface {
-    username: string;
-    avatar: string;
-    image: string;
-    commentsQuantity: number;
-    comments: CommentInterface[];
-  }
+  username: string;
+  avatar: string;
+  image: string;
+  commentsQuantity: number;
+  comments: CommentInterface[];
+}

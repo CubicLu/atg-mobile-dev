@@ -1,4 +1,4 @@
 export enum GradientDirection {
-    vertical = 'vertical',
-    horizontal = 'horizontal'
-  }
+  vertical = 'vertical',
+  horizontal = 'horizontal'
+}

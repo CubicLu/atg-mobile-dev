@@ -1,11 +1,10 @@
-import { UserInterface } from './../'
+import { UserInterface } from './../';
 export interface CommentInterface {
-    text?: string;
-    user: UserInterface;
-    replies?: CommentInterface[] | null;
-  }
+  text?: string;
+  user: UserInterface;
+  replies?: CommentInterface[] | null;
+}
 
-  export interface CommentCoverInterface {
-    url: string;
-  }
-  
+export interface CommentCoverInterface {
+  url: string;
+}

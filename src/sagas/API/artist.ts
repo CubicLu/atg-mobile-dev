@@ -1,6 +1,10 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { ArtistActionType, ArtistInterface } from '../../interfaces';
+import {
+  ArtistActionType,
+  ArtistInterface,
+  APIResponseInterface
+} from '../../interfaces';
 import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,
@@ -17,7 +21,9 @@ export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
 
 function* getArtistsAPI(): any {
   try {
-    const request = yield call(getArtistsRequest);
+    const request: APIResponseInterface<ArtistInterface[]> = yield call(
+      getArtistsRequest
+    );
     yield put(getArtistsAPISuccess(request));
   } catch (error) {
     yield put(getArtistsAPIFailure(error));

@@ -1,8 +1,8 @@
-import { PlaylistInterface } from "./../";
+import { PlaylistInterface } from './../';
 
 export interface MixtapeInterface {
-    name: string;
-    quantity: number;
-    cover: string | undefined;
-    playlist?: PlaylistInterface;
-  }
+  name: string;
+  quantity: number;
+  cover: string | undefined;
+  playlist?: PlaylistInterface;
+}

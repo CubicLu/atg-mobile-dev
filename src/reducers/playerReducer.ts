@@ -622,7 +622,9 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
     };
   },
 
-  [PlayerActionType.FAVORITE_SONG](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.FAVORITE_SONG](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     if (!state.song) {
       return state;
     }
@@ -756,7 +758,9 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: PlayerActionType.TOGGLE_REPEAT
     };
   },
-  [PlayerActionType.TOGGLE_PLAYER](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.TOGGLE_PLAYER](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     return { ...state, expanded: !state.expanded, playerAction: undefined };
   },
   [PlayerActionType.PREV_SONG](state: PlayerReducerType): PlayerReducerType {

@@ -17,7 +17,10 @@ import {
   DotsThreeIcon
 } from '../../../components';
 import { ShapesSize } from '../../../types';
-import { CommunityDailyDripType, CommunityDailyDripItem } from '../../../interfaces';
+import {
+  CommunityDailyDripType,
+  CommunityDailyDripItem
+} from '../../../interfaces';
 import { RouteChildrenProps } from 'react-router';
 import { hideTabs } from '../../../utils';
 interface MatchParams {
@@ -199,18 +202,20 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
                   onIonSlideReachEnd={(): boolean => (this.last = true)}
                   onIonSlideTap={(e: CustomEvent): void => this.click(e.detail)}
                 >
-                  {slides?.map((slide: CommunityDailyDripItem, i: number): any => (
-                    <IonSlide
-                      key={i}
-                      style={{
-                        backgroundImage: `url(${slide.href})`,
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        width: 'auto',
-                        height: '100vh'
-                      }}
-                    />
-                  ))}
+                  {slides?.map(
+                    (slide: CommunityDailyDripItem, i: number): any => (
+                      <IonSlide
+                        key={i}
+                        style={{
+                          backgroundImage: `url(${slide.href})`,
+                          backgroundSize: 'cover',
+                          backgroundRepeat: 'no-repeat',
+                          width: 'auto',
+                          height: '100vh'
+                        }}
+                      />
+                    )
+                  )}
                 </IonSlides>
               )}
             </React.Fragment>

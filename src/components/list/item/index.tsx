@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  ArtistInterface
-} from '../../../interfaces';
-import {
-  Colors,
-  ShapesSize,
-  Sizes,
-  GradientDirection
-} from '../../../types';
+import { ArtistInterface } from '../../../interfaces';
+import { Colors, ShapesSize, Sizes, GradientDirection } from '../../../types';
 import {
   ButtonIcon,
   CloseIcon,

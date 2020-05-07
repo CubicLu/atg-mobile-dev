@@ -1,4 +1,9 @@
-import { Action, AuthActionType, AuthReducerType, ActionProperty } from './../../interfaces';
+import {
+  Action,
+  AuthActionType,
+  AuthReducerType,
+  ActionProperty
+} from './../../interfaces';
 import createReducer from './../createReducer';
 
 const defaultState: AuthReducerType = {

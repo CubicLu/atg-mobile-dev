@@ -13,8 +13,8 @@ const defaultState: NavbarReducerType = {
 export const navbarReducer = createReducer<NavbarReducerType>(defaultState, {
   [NavbarActionType.TOGGLE_TWOACTIONS](
     state: NavbarReducerType,
-    action: Action<any>
-  ) {
+    action: Action<NavbarActionType.TOGGLE_TWOACTIONS, any>
+  ): NavbarReducerType {
     return {
       ...state,
       navbarTwoButtons: { ...action.payload }
@@ -23,8 +23,8 @@ export const navbarReducer = createReducer<NavbarReducerType>(defaultState, {
 
   [NavbarActionType.UPDATE_TWOACTIONS](
     state: NavbarReducerType,
-    action: Action<any>
-  ) {
+    action: Action<NavbarActionType.UPDATE_TWOACTIONS, any>
+  ): NavbarReducerType {
     return {
       ...state,
       navbarTwoButtons: {

@@ -1,4 +1,4 @@
-import {  SettingsActionType, MenuInterface } from '../../interfaces';
+import { SettingsActionType, MenuInterface } from '../../interfaces';
 import { ArtistFeaturesPage, ArtistDiscographyPage } from '../../pages';
 import { store } from '../../store';
 import React from 'react';

@@ -24,10 +24,7 @@ import {
   PlaylistInterface,
   SongInterface
 } from '../../../interfaces';
-import {
-  ShapesSize,
-  Colors
-} from '../../../types';
+import { ShapesSize, Colors } from '../../../types';
 import { setPlaylist } from './../../../actions';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';

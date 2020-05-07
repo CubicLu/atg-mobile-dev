@@ -1,4 +1,4 @@
-import { NavbarTwoButtons } from "../";
+import { NavbarTwoButtons } from '../';
 
 export interface NavbarReducerType {
   navbarTwoButtons: NavbarTwoButtons;

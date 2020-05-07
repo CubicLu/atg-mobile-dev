@@ -1,4 +1,9 @@
-import { GradientColorsInterface, EventInterface, RadioInterface, VideoInterface } from "./../";
+import {
+  GradientColorsInterface,
+  EventInterface,
+  RadioInterface,
+  VideoInterface
+} from './../';
 
 export interface ArtistInterface {
   cover: ArtistCoverInterface;
@@ -33,48 +38,47 @@ export interface ArtistCoverInterface {
 }
 
 export interface DiscographyInterface {
-    albumId: number;
-    cover: string | undefined;
-    name: string;
-  }
-  
-  export interface GalleryInterface {
-    cover: string | undefined;
-    name: string;
-    quantity: number;
-    items: AlbumInterface[][];
-  }
-  
-  export interface AlbumInterface {
-    image: string | undefined;
-    name?: string;
-    redirectUrl?: string;
-  }
-  
-  export interface ReadMoreInterface {
-    title?: string;
-    items: AlbumInterface[];
-  }
-  
-  export interface BiographyInterface {
-    template: string;
-    title: string;
-    name: string;
-    subtitle?: string;
-  
-    chapter: number;
-    accessLevel: number;
-  
-    headline: string;
-    nameHeadline: string;
-    cover: string;
-    skyline?: string;
-    byline?: string;
-    leadParagraph?: string;
-    items?: AlbumInterface[];
-    readMore?: ReadMoreInterface;
-  }
+  albumId: number;
+  cover: string | undefined;
+  name: string;
+}
 
+export interface GalleryInterface {
+  cover: string | undefined;
+  name: string;
+  quantity: number;
+  items: AlbumInterface[][];
+}
+
+export interface AlbumInterface {
+  image: string | undefined;
+  name?: string;
+  redirectUrl?: string;
+}
+
+export interface ReadMoreInterface {
+  title?: string;
+  items: AlbumInterface[];
+}
+
+export interface BiographyInterface {
+  template: string;
+  title: string;
+  name: string;
+  subtitle?: string;
+
+  chapter: number;
+  accessLevel: number;
+
+  headline: string;
+  nameHeadline: string;
+  cover: string;
+  skyline?: string;
+  byline?: string;
+  leadParagraph?: string;
+  items?: AlbumInterface[];
+  readMore?: ReadMoreInterface;
+}
 
 export interface FeaturedTrackInterface {
   song: string;
@@ -100,7 +104,6 @@ export interface GalleryIdInterface {
 export interface GalleryImageIndexInterface {
   index: number;
 }
-
 
 export interface GalleryImageInterface {
   image: string;

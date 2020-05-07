@@ -1,6 +1,5 @@
-import { ArtistInterface } from "../";
+import { ArtistInterface } from '../';
 
 export interface DashboardInterface {
-    artist: ArtistInterface;
-  }
-  
+  artist: ArtistInterface;
+}

@@ -29,9 +29,7 @@ import {
   CommentInterface,
   GalleryImageInterface
 } from '../../../interfaces';
-import {
-  ShapesSize
-} from '../../../types';
+import { ShapesSize } from '../../../types';
 import { validateScrollHeader } from '../../../utils';
 import FullScreenImageModal from '../../../components/modal/image-gallery';
 import { createGesture } from '@ionic/react';

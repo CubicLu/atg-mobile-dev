@@ -1,5 +1,4 @@
 export interface SignUpInterface {
-    nickname: string;
-    email: string;
-  }
-  
+  nickname: string;
+  email: string;
+}

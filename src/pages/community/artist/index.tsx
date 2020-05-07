@@ -18,10 +18,7 @@ import {
 } from './../../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
-import {
-  ShapesSize,
-  Colors
-} from '../../../types';
+import { ShapesSize, Colors } from '../../../types';
 import {
   PostInterface,
   StorieInterface,

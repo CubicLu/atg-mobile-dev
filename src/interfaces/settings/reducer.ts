@@ -1,4 +1,11 @@
-import { TabsInterface, RouteInterface, MenuInterface, ModalSlideInterface, PlanInterface, SubEraInterface } from "../";
+import {
+  TabsInterface,
+  RouteInterface,
+  MenuInterface,
+  ModalSlideInterface,
+  PlanInterface,
+  SubEraInterface
+} from '../';
 
 export interface SettingsReducerType {
   tabs: TabsInterface[];

@@ -1,6 +1,5 @@
 export * from './@commons';
 
-
 export * from './artist';
 export * from './artist/action-type';
 export * from './artist/reducer';

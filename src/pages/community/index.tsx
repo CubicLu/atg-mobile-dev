@@ -12,14 +12,8 @@ import { getCommunityPostsAPI, getCommunityStoriesAPI } from './../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import PlusIcon from '../../components/icon/plus';
-import {
-  PostInterface,
-  StorieInterface
-} from '../../interfaces';
-import {
-  Colors,
-  ShapesSize
-} from '../../types';
+import { PostInterface, StorieInterface } from '../../interfaces';
+import { Colors, ShapesSize } from '../../types';
 import { RouteChildrenProps } from 'react-router';
 
 interface StateProps {

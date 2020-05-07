@@ -21,9 +21,7 @@
       "no-empty-pattern": "off",
       "jsx-a11y/anchor-is-valid": "off",
       "@typescript-eslint/no-empty-pattern": "off",
-      "@typescript-eslint/no-non-null-assertion": "off",
-      "ignoreStrings": true,
-      "ignoreTemplateLiterals": true
+      "@typescript-eslint/no-non-null-assertion": "off"
     },
     "settings": {
       "react": {

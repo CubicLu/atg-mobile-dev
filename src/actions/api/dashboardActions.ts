@@ -22,21 +22,29 @@ export const updateDashboardSetInitialProperty = (
   payload: property
 });
 
-export const getDashboardByArtistAPI = (username: string): Action<DashboardActionType.GET_BY_ARTIST_API, string> => ({
+export const getDashboardByArtistAPI = (
+  username: string
+): Action<DashboardActionType.GET_BY_ARTIST_API, string> => ({
   type: DashboardActionType.GET_BY_ARTIST_API,
   payload: username
 });
 
 export const getDashboardByArtistAPIFailure = (
   error: APIErrorInterface<string>
-): Action<DashboardActionType.GET_BY_ARTIST_API_FAILURE, APIErrorInterface<string>> => ({
+): Action<
+  DashboardActionType.GET_BY_ARTIST_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
   type: DashboardActionType.GET_BY_ARTIST_API_FAILURE,
   payload: error
 });
 
 export const getDashboardByArtistAPISuccess = (
   response: APIResponseInterface<DashboardInterface>
-): Action<DashboardActionType.GET_BY_ARTIST_API_SUCCESS, APIResponseInterface<DashboardInterface>> => ({
+): Action<
+  DashboardActionType.GET_BY_ARTIST_API_SUCCESS,
+  APIResponseInterface<DashboardInterface>
+> => ({
   type: DashboardActionType.GET_BY_ARTIST_API_SUCCESS,
   payload: response
 });

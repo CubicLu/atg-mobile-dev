@@ -1,8 +1,8 @@
-import { DashboardInterface } from "./..";
+import { DashboardInterface } from './..';
 
 export interface DashboardReducerType {
-    dashboard: DashboardInterface | null;
-    loading: boolean;
-    successMessage: string | null;
-    errorMessage: string | null;
-  }
+  dashboard: DashboardInterface | null;
+  loading: boolean;
+  successMessage: string | null;
+  errorMessage: string | null;
+}

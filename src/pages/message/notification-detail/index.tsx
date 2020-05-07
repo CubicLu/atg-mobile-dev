@@ -3,14 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonAlert } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import {
-  MenuInterface,
-  NotificationInterface
-} from '../../../interfaces';
-import {
-  Colors,
-  ShapesSize
-} from '../../../types';
+import { MenuInterface, NotificationInterface } from '../../../interfaces';
+import { Colors, ShapesSize } from '../../../types';
 import { updateSettingsProperty } from './../../../actions';
 import {
   BackgroundImage,

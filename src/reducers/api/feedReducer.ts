@@ -1,4 +1,10 @@
-import { Action, FeedActionType, FeedReducerType, APIResponseInterface, APIErrorInterface } from '../../interfaces';
+import {
+  Action,
+  FeedActionType,
+  FeedReducerType,
+  APIResponseInterface,
+  APIErrorInterface
+} from '../../interfaces';
 import createReducer from './../createReducer';
 
 const defaultState: FeedReducerType = {
@@ -23,23 +29,29 @@ export const feedReducer = createReducer<FeedReducerType>(defaultState, {
 
   [FeedActionType.GET_ALL_POSTS_API_SUCCESS](
     state: FeedReducerType,
-    action: Action<FeedActionType.GET_ALL_POSTS_API_SUCCESS, APIResponseInterface<string>>
+    action: Action<
+      FeedActionType.GET_ALL_POSTS_API_SUCCESS,
+      APIResponseInterface<string>
+    >
   ): FeedReducerType {
     return {
       ...state,
       loading: false,
-      queryResult: action.payload!.response.data
+      queryResult: action.payload!.data
     };
   },
 
   [FeedActionType.GET_ALL_POSTS_API_FAILURE](
     state: FeedReducerType,
-    action: Action<FeedActionType.GET_ALL_POSTS_API_FAILURE, APIErrorInterface<string>>
+    action: Action<
+      FeedActionType.GET_ALL_POSTS_API_FAILURE,
+      APIErrorInterface<string>
+    >
   ): FeedReducerType {
     return {
       ...state,
       loading: false,
-      errorMessage: action.payload!.response.data
+      errorMessage: action.payload!.message
     };
   }
 });

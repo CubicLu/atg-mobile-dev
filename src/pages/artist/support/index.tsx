@@ -4,15 +4,8 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage, IonContent } from '@ionic/react';
-import {
-  ArtistInterface,
-  PlanInterface
-} from '../../../interfaces';
-import {
-  ShapesSize,
-  Sizes,
-  Colors
-} from '../../../types';
+import { ArtistInterface, PlanInterface } from '../../../interfaces';
+import { ShapesSize, Sizes, Colors } from '../../../types';
 import {
   BackgroundImage,
   Header,

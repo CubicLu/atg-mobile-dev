@@ -1,6 +1,6 @@
-import { UserInterface, SignUpInterface } from "../";
+import { UserInterface, SignUpInterface } from '../';
 
 export interface AuthReducerType {
-    loggedUser: UserInterface | undefined;
-    signUpUser: SignUpInterface;
-  }
+  loggedUser: UserInterface | undefined;
+  signUpUser: SignUpInterface;
+}

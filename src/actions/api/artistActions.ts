@@ -39,7 +39,10 @@ export const getArtistsAPIFailure = (
 
 export const getArtistsAPISuccess = (
   response: APIResponseInterface<ArtistInterface[]>
-): Action<ArtistActionType.GET_ALL_API_SUCCESS,APIResponseInterface<ArtistInterface[]>> => ({
+): Action<
+  ArtistActionType.GET_ALL_API_SUCCESS,
+  APIResponseInterface<ArtistInterface[]>
+> => ({
   type: ArtistActionType.GET_ALL_API_SUCCESS,
   payload: response
 });
@@ -53,14 +56,20 @@ export const getArtistAPI = (
 
 export const getArtistAPIFailure = (
   error: APIErrorInterface<string>
-): Action<ArtistActionType.GET_BY_USERNAME_API_FAILURE,APIErrorInterface<string>> => ({
+): Action<
+  ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
   type: ArtistActionType.GET_BY_USERNAME_API_FAILURE,
   payload: error
 });
 
 export const getArtistAPISuccess = (
   response: APIResponseInterface<ArtistInterface>
-): Action<ArtistActionType.GET_BY_USERNAME_API_SUCCESS,APIResponseInterface<ArtistInterface>> => ({
+): Action<
+  ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+  APIResponseInterface<ArtistInterface>
+> => ({
   type: ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
   payload: response
 });
@@ -68,21 +77,30 @@ export const getArtistAPISuccess = (
 export const getArtistEventAPI = (
   username: string,
   eventId: string
-): Action<ArtistActionType.GET_EVENT_API,{ username: string; eventId: string }> => ({
+): Action<
+  ArtistActionType.GET_EVENT_API,
+  { username: string; eventId: string }
+> => ({
   type: ArtistActionType.GET_EVENT_API,
   payload: { username, eventId }
 });
 
 export const getArtistEventAPIFailure = (
   error: APIErrorInterface<string>
-): Action<ArtistActionType.GET_EVENT_API_FAILURE,APIErrorInterface<string>> => ({
+): Action<
+  ArtistActionType.GET_EVENT_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
   type: ArtistActionType.GET_EVENT_API_FAILURE,
   payload: error
 });
 
 export const getArtistEventAPISuccess = (
   response: APIResponseInterface<EventInterface>
-): Action<ArtistActionType.GET_EVENT_API_SUCCESS,APIResponseInterface<EventInterface>> => ({
+): Action<
+  ArtistActionType.GET_EVENT_API_SUCCESS,
+  APIResponseInterface<EventInterface>
+> => ({
   type: ArtistActionType.GET_EVENT_API_SUCCESS,
   payload: response
 });
@@ -90,17 +108,30 @@ export const getArtistEventAPISuccess = (
 export const getArtistGalleryCommentsAPI = (
   photoId: number,
   username: string
-): Action<ArtistActionType.GET_GALLERY_COMMENTS_API, { photoId: number; username: string}> => ({
+): Action<
+  ArtistActionType.GET_GALLERY_COMMENTS_API,
+  { photoId: number; username: string }
+> => ({
   type: ArtistActionType.GET_GALLERY_COMMENTS_API,
   payload: { photoId, username }
 });
 
-export const getArtistGalleryCommentsAPIFailure = (error: APIErrorInterface<string>): Action<ArtistActionType.GET_GALLERY_COMMENTS_API_FAILURE,APIErrorInterface<string>> => ({
+export const getArtistGalleryCommentsAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.GET_GALLERY_COMMENTS_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
   type: ArtistActionType.GET_GALLERY_COMMENTS_API_FAILURE,
   payload: error
 });
 
-export const getArtistGalleryCommentsAPISuccess = (response: APIResponseInterface<any>): Action<ArtistActionType.GET_GALLERY_COMMENTS_API_SUCCESS,APIResponseInterface<any>> => ({
+export const getArtistGalleryCommentsAPISuccess = (
+  response: APIResponseInterface<any>
+): Action<
+  ArtistActionType.GET_GALLERY_COMMENTS_API_SUCCESS,
+  APIResponseInterface<any>
+> => ({
   type: ArtistActionType.GET_GALLERY_COMMENTS_API_SUCCESS,
   payload: response
 });
@@ -114,7 +145,10 @@ export const setCurrentGallery = (
 
 export const setFullscreenImage = (
   index: number
-): Action<ArtistActionType.SET_FULLSCREEN_IMAGE, GalleryImageIndexInterface> => ({
+): Action<
+  ArtistActionType.SET_FULLSCREEN_IMAGE,
+  GalleryImageIndexInterface
+> => ({
   type: ArtistActionType.SET_FULLSCREEN_IMAGE,
   payload: {
     index

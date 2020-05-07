@@ -9,14 +9,8 @@ import {
   CardEvent,
   ListItem
 } from './../../../components';
-import {
-  EventInterface
-} from './../../../interfaces';
-import {
-  ShapesSize,
-  Colors,
-  GradientDirection
-} from './../../../types';
+import { EventInterface } from './../../../interfaces';
+import { ShapesSize, Colors, GradientDirection } from './../../../types';
 import { ApplicationState } from './../../../reducers';
 import {
   getArtistEventAPI,

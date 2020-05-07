@@ -1,3 +1,3 @@
 export interface SearchInterface {
-    result: object[] | null;
-  }
+  result: object[] | null;
+}

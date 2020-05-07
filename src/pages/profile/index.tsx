@@ -8,10 +8,7 @@ import {
   Menu
 } from './../../components';
 import { ApplicationState } from '../../reducers';
-import {
-  FriendInterface,
-  MenuInterface
-} from '../../interfaces';
+import { FriendInterface, MenuInterface } from '../../interfaces';
 import { updateSettingsProperty } from '../../actions';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { getFriendAPI } from '../../actions/api/friendsActions';

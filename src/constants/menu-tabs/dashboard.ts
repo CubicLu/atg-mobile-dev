@@ -2,15 +2,15 @@ import { MenuInterface } from '../../interfaces';
 import {
   DashboardSupporterPage,
   DashboardRankingPage,
-  DashboardAnalyticPage
+  DashboardAnalyticPage,
+  DashboardWalletPage
 } from '../../pages';
 export const dashboardTabs: MenuInterface[] = [
   {
     id: 'wallet',
     label: 'Wallet',
     icon: 'w',
-    isPage: true,
-    route: '/dashboard/wallet'
+    component: DashboardWalletPage
   },
   {
     id: 'analytic',

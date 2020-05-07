@@ -42,7 +42,7 @@ import {
   CommunityArtistFilterPage,
   ViewAllStationsPage,
   ChatPage,
-  DashboardWalletPage
+  DashboardAnalyticDetailPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -276,9 +276,9 @@ export const routes: RouteInterface[] = [
     component: DashboardPage
   },
   {
-    path: '/dashboard/wallet',
-    id: 'walletDashboard',
-    component: DashboardWalletPage
+    path: '/dashboard/analytic/:id',
+    id: 'analyticDetailDashboard',
+    component: DashboardAnalyticDetailPage
   },
   {
     path: '/dashboard/filter',

@@ -19,7 +19,7 @@ class DashboardAnalyticPage extends React.Component<Props> {
                 className="image"
                 style={{ backgroundImage: `url(${data.image})` }}
                 onClick={(): void =>
-                  this.props.history.push('/dashboard/analytics')
+                  this.props.history.push(`/dashboard/analytic/${i}`)
                 }
               ></div>
             </CardGraph>

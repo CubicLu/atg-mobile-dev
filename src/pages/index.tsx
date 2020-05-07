@@ -72,6 +72,7 @@ import DashboardAnalyticPage from './dashboard/analytic';
 import DashboardRankingPage from './dashboard/ranking';
 import DashboardSupporterPage from './dashboard/supporter';
 import DashboardWalletPage from './dashboard/wallet';
+import DashboardAnalyticDetailPage from './dashboard/analytic-detail';
 
 import ChatPage from './chat';
 
@@ -141,5 +142,6 @@ export {
   DashboardSupporterPage,
   DashboardWalletPage,
   ViewAllStationsPage,
-  ChatPage
+  ChatPage,
+  DashboardAnalyticDetailPage
 };

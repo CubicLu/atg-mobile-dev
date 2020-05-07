@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 describe('PlayerComponent render', () => {
   it("render without crash", async () => {
         const div = document.createElement('div');
-        ReactDOM.render(<Provider store={store}><PlayerComponent />></Provider>, div);
+        ReactDOM.render(<Provider store={store}><Router><PlayerComponent /></Router>></Provider>, div);
         ReactDOM.unmountComponentAtNode(div);
   });
 });

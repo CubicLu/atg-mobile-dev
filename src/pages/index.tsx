@@ -72,9 +72,10 @@ import DashboardMenuPage from './dashboard/menu';
 import DashboardFilterPage from './dashboard/filter';
 import DashboardAnalyticPage from './dashboard/analytic';
 import DashboardRankingPage from './dashboard/ranking';
-import DashboardSupporterPage from './dashboard/supporter';
+import DashboardGraphSupporterPage from './dashboard/graphs/supporter';
 import DashboardWalletPage from './dashboard/wallet';
-import DashboardAnalyticDetailPage from './dashboard/analytic-detail';
+import DashboardGraphSalesPage from './dashboard/graphs/sales';
+import DashboardSupporterPage from './dashboard/supporter';
 
 import ChatPage from './chat';
 
@@ -143,9 +144,10 @@ export {
   DashboardFilterPage,
   DashboardAnalyticPage,
   DashboardRankingPage,
-  DashboardSupporterPage,
+  DashboardGraphSupporterPage,
   DashboardWalletPage,
   ViewAllStationsPage,
   ChatPage,
-  DashboardAnalyticDetailPage
+  DashboardGraphSalesPage,
+  DashboardSupporterPage
 };

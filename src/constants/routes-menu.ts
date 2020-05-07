@@ -3,7 +3,7 @@ interface RouteArtist extends RouteInterface {
   label: string;
 }
 export const routeArtistMenu: RouteArtist[] = [
-  { id: '0', label: 'DASHBOARD', path: '/dashboard/artist/:id' },
+  { id: '0', label: 'DASHBOARD', path: '/dashboard/:id' },
   { id: '1', label: 'FEATURED', path: '/artist/:id/' },
   { id: '2', label: 'BIO', path: '/artist/:id/biography' },
   { id: '3', label: 'SOCIAL', path: '/community/artist/:id' },

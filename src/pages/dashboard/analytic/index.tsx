@@ -1,12 +1,12 @@
 import React from 'react';
 import { CardGraph } from '../../../components';
 import { walletMock } from './../../../constants';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-interface Props {
-  history: {
-    push: Function;
-  };
+interface MatchParams {
+  artistId: string;
 }
+interface Props extends RouteComponentProps<MatchParams> {}
 
 class DashboardAnalyticPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -19,7 +19,12 @@ class DashboardAnalyticPage extends React.Component<Props> {
                 className="image"
                 style={{ backgroundImage: `url(${data.image})` }}
                 onClick={(): void =>
-                  this.props.history.push(`/dashboard/analytic/${i}`)
+                  this.props.history.push(
+                    data.route.replace(
+                      ':artistId',
+                      this.props.match.params.artistId
+                    )
+                  )
                 }
               ></div>
             </CardGraph>
@@ -30,4 +35,4 @@ class DashboardAnalyticPage extends React.Component<Props> {
   }
 }
 
-export default DashboardAnalyticPage;
+export default withRouter(DashboardAnalyticPage);

@@ -2,7 +2,8 @@ import { MenuInterface } from '../../interfaces';
 import {
   DashboardAnalyticPage,
   DashboardWalletPage,
-  DashboardRankingPage
+  DashboardRankingPage,
+  DashboardSupporterPage
 } from '../../pages';
 export const dashboardTabs: MenuInterface[] = [
   {
@@ -21,8 +22,7 @@ export const dashboardTabs: MenuInterface[] = [
     id: 'supporter',
     label: 'Supporter',
     icon: 's',
-    isPage: true,
-    route: '/dashboard/supporter'
+    component: DashboardSupporterPage
   },
   {
     id: 'ranking',

@@ -16,7 +16,7 @@ interface StateProps {
   dashboardTabs: MenuInterface[];
 }
 interface MatchParams {
-  id: string;
+  artistId: string;
 }
 interface DispatchProps {
   getDashboardByArtistAPI: (username: string) => void;
@@ -36,7 +36,9 @@ class DashboardPage extends React.Component<Props> {
     const { history, activeDashboardTab } = this.props;
     if (event.id === activeDashboardTab) return;
     if (event.route && event.isPage === true) {
-      return history.push(event.route);
+      return history.push(
+        event.route.replace(':artistId', this.props.match.params.artistId)
+      );
     }
     this.props.updateSettingsProperty('activeDashboardTab', event.id);
     if (event.onClick) {

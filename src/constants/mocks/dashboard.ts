@@ -14,11 +14,13 @@ export const dashboardMock = {
 export const walletMock = [
   {
     image:
-      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/dashboard/total-revenue.png'
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/dashboard/total-revenue.png',
+    route: '/dashboard/:artistId/sales'
   },
   {
     image:
-      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/dashboard/change-supportes.png'
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/dashboard/change-supportes.png',
+    route: '/dashboard/:artistId/supporter'
   }
 ];
 

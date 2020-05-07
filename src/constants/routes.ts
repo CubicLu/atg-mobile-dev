@@ -43,8 +43,8 @@ import {
   ViewAllStationsPage,
   ChatPage,
   DashboardFilterPage,
-  DashboardAnalyticDetailPage,
-  DashboardSupporterPage,
+  DashboardGraphSalesPage,
+  DashboardGraphSupporterPage,
   ArtistGatewayPage
 } from '../pages';
 export const routes: RouteInterface[] = [
@@ -279,19 +279,19 @@ export const routes: RouteInterface[] = [
     component: RadioHistoryPage
   },
   {
-    path: '/dashboard/menu/:id',
+    path: '/dashboard/menu/:artistId',
     id: 'artistDashboardMenu',
     component: DashboardMenuPage
   },
   {
-    path: '/dashboard/artist/:id',
+    path: '/dashboard/:artistId',
     id: 'artistDashboard',
     component: DashboardPage
   },
   {
-    path: '/dashboard/analytic/:id',
+    path: '/dashboard/:artistId/sales',
     id: 'analyticDetailDashboard',
-    component: DashboardAnalyticDetailPage
+    component: DashboardGraphSalesPage
   },
   {
     path: '/dashboard/filter',
@@ -304,9 +304,9 @@ export const routes: RouteInterface[] = [
     component: FeedPage
   },
   {
-    path: '/dashboard/supporter',
+    path: '/dashboard/:artistId/supporter',
     id: 'supporterDashboard',
-    component: DashboardSupporterPage
+    component: DashboardGraphSupporterPage
   },
   {
     path: '/community/share',

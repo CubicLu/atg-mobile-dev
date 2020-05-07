@@ -21,7 +21,7 @@ interface DispatchProps {
   getDashboardByArtistAPI: (username: string) => void;
 }
 interface MatchParams {
-  id: string;
+  artistId: string;
 }
 interface StateProps {
   dashboard: DashboardInterface | null;
@@ -31,14 +31,14 @@ class DashboardMenuPage extends React.Component<Props> {
   UNSAFE_componentWillReceiveProps(next: Props): void {
     if (next.loading) return;
     if (this.props.loading) return;
-    if (this.props.dashboard?.artist.username !== next.match!.params.id) {
-      this.props.getDashboardByArtistAPI(next.match!.params.id);
+    if (this.props.dashboard?.artist.username !== next.match!.params.artistId) {
+      this.props.getDashboardByArtistAPI(next.match!.params.artistId);
     }
   }
   ionViewWillEnter(): void {
     preventChangeTabbar(true);
     hideTabs(true);
-    this.props.getDashboardByArtistAPI(this.props.match!.params.id);
+    this.props.getDashboardByArtistAPI(this.props.match!.params.artistId);
   }
   ionViewWillLeave(): void {
     hideTabs(false);

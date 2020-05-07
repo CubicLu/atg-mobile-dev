@@ -81,6 +81,8 @@ import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
 
 import SplashScreenComponent from '../components/splash-screen';
 
+import ContentLoader from 'react-content-loader';
+
 import {
   ButtonSupportIconComponent,
   ButtonSupportComponent
@@ -172,5 +174,6 @@ export {
   MixtapeEuroHouseImage,
   MixtapeKnightImage,
   MixtapeMoonLightImage,
-  MixtapeRebelRockImage
+  MixtapeRebelRockImage,
+  ContentLoader
 };

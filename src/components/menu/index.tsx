@@ -1,5 +1,6 @@
 import React from 'react';
-import { MenuInterface } from './../../interfaces';
+import { ContentLoader } from './../../components';
+import { MenuInterface } from '../../interfaces';
 interface Props {
   tabs: MenuInterface[];
   activeId: string | number;
@@ -9,7 +10,18 @@ interface Props {
 }
 export default class MenuComponent extends React.Component<Props> {
   public static defaultProps = { onClick: (): void => {}, id: '' };
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
   render(): React.ReactNode {
+    if (!this.isReady) this.displayContent();
+
     if (!this.props.tabs) return <ul />;
     const { tabs, onClick, activeId, id } = this.props;
     const scroll = tabs.length > 4;
@@ -19,19 +31,38 @@ export default class MenuComponent extends React.Component<Props> {
         id={id}
         className={'horizontal-menu ' + (scroll ? 'scroll' : 'center')}
       >
-        {tabs.map(
-          (data, i): React.ReactNode => {
-            return (
-              <div
-                key={i}
-                className={activeId === data.id ? 'div active' : 'div'}
-                onClick={(): void => onClick(data)}
-              >
-                <span className="circle">{data.icon}</span>
-                <span className="label">{data.label}</span>
-              </div>
-            );
-          }
+        {!this.isReady ? (
+          <ContentLoader
+            speed={2}
+            width={400}
+            viewBox="0 0 390 100"
+            backgroundColor="#54297966"
+            foregroundColor="#542979C1"
+          >
+            <circle cy="30" cx="40" r="30" />
+            <rect x="12" y="70" rx="3" ry="3" width="60" height="16" />
+            <circle cy="30" cx="140" r="30" />
+            <rect x="112" y="70" rx="3" ry="3" width="60" height="16" />
+            <circle cy="30" cx="240" r="30" />
+            <rect x="212" y="70" rx="3" ry="3" width="60" height="16" />
+            <circle cy="30" cx="340" r="30" />
+            <rect x="310" y="70" rx="3" ry="3" width="60" height="16" />
+          </ContentLoader>
+        ) : (
+          tabs.map(
+            (data, i): React.ReactNode => {
+              return (
+                <div
+                  key={i}
+                  className={activeId === data.id ? 'div active' : 'div'}
+                  onClick={(): void => onClick(data)}
+                >
+                  <span className="circle">{data.icon}</span>
+                  <span className="label">{data.label}</span>
+                </div>
+              );
+            }
+          )
         )}
       </div>
     );

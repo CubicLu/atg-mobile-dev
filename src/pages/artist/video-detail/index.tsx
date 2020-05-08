@@ -41,6 +41,7 @@ interface DispatchProps {
 }
 interface MatchParams {
   id: string;
+  videoId: string;
 }
 interface Props
   extends StateProps,
@@ -182,6 +183,14 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    if (!this.props.currentArtist) return <IonPage />;
+    const {
+      match: {
+        params: { videoId }
+      },
+      currentArtist: { videos }
+    } = this.props;
+    const videoUrl = videos?.recents[videoId];
     return (
       <IonPage id="artist-videos-page">
         <BackgroundImage default />
@@ -193,7 +202,10 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           }
         >
           <div className="mt-5" />
-          <VideoPlayer onClickClose={(): void => this.props.history.goBack()} />
+          <VideoPlayer
+            onClickClose={(): void => this.props.history.goBack()}
+            videoUrl={videoUrl.video}
+          />
           {this.renderContent()}
           {!this.state.chatOpened && this.bottomTiles()}
         </IonContent>

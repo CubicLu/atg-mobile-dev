@@ -16,7 +16,7 @@ export const dashboardTabs: MenuInterface[] = [
     label: 'Analytic',
     icon: 'a',
     isPage: true,
-    route:'/dashboard/analytics'
+    route: '/dashboard/analytics'
   },
   {
     id: 'supporter',

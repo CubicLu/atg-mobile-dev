@@ -45,7 +45,7 @@ class DashboardPage extends React.Component<Props> {
     )!;
     return React.createElement(tab.component, {
       key: tab.id,
-      history,
+      history
     });
   };
 

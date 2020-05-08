@@ -143,8 +143,8 @@ class ArtistBiographyPage extends React.Component<Props, State> {
 
         {activeBio.readMore?.items.map(
           (item: AlbumInterface, i: number): any => (
-            <div className="col s4 album no-padding center-align" key={i}>
-              <IonImg src={item.image} />
+            <div className="col s4 album center-align" key={i}>
+              <IonImg src={item.image} className="member-photo" />
               <span className="f6 dark read-more-label">{item.name}</span>
             </div>
           )

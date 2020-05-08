@@ -173,18 +173,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     }
   }
 
-  handlePopUp = (modalType: string | null): void =>
-    this.props.updatePopUpModal(modalType);
-
-  transferToSupportPage = (): void => {
-    const { history, currentArtist, updateSettingsModal } = this.props;
-    if (currentArtist && currentArtist.username) {
-      updateSettingsModal(null, '');
-      this.handlePopUp(null);
-      history.push(`/artist/${currentArtist.username}/support`);
-    }
-  };
-
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <IonPage />;
     const {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {
   BackgroundImage,
@@ -8,7 +7,7 @@ import {
   CardEra
 } from '../../../components';
 
-interface Props extends RouteComponentProps {}
+interface Props {}
 
 class VaultFilterEraPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -294,9 +293,7 @@ class VaultFilterEraPage extends React.Component<Props> {
           titleClassName="era"
           rightCloseButton
           leftBackButton={false}
-          rightCloseOnClick={(): void =>
-            this.props.history.push('/vault-filter')
-          }
+          rightCloseHref="/vault-filter"
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
@@ -342,4 +339,4 @@ class VaultFilterEraPage extends React.Component<Props> {
   }
 }
 
-export default withRouter(VaultFilterEraPage);
+export default VaultFilterEraPage;

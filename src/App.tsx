@@ -32,7 +32,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import { hideKeyboard, showKeyboard, didShowKeyboard } from './utils';
-import { CordovaMedia } from './components';
+import { CordovaMedia, SplashScreen } from './components';
 
 export default class App extends React.Component {
   authenticated: boolean = true;
@@ -49,6 +49,7 @@ export default class App extends React.Component {
   loadCordova(): void {
     document.addEventListener('deviceready', (): void => {
       console.log('cordova Loaded!');
+      setTimeout((): void => (navigator as any).splashscreen.hide(), 200);
       (window as any).deviceready = true;
       this.enableMedia = true;
       this.forceUpdate();
@@ -77,6 +78,7 @@ export default class App extends React.Component {
       return (
         <Provider store={store}>
           <IonApp>
+            <SplashScreen />
             <HomePage />
             {this.enableMedia && <CordovaMedia />}
           </IonApp>
@@ -87,6 +89,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <IonApp>
+          <SplashScreen />
           <IonReactRouter>
             <IonRouterOutlet id="notLogged" mode="ios">
               <Route exact path="/initial" component={InitialPage} />

@@ -42,6 +42,24 @@
       }
     }
   }
+  &.members {
+    .slick-track {
+      .slick-slide {
+        margin: 0;
+      }
+    }
+    .slick-slide {
+      margin: 0 10px;
+      width: 116px;
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
   &.stories {
     .title {
       font-size: pxToRem(36);

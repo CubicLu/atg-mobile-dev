@@ -263,7 +263,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
       this.headerRef.current?.handleParentScroll(e);
     };
     return (
-      <IonPage id="radio-filter-page">
+      <IonPage id="radio-custom-page">
         <Header
           title={pageTitle}
           titleLeft={true}
@@ -288,7 +288,12 @@ class RadioStationEditPage extends React.Component<Props, State> {
           scrollEvents={true}
           onIonScroll={parentScroll}
         >
-          <div className="container-top-bottom fluid">
+          <div
+            className="container-top-bottom fluid"
+            style={{
+              paddingBottom: 65
+            }}
+          >
             {this.renderNameAndSearch()}
             <div className="mx-4 mt-3" />
             {this.renderArtistList()}

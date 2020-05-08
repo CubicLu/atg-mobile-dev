@@ -19,6 +19,7 @@ interface DispatchProps {
 }
 interface MatchParams {
   id: string;
+  tab: string;
 }
 interface CustomAnimation {
   animation: any;
@@ -46,7 +47,11 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     loaded: false
   };
 
+  activeTab: string = 'featured';
   UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (next.match.params.tab && this.activeTab !== next.match.params.tab) {
+      this.activeTab = next.match.params.tab;
+    }
     if (next.loading) return;
     if (this.props.loading) return;
     if (
@@ -198,7 +203,6 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     this.lastOffset = offset;
   };
 
-  activeTab: string = 'features';
   handleMenu = (event: MenuInterface): void => {
     const { match, history } = this.props;
     if (event.route && event.isPage === true) {

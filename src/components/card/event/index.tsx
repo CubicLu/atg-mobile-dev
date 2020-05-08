@@ -14,7 +14,7 @@ interface Props {
   artistUsername: string | undefined;
 }
 
-class CardEventComponent extends React.Component<Props, State> {
+export default class CardEventComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -64,10 +64,12 @@ class CardEventComponent extends React.Component<Props, State> {
           </div>
           <div className="row m-0">
             <ul className="list inline white-text">
-              <li>
-                <ShareIcon width={20} height={35} />
-                <div className="l15 f6 text-13 no-wrap">Share</div>
-              </li>
+              <IonRouterLink routerLink={'/event/share'}>
+                <li>
+                  <ShareIcon width={20} height={35} />
+                  <div className="l15 f6 text-13 no-wrap">Share</div>
+                </li>
+              </IonRouterLink>
               <IonRouterLink routerLink={`/artist/${username}/event/${id}`}>
                 <li>
                   <UserGroupIcon width={25} height={35} />
@@ -109,5 +111,3 @@ class CardEventComponent extends React.Component<Props, State> {
     );
   }
 }
-
-export default CardEventComponent;

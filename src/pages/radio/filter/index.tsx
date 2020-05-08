@@ -127,7 +127,7 @@ class RadioFilterPage extends React.Component<Props, State> {
 
         <div className="eras row mx-2 fluid">
           {this.searchFilter(this.eras).map(
-            (era, i): React.ReactElement => (
+            (era, i): React.ReactNode => (
               <div
                 key={i}
                 onClick={this.selectChannel.bind(this, era)}
@@ -152,7 +152,7 @@ class RadioFilterPage extends React.Component<Props, State> {
 
         <div className="vibes mx-3 my-2 mb-5">
           {this.searchFilter(this.vibes).map(
-            (vibe, i): React.ReactElement => (
+            (vibe, i): React.ReactNode => (
               <div
                 onClick={this.selectChannel.bind(this, vibe)}
                 className="vibe flex row mt-1 f4"
@@ -214,7 +214,7 @@ class RadioFilterPage extends React.Component<Props, State> {
     return (
       <div className="m-1 ml-2 row badge-row flex">
         {this.filteredTags().map(
-          (tag, i): React.ReactElement => (
+          (tag, i): React.ReactNode => (
             <span
               key={i}
               onClick={this.setTag.bind(this, tag)}
@@ -233,7 +233,7 @@ class RadioFilterPage extends React.Component<Props, State> {
         <SectionTitle title="STATIONS" className="mx-3 mt-1 mb-2" />
         <div className="row mx-3 mb-5">
           {this.filteredStations().map(
-            (station): React.ReactElement => (
+            (station): React.ReactNode => (
               <div
                 key={station.id}
                 className={

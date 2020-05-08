@@ -12,19 +12,20 @@ interface DispatchProps {
 interface StateProps {
   modal: ModalSlideInterface;
 }
+declare global {
+  interface Window {
+    deviceready: boolean;
+    StatusBar: any;
+  }
+}
 interface Props extends StateProps, DispatchProps {}
 class ModalSlideComponent extends React.Component<Props> {
   rightCloseOnClick = (): void => {
-    //@ts-ignore
-    // eslint-disable-next-line no-restricted-globals,no-undef,no-undef
-    if (window.deviceready && StatusBar && !StatusBar.isVisible) {
-      //@ts-ignore
-      // eslint-disable-next-line no-restricted-globals,no-undef,no-undef
-      StatusBar.show();
+    if (window.deviceready && !window.StatusBar?.isVisible) {
+      window.StatusBar.show();
     }
-    // eslint-disable-next-line no-restricted-globals
-    screen.orientation.lock('portrait');
     this.props.updateSettingsModal(null);
+    window.deviceready && window.screen?.orientation?.lock('portrait');
   };
 
   render(): React.ReactNode {

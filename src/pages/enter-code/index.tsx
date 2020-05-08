@@ -44,7 +44,7 @@ class EnterCodePage extends React.Component<Props, State> {
         <Header
           leftBackButton={true}
           rightCloseButton={true}
-          rightCloseOnClick={(): any => this.props.history.push('/initial')}
+          rightCloseHref="/profile"
         />
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">

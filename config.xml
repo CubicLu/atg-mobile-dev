@@ -19,6 +19,7 @@
 
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="AutoHideSplashScreen" value="false" />
         <preference name="android-minSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="29" />
         <preference name="SplashMaintainAspectRatio" value="true"/>
@@ -40,6 +41,7 @@
 
     </platform>
     <platform name="ios">
+        <preference name="AutoHideSplashScreen" value="false" />
         <preference name="target-device" value="handset" />
         <preference name="WKWebViewOnly" value="true" />
         <preference name="AllowInlineMediaPlayback" value="true"/>

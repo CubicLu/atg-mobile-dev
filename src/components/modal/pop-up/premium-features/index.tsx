@@ -27,7 +27,7 @@ export default class PremiumFeaturesModalContentComponent extends Component<
         <p className={'premium-features-modal--title'}>{title}</p>
         <p className={'premium-features-modal--description'}>{description}</p>
         <button className={'button-support'} onClick={onSuccessClick}>
-          SUPPORT US
+          SUPPORT!
         </button>
         <button className={'button-dismiss'} onClick={onDoneClick}>
           Done

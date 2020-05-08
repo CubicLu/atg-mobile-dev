@@ -29,6 +29,7 @@
     min-height: 165px;
     min-width: 165px;
     @include background-style();
+    background-repeat: repeat;
   }
   &.mixtapes {
     background: transparent;
@@ -263,6 +264,10 @@
     min-width: 96px;
     width: 96px;
     border-radius: 50%;
+    margin-right: 8px;
+    &:last-child{
+      margin-right: 32px;
+    }
   }
 }
 .genres {

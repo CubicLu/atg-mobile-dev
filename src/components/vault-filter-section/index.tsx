@@ -14,7 +14,7 @@ class VaultFilterSectionComponent extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <div className={'vault-filter row'}>
-        <div className={'col label flex fluid s9'}>
+        <div className={'label flex fluid'}>
           {this.props.label}
           {this.props.type === 'chip' && (
             <div

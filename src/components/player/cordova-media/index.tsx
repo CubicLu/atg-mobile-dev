@@ -27,8 +27,8 @@ declare global {
   }
 }
 
-const FADEOUT_NEXT = 1.5; //fadeout time when click on next song
-const FADEOUT_DEFAULT = 5; // fadeout when song ends naturally
+const FADEOUT_NEXT = 1; //fadeout time when click on next song
+const FADEOUT_DEFAULT = 6; // fadeout when song ends naturally
 const MUSIC_CONTROLS_DELAY = 25; //time in ms - needed to reflect update on android/ios
 
 class CordovaMediaComponent extends React.Component<Props> {
@@ -84,30 +84,32 @@ class CordovaMediaComponent extends React.Component<Props> {
     this.mainSong!.play(this.playOptions);
     this.updateElapsedMusicControls();
   }
+
+  //Play Song is called when I click next or previous;
   actionPlaySong(): void {
-    //Play Song is called when I click next or previous;
-    this.runningSong.forEach((song): void => {
-      if (song.getPosition() >= 2) {
+    this.runningSong.forEach((song, i): void => {
+      if (song.getPosition() > 3) {
+        console.log('switching - fade song. position ', song.getPosition(), i);
         song.setFadeTime(FADEOUT_NEXT);
         song.setForceFadeOut(true);
       } else {
-        song.pause();
+        console.log('switching - stop song. position ', song.getPosition(), i);
+        song.stop();
       }
     });
-    const song = this.props.song!;
-    const one = song && this.cordovaMedia(song, this.hasRunningSongs);
-    one.play(this.playOptions);
-    this.props.next && this.cordovaMedia(this.props.next!, true);
+
+    const song = this.props.song;
+    if (!song) return;
+
+    //PLAY SONG
+    this.cordovaMedia(song, this.hasRunningSongs).play(this.playOptions);
     this.createMusicControls();
+    //BUFFER NEXT SONG but not PLAY
+    this.props.next && this.cordovaMedia(this.props.next!, true);
   }
+
   get mainSong(): MediaType | undefined {
     return window.Media.getByMediaId(this.props.song!.id.toString());
-  }
-  get nextSong(): MediaType | undefined {
-    return (
-      this.props.next &&
-      window.Media.getByMediaId(this.props.next.id.toString())
-    );
   }
   get hasRunningSongs(): boolean {
     return window.Media.running().length > 0;
@@ -153,38 +155,40 @@ class CordovaMediaComponent extends React.Component<Props> {
         this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
-        this.mediaCallbackEnded(media);
+        console.log('song stopped', media.getMediaId(), media.src);
+        this.mediaCallbackCheckRunning();
         this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
-        this.mediaCallbackEnded(media);
+        console.log('song ended naturally', media.getMediaId(), media.src);
+        this.mediaCallbackCheckRunning();
         this.updateElapsedMusicControls();
         break;
       case MediaStatusCallback.MEDIA_FADING_OUT:
-        console.log('Media FadingOut', media.id, media.src);
         this.mediaCallbackFadingOut(media);
         break;
       default:
         break;
     }
   }
-  mediaCallbackEnded(media): void {
-    console.log('song finished and ended', media.getMediaId(), media.src);
-
+  mediaCallbackCheckRunning(): void {
     if (this.hasRunningSongs === false) {
       console.log('no Running songs! pausing player');
       this.props.pauseSong();
     }
   }
 
-  fadingOut: boolean = false;
-  mediaCallbackFadingOut(media: MediaType): void {
-    if (this.nextSong && media.getFadingOut() && !this.fadingOut) {
-      this.fadingOut = true;
-      setTimeout((): boolean => (this.fadingOut = false), 1000); //ensure one fading
-      this.props.nextSong && this.nextSong.play(this.playOptions);
-      this.props.toggleNextSong();
-    }
+  mediaCallbackFadingOut(media): void {
+    if (!this.isCurrent(media)) return;
+    const next: MediaType | undefined =
+      this.props.next &&
+      window.Media.getByMediaId(this.props.next.id.toString());
+    console.log('Media FadingOut intent', media, next);
+    if (!(next && next.getPosition() === 0)) return;
+
+    next.play(this.playOptions);
+    console.log('FadingOut Zone, request play next ', next.getMediaId());
+    this.props.toggleNextSong();
   }
   get elapsed(): number {
     return Math.max(this.props.timeElapsed || 0, 0);

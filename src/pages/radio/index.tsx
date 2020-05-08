@@ -84,7 +84,12 @@ class RadioPage extends React.Component<Props> {
               </div>
             </div>
           </div>
-          <SectionTitle className="mt-2 mx-3" title="STATIONS" viewAll={true} />
+          <SectionTitle
+            className="mt-2 mx-3"
+            title="STATIONS"
+            viewAll={true}
+            onClickAll={(): void => this.props.history.push('/radio/view-all')}
+          />
           <SliderRadio
             className="f6 l1"
             diameter={'110px'}

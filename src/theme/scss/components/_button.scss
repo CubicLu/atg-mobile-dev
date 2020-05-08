@@ -159,6 +159,13 @@
   &.cyan {
     background: #01add9;
   }
+  &.gray {
+    background: #717274;
+    color: #fff;
+    &.gradient{
+      background: linear-gradient(to right, #9c9d9d, #717274 99%);
+    }
+  }
   &.disable {
     background: #717274;
     color: #fff;
@@ -196,6 +203,13 @@
       justify-content: center;
       align-content: center;
       flex-direction: column;
+      svg{
+        &.arrow{
+          height: 42px;
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+      }
       span {
         height: 10px;
         line-height: 12px;
@@ -288,7 +302,8 @@
     line-height: 2;
     width: 128px;
     min-width: 128px;
-    max-width: 128px;
+    padding-left: 16px;
+    padding-right: 16px;
     height: 30px;
     max-height: 30px;
     text-align: center;

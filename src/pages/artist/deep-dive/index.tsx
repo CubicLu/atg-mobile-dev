@@ -66,9 +66,12 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
   }
 
   getActiveDiveTab(): React.ReactNode {
-    return this.props.deepDiveTabs.find(
+    const active = this.props.deepDiveTabs.find(
       (d): boolean => d.id === this.props.activeDeepDiveTab
-    )?.component;
+    );
+    if (!active) return null;
+
+    return <active.component />;
   }
   render(): React.ReactNode {
     const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;

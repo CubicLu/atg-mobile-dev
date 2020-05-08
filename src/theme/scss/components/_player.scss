@@ -64,14 +64,16 @@
 }
 
 .bottom-tiles {
-  min-height: 125px;
+  min-height: 33.3vw;
   overflow: hidden;
+  overflow-x: scroll;
   display: inline-flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   text-align: center;
   .tile {
-    width: 33.3%;
+    width: 33.3vw;
+    min-height: 33.3vw;
     overflow: hidden;
     display: flex;
     justify-content: flex-end;

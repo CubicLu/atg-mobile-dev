@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   Action,
   ActionType,
   SettingsReducerType,
   ModalTypeInterface
-} from './../interfaces';
-
+} from '../interfaces';
 import createReducer from './createReducer';
 import {
   contactTabs,
@@ -17,7 +15,8 @@ import {
   artistTabs,
   myProfileTabs,
   profileFriendTabs,
-  dashboardTabs
+  dashboardTabs,
+  settingsMenu
 } from './../constants';
 
 const defaultState: SettingsReducerType = {
@@ -48,7 +47,7 @@ const defaultState: SettingsReducerType = {
   selectContactTabs: contactTabs,
   activeSelectContactTab: 'friends',
   dashboardTabs: dashboardTabs,
-  activeDashboardTab: 'wallet',
+  activeDashboardTab: 'analytic',
   eraFilters: [],
   era: '',
   subEra: [
@@ -59,7 +58,8 @@ const defaultState: SettingsReducerType = {
   ],
   genreFilters: [],
   selectedGenres: [],
-  notifications: 10
+  notifications: 10,
+  settingsMenu: settingsMenu
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(
@@ -84,10 +84,11 @@ export const settingsReducer = createReducer<SettingsReducerType>(
         modal: { ...action.payload }
       };
     },
+
     [ActionType.UPDATE_POPUP_MODAL](
       state: SettingsReducerType,
       action: Action<ModalTypeInterface>
-    ) {
+    ): SettingsReducerType {
       return {
         ...state,
         popUpModal: action.payload.modalType

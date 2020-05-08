@@ -83,7 +83,7 @@ class SelectContactPage extends React.Component<Props, State> {
     });
   }
 
-  getActiveTab(): React.ReactElement {
+  getActiveTab(): React.ReactNode {
     const menu = this.props.selectContactTabs.find(
       (s): boolean => s.id === this.props.activeSelectContactTab
     )!;
@@ -125,7 +125,7 @@ class SelectContactPage extends React.Component<Props, State> {
               className="text-18"
               color={Colors.transparent}
               onClick={(): void => {
-                this.props.history.push('/message/chat/new');
+                this.props.history.push('/chat');
               }}
             />
           }

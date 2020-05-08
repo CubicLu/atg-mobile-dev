@@ -33,7 +33,7 @@ class MenuArtistList extends React.Component<Props> {
       ? currentArtist.similarArtist
       : currentArtist.supportArtistFans;
     return (
-      <div className="menu-artist-list">
+      <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom={true}
           backgroundBottomOrange={true}

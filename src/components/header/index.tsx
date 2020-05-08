@@ -16,10 +16,14 @@ import {
   ChatMessageIcon,
   DashboardIcon
 } from '../icon';
-import { IonHeader, NavContext, NavContextState } from '@ionic/react';
+import { IonHeader, NavContextState, NavContext } from '@ionic/react';
 import MinimizeIcon from '../icon/minimize';
 import { SongInfoButton } from '../icon/player';
-import { Colors, RouterLinkDirection } from '../../interfaces';
+import {
+  Colors,
+  RouterLinkDirection,
+  RouterLinkAction
+} from '../../interfaces';
 import NotificationIcon from '../icon/notification';
 
 interface Props {
@@ -36,6 +40,7 @@ interface Props {
   rightContent?: React.ReactNode;
   rightActionOnClick?: any;
   rightCloseOnClick?: any;
+  rightDashboardOnClick?: any;
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
   rightInfoOnClick?: any;
@@ -66,18 +71,14 @@ interface Props {
   rightFilterButton?: boolean;
   rightUserGroupButton?: boolean;
   rightActionYellow?: boolean;
+  rightClickGoBack?: boolean;
   likeButtonOnClick?: () => void;
 }
 
 class HeaderComponent extends React.Component<Props> {
-  //using it instead of withRouter
-  context!: React.ContextType<typeof NavContext>;
-  static get contextType(): React.Context<NavContextState> {
-    return NavContext;
-  } //using it instead of withRouter
-
+  static contextType = NavContext; //retrieving ionic context
   public static defaultProps = {
-    direction: 'back',
+    routerDirection: 'back',
     title: null,
     leftBackButton: true,
     leftContent: null,
@@ -99,21 +100,35 @@ class HeaderComponent extends React.Component<Props> {
     fixed: true,
     rightChatButton: false,
     rightConnectedButton: false,
-    rightFanFeedButton: false
+    rightFanFeedButton: false,
+    rightClickGoBack: false
   };
 
-  goBackClick = (ev: any): any => {
+  goBackClick = (ev): void => {
     if (this.props.leftBackOnClick) {
       return this.props.leftBackOnClick(ev);
     }
-    return this.context.goBack(
-      this.props.leftBackHref ? this.props.leftBackHref : undefined
-    );
+    return (this.context as NavContextState).goBack(this.props.leftBackHref);
+  };
+  rightCloseBtn = (): void => {
+    const { rightCloseHref, routerDirection, rightCloseOnClick } = this.props;
+    if (rightCloseHref) {
+      return this.routeNavigate(rightCloseHref, routerDirection);
+    } else if (rightCloseOnClick) {
+      this.props.rightCloseOnClick();
+    } else this.goBackClick(null);
   };
 
-  pushUrl(url: string, direction?: RouterLinkDirection): void {
-    const routerDirection = direction || this.props.routerDirection || 'back';
-    this.context.navigate(url, routerDirection);
+  routeNavigate(
+    path: string,
+    direction?: RouterLinkDirection,
+    ionRouteAction?: RouterLinkAction
+  ): void {
+    (this.context as NavContextState).navigate(
+      path,
+      direction || this.props.routerDirection || 'back',
+      ionRouteAction
+    );
   }
 
   openChatPanel = (shouldDisplay: boolean): Function => {
@@ -138,7 +153,6 @@ class HeaderComponent extends React.Component<Props> {
       titleLeft,
       rightContent,
       rightCloseButton,
-      rightCloseOnClick,
       rightActionButton,
       rightActionOnClick,
       rightSettingsButton,
@@ -156,8 +170,6 @@ class HeaderComponent extends React.Component<Props> {
       overlay,
       notificationsNumber,
       rightActionHref,
-      rightCloseHref,
-      routerDirection,
       rightChatButton,
       rightConnectedButton,
       rightFanFeedButton,
@@ -220,7 +232,7 @@ class HeaderComponent extends React.Component<Props> {
                 }`}
                 onClick={
                   rightActionHref
-                    ? (): void => this.pushUrl(rightActionHref)
+                    ? (): void => this.routeNavigate(rightActionHref)
                     : rightActionOnClick
                 }
               >
@@ -231,7 +243,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightDashboardButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.pushUrl('/dashboard', 'forward')}
+                onClick={this.props.rightDashboardOnClick}
               >
                 <DashboardIcon />
               </div>
@@ -239,7 +251,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightConnectedButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.pushUrl('/message', 'forward')}
+                onClick={(): any => this.routeNavigate('/message', 'forward')}
               >
                 <UserGroupIcon width={20} height={15} />
               </div>
@@ -247,7 +259,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightChatButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.pushUrl('/message', 'forward')}
+                onClick={(): any => this.routeNavigate('/message', 'forward')}
               >
                 <BalloonIcon width={20} height={15} />
               </div>
@@ -255,7 +267,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightFanFeedButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.pushUrl('/feed', 'forward')}
+                onClick={(): any => this.routeNavigate('/feed', 'forward')}
               >
                 <StarIcon />
               </div>
@@ -263,7 +275,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightUserGroupButton && (
               <div
                 className="default-button"
-                onClick={(): any => this.pushUrl('/community', 'forward')}
+                onClick={(): any => this.routeNavigate('/community', 'forward')}
               >
                 <UserGroupIcon color={'#FFF'} height={23} width={23} />
               </div>
@@ -271,7 +283,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightNotificationButton && (
               <div
                 className="default-button"
-                onClick={(): any => this.pushUrl('/message', 'forward')}
+                onClick={(): any => this.routeNavigate('/message', 'forward')}
               >
                 <ButtonIcon
                   color={Colors.transparent}
@@ -284,20 +296,17 @@ class HeaderComponent extends React.Component<Props> {
             {rightSettingsButton && (
               <div
                 className="default-button dark"
-                onClick={rightSettingsOnClick}
+                onClick={
+                  rightActionHref
+                    ? (): void => this.routeNavigate(rightActionHref)
+                    : rightSettingsOnClick
+                }
               >
                 <SettingsIcon height={24} width={24} />
               </div>
             )}
             {rightCloseButton && (
-              <div
-                className="default-button dark"
-                onClick={
-                  rightCloseHref
-                    ? (): void => this.pushUrl(rightCloseHref, routerDirection)
-                    : rightCloseOnClick
-                }
-              >
+              <div className="default-button dark" onClick={this.rightCloseBtn}>
                 <CloseIcon />
               </div>
             )}
@@ -330,6 +339,7 @@ class HeaderComponent extends React.Component<Props> {
                     className="mt-15"
                     color={Colors.green}
                     icon={<ShareIcon width={22} height={20} />}
+                    onClick={(): void => this.routeNavigate('/share')}
                   />
                 </li>
                 <li>

@@ -216,7 +216,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
 
   showFullScreenModal = (): void => {
     const { currentGallery, setFullscreenImage, match } = this.props;
-    window.screen.orientation.unlock();
+    window.deviceready && window.screen?.orientation?.unlock();
     this.props.updateSettingsModal(
       <FullScreenImageModal
         currentGallery={currentGallery}

@@ -1,0 +1,33 @@
+.settings-page{
+    ion-header{
+        height: 90px;
+    }
+    ion-list{
+        ion-item{
+            color: #FFF;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            div{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .footer{
+        .row{
+            &:first-child{
+                margin-bottom: 8px;
+            }
+        }
+        button{
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    }
+}

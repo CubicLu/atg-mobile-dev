@@ -86,46 +86,44 @@
         opacity: 0.4;
       }
 
-      &.not-read {
-        .label {
-          &::before {
-            display: block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: red;
-            content: '';
-            position: absolute;
-            top: 5px;
-            bottom: 0;
-            left: 0;
-            right: 0;
-          }
+      &.tabs {
+        height: 30px;
+        padding-top: 0;
+        background: transparent;
+        padding-bottom: 0;
+        padding-left: 0px;
+        padding-right: 0px;
+        align-items: flex-end;
+        &::after {
+          background: #fff;
+          height: 1px;
+          content: '';
+          display: block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: red;
+          content: '';
+          position: absolute;
+          top: 5px;
+          bottom: 0;
+          left: 0;
+          right: 0;
         }
       }
+    }
 
-      &.active {
-        .label {
-          opacity: 1;
-          border: none;
-          color: #fff;
-          font-weight: 400;
-          font-weight: normal;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: 1.43;
-          letter-spacing: normal;
-        }
-        &::after {
-          height: 3px;
-          display: block;
-          content: '';
-          background-color: $tertiary;
-          z-index: 2;
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-        }
+    &.active {
+      .label {
+        opacity: 1;
+        border: none;
+        color: #fff;
+        font-weight: 400;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.43;
+        letter-spacing: normal;
       }
     }
   }

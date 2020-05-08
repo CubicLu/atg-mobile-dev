@@ -36,19 +36,10 @@ class FeedPage extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const colors = ['#6A1EE4', '#1e053b'];
     const hist = this.props.history;
     return (
       <IonPage id="feed-page">
-        <BackgroundImage
-          gradient={`180deg,${colors[0]},${colors[1]}`}
-          backgroundTopDark
-          backgroundTop
-          backgroundTopOpacity={0.25}
-          backgroundBottom
-          backgroundBottomDark={false}
-          backgroundBottomOpacity={0.08}
-        />
+        <BackgroundImage default />
         <Header leftBackButton={false}>
           <div className="feed mx-3 mt-45">
             <div className="h2 feed ">Social feed</div>

@@ -92,6 +92,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
               <Header
                 rightActionButton
                 rightActionOnClick={(): void => this.props.history.goBack()}
+                leftBackOnClick={(): void => this.props.history.goBack()}
                 centerContent={
                   <div className="center-col">
                     <div className="h2 l1">Deep Dive</div>

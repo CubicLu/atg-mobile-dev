@@ -73,6 +73,7 @@
     }
     .list {
       overflow-x: scroll;
+      overflow-y: hidden;
       width: 100%;
       &.inline {
         margin-top: 15px;

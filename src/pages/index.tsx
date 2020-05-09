@@ -7,11 +7,13 @@ import SignUpConfirmPage from './sign-up-confirm';
 import HomePage from './home';
 import HomeRouterPage from './home/router';
 
+import DiscoveryPage from './discovery';
 import FeedPage from './feed';
 import FriendPage from './friend';
 import SearchPage from './search';
 
 import ProfilePage from './profile';
+import FriendProfilePage from './profile/friend';
 import ProfileArtistsPage from './profile/artists';
 import ProfileFriendsPage from './profile/friends';
 import ProfileMixtapesPage from './profile/mixtapes';
@@ -23,6 +25,7 @@ import CommunityPostPage from './community/post';
 import CommunityNewPostPage from './community/new-post';
 import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
+import CommunityArtistDripsPage from './community/artist-drips';
 import CommunitySharePage from './community/share';
 import CommunityArtistFilterPage from './community/artist/filter';
 
@@ -88,9 +91,11 @@ export {
   SignUpConfirmPage,
   HomePage,
   HomeRouterPage,
+  DiscoveryPage,
   FeedPage,
   SearchPage,
   ProfilePage,
+  FriendProfilePage,
   ProfileArtistsPage,
   ProfileFriendsPage,
   ProfileMixtapesPage,
@@ -119,6 +124,7 @@ export {
   CommunityNewPostPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
+  CommunityArtistDripsPage,
   CommunitySharePage,
   CommunityArtistFilterPage,
   RadioPage,

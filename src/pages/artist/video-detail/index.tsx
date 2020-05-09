@@ -21,7 +21,6 @@ import {
   showToastAction,
   updateSettingsProperty
 } from '../../../actions';
-import { shadowTitle } from '../../../utils';
 import ToastComponent from '../../../components/toast';
 
 interface StateProps {

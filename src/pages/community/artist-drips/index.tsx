@@ -3,55 +3,53 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import {
-  BackgroundImage,
-  Header,
-  Avatar,
-  HeaderOverlay
-} from '../../../components';
-import { getCommunityStoriesAPI } from './../../../actions';
-import { StorieInterface, ShapesSize } from '../../../interfaces';
-
+import { BackgroundImage, Header, Avatar } from '../../../components';
+import { getCommunityByArtistUsernameAPI } from './../../../actions';
+import { ShapesSize, CommunityArtistInterface } from '../../../interfaces';
+interface MatchParams {
+  artistId: string;
+}
 interface StateProps {
-  stories: StorieInterface[];
+  currentCommunityArtist: CommunityArtistInterface | null;
 }
+interface Props
+  extends StateProps,
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
 interface DispatchProps {
-  getCommunityStoriesAPI: () => void;
+  getCommunityByArtistUsernameAPI: (username: string) => void;
 }
-interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
-class CommunityAllArtistsPage extends React.Component<Props> {
-  private hRef: React.RefObject<any> = React.createRef();
+class CommunityArtistDripsPage extends React.Component<Props> {
   componentDidMount(): void {
-    if (this.props.stories && this.props.stories.length > 0) return;
-    this.props.getCommunityStoriesAPI();
+    this.loadPostsAndStories(this.props.match!.params);
+  }
+  loadPostsAndStories(p: MatchParams): void {
+    if (p.artistId !== this.props.currentCommunityArtist?.username) {
+      this.props.getCommunityByArtistUsernameAPI(p.artistId);
+    }
   }
 
   render(): React.ReactNode {
+    if (!this.props.currentCommunityArtist) return null;
     return (
       <IonPage id="community-all-artists-page">
         <BackgroundImage default />
         <Header
-          leftBackButton={true}
-          title="Artist Community"
+          leftBackButton={false}
+          title={`${this.props.currentCommunityArtist.name} Daily Drips`}
           titleClassName="artist-name"
           rightCloseButton={true}
-          rightCloseHref="/community"
+          rightCloseHref={`/community/artist/${this.props.currentCommunityArtist.username}`}
         />
-        <HeaderOverlay ref={this.hRef} />
-        <IonContent
-          fullscreen={true}
-          scrollY={true}
-          scrollEvents={true}
-          onIonScroll={(e): void => this.hRef.current?.handleParentScroll(e)}
-        >
+        <IonContent scrollY={false}>
           <div
             className={
               'mt-5 community-all-artists-page content content-container'
             }
           >
             <div className="row">
-              {this.props.stories.map(
+              {this.props.currentCommunityArtist.stories.map(
                 (data, i): React.ReactNode => {
                   return (
                     <IonRouterLink key={i} routerLink={data.url}>
@@ -79,12 +77,12 @@ class CommunityAllArtistsPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
-  const { stories } = communityAPI;
-  return { stories };
+  const { currentCommunityArtist } = communityAPI;
+  return { currentCommunityArtist };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    getCommunityStoriesAPI
-  })(CommunityAllArtistsPage)
+    getCommunityByArtistUsernameAPI
+  })(CommunityArtistDripsPage)
 );

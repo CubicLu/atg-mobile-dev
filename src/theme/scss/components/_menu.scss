@@ -111,19 +111,19 @@
           right: 0;
         }
       }
-    }
-
-    &.active {
-      .label {
-        opacity: 1;
-        border: none;
-        color: #fff;
-        font-weight: 400;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.43;
-        letter-spacing: normal;
+      &.active {
+        .label {
+          padding-bottom: 8px;
+          border-bottom: 3px solid #facf42 !important;
+          opacity: 1;
+          color: #fff;
+          font-weight: 400;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.43;
+          letter-spacing: normal;
+        }
       }
     }
   }

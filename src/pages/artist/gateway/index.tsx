@@ -9,6 +9,7 @@ import { BackgroundImage, RadioIcon, BackIcon } from '../../../components';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
+  loading: boolean;
 }
 
 interface DispatchProps {
@@ -26,16 +27,14 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistGatewayPage extends React.Component<Props> {
-  componentDidMount(): void {
+  componentDidUpdate(prev: Props): void {
     const { currentArtist, getArtistAPI, match } = this.props;
-    if (!currentArtist || currentArtist?.username !== match.params.artistId) {
-      getArtistAPI(match.params.artistId);
-    }
-  }
-
-  componentDidUpdate(): void {
-    const { currentArtist, getArtistAPI, match } = this.props;
-    if (!currentArtist || currentArtist?.username !== match.params.artistId) {
+    if (prev.loading) return;
+    if (this.props.loading) return;
+    if (
+      currentArtist == null ||
+      currentArtist.username !== match.params.artistId
+    ) {
       getArtistAPI(match.params.artistId);
     }
   }
@@ -51,7 +50,7 @@ class ArtistGatewayPage extends React.Component<Props> {
 
   transferToArtistHomePage = (): void => {
     const { history, match } = this.props;
-    history.push(`/artist/${match.params.artistId}`);
+    history.push(`/artist/${match.params.artistId}`, { gateway: true });
   };
 
   render(): React.ReactNode {
@@ -118,8 +117,8 @@ class ArtistGatewayPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
+  const { currentArtist, loading } = artistAPI;
+  return { currentArtist, loading };
 };
 
 export default withRouter(

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Avatar } from './../../../components';
 import { ShapesSize } from '../../../interfaces';
+import { IonRouterLink } from '@ionic/react';
 
 interface Props {
   scroll?: boolean;
   data?: any[];
   labelKey?: string;
   imageKey?: string;
-  onPressItem?: (id) => void;
   onClickViewAll?: Function;
 }
 
@@ -20,7 +20,7 @@ class SliderStoriesComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { data, imageKey, labelKey, onPressItem } = this.props;
+    const { data, imageKey, labelKey } = this.props;
     if (!data) return <div />;
     const image = imageKey ? 'image' : '';
     const label = labelKey ? 'label' : '';
@@ -32,18 +32,17 @@ class SliderStoriesComponent extends React.Component<Props> {
             (d, i): React.ReactNode => {
               return (
                 <li key={i}>
-                  <div key={i}>
-                    <Avatar
-                      image={d[image]}
-                      type={ShapesSize.circle}
-                      width={110}
-                      height={110}
-                      onClick={(): void => {
-                        onPressItem && onPressItem(i);
-                      }}
-                    />
-                    <label>{d[label]}</label>
-                  </div>
+                  <IonRouterLink routerLink={d.url}>
+                    <div key={i}>
+                      <Avatar
+                        image={d[image]}
+                        type={ShapesSize.circle}
+                        width={110}
+                        height={110}
+                      />
+                      <label>{d[label]}</label>
+                    </div>
+                  </IonRouterLink>
                 </li>
               );
             }

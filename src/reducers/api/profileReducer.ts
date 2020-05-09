@@ -12,33 +12,37 @@ const messages: MessageInterface[] = [
   {
     message: 'where is my shield!?',
     sendAt: new Date(),
-    name: 'Steve',
-    username: 'steverogers',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'Fabrizio',
+    username: 'fabrizio',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/fabrizio.jpg',
     read: true
   },
   {
     message: 'are you Rock!',
     sendAt: new Date('2020-04-01'),
-    name: 'Débora',
-    username: 'debora',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'Eleonore',
+    username: 'eleonore',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/eleonore.jpg',
     read: false
   },
   {
     message: 'Good!',
     sendAt: new Date('2020-03-15'),
-    name: 'Vigil',
-    username: 'vigil365',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'chris',
+    username: 'chris',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg',
     read: false
   },
   {
     message: 'Good!',
     sendAt: new Date('2020-03-10'),
-    name: 'Bruce',
-    username: 'brucebanner',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'Gabriela',
+    username: 'gabriela',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/gabriela.jpg',
     read: true
   }
 ];
@@ -46,18 +50,20 @@ const notifications: NotificationInterface[] = [
   {
     message: 'where is my shield!?',
     sendAt: new Date(),
-    name: 'Steve',
-    username: 'steverogers',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'Harold',
+    username: 'harold',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/harold.jpg',
     read: true,
     subject: 'Hello'
   },
   {
     message: 'are you Rock!',
     sendAt: new Date('2020-04-01'),
-    name: 'Débora',
-    username: 'debora',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'Chris',
+    username: 'chris',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg',
     read: false,
     subject: 'E-mail 1'
   },
@@ -66,65 +72,42 @@ const notifications: NotificationInterface[] = [
     sendAt: new Date('2020-03-01'),
     name: 'Vigil',
     username: 'vigil365',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/fabrizio.jpg',
     read: false,
     subject: 'Email 1'
-  },
-  {
-    message: 'Good!',
-    sendAt: new Date('2020-02-21'),
-    name: 'Bruce',
-    username: 'brucebanner',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: true,
-    subject: 'subject here'
-  },
-  {
-    message: 'Good!',
-    sendAt: new Date('2020-01-31'),
-    name: 'Vigil',
-    username: 'vigil365',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: false,
-    subject: 'E-mail 2'
-  },
-  {
-    message: 'Good!',
-    sendAt: new Date('2019-04-01'),
-    name: 'Bruce',
-    username: 'brucebanner',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
-    read: true,
-    subject: 'E-mail 3'
   }
 ];
 
 const friends: UserInterface[] = [
   {
-    name: 'Débora',
-    username: 'debora',
-    avatar: 'https://loremflickr.com/50/50/woman,face?random=' + Math.random(),
+    name: 'Damiana',
+    username: 'damiana',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg',
     isFriend: true,
     id: 1
   },
   {
-    name: 'vigil',
-    username: 'vigil',
-    avatar: 'https://loremflickr.com/50/50/man,face?random=' + Math.random(),
+    name: 'Dexter',
+    username: 'dexter',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/dexter.jpg',
     id: 2
   },
   {
-    name: 'Bruce',
-    username: 'brucebanner',
-    avatar: 'https://loremflickr.com/50/50/hulk?random=' + Math.random(),
+    name: 'Amanda',
+    username: 'amanda',
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/amanda.jpg',
     isFriend: true,
     id: 3
   },
   {
-    name: 'Steve',
-    username: 'steverogers',
+    name: 'Harold',
+    username: 'harold',
     avatar:
-      'https://loremflickr.com/50/50/steve,rogers?random=' + Math.random(),
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/harold.jpg',
     isFriend: true,
     id: 4
   }
@@ -136,19 +119,14 @@ const artists: UserInterface[] = [
     name: 'pharrell-williams',
     isFriend: true,
     avatar:
-      'https://loremflickr.com/50/50/pharrell,williams?random=' + Math.random()
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg'
   },
   {
-    username: 'demi',
-    name: 'demi',
+    username: 'rival-sons',
+    name: 'rival-sons',
     isFriend: true,
-    avatar: 'https://loremflickr.com/50/50/demi,lovato?random=' + Math.random()
-  },
-  {
-    username: 'milie-cyrus',
-    name: 'pharrell-williams',
-    isFriend: true,
-    avatar: 'https://loremflickr.com/50/50/cyrus?random=' + Math.random()
+    avatar:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg'
   }
 ];
 
@@ -164,7 +142,7 @@ const defaultState: ProfileReducerType = {
   admins: admins,
   adminsSearch: admins,
   friendsSelected: [],
-  resentSelected: []
+  recentSelected: []
 };
 
 export const profileReducer = createReducer<ProfileReducerType>(defaultState, {

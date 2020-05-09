@@ -8,7 +8,8 @@ import {
 
 export const getRadioArtistRequest = async (
   radioId: string
-): Promise<ChannelInterface> => await API.get(`radio/${radioId}.json`);
+): Promise<ChannelInterface> =>
+  await API.get(`radio/${radioId}.json?${new Date().getTime()}`);
 
 function* getRadioArtistAPI({ payload }: any): ReturnType<any> {
   try {

@@ -54,7 +54,7 @@ class ArtistGalleryPage extends React.Component<Props> {
   }
 
   handleOnClick = (index: number): (() => void) => (): void => {
-    this.props.history.push(
+    this.props.history.replace(
       `/artist/${this.props.currentArtist?.username}/gallery/${index}`
     );
     return this.props.setCurrentGallery(index);
@@ -66,7 +66,8 @@ class ArtistGalleryPage extends React.Component<Props> {
         <Header
           title="Gallery"
           leftBackOnClick={(): void =>
-            this.props.history.replace(`/artist/${this.props.match.params.id}`)
+            // this.props.history.replace(`/artist/${this.props.match.params.id}`)
+            this.props.history.goBack()
           }
           //leftBackHref={`/artist/${this.props.match.params.id}`}
         />

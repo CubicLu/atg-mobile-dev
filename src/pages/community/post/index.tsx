@@ -63,9 +63,11 @@ class CommunityPostPage extends React.Component<Props> {
           <div className="flex space-between h-100">
             <div className="scroll-post h-100">
               <CardPost
+                className="mt-0"
                 post={this.getPost()}
                 showUser={false}
                 showOptions={false}
+                disableComment={true}
               />
               {this.renderPostDescription()}
               {this.renderPostComments()}
@@ -76,11 +78,21 @@ class CommunityPostPage extends React.Component<Props> {
       </IonPage>
     );
   }
+  getPost(): PostInterface {
+    return {
+      id: this.props.match?.params.id || '1',
+      username: '',
+      artist: true,
+      avatar: '',
+      image: this.props.currentPostCover.url,
+      comments: this.props.currentPostComments || [],
+      commentsQuantity: this.props.currentPostComments?.length || 0
+    };
+  }
   renderPostDescription(): React.ReactNode {
     return (
       <div className={'f6 dark mb-1 mx-2'}>
-        GET THE MONEY - Cross The Line is the first song from Taylor Hawkins &
-        The Coattail Riders new Album. Support Us and listen to the whole album.
+        {this.props.currentPostCover.description}
       </div>
     );
   }
@@ -94,15 +106,6 @@ class CommunityPostPage extends React.Component<Props> {
         )}
       </React.Fragment>
     );
-  }
-  getPost(): PostInterface {
-    return {
-      username: '',
-      avatar: '',
-      image: this.props.currentPostCover.url,
-      comments: this.props.currentPostComments || [],
-      commentsQuantity: this.props.currentPostComments?.length || 0
-    };
   }
   renderPostInput(): React.ReactNode {
     return (

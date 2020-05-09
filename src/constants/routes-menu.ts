@@ -6,7 +6,7 @@ export const routeArtistMenu: RouteArtist[] = [
   { id: '0', label: 'DASHBOARD', path: '/dashboard/:id' },
   { id: '1', label: 'FEATURED', path: '/artist/:id/' },
   { id: '2', label: 'BIO', path: '/artist/:id/biography' },
-  { id: '3', label: 'SOCIAL', path: '/community/artist/:id' },
+  { id: '3', label: 'COMMUNITY', path: '/community/artist/:id' },
   { id: '4', label: 'RADIO', path: '/radio/:id' },
   { id: '5', label: 'DEEP DIVE', path: '/artist/:id/deep-dive' },
   { id: '6', label: 'ALBUMS', path: '/artist/:id/tab/albums' },

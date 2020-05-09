@@ -16,6 +16,7 @@
     <preference name="MediaTypesRequiringUserActionForPlayback" value="false" />
     <preference name="AllowsAirPlayForMediaPlayback" value="false" />
     <preference name="Orientation" value="portrait" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
 
     <platform name="android">
         <allow-intent href="market:*" />

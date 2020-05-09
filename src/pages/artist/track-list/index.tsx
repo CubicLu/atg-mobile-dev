@@ -53,7 +53,7 @@ class TrackListPage extends React.Component<Props> {
   isArtist: boolean = false;
 
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    this.getPlaylistFromAPI(nextProps.match.params.id);
+    this.getPlaylistFromAPI(nextProps.match.params.referenceId);
     this.isArtist = this.props.match.params.reference === 'artist';
     if (!this.isArtist) {
       return;

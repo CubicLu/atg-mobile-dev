@@ -185,6 +185,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
         <Header
+          leftBackOnClick={(): void => this.props.history.goBack()}
           rightActionButton={true}
           rightActionOnClick={(): void => this.openChapterModal()}
           centerContent={

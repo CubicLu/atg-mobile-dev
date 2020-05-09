@@ -214,10 +214,13 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     this.forceUpdate();
   };
 
-  handleBackClick = (): void => {
-    const { clearCurrentArtist, history } = this.props;
-    clearCurrentArtist();
-    history.replace('/profile');
+  handleBackTo = (): void => {
+    const historyState = this.props.history.location.state as any;
+    if (historyState && historyState.gateway) {
+      this.props.history.go(-2);
+    } else {
+      this.props.history.goBack();
+    }
   };
 
   render(): React.ReactNode {
@@ -233,9 +236,7 @@ class ArtistPage extends React.PureComponent<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header //leftBackHref={'/profile'}
-          leftBackOnClick={this.handleBackClick}
-        />
+        <Header leftBackOnClick={this.handleBackTo} />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">

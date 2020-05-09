@@ -105,10 +105,14 @@ class HeaderComponent extends React.Component<Props> {
   };
 
   goBackClick = (ev): void => {
+    ev?.preventDefault();
     if (this.props.leftBackOnClick) {
       return this.props.leftBackOnClick(ev);
     }
-    return (this.context as NavContextState).goBack(this.props.leftBackHref);
+    const back = this.props.leftBackHref;
+    return back
+      ? (this.context as NavContextState).navigate(back, 'back')
+      : (this.context as NavContextState).goBack();
   };
   rightCloseBtn = (): void => {
     const { rightCloseHref, routerDirection, rightCloseOnClick } = this.props;

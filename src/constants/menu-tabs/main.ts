@@ -1,10 +1,10 @@
 import { TabsInterface } from './../../interfaces';
 import {
-  FeedPage,
   CommunityPage,
   ProfilePage,
   RadioPage,
-  SearchPage
+  SearchPage,
+  DiscoveryPage
 } from '../../pages';
 import {
   MessageIcon,
@@ -15,10 +15,10 @@ import {
 } from '../../components';
 export const mainTabs: TabsInterface[] = [
   {
-    path: '/feed',
+    path: '/discovery',
     icon: LogoIcon,
-    id: 'feed',
-    component: FeedPage
+    id: 'discovery',
+    component: DiscoveryPage
   },
   {
     path: '/community',

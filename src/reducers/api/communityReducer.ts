@@ -80,16 +80,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
       return {
         ...state,
         loading: false,
-        posts: action.payload.data.posts,
-        stories: action.payload.data.stories,
-        currentCommunityArtist: {
-          name: action.payload.data.name,
-          fullname: action.payload.data.fullname,
-          username: action.payload.data.username,
-          backgroundGradient: action.payload.data.backgroundGradient
-            ? action.payload.data.backgroundGradient
-            : null
-        }
+        currentCommunityArtist: action.payload.data
       };
     },
 

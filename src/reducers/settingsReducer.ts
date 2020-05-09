@@ -94,13 +94,13 @@ export const settingsReducer = createReducer<SettingsReducerType>(
         popUpModal: action.payload.modalType
       };
     },
-    [ActionType.SHOW_TOAST](state: SettingsReducerType) {
+    [ActionType.SHOW_TOAST](state: SettingsReducerType): SettingsReducerType {
       return {
         ...state,
         showToast: true
       };
     },
-    [ActionType.HIDE_TOAST](state: SettingsReducerType) {
+    [ActionType.HIDE_TOAST](state: SettingsReducerType): SettingsReducerType {
       return {
         ...state,
         showToast: false

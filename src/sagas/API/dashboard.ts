@@ -12,7 +12,8 @@ import {
 
 export const getDashboardByArtistRequest = async (
   username
-): Promise<DashboardInterface> => await API.get(`dashboard/${username}.json`);
+): Promise<DashboardInterface> =>
+  await API.get(`dashboard/${username}.json?${new Date().getTime()}`);
 
 function* getDashboardByArtistAPI({ payload }: any): ReturnType<any> {
   try {

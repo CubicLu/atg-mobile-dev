@@ -34,7 +34,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   name: 'The Weeknd',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/1278198def9c07d5c284250ba82072ad/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -49,7 +50,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/15cad877f93e8fda50c6cb347e1e85a5/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -64,7 +66,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/423ad64a66ebc7b179a27ca68ca45b40/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -79,7 +82,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/8a631869c0bbf6b8288ceabb598670b0/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -94,7 +98,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/ecfa926cd9d5369e98bbbc4eefd57a6b/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -109,7 +114,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/379613019df276565895074c85ec9efa/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -124,7 +130,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/64377279e24c6193fab373abf635a6dd/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -139,7 +146,8 @@ class ProfileVaultPage extends React.Component<Props> {
                 artist: {
                   username: 'pharrell-williams',
                   cover: {
-                    background: '',
+                    background:
+                      'https://e-cdns-images.dzcdn.net/images/cover/90fab088c4d091618e7386f688803673/264x264-000000-80-0-0.jpg',
                     main: '',
                     event: '',
                     biography: '',
@@ -160,6 +168,7 @@ class ProfileVaultPage extends React.Component<Props> {
                     optionRemove={!isFriend}
                     hasAvatar={true}
                     avatarSize={48}
+                    avatarImage={data.artist.cover.background}
                     avatarBadge={i % 3 === 0 && isFriend}
                     badgeColor={Colors.red}
                     optionAddPlaylist={true}

@@ -365,15 +365,20 @@ export interface FeedReducerType {
 export interface StorieInterface {
   image: string;
   label: string;
+  url?: string;
 }
 
 export interface CommunityArtistInterface extends UserInterface {
   backgroundGradient: GradientColorsInterface | null;
+  posts: PostInterface[];
+  stories: StorieInterface[];
 }
 export interface FanFeedInterface extends UserInterface {}
 
 export interface PostInterface {
+  id: string;
   username: string;
+  artist: boolean;
   avatar: string;
   image: string | string[];
   commentsQuantity: number;
@@ -388,6 +393,7 @@ export interface CommentInterface {
 
 export interface CommentCoverInterface {
   url: string;
+  description?: string;
 }
 
 export interface GradientColorsInterface {
@@ -601,7 +607,7 @@ export interface ProfileReducerType {
   admins: UserInterface[];
   adminsSearch: UserInterface[];
   friendsSelected: number[];
-  resentSelected: number[];
+  recentSelected: number[];
 }
 
 export interface MessageInterface extends UserInterface {
@@ -619,14 +625,17 @@ export interface NotificationInterface extends UserInterface {
 
 export interface FriendInterface {
   name: string;
+  nickname: string;
   city: string;
+  image: string;
+  background?: string;
   followers: number;
   friend: boolean;
 }
 
 export interface FriendReducerType {
   friends: FriendInterface[];
-  currentFriend: FriendInterface | null;
+  currentFriend?: FriendInterface;
   loading: boolean;
   successMessage: string | null;
   errorMessage: string | null;

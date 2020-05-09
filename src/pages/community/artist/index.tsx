@@ -11,18 +11,12 @@ import {
   HeaderOverlay
 } from './../../../components';
 import { ApplicationState } from './../../../reducers';
-import {
-  getCommunityPostsAPI,
-  getCommunityStoriesAPI,
-  getCommunityByArtistUsernameAPI
-} from './../../../actions';
+import { getCommunityByArtistUsernameAPI } from './../../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
-  PostInterface,
   ShapesSize,
   Colors,
-  StorieInterface,
   CommunityArtistInterface
 } from '../../../interfaces';
 import { RouteChildrenProps } from 'react-router-dom';
@@ -30,15 +24,11 @@ interface MatchParams {
   artistId: string;
 }
 interface StateProps {
-  posts: PostInterface[];
   loading: boolean;
-  stories: StorieInterface[];
   currentCommunityArtist: CommunityArtistInterface | null;
 }
 interface DispatchProps {
   getCommunityByArtistUsernameAPI: (username: string) => void;
-  getCommunityPostsAPI: () => void;
-  getCommunityStoriesAPI: () => void;
 }
 interface Props
   extends StateProps,
@@ -48,6 +38,7 @@ interface State {
   joined: boolean;
 }
 
+//USED WHEN WE DO HAVE ARTIST
 class CommunityArtistPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
@@ -57,21 +48,16 @@ class CommunityArtistPage extends React.Component<Props, State> {
   componentDidMount(): void {
     this.loadPostsAndStories(this.props.match!.params);
   }
-  UNSAFE_componentWillReceiveProps(nProps: Props): void {
-    nProps.match!.params.artistId !== this.props.match?.params.artistId &&
-      !nProps.loading &&
-      this.loadPostsAndStories(nProps.match!.params!);
-  }
-
   loadPostsAndStories(p: MatchParams): void {
-    if (p.artistId) {
+    if (p.artistId !== this.props.currentCommunityArtist?.username) {
       this.props.getCommunityByArtistUsernameAPI(p.artistId);
-    } else {
-      this.props.getCommunityPostsAPI();
-      this.props.getCommunityStoriesAPI();
     }
   }
-
+  UNSAFE_componentWillReceiveProps(nProps: Props): void {
+    const newArtist = nProps.match!.params.artistId;
+    const currentArtist = this.props.currentCommunityArtist?.username;
+    if (newArtist === currentArtist) return;
+  }
   renderTitleAndFilterPosts(): React.ReactNode {
     return (
       <div className="row filter mx-3 flex">
@@ -111,31 +97,39 @@ class CommunityArtistPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     const { joined } = this.state;
     const { currentCommunityArtist } = this.props;
+    if (!currentCommunityArtist) return <IonPage id="community-page" />;
+
     let color1 =
-      currentCommunityArtist?.backgroundGradient !== null
-        ? currentCommunityArtist?.backgroundGradient.color1
+      currentCommunityArtist.backgroundGradient !== null
+        ? currentCommunityArtist.backgroundGradient?.color1
         : '';
     let color2 =
-      currentCommunityArtist?.backgroundGradient !== null
-        ? currentCommunityArtist?.backgroundGradient.color1
+      currentCommunityArtist.backgroundGradient !== null
+        ? currentCommunityArtist.backgroundGradient?.color1
         : '';
+    const useArtistBackground = false;
+
     return (
       <IonPage id="community-page">
-        <BackgroundImage
-          gradient={`180deg,${color1},${color2}`}
-          backgroundTopDark
-          backgroundTop
-          backgroundTopOpacity={0.5}
-          backgroundBottom
-          backgroundBottomDark={false}
-          backgroundBottomOpacity={0.08}
-          default={currentCommunityArtist?.backgroundGradient === null}
-        />
+        {useArtistBackground &&
+        currentCommunityArtist.backgroundGradient !== null ? (
+          <BackgroundImage
+            gradient={`180deg,${color1},${color2}`}
+            backgroundTopDark
+            backgroundTop
+            backgroundTopOpacity={0.5}
+            backgroundBottom
+            backgroundBottomDark={false}
+            backgroundBottomOpacity={0.08}
+          />
+        ) : (
+          <BackgroundImage default />
+        )}
 
         <Header
           leftBackButton={true}
           leftBackHref="/community"
-          title={this.props.currentCommunityArtist?.fullname}
+          title={currentCommunityArtist.fullname}
           titleClassName={'community-artist-name'}
           rightActionButton={false}
           rightContent={
@@ -160,32 +154,30 @@ class CommunityArtistPage extends React.Component<Props, State> {
           <div className={'community-page mt-3 content'}>
             {!joined && this.renderJoinButton()}
 
-            {this.props.stories.length > 0 && (
-              <React.Fragment>
-                <SectionTitle
-                  title={'DAILY DRIP'}
-                  viewAll={true}
-                  className="mt-1 mx-3"
-                  onClickAll={(): void => {
-                    this.props.history.push('/community/artist');
-                  }}
-                />
-                <SliderStories
-                  labelKey="label"
-                  imageKey="image"
-                  data={this.props.stories}
-                  onPressItem={(id): void =>
-                    this.props.history.push(
-                      `/community/artist/${this.props.match?.params.artistId}/daily-drip/${id}`
-                    )
-                  }
-                />
-              </React.Fragment>
-            )}
+            {currentCommunityArtist.stories &&
+              currentCommunityArtist.stories.length > 0 && (
+                <React.Fragment>
+                  <SectionTitle
+                    title={'DAILY DRIP'}
+                    viewAll={true}
+                    className="mt-1 mx-3"
+                    onClickAll={(): void => {
+                      this.props.history.push(
+                        `/community/artist/${currentCommunityArtist.username}/daily-drip`
+                      );
+                    }}
+                  />
+                  <SliderStories
+                    labelKey="label"
+                    imageKey="image"
+                    data={currentCommunityArtist.stories}
+                  />
+                </React.Fragment>
+              )}
 
             {this.renderTitleAndFilterPosts()}
 
-            {this.props.posts?.map(
+            {currentCommunityArtist.posts?.map(
               (data, i): React.ReactNode => (
                 <CardPost key={i} post={data} showUser={false} />
               )
@@ -198,18 +190,13 @@ class CommunityArtistPage extends React.Component<Props, State> {
 }
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
-  const { posts, stories, currentCommunityArtist } = communityAPI;
-  const { loading } = communityAPI;
+  const { currentCommunityArtist, loading } = communityAPI;
   return {
-    posts,
     loading,
-    stories,
     currentCommunityArtist
   };
 };
 
 export default connect(mapStateToProps, {
-  getCommunityPostsAPI,
-  getCommunityByArtistUsernameAPI,
-  getCommunityStoriesAPI
+  getCommunityByArtistUsernameAPI
 })(CommunityArtistPage);

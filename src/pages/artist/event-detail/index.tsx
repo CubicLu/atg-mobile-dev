@@ -74,7 +74,7 @@ class EventDetailPage extends React.Component<Props, State> {
         <Header
           rightCloseButton
           title="Who's going"
-          leftBackHref={`/artist/${this.props.match.params.id}/event`}
+          leftBackOnClick={(): void => this.props.history.goBack()}
           rightCloseHref={`/artist/${this.props.match.params.id}/event`}
           rightCloseOnClick={(): void => {
             this.props.updateArtistSetInitialProperty('event');

@@ -21,7 +21,7 @@ interface StateProps {
   friends: UserInterface[];
   friendsSearch: UserInterface[];
   friendsSelected: number[];
-  resentSelected: number[];
+  recentSelected: number[];
 }
 
 interface DispatchProps {
@@ -54,19 +54,19 @@ class FanFeedFilterPage extends React.Component<Props, State> {
     });
   }
 
-  everyResent?: boolean;
+  everyRecent?: boolean;
   everyAll?: boolean;
   onSelectAll(e, key): void {
-    if (key === 'everyResent') {
-      this.everyResent = e.detail.checked;
-      let resentAll: number[] = [];
-      if (this.everyResent) {
+    if (key === 'everyRecent') {
+      this.everyRecent = e.detail.checked;
+      let recentAll: number[] = [];
+      if (this.everyRecent) {
         let data = this.getAll();
         data.map((x): number | null =>
-          x.id && x.isFriend ? resentAll.push(x.id) : null
+          x.id && x.isFriend ? recentAll.push(x.id) : null
         );
       }
-      this.props.updateProfileProperty('resentSelected', resentAll);
+      this.props.updateProfileProperty('recentSelected', recentAll);
     }
     if (key === 'everyAll') {
       this.everyAll = e.detail.checked;
@@ -81,7 +81,7 @@ class FanFeedFilterPage extends React.Component<Props, State> {
     }
   }
 
-  getResent(): UserInterface[] {
+  getRecent(): UserInterface[] {
     return this.props.friendsSearch.slice(0, 3);
   }
   getAll(): UserInterface[] {
@@ -102,7 +102,7 @@ class FanFeedFilterPage extends React.Component<Props, State> {
     );
   }
 
-  resentSelected: UserInterface[] = [];
+  recentSelected: UserInterface[] = [];
   allSelected: UserInterface[] = [];
   toggleSelect(
     event: CustomEvent,
@@ -110,8 +110,8 @@ class FanFeedFilterPage extends React.Component<Props, State> {
     all: boolean = true
   ): void {
     if (all) this.everyAll = undefined;
-    if (!all) this.everyResent = undefined;
-    const array = all ? this.allSelected : this.resentSelected;
+    if (!all) this.everyRecent = undefined;
+    const array = all ? this.allSelected : this.recentSelected;
     const index = array.findIndex((x): boolean => x.username === data.username);
     if (event.detail.checked && index === -1) {
       array.push(data);
@@ -142,12 +142,12 @@ class FanFeedFilterPage extends React.Component<Props, State> {
             </div>
 
             <IonContent scrollY={true}>
-              {this.renderTitle('Resent', 'everyResent')}
+              {this.renderTitle('Recent', 'everyRecent')}
               <ListUser
                 onSelect={(e, data): void => this.toggleSelect(e, data, false)}
                 sliding={false}
-                data={this.getResent()}
-                selected={this.props.resentSelected}
+                data={this.getRecent()}
+                selected={this.props.recentSelected}
                 showComboBox
               />
 
@@ -175,9 +175,9 @@ const mapStateToProps = ({ profileAPI }: ApplicationState): StateProps => {
     friends,
     friendsSearch,
     friendsSelected,
-    resentSelected
+    recentSelected
   } = profileAPI;
-  return { friends, friendsSearch, friendsSelected, resentSelected };
+  return { friends, friendsSearch, friendsSelected, recentSelected };
 };
 
 export default withRouter(

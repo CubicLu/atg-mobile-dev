@@ -6,18 +6,26 @@ interface Props {
   title: string;
   description: string | ReactNode;
   artistAvatar?: string;
+  confirmButtonContent?: string;
+  cancelButtonContent?: string;
 }
 
 export default class PremiumFeaturesModalContentComponent extends Component<
   Props
 > {
+  static defaultProps = {
+    confirmButtonContent: 'SUPPORT!',
+    cancelButtonContent: 'Done'
+  };
   render(): ReactNode {
     const {
       onSuccessClick,
       onDoneClick,
       title,
       description,
-      artistAvatar
+      artistAvatar,
+      confirmButtonContent,
+      cancelButtonContent
     } = this.props;
     return (
       <div className={'premium-features-modal'}>
@@ -27,10 +35,10 @@ export default class PremiumFeaturesModalContentComponent extends Component<
         <p className={'premium-features-modal--title'}>{title}</p>
         <p className={'premium-features-modal--description'}>{description}</p>
         <button className={'button-support'} onClick={onSuccessClick}>
-          SUPPORT!
+          {confirmButtonContent}
         </button>
         <button className={'button-dismiss'} onClick={onDoneClick}>
-          Done
+          {cancelButtonContent}
         </button>
       </div>
     );

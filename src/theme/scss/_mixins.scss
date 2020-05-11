@@ -1,3 +1,4 @@
+
 @mixin page {
   z-index: 2;
   position: relative;
@@ -112,25 +113,24 @@
   // flex-direction: column;
   &.circle {
     border-radius: 50%;
-    height: 156px;
-    width: 156px;
-    margin-bottom: 16px;
+    height: 95px;
+    width: 95px;
     color: #fff;
     border: 0px solid transparent;
     &.active {
-      border: 6px solid #fff;
+      border: 6px solid #ffd102cf;
     }
   }
   .price {
-    font-size: pxToRem(72);
-    font-family: 'Industria';
+    font-size: 42px;
+    font-family: Industria, sans-serif;
     position: relative;
     font-weight: bold;
     line-height: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 16px;
+    justify-content: center;
     .currency {
       font-size: 30px;
       vertical-align: middle;

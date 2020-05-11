@@ -59,6 +59,7 @@ import SubGenreModalComponent from './card/genre/subgenre';
 import CardEraComponent from './card/era';
 import CardSubEraComponent from './card/era/sub-era';
 import CardGraphComponent from './card/graph';
+import ArrowTopIconComponent from './icon/arrow-top';
 
 import PlayerProgressBarComponent from '../components/player/progress-bar';
 import PlayerVolumeComponent from '../components/player/volume-bar';
@@ -160,7 +161,8 @@ export {
   MiniPlayerBarComponent as MiniPlayerBar,
   CardSubEraComponent as CardSubEra,
   CardGraphComponent as CardGraph,
-  SplashScreenComponent as SplashScreen
+  SplashScreenComponent as SplashScreen,
+  ArrowTopIconComponent as ArrowTopIcon
 };
 
 export {

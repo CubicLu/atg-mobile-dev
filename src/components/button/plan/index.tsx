@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonIcon, DotsThreeIcon } from './../../';
+import { DotsThreeIcon } from './../../';
 import { Colors, PlanInterface } from '../../../interfaces';
 interface Props {
   onClick: Function;
@@ -29,17 +29,13 @@ class ButtonPlanComponent extends React.Component<Props> {
       >
         <div className="price m-1">
           <div>
-            <span className="h00 text-66 l1">
+            <span className="h0 l1 ">
               <span className="currency">{'$'}</span>
               {price}
             </span>
           </div>
-          <span className="f4">{name}</span>
-          <ButtonIcon
-            className="m-0"
-            icon={<DotsThreeIcon />}
-            color={Colors.transparent}
-          />
+          <span className="f7 mb-05">{name}</span>
+          <DotsThreeIcon />
         </div>
       </div>
     );

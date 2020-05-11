@@ -14,8 +14,12 @@ class SupportIcon extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const fillCircle = this.props.supported ? '#fff' : 'url(#support-gradient)';
-    const fillInner = !this.props.supported ? '#fff' : 'url(#support-gradient)';
+    const fillCircle = this.props.supported
+      ? '#fff'
+      : `url(${window.location.pathname}#support-gradient)`;
+    const fillInner = !this.props.supported
+      ? '#fff'
+      : `url(${window.location.pathname}#support-gradient)`;
     return (
       <svg
         width={this.props.width}

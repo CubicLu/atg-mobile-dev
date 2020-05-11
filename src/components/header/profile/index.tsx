@@ -115,8 +115,11 @@ export default class HeaderProfileComponent extends React.Component<Props> {
               width={400}
               height={160}
               viewBox="0 0 400 160"
-              backgroundColor="#ffffff0d"
-              foregroundColor="#ffffff26"
+              baseUrl={window.location.pathname}
+              backgroundColor="rgb(255,255,255)"
+              foregroundColor="rgb(255,255,255)"
+              backgroundOpacity={0.05}
+              foregroundOpacity={0.15}
             >
               <circle cx="30" cy="30" r="30" />
               <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
@@ -160,8 +163,11 @@ export default class HeaderProfileComponent extends React.Component<Props> {
               width={400}
               height={160}
               viewBox="0 0 400 160"
-              backgroundColor="#ffffff0d"
-              foregroundColor="#ffffff26"
+              baseUrl={window.location.pathname}
+              backgroundColor="rgb(255,255,255)"
+              foregroundColor="rgb(255,255,255)"
+              backgroundOpacity={0.05}
+              foregroundOpacity={0.15}
             >
               <circle cx="30" cy="30" r="30" />
               <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />

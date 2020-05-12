@@ -1,4 +1,4 @@
-import { RouteInterface } from './../interfaces';
+import { RouteInterface } from './../models';
 interface RouteArtist extends RouteInterface {
   label: string;
 }

@@ -10,7 +10,7 @@ import {
   HeaderOverlay
 } from '../../../components';
 import { getCommunityStoriesAPI } from './../../../actions';
-import { StorieInterface } from '../../../interfaces';
+import { StorieInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
 
 interface StateProps {

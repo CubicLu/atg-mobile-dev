@@ -8,7 +8,7 @@ import {
   APIResponseInterface,
   APIErrorInterface,
   EventInterface
-} from './../../interfaces';
+} from './../../models';
 import {} from './../../types';
 
 export const updateArtistProperty = (

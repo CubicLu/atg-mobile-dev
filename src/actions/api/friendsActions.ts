@@ -4,7 +4,7 @@ import {
   FriendInterface,
   APIErrorInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 
 export const getFriendsAPI = (): Action<FriendActionType.GET_FRIENDS_ALL_API> => ({
   type: FriendActionType.GET_FRIENDS_ALL_API

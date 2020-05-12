@@ -30,7 +30,7 @@ import {
   ArtistInterface,
   CommentInterface,
   GalleryImageInterface
-} from '../../../interfaces';
+} from '../../../models';
 import { ShapesSize } from '../../../types';
 import { validateScrollHeader } from '../../../utils';
 import FullScreenImageModal from '../../../components/modal/image-gallery';

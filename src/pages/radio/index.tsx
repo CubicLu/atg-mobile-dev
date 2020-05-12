@@ -9,7 +9,7 @@ import {
   SliderVideo
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
-import { ChannelInterface } from '../../interfaces';
+import { ChannelInterface } from '../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 interface Props extends RouteComponentProps<MatchParams> {}

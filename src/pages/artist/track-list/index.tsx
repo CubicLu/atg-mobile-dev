@@ -9,7 +9,7 @@ import {
   SongInterface,
   PlayerReducerType,
   DiscographyInterface
-} from '../../../interfaces';
+} from '../../../models';
 import { IonPage, IonContent } from '@ionic/react';
 import {
   BackgroundImage,

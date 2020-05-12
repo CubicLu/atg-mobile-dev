@@ -3,7 +3,7 @@ import {
   Action,
   APIErrorInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 
 export const getFeedPostsAPI = (): Action<FeedActionType.GET_ALL_POSTS_API> => ({
   type: FeedActionType.GET_ALL_POSTS_API

@@ -1,4 +1,4 @@
-import { NavbarActionType, Action, ActionProperty } from '../interfaces';
+import { NavbarActionType, Action, ActionProperty } from '../models';
 
 export const updateNavbarProperty = (
   property: string,

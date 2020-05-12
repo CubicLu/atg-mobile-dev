@@ -4,7 +4,7 @@ import {
   ArrowRightIcon,
   BackgroundImage
 } from './../../../components';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { Colors } from '../../../types';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';

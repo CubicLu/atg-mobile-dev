@@ -7,7 +7,7 @@ import {
   ButtonIcon,
   MinimizeIcon
 } from '../../components';
-import { CommentInterface } from '../../interfaces';
+import { CommentInterface } from '../../models';
 import { Colors, Sizes } from '../../types';
 interface Props {
   displayChat: boolean;

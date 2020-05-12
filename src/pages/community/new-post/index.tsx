@@ -8,7 +8,7 @@ import {
 } from '@ionic/react';
 import { Button, CardImage, InputTextArea } from '../../../components';
 import { ShapesSize, Colors } from '../../../types';
-import { CameraOptions, Camera } from '../../../interfaces';
+import { CameraOptions, Camera } from '../../../models';
 import CameraImage from '../../../components/icon/camera';
 import { convertIonicFileSrc } from '../../../utils';
 import { RouteChildrenProps } from 'react-router';

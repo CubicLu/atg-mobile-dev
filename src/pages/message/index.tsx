@@ -14,7 +14,7 @@ import {
   MenuInterface,
   MessageInterface,
   NotificationInterface
-} from '../../interfaces';
+} from '../../models';
 import { ShapesSize, Colors } from '../../types';
 import { updateSettingsProperty, updateProfileProperty } from './../../actions';
 import PlusIcon from '../../components/icon/plus';

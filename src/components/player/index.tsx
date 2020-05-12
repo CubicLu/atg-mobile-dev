@@ -34,7 +34,7 @@ import {
   PlaylistInterface,
   PlayerActionType,
   MediaType
-} from '../../interfaces';
+} from '../../models';
 import {
   PlayButton,
   NextButton,

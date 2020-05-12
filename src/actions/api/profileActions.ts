@@ -1,4 +1,4 @@
-import { Action, ProfileActionType, ActionProperty } from './../../interfaces';
+import { Action, ProfileActionType, ActionProperty } from './../../models';
 
 export const updateProfileProperty = (
   property: string,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RadioPlayButton } from '../icon/player';
 import { RadioPauseButton } from '..';
-import { SongInterface } from '../../interfaces';
+import { SongInterface } from '../../models';
 
 interface Props {
   title: string | undefined;

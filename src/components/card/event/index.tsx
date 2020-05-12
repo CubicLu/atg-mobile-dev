@@ -1,5 +1,5 @@
 import React from 'react';
-import { EventInterface } from '../../../interfaces';
+import { EventInterface } from '../../../models';
 import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
 import { IonAlert, IonRouterLink } from '@ionic/react';
 import moment from 'moment';

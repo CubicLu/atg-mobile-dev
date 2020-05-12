@@ -1,4 +1,4 @@
-import { AlbumInterface, GalleryInterface } from '../interfaces';
+import { AlbumInterface, GalleryInterface } from '../models';
 
 export const transformGalleryToFlatArr = (
   gallery?: GalleryInterface

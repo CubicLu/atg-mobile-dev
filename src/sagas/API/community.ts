@@ -6,7 +6,7 @@ import {
   ArtistInterface,
   PostInterface,
   StorieInterface
-} from '../../interfaces';
+} from '../../models';
 import {
   getCommunityPostsAPIFailure,
   getCommunityPostsAPISuccess,

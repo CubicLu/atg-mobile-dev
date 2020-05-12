@@ -13,7 +13,7 @@ import {
   FriendInterface,
   GetFriendAPIInterface,
   MenuInterface
-} from '../../../interfaces';
+} from '../../../models';
 import { updateSettingsProperty } from '../../../actions';
 import { getFriendAPI } from '../../../actions/api/friendsActions';
 import { addEndingToNumber } from '../../../utils';

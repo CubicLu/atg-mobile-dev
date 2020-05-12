@@ -6,7 +6,7 @@ import {
   PlaylistInterface,
   MediaType,
   PlayerActionType
-} from '../../../interfaces';
+} from '../../../models';
 import { MediaStatusCallback } from '../../../types';
 import {
   setStartingPlayer,

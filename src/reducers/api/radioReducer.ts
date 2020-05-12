@@ -1,4 +1,4 @@
-import { Action, RadioActionType, RadioReducerType } from '../../interfaces';
+import { Action, RadioActionType, RadioReducerType } from '../../models';
 import createReducer from '../createReducer';
 
 const defaultState: RadioReducerType = {

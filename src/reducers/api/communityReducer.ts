@@ -5,7 +5,7 @@ import {
   ActionProperty,
   APIResponseInterface,
   APIErrorInterface
-} from './../../interfaces';
+} from './../../models';
 import createReducer from './../createReducer';
 
 const defaultState: CommunityReducerType = {

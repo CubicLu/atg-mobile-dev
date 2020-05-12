@@ -5,7 +5,7 @@ import {
   ArtistInterface,
   PlaylistInterface,
   SongInterface
-} from '../../../interfaces';
+} from '../../../models';
 import {
   SliderVideo,
   SliderMixtapes,

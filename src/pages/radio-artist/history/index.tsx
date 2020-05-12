@@ -23,7 +23,7 @@ import {
   ArtistInterface,
   PlaylistInterface,
   SongInterface
-} from '../../../interfaces';
+} from '../../../models';
 import { ShapesSize, Colors } from '../../../types';
 import { setPlaylist } from './../../../actions';
 import { connect } from 'react-redux';

@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { IonPage } from '@ionic/react';
 import { BackgroundImage, InputText, Header, Button } from './../../components';
 import { Sizes, ShapesSize } from '../../types';
-import { SignUpInterface } from '../../interfaces';
+import { SignUpInterface } from '../../models';
 import { ApplicationState } from '../../reducers';
 import { updateAuthSignUpProperty } from './../../actions';
 import { validateEmail, validateNickname } from './../../utils/validation';

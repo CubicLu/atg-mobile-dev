@@ -5,7 +5,7 @@ import {
   APIErrorInterface,
   APIResponseInterface,
   PostInterface
-} from './../../interfaces';
+} from './../../models';
 
 export const updateCommunityProperty = (
   property: string,

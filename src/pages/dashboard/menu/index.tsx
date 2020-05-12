@@ -11,7 +11,7 @@ import { withRouter, RouteChildrenProps } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getDashboardByArtistAPI } from './../../../actions';
-import { DashboardInterface } from '../../../interfaces';
+import { DashboardInterface } from '../../../models';
 import { routeArtistMenu } from '../../../constants/routes-menu';
 interface Props
   extends DispatchProps,

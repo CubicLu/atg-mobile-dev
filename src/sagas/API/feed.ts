@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { FeedActionType, FanFeedInterface } from '../../interfaces';
+import { FeedActionType, FanFeedInterface } from '../../models';
 import { getFeedPostsAPISuccess, getFeedPostsAPIFailure } from '../../actions';
 
 export const getFeedPostsRequest = async (): Promise<FanFeedInterface[]> =>

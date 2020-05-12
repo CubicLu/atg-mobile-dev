@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from '../../';
-import { MessageInterface } from '../../../interfaces';
+import { MessageInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
 import moment from 'moment';
 

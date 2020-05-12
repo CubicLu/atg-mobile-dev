@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlbumInterface } from '../../interfaces';
+import { AlbumInterface } from '../../models';
 import { IonRouterLink } from '@ionic/react';
 import { shadowTitle } from '../../utils';
 

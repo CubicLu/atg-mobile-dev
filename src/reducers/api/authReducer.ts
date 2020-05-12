@@ -3,7 +3,7 @@ import {
   AuthActionType,
   AuthReducerType,
   ActionProperty
-} from './../../interfaces';
+} from './../../models';
 import createReducer from './../createReducer';
 
 const defaultState: AuthReducerType = {

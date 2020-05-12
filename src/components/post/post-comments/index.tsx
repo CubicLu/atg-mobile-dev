@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommentInterface } from '../../../interfaces';
+import { CommentInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
 import { Avatar, DotsThreeIcon } from '../../../components';
 

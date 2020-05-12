@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { clearCurrentArtist, getArtistAPI } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { BackgroundImage, RadioIcon, BackIcon } from '../../../components';
 
 interface StateProps {

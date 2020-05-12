@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { FriendActionType, FriendInterface } from '../../interfaces';
+import { FriendActionType, FriendInterface } from '../../models';
 import {
   getFriendsAPIFailure,
   getFriendsAPISuccess,

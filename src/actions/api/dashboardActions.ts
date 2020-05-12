@@ -5,7 +5,7 @@ import {
   APIResponseInterface,
   ActionProperty,
   DashboardActionType
-} from './../../interfaces';
+} from './../../models';
 
 export const updateDashboardProperty = (
   property: string,

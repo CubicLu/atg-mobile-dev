@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonSupportIcon, ContentLoader } from './../../../components';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { IonRouterLink } from '@ionic/react';
 import SupportStarIcon from '../../icon/support-star';
 

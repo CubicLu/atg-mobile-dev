@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Nullable, ShapesSize } from './../../types';
 import { ButtonIcon, PlayIcon, PauseIcon, FullscreenIcon, CloseIcon } from '..';
-import { SongInterface } from '../../interfaces';
+import { SongInterface } from '../../models';
 import { IonRange, isPlatform } from '@ionic/react';
 import { pauseSong, playSong } from '../../actions';
 import { ApplicationState } from '../../reducers';

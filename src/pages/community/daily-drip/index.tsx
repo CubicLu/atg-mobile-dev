@@ -20,7 +20,7 @@ import { ShapesSize } from '../../../types';
 import {
   CommunityDailyDripType,
   CommunityDailyDripItem
-} from '../../../interfaces';
+} from '../../../models';
 import { RouteChildrenProps } from 'react-router';
 import { hideTabs } from '../../../utils';
 interface MatchParams {

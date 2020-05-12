@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { ShapesSize, Colors, Sizes } from '../../../types';
 import { ButtonIcon, DotsThreeIcon, EditIcon } from '../..';
 import { IonRouterLink } from '@ionic/react';

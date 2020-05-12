@@ -3,7 +3,7 @@ import {
   SettingsActionType,
   SettingsReducerType,
   ModalTypeInterface
-} from '../interfaces';
+} from '../models';
 import createReducer from './createReducer';
 import {
   contactTabs,

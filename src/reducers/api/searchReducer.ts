@@ -1,4 +1,4 @@
-import { Action, SearchActionType, SearchReducerType } from '../../interfaces';
+import { Action, SearchActionType, SearchReducerType } from '../../models';
 import createReducer from './../createReducer';
 
 const defaultState: SearchReducerType = {

@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { SearchActionType, SearchInterface } from '../../interfaces';
+import { SearchActionType, SearchInterface } from '../../models';
 import {
   getSearchResultAPIFailure,
   getSearchResultAPISuccess

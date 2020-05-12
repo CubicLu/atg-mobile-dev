@@ -9,7 +9,7 @@ import {
 import { IonSpinner } from '@ionic/react';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { SongInterface } from '../../../interfaces';
+import { SongInterface } from '../../../models';
 import ToastComponent from '../../toast';
 import {
   hideToastAction,

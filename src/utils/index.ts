@@ -1,4 +1,4 @@
-import { ScrollHeaderInterface, ArtistInterface } from '../interfaces';
+import { ScrollHeaderInterface, ArtistInterface } from '../models';
 import { CSSProperties } from 'react';
 
 export function setHeight(original: number): number {

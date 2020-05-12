@@ -1,4 +1,4 @@
-import { PlanInterface } from '../interfaces';
+import { PlanInterface } from '../models';
 import { Colors } from '../types';
 
 export const plans: PlanInterface[] = [

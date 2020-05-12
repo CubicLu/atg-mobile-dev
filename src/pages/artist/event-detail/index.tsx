@@ -9,7 +9,7 @@ import {
   CardEvent,
   ListItem
 } from './../../../components';
-import { EventInterface } from './../../../interfaces';
+import { EventInterface } from './../../../models';
 import { ShapesSize, Colors, GradientDirection } from './../../../types';
 import { ApplicationState } from './../../../reducers';
 import {

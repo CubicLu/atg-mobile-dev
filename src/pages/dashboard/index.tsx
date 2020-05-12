@@ -8,7 +8,7 @@ import {
   getDashboardByArtistAPI,
   updateSettingsProperty
 } from './../../actions';
-import { DashboardInterface, MenuInterface } from '../../interfaces';
+import { DashboardInterface, MenuInterface } from '../../models';
 
 interface StateProps {
   dashboard: DashboardInterface | null;

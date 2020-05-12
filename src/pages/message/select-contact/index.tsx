@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { Colors, ShapesSize } from '../../../types';
-import { MenuInterface, UserInterface } from '../../../interfaces';
+import { MenuInterface, UserInterface } from '../../../models';
 import {
   Button,
   Header,

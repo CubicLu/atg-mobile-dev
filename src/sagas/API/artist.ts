@@ -4,7 +4,7 @@ import {
   ArtistActionType,
   ArtistInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,

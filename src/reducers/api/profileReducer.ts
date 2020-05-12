@@ -5,7 +5,7 @@ import {
   MessageInterface,
   NotificationInterface,
   UserInterface
-} from './../../interfaces';
+} from './../../models';
 import createReducer from './../createReducer';
 
 const messages: MessageInterface[] = [

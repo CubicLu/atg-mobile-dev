@@ -6,7 +6,7 @@ import {
   APIResponseInterface,
   APIErrorInterface,
   ActionProperty
-} from '../../interfaces';
+} from '../../models';
 import createReducer from './../createReducer';
 
 const defaultState: DashboardReducerType = {

@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { RadioActionType, ChannelInterface } from '../../interfaces';
+import { RadioActionType, ChannelInterface } from '../../models';
 import {
   getRadioArtistAPIFailure,
   getRadioArtistAPISuccess

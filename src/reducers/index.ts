@@ -24,7 +24,7 @@ import {
   RadioReducerType,
   NavbarReducerType,
   DashboardReducerType
-} from '../interfaces';
+} from '../models';
 
 export interface ApplicationState {
   settings: SettingsReducerType;

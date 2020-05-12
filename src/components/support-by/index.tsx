@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DotsThreeIcon, MenuArtistList } from './../../components';
 import { updateSettingsModal } from './../../actions';
-import { ArtistInterface } from '../../interfaces';
+import { ArtistInterface } from '../../models';
 
 interface DispatchProps {
   updateSettingsModal: (content: React.ReactNode, className?: string) => void;

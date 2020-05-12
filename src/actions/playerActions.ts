@@ -6,7 +6,7 @@ import {
   SeekPositionInteface,
   SetPlaylistInterface,
   PlaySongInterface
-} from '../interfaces';
+} from '../models';
 
 export const togglePlayer = (): Action<PlayerActionType.TOGGLE_PLAYER> => {
   return { type: PlayerActionType.TOGGLE_PLAYER };

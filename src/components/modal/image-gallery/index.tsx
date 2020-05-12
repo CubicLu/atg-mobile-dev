@@ -1,7 +1,7 @@
 import React from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { BackIcon, ArrowRightIcon } from '../../icon';
-import { GalleryImageInterface } from '../../../interfaces';
+import { GalleryImageInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 

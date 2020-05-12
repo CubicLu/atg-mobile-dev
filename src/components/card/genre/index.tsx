@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { InputCheckbox, SubGenreModal } from '../../../components';
 import { updateSettingsModal } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
-import { SubGenreInterface } from '../../../interfaces';
+import { SubGenreInterface } from '../../../models';
 
 interface StateProps {}
 interface DispatchProps {

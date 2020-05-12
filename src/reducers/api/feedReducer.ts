@@ -4,7 +4,7 @@ import {
   FeedReducerType,
   APIResponseInterface,
   APIErrorInterface
-} from '../../interfaces';
+} from '../../models';
 import createReducer from './../createReducer';
 
 const defaultState: FeedReducerType = {

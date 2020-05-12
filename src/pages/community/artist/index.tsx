@@ -15,7 +15,7 @@ import { getCommunityByArtistUsernameAPI } from './../../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import { ShapesSize, Colors } from '../../../types';
-import { CommunityArtistInterface } from '../../../interfaces';
+import { CommunityArtistInterface } from '../../../models';
 import { RouteChildrenProps } from 'react-router-dom';
 interface MatchParams {
   artistId: string;

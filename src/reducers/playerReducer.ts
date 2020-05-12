@@ -7,7 +7,7 @@ import {
   SetPlaylistInterface,
   SeekPositionInteface,
   PlaySongInterface
-} from './../interfaces';
+} from './../models';
 import createReducer from './createReducer';
 
 export const guitarPlaylist: PlaylistInterface = {

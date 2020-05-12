@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { Colors, ShapesSize, Sizes, GradientDirection } from '../../../types';
 import {
   ButtonIcon,

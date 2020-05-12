@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonList, IonItem } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import { MenuInterface, NotificationInterface } from '../../../interfaces';
+import { MenuInterface, NotificationInterface } from '../../../models';
 import { updateSettingsProperty } from './../../../actions';
 import moment from 'moment';
 interface DispatchProps {

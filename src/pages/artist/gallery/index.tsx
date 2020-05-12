@@ -7,7 +7,7 @@ import {
 } from './../../../components';
 import { IonContent, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import {
   getArtistAPI,
   setCurrentGallery,

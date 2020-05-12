@@ -9,7 +9,7 @@ import {
   SectionTitle
 } from '../../../components';
 import { Sizes, ShapesSize } from '../../../types';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';

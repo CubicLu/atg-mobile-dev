@@ -1,4 +1,4 @@
-import { RouteInterface } from './../interfaces';
+import { RouteInterface } from './../models';
 import {
   ArtistPage,
   ProfilePage,

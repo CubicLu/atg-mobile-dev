@@ -14,7 +14,7 @@ import {
   GalleryInterface,
   ArtistInterface,
   GalleryImageInterface
-} from '../../../interfaces';
+} from '../../../models';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;

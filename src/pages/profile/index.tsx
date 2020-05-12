@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { IonPage, IonContent } from '@ionic/react';
 import { BackgroundImage, HeaderProfile, Menu } from './../../components';
 import { ApplicationState } from '../../reducers';
-import { MenuInterface } from '../../interfaces';
+import { MenuInterface } from '../../models';
 import { store } from '../../store';
 import { updateSettingsProperty } from '../../actions';
 

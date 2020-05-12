@@ -3,7 +3,7 @@ import {
   Action,
   APIErrorInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 
 export const getRadioArtistAPI = (
   query: string

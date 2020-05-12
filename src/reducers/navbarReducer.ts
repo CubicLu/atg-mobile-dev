@@ -1,4 +1,4 @@
-import { Action, NavbarActionType, NavbarReducerType } from '../interfaces';
+import { Action, NavbarActionType, NavbarReducerType } from '../models';
 import createReducer from './createReducer';
 
 const defaultState: NavbarReducerType = {

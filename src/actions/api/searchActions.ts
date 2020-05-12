@@ -3,7 +3,7 @@ import {
   SearchActionType,
   APIErrorInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 
 export const getSearchResultAPI = (
   query: string

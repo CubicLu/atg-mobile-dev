@@ -9,7 +9,7 @@ import {
   ChatMessageIcon,
   PhotoChat
 } from '../../../components';
-import { ArtistInterface, CommentInterface } from '../../../interfaces';
+import { ArtistInterface, CommentInterface } from '../../../models';
 import { Colors } from '../../../types';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';

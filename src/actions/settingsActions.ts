@@ -3,7 +3,7 @@ import {
   ModalTypeInterface,
   SettingsActionType,
   ActionProperty
-} from './../interfaces';
+} from './../models';
 
 export const updateSettingsProperty = (
   property: string,

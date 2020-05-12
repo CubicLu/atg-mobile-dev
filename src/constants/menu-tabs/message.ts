@@ -1,4 +1,4 @@
-import { MenuInterface } from './../../interfaces';
+import { MenuInterface } from './../../models';
 import { MessageChatPage, MessageNotificationsPage } from '../../pages';
 export const messageTabs: MenuInterface[] = [
   {

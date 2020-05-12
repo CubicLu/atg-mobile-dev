@@ -5,7 +5,7 @@ import {
   FriendReducerType,
   APIResponseInterface,
   APIErrorInterface
-} from '../../interfaces';
+} from '../../models';
 import createReducer from './../createReducer';
 
 const defaultState: FriendReducerType = {

@@ -4,7 +4,7 @@ import {
   DashboardActionType,
   DashboardInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 import {
   getDashboardByArtistAPIFailure,
   getDashboardByArtistAPISuccess

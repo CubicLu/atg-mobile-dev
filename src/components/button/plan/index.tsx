@@ -1,7 +1,7 @@
 import React from 'react';
 import { DotsThreeIcon } from './../../';
 import { Colors } from '../../../types';
-import { PlanInterface } from './../../../interfaces';
+import { PlanInterface } from './../../../models';
 interface Props {
   onClick: Function;
   onClickDetail?: Function;

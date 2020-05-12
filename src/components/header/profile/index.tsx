@@ -8,7 +8,7 @@ import {
 import { store } from '../../../store';
 import { updateSettingsModal } from '../../../actions';
 import { ShapesSize } from '../../../types';
-import { GenericModalInterface, FriendInterface } from '../../../interfaces';
+import { GenericModalInterface, FriendInterface } from '../../../models';
 interface DispatchProps {
   updateSettingsModal?: (
     content: React.ReactNode,

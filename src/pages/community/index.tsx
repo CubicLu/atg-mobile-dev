@@ -16,29 +16,6 @@ import { PostInterface, StorieInterface } from '../../interfaces';
 import { Colors, ShapesSize } from '../../types';
 import { RouteChildrenProps } from 'react-router';
 
-const mockWithMultipleImages = {
-  username: 'taylor',
-  avatar:
-    'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg',
-  image: [
-    'https://loremflickr.com/500/500/concerts,rock?random=1?random=1',
-    'https://loremflickr.com/500/500/concerts,rock?random=1?random=1'
-  ],
-  commentsQuantity: 3,
-  comments: [
-    {
-      replies: null,
-      text: 'I took a risk and listened to it and you guys KILLED IT!!!',
-      user: {
-        avatar:
-          'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/default-avatar.jpg',
-        name: '@jillscott1121',
-        username: '@jillscott1121'
-      }
-    }
-  ]
-};
-
 interface StateProps {
   posts: PostInterface[];
   loading: boolean;
@@ -93,9 +70,6 @@ class CommunityPage extends React.Component<Props> {
                   labelKey="label"
                   imageKey="image"
                   data={this.props.stories}
-                  onPressItem={(): void => {
-                    hist.push('/community/artist/pharrell-williams');
-                  }}
                 />
               </React.Fragment>
             )}
@@ -116,13 +90,7 @@ class CommunityPage extends React.Component<Props> {
 
             {this.props.posts?.map(
               (data, i): React.ReactNode => {
-                return (
-                  <CardPost
-                    key={i}
-                    post={i === 0 ? mockWithMultipleImages : data}
-                    showUser={true}
-                  />
-                );
+                return <CardPost key={i} post={data} showUser={true} />;
               }
             )}
           </div>

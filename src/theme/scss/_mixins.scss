@@ -1,3 +1,4 @@
+
 @mixin page {
   z-index: 2;
   position: relative;
@@ -112,25 +113,24 @@
   // flex-direction: column;
   &.circle {
     border-radius: 50%;
-    height: 156px;
-    width: 156px;
-    margin-bottom: 16px;
+    height: 95px;
+    width: 95px;
     color: #fff;
     border: 0px solid transparent;
     &.active {
-      border: 6px solid #fff;
+      border: 6px solid #ffd102cf;
     }
   }
   .price {
-    font-size: pxToRem(72);
-    font-family: 'Industria';
+    font-size: 42px;
+    font-family: Industria, sans-serif;
     position: relative;
     font-weight: bold;
     line-height: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 16px;
+    justify-content: center;
     .currency {
       font-size: 30px;
       vertical-align: middle;
@@ -243,47 +243,100 @@
   animation: #{$str};
 }
 
-@mixin list-user{
+@mixin list-user {
   @include list-transparent;
   .row {
-      width: 100%;
-      margin-bottom: 5px;
-      margin-top: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
   }
 
-  .image{
-      display: flex;
-      justify-content: left;
+  .image {
+    display: flex;
+    justify-content: left;
   }
 
-  .info{ 
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     height: 50px;
-      .user{
-          display: block;
-          &::before{
-            content: "@";
-          }
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50px;
+    .user {
+      display: block;
+      &::before {
+        content: '@';
       }
+    }
   }
 
-  ion-item{
+  ion-item {
     padding-right: 4px;
   }
-  ion-item-options{
-    .btn{
-        margin-top: 0;
-        border-radius: 0;
-        height: 100%;
-        padding-left: 5px;
-        padding-right: 5px;
-        width: 70px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #45187B;
+  ion-item-options {
+    .btn {
+      margin-top: 0;
+      border-radius: 0;
+      height: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #45187b;
+    }
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+@mixin list-user {
+  @include list-transparent;
+  .row {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .image {
+    display: flex;
+    justify-content: left;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50px;
+    .user {
+      display: block;
+      &::before {
+        content: '@';
+      }
+    }
+  }
+
+  ion-item {
+    padding-right: 4px;
+  }
+  ion-item-options {
+    .btn {
+      margin-top: 0;
+      border-radius: 0;
+      height: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #45187b;
     }
   }
 }

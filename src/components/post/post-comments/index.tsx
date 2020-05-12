@@ -23,9 +23,7 @@ export default class PostCommentsComponent extends React.Component<Props> {
           <span className={'f7 gray'}>{comment.user.username}</span>
           <span className={'f6 dark mb-1'}>{comment.text}</span>
           {comment.replies && (
-            <a className={'f7 bold reply'} href={'/#'}>
-              {comment.replies} replies
-            </a>
+            <a className={'f7 bold reply'}>{comment.replies} replies</a>
           )}
         </div>
 

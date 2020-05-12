@@ -93,9 +93,9 @@ class MessagePage extends React.Component<Props> {
             <div className="row">
               <div className="fluid">
                 <MenuMessage
-                  onClick={(data): void =>
-                    updateSettingsProperty('activeMessageTab', data.id)
-                  }
+                  onClick={(data): void => {
+                    updateSettingsProperty('activeMessageTab', data.id);
+                  }}
                   className=""
                   activeId={activeMessageTab}
                   tabs={messageTabs}

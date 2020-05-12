@@ -143,9 +143,9 @@
   "jest": {
     "coverageThreshold": {
       "global": {
-        "branches": 23,
+        "branches": 22,
         "functions": 30,
-        "lines": 37
+        "lines": 36
       }
     },
     "collectCoverageFrom": [

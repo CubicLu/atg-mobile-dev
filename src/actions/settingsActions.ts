@@ -31,6 +31,14 @@ export const updateSettingsModal = (
   payload: { content, className, height, onClick }
 });
 
+export const showToastAction = (): { type: ActionType } => ({
+  type: ActionType.SHOW_TOAST
+});
+
+export const hideToastAction = (): { type: ActionType } => ({
+  type: ActionType.HIDE_TOAST
+});
+
 export const updatePopUpModal = (
   modalType: string | null
 ): Action<SettingsActionType.UPDATE_POPUP_MODAL, ModalTypeInterface> => ({

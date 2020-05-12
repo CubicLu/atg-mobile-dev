@@ -4,7 +4,7 @@ import { FeedActionType, FanFeedInterface } from '../../interfaces';
 import { getFeedPostsAPISuccess, getFeedPostsAPIFailure } from '../../actions';
 
 export const getFeedPostsRequest = async (): Promise<FanFeedInterface[]> =>
-  await API.get('community/posts/post.json');
+  await API.get(`community/posts/post.json?${new Date().getTime()}`);
 
 function* getFeedPostsAPI(): ReturnType<any> {
   try {

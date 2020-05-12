@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-  Button,
-  MenuFanSupportOptions,
-  SupportIcon
-} from './../../../components';
+import { Button, SupportIcon } from './../../../components';
 import { ArtistInterface } from '../../../interfaces';
 import { Colors } from '../../../types';
-import { connect } from 'react-redux';
-import { updateSettingsModal } from './../../../actions';
 import { IonRouterLink } from '@ionic/react';
-interface DispatchProps {
-  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
-}
-interface ButtonProps extends DispatchProps {
+
+interface ButtonProps {
   type: 'Button' | 'Icon';
   supported: boolean;
   className?: string;
@@ -28,21 +20,9 @@ class SupportComponent extends React.Component<ButtonProps> {
     id: 'support-button'
   };
 
-  supporting(): void {
-    if (!this.props.artist) return;
-    this.props.updateSettingsModal(
-      <MenuFanSupportOptions
-        background={'background-tertiary-opacity95'}
-        artist={this.props.artist!}
-        onClose={(): void => this.props.updateSettingsModal(false)}
-      />,
-      'background-tertiary-opacity95'
-    );
-  }
-
-  notSupporting(): void {
+  handleLinkClick = (): void => {
     this.linkRef?.current?.click();
-  }
+  };
 
   renderIcon(): React.ReactNode {
     const { supported, className, id } = this.props;
@@ -50,9 +30,7 @@ class SupportComponent extends React.Component<ButtonProps> {
     return (
       <div
         id={id}
-        onClick={(): void =>
-          supported ? this.supporting() : this.notSupporting()
-        }
+        onClick={this.handleLinkClick}
         className="center-align l05 button-support-component"
       >
         <SupportIcon supported={supported} />
@@ -78,9 +56,7 @@ class SupportComponent extends React.Component<ButtonProps> {
         color={supported ? Colors.supported : Colors.support}
         label={supported ? 'SUPPORTED' : 'SUPPORT!'}
         bold={bold}
-        onClick={(): void =>
-          supported ? this.supporting() : this.notSupporting()
-        }
+        onClick={this.handleLinkClick}
       >
         <IonRouterLink
           ref={this.linkRef}
@@ -98,4 +74,4 @@ class SupportComponent extends React.Component<ButtonProps> {
   }
 }
 
-export default connect(null, { updateSettingsModal })(SupportComponent);
+export default SupportComponent;

@@ -77,7 +77,7 @@ class BackgroundImageComponent extends React.Component<Props> {
       bDark = false;
       tDark = true;
       tOpacity = 1;
-      bOpacity = 0.2;
+      bOpacity = 0.13;
     }
     const topStyle = {
       backgroundImage: `url(${tDark ? BlackBubblesTop : WhiteBubblesTop})`,

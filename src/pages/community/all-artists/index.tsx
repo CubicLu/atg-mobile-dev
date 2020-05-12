@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import {
   BackgroundImage,
@@ -15,7 +15,6 @@ import { ShapesSize } from '../../../types';
 
 interface StateProps {
   stories: StorieInterface[];
-  loading: boolean;
 }
 interface DispatchProps {
   getCommunityStoriesAPI: () => void;
@@ -25,21 +24,14 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 class CommunityAllArtistsPage extends React.Component<Props> {
   private hRef: React.RefObject<any> = React.createRef();
   componentDidMount(): void {
+    if (this.props.stories && this.props.stories.length > 0) return;
     this.props.getCommunityStoriesAPI();
   }
 
   render(): React.ReactNode {
     return (
       <IonPage id="community-all-artists-page">
-        <BackgroundImage
-          gradient={'180deg,#230541,#180727'}
-          backgroundTopDark
-          backgroundTop
-          backgroundTopOpacity={0.5}
-          backgroundBottom
-          backgroundBottomDark={false}
-          backgroundBottomOpacity={0.08}
-        />
+        <BackgroundImage default />
         <Header
           leftBackButton={true}
           title="Artist Community"
@@ -63,25 +55,19 @@ class CommunityAllArtistsPage extends React.Component<Props> {
               {this.props.stories.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <div
-                      onClick={(): void =>
-                        this.props.history.push(
-                          '/community/artist/pharrell-williams'
-                        )
-                      }
-                      key={i}
-                      className="col s4 no-padding"
-                    >
-                      <div>
-                        <Avatar
-                          image={data.image}
-                          type={ShapesSize.circle}
-                          width={96}
-                          height={96}
-                        />
-                        <label>{data.label}</label>
+                    <IonRouterLink key={i} routerLink={data.url}>
+                      <div className="col s4 no-padding">
+                        <div>
+                          <Avatar
+                            image={data.image}
+                            type={ShapesSize.circle}
+                            width={96}
+                            height={96}
+                          />
+                          <label>{data.label}</label>
+                        </div>
                       </div>
-                    </div>
+                    </IonRouterLink>
                   );
                 }
               )}
@@ -94,8 +80,8 @@ class CommunityAllArtistsPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
-  const { stories, loading } = communityAPI;
-  return { stories, loading };
+  const { stories } = communityAPI;
+  return { stories };
 };
 
 export default withRouter(

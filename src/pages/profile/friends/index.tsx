@@ -18,48 +18,44 @@ interface DispatchProps {
 }
 
 interface Props extends RouteComponentProps, StateProps, DispatchProps {}
-
 class ProfileFriendsPage extends React.Component<Props> {
   componentDidMount(): void {
     this.props.getFriendsAPI();
   }
-
   goToLink = (data: FriendInterface): (() => void) => (): void => {
-    const { name } = data;
-    this.props.history.push(`/profile/${name}`);
+    this.props.history.push(`/profile/${data.name}`);
   };
 
   render(): React.ReactNode {
-    const { friends } = this.props;
     return (
       <>
         <IonContent className="profile-friends-page">
           <IonList lines="none">
-            {friends &&
-              friends.map(
-                (data, i): React.ReactNode => {
-                  const { name, friend } = data;
-                  return (
-                    <ListItem
-                      key={i}
-                      node={i}
-                      sliding={true}
-                      bottomBorder={true}
-                      optionRemove={true}
-                      optionAddPlaylist={false}
-                      leftDisabled={!friend}
-                      username={name}
-                      hasAvatar={true}
-                      avatarSize={48}
-                      pendingButton={!friend}
-                      chatButton={friend}
-                      communityFeedButton={friend}
-                      expandArrow={true}
-                      avatarClick={this.goToLink(data)}
-                    />
-                  );
-                }
-              )}
+            {this.props.friends?.slice(1).map(
+              (data, i): React.ReactNode => {
+                const { name, friend } = data;
+                return (
+                  <ListItem
+                    key={i}
+                    node={i}
+                    sliding={true}
+                    bottomBorder={true}
+                    optionRemove={true}
+                    optionAddPlaylist={false}
+                    leftDisabled={!friend}
+                    username={name}
+                    hasAvatar={true}
+                    avatarImage={data.image}
+                    avatarSize={48}
+                    pendingButton={!friend}
+                    chatButton={friend}
+                    communityFeedButton={friend}
+                    expandArrow={true}
+                    avatarClick={this.goToLink(data)}
+                  />
+                );
+              }
+            )}
           </IonList>
         </IonContent>
       </>

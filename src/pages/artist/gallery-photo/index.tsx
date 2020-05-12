@@ -20,7 +20,9 @@ import {
   setCurrentGallery,
   updateSettingsModal,
   setFullscreenImage,
-  clearFullscreenImage
+  clearFullscreenImage,
+  hideToastAction,
+  showToastAction
 } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
@@ -33,6 +35,7 @@ import { ShapesSize } from '../../../types';
 import { validateScrollHeader } from '../../../utils';
 import FullScreenImageModal from '../../../components/modal/image-gallery';
 import { createGesture } from '@ionic/react';
+import ToastComponent from '../../../components/toast';
 
 interface State {
   displayChat: boolean;
@@ -45,6 +48,7 @@ interface StateProps {
   currentArtist: ArtistInterface | null;
   currentGalleryComments: CommentInterface[];
   currentGallery: GalleryImageInterface[] | null;
+  showToast: boolean;
 }
 
 interface DispatchProps {
@@ -58,6 +62,9 @@ interface DispatchProps {
   setCurrentGallery: (galleryId: number) => void;
   setFullscreenImage: (index: number) => void;
   clearFullscreenImage: () => void;
+  hideToastAction: () => void;
+  showToastAction: () => void;
+  updateSettingsProperty: (property: string, value: string) => void;
 }
 
 interface MatchParams {
@@ -240,6 +247,13 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     if (showHeader) this.setState({ displayHeader: true });
   };
 
+  toastClickHandler = (e): void => {
+    const { updateSettingsProperty, history } = this.props;
+    e.preventDefault();
+    updateSettingsProperty('activeFanTab', 'vault');
+    history.push('/profile');
+  };
+
   render(): React.ReactNode {
     const { match } = this.props;
     const imageSrc = this.getImage();
@@ -253,6 +267,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
               overlay={this.props.currentGalleryComments.length}
               leftBackHref={`/artist/${match.params.id}/gallery/${match.params.galleryId}`}
               leftBackOnClick={this.backToGalleryGrid}
+              likeButtonOnClick={this.props.showToastAction}
             />
           )}
         </div>
@@ -289,14 +304,29 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
           parentCallback={this.callbackFunction}
           currentPostComments={this.props.currentGalleryComments}
         />
+        {this.props.showToast && (
+          <ToastComponent
+            clickId={'toastClick'}
+            clickHandler={this.toastClickHandler}
+            message={
+              '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
+            }
+            hideToast={this.props.hideToastAction}
+            classNames={'custom-toast'}
+          />
+        )}
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  artistAPI,
+  settings
+}: ApplicationState): StateProps => {
   const { currentArtist, currentGalleryComments, currentGallery } = artistAPI;
-  return { currentGalleryComments, currentArtist, currentGallery };
+  const { showToast } = settings;
+  return { currentGalleryComments, currentArtist, currentGallery, showToast };
 };
 
 export default withRouter(
@@ -307,6 +337,8 @@ export default withRouter(
     updateSettingsModal,
     setCurrentGallery,
     setFullscreenImage,
-    clearFullscreenImage
+    clearFullscreenImage,
+    hideToastAction,
+    showToastAction
   })(ArtistGalleryPhotoPage)
 );

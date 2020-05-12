@@ -49,7 +49,7 @@ export default class BottomTilesComponent extends React.Component<Props> {
     {
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/rival-sons/t2.jpg',
-      name: 'Social',
+      name: 'Community',
       redirectUrl: '/community/artist/rival-sons'
     },
     {

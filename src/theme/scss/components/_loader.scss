@@ -1,71 +1,66 @@
-.loader{
-    flex: 1;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
+.loader {
+  position: fixed;
+  height: 100%;
+  z-index: 9999;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  .icon {
+    color: #ffffff;
+    text-indent: -9999em;
+    position: fixed;
+    font-size: 11px;
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+    display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
-    background-color: rgba(0,0,0, 0.7);
-    .icon{
-        color: #ffffff;
-        text-indent: -9999em;
-        position: relative;
-        font-size: 11px;
-        -webkit-animation-delay: -0.16s;
-        animation-delay: -0.16s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        top: 45%;
+    height: 100%;
+    top: 45%;
+    width: 100%;
 
-        &:before,
-        &:after {
-            background: #ffffff;
-            -webkit-animation: load1 1s infinite ease-in-out;
-            animation: load1 1s infinite ease-in-out;
-            width: 1em;
-            height: 4em;
-            position: absolute;
-            top: 0;
-            content: '';
-        }
-      
-        &:before {
-            left: 45%;
-            -webkit-animation-delay: -0.32s;
-            animation-delay: -0.32s;
-        }
-        &:after {
-            right: 45%;
-        }
-        @-webkit-keyframes load1 {
-            0%,
-            80%,
-            100% {
-                box-shadow: 0 0;
-                height: 4em;
-            }
-            40% {
-                box-shadow: 0 -2em;
-                height: 5em;
-            }
-        }
-        @keyframes load1 {
-            0%,
-            80%,
-            100% {
-                box-shadow: 0 0;
-                height: 4em;
-            }
-            40% {
-                box-shadow: 0 -2em;
-                height: 5em;
-            }
-        }
+    &:before,
+    &:after {
+      background: #ffffff;
+      -webkit-animation: load1 1s infinite ease-in-out;
+      animation: load1 1s infinite ease-in-out;
+      width: 1em;
+      height: 4em;
+      position: absolute;
+      top: 0;
+      content: '';
     }
+
+    &:before {
+      left: 45%;
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
+    &:after {
+      right: 45%;
+    }
+    @-webkit-keyframes load1 {
+      0%,
+      80%,
+      100% {
+        box-shadow: 0 0;
+        height: 4em;
+      }
+      40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+      }
+    }
+    @keyframes load1 {
+      0%,
+      80%,
+      100% {
+        box-shadow: 0 0;
+        height: 4em;
+      }
+      40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+      }
+    }
+  }
 }

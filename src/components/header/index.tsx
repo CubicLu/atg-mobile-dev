@@ -68,6 +68,7 @@ interface Props {
   rightUserGroupButton?: boolean;
   rightActionYellow?: boolean;
   rightClickGoBack?: boolean;
+  likeButtonOnClick?: () => void;
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -100,10 +101,14 @@ class HeaderComponent extends React.Component<Props> {
   };
 
   goBackClick = (ev): void => {
+    ev?.preventDefault();
     if (this.props.leftBackOnClick) {
       return this.props.leftBackOnClick(ev);
     }
-    return (this.context as NavContextState).goBack(this.props.leftBackHref);
+    const back = this.props.leftBackHref;
+    return back
+      ? (this.context as NavContextState).navigate(back, 'back')
+      : (this.context as NavContextState).goBack();
   };
   rightCloseBtn = (): void => {
     const { rightCloseHref, routerDirection, rightCloseOnClick } = this.props;
@@ -168,11 +173,11 @@ class HeaderComponent extends React.Component<Props> {
       rightChatButton,
       rightConnectedButton,
       rightFanFeedButton,
-      rightFilterButton
+      rightFilterButton,
+      likeButtonOnClick
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
-
     return (
       <IonHeader id="ion-header" className="ion-no-border">
         <div className={`atg-header ${isFixed} ${top} ${color} ${className}`}>
@@ -322,7 +327,7 @@ class HeaderComponent extends React.Component<Props> {
 
             {rightButtonGroup && (
               <ul className="list inline">
-                <li>
+                <li onClick={likeButtonOnClick}>
                   <ButtonIcon
                     className="mt-15"
                     color={Colors.orange}

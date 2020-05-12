@@ -21,7 +21,7 @@ import {
 } from '../../actions';
 
 export const getCommunityPostsRequest = async (): Promise<PostInterface[]> =>
-  await API.get('community/posts/post.json');
+  await API.get(`community/posts/post.json?${new Date().getTime()}`);
 
 function* getCommunityPostsAPI(): ReturnType<any> {
   try {
@@ -39,7 +39,7 @@ export function* getCommunityPosts(): any {
 export const getCommunityByArtistUsernameRequest = async (
   username: string
 ): Promise<CommunityArtistInterface> =>
-  await API.get(`community/posts/${username}.json`);
+  await API.get(`community/posts/${username}.json?${new Date().getTime()}`);
 
 function* getCommunityByArtistUsernameAPI({ payload }): ReturnType<any> {
   try {
@@ -58,7 +58,7 @@ export function* getCommunityByArtistUsername(): any {
 }
 
 export const getCommunityStoriesRequest = async (): Promise<StorieInterface[]> =>
-  await API.get('community/stories/stories.json');
+  await API.get(`community/stories/stories.json?${new Date().getTime()}`);
 
 function* getCommunityStoriesAPI(): ReturnType<any> {
   try {
@@ -76,7 +76,9 @@ export function* getCommunityStories(): any {
 export const getCommunityCommentsRequest = async (
   postId: string
 ): Promise<ArtistInterface[]> =>
-  await API.get(`community/posts/comments/${postId}.json`);
+  await API.get(
+    `community/posts/comments/${postId}.json?${new Date().getTime()}`
+  );
 
 function* getCommunityCommentsAPI({ payload }: any): any {
   try {
@@ -97,7 +99,7 @@ export function* getCommunityComments(): any {
 export const getCommunityCoverRequest = async (
   postId: string
 ): Promise<ArtistInterface[]> =>
-  await API.get(`community/posts/cover/${postId}.json`);
+  await API.get(`community/posts/cover/${postId}.json?${new Date().getTime()}`);
 
 function* getCommunityCommentsCoverAPI({ payload }: any): any {
   try {

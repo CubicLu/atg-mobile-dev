@@ -9,17 +9,20 @@ import {
 } from './../../../components';
 import { PostInterface } from '../../../interfaces';
 import { ShapesSize } from '../../../types';
-import { IonRouterLink, IonContent, IonSlides, IonSlide } from '@ionic/react';
+import { IonRouterLink, IonSlides, IonSlide } from '@ionic/react';
 
 interface Props {
   post: PostInterface;
   showUser?: boolean;
   showOptions?: boolean;
+  disableComment: boolean;
+  className?: string;
 }
 
 export default class CardPostComponent extends React.Component<Props> {
   public static defaultProps = {
-    showOptions: true
+    showOptions: true,
+    disableComment: false
   };
 
   slideOpts = {
@@ -29,16 +32,17 @@ export default class CardPostComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { post } = this.props;
+    const className = this.props.className || '';
     return (
       <div
-        className="card post flex-column space-between"
+        className={`card post flex-column space-between overflow-x ${className}`}
         style={{
           height: '290px',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <IonContent>
+        <div>
           {Array.isArray(post.image) ? (
             <IonSlides
               pager={true}
@@ -77,7 +81,7 @@ export default class CardPostComponent extends React.Component<Props> {
             />
           )}
           {this.renderControls()}
-        </IonContent>
+        </div>
       </div>
     );
   }
@@ -104,7 +108,11 @@ export default class CardPostComponent extends React.Component<Props> {
         {showUser && (
           <IonRouterLink
             routerDirection="forward"
-            routerLink={`/community/artist/${post.username}`}
+            routerLink={
+              post.artist
+                ? `/artist/${post.username}`
+                : `/profile/${post.username}`
+            }
           >
             <div className="align-start flex">
               <Avatar
@@ -125,10 +133,16 @@ export default class CardPostComponent extends React.Component<Props> {
           >
             <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
           </IonRouterLink>
+
           <span className="mx-05" />
+
           <IonRouterLink
             routerDirection="forward"
-            routerLink={`/community/comments/${1}`}
+            routerLink={
+              this.props.disableComment
+                ? undefined
+                : `/community/comments/${post.id || 1}`
+            }
           >
             <ButtonIcon
               className="btn large"
@@ -136,7 +150,9 @@ export default class CardPostComponent extends React.Component<Props> {
               label={post.commentsQuantity}
             />
           </IonRouterLink>
+
           <span className="mx-05" />
+
           <ButtonIcon className="btn large" icon={<HeartIcon />} />
         </div>
       </div>

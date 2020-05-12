@@ -8,8 +8,7 @@ import {
 import { store } from '../../../store';
 import { updateSettingsModal } from '../../../actions';
 import { ShapesSize } from '../../../types';
-import { GenericModalInterface } from '../../../interfaces';
-
+import { GenericModalInterface, FriendInterface } from '../../../interfaces';
 interface DispatchProps {
   updateSettingsModal?: (
     content: React.ReactNode,
@@ -18,19 +17,15 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
-
 interface StateProps {
   loading?: boolean;
 }
-
 interface Props extends DispatchProps {
-  isFriend?: boolean;
   showFilter?: boolean;
+  currentFriend?: FriendInterface;
 }
-
 export default class HeaderProfileComponent extends React.Component<Props> {
   public static defaultProps = {
-    isFriend: false,
     showFilter: false
   };
   isReady = false;
@@ -45,7 +40,7 @@ export default class HeaderProfileComponent extends React.Component<Props> {
   profileActions: GenericModalInterface[] = [
     {
       name: 'View my public profile',
-      url: '/me'
+      url: '/profile/Rosetta'
     },
     {
       name: 'Edit my public profile',
@@ -63,10 +58,6 @@ export default class HeaderProfileComponent extends React.Component<Props> {
     {
       name: 'Pharrell Williams',
       url: '/dashboard/menu/pharrell-williams'
-    },
-    {
-      name: 'Bono Vox',
-      url: '/dashboard/menu/bono-vox'
     }
   ];
 
@@ -90,28 +81,74 @@ export default class HeaderProfileComponent extends React.Component<Props> {
       updateSettingsModal(
         <DefaultModal
           title="Public Profile"
-          onClick={this.hideMenuListModal}
+          onClick={(): void => this.hideMenuListModal()}
           data={this.profileActions}
+          overrideClick={true}
         />
       )
     );
   };
 
   render(): React.ReactNode {
+    return this.props.currentFriend ? this.renderFriend() : this.renderMe();
+  }
+  renderFriend(): React.ReactNode {
     if (!this.isReady) this.displayContent();
-    const { isFriend, showFilter } = this.props;
+    const { showFilter } = this.props;
     return (
       <div>
         <Header
-          rightSettingsButton={!isFriend && showFilter === false}
-          rightUserGroupButton={!isFriend && showFilter === false}
-          rightNotificationButton={!isFriend && showFilter === false}
-          rightDashboardButton={!isFriend && showFilter === false}
+          rightFilterButton={showFilter}
+          rightChatButton={!showFilter}
+          rightConnectedButton={!showFilter}
+          rightFanFeedButton={!showFilter}
+          leftBackHref={'/profile'}
+          routerDirection="forward"
+        />
+        <div className="profile-center">
+          {!this.isReady ? (
+            <ContentLoader
+              speed={2}
+              width={400}
+              height={160}
+              viewBox="0 0 400 160"
+              baseUrl={window.location.pathname}
+              backgroundColor="rgb(255,255,255)"
+              foregroundColor="rgb(255,255,255)"
+              backgroundOpacity={0.05}
+              foregroundOpacity={0.15}
+            >
+              <circle cx="30" cy="30" r="30" />
+              <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
+              <rect x="0" y="100" rx="3" ry="3" width="200" height="31" />
+            </ContentLoader>
+          ) : (
+            <div>
+              <Avatar
+                type={ShapesSize.circle}
+                image={this.props.currentFriend?.image}
+              />
+              <div className="f4 l15">{this.props.currentFriend?.name}</div>
+              <div className="h00 l1 shadow">
+                {this.props.currentFriend?.nickname}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+  renderMe(): React.ReactNode {
+    if (!this.isReady) this.displayContent();
+    const { showFilter } = this.props;
+    return (
+      <div>
+        <Header
+          rightSettingsButton={!showFilter}
+          rightUserGroupButton={!showFilter}
+          rightNotificationButton={!showFilter}
+          rightDashboardButton={!showFilter}
           rightDashboardOnClick={this.showArtistListModal}
-          rightChatButton={isFriend && showFilter === false}
-          rightConnectedButton={isFriend && showFilter === false}
-          rightFanFeedButton={isFriend && showFilter === false}
-          rightFilterButton={isFriend && showFilter === true}
           rightActionHref={'/settings'}
           notificationsNumber={10}
           routerDirection="forward"
@@ -123,8 +160,11 @@ export default class HeaderProfileComponent extends React.Component<Props> {
               width={400}
               height={160}
               viewBox="0 0 400 160"
-              backgroundColor="#ffffff0d"
-              foregroundColor="#ffffff26"
+              baseUrl={window.location.pathname}
+              backgroundColor="rgb(255,255,255)"
+              foregroundColor="rgb(255,255,255)"
+              backgroundOpacity={0.05}
+              foregroundOpacity={0.15}
             >
               <circle cx="30" cy="30" r="30" />
               <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
@@ -134,9 +174,10 @@ export default class HeaderProfileComponent extends React.Component<Props> {
             <div>
               <Avatar
                 type={ShapesSize.circle}
+                image="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png"
                 onClick={this.showMenuListModal}
               />
-              <div className="f4 l15">Rosetta Throped</div>
+              <div className="f4 l15">Rosetta</div>
               <div className="h00 l1 shadow">Musical Goddess</div>
             </div>
           )}

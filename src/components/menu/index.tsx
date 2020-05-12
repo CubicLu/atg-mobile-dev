@@ -36,8 +36,11 @@ export default class MenuComponent extends React.Component<Props> {
             speed={2}
             width={400}
             viewBox="0 0 390 100"
-            backgroundColor="#ffffff0d"
-            foregroundColor="#ffffff26"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
           >
             <circle cy="30" cx="40" r="30" />
             <rect x="12" y="70" rx="3" ry="3" width="60" height="16" />

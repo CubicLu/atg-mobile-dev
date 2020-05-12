@@ -49,6 +49,14 @@ import {
 import VigilAnimator from '../../utils/animateFrame';
 import { store } from '../../store';
 import BottomTilesComponent from '../bottom-tiles';
+import ToastComponent from '../toast';
+import {
+  hideToastAction,
+  showToastAction,
+  updateSettingsProperty
+} from '../../actions';
+import { RouteComponentProps, withRouter } from 'react-router';
+
 interface DispatchProps {
   togglePlayer: () => void;
   toggleShuffle: () => void;
@@ -59,13 +67,19 @@ interface DispatchProps {
   pauseSong: () => void;
   resumeSong: () => void;
   seekSongPosition: (time: number, increase: boolean) => void;
+  showToastAction: () => void;
+  hideToastAction: () => void;
+  updateSettingsProperty: (property: string, value: string) => void;
 }
+
 declare global {
   interface Window {
     Media: MediaType | any;
   }
 }
-interface Props extends StateProps, DispatchProps {}
+
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
+
 class PlayerComponent extends React.Component<Props> {
   pullPlayerGesture: Gesture | undefined;
   pullingInProgress: boolean = false;
@@ -192,6 +206,15 @@ class PlayerComponent extends React.Component<Props> {
   getSelected(prop: boolean): string {
     return prop ? '#facf42' : '#fff';
   }
+
+  toastClickHandler = (e): void => {
+    const { updateSettingsProperty, history } = this.props;
+    e.preventDefault();
+    updateSettingsProperty('activeFanTab', 'vault');
+    history.push('/profile');
+    this.togglePlayer();
+  };
+
   playerNavbar(): React.ReactNode {
     return (
       <div id="player-navbar-buttons" className="player-navbar-buttons">
@@ -210,7 +233,12 @@ class PlayerComponent extends React.Component<Props> {
           <span className="f8 l1 my-05">Repeat</span>
         </div>
         <div
-          onClick={(): void => this.props.favoriteSong()}
+          onClick={(): void => {
+            this.props.favoriteSong();
+            if (this.props.song?.favorite) {
+              this.props.showToastAction();
+            }
+          }}
           className="navbar-button flex-column mt-05"
         >
           <LikeButton color={this.getSelected(!!this.props.song?.favorite)} />
@@ -224,6 +252,17 @@ class PlayerComponent extends React.Component<Props> {
           <ShareButton />
           <span className="f8 l1 my-05">Share</span>
         </div>
+        {this.props.song && this.props.showToast && (
+          <ToastComponent
+            clickId={'toastClick'}
+            clickHandler={this.toastClickHandler}
+            message={
+              '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
+            }
+            hideToast={this.props.hideToastAction}
+            classNames={'custom-toast'}
+          />
+        )}
       </div>
     );
   }
@@ -404,8 +443,12 @@ interface StateProps {
   song?: SongInterface;
   next?: SongInterface;
   playlist?: PlaylistInterface;
+  showToast: boolean;
 }
-const mapStateToProps = ({ player }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  player,
+  settings
+}: ApplicationState): StateProps => {
   const {
     expanded,
     playing,
@@ -419,6 +462,8 @@ const mapStateToProps = ({ player }: ApplicationState): StateProps => {
     playerAction
   } = player;
 
+  const { showToast } = settings;
+
   return {
     expanded,
     playing,
@@ -429,17 +474,23 @@ const mapStateToProps = ({ player }: ApplicationState): StateProps => {
     playlist,
     shuffle,
     repeat,
-    playerAction
+    playerAction,
+    showToast
   };
 };
-export default connect(mapStateToProps, {
-  togglePlayer,
-  toggleShuffle,
-  toggleRepeat,
-  playSong,
-  loadNextSong,
-  favoriteSong,
-  pauseSong,
-  resumeSong,
-  seekSongPosition
-})(PlayerComponent);
+export default withRouter(
+  connect(mapStateToProps, {
+    togglePlayer,
+    toggleShuffle,
+    toggleRepeat,
+    playSong,
+    loadNextSong,
+    favoriteSong,
+    pauseSong,
+    resumeSong,
+    seekSongPosition,
+    hideToastAction,
+    showToastAction,
+    updateSettingsProperty
+  })(PlayerComponent)
+);

@@ -88,7 +88,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
     if (current) {
       index = currentGallery?.indexOf(current);
     }
-    this.props.history.push({
+    this.props.history.replace({
       pathname: `/artist/${match.params.id}/gallery/${
         match.params.galleryId
       }/image/${index ? index : 0}`,

@@ -17,7 +17,7 @@ import {
 } from '../../actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
-  await API.get('artist/all.json');
+  await API.get(`artist/all.json?${new Date().getTime()}`);
 
 function* getArtistsAPI(): any {
   try {
@@ -35,7 +35,7 @@ export function* getArtists(): any {
 }
 
 export const getArtistRequest = async (username): Promise<ArtistInterface> =>
-  await API.get(`artist/${username}.json`);
+  await API.get(`artist/${username}.json?${new Date().getTime()}`);
 
 function* getArtistAPI({ payload }: any): ReturnType<any> {
   try {
@@ -54,7 +54,9 @@ export const getArtistEventRequest = async (
   username,
   eventId
 ): Promise<ArtistInterface> =>
-  await API.get(`artist/${username}/event/${eventId}.json`);
+  await API.get(
+    `artist/${username}/event/${eventId}.json?${new Date().getTime()}`
+  );
 
 function* getArtistEventAPI({ payload }: any): ReturnType<any> {
   try {
@@ -77,7 +79,9 @@ export const getArtistGalleryCommentsRequest = async (
   photoId: number,
   username: string
 ): Promise<ArtistInterface[]> =>
-  await API.get(`artist/${username}/commentaries/${photoId}.json`);
+  await API.get(
+    `artist/${username}/commentaries/${photoId}.json?${new Date().getTime()}`
+  );
 
 function* getArtistGalleryCommentsAPI({ payload }: any): any {
   try {

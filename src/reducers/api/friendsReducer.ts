@@ -10,7 +10,7 @@ import createReducer from './../createReducer';
 
 const defaultState: FriendReducerType = {
   friends: [],
-  currentFriend: null,
+  currentFriend: undefined,
   loading: false,
   successMessage: null,
   errorMessage: null

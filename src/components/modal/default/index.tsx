@@ -27,7 +27,7 @@ export default class DefaultModalComponent extends React.Component<Props> {
         <BackgroundImage
           backgroundBottom={true}
           backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.4}
+          backgroundBottomOpacity={0.2}
         />
 
         <div className={'modal-header background-white-base'}>

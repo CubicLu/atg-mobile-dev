@@ -45,7 +45,9 @@ import {
   DashboardFilterPage,
   DashboardGraphSalesPage,
   DashboardGraphSupporterPage,
-  ArtistGatewayPage
+  ArtistGatewayPage,
+  CommunityArtistDripsPage,
+  FriendProfilePage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -64,7 +66,22 @@ export const routes: RouteInterface[] = [
     component: ProfilePage
   },
   {
+    path: '/feed/',
+    id: 'feedPage',
+    component: FeedPage
+  },
+  {
+    path: '/profile/',
+    id: 'profilePage',
+    component: ProfilePage
+  },
+  {
     path: '/profile/:id',
+    id: 'friendProfile',
+    component: FriendProfilePage
+  },
+  {
+    path: '/profile',
     id: 'fanProfile',
     component: ProfilePage
   },
@@ -127,6 +144,11 @@ export const routes: RouteInterface[] = [
     path: '/track/:reference/:referenceId/:id',
     id: 'tracklist',
     component: TrackListPage
+  },
+  {
+    path: '/community/artist/:artistId/daily-drip',
+    id: 'communityArtistDrip',
+    component: CommunityArtistDripsPage
   },
   {
     path: '/community/artist/:artistId/daily-drip/:dailyDripId',
@@ -212,11 +234,6 @@ export const routes: RouteInterface[] = [
     path: '/chat',
     id: 'chat',
     component: ChatPage
-  },
-  {
-    path: '/profile/:id',
-    id: 'fanProfile',
-    component: ProfilePage
   },
   {
     path: '/radio/:id',

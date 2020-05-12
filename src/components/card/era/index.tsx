@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputCheckbox } from '../../../components';
-import { SubEraInterface } from '../../../interfaces';
+import { SubEraInterface } from '../../../models';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';

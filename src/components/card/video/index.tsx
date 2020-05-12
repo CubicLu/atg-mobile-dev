@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  ArtistInterface,
-  ShapesSize,
-  Colors,
-  Sizes
-} from '../../../interfaces';
-import { ButtonIcon } from '../..';
-import { DotsThreeIcon } from '../../icon';
-import EditIcon from '../../icon/edit';
+import { ArtistInterface } from '../../../models';
+import { ShapesSize, Colors, Sizes } from '../../../types';
+import { ButtonIcon, DotsThreeIcon, EditIcon } from '../..';
 import { IonRouterLink } from '@ionic/react';
 
 interface Props {

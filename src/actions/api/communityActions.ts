@@ -1,98 +1,155 @@
-import { ActionType } from './../../interfaces';
+import {
+  CommunityActionType,
+  ActionProperty,
+  Action,
+  APIErrorInterface,
+  APIResponseInterface,
+  PostInterface
+} from './../../models';
 
-export const updateCommunityProperty = (property: string, value: any): any => ({
-  type: ActionType.UPDATE_COMMUNITY_PROPERTY,
+export const updateCommunityProperty = (
+  property: string,
+  value: any
+): Action<CommunityActionType.UPDATE_PROPERTY, ActionProperty<any>> => ({
+  type: CommunityActionType.UPDATE_PROPERTY,
   payload: { property, value }
 });
 
-export const updateCommunitySetInitialProperty = (property: string): any => ({
-  type: ActionType.UPDATE_COMMUNITY_SET_INITIAL_PROPERTY,
+export const updateCommunitySetInitialProperty = (
+  property: string
+): Action<CommunityActionType.UPDATE_SET_INITIAL_PROPERTY, string> => ({
+  type: CommunityActionType.UPDATE_SET_INITIAL_PROPERTY,
   payload: property
 });
 
-export const getCommunityPostsAPI = (): any => ({
-  type: ActionType.GET_COMMUNITY_POSTS_API
+export const getCommunityPostsAPI = (): Action<CommunityActionType.GET_POSTS_API> => ({
+  type: CommunityActionType.GET_POSTS_API
 });
 
-export const getCommunityPostsAPIFailure = (error): any => ({
-  type: ActionType.GET_COMMUNITY_POSTS_API_FAILURE,
+export const getCommunityPostsAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  CommunityActionType.GET_POSTS_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: CommunityActionType.GET_POSTS_API_FAILURE,
   payload: error
 });
 
-export const getCommunityPostsAPISuccess = (response): any => ({
-  type: ActionType.GET_COMMUNITY_POSTS_API_SUCCESS,
+export const getCommunityPostsAPISuccess = (
+  response: APIResponseInterface<PostInterface[]>
+): Action<
+  CommunityActionType.GET_POSTS_API_SUCCESS,
+  APIResponseInterface<PostInterface[]>
+> => ({
+  type: CommunityActionType.GET_POSTS_API_SUCCESS,
   payload: response
 });
 
-export const getCommunityByArtistUsernameAPI = (username: string): any => ({
-  type: ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API,
+export const getCommunityByArtistUsernameAPI = (
+  username: string
+): Action<CommunityActionType.GET_BY_ARTIST_USERNAME_API, string> => ({
+  type: CommunityActionType.GET_BY_ARTIST_USERNAME_API,
   payload: username
 });
 
-export const getCommunityByArtistUsernameAPIFailure = (error): any => ({
-  type: ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API_FAILURE,
+export const getCommunityByArtistUsernameAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  CommunityActionType.GET_BY_ARTIST_USERNAME_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: CommunityActionType.GET_BY_ARTIST_USERNAME_API_FAILURE,
   payload: error
 });
 
-export const getCommunityByArtistUsernameAPISuccess = (response): any => ({
-  type: ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS,
+export const getCommunityByArtistUsernameAPISuccess = (
+  response: APIResponseInterface<string>
+): Action<
+  CommunityActionType.GET_BY_ARTIST_USERNAME_API_SUCCESS,
+  APIResponseInterface<any>
+> => ({
+  type: CommunityActionType.GET_BY_ARTIST_USERNAME_API_SUCCESS,
   payload: response
 });
 
-export const getCommunityStoriesAPI = (): any => ({
-  type: ActionType.GET_COMMUNITY_STORIES_API
+export const getCommunityStoriesAPI = (): Action<
+  CommunityActionType.GET_STORIES_API,
+  APIResponseInterface<any>
+> => ({
+  type: CommunityActionType.GET_STORIES_API
 });
 
-export const getCommunityStoriesAPIFailure = (error): any => ({
-  type: ActionType.GET_COMMUNITY_STORIES_API_FAILURE,
+export const getCommunityStoriesAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  CommunityActionType.GET_STORIES_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: CommunityActionType.GET_STORIES_API_FAILURE,
   payload: error
 });
 
-export const getCommunityStoriesAPISuccess = (response): any => ({
-  type: ActionType.GET_COMMUNITY_STORIES_API_SUCCESS,
+export const getCommunityStoriesAPISuccess = (
+  response: APIResponseInterface<string>
+): Action<
+  CommunityActionType.GET_STORIES_API_SUCCESS,
+  APIResponseInterface<any>
+> => ({
+  type: CommunityActionType.GET_STORIES_API_SUCCESS,
   payload: response
 });
 
-export const getCommunityCommentsAPI = (postId: string): any => ({
-  type: ActionType.GET_COMMUNITY_COMMENTARIES_API,
+export const getCommunityCommentsAPI = (
+  postId: string
+): Action<CommunityActionType.GET_COMMENTARIES_API, string> => ({
+  type: CommunityActionType.GET_COMMENTARIES_API,
   payload: postId
 });
 
-export const getCommunityCommentsAPIFailure = (error): any => ({
-  type: ActionType.GET_COMMUNITY_COMMENTARIES_API_FAILURE,
+export const getCommunityCommentsAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  CommunityActionType.GET_COMMENTARIES_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: CommunityActionType.GET_COMMENTARIES_API_FAILURE,
   payload: error
 });
 
-export const getCommunityCommentsAPISuccess = (response): any => ({
-  type: ActionType.GET_COMMUNITY_COMMENTARIES_API_SUCCESS,
+export const getCommunityCommentsAPISuccess = (
+  response: APIResponseInterface<string>
+): Action<
+  CommunityActionType.GET_COMMENTARIES_API_SUCCESS,
+  APIResponseInterface<any>
+> => ({
+  type: CommunityActionType.GET_COMMENTARIES_API_SUCCESS,
   payload: response
 });
 
-export const getCommunityCommentsCoverAPI = (postId: string): any => ({
-  type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API,
+export const getCommunityCommentsCoverAPI = (
+  postId: string
+): Action<CommunityActionType.GET_COMMENTARIES_COVER_API, string> => ({
+  type: CommunityActionType.GET_COMMENTARIES_COVER_API,
   payload: postId
 });
 
-export const getCommunityCommentsCoverAPIFailure = (error): any => ({
-  type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE,
+export const getCommunityCommentsCoverAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  CommunityActionType.GET_COMMENTARIES_COVER_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: CommunityActionType.GET_COMMENTARIES_COVER_API_FAILURE,
   payload: error
 });
 
-export const getCommunityCommentsCoverAPISuccess = (response): any => ({
-  type: ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS,
-  payload: response
-});
-
-export const getFeedPostsAPI = (): any => ({
-  type: ActionType.GET_FEED_POSTS_API
-});
-
-export const getFeedPostsAPIFailure = (error): any => ({
-  type: ActionType.GET_FEED_POSTS_API_FAILURE,
-  payload: error
-});
-
-export const getFeedPostsAPISuccess = (response): any => ({
-  type: ActionType.GET_FEED_POSTS_API_SUCCESS,
+export const getCommunityCommentsCoverAPISuccess = (
+  response: APIResponseInterface<string>
+): Action<
+  CommunityActionType.GET_COMMENTARIES_COVER_API_SUCCESS,
+  APIResponseInterface<any>
+> => ({
+  type: CommunityActionType.GET_COMMENTARIES_COVER_API_SUCCESS,
   payload: response
 });

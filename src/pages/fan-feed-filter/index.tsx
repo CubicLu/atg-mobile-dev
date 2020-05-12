@@ -10,7 +10,7 @@ import {
   ListUser,
   InputComboBox
 } from '../../components';
-import { UserInterface } from './../../interfaces';
+import { UserInterface } from './../../models';
 import { updateProfileProperty } from './../../actions';
 
 interface State {

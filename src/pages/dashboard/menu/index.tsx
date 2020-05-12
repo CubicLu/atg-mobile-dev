@@ -11,7 +11,7 @@ import { withRouter, RouteChildrenProps } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getDashboardByArtistAPI } from './../../../actions';
-import { DashboardInterface } from '../../../interfaces';
+import { DashboardInterface } from '../../../models';
 import { routeArtistMenu } from '../../../constants/routes-menu';
 interface Props
   extends DispatchProps,
@@ -62,7 +62,7 @@ class DashboardMenuPage extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           rightCloseHref="/profile"
-          routerDirection="none"
+          routerDirection="root"
         />
         <IonContent
           fullscreen={true}

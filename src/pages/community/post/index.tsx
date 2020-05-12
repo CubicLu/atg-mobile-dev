@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import {
   CommentInterface,
   CommentCoverInterface,
-  PostInterface,
-  Sizes,
-  Colors
-} from '../../../interfaces';
+  PostInterface
+} from '../../../models';
+import { Sizes, Colors } from '../../../types';
 import { IonPage, IonContent } from '@ionic/react';
 import {
   Header,

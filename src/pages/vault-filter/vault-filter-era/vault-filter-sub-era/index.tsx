@@ -11,7 +11,7 @@ import {
 } from '../../../../components';
 import { ApplicationState } from '../../../../reducers';
 import { updateSettingsProperty } from '../../../../actions';
-import { SubEraInterface } from '../../../../interfaces';
+import { SubEraInterface } from '../../../../models';
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;

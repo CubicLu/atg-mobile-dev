@@ -1,4 +1,4 @@
-import { MenuInterface } from './../../interfaces';
+import { MenuInterface } from './../../models';
 export const settingsMenu: MenuInterface[] = [
   {
     id: 'account',

@@ -8,7 +8,7 @@ import {
   Button,
   Header
 } from './../../components';
-import { ShapesSize, Sizes } from '../../interfaces';
+import { ShapesSize, Sizes } from '../../types';
 
 interface Props extends RouteComponentProps {}
 

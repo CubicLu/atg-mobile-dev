@@ -8,7 +8,8 @@ import {
   ArrowRightIcon,
   Button
 } from '../../components';
-import { MenuInterface, Colors, ShapesSize, Sizes } from '../../interfaces';
+import { MenuInterface } from '../../models';
+import { Colors, ShapesSize, Sizes } from '../../types';
 
 interface StateProps {
   settingsMenu: MenuInterface[];

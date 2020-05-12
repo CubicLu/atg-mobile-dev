@@ -1,10 +1,10 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import {
-  ActionType,
+  DashboardActionType,
   DashboardInterface,
   APIResponseInterface
-} from '../../interfaces';
+} from '../../models';
 import {
   getDashboardByArtistAPIFailure,
   getDashboardByArtistAPISuccess
@@ -29,7 +29,7 @@ function* getDashboardByArtistAPI({ payload }: any): ReturnType<any> {
 
 export function* getDashboardByArtist(): any {
   yield takeEvery(
-    ActionType.GET_DASHBOARD_BY_ARTIST_API,
+    DashboardActionType.GET_BY_ARTIST_API,
     getDashboardByArtistAPI
   );
 }

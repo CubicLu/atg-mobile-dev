@@ -1,11 +1,16 @@
-import { ActionType } from '../interfaces';
+import { NavbarActionType, Action, ActionProperty } from '../models';
 
-export const updateNavbarProperty = (property: string, value: any): any => ({
-  type: ActionType.UPDATE_NAVBAR_PROPERTY,
+export const updateNavbarProperty = (
+  property: string,
+  value: any
+): Action<NavbarActionType.UPDATE_PROPERTY, ActionProperty<any>> => ({
+  type: NavbarActionType.UPDATE_PROPERTY,
   payload: { property, value }
 });
-export const toggleNavBarTwoActions = (status: boolean): any => ({
-  type: ActionType.TOGGLE_NAVBAR_TWOACTIONS,
+export const toggleNavBarTwoActions = (
+  status: boolean
+): Action<NavbarActionType.TOGGLE_TWOACTIONS, { status: boolean }> => ({
+  type: NavbarActionType.TOGGLE_TWOACTIONS,
   payload: { status }
 });
 export const updateNavBarTwoActions = (
@@ -13,7 +18,15 @@ export const updateNavBarTwoActions = (
   rightLabel: string,
   leftAction: Function,
   rightAction: Function
-): any => ({
-  type: ActionType.UPDATE_NAVBAR_TWOACTIONS,
+): Action<
+  NavbarActionType.UPDATE_TWOACTIONS,
+  {
+    leftLabel: string;
+    rightLabel: string;
+    leftAction: Function;
+    rightAction: Function;
+  }
+> => ({
+  type: NavbarActionType.UPDATE_TWOACTIONS,
   payload: { leftLabel, rightLabel, leftAction, rightAction }
 });

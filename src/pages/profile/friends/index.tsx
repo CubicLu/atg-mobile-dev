@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ListItem } from './../../../components';
 
 import { IonList, IonContent } from '@ionic/react';
-import { ActionType, FriendInterface } from '../../../interfaces';
+import { FriendInterface } from '../../../models';
 import { connect } from 'react-redux';
 import { getFriendsAPI } from '../../../actions/api/friendsActions';
 import { ApplicationState } from '../../../reducers';
@@ -14,7 +14,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  getFriendsAPI: () => { type: ActionType };
+  getFriendsAPI: () => void;
 }
 
 interface Props extends RouteComponentProps, StateProps, DispatchProps {}

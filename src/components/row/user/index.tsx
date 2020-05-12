@@ -6,7 +6,8 @@ import {
   MessageBalloonIcon,
   InputComboBox
 } from '../../';
-import { ShapesSize, Colors, Sizes, UserInterface } from '../../../interfaces';
+import { UserInterface } from '../../../models';
+import { ShapesSize, Colors, Sizes } from '../../../types';
 
 interface Props {
   data: UserInterface;

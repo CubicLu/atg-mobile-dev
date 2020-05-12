@@ -1,6 +1,6 @@
 import React from 'react';
 import { CreateAnimation } from '@ionic/react';
-import { ScrollHeaderInterface } from '../../interfaces';
+import { ScrollHeaderInterface } from '../../models';
 import { validateScrollHeader } from '../../utils';
 
 interface Props {

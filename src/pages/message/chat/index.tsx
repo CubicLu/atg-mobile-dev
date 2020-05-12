@@ -10,12 +10,8 @@ import {
 } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { RowChat, ButtonIcon, CloseIcon } from '../../../components';
-import {
-  MenuInterface,
-  Colors,
-  ShapesSize,
-  MessageInterface
-} from '../../../interfaces';
+import { MenuInterface, MessageInterface } from '../../../models';
+import { Colors, ShapesSize } from '../../../types';
 import { updateSettingsProperty } from './../../../actions';
 
 interface DispatchProps {

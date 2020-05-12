@@ -1,7 +1,8 @@
 import React from 'react';
 import { RowUser, ButtonIcon, CloseIcon } from './../../../components';
 import { IonList, IonItemSliding, IonItem, IonItemOptions } from '@ionic/react';
-import { Colors, ShapesSize, UserInterface } from '../../../interfaces';
+import { Colors, ShapesSize } from '../../../types';
+import { UserInterface } from './../../../models';
 
 interface Props {
   data?: UserInterface[];

@@ -1,11 +1,11 @@
 import {
   Action,
-  ActionType,
+  ProfileActionType,
   ProfileReducerType,
   MessageInterface,
   NotificationInterface,
   UserInterface
-} from './../../interfaces';
+} from './../../models';
 import createReducer from './../createReducer';
 
 const messages: MessageInterface[] = [
@@ -142,11 +142,12 @@ const defaultState: ProfileReducerType = {
   admins: admins,
   adminsSearch: admins,
   friendsSelected: [],
-  recentSelected: []
+  recentSelected: [],
+  resentSelected: []
 };
 
 export const profileReducer = createReducer<ProfileReducerType>(defaultState, {
-  [ActionType.UPDATE_PROFILE_PROPERTY](
+  [ProfileActionType.UPDATE_PROPERTY](
     state: ProfileReducerType,
     action: Action<any>
   ): any {

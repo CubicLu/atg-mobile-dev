@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { TabsInterface, RouteInterface } from '../../../interfaces';
+import { TabsInterface, RouteInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { Route, Redirect } from 'react-router-dom';
 import { NotFoundPage } from '../..';

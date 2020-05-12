@@ -1,6 +1,6 @@
 import React from 'react';
 import { BackgroundImage, InputCheckbox } from '../../../../components';
-import { SubGenreInterface } from '../../../../interfaces';
+import { SubGenreInterface } from '../../../../models';
 import { IonCheckbox } from '@ionic/react';
 import { updateSettingsProperty } from '../../../../actions';
 import { ApplicationState } from '../../../../reducers';

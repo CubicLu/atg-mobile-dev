@@ -4,7 +4,8 @@ import {
   ArrowRightIcon,
   BackgroundImage
 } from './../../../components';
-import { ArtistInterface, Colors } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
+import { Colors } from '../../../types';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { IonRouterLink } from '@ionic/react';

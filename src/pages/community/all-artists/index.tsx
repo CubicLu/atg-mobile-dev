@@ -10,7 +10,8 @@ import {
   HeaderOverlay
 } from '../../../components';
 import { getCommunityStoriesAPI } from './../../../actions';
-import { StorieInterface, ShapesSize } from '../../../interfaces';
+import { StorieInterface } from '../../../models';
+import { ShapesSize } from '../../../types';
 
 interface StateProps {
   stories: StorieInterface[];

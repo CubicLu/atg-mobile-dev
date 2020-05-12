@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { ActionType, FanFeedInterface } from '../../interfaces';
+import { FeedActionType, FanFeedInterface } from '../../models';
 import { getFeedPostsAPISuccess, getFeedPostsAPIFailure } from '../../actions';
 
 export const getFeedPostsRequest = async (): Promise<FanFeedInterface[]> =>
@@ -16,7 +16,7 @@ function* getFeedPostsAPI(): ReturnType<any> {
 }
 
 export function* getFeedPosts(): any {
-  yield takeEvery(ActionType.GET_FEED_POSTS_API, getFeedPostsAPI);
+  yield takeEvery(FeedActionType.GET_ALL_POSTS_API, getFeedPostsAPI);
 }
 
 export default function* rootSaga(): any {

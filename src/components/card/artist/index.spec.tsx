@@ -1,7 +1,7 @@
 import React from 'react';
 import CardArtistComponent from './index';
 import ReactDOM from 'react-dom';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import { store } from '../../../store';
 import { Provider } from 'react-redux';
 

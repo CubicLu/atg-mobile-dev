@@ -9,7 +9,7 @@ import { IonContent, IonPage } from '@ionic/react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { ArtistInterface, MenuInterface } from '../../../interfaces';
+import { ArtistInterface, MenuInterface } from '../../../models';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;

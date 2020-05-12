@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 import SupportComponent from '../../button/support';
 interface Props {
   supported: boolean;

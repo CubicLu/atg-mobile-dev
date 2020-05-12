@@ -13,11 +13,12 @@ import {
   FriendInterface,
   GetFriendAPIInterface,
   MenuInterface
-} from '../../../interfaces';
+} from '../../../models';
 import { updateSettingsProperty } from '../../../actions';
 import { getFriendAPI } from '../../../actions/api/friendsActions';
 import { addEndingToNumber } from '../../../utils';
 import { RouteChildrenProps } from 'react-router';
+import { Nullable } from '../../../types';
 
 interface State {
   pending: boolean;
@@ -29,7 +30,7 @@ interface MatchParams {
 interface StateProps {
   profileFriendTabs: MenuInterface[];
   activeProfileFriendTab: string;
-  currentFriend?: FriendInterface;
+  currentFriend?: Nullable<FriendInterface>;
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;

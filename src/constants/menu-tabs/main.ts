@@ -1,4 +1,4 @@
-import { TabsInterface } from './../../interfaces';
+import { TabsInterface } from './../../models';
 import {
   CommunityPage,
   ProfilePage,

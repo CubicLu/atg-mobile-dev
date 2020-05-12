@@ -10,7 +10,7 @@ import { ApplicationState } from '../../reducers';
 import { getCommunityStoriesAPI } from '../../actions';
 import { IonPage, IonContent, IonImg } from '@ionic/react';
 import { connect } from 'react-redux';
-import { StorieInterface } from '../../interfaces';
+import { StorieInterface } from '../../models';
 
 interface StateProps {
   stories: StorieInterface[];

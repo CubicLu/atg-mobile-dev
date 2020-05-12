@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sizes } from '../../../interfaces';
+import { Sizes } from '../../../types';
 interface Props {
   readonly type: 'text' | 'password';
   readonly placeholder: string;

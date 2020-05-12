@@ -1,4 +1,11 @@
-import { Action, ActionType, CommunityReducerType } from './../../interfaces';
+import {
+  Action,
+  CommunityActionType,
+  CommunityReducerType,
+  ActionProperty,
+  APIResponseInterface,
+  APIErrorInterface
+} from './../../models';
 import createReducer from './../createReducer';
 
 const defaultState: CommunityReducerType = {
@@ -15,170 +22,204 @@ const defaultState: CommunityReducerType = {
 export const communityReducer = createReducer<CommunityReducerType>(
   defaultState,
   {
-    [ActionType.UPDATE_COMMUNITY_PROPERTY](
+    [CommunityActionType.UPDATE_PROPERTY](
       state: CommunityReducerType,
-      action: Action<any>
-    ): any {
+      action: Action<CommunityActionType.UPDATE_PROPERTY, ActionProperty<any>>
+    ): CommunityReducerType {
       return {
         ...state,
-        [action.payload.property]: action.payload.value
+        [action.payload!.property]: action.payload!.value
       };
     },
 
-    [ActionType.UPDATE_COMMUNITY_SET_INITIAL_PROPERTY](
+    [CommunityActionType.UPDATE_SET_INITIAL_PROPERTY](
       state: CommunityReducerType,
-      action: Action<any>
-    ): any {
+      action: Action<CommunityActionType.UPDATE_SET_INITIAL_PROPERTY, string>
+    ): CommunityReducerType {
       return {
         ...state,
-        [action.payload]: defaultState[action.payload]
+        [action.payload!]: defaultState[action.payload!]
       };
     },
 
-    [ActionType.GET_COMMUNITY_POSTS_API](state: CommunityReducerType): any {
-      return {
-        ...state,
-        loading: true
-      };
-    },
-
-    [ActionType.GET_COMMUNITY_POSTS_API_SUCCESS](
-      state: CommunityReducerType,
-      action: Action<any>
-    ): any {
-      return {
-        ...state,
-        loading: false,
-        posts: action.payload.data
-      };
-    },
-
-    [ActionType.GET_COMMUNITY_POSTS_API_FAILURE](
-      state: CommunityReducerType,
-      action: Action<any>
-    ): any {
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.payload
-      };
-    },
-
-    [ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API](
+    [CommunityActionType.GET_POSTS_API](
       state: CommunityReducerType
-    ): any {
+    ): CommunityReducerType {
       return {
         ...state,
         loading: true
       };
     },
 
-    [ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API_SUCCESS](
+    [CommunityActionType.GET_POSTS_API_SUCCESS](
       state: CommunityReducerType,
-      action: Action<any>
-    ): any {
+      action: Action<
+        CommunityActionType.GET_POSTS_API_SUCCESS,
+        APIResponseInterface<any>
+      >
+    ): CommunityReducerType {
       return {
         ...state,
         loading: false,
-        currentCommunityArtist: action.payload.data
+        posts: action.payload!.data
       };
     },
 
-    [ActionType.GET_COMMUNITY_BY_ARTIST_USERNAME_API_FAILURE](
+    [CommunityActionType.GET_POSTS_API_FAILURE](
       state: CommunityReducerType,
-      action: Action<any>
-    ): any {
+      action: Action<
+        CommunityActionType.GET_POSTS_API_FAILURE,
+        APIErrorInterface<any>
+      >
+    ): CommunityReducerType {
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload
+        errorMessage: action.payload!.message
       };
     },
 
-    [ActionType.GET_COMMUNITY_STORIES_API](state: CommunityReducerType): any {
-      return {
-        ...state,
-        loading: true
-      };
-    },
-
-    [ActionType.GET_COMMUNITY_STORIES_API_SUCCESS](
-      state: CommunityReducerType,
-      action: Action<any>
-    ): any {
-      return {
-        ...state,
-        loading: false,
-        stories: action.payload.data
-      };
-    },
-
-    [ActionType.GET_COMMUNITY_STORIES_API_FAILURE](
-      state: CommunityReducerType,
-      action: Action<any>
-    ): any {
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.payload
-      };
-    },
-
-    [ActionType.GET_COMMUNITY_COMMENTARIES_API](
+    [CommunityActionType.GET_BY_ARTIST_USERNAME_API](
       state: CommunityReducerType
-    ): any {
+    ): CommunityReducerType {
       return {
         ...state,
         loading: true
-      };
-    },
-    [ActionType.GET_COMMUNITY_COMMENTARIES_API_SUCCESS](
-      state: CommunityReducerType,
-      action: Action<any>
-    ): any {
-      return {
-        ...state,
-        loading: false,
-        currentPostComments: action.payload.data
-      };
-    },
-    [ActionType.GET_COMMUNITY_COMMENTARIES_API_FAILURE](
-      state: CommunityReducerType,
-      action: Action<any>
-    ): any {
-      return {
-        ...state,
-        loading: false,
-        errorMessage: action.payload.data
       };
     },
 
-    [ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API](
-      state: CommunityReducerType
-    ): any {
+    [CommunityActionType.GET_BY_ARTIST_USERNAME_API_SUCCESS](
+      state: CommunityReducerType,
+      action: Action<
+        CommunityActionType.GET_BY_ARTIST_USERNAME_API_SUCCESS,
+        APIResponseInterface<any>
+      >
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: false,
+        posts: action.payload!.data.posts,
+        stories: action.payload!.data.stories,
+        currentCommunityArtist: action.payload!.data
+      };
+    },
+
+    [CommunityActionType.GET_BY_ARTIST_USERNAME_API_FAILURE](
+      state: CommunityReducerType,
+      action: Action<
+        CommunityActionType.GET_BY_ARTIST_USERNAME_API_FAILURE,
+        APIErrorInterface<any>
+      >
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload!.message
+      };
+    },
+
+    [CommunityActionType.GET_STORIES_API](state: CommunityReducerType): any {
       return {
         ...state,
         loading: true
       };
     },
-    [ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_SUCCESS](
+
+    [CommunityActionType.GET_STORIES_API_SUCCESS](
       state: CommunityReducerType,
-      action: Action<any>
-    ): any {
+      action: Action<
+        CommunityActionType.GET_STORIES_API_SUCCESS,
+        APIResponseInterface<any>
+      >
+    ): CommunityReducerType {
       return {
         ...state,
         loading: false,
-        currentPostCover: action.payload.data
+        stories: action.payload!.data
       };
     },
-    [ActionType.GET_COMMUNITY_COMMENTARIES_COVER_API_FAILURE](
+
+    [CommunityActionType.GET_STORIES_API_FAILURE](
       state: CommunityReducerType,
-      action: Action<any>
-    ): any {
+      action: Action<
+        CommunityActionType.GET_STORIES_API_FAILURE,
+        APIErrorInterface<any>
+      >
+    ): CommunityReducerType {
       return {
         ...state,
         loading: false,
-        errorMessage: action.payload.data
+        errorMessage: action.payload!.message
+      };
+    },
+
+    [CommunityActionType.GET_COMMENTARIES_API](
+      state: CommunityReducerType
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: true
+      };
+    },
+    [CommunityActionType.GET_COMMENTARIES_API_SUCCESS](
+      state: CommunityReducerType,
+      action: Action<
+        CommunityActionType.GET_COMMENTARIES_API_SUCCESS,
+        APIResponseInterface<any>
+      >
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: false,
+        currentPostComments: action.payload!.data
+      };
+    },
+    [CommunityActionType.GET_COMMENTARIES_API_FAILURE](
+      state: CommunityReducerType,
+      action: Action<
+        CommunityActionType.GET_COMMENTARIES_API_FAILURE,
+        APIErrorInterface<any>
+      >
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload!.message
+      };
+    },
+
+    [CommunityActionType.GET_COMMENTARIES_COVER_API](
+      state: CommunityReducerType
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: true
+      };
+    },
+    [CommunityActionType.GET_COMMENTARIES_COVER_API_SUCCESS](
+      state: CommunityReducerType,
+      action: Action<
+        CommunityActionType.GET_COMMENTARIES_COVER_API_SUCCESS,
+        APIResponseInterface<any>
+      >
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: false,
+        currentPostCover: action.payload!.data
+      };
+    },
+    [CommunityActionType.GET_COMMENTARIES_COVER_API_FAILURE](
+      state: CommunityReducerType,
+      action: Action<
+        CommunityActionType.GET_COMMENTARIES_COVER_API_FAILURE,
+        APIErrorInterface<any>
+      >
+    ): CommunityReducerType {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload!.message
       };
     }
   }

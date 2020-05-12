@@ -1,16 +1,33 @@
-import { ActionType } from '../../interfaces';
+import {
+  RadioActionType,
+  Action,
+  APIErrorInterface,
+  APIResponseInterface
+} from '../../models';
 
-export const getRadioArtistAPI = (query: string): any => ({
-  type: ActionType.GET_RADIO_ARTIST,
+export const getRadioArtistAPI = (
+  query: string
+): Action<RadioActionType.GET_BY_ARTIST_API> => ({
+  type: RadioActionType.GET_BY_ARTIST_API,
   payload: query
 });
 
-export const getRadioArtistAPISuccess = (response): any => ({
-  type: ActionType.GET_RADIO_ARTIST_SUCCESS,
+export const getRadioArtistAPISuccess = (
+  response: APIResponseInterface<string>
+): Action<
+  RadioActionType.GET_BY_ARTIST_API_SUCCESS,
+  APIResponseInterface<string>
+> => ({
+  type: RadioActionType.GET_BY_ARTIST_API_SUCCESS,
   payload: response
 });
 
-export const getRadioArtistAPIFailure = (error): any => ({
-  type: ActionType.GET_RADIO_ARTIST_FAILURE,
+export const getRadioArtistAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  RadioActionType.GET_BY_ARTIST_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: RadioActionType.GET_BY_ARTIST_API_FAILURE,
   payload: error
 });

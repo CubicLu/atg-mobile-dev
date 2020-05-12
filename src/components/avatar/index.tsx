@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
-import { ShapesSize, Colors } from '../../interfaces';
+import { ShapesSize, Colors } from '../../types';
 
 interface Props {
   image: string | undefined;

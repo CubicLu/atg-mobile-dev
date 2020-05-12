@@ -6,7 +6,7 @@ import {
   ShareIcon,
   StarIcon,
   Button
-} from '..';
+} from './../';
 import {
   CloseIcon,
   SettingsIcon,
@@ -14,17 +14,13 @@ import {
   SupportIcon,
   BalloonIcon,
   ChatMessageIcon,
-  DashboardIcon
+  DashboardIcon,
+  NotificationIcon,
+  MinimizeIcon
 } from '../icon';
-import { IonHeader, NavContextState, NavContext } from '@ionic/react';
-import MinimizeIcon from '../icon/minimize';
+import { IonHeader, NavContext, NavContextState } from '@ionic/react';
 import { SongInfoButton } from '../icon/player';
-import {
-  Colors,
-  RouterLinkDirection,
-  RouterLinkAction
-} from '../../interfaces';
-import NotificationIcon from '../icon/notification';
+import { Colors, RouterLinkDirection, RouterLinkAction } from '../../types';
 
 interface Props {
   className?: string;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ButtonIcon } from './../../../components';
-import { ArtistInterface, Colors, ShapesSize } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
+import { Colors, ShapesSize } from '../../../types';
 import {
   SupportIcon,
   StarIcon,

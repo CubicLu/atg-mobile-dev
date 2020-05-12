@@ -1,5 +1,5 @@
 import {
-  ActionType,
+  PlayerActionType,
   PlayerReducerType,
   PlaylistInterface,
   SongInterface,
@@ -7,7 +7,7 @@ import {
   SetPlaylistInterface,
   SeekPositionInteface,
   PlaySongInterface
-} from './../interfaces';
+} from './../models';
 import createReducer from './createReducer';
 
 export const guitarPlaylist: PlaylistInterface = {
@@ -593,7 +593,7 @@ const getRunningStatus = (status: RunningStatus): RunningValues => {
 
 export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
   //oficial used with song, nextSong and first item
-  [ActionType.SET_PLAYLIST](
+  [PlayerActionType.SET_PLAYLIST](
     state: PlayerReducerType,
     action: Action<SetPlaylistInterface>
   ): PlayerReducerType {
@@ -618,11 +618,13 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       duration: playlist.items[songIdx].duration,
       next: playlist.items[nextIdx],
       timeElapsed: 0,
-      playerAction: ActionType.SET_PLAYLIST
+      playerAction: PlayerActionType.SET_PLAYLIST
     };
   },
 
-  [ActionType.FAVORITE_SONG](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.FAVORITE_SONG](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     if (!state.song) {
       return state;
     }
@@ -635,32 +637,32 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: undefined
     };
   },
-  [ActionType.RESUME_SONG](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.RESUME_SONG](state: PlayerReducerType): PlayerReducerType {
     return {
       ...state,
       playing: true,
       paused: false,
       stopped: false,
-      playerAction: ActionType.RESUME_SONG
+      playerAction: PlayerActionType.RESUME_SONG
     };
   },
-  [ActionType.PAUSE_SONG](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.PAUSE_SONG](state: PlayerReducerType): PlayerReducerType {
     return {
       ...state,
       ...getRunningStatus('PAUSE'),
-      playerAction: ActionType.PAUSE_SONG
+      playerAction: PlayerActionType.PAUSE_SONG
     };
   },
-  [ActionType.STOP_SONG](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.STOP_SONG](state: PlayerReducerType): PlayerReducerType {
     return {
       ...state,
       ...getRunningStatus('STOP'),
       song: undefined,
       expanded: false,
-      playerAction: ActionType.STOP_SONG
+      playerAction: PlayerActionType.STOP_SONG
     };
   },
-  [ActionType.TOGGLE_CURRENT_NEXT_SONG](
+  [PlayerActionType.TOGGLE_CURRENT_NEXT_SONG](
     state: PlayerReducerType
   ): PlayerReducerType {
     return {
@@ -669,10 +671,10 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       next: undefined,
       playing: true,
       paused: false,
-      playerAction: ActionType.TOGGLE_CURRENT_NEXT_SONG
+      playerAction: PlayerActionType.TOGGLE_CURRENT_NEXT_SONG
     };
   },
-  [ActionType.PLAY_SONG](
+  [PlayerActionType.PLAY_SONG](
     state: PlayerReducerType,
     action: Action<PlaySongInterface>
   ): PlayerReducerType {
@@ -683,21 +685,21 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       song: action.payload.song,
       next: action.payload.nextSong,
       timeElapsed: 0,
-      duration: action.payload.song.duration,
-      playerAction: ActionType.PLAY_SONG
+      duration: action.payload.song?.duration || 0,
+      playerAction: PlayerActionType.PLAY_SONG
     };
   },
-  [ActionType.LOAD_NEXT_SONG](
+  [PlayerActionType.LOAD_NEXT_SONG](
     state: PlayerReducerType,
     action: Action<SongInterface>
   ): PlayerReducerType {
     return {
       ...state,
       next: action.payload,
-      playerAction: ActionType.LOAD_NEXT_SONG
+      playerAction: PlayerActionType.LOAD_NEXT_SONG
     };
   },
-  [ActionType.SEEK_TO_SONG](
+  [PlayerActionType.SEEK_TO_SONG](
     state: PlayerReducerType,
     action: Action<SeekPositionInteface>
   ): PlayerReducerType {
@@ -705,20 +707,20 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
     return {
       ...state,
       timeElapsed: !increase ? seekTo : Math.max(state.timeElapsed + seekTo, 0),
-      playerAction: ActionType.SEEK_TO_SONG
+      playerAction: PlayerActionType.SEEK_TO_SONG
     };
   },
-  [ActionType.UPDATE_MASTER_VOLUME](
+  [PlayerActionType.UPDATE_MASTER_VOLUME](
     state: PlayerReducerType,
     action: Action<number>
   ): PlayerReducerType {
     return {
       ...state,
       masterVolume: action.payload,
-      playerAction: ActionType.UPDATE_MASTER_VOLUME
+      playerAction: PlayerActionType.UPDATE_MASTER_VOLUME
     };
   },
-  [ActionType.UPDATE_ELAPSED_SONG](
+  [PlayerActionType.UPDATE_ELAPSED_SONG](
     state: PlayerReducerType,
     action: Action<number>
   ): PlayerReducerType {
@@ -728,7 +730,7 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: undefined
     };
   },
-  [ActionType.UPDATE_SONG_DURATION](
+  [PlayerActionType.UPDATE_SONG_DURATION](
     state: PlayerReducerType,
     action: Action<number>
   ): PlayerReducerType {
@@ -738,34 +740,36 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       playerAction: undefined
     };
   },
-  [ActionType.TOGGLE_SHUFFLE_PLAYER](
+  [PlayerActionType.TOGGLE_SHUFFLE](
     state: PlayerReducerType
   ): PlayerReducerType {
     return {
       ...state,
       shuffle: !state.shuffle,
-      playerAction: ActionType.TOGGLE_SHUFFLE_PLAYER
+      playerAction: PlayerActionType.TOGGLE_SHUFFLE
     };
   },
-  [ActionType.TOGGLE_REPEAT_PLAYER](
+  [PlayerActionType.TOGGLE_REPEAT](
     state: PlayerReducerType
   ): PlayerReducerType {
     return {
       ...state,
       repeat: !state.repeat,
-      playerAction: ActionType.TOGGLE_REPEAT_PLAYER
+      playerAction: PlayerActionType.TOGGLE_REPEAT
     };
   },
-  [ActionType.TOGGLE_PLAYER](state: PlayerReducerType): PlayerReducerType {
+  [PlayerActionType.TOGGLE_PLAYER](
+    state: PlayerReducerType
+  ): PlayerReducerType {
     return { ...state, expanded: !state.expanded, playerAction: undefined };
   },
-  [ActionType.PREV_SONG](state: PlayerReducerType): PlayerReducerType {
-    return { ...state, playerAction: ActionType.PREV_SONG };
+  [PlayerActionType.PREV_SONG](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, playerAction: PlayerActionType.PREV_SONG };
   },
-  [ActionType.NEXT_SONG](state: PlayerReducerType): PlayerReducerType {
-    return { ...state, playerAction: ActionType.NEXT_SONG };
+  [PlayerActionType.NEXT_SONG](state: PlayerReducerType): PlayerReducerType {
+    return { ...state, playerAction: PlayerActionType.NEXT_SONG };
   },
-  [ActionType.LOADING_PLAYER](
+  [PlayerActionType.LOADING](
     state: PlayerReducerType,
     action: Action<boolean>
   ): PlayerReducerType {

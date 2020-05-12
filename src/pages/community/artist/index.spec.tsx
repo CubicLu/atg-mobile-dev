@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 import CommunityArtistPage from './index';
 import { store } from '../../../store';
 import ReactDOM from 'react-dom';
-import { PostInterface, StorieInterface, CommunityArtistInterface } from '../../../interfaces';
+import { PostInterface, StorieInterface, CommunityArtistInterface } from '../../../models';
 
 interface MatchParams {
   artistId: string;

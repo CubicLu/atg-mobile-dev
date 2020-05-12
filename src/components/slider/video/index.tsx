@@ -3,7 +3,7 @@ import { CardVideo } from './../../../components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { ShapesSize, Sizes } from '../../../interfaces';
+import { ShapesSize, Sizes } from '../../../types';
 
 interface Props {
   viewAll?: boolean;

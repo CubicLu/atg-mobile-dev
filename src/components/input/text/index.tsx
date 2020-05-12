@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sizes } from '../../../interfaces';
+import { Sizes } from '../../../types';
 import { focusInput } from '../../../utils';
 interface Props {
   readonly type: 'text' | 'password';

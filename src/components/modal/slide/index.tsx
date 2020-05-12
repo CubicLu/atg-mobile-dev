@@ -3,7 +3,7 @@ import SlidingPanel from 'react-sliding-side-panel';
 import { connect } from 'react-redux';
 import { updateSettingsModal } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
-import { ModalSlideInterface } from '../../../interfaces';
+import { ModalSlideInterface } from '../../../models';
 import { setHeight } from '../../../utils';
 import { Header } from '../..';
 interface DispatchProps {

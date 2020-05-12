@@ -1,9 +1,9 @@
 import {
   Action,
-  ActionType,
+  SettingsActionType,
   SettingsReducerType,
   ModalTypeInterface
-} from '../interfaces';
+} from '../models';
 import createReducer from './createReducer';
 import {
   contactTabs,
@@ -65,7 +65,7 @@ const defaultState: SettingsReducerType = {
 export const settingsReducer = createReducer<SettingsReducerType>(
   defaultState,
   {
-    [ActionType.UPDATE_SETTINGS_PROPERTY](
+    [SettingsActionType.UPDATE_PROPERTY](
       state: SettingsReducerType,
       action: Action<any>
     ): SettingsReducerType {
@@ -75,7 +75,7 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       };
     },
 
-    [ActionType.UPDATE_SETTINGS_MODAL](
+    [SettingsActionType.UPDATE_MODAL](
       state: SettingsReducerType,
       action: Action<any>
     ): SettingsReducerType {
@@ -85,7 +85,7 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       };
     },
 
-    [ActionType.UPDATE_POPUP_MODAL](
+    [SettingsActionType.UPDATE_POPUP_MODAL](
       state: SettingsReducerType,
       action: Action<ModalTypeInterface>
     ): SettingsReducerType {
@@ -94,13 +94,17 @@ export const settingsReducer = createReducer<SettingsReducerType>(
         popUpModal: action.payload.modalType
       };
     },
-    [ActionType.SHOW_TOAST](state: SettingsReducerType): SettingsReducerType {
+    [SettingsActionType.SHOW_TOAST](
+      state: SettingsReducerType
+    ): SettingsReducerType {
       return {
         ...state,
         showToast: true
       };
     },
-    [ActionType.HIDE_TOAST](state: SettingsReducerType): SettingsReducerType {
+    [SettingsActionType.HIDE_TOAST](
+      state: SettingsReducerType
+    ): SettingsReducerType {
       return {
         ...state,
         showToast: false

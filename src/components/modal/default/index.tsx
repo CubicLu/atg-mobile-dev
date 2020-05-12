@@ -4,7 +4,8 @@ import {
   ArrowRightIcon,
   BackgroundImage
 } from './../../../components';
-import { Colors, GenericModalInterface } from '../../../models';
+import { GenericModalInterface } from '../../../models';
+import { Colors } from '../../../types';
 import { IonRouterLink } from '@ionic/react';
 
 interface Props {

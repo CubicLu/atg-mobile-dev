@@ -2,7 +2,8 @@ import {
   Action,
   ModalTypeInterface,
   SettingsActionType,
-  ActionProperty
+  ActionProperty,
+  UpdateModalInterface
 } from './../models';
 
 export const updateSettingsProperty = (
@@ -18,25 +19,17 @@ export const updateSettingsModal = (
   className?: string,
   height?: number,
   onClick?: Function
-): Action<
-  SettingsActionType.UPDATE_MODAL,
-  {
-    content: React.ReactNode;
-    className?: string;
-    height?: number;
-    onClick?: Function;
-  }
-> => ({
+): Action<SettingsActionType.UPDATE_MODAL, UpdateModalInterface> => ({
   type: SettingsActionType.UPDATE_MODAL,
   payload: { content, className, height, onClick }
 });
 
-export const showToastAction = (): { type: ActionType } => ({
-  type: ActionType.SHOW_TOAST
+export const showToastAction = (): Action<SettingsActionType.SHOW_TOAST> => ({
+  type: SettingsActionType.SHOW_TOAST
 });
 
-export const hideToastAction = (): { type: ActionType } => ({
-  type: ActionType.HIDE_TOAST
+export const hideToastAction = (): Action<SettingsActionType.HIDE_TOAST> => ({
+  type: SettingsActionType.HIDE_TOAST
 });
 
 export const updatePopUpModal = (

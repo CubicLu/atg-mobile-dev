@@ -19,3 +19,10 @@ export interface GenericModalInterface {
   name: string;
   url?: string;
 }
+
+export interface UpdateModalInterface {
+  content: React.ReactNode;
+  className?: string;
+  height?: number;
+  onClick?: Function;
+}

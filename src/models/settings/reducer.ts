@@ -35,4 +35,5 @@ export interface SettingsReducerType {
   selectedGenres: string[];
   notifications: number;
   settingsMenu: MenuInterface[];
+  showToast: boolean;
 }

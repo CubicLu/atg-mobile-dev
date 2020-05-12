@@ -14,7 +14,7 @@ interface StateProps {
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
 }
-interface Props extends StateProps {}
+interface Props extends StateProps, DispatchProps {}
 
 class ProfilePage extends React.Component<Props> {
   constructor(props) {

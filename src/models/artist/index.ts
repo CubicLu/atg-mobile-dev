@@ -132,3 +132,8 @@ export interface ArtistSupportImagesInterface {
   background: string | undefined;
   avatar: string | undefined;
 }
+export interface BandMemberInterface {
+  image: string;
+  name: string;
+  redirectUrl?: string;
+}

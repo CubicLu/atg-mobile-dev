@@ -8,7 +8,13 @@ import {
 import { store } from '../../../store';
 import { updateSettingsModal } from '../../../actions';
 import { ShapesSize } from '../../../types';
-import { GenericModalInterface, FriendInterface } from '../../../models';
+import {
+  GenericModalInterface,
+  FriendInterface,
+  SettingsActionType,
+  Action,
+  UpdateModalInterface
+} from '../../../models';
 interface DispatchProps {
   updateSettingsModal?: (
     content: React.ReactNode,
@@ -61,8 +67,14 @@ export default class HeaderProfileComponent extends React.Component<Props> {
     }
   ];
 
-  hideMenuListModal = (): void => store.dispatch(updateSettingsModal(false));
-  hideArtistListModal = (): void => store.dispatch(updateSettingsModal(false));
+  hideMenuListModal = (): Action<
+    SettingsActionType.UPDATE_MODAL,
+    UpdateModalInterface
+  > => store.dispatch(updateSettingsModal(false));
+  hideArtistListModal = (): Action<
+    SettingsActionType.UPDATE_MODAL,
+    UpdateModalInterface
+  > => store.dispatch(updateSettingsModal(false));
 
   showArtistListModal = (): void => {
     store.dispatch(
@@ -81,7 +93,10 @@ export default class HeaderProfileComponent extends React.Component<Props> {
       updateSettingsModal(
         <DefaultModal
           title="Public Profile"
-          onClick={(): void => this.hideMenuListModal()}
+          onClick={(): Action<
+            SettingsActionType.UPDATE_MODAL,
+            UpdateModalInterface
+          > => this.hideMenuListModal()}
           data={this.profileActions}
           overrideClick={true}
         />

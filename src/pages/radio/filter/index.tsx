@@ -8,7 +8,7 @@ import {
   ArrowRightIcon,
   InputSearch
 } from '../../../components';
-import { ChannelInterface, StationInterface } from '../../../interfaces';
+import { ChannelInterface, StationInterface } from '../../../models';
 import Slider, { Settings } from 'react-slick';
 interface Props {}
 interface State {

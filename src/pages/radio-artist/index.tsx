@@ -16,7 +16,7 @@ import {
   ArtistInterface,
   SongInterface,
   PlaylistInterface
-} from '../../interfaces';
+} from '../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ApplicationState } from '../../reducers';
 import {

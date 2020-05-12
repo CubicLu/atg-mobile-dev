@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { IonPage, IonContent } from '@ionic/react';
 import { BackgroundImage, HeaderProfile, Menu } from './../../components';
 import { ApplicationState } from '../../reducers';
-import { MenuInterface } from '../../interfaces';
+import { MenuInterface } from '../../models';
 import { store } from '../../store';
 import { updateSettingsProperty } from '../../actions';
 
@@ -11,7 +11,10 @@ interface StateProps {
   fanTabs: MenuInterface[];
   activeFanTab: string;
 }
-interface Props extends StateProps {}
+interface DispatchProps {
+  updateSettingsProperty: (property: string, value: any) => void;
+}
+interface Props extends StateProps, DispatchProps {}
 
 class ProfilePage extends React.Component<Props> {
   constructor(props) {

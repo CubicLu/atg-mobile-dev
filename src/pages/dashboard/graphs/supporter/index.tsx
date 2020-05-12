@@ -11,6 +11,11 @@ import { updateSettingsModal } from '../../../../actions';
 import { countries } from '../../../../constants/countries';
 import { dashboardSupporters } from '../../../../constants';
 import { RouteComponentProps } from 'react-router';
+import {
+  SettingsActionType,
+  UpdateModalInterface,
+  Action
+} from '../../../../models';
 
 interface MatchParams {
   artistId: string;
@@ -31,7 +36,9 @@ export default class DashboardGraphSupporterPage extends React.Component<
     };
   }
 
-  setCountry(selectedCountryCode): void {
+  setCountry(
+    selectedCountryCode
+  ): Action<SettingsActionType.UPDATE_MODAL, UpdateModalInterface> {
     this.setState({ selectedCountryCode });
     return store.dispatch(updateSettingsModal(false));
   }
@@ -40,7 +47,11 @@ export default class DashboardGraphSupporterPage extends React.Component<
       updateSettingsModal(
         <DefaultModal
           title="Select Country"
-          onClick={(country): void => this.setCountry(country.code)}
+          onClick={(
+            country
+          ): Action<SettingsActionType.UPDATE_MODAL, UpdateModalInterface> =>
+            this.setCountry(country.code)
+          }
           data={countries}
         />,
         'background-white-base',
@@ -75,7 +86,10 @@ export default class DashboardGraphSupporterPage extends React.Component<
         <IonContent className="content" scrollEvents={true}>
           <div className="nav-bar f4 mt-2 mb-3 dark flex center-align">
             <div
-              onClick={(): void => this.setCountry(undefined)}
+              onClick={(): Action<
+                SettingsActionType.UPDATE_MODAL,
+                UpdateModalInterface
+              > => this.setCountry(undefined)}
               className={`nav-item pb-1 mx-3 ${
                 selectedCountryCode ? '' : 'active'
               }`}

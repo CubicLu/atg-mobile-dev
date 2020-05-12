@@ -1,4 +1,4 @@
-import { Action, ActionType, RadioReducerType } from '../../interfaces';
+import { Action, RadioActionType, RadioReducerType } from '../../models';
 import createReducer from '../createReducer';
 
 const defaultState: RadioReducerType = {
@@ -19,13 +19,13 @@ const defaultState: RadioReducerType = {
 };
 
 export const radioReducer = createReducer<RadioReducerType>(defaultState, {
-  [ActionType.GET_RADIO_ARTIST](state: RadioReducerType): any {
+  [RadioActionType.GET_BY_ARTIST_API](state: RadioReducerType): any {
     return {
       ...state,
       loading: true
     };
   },
-  [ActionType.GET_RADIO_ARTIST_SUCCESS](
+  [RadioActionType.GET_BY_ARTIST_API_SUCCESS](
     state: RadioReducerType,
     action: Action<any>
   ): any {
@@ -35,7 +35,7 @@ export const radioReducer = createReducer<RadioReducerType>(defaultState, {
       radioArtist: action.payload.data
     };
   },
-  [ActionType.GET_RADIO_ARTIST_FAILURE](
+  [RadioActionType.GET_BY_ARTIST_API_FAILURE](
     state: RadioReducerType,
     action: Action<any>
   ): any {

@@ -1,4 +1,4 @@
-import { MenuInterface } from './../../interfaces';
+import { MenuInterface } from './../../models';
 export const contactTabs: MenuInterface[] = [
   {
     label: 'Artists',

@@ -3,12 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
-import {
-  Colors,
-  ShapesSize,
-  MenuInterface,
-  UserInterface
-} from '../../../interfaces';
+import { Colors, ShapesSize } from '../../../types';
+import { MenuInterface, UserInterface } from '../../../models';
 import {
   Button,
   Header,

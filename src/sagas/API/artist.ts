@@ -1,6 +1,10 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
-import { ActionType, ArtistInterface } from '../../interfaces';
+import {
+  ArtistActionType,
+  ArtistInterface,
+  APIResponseInterface
+} from '../../models';
 import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,
@@ -17,7 +21,9 @@ export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
 
 function* getArtistsAPI(): any {
   try {
-    const request = yield call(getArtistsRequest);
+    const request: APIResponseInterface<ArtistInterface[]> = yield call(
+      getArtistsRequest
+    );
     yield put(getArtistsAPISuccess(request));
   } catch (error) {
     yield put(getArtistsAPIFailure(error));
@@ -25,7 +31,7 @@ function* getArtistsAPI(): any {
 }
 
 export function* getArtists(): any {
-  yield takeEvery(ActionType.GET_ARTISTS_API, getArtistsAPI);
+  yield takeEvery(ArtistActionType.GET_ALL_API, getArtistsAPI);
 }
 
 export const getArtistRequest = async (username): Promise<ArtistInterface> =>
@@ -41,7 +47,7 @@ function* getArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getArtist(): any {
-  yield takeEvery(ActionType.GET_ARTIST_API, getArtistAPI);
+  yield takeEvery(ArtistActionType.GET_BY_USERNAME_API, getArtistAPI);
 }
 
 export const getArtistEventRequest = async (
@@ -66,7 +72,7 @@ function* getArtistEventAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getArtistEvent(): any {
-  yield takeEvery(ActionType.GET_ARTIST_EVENT_API, getArtistEventAPI);
+  yield takeEvery(ArtistActionType.GET_EVENT_API, getArtistEventAPI);
 }
 
 export const getArtistGalleryCommentsRequest = async (
@@ -92,7 +98,7 @@ function* getArtistGalleryCommentsAPI({ payload }: any): any {
 
 export function* getArtistGalleryComments(): any {
   yield takeEvery(
-    ActionType.GET_ARTIST_GALLERY_COMMENTS_API,
+    ArtistActionType.GET_GALLERY_COMMENTS_API,
     getArtistGalleryCommentsAPI
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from './../../../components';
-import { ShapesSize } from '../../../interfaces';
+import { ShapesSize } from '../../../types';
 import { IonRouterLink } from '@ionic/react';
 
 interface Props {

@@ -32,6 +32,9 @@ import ReplayIcon from './replay';
 import ForwardIcon from './forward';
 import LogoIcon from './logo';
 import SupportStarIcon from './support-star';
+import NotificationIcon from './notification';
+import MinimizeIcon from './minimize';
+import EditIcon from './edit';
 
 export {
   MessageIcon,
@@ -67,5 +70,8 @@ export {
   ReplayIcon,
   ForwardIcon,
   LogoIcon,
-  SupportStarIcon
+  SupportStarIcon,
+  NotificationIcon,
+  MinimizeIcon,
+  EditIcon
 };

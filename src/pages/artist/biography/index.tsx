@@ -33,10 +33,9 @@ import {
   ArtistInterface,
   ModalSlideInterface,
   BiographyInterface,
-  AlbumInterface,
-  Colors,
-  ShapesSize
-} from '../../../interfaces';
+  AlbumInterface
+} from '../../../models';
+import { Colors, ShapesSize } from './../../../types';
 import { validateScrollHeader } from '../../../utils';
 import BottomTilesComponent from '../../../components/bottom-tiles';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, SupportIcon } from './../../../components';
-import { Colors, ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
+import { Colors } from '../../../types';
 import { IonRouterLink } from '@ionic/react';
 
 interface ButtonProps {

@@ -27,14 +27,14 @@ import {
   pauseSong,
   resumeSong,
   seekSongPosition
-} from './../../actions/playerActions';
+} from './../../actions';
 import { ApplicationState } from '../../reducers';
 import {
   SongInterface,
   PlaylistInterface,
-  ActionType,
+  PlayerActionType,
   MediaType
-} from '../../interfaces';
+} from '../../models';
 import {
   PlayButton,
   NextButton,
@@ -92,11 +92,11 @@ class PlayerComponent extends React.Component<Props> {
   }
   componentDidUpdate(): void {
     switch (this.props.playerAction) {
-      case ActionType.TOGGLE_CURRENT_NEXT_SONG:
+      case PlayerActionType.TOGGLE_CURRENT_NEXT_SONG:
         return this.actionToggleNextSong();
-      case ActionType.NEXT_SONG:
+      case PlayerActionType.NEXT_SONG:
         return this.clickNextSong();
-      case ActionType.PREV_SONG:
+      case PlayerActionType.PREV_SONG:
         return this.clickPrevSong();
     }
   }

@@ -1,65 +1,89 @@
 import {
   Action,
-  ActionType,
+  FriendActionType,
   FriendInterface,
-  FriendReducerType
-} from '../../interfaces';
+  FriendReducerType,
+  APIResponseInterface,
+  APIErrorInterface
+} from '../../models';
 import createReducer from './../createReducer';
 
 const defaultState: FriendReducerType = {
   friends: [],
-  currentFriend: undefined,
+  currentFriend: null,
   loading: false,
   successMessage: null,
   errorMessage: null
 };
 
 export const friendReducer = createReducer<FriendReducerType>(defaultState, {
-  [ActionType.GET_FRIENDS_API](state: FriendReducerType): FriendReducerType {
+  [FriendActionType.GET_FRIENDS_ALL_API](
+    state: FriendReducerType
+  ): FriendReducerType {
     return {
       ...state,
       loading: true
     };
   },
-  [ActionType.GET_FRIENDS_API_SUCCESS](
+  [FriendActionType.GET_FRIENDS_ALL_API_SUCCESS](
     state: FriendReducerType,
-    action: Action<FriendInterface[]>
+    action: Action<
+      FriendActionType.GET_FRIENDS_ALL_API_SUCCESS,
+      APIResponseInterface<{ data: FriendInterface[] }>
+    >
   ): FriendReducerType {
     return {
       ...state,
       loading: false,
-      friends: action.payload
+      friends: action.payload!.data.data
     };
   },
-  [ActionType.GET_FRIENDS_API_FAILURE](
+  [FriendActionType.GET_FRIENDS_ALL_API_FAILURE](
     state: FriendReducerType,
-    action: Action<string>
+    action: Action<
+      FriendActionType.GET_FRIENDS_ALL_API_FAILURE,
+      APIErrorInterface<string>
+    >
   ): FriendReducerType {
     return {
       ...state,
       loading: false,
-      errorMessage: action.payload
+      errorMessage: action.payload!.message
     };
   },
-  [ActionType.GET_FRIEND_API_SUCCESS](
+  [FriendActionType.GET_FRIEND_BY_ID_API](
+    state: FriendReducerType
+  ): FriendReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+  [FriendActionType.GET_FRIEND_BY_ID_API_SUCCESS](
     state: FriendReducerType,
-    action: Action<{ data: FriendInterface }>
+    action: Action<
+      FriendActionType.GET_FRIEND_BY_ID_API_SUCCESS,
+      APIResponseInterface<{ data: FriendInterface }>
+    >
   ): FriendReducerType {
     return {
       ...state,
       loading: false,
-      currentFriend: action.payload.data
+      currentFriend: action.payload!.data.data
     };
   },
 
-  [ActionType.GET_FRIEND_API_FAILURE](
+  [FriendActionType.GET_FRIEND_BY_ID_API_FAILURE](
     state: FriendReducerType,
-    action: Action<string>
+    action: Action<
+      FriendActionType.GET_FRIEND_BY_ID_API_FAILURE,
+      APIErrorInterface<string>
+    >
   ): FriendReducerType {
     return {
       ...state,
       loading: false,
-      errorMessage: action.payload
+      errorMessage: action.payload!.message
     };
   }
 });

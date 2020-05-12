@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuInterface } from './../../../interfaces';
+import { MenuInterface } from './../../../models';
 interface Props {
   tabs: MenuInterface[];
   activeId: string | number;

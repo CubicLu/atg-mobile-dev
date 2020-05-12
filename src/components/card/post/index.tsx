@@ -7,7 +7,8 @@ import {
   HeartIcon,
   DotsThreeIcon
 } from './../../../components';
-import { PostInterface, ShapesSize } from '../../../interfaces';
+import { PostInterface } from '../../../models';
+import { ShapesSize } from '../../../types';
 import { IonRouterLink, IonSlides, IonSlide } from '@ionic/react';
 
 interface Props {

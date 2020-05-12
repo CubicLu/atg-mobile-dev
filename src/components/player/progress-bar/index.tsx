@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { updateElapsed, seekSongPosition } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
-import { SongInterface } from '../../../interfaces';
+import { SongInterface } from '../../../models';
 import { IonRange } from '@ionic/react';
 
 class PlayerProgressBarComponent extends React.Component<Props> {

@@ -1,4 +1,9 @@
-import { Action, ActionType, AuthReducerType } from './../../interfaces';
+import {
+  Action,
+  AuthActionType,
+  AuthReducerType,
+  ActionProperty
+} from './../../models';
 import createReducer from './../createReducer';
 
 const defaultState: AuthReducerType = {
@@ -10,24 +15,24 @@ const defaultState: AuthReducerType = {
 };
 
 export const authReducer = createReducer<AuthReducerType>(defaultState, {
-  [ActionType.UPDATE_AUTH_PROPERTY](
+  [AuthActionType.UPDATE_PROPERTY](
     state: AuthReducerType,
-    action: Action<any>
-  ): any {
+    action: Action<AuthActionType.UPDATE_PROPERTY, ActionProperty<any>>
+  ): AuthReducerType {
     return {
       ...state,
-      [action.payload.property]: action.payload.value
+      [action.payload!.property]: action.payload!.value
     };
   },
-  [ActionType.UPDATE_AUTH_SIGN_UP_PROPERTY](
+  [AuthActionType.UPDATE_SIGN_UP_PROPERTY](
     state: AuthReducerType,
-    action: Action<any>
-  ): any {
+    action: Action<AuthActionType.UPDATE_SIGN_UP_PROPERTY, ActionProperty<any>>
+  ): AuthReducerType {
     return {
       ...state,
       signUpUser: {
         ...state.signUpUser,
-        [action.payload.property]: action.payload.value
+        [action.payload!.property]: action.payload!.value
       }
     };
   }

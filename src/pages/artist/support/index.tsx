@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import { getArtistAPI, updatePopUpModal } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage, IonContent } from '@ionic/react';
-import { ArtistInterface, PlanInterface } from '../../../interfaces';
+import { ArtistInterface, PlanInterface } from '../../../models';
 import {
   BackgroundImage,
   Header,

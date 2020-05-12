@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShapesSize } from '../../../interfaces';
+import { ShapesSize } from '../../../types';
 
 interface Props {
   image: string | undefined;

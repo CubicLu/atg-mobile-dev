@@ -1,6 +1,7 @@
 import React from 'react';
 import { ButtonIcon } from './../../../components';
-import { MixtapeInterface, Colors } from '../../../interfaces';
+import { MixtapeInterface } from '../../../models';
+import { Colors } from '../../../types';
 import {
   PlayIcon,
   DotsThreeIcon,

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { Action, ActionType, NavbarReducerType } from '../interfaces';
+import { Action, NavbarActionType, NavbarReducerType } from '../models';
 import createReducer from './createReducer';
 
 const defaultState: NavbarReducerType = {
@@ -12,20 +11,20 @@ const defaultState: NavbarReducerType = {
   }
 };
 export const navbarReducer = createReducer<NavbarReducerType>(defaultState, {
-  [ActionType.TOGGLE_NAVBAR_TWOACTIONS](
+  [NavbarActionType.TOGGLE_TWOACTIONS](
     state: NavbarReducerType,
-    action: Action<any>
-  ) {
+    action: Action<NavbarActionType.TOGGLE_TWOACTIONS, any>
+  ): NavbarReducerType {
     return {
       ...state,
       navbarTwoButtons: { ...action.payload }
     };
   },
 
-  [ActionType.UPDATE_NAVBAR_TWOACTIONS](
+  [NavbarActionType.UPDATE_TWOACTIONS](
     state: NavbarReducerType,
-    action: Action<any>
-  ) {
+    action: Action<NavbarActionType.UPDATE_TWOACTIONS, any>
+  ): NavbarReducerType {
     return {
       ...state,
       navbarTwoButtons: {

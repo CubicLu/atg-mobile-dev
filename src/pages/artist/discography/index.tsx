@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { CardImage } from './../../../components';
 import { ApplicationState } from './../../../reducers';
-import { ArtistInterface } from '../../../interfaces';
+import { ArtistInterface } from '../../../models';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;

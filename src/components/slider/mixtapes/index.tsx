@@ -13,7 +13,7 @@ import {
   MixtapeInterface,
   PlaylistInterface,
   SongInterface
-} from '../../../interfaces';
+} from '../../../models';
 import {
   guitarPlaylist,
   popPlaylist,

@@ -14,11 +14,8 @@ import { ApplicationState } from './../../../reducers';
 import { getCommunityByArtistUsernameAPI } from './../../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
-import {
-  ShapesSize,
-  Colors,
-  CommunityArtistInterface
-} from '../../../interfaces';
+import { ShapesSize, Colors } from '../../../types';
+import { CommunityArtistInterface } from '../../../models';
 import { RouteChildrenProps } from 'react-router-dom';
 interface MatchParams {
   artistId: string;

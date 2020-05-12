@@ -6,7 +6,7 @@ import {
   GradientDirection,
   Sizes,
   RouterLinkDirection
-} from '../../interfaces';
+} from '../../types';
 
 interface Props {
   onClick: Function;

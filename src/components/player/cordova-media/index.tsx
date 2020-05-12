@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import {
   SongInterface,
   PlaylistInterface,
-  MediaStatusCallback,
   MediaType,
-  ActionType
-} from '../../../interfaces';
+  PlayerActionType
+} from '../../../models';
+import { MediaStatusCallback } from '../../../types';
 import {
   setStartingPlayer,
   toggleNextSong,
@@ -40,19 +40,19 @@ class CordovaMediaComponent extends React.Component<Props> {
 
   componentDidUpdate(): void {
     switch (this.props.playerAction) {
-      case ActionType.SET_PLAYLIST:
+      case PlayerActionType.SET_PLAYLIST:
         return this.actionSetPlaylist();
-      case ActionType.PLAY_SONG:
+      case PlayerActionType.PLAY_SONG:
         return this.actionPlaySong();
-      case ActionType.RESUME_SONG:
+      case PlayerActionType.RESUME_SONG:
         return this.actionResumeSong();
-      case ActionType.PAUSE_SONG:
+      case PlayerActionType.PAUSE_SONG:
         return this.actionPauseSong();
-      case ActionType.LOAD_NEXT_SONG:
+      case PlayerActionType.LOAD_NEXT_SONG:
         return this.actionLoadNextSong();
-      case ActionType.SEEK_TO_SONG:
+      case PlayerActionType.SEEK_TO_SONG:
         return this.actionSeekSong();
-      case ActionType.UPDATE_MASTER_VOLUME:
+      case PlayerActionType.UPDATE_MASTER_VOLUME:
         return this.updateMediaVolume();
     }
   }

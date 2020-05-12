@@ -37,6 +37,7 @@ export interface ArtistCoverInterface {
   biography: string | undefined;
   deepDive: string | undefined;
   dashboard?: string;
+  videoCover?: string;
 }
 
 export interface DiscographyInterface {

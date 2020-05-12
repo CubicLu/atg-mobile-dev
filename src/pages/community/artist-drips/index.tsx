@@ -5,7 +5,9 @@ import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { BackgroundImage, Header, Avatar } from '../../../components';
 import { getCommunityByArtistUsernameAPI } from './../../../actions';
-import { ShapesSize, CommunityArtistInterface } from '../../../models';
+import { CommunityArtistInterface } from '../../../models';
+import { ShapesSize } from '../../../types';
+
 interface MatchParams {
   artistId: string;
 }

@@ -1,3 +1,3 @@
 export interface SearchReducerType {
-  queryResult: string | '';
+  readonly queryResult: string;
 }

@@ -1,9 +1,9 @@
 export interface UserInterface {
-  name: string;
-  fullname?: string;
-  email?: string;
-  avatar?: string | undefined;
-  username: string;
-  isFriend?: boolean;
-  id?: number;
+  readonly name: string;
+  readonly fullname?: string;
+  readonly email?: string;
+  readonly avatar?: string | undefined;
+  readonly username: string;
+  readonly isFriend?: boolean;
+  readonly id?: number;
 }

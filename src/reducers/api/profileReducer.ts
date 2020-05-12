@@ -142,7 +142,8 @@ const defaultState: ProfileReducerType = {
   admins: admins,
   adminsSearch: admins,
   friendsSelected: [],
-  recentSelected: []
+  recentSelected: [],
+  resentSelected: []
 };
 
 export const profileReducer = createReducer<ProfileReducerType>(defaultState, {

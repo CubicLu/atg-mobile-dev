@@ -1,7 +1,7 @@
 export interface NavbarTwoButtons {
-  status: boolean;
-  leftLabel?: string;
-  rightLabel?: string;
-  leftAction?: Function;
-  rightAction?: Function;
+  readonly status: boolean;
+  readonly leftLabel?: string;
+  readonly rightLabel?: string;
+  readonly leftAction?: Function;
+  readonly rightAction?: Function;
 }

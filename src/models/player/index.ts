@@ -1,16 +1,16 @@
 import { PlaylistInterface, SongInterface } from './../';
 
 export interface SetPlaylistInterface {
-  playlist: PlaylistInterface;
-  song: SongInterface;
+  readonly playlist: PlaylistInterface;
+  readonly song: SongInterface;
 }
 export interface SeekPositionInteface {
-  seekTo: number;
-  increase: boolean;
+  readonly seekTo: number;
+  readonly increase: boolean;
 }
 export interface PlaySongInterface {
-  song: SongInterface;
-  nextSong?: SongInterface;
+  readonly song: SongInterface;
+  readonly nextSong?: SongInterface;
 }
 
 export interface MediaType {
@@ -52,6 +52,6 @@ export interface MediaType {
   seekTo(position: number): void;
   setVolume(volume: number): void;
   stop(): void;
-  id: string;
-  src: string;
+  readonly id: string;
+  readonly src: string;
 }

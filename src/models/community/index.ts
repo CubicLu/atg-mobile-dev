@@ -1,5 +1,9 @@
 import { UserInterface } from '../';
-import { GradientColorsInterface } from '../@commons';
+import {
+  GradientColorsInterface,
+  PostInterface,
+  StorieInterface
+} from '../@commons';
 
 export interface CommunityDailyDripType {
   id: string;
@@ -19,4 +23,6 @@ export interface CommunityDailyDripItem {
 
 export interface CommunityArtistInterface extends UserInterface {
   backgroundGradient: GradientColorsInterface | null;
+  posts: PostInterface[];
+  stories: StorieInterface[];
 }

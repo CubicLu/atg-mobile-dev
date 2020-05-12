@@ -1,9 +1,9 @@
 export interface MenuInterface {
-  label: string;
-  icon: any;
-  id: string;
-  component?: any;
-  isPage?: boolean;
-  route?: string | null;
-  onClick?: Function;
+  readonly label: string;
+  readonly icon: any;
+  readonly id: string;
+  readonly component?: any;
+  readonly isPage?: boolean;
+  readonly route?: string | null;
+  readonly onClick?: Function;
 }

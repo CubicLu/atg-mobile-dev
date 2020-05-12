@@ -1,10 +1,11 @@
 import { UserInterface } from './../';
 export interface CommentInterface {
-  text?: string;
-  user: UserInterface;
-  replies?: CommentInterface[] | null;
+  readonly text?: string;
+  readonly user: UserInterface;
+  readonly replies?: CommentInterface[] | null;
 }
 
 export interface CommentCoverInterface {
-  url: string;
+  readonly url: string;
+  readonly description?: string;
 }

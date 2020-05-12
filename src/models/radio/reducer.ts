@@ -1,5 +1,6 @@
+import { Nullable } from './../../types';
 export interface RadioReducerType {
-  radioArtist: any;
-  loading: boolean;
-  errorMessage: string | null;
+  readonly radioArtist: any;
+  readonly loading: boolean;
+  readonly errorMessage: Nullable<string>;
 }

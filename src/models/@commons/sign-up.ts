@@ -1,4 +1,4 @@
 export interface SignUpInterface {
-  nickname: string;
-  email: string;
+  readonly nickname: string;
+  readonly email: string;
 }

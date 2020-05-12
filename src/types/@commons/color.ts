@@ -17,5 +17,6 @@ export enum Colors {
   secondary = 'secondary',
   tertiary = 'tertiary',
   grayTransparent = 'gray-transparent',
-  cyan = 'cyan'
+  cyan = 'cyan',
+  gray = 'gray'
 }

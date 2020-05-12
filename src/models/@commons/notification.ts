@@ -1,8 +1,8 @@
 import { UserInterface } from './../';
 
 export interface NotificationInterface extends UserInterface {
-  message: string;
-  sendAt: Date;
-  read: boolean;
-  subject: string;
+  readonly message: string;
+  readonly sendAt: Date;
+  readonly read: boolean;
+  readonly subject: string;
 }

@@ -1,6 +1,6 @@
 export interface RouteInterface {
-  path: string;
-  icon?: any;
-  id: string;
-  component?: any;
+  readonly path: string;
+  readonly icon?: any;
+  readonly id: string;
+  readonly component?: any;
 }

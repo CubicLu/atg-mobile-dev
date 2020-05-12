@@ -1,10 +1,10 @@
 import { UserInterface } from './../';
 export interface EventInterface {
-  date: string | Date;
-  where: string;
-  name: string;
-  city: string;
-  whoIsGoing?: EventWhoIsGoingInterface[];
+  readonly date: string | Date;
+  readonly where: string;
+  readonly name: string;
+  readonly city: string;
+  readonly whoIsGoing?: EventWhoIsGoingInterface[];
 }
 
 export interface EventWhoIsGoingInterface extends UserInterface {}

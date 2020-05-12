@@ -1,14 +1,14 @@
 export interface GenreInterface {
-  name: string;
-  image: string;
+  readonly name: string;
+  readonly image: string;
 }
 
 export interface SubGenreInterface {
-  name: string;
+  readonly name: string;
   selected: boolean;
 }
 
 export interface SubEraInterface {
-  name: string;
-  selected: boolean;
+  readonly name: string;
+  readonly selected: boolean;
 }

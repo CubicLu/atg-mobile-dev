@@ -4,16 +4,17 @@ import {
   EventInterface,
   CommentInterface
 } from './../';
+import { Nullable } from './../../types';
 
 export interface ArtistReducerType {
-  artists: ArtistInterface[];
-  event: EventInterface | null;
-  currentGallery: GalleryImageInterface[] | null;
-  currentArtist: ArtistInterface | null;
-  fullScreenImage: string | null;
-  fullScreenImageIndex: number;
-  currentGalleryComments: CommentInterface[];
-  loading: boolean;
-  successMessage: string | null;
-  errorMessage: string | null;
+  readonly artists: ArtistInterface[];
+  readonly event: Nullable<EventInterface>;
+  readonly currentGallery: Nullable<GalleryImageInterface[]>;
+  readonly currentArtist: Nullable<ArtistInterface>;
+  readonly fullScreenImage: Nullable<string>;
+  readonly fullScreenImageIndex: number;
+  readonly currentGalleryComments: CommentInterface[];
+  readonly loading: boolean;
+  readonly successMessage: Nullable<string>;
+  readonly errorMessage: Nullable<string>;
 }

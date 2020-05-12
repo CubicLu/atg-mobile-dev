@@ -1,8 +1,8 @@
 import { DashboardInterface } from './..';
-
+import { Nullable } from './../../types';
 export interface DashboardReducerType {
-  dashboard: DashboardInterface | null;
-  loading: boolean;
-  successMessage: string | null;
-  errorMessage: string | null;
+  readonly dashboard: Nullable<DashboardInterface>;
+  readonly loading: boolean;
+  readonly successMessage: Nullable<string>;
+  readonly errorMessage: Nullable<string>;
 }

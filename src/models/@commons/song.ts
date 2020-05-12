@@ -1,16 +1,16 @@
 import { GradientColorsInterface } from './../';
 
 export interface SongInterface {
-  id: number;
-  backgroundGradient?: GradientColorsInterface;
-  title: string;
-  album: string;
-  artist: string;
-  duration: number;
-  cover: string;
-  coverArtist?: string;
-  trackNumber: number;
-  url: string;
-  ISRC?: string;
+  readonly id: number;
+  readonly backgroundGradient?: GradientColorsInterface;
+  readonly title: string;
+  readonly album: string;
+  readonly artist: string;
+  readonly duration: number;
+  readonly cover: string;
+  readonly coverArtist?: string;
+  readonly trackNumber: number;
+  readonly url: string;
+  readonly ISRC?: string;
   favorite?: boolean;
 }

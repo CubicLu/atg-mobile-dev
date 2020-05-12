@@ -6,34 +6,35 @@ import {
   PlanInterface,
   SubEraInterface
 } from '../';
+import { Nullable } from './../../types';
 
 export interface SettingsReducerType {
-  tabs: TabsInterface[];
-  activeTab: string;
-  routes: RouteInterface[];
-  fanTabs: MenuInterface[];
-  artistTabs: MenuInterface[];
-  modal: ModalSlideInterface;
-  popUpModal: string | null;
-  plans: PlanInterface[];
-  selectedPlan: PlanInterface | null;
-  activeDeepDiveTab: string;
-  deepDiveTabs: MenuInterface[];
-  messageTabs: MenuInterface[];
-  activeMessageTab: string;
-  activeFanTab: string;
-  activeProfileFriendTab: string;
-  profileFriendTabs: MenuInterface[];
-  selectContactTabs: MenuInterface[];
-  activeSelectContactTab: string;
-  eraFilters: object[];
-  activeDashboardTab: string;
-  dashboardTabs: MenuInterface[];
-  era: string;
-  subEra: SubEraInterface[];
-  genreFilters: object[];
-  selectedGenres: string[];
-  notifications: number;
-  settingsMenu: MenuInterface[];
-  showToast: boolean;
+  readonly tabs: TabsInterface[];
+  readonly activeTab: string;
+  readonly routes: RouteInterface[];
+  readonly fanTabs: MenuInterface[];
+  readonly artistTabs: MenuInterface[];
+  readonly modal: ModalSlideInterface;
+  readonly popUpModal: Nullable<string>;
+  readonly plans: PlanInterface[];
+  readonly selectedPlan: Nullable<PlanInterface>;
+  readonly activeDeepDiveTab: string;
+  readonly deepDiveTabs: MenuInterface[];
+  readonly messageTabs: MenuInterface[];
+  readonly activeMessageTab: string;
+  readonly activeFanTab: string;
+  readonly activeProfileFriendTab: string;
+  readonly profileFriendTabs: MenuInterface[];
+  readonly selectContactTabs: MenuInterface[];
+  readonly activeSelectContactTab: string;
+  readonly eraFilters: object[];
+  readonly activeDashboardTab: string;
+  readonly dashboardTabs: MenuInterface[];
+  readonly era: string;
+  readonly subEra: SubEraInterface[];
+  readonly genreFilters: object[];
+  readonly selectedGenres: string[];
+  readonly notifications: number;
+  readonly settingsMenu: MenuInterface[];
+  readonly showToast: boolean;
 }

@@ -1,13 +1,13 @@
 import { SongInterface } from './../';
 
 export interface PlaylistInterface {
-  name: string;
-  id: number;
-  source: 'radio' | 'artist' | 'playlist' | 'mixtape';
-  sourceId: number;
-  cover: string;
-  items: SongInterface[];
-  owner: string;
-  color1?: string;
-  color2?: string;
+  readonly name: string;
+  readonly id: number;
+  readonly source: 'radio' | 'artist' | 'playlist' | 'mixtape';
+  readonly sourceId: number;
+  readonly cover: string;
+  readonly items: SongInterface[];
+  readonly owner: string;
+  readonly color1?: string;
+  readonly color2?: string;
 }

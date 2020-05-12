@@ -5,15 +5,16 @@ import {
   CommentCoverInterface,
   CommunityArtistInterface
 } from '../';
+import { Nullable } from './../../types';
 
 export interface FeedReducerType {
-  posts: PostInterface[];
-  stories: StorieInterface[];
-  currentCommunityArtist: CommunityArtistInterface | null;
-  loading: boolean;
-  errorMessage: string | null;
-  successMessage: string | null;
-  currentPostComments: CommentInterface[] | null;
-  currentPostCover: CommentCoverInterface;
-  queryResult: string;
+  readonly posts: PostInterface[];
+  readonly stories: StorieInterface[];
+  readonly currentCommunityArtist: Nullable<CommunityArtistInterface>;
+  readonly loading: boolean;
+  readonly errorMessage: Nullable<string>;
+  readonly successMessage: Nullable<string>;
+  readonly currentPostComments: Nullable<CommentInterface[]>;
+  readonly currentPostCover: CommentCoverInterface;
+  readonly queryResult: string;
 }

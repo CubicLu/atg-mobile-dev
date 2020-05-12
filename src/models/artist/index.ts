@@ -6,135 +6,135 @@ import {
 } from './../';
 
 export interface ArtistInterface {
-  bandMembers?: BandMemberInterface[];
-  tiles?: AlbumInterface[];
-  cover: ArtistCoverInterface;
-  name: string;
-  avatar?: string;
-  support?: boolean;
-  username: string;
-  backgroundGradient?: GradientColorsInterface | null;
-  featuredTracks?: FeaturedTrackInterface[];
-  newReleases?: NewRealeseInterface[];
-  events?: EventInterface[];
-  radio?: RadioInterface[];
-  supportImages?: ArtistSupportImagesInterface;
-  discography?: DiscographyInterface[];
-  supportArtistFans?: ArtistInterface[];
-  similarArtist?: ArtistInterface[];
-  gallery?: GalleryInterface[];
-  biography?: BiographyInterface[];
-  videos?: {
-    recents: VideoInterface[];
-    showcase: VideoInterface[];
+  readonly bandMembers?: BandMemberInterface[];
+  readonly tiles?: AlbumInterface[];
+  readonly cover: ArtistCoverInterface;
+  readonly name: string;
+  readonly avatar?: string;
+  readonly support?: boolean;
+  readonly username: string;
+  readonly backgroundGradient?: GradientColorsInterface | null;
+  readonly featuredTracks?: FeaturedTrackInterface[];
+  readonly newReleases?: NewRealeseInterface[];
+  readonly events?: EventInterface[];
+  readonly radio?: RadioInterface[];
+  readonly supportImages?: ArtistSupportImagesInterface;
+  readonly discography?: DiscographyInterface[];
+  readonly supportArtistFans?: ArtistInterface[];
+  readonly similarArtist?: ArtistInterface[];
+  readonly gallery?: GalleryInterface[];
+  readonly biography?: BiographyInterface[];
+  readonly videos?: {
+    readonly recents: VideoInterface[];
+    readonly showcase: VideoInterface[];
   };
 }
 
 export interface ArtistCoverInterface {
-  main: string | undefined;
-  background: string | undefined;
-  event: string | undefined;
-  biography: string | undefined;
-  deepDive: string | undefined;
-  dashboard?: string;
-  videoCover?: string;
+  readonly main: string | undefined;
+  readonly background: string | undefined;
+  readonly event: string | undefined;
+  readonly biography: string | undefined;
+  readonly deepDive: string | undefined;
+  readonly dashboard?: string;
+  readonly videoCover?: string;
 }
 
 export interface DiscographyInterface {
-  albumId: number;
-  cover: string | undefined;
-  name: string;
+  readonly albumId: number;
+  readonly cover: string | undefined;
+  readonly name: string;
 }
 
 export interface GalleryInterface {
-  cover: string | undefined;
-  name: string;
-  quantity: number;
-  items: AlbumInterface[][];
+  readonly cover: string | undefined;
+  readonly name: string;
+  readonly quantity: number;
+  readonly items: AlbumInterface[][];
 }
 
 export interface AlbumInterface {
-  image: string | undefined;
-  name?: string;
-  cols?: number;
-  redirectUrl?: string;
+  readonly image: string | undefined;
+  readonly name?: string;
+  readonly cols?: number;
+  readonly redirectUrl?: string;
 }
 
 export interface ReadMoreInterface {
-  title?: string;
-  items: AlbumInterface[];
+  readonly title?: string;
+  readonly items: AlbumInterface[];
 }
 
 export interface BiographyInterface {
-  chapter: number;
-  template: string;
-  title: string;
-  titleColor: string;
-  headerColor: string;
+  readonly chapter: number;
+  readonly template: string;
+  readonly title: string;
+  readonly titleColor: string;
+  readonly headerColor: string;
 
-  name: string;
-  featureColor: string;
-  subtitle?: string;
+  readonly name: string;
+  readonly featureColor: string;
+  readonly subtitle?: string;
 
-  accessLevel: number;
+  readonly accessLevel: number;
 
-  headline: string;
-  headlineColor: any;
+  readonly headline: string;
+  readonly headlineColor: any;
 
-  nameHeadline: string;
-  cover: string;
-  skyline?: string;
-  skylineBefore?: boolean;
-  byline?: string;
-  leadParagraph?: string;
-  textColor: string;
-  items?: AlbumInterface[];
-  readMore?: ReadMoreInterface;
+  readonly nameHeadline: string;
+  readonly cover: string;
+  readonly skyline?: string;
+  readonly skylineBefore?: boolean;
+  readonly byline?: string;
+  readonly leadParagraph?: string;
+  readonly textColor: string;
+  readonly items?: AlbumInterface[];
+  readonly readMore?: ReadMoreInterface;
 }
 
 export interface FeaturedTrackInterface {
-  song: string;
-  id: number;
+  readonly song: string;
+  readonly id: number;
 }
 
 export interface NewRealeseInterface {
-  image: string | undefined;
-  video: string | undefined;
-  time: number | string;
-  title: string;
-  artist: ArtistInterface;
+  readonly image: string | undefined;
+  readonly video: string | undefined;
+  readonly time: number | string;
+  readonly title: string;
+  readonly artist: ArtistInterface;
 }
 
 export interface GalleryImageInterface {
-  image: string;
+  readonly image: string;
 }
 
 export interface GalleryIdInterface {
-  galleryId: number;
+  readonly galleryId: number;
 }
 
 export interface GalleryImageIndexInterface {
-  index: number;
+  readonly index: number;
 }
 
 export interface GalleryImageInterface {
-  image: string;
+  readonly image: string;
 }
 
 export interface GalleryIdInterface {
-  galleryId: number;
+  readonly galleryId: number;
 }
 
 export interface GalleryImageIndexInterface {
-  index: number;
+  readonly index: number;
 }
 
 export interface ArtistSupportImagesInterface {
-  background: string | undefined;
-  avatar: string | undefined;
+  readonly background: string | undefined;
+  readonly avatar: string | undefined;
 }
 export interface BandMemberInterface {
-  image: string;
-  name: string;
-  redirectUrl?: string;
+  readonly image: string;
+  readonly name: string;
+  readonly redirectUrl?: string;
 }

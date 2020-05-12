@@ -1,9 +1,9 @@
 import { Colors } from '../../types';
 
 export interface PlanInterface {
-  price: number | string;
-  name: string;
-  color: Colors;
-  id: string | number;
-  description: string;
+  readonly price: number | string;
+  readonly name: string;
+  readonly color: Colors;
+  readonly id: string | number;
+  readonly description: string;
 }

@@ -1,5 +1,5 @@
 export interface PhotoInterface {
-  filepath: string;
-  webviewPath?: string;
-  base64?: string;
+  readonly filepath: string;
+  readonly webviewPath?: string;
+  readonly base64?: string;
 }

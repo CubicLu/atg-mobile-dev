@@ -1,5 +1,5 @@
 import { ArtistInterface } from '../';
 
 export interface DashboardInterface {
-  artist: ArtistInterface;
+  readonly artist: ArtistInterface;
 }

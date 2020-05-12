@@ -1,7 +1,7 @@
 import { UserInterface } from './';
 
 export interface MessageInterface extends UserInterface {
-  message: string;
-  sendAt: Date;
-  read: boolean;
+  readonly message: string;
+  readonly sendAt: Date;
+  readonly read: boolean;
 }

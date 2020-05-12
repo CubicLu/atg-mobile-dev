@@ -1,3 +1,4 @@
+import { Nullable } from './../../types';
 export interface SearchInterface {
-  result: object[] | null;
+  readonly result: Nullable<object[]>;
 }

@@ -1,13 +1,13 @@
 export interface FriendInterface {
-  name: string;
-  nickname: string;
-  city: string;
-  image: string;
-  background?: string;
-  followers: number;
-  friend: boolean;
+  readonly name: string;
+  readonly nickname: string;
+  readonly city: string;
+  readonly image: string;
+  readonly background?: string;
+  readonly followers: number;
+  readonly friend: boolean;
 }
 
 export interface GetFriendAPIInterface {
-  friendId: string;
+  readonly friendId: string;
 }

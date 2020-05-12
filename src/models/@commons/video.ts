@@ -1,6 +1,6 @@
 export interface VideoInterface {
-  image: string;
-  video: string;
-  time: number | string;
-  datePublished: Date;
+  readonly image: string;
+  readonly video: string;
+  readonly time: number | string;
+  readonly datePublished: Date;
 }

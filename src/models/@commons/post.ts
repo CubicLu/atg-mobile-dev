@@ -1,10 +1,10 @@
 import { CommentInterface } from './../';
 export interface PostInterface {
-  id: string;
-  username: string;
-  artist: boolean;
-  avatar: string;
-  image: string | string[];
-  commentsQuantity: number;
-  comments: CommentInterface[];
+  readonly id: string;
+  readonly username: string;
+  readonly artist: boolean;
+  readonly avatar: string;
+  readonly image: string | string[];
+  readonly commentsQuantity: number;
+  readonly comments: CommentInterface[];
 }

@@ -1,4 +1,4 @@
 export interface ProfileActionsType {
-  text: string;
+  readonly text: string;
   onClick: () => void;
 }

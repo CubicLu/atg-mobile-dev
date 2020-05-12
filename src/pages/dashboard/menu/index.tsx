@@ -62,7 +62,7 @@ class DashboardMenuPage extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           rightCloseHref="/profile"
-          routerDirection="none"
+          routerDirection="root"
         />
         <IonContent
           fullscreen={true}

@@ -7,7 +7,7 @@ import {
 } from './../../../components';
 import { store } from '../../../store';
 import { updateSettingsModal } from '../../../actions';
-import { ShapesSize } from '../../../types';
+import { ShapesSize, Nullable } from '../../../types';
 import {
   GenericModalInterface,
   FriendInterface,
@@ -28,7 +28,7 @@ interface StateProps {
 }
 interface Props extends DispatchProps {
   showFilter?: boolean;
-  currentFriend?: FriendInterface;
+  currentFriend?: Nullable<FriendInterface>;
 }
 export default class HeaderProfileComponent extends React.Component<Props> {
   public static defaultProps = {

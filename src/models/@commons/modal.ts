@@ -1,28 +1,28 @@
 import { ModalType } from '../../types';
 
 export interface ModalSlideInterface {
-  modalType?: ModalType;
-  content: React.ReactNode;
-  className?: string;
-  height?: number;
-  onClick?: Function;
-  onClose?: Function;
-  onClosing?: Function;
-  onOpen?: Function;
+  readonly modalType?: ModalType;
+  readonly content: React.ReactNode;
+  readonly className?: string;
+  readonly height?: number;
+  readonly onClick?: Function;
+  readonly onClose?: Function;
+  readonly onClosing?: Function;
+  readonly onOpen?: Function;
 }
 
 export interface ModalTypeInterface {
-  modalType: string | null;
+  readonly modalType: string | null;
 }
 
 export interface GenericModalInterface {
-  name: string;
-  url?: string;
+  readonly name: string;
+  readonly url?: string;
 }
 
 export interface UpdateModalInterface {
-  content: React.ReactNode;
-  className?: string;
-  height?: number;
-  onClick?: Function;
+  readonly content: React.ReactNode;
+  readonly className?: string;
+  readonly height?: number;
+  readonly onClick?: Function;
 }

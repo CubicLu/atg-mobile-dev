@@ -6,7 +6,8 @@ import {
   SectionTitle,
   SliderRadio,
   HeaderOverlay,
-  SliderVideo
+  SliderVideo,
+  SliderRadios
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
 import { ChannelInterface } from '../../models';
@@ -109,7 +110,7 @@ class RadioPage extends React.Component<Props> {
             />
           </IonRouterLink>
           <div className="card-station">
-            <SliderVideo canEdit={true} data={this.radios} />
+            <SliderRadios canEdit={true} data={this.radios} />
           </div>
         </IonContent>
       </IonPage>

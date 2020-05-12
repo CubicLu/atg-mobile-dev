@@ -60,6 +60,8 @@ import CardEraComponent from './card/era';
 import CardSubEraComponent from './card/era/sub-era';
 import CardGraphComponent from './card/graph';
 import ArrowTopIconComponent from './icon/arrow-top';
+import CardRadioComponent from './card/radio';
+import SliderRadiosComponent from './slider/custom-radio';
 
 import PlayerProgressBarComponent from '../components/player/progress-bar';
 import PlayerVolumeComponent from '../components/player/volume-bar';
@@ -162,7 +164,9 @@ export {
   CardSubEraComponent as CardSubEra,
   CardGraphComponent as CardGraph,
   SplashScreenComponent as SplashScreen,
-  ArrowTopIconComponent as ArrowTopIcon
+  ArrowTopIconComponent as ArrowTopIcon,
+  CardRadioComponent as CardRadio,
+  SliderRadiosComponent as SliderRadios
 };
 
 export {

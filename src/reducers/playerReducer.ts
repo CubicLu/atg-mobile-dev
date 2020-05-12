@@ -683,7 +683,7 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       song: action.payload.song,
       next: action.payload.nextSong,
       timeElapsed: 0,
-      duration: action.payload.song.duration,
+      duration: action.payload.song?.duration || 0,
       playerAction: ActionType.PLAY_SONG
     };
   },

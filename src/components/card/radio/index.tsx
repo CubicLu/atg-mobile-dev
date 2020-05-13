@@ -15,7 +15,7 @@ class CardRadioComponent extends React.Component<Props> {
   public static defaultProps = {
     type: ShapesSize.normal,
     size: Sizes.md,
-    canEdit: false,
+    canEdit: false
   };
 
   render(): React.ReactNode {

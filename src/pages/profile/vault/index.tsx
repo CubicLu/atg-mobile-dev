@@ -1,31 +1,18 @@
 import React from 'react';
 import { Button, ListItem } from './../../../components';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonList, IonContent } from '@ionic/react';
 import { Colors } from '../../../types';
 
-interface Props extends RouteComponentProps {
-  isFriend: boolean;
-}
-class ProfileVaultPage extends React.Component<Props> {
-  public static defaultProps = {
-    isFriend: false
-  };
-
-  handleArtistClick = (): void => {
-    this.props.history.push('/artist/pharrell-williams');
-  };
-
+export default class ProfileVaultPage extends React.Component<{}> {
   render(): React.ReactNode {
-    const { history, isFriend } = this.props;
     return (
       <IonContent>
         <div className="profile-vault-page">
           <Button
             color={Colors.transparentGray}
             className={'row mt-2 mb-2'}
-            label={'Filter'}
-            onClick={(): void => history.push('/vault-filter')}
+            label="Filter"
+            routerLink="/vault-filter"
           />
           <IonList lines="none">
             {[
@@ -163,22 +150,21 @@ class ProfileVaultPage extends React.Component<Props> {
                   <ListItem
                     key={i}
                     node={i}
-                    sliding={data.artist.support}
+                    sliding={true}
+                    expandArrow={true}
                     bottomBorder={true}
-                    optionRemove={!isFriend}
+                    optionRemove={true}
                     hasAvatar={true}
                     avatarSize={48}
                     avatarImage={data.artist.cover.background}
-                    avatarBadge={i % 3 === 0 && isFriend}
+                    avatarBadge={i % 3 === 0}
                     badgeColor={Colors.red}
                     optionAddPlaylist={true}
                     songName={data.song}
                     artistName={data.artist.name}
-                    expandArrow={data.artist.support}
                     artist={data.artist}
                     supported={data.artist.support}
-                    supportButtonIcon={true}
-                    songAction={this.handleArtistClick}
+                    supportButtonIcon={!data.artist.support}
                   />
                 );
               }
@@ -189,5 +175,3 @@ class ProfileVaultPage extends React.Component<Props> {
     );
   }
 }
-
-export default withRouter(ProfileVaultPage);

@@ -5,7 +5,8 @@ import {
   BalloonIcon,
   ShareLineIcon,
   HeartIcon,
-  DotsThreeIcon
+  DotsThreeIcon,
+  ContentLoader
 } from './../../../components';
 import { PostInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
@@ -16,13 +17,26 @@ interface Props {
   showUser?: boolean;
   showOptions?: boolean;
   disableComment: boolean;
+  clickToOpen: boolean;
   className?: string;
+  imageClassName?: string;
 }
 
 export default class CardPostComponent extends React.Component<Props> {
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
+
   public static defaultProps = {
     showOptions: true,
-    disableComment: false
+    disableComment: false,
+    clickToOpen: false
   };
 
   slideOpts = {
@@ -31,57 +45,95 @@ export default class CardPostComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { post } = this.props;
+    const { post, imageClassName } = this.props;
     const className = this.props.className || '';
+    if (!this.isReady) this.displayContent();
+
     return (
-      <div
-        className={`card post flex-column space-between overflow-x ${className}`}
-        style={{
-          height: '290px',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <div>
-          {Array.isArray(post.image) ? (
-            <IonSlides
-              pager={true}
-              options={this.slideOpts}
-              style={{
-                height: '290px',
-                position: 'relative',
-                borderRadius: '20px'
-              }}
-            >
-              {post.image.map(
-                (image, index): React.ReactNode => (
-                  <IonSlide
-                    key={index}
-                    className={'flex-compass space-between'}
+      <div>
+        {!this.isReady ? (
+          <ContentLoader
+            className="mt-3"
+            speed={2}
+            width={500}
+            height={300}
+            viewBox="0 0 500 300"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
+          >
+            <rect x="2" y="0" rx="8" ry="8" width="355" height="268" />
+          </ContentLoader>
+        ) : (
+          <div
+            className={`card post flex-column space-between overflow-x ${className}`}
+            style={{
+              height: '290px',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div>
+              {Array.isArray(post.image) ? (
+                <IonRouterLink
+                  routerLink={
+                    this.props.clickToOpen
+                      ? `/community/comments/${post.id || 1}`
+                      : undefined
+                  }
+                >
+                  <IonSlides
+                    pager={true}
+                    options={this.slideOpts}
                     style={{
-                      backgroundImage: `url(${image})`,
+                      height: '290px',
+                      position: 'relative',
+                      borderRadius: '20px'
+                    }}
+                  >
+                    {post.image.map(
+                      (image, index): React.ReactNode => (
+                        <IonSlide
+                          key={index}
+                          className={`flex-compass space-between ${imageClassName}`}
+                          style={{
+                            backgroundImage: `url(${image})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            width: 'auto'
+                          }}
+                        />
+                      )
+                    )}
+                  </IonSlides>
+                </IonRouterLink>
+              ) : (
+                <IonRouterLink
+                  routerLink={
+                    this.props.clickToOpen
+                      ? `/community/comments/${post.id || 1}`
+                      : undefined
+                  }
+                  routerDirection="forward"
+                >
+                  <div
+                    className={`post flex-column space-between ${imageClassName}`}
+                    style={{
+                      height: '290px',
+                      backgroundImage: `url(${post.image})`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
-                      width: 'auto'
+                      borderRadius: '20px'
                     }}
                   />
-                )
+                </IonRouterLink>
               )}
-            </IonSlides>
-          ) : (
-            <div
-              className="post flex-column space-between"
-              style={{
-                height: '290px',
-                backgroundImage: `url(${post.image})`,
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                borderRadius: '20px'
-              }}
-            />
-          )}
-          {this.renderControls()}
-        </div>
+              {this.renderControls()}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -108,14 +160,11 @@ export default class CardPostComponent extends React.Component<Props> {
         {showUser && (
           <IonRouterLink
             routerDirection="forward"
-            routerLink={
-              post.artist
-                ? `/artist/${post.username}`
-                : `/profile/${post.username}`
-            }
+            routerLink={`/profile/${post.username}`}
           >
             <div className="align-start flex">
               <Avatar
+                avatarUrl={`/profile/${post.username}`}
                 image={post.avatar}
                 type={ShapesSize.circle}
                 width={40}

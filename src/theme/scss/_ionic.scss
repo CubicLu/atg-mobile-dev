@@ -69,11 +69,15 @@ ion-item {
 .arrow-expand {
   margin-left: 3px;
   margin-right: 0px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  height: auto;
+  margin-bottom: 0px;
+  height: 24px;
+  padding-top: 21px;
+  padding-bottom: 42px;
+  top: 0px;
   position: absolute;
-  right: 8px;
+  right: 0px;
+  padding-left: 10px;
+  padding-right: 16px;
   width: 16px;
   &.flip {
     transform: scaleX(-1);
@@ -111,6 +115,11 @@ ion-item-options {
 }
 ion-item-sliding {
   &.item-sliding-active-slide {
+    opacity: 1;
+    .hide-on-slide{
+      opacity: 0;
+      transition: opacity 350ms ease-out;
+    }
     ion-item-options {
       background: #4d3f9e;
     }

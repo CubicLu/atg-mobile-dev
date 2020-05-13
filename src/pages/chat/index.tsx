@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, RouteChildrenProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {
   Header,
@@ -10,12 +11,14 @@ import {
 } from '../../components';
 import { ShapesSize } from '../../types';
 import { chatFriends } from '../../constants';
+import { ApplicationState } from '../../reducers';
+import { connect } from 'react-redux';
 
 interface StateProps {}
 
 interface DispatchProps {}
 
-interface Props extends DispatchProps, StateProps {}
+interface Props extends DispatchProps, StateProps, RouteChildrenProps {}
 
 class ChatPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -27,7 +30,12 @@ class ChatPage extends React.Component<Props> {
         {chatFriends.friends.map(
           (data, i): React.ReactNode => {
             return (
-              <li key={i}>
+              <li
+                key={i}
+                onClick={(): void =>
+                  this.props.history.push(`/profile/${data.username}`)
+                }
+              >
                 <Avatar
                   type={ShapesSize.circle}
                   width={48}
@@ -96,10 +104,14 @@ class ChatPage extends React.Component<Props> {
             {this.renderMessages()}
           </div>
         </IonContent>
-        <InputChat placeholder="Add comment..." label="Sent" />
+        <InputChat placeholder="Add comment..." label="Send" />
       </IonPage>
     );
   }
 }
+// eslint-disable-next-line
+const mapStateToProps = ({}: ApplicationState): StateProps => {
+  return {};
+};
 
-export default ChatPage;
+export default withRouter(connect(mapStateToProps, {})(ChatPage));

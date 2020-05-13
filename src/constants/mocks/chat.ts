@@ -1,40 +1,19 @@
 export const chatFriends = {
   friends: [
     {
+      username: 'Amanda',
       avatar:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/brian.jpg'
     },
     {
+      username: 'Chris',
       avatar:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg'
     },
     {
-      avatar:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png'
-    },
-    {
-      avatar:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/brian.jpg'
-    },
-    {
+      username: 'Damiana',
       avatar:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg'
-    },
-    {
-      avatar:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png'
-    },
-    {
-      avatar:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/brian.jpg'
-    },
-    {
-      avatar:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg'
-    },
-    {
-      avatar:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png'
     }
   ],
   messages: [

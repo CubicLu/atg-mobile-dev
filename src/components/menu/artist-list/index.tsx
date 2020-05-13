@@ -39,7 +39,7 @@ class MenuArtistList extends React.Component<Props> {
           backgroundBottom={true}
           backgroundBottomOrange={false}
           backgroundBottomDark={true}
-          backgroundBottomOpacity={0.1}
+          backgroundBottomOpacity={0.15}
         />
 
         <div className={`modal-header ${this.props.background}`}>

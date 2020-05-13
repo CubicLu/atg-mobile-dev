@@ -194,7 +194,6 @@
     margin-bottom: 25px;
     border-radius: 20px;
     overflow-y: hidden !important;
-
     .info {
       height: 75%;
       display: inline-flex;
@@ -374,4 +373,7 @@
     align-items: center;
     padding-top: 32px;
   }
+}
+.no-top-border{
+  border-radius: 0px 0px 20px 20px !important;
 }

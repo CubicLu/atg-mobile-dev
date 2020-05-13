@@ -66,7 +66,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
           </div>
         )}
 
-        <div className="row">
+        <div className="row mb-5">
           <Section className="mx-3" title={'PANTHR Playlists'} viewAll={true} />
           <SliderMixtapes
             title={'PANTHR Playlists'}
@@ -75,14 +75,14 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
           />
         </div>
 
-        <div className="row" />
+        <div className="row mb-5" />
         {radio && (
           <React.Fragment>
             <Section className="mx-3" title={'PANTHR RADIO'} viewAll={true} />
             <SliderRadio diameter="110px" data={radio} />
           </React.Fragment>
         )}
-        <div className="row mx-05" />
+        <div className="row mx-05 mb-5" />
 
         {Array.isArray(events) && events.length > 0 && (
           <div>
@@ -96,7 +96,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
         )}
 
         {bandMembers && (
-          <div>
+          <div className="mb-5">
             <Section
               className="mx-3"
               title={'BAND MEMBER BIOS'}

@@ -51,7 +51,6 @@ class CommunityPostPage extends React.Component<Props> {
         />
         <HeaderOverlay ref={this.hRef} />
         <IonContent
-          className={'post-comments'}
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
@@ -60,7 +59,9 @@ class CommunityPostPage extends React.Component<Props> {
           <div className="flex space-between h-100">
             <div className="scroll-post h-100">
               <CardPost
-                className="mt-0"
+                className="mt-0 no-top-border"
+                imageClassName="no-top-border"
+                clickToOpen={false}
                 post={this.getPost()}
                 showUser={false}
                 showOptions={false}
@@ -94,14 +95,8 @@ class CommunityPostPage extends React.Component<Props> {
     );
   }
   renderPostComments(): React.ReactNode {
-    return (
-      <React.Fragment>
-        {this.props.currentPostComments?.map(
-          (data, i): React.ReactNode => (
-            <PostComment comment={data} key={i} />
-          )
-        )}
-      </React.Fragment>
+    return this.props.currentPostComments?.map(
+      (data, i): React.ReactNode => <PostComment comment={data} key={i} />
     );
   }
   renderPostInput(): React.ReactNode {

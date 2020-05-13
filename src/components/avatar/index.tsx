@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
 import { ShapesSize, Colors } from '../../types';
+import { IonRouterLink } from '@ionic/react';
 
 interface Props {
   image: string | undefined;
+  avatarUrl?: string | undefined;
   type?: ShapesSize;
   width?: number;
   height?: number;
@@ -34,23 +36,25 @@ class AvatarComponent extends React.Component<Props> {
       badgeText
     } = this.props;
     return (
-      <div
-        onClick={onClick}
-        style={{
-          backgroundImage: `url(${image})`,
-          width: width,
-          height: height,
-          minWidth: width,
-          minHeight: height
-        }}
-        className={`avatar ${type}`}
-      >
-        {badge && (
-          <div className={`badge ${badgeColor}`}>
-            {badgeText && <span>{badgeText}</span>}
-          </div>
-        )}
-      </div>
+      <IonRouterLink routerLink={this.props.avatarUrl}>
+        <div
+          onClick={onClick}
+          style={{
+            backgroundImage: `url(${image})`,
+            width: width,
+            height: height,
+            minWidth: width,
+            minHeight: height
+          }}
+          className={`avatar ${type}`}
+        >
+          {badge && (
+            <div className={`badge ${badgeColor}`}>
+              {badgeText && <span>{badgeText}</span>}
+            </div>
+          )}
+        </div>
+      </IonRouterLink>
     );
   }
 }

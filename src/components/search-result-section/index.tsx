@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from '../../components';
+import { Avatar, ContentLoader } from '../../components';
 import { ShapesSize } from '../../types';
 import { IonRouterLink } from '@ionic/react';
 
@@ -15,31 +15,63 @@ interface Props {
 }
 
 class SearchResultSectionComponent extends React.Component<Props> {
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
+
   render(): React.ReactNode {
+    if (!this.isReady) this.displayContent();
+
     return (
-      <div className={'search-result mt-3'}>
-        <span className={'section-name'}>{this.props.title}</span>
-        {this.props.content.map(
-          (data: SearchResult, i: number): React.ReactNode => (
-            <IonRouterLink key={i} routerLink="/artist/pharrell-williams">
-              <div className={'row flex-align-items-center section'}>
-                <Avatar
-                  type={ShapesSize.circle}
-                  width={57}
-                  height={57}
-                  image={data.avatar}
-                />
-                <div className={'column'}>
-                  <span className="section-title flex-align-items-center row">
-                    {data.name}
-                  </span>
-                  <span className={'section-subtitle row'}>{data.artist}</span>
-                </div>
-              </div>
-            </IonRouterLink>
-          )
+      <div>
+        {!this.isReady ? (
+          <ContentLoader
+            className="mt-3"
+            speed={2}
+            viewBox="0 0 400 90"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
+          >
+            <circle cx="30" cy="30" r="30" />
+            <rect x="80" y="20" rx="3" ry="3" width="180" height="20" />
+          </ContentLoader>
+        ) : (
+          <div className={'search-result mt-3'}>
+            <span className={'section-name'}>{this.props.title}</span>
+            {this.props.content.map(
+              (data: SearchResult, i: number): React.ReactNode => (
+                <IonRouterLink key={i} routerLink="/artist/pharrell-williams">
+                  <div className={'row flex-align-items-center section'}>
+                    <Avatar
+                      type={ShapesSize.circle}
+                      width={57}
+                      height={57}
+                      image={data.avatar}
+                    />
+                    <div className={'column'}>
+                      <span className="section-title flex-align-items-center row">
+                        {data.name}
+                      </span>
+                      <span className={'section-subtitle row'}>
+                        {data.artist}
+                      </span>
+                    </div>
+                  </div>
+                </IonRouterLink>
+              )
+            )}
+            <div className="mx-4 mt-3 search-outline-purple" />
+          </div>
         )}
-        <div className="mx-4 mt-3 search-outline-purple" />
       </div>
     );
   }

@@ -72,11 +72,12 @@ input[type="search"]:not(.browser-default) {
   padding: 0 12px;
 }
 
-.comment-input {
+.comment-input, .input-chat {
   border: solid 1px #bbc5d4;
   z-index: 3;
   background: #fff;
 }
+
 .post-input{
   margin-left: 16px;
   margin-right: 16px;

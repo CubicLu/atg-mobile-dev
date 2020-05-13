@@ -32,4 +32,36 @@
       opacity: 0;
     }
   }
+
+  &--balloon{
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    &.is-reply{
+      align-items: flex-end;
+      justify-content: flex-end;
+      .date{
+        padding-left: 0;
+      }
+    }
+    .message{
+      border-radius: 0 5px 5px 5px;
+      width: 70%;
+      padding: 8px;
+      background: #919296;
+      &.is-reply{ 
+        background: #00a957;
+        border-radius: 5px 5px 0px 5px;
+      }
+      
+    }
+    .date{
+      background: transparent;
+      margin-top: 3px;
+      padding-left: 8px;
+    }
+    
+  }
 }

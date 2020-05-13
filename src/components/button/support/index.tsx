@@ -31,10 +31,10 @@ class SupportComponent extends React.Component<ButtonProps> {
       <div
         id={id}
         onClick={this.handleLinkClick}
-        className="center-align l05 button-support-component"
+        className={`center-align l05 button-support-component ${className}`}
       >
         <SupportIcon supported={supported} />
-        <span className={`f8 no-wrap ${className ? className : ''}`}>
+        <span className={'f8 no-wrap'}>
           {supported ? 'Supported' : 'Support!'}
         </span>
         <IonRouterLink

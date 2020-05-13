@@ -8,19 +8,28 @@ interface Props {
   className?: string;
   id: string;
 }
-export default class MenuComponent extends React.Component<Props> {
+
+interface State {
+  isReady: boolean;
+}
+export default class MenuComponent extends React.Component<Props, State> {
   public static defaultProps = { onClick: (): void => {}, id: '' };
-  isReady = false;
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
+    };
+  }
 
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      this.setState({
+        isReady: true
+      });
     }, 2000);
   };
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
 
     if (!this.props.tabs) return <ul />;
     const { tabs, onClick, activeId, id } = this.props;
@@ -31,7 +40,7 @@ export default class MenuComponent extends React.Component<Props> {
         id={id}
         className={'horizontal-menu ' + (scroll ? 'scroll' : 'center')}
       >
-        {!this.isReady ? (
+        {!this.state.isReady ? (
           <ContentLoader
             speed={2}
             width={400}

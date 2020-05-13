@@ -242,13 +242,16 @@
   }
 }
 .mini-player {
-  transition: height 100ms ease-in;
   height: 0;
   overflow: hidden;
+  opacity: 0;
+  background: #15071d;
+  transition: height 0.15s ease-in, transform 0.6s linear, opacity 0.7s;
   &.active {
-    transition: height 100ms ease-in;
+    transition: height 0.15s ease-in, transform 0.6s linear, opacity 0.7s;
     height: $default-height-player;
     overflow: visible;
+    opacity: 1;
   }
   background: linear-gradient(180deg, #22022f, #070707);
   position: absolute;

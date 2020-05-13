@@ -31,16 +31,37 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
+import { hideKeyboard, showKeyboard, didShowKeyboard } from './utils';
 import { CordovaMedia, SplashScreen } from './components';
-import { loadCordovaPlugins } from './utils/cordova';
 
 export default class App extends React.Component {
   authenticated: boolean = true;
-  componentDidMount(): void {
-    setupConfig({ animated: true, swipeBackEnabled: false });
+  enableMedia?: boolean = false;
+
+  UNSAFE_componentWillMount(): void {
+    this.loadCordova();
+    setupConfig({
+      animated: true,
+      swipeBackEnabled: false
+    });
+  }
+
+  loadCordova(): void {
     document.addEventListener('deviceready', (): void => {
-      loadCordovaPlugins();
+      console.log('cordova Loaded!');
+      setTimeout((): void => (navigator as any).splashscreen.hide(), 200);
+      (window as any).deviceready = true;
+      this.enableMedia = true;
       this.forceUpdate();
+    });
+    window.addEventListener('keyboardWillHide', (): void => {
+      window.Keyboard.isVisible && hideKeyboard();
+    });
+    window.addEventListener('keyboardWillShow', (): void => {
+      showKeyboard();
+    });
+    window.addEventListener('keyboardDidShow', (): void => {
+      didShowKeyboard();
     });
   }
 
@@ -59,7 +80,7 @@ export default class App extends React.Component {
           <IonApp>
             <SplashScreen />
             <HomePage />
-            {window.deviceready && <CordovaMedia />}
+            {this.enableMedia && <CordovaMedia />}
           </IonApp>
         </Provider>
       );

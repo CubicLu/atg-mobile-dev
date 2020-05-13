@@ -13,17 +13,28 @@ interface Props {
   parentCallback?: Function;
   currentPostComments?: CommentInterface[];
 }
-export default class PhotoChatComponent extends React.Component<Props> {
-  chatExpanded: boolean = false;
+interface State {
+  chatExpanded: boolean;
+}
+export default class PhotoChatComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chatExpanded: false
+    };
+  }
   expandChat(): void {
-    this.chatExpanded = !this.chatExpanded;
-    this.forceUpdate();
+    this.setState({
+      chatExpanded: !this.state.chatExpanded
+    });
   }
   closeChatPanel = (shouldDisplay: boolean): void => {
     this.props.parentCallback && this.props.parentCallback(shouldDisplay, true);
   };
   renderHeader(): React.ReactNode {
-    const chevron = this.chatExpanded ? 'chevron-reverse' : 'chevron-normal';
+    const chevron = this.state.chatExpanded
+      ? 'chevron-reverse'
+      : 'chevron-normal';
     return (
       <div className="mb-1 header px-1 flex">
         <div className={`align-start ${chevron}`}>
@@ -61,7 +72,7 @@ export default class PhotoChatComponent extends React.Component<Props> {
   render(): React.ReactNode {
     if (!this.props.displayChat) return null;
 
-    const chatExpanded = this.chatExpanded ? 'chat-expanded' : '';
+    const chatExpanded = this.state.chatExpanded ? 'chat-expanded' : '';
     return (
       <React.Fragment>
         <div className={`photo chat-component ${chatExpanded}`}>

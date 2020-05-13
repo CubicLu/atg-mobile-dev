@@ -93,7 +93,7 @@ export default class HeaderProfileComponent extends React.Component<
     store.dispatch(
       updateSettingsModal(
         <DefaultModal
-          title="Select a Band"
+          title="Select an Artist"
           onClick={this.hideArtistListModal}
           data={this.artistActions}
           overrideClick={true}

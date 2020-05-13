@@ -228,7 +228,7 @@ export const routes: RouteInterface[] = [
     component: MessagePage
   },
   {
-    path: '/chat',
+    path: '/chat/:id',
     id: 'chat',
     component: ChatPage
   },

@@ -56,7 +56,7 @@ export const artistTabs: MenuInterface[] = [
   },
   {
     id: 'social',
-    label: 'Social',
+    label: 'Community',
     icon: 's',
     isPage: true,
     route: '/community/artist/:id'

@@ -17,7 +17,7 @@ interface StateProps {
 
 interface Props extends RouteComponentProps, StateProps, DispatchProps {}
 
-class MessageNotificationDetailPage extends React.Component<Props> {
+class MessageNotificationsPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonContent className="message-notifications-page" scrollY={true}>
@@ -74,5 +74,5 @@ const mapStateToProps = ({
 export default withRouter(
   connect(mapStateToProps, {
     updateSettingsProperty
-  })(MessageNotificationDetailPage)
+  })(MessageNotificationsPage)
 );

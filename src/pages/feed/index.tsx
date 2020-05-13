@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackgroundImage, Header, CardPost, Button } from './../../components';
+import { BackgroundImage, Header, CardPost } from './../../components';
 import { ApplicationState } from '../../reducers';
 import {
   getCommunityPostsAPI,
@@ -9,12 +9,10 @@ import {
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import { PostInterface, StorieInterface } from '../../models';
-import { ShapesSize, Colors } from '../../types';
-import { RouteChildrenProps } from 'react-router';
+//import { ShapesSize, Colors } from '../../types';
 
 interface StateProps {
   posts: PostInterface[];
-  loading: boolean;
   stories: StorieInterface[];
 }
 interface DispatchProps {
@@ -22,7 +20,7 @@ interface DispatchProps {
   getCommunityStoriesAPI: () => void;
   getFeedPostsAPI: () => void;
 }
-interface Props extends StateProps, DispatchProps, RouteChildrenProps {}
+interface Props extends StateProps, DispatchProps {}
 
 class FeedPage extends React.Component<Props> {
   componentDidMount(): void {
@@ -32,13 +30,13 @@ class FeedPage extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    const hist = this.props.history;
     return (
       <IonPage id="feed-page">
         <BackgroundImage default />
-        <Header leftBackButton={false}>
-          <div className="feed mx-3 mt-45">
-            <div className="h2 feed ">Social feed</div>
+        <Header leftBackButton={true}>
+          <div className="community ml-7 mt-45">
+            <div className="h2 community">Community</div>
+            <div className="f6 no-wrap">King of Pop</div>
           </div>
         </Header>
 
@@ -46,21 +44,27 @@ class FeedPage extends React.Component<Props> {
           <div className={'feed-page mt-3 content'}>
             <div className="row filter mx-3 flex">
               <div className="h1 p-0 letter-spacing-2 align-start my-auto">
-                Amanda&apos;s feed
+                Fan Feed
               </div>
               <div className="align-end my-auto">
-                <Button
+                {/* DISABLED FOR BETA */}
+                {/* <Button
                   type={ShapesSize.rounded}
                   color={Colors.transparentGray}
                   label={'Filter'}
                   onClick={(): void => hist.push('fan-feed-filter')}
-                />
+                /> */}
               </div>
             </div>
 
             {this.props.posts?.map(
               (data, i): React.ReactNode => (
-                <CardPost key={i} post={data} showUser={true} />
+                <CardPost
+                  key={i}
+                  post={data}
+                  showUser={true}
+                  clickToOpen={true}
+                />
               )
             )}
           </div>
@@ -72,8 +76,7 @@ class FeedPage extends React.Component<Props> {
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   const { posts, stories } = communityAPI;
-  const loading = communityAPI.loading;
-  return { posts, loading, stories };
+  return { posts, stories };
 };
 
 export default connect(mapStateToProps, {

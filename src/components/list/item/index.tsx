@@ -6,11 +6,11 @@ import {
   CloseIcon,
   AddPlaylistIcon,
   Avatar,
-  ButtonSupportIcon as SupportIcon,
+  ButtonSupportIcon,
   Button,
   MessageBalloonIcon,
   ArrowRightIcon,
-  ButtonSupport,
+  ContentLoader,
   UserGroupIcon
 } from '../..';
 import {
@@ -42,7 +42,6 @@ interface Props {
   pendingButton: boolean;
   chatButton: boolean;
   supportButtonIcon: boolean;
-  supportButton: boolean;
   connectButton: boolean;
   expandArrow: boolean;
   leftContent?: React.ReactNode;
@@ -52,11 +51,19 @@ interface Props {
   expandAction?: () => void;
   leftContentAction?: () => void;
   rightContentAction?: () => void;
-  avatarClick?: () => void;
 }
 
 export default class ListItemComponent extends React.Component<Props> {
   linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
   public static defaultProps = {
     sliding: false,
     artist: null,
@@ -72,18 +79,18 @@ export default class ListItemComponent extends React.Component<Props> {
     connectButton: false,
     chatButton: false,
     supportButtonIcon: false,
-    supportButton: false,
+    supportButtonHorizontal: false,
     expandArrow: false,
     leftContentAction: (): void => {},
     rightContentAction: (): void => {},
-    avatarClick: (): void => {},
     communityFeedButton: false
   };
+  ref: React.RefObject<HTMLIonItemSlidingElement> = React.createRef();
 
   sliding(item: React.ReactNode): React.ReactNode {
     const { username } = this.props;
     return (
-      <IonItemSliding className={this.props.slidingClassName}>
+      <IonItemSliding className={this.props.slidingClassName} ref={this.ref}>
         {item}
         <IonItemOptions side="end">
           {this.props.chatButton && (
@@ -138,12 +145,13 @@ export default class ListItemComponent extends React.Component<Props> {
       supported
     } = this.props;
     const expand = this.props.expandArrow ? '' : '';
+
     return (
       <IonItem
         className={this.props.bottomBorder ? 'with-border' : ''}
         style={{ pointerEvents: 'all' }}
       >
-        <div className="m-1 fluid flex-justify-content-end">
+        <div className="my-1 mx-2 fluid flex-justify-content-end">
           <div
             onClick={leftContentAction}
             className={`align-start ${leftDisabled ? 'opacity' : ''}`}
@@ -157,13 +165,13 @@ export default class ListItemComponent extends React.Component<Props> {
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}
                   height={this.props.avatarSize}
-                  onClick={this.props.avatarClick}
+                  avatarUrl={`/profile/${username}`}
                 />
               )}
               {username && (
-                <span className="ml-2 f5" onClick={this.props.avatarClick}>
-                  {username}
-                </span>
+                <IonRouterLink routerLink={`/profile/${username}`}>
+                  <span className="ml-2 f5">{username}</span>
+                </IonRouterLink>
               )}
 
               {this.props.songName && this.props.artistName && (
@@ -194,6 +202,7 @@ export default class ListItemComponent extends React.Component<Props> {
 
             {this.props.pendingButton && (
               <Button
+                className="mr-05 hide-on-slide"
                 gradient={true}
                 color={Colors.blue}
                 size={Sizes.md}
@@ -203,14 +212,8 @@ export default class ListItemComponent extends React.Component<Props> {
             )}
 
             {this.props.supportButtonIcon && (
-              <SupportIcon
-                artist={artist}
-                supported={supported || artist?.support}
-              />
-            )}
-
-            {this.props.supportButton && (
-              <ButtonSupport
+              <ButtonSupportIcon
+                className="mr-05 hide-on-slide"
                 artist={artist}
                 supported={supported || artist?.support}
               />
@@ -218,6 +221,7 @@ export default class ListItemComponent extends React.Component<Props> {
 
             {this.props.connectButton && (
               <Button
+                className="mr-05 hide-on-slide"
                 gradient={true}
                 color={Colors.blue}
                 size={Sizes.md}
@@ -228,16 +232,16 @@ export default class ListItemComponent extends React.Component<Props> {
             )}
 
             {this.props.expandArrow && (
-              <div
+              <span
                 className="arrow-expand flip"
-                onClick={(e): void => {
+                onClick={(): void => {
                   this.props.expandAction
                     ? this.props.expandAction()
-                    : this.openSlider(e);
+                    : this.openSlider();
                 }}
               >
                 <ArrowRightIcon />
-              </div>
+              </span>
             )}
           </div>
         </div>
@@ -245,9 +249,9 @@ export default class ListItemComponent extends React.Component<Props> {
     );
   }
 
-  openSlider(i): void {
-    let clickedSlider =
-      i.currentTarget.parentElement.parentElement.parentElement.parentElement;
+  openSlider(): void {
+    let clickedSlider = this.ref.current;
+    if (!clickedSlider) return;
     if (clickedSlider.classList.contains('item-sliding-active-options-end')) {
       clickedSlider.close();
       return;
@@ -255,7 +259,32 @@ export default class ListItemComponent extends React.Component<Props> {
     clickedSlider.open(undefined);
   }
 
+  loadContent(): React.ReactNode {
+    return (
+      <ContentLoader
+        className="mt-3"
+        speed={2}
+        viewBox="0 0 400 60"
+        baseUrl={window.location.pathname}
+        backgroundColor="rgb(255,255,255)"
+        foregroundColor="rgb(255,255,255)"
+        backgroundOpacity={0.05}
+        foregroundOpacity={0.15}
+      >
+        <circle cx="60" cy="30" r="30" />
+        <rect x="100" y="20" rx="3" ry="3" width="180" height="20" />
+      </ContentLoader>
+    );
+  }
+
   render(): React.ReactNode {
-    return this.props.sliding ? this.sliding(this.itemList()) : this.itemList();
+    if (!this.isReady) {
+      this.displayContent();
+      return this.loadContent();
+    } else {
+      return this.props.sliding
+        ? this.sliding(this.itemList())
+        : this.itemList();
+    }
   }
 }

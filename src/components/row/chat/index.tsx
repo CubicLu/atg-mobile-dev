@@ -13,6 +13,7 @@ interface Props {
   colAvatar?: number;
   className?: string;
   dark: boolean;
+  onClick?: Function;
 }
 
 class RowChatComponent extends React.Component<Props> {
@@ -23,15 +24,19 @@ class RowChatComponent extends React.Component<Props> {
     showDate: false,
     colInfo: 8,
     colAvatar: 2,
-    dark: false
+    dark: false,
+    onClick: (): void => {}
   };
   render(): React.ReactNode {
-    const { avatarSize, data, showDate } = this.props;
+    const { avatarSize, data, showDate, onClick } = this.props;
     const read = data.read ? '' : 'not-read';
     const grayUser = this.props.dark ? 'gray' : '';
     const darkText = this.props.dark ? 'dark' : '';
     return (
-      <div className={`row my-1 mx-0 fluid flex-justify-content-end ${read}`}>
+      <div
+        className={`row my-1 mx-0 fluid flex-justify-content-end ${read}`}
+        onClick={(): void => onClick && onClick()}
+      >
         <div className="flex align-start">
           {this.props.showAvatar && (
             <Avatar

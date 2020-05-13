@@ -7,5 +7,6 @@ export interface CommentInterface {
 
 export interface CommentCoverInterface {
   readonly url: string;
+  readonly username?: string;
   readonly description?: string;
 }

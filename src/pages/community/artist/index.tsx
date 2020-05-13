@@ -4,9 +4,9 @@ import {
   Header,
   SliderStories,
   CardPost,
-  ButtonIcon,
-  Button,
-  ChatMessageIcon,
+  //ButtonIcon,
+  //Button,
+  //ChatMessageIcon,
   SectionTitle,
   HeaderOverlay
 } from './../../../components';
@@ -14,14 +14,13 @@ import { ApplicationState } from './../../../reducers';
 import { getCommunityByArtistUsernameAPI } from './../../../actions';
 import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
-import { ShapesSize, Colors } from '../../../types';
+//import { ShapesSize, Colors } from '../../../types';
 import { CommunityArtistInterface } from '../../../models';
 import { RouteChildrenProps } from 'react-router-dom';
 interface MatchParams {
   artistId: string;
 }
 interface StateProps {
-  loading: boolean;
   currentCommunityArtist: CommunityArtistInterface | null;
 }
 interface DispatchProps {
@@ -62,7 +61,8 @@ class CommunityArtistPage extends React.Component<Props, State> {
           {this.props.currentCommunityArtist?.name.toUpperCase()}
         </div>
         <div className="align-end my-auto">
-          <Button
+          {/* DISABLED FOR BETA */}
+          {/* <Button
             type={ShapesSize.rounded}
             color={Colors.transparentGray}
             label={'Filter'}
@@ -71,28 +71,28 @@ class CommunityArtistPage extends React.Component<Props, State> {
                 '/community/artist/pharrell-williams/filter'
               )
             }
-          />
+          /> */}
         </div>
       </div>
     );
   }
 
-  renderJoinButton(): React.ReactNode {
-    return (
-      <div className="flex-justify-content-center mb-2">
-        <ButtonIcon
-          color={Colors.support}
-          type={ShapesSize.rounded}
-          icon={<ChatMessageIcon />}
-          label={'\u00A0 JOIN CHAT'}
-          onClick={(): void => this.setState({ joined: true })}
-        />
-      </div>
-    );
-  }
+  // renderJoinButton(): React.ReactNode {
+  //   return (
+  //     <div className="flex-justify-content-center mb-2">
+  //       <ButtonIcon
+  //         color={Colors.support}
+  //         type={ShapesSize.rounded}
+  //         icon={<ChatMessageIcon />}
+  //         label={'\u00A0 JOIN CHAT'}
+  //         onClick={(): void => this.setState({ joined: true })}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   render(): React.ReactNode {
-    const { joined } = this.state;
+    //const { joined } = this.state;
     const { currentCommunityArtist } = this.props;
     if (!currentCommunityArtist) return <IonPage id="community-page" />;
 
@@ -129,16 +129,16 @@ class CommunityArtistPage extends React.Component<Props, State> {
           title={currentCommunityArtist.fullname}
           titleClassName={'community-artist-name'}
           rightActionButton={false}
-          rightContent={
-            this.state.joined && (
-              <ButtonIcon
-                styles={{ width: 36, height: 36 }}
-                type={ShapesSize.circle}
-                color={Colors.support}
-                icon={<ChatMessageIcon />}
-              />
-            )
-          }
+          // rightContent={
+          //   this.state.joined && (
+          //     <ButtonIcon
+          //       styles={{ width: 36, height: 36 }}
+          //       type={ShapesSize.circle}
+          //       color={Colors.support}
+          //       icon={<ChatMessageIcon />}
+          //     />
+          //   )
+          // }
         >
           <div className="community m-4">&nbsp;</div>
         </Header>
@@ -149,7 +149,8 @@ class CommunityArtistPage extends React.Component<Props, State> {
         >
           <HeaderOverlay ref={this.headerRef} />
           <div className={'community-page mt-3 content'}>
-            {!joined && this.renderJoinButton()}
+            {/* DISABLED FOR BETA */}
+            {/* {!joined && this.renderJoinButton()} */}
 
             {currentCommunityArtist.stories &&
               currentCommunityArtist.stories.length > 0 && (
@@ -176,7 +177,13 @@ class CommunityArtistPage extends React.Component<Props, State> {
 
             {currentCommunityArtist.posts?.map(
               (data, i): React.ReactNode => (
-                <CardPost key={i} post={data} showUser={false} />
+                <CardPost
+                  clickToOpen={true}
+                  key={i}
+                  post={data}
+                  showUser={false}
+                  showOptions={false}
+                />
               )
             )}
           </div>
@@ -187,11 +194,8 @@ class CommunityArtistPage extends React.Component<Props, State> {
 }
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
-  const { currentCommunityArtist, loading } = communityAPI;
-  return {
-    loading,
-    currentCommunityArtist
-  };
+  const { currentCommunityArtist } = communityAPI;
+  return { currentCommunityArtist };
 };
 
 export default connect(mapStateToProps, {

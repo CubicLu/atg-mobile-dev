@@ -11,37 +11,48 @@ import {
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
 import { ChannelInterface } from '../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { Nullable } from '../../types';
 
 interface Props extends RouteComponentProps<MatchParams> {}
 interface MatchParams {
   genre: string;
 }
 
-class RadioPage extends React.Component<Props> {
-  componentDidUpdate(): void {
-    this.getGenre();
+interface State {
+  paramGenre: Nullable<string>;
+  currentGenre: Nullable<ChannelInterface>;
+}
+
+class RadioPage extends React.Component<Props, State> {
+  private headerRef: React.RefObject<any> = React.createRef();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      paramGenre: null,
+      currentGenre: null
+    };
   }
+
   UNSAFE_componentWillMount(): void {
     this.getGenre();
   }
 
   getGenre(): void {
     const { genre } = this.props.match.params;
-    this.currentGenre =
+    let currentGenre =
       this.genres.find(
         (a): boolean =>
           a?.name?.toLocaleLowerCase() === genre?.toLocaleLowerCase()
       ) || this.genres[0];
-    if (genre === this.paramGenre) return;
-    this.paramGenre = genre;
-    this.forceUpdate();
+
+    this.setState({
+      currentGenre: currentGenre,
+      paramGenre: genre
+    });
   }
 
-  private headerRef: React.RefObject<any> = React.createRef();
-  private paramGenre?: string = undefined;
-  private currentGenre?: ChannelInterface = undefined;
   render(): React.ReactNode {
-    if (!this.currentGenre) this.getGenre();
     return (
       <IonPage id="radio-page">
         <HeaderOverlay ref={this.headerRef} />
@@ -59,8 +70,8 @@ class RadioPage extends React.Component<Props> {
 
         <BackgroundImage
           gradientOverlay={true}
-          gradient={this.currentGenre?.color}
-          backgroundImage={this.currentGenre?.image}
+          gradient={this.state.currentGenre?.color}
+          backgroundImage={this.state.currentGenre?.image}
           backgroundTop={false}
           backgroundBottom={false}
         />
@@ -78,9 +89,9 @@ class RadioPage extends React.Component<Props> {
                 <RadioPlayButton />
               </div>
               <div>
-                <span className="h0">{this.currentGenre?.title}</span>
+                <span className="h0">{this.state.currentGenre?.title}</span>
                 <br />
-                <span className="h3">{this.currentGenre?.subtitle}</span>
+                <span className="h3">{this.state.currentGenre?.subtitle}</span>
               </div>
             </div>
           </div>

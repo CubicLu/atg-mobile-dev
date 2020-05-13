@@ -8,27 +8,38 @@ interface Props {
   artist: ArtistInterface;
   key: number;
 }
-export default class CardArtistComponent extends React.Component<Props> {
-  isReady = false;
+
+interface State {
+  isReady: boolean;
+}
+export default class CardArtistComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isReady: false
+    };
+  }
 
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      let self = this;
+      self.setState({
+        isReady: true
+      });
     }, 2000);
   };
 
   linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
 
     const { artist } = this.props;
     if (!artist) return <div />;
     const { cover, support, name } = artist;
     return (
       <div>
-        {!this.isReady ? (
+        {!this.state.isReady ? (
           <ContentLoader
             className="mt-3"
             speed={2}

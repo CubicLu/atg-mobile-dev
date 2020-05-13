@@ -69,7 +69,7 @@ export const friendReducer = createReducer<FriendReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      currentFriend: action.payload!.data.data
+      currentFriend: action.payload!.data
     };
   },
 

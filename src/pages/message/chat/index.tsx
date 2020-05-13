@@ -41,6 +41,9 @@ class MessageChatPage extends React.Component<Props> {
                       showDate={true}
                       colInfo={9}
                       colAvatar={3}
+                      onClick={(): void =>
+                        this.props.history.push(`/chat/${i}`)
+                      }
                     />
                   </IonItem>
                   <IonItemOptions side="end">

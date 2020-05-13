@@ -1,4 +1,4 @@
-.chat-page{
+.wizard-page{
     &--header{
         display: flex;
         align-items: center;
@@ -23,11 +23,6 @@
     &--header{
         .end{
             align-self: center;
-       }
-       &-friends{
-           width: 200px;
-           overflow-x: scroll;
-           @include no-scroll-bar();
        }
     }
     &--header-overlay{

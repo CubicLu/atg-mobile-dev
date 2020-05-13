@@ -82,6 +82,7 @@ import DashboardGraphSalesPage from './dashboard/graphs/sales';
 import DashboardSupporterPage from './dashboard/supporter';
 
 import ChatPage from './chat';
+import WizardPage from './wizard';
 
 export {
   NotFoundPage,
@@ -157,5 +158,6 @@ export {
   ViewAllStationsPage,
   ChatPage,
   DashboardGraphSalesPage,
-  DashboardSupporterPage
+  DashboardSupporterPage,
+  WizardPage
 };

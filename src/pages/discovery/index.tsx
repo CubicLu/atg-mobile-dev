@@ -20,23 +20,30 @@ interface DispatchProps {
 }
 interface Props extends StateProps, DispatchProps {}
 
-class DiscoveryPage extends React.Component<Props> {
+interface State {
+  isReady: boolean;
+}
+class DiscoveryPage extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
+    };
+  }
   componentDidMount(): void {
     this.props.getCommunityStoriesAPI();
   }
 
-  isReady = false;
-
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      this.setState({
+        isReady: true
+      });
     }, 2000);
   };
 
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
     return (
       <IonPage id="discovery-page" className="discovery-page">
         <BackgroundImage
@@ -44,7 +51,7 @@ class DiscoveryPage extends React.Component<Props> {
           backgroundImage={null}
           gradient="#230640 0%, #100914 100%"
         />
-        {!this.isReady && (
+        {!this.state.isReady && (
           <div style={{ position: 'fixed', left: 0, right: 0 }}>
             <ContentLoader
               speed={2}
@@ -78,7 +85,7 @@ class DiscoveryPage extends React.Component<Props> {
             </ContentLoader>
           </div>
         )}
-        {this.isReady && [
+        {this.state.isReady && [
           <Header key="header" leftBackButton={false}>
             <div className="feed mx-3 mt-45">
               <div className="brand-title text-42">panthr</div>

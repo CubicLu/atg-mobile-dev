@@ -26,3 +26,15 @@ export interface CommunityArtistInterface extends UserInterface {
   posts: PostInterface[];
   stories: StorieInterface[];
 }
+
+export interface RecentPostInterface {
+  assetType: string;
+  assetId: number | string;
+  artistId: number | string;
+  commentUrl: string;
+  commentsCount: number;
+  userAvatar: string;
+  name: string;
+  comment: string;
+  date: string;
+}

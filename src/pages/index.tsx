@@ -25,6 +25,7 @@ import CommunityPostPage from './community/post';
 import CommunityNewPostPage from './community/new-post';
 import CommunityDailyDripPage from './community/daily-drip';
 import CommunityAllArtistsPage from './community/all-artists';
+import CommunityCommentsListPage from './community/comments-list';
 import CommunityArtistDripsPage from './community/artist-drips';
 import CommunitySharePage from './community/share';
 import CommunityArtistFilterPage from './community/artist/filter';
@@ -124,6 +125,7 @@ export {
   CommunityNewPostPage,
   CommunityDailyDripPage,
   CommunityAllArtistsPage,
+  CommunityCommentsListPage,
   CommunityArtistDripsPage,
   CommunitySharePage,
   CommunityArtistFilterPage,

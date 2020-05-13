@@ -5,6 +5,7 @@ import {
   CommunityArtistInterface,
   ArtistInterface,
   PostInterface,
+  RecentPostInterface,
   StorieInterface
 } from '../../models';
 import {
@@ -17,7 +18,9 @@ import {
   getCommunityByArtistUsernameAPIFailure,
   getCommunityByArtistUsernameAPISuccess,
   getCommunityStoriesAPISuccess,
-  getCommunityStoriesAPIFailure
+  getCommunityStoriesAPIFailure,
+  getCommunityRecentPostsAPISuccess,
+  getCommunityRecentPostsAPIFailure
 } from '../../actions';
 
 export const getCommunityPostsRequest = async (): Promise<PostInterface[]> =>
@@ -34,6 +37,25 @@ function* getCommunityPostsAPI(): ReturnType<any> {
 
 export function* getCommunityPosts(): any {
   yield takeEvery(CommunityActionType.GET_POSTS_API, getCommunityPostsAPI);
+}
+
+export const getCommunityRecentPostsRequest = async (): Promise<RecentPostInterface[]> =>
+  await API.get(`community/posts/comments-list.json?${new Date().getTime()}`);
+
+function* getCommunityRecentPostsAPI(): ReturnType<any> {
+  try {
+    const request = yield call(getCommunityRecentPostsRequest);
+    yield put(getCommunityRecentPostsAPISuccess(request));
+  } catch (error) {
+    yield put(getCommunityRecentPostsAPIFailure(error));
+  }
+}
+
+export function* getCommunityRecentPosts(): any {
+  yield takeEvery(
+    CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API,
+    getCommunityRecentPostsAPI
+  );
 }
 
 export const getCommunityByArtistUsernameRequest = async (
@@ -123,6 +145,7 @@ export default function* rootSaga(): any {
     fork(getCommunityByArtistUsername),
     fork(getCommunityStories),
     fork(getCommunityComments),
-    fork(getCommunityCover)
+    fork(getCommunityCover),
+    fork(getCommunityRecentPosts)
   ]);
 }

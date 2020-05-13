@@ -153,3 +153,17 @@ export const getCommunityCommentsCoverAPISuccess = (
   type: CommunityActionType.GET_COMMENTARIES_COVER_API_SUCCESS,
   payload: response
 });
+
+export const getCommunityRecentPostsAPI = (): any => ({
+  type: CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API
+});
+
+export const getCommunityRecentPostsAPIFailure = (error): any => ({
+  type: CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API_FAILURE,
+  payload: error
+});
+
+export const getCommunityRecentPostsAPISuccess = (response): any => ({
+  type: CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API_SUCCESS,
+  payload: response
+});

@@ -18,6 +18,7 @@ import {
   CommunityAllArtistsPage,
   CommunityPage,
   CommunityArtistPage,
+  CommunityCommentsListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
   ArtistVideosPage,
@@ -71,11 +72,6 @@ export const routes: RouteInterface[] = [
     component: FeedPage
   },
   {
-    path: '/profile/',
-    id: 'profilePage',
-    component: ProfilePage
-  },
-  {
     path: '/profile/:id',
     id: 'friendProfile',
     component: FriendProfilePage
@@ -121,29 +117,19 @@ export const routes: RouteInterface[] = [
     component: ArtistBiographyPage
   },
   {
-    path: '/artist/:id/event/:eventId',
-    id: 'artistEventDetail',
-    component: ArtistEventDetailPage
-  },
-  {
     path: '/artist/:id/event',
     id: 'artistEvents',
     component: ArtistEventsPage
   },
   {
-    path: '/community/comments/:id',
-    id: 'communityComments',
-    component: CommunityPostPage
-  },
-  {
-    path: '/community/post',
-    id: 'communityPost',
-    component: CommunityNewPostPage
-  },
-  {
     path: '/track/:reference/:referenceId/:id',
     id: 'tracklist',
     component: TrackListPage
+  },
+  {
+    path: '/community',
+    id: 'communityArtist',
+    component: CommunityPage
   },
   {
     path: '/community/artist/:artistId/daily-drip',
@@ -161,14 +147,24 @@ export const routes: RouteInterface[] = [
     component: CommunityAllArtistsPage
   },
   {
-    path: '/community',
-    id: 'communityArtist',
-    component: CommunityPage
-  },
-  {
     path: '/community/artist/:artistId',
     id: 'communityArtist',
     component: CommunityArtistPage
+  },
+  {
+    path: '/community/post',
+    id: 'communityPost',
+    component: CommunityNewPostPage
+  },
+  {
+    path: '/community/comments/:id',
+    id: 'communityComments',
+    component: CommunityPostPage
+  },
+  {
+    path: '/community/comments-list',
+    id: 'communityCommentsList',
+    component: CommunityCommentsListPage
   },
   {
     path: '/thank-you',
@@ -284,16 +280,6 @@ export const routes: RouteInterface[] = [
     path: '/vault-filter/era/sub-era',
     id: 'vault-filter-sub-era',
     component: VaultFilterSubEraPage
-  },
-  {
-    path: '/radio/:id',
-    id: 'radioArtist',
-    component: RadioArtistPage
-  },
-  {
-    path: '/radio/:id/history',
-    id: 'radioHistory',
-    component: RadioHistoryPage
   },
   {
     path: '/dashboard/menu/:artistId',

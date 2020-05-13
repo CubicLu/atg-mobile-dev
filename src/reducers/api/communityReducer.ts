@@ -16,7 +16,8 @@ const defaultState: CommunityReducerType = {
   successMessage: null,
   errorMessage: null,
   currentPostComments: null,
-  currentPostCover: { url: '' }
+  currentPostCover: { url: '' },
+  commentsList: []
 };
 
 export const communityReducer = createReducer<CommunityReducerType>(
@@ -220,6 +221,37 @@ export const communityReducer = createReducer<CommunityReducerType>(
         ...state,
         loading: false,
         errorMessage: action.payload!.message
+      };
+    },
+
+    [CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API](
+      state: CommunityReducerType
+    ): any {
+      return {
+        ...state,
+        loading: true
+      };
+    },
+
+    [CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API_SUCCESS](
+      state: CommunityReducerType,
+      action: Action<any>
+    ): any {
+      return {
+        ...state,
+        loading: false,
+        commentsList: action.payload.data
+      };
+    },
+
+    [CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API_FAILURE](
+      state: CommunityReducerType,
+      action: Action<any>
+    ): any {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload
       };
     }
   }

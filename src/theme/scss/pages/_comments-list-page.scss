@@ -1,0 +1,41 @@
+.comments-list-page {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    line-height: 1.25;
+    .comments {
+        margin-top: 92px;
+        padding-bottom: 20px;
+    }
+    .comment {
+        margin-top: 20px;
+        color: #fff;
+        &-top {
+            display: flex;
+            justify-content: space-between;
+        }
+        &-content {
+            width: 100%;
+        }
+        &-avatar {
+            position: relative;
+            min-width: 56px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &-date {
+            padding-bottom: 5px;
+        }
+        &-counter {
+            padding-left: 6px;
+            color: #01add9;
+        }
+    }
+}

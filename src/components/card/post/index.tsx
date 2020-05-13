@@ -164,6 +164,7 @@ export default class CardPostComponent extends React.Component<Props> {
           >
             <div className="align-start flex">
               <Avatar
+                avatarUrl={`/profile/${post.username}`}
                 image={post.avatar}
                 type={ShapesSize.circle}
                 width={40}

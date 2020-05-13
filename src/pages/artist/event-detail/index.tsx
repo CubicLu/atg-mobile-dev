@@ -117,9 +117,6 @@ class EventDetailPage extends React.Component<Props, State> {
                     avatarSize={48}
                     username={data.username}
                     connectButton={true}
-                    avatarClick={(): void =>
-                      this.props.history.push(`/profile/${data.name}`)
-                    }
                   />
                 );
               }

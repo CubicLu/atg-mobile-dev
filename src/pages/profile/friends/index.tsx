@@ -51,7 +51,6 @@ class ProfileFriendsPage extends React.Component<Props> {
                     chatButton={friend}
                     communityFeedButton={friend}
                     expandArrow={true}
-                    avatarClick={this.goToLink(data)}
                   />
                 );
               }

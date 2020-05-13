@@ -60,11 +60,6 @@ export default class DashboardGraphSupporterPage extends React.Component<
     );
   }
 
-  goToLink = (data): (() => void) => (): void => {
-    const { name } = data;
-    this.props.history.push(`/profile/${name}`);
-  };
-
   render(): React.ReactNode {
     const { selectedCountryCode } = this.state;
     const code = selectedCountryCode;
@@ -110,7 +105,7 @@ export default class DashboardGraphSupporterPage extends React.Component<
             {dashboardSupporters
               .filter((x): boolean => (code ? x.country === code : true))
               .map(
-                (data, i): React.ReactNode => {
+                (d, i): React.ReactNode => {
                   return (
                     <ListItem
                       key={i}
@@ -119,11 +114,8 @@ export default class DashboardGraphSupporterPage extends React.Component<
                       bottomBorder={false}
                       hasAvatar={true}
                       avatarSize={48}
-                      username={data.name}
-                      avatarClick={this.goToLink(data)}
-                      rightContent={
-                        <span className="f6 dark">{data.time}</span>
-                      }
+                      username={d.name}
+                      rightContent={<span className="f6 dark">{d.time}</span>}
                     />
                   );
                 }

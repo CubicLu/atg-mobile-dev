@@ -51,7 +51,6 @@ interface Props {
   expandAction?: () => void;
   leftContentAction?: () => void;
   rightContentAction?: () => void;
-  avatarClick?: () => void;
 }
 
 export default class ListItemComponent extends React.Component<Props> {
@@ -84,7 +83,6 @@ export default class ListItemComponent extends React.Component<Props> {
     expandArrow: false,
     leftContentAction: (): void => {},
     rightContentAction: (): void => {},
-    avatarClick: (): void => {},
     communityFeedButton: false
   };
   ref: React.RefObject<HTMLIonItemSlidingElement> = React.createRef();
@@ -167,13 +165,13 @@ export default class ListItemComponent extends React.Component<Props> {
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}
                   height={this.props.avatarSize}
-                  onClick={this.props.avatarClick}
+                  avatarUrl={`/profile/${username}`}
                 />
               )}
               {username && (
-                <span className="ml-2 f5" onClick={this.props.avatarClick}>
-                  {username}
-                </span>
+                <IonRouterLink routerLink={`/profile/${username}`}>
+                  <span className="ml-2 f5">{username}</span>
+                </IonRouterLink>
               )}
 
               {this.props.songName && this.props.artistName && (

@@ -9,7 +9,7 @@ interface Props {
   viewAll?: boolean;
   scroll?: boolean;
   canEdit: boolean;
-  data?: any[];
+  data?: { image: string }[];
   size?: Sizes;
   type?: ShapesSize;
   onClick?: (id: number) => void;
@@ -45,8 +45,6 @@ class SliderRadiosComponent extends React.Component<Props> {
                 canEdit={canEdit}
                 type={type}
                 image={d.image}
-                title={d.title}
-                artist={d.artist}
                 id={i}
                 size={size}
               />

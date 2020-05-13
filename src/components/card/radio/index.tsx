@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArtistInterface } from '../../../models';
-import { ShapesSize, Colors, Sizes } from '../../../types';
-import { ButtonIcon, DotsThreeIcon, EditIcon } from '../..';
+import { ShapesSize, Sizes } from '../../../types';
+import { EditIcon } from '../..';
 import { IonRouterLink } from '@ionic/react';
 
 interface Props {
@@ -9,10 +8,7 @@ interface Props {
   id: number;
   canEdit: boolean;
   type: ShapesSize;
-  title?: string;
-  artist?: ArtistInterface;
   size?: Sizes;
-  onClick?: Function;
 }
 
 class CardRadioComponent extends React.Component<Props> {
@@ -20,11 +16,10 @@ class CardRadioComponent extends React.Component<Props> {
     type: ShapesSize.normal,
     size: Sizes.md,
     canEdit: false,
-    onClick: (): void => {}
   };
 
   render(): React.ReactNode {
-    const { artist, type, image, title, size, id } = this.props;
+    const { type, image, size, id } = this.props;
 
     return (
       <div className="row card-out-content">
@@ -43,17 +38,6 @@ class CardRadioComponent extends React.Component<Props> {
             </IonRouterLink>
           )}
         </div>
-
-        {title && <span className="f4 my-1">{title}</span>}
-        <br />
-        {artist && (
-          <div className={'f6 l11 flex-align-items-center'}>
-            <span className="align-start">{artist.name}</span>
-            <span className="align-end">
-              <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
-            </span>
-          </div>
-        )}
       </div>
     );
   }

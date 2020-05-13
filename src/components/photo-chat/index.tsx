@@ -2,13 +2,12 @@ import React from 'react';
 import {
   PostComment,
   CloseIcon,
-  InputText,
-  Button,
   ButtonIcon,
-  MinimizeIcon
+  MinimizeIcon,
+  InputChat
 } from '../../components';
 import { CommentInterface } from '../../models';
-import { Colors, Sizes } from '../../types';
+import { Colors } from '../../types';
 interface Props {
   displayChat: boolean;
   parentCallback?: Function;
@@ -57,19 +56,7 @@ export default class PhotoChatComponent extends React.Component<Props> {
     );
   }
   renderPost(): React.ReactNode {
-    return (
-      <div className="comment-input fluid flex-align-items-center">
-        <InputText
-          size={Sizes.sm}
-          className="f7 dark"
-          type={'text'}
-          placeholder={'Start a chat'}
-        />
-        <span className="mb-1">
-          <Button label="Post" color={Colors.grayTransparent} bold={true} />
-        </span>
-      </div>
-    );
+    return <InputChat label={'Post'} placeholder={'Start a chat'} />;
   }
   render(): React.ReactNode {
     if (!this.props.displayChat) return null;

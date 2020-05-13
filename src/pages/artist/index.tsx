@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, createAnimation } from '@ionic/react';
+import {
+  IonContent,
+  IonPage,
+  createAnimation,
+  withIonLifeCycle
+} from '@ionic/react';
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface } from '../../models';
 import { clearCurrentArtist, getArtistAPI } from './../../actions';
+import ArtistGatewayPage from './gateway';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -54,17 +60,16 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     }
     if (next.loading) return;
     if (this.props.loading) return;
-    if (
-      this.props.currentArtist == null ||
-      this.props.currentArtist.username !== next.match.params.id
-    ) {
+    if (this.props.currentArtist?.username !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
+      this.setState({ gateway: true });
     }
   }
   componentDidMount(): void {
     if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
   }
   componentWillUnmount(): void {
+    this.gateway = true;
     this.custom?.animation?.destroy();
     this.customAlpha?.animation?.destroy();
     this.custom.loaded = false;
@@ -214,15 +219,11 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     this.forceUpdate();
   };
 
-  handleBackTo = (): void => {
-    const historyState = this.props.history.location.state as any;
-    if (historyState && historyState.gateway) {
-      this.props.history.go(-2);
-    } else {
-      this.props.history.goBack();
-    }
-  };
-
+  toggleGateway(): void {
+    this.gateway = false;
+    this.forceUpdate();
+  }
+  gateway = true;
   render(): React.ReactNode {
     if (!this.props.currentArtist) {
       return <IonPage style={artistBackground(null)} id="artist-page" />;
@@ -236,7 +237,14 @@ class ArtistPage extends React.PureComponent<Props, {}> {
         style={artistBackground(artist)}
         className="saturate"
       >
-        <Header leftBackOnClick={this.handleBackTo} />
+        {this.gateway && (
+          <ArtistGatewayPage
+            currentArtist={this.props.currentArtist}
+            gateway={(): void => this.toggleGateway()}
+          />
+        )}
+
+        <Header />
         <SupportBy data={artist.supportArtistFans} />
         <div id="fade-background" className="fade-background opacity-0 blur" />
         <div id="ion-item-header" className="artist-landing-header">
@@ -284,5 +292,5 @@ const mapStateToProps = ({
 };
 
 export default connect(mapStateToProps, { getArtistAPI, clearCurrentArtist })(
-  ArtistPage
+  withIonLifeCycle(ArtistPage)
 );

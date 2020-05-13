@@ -47,3 +47,7 @@ export * from './search/reducer';
 export * from './settings';
 export * from './settings/action-type';
 export * from './settings/reducer';
+
+export * from './wizard';
+export * from './wizard/action-type';
+export * from './wizard/reducer';

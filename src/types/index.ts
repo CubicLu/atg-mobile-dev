@@ -11,3 +11,4 @@ export * from './profile';
 export * from './radio';
 export * from './search';
 export * from './settings';
+export * from './wizard';

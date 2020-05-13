@@ -18,6 +18,7 @@ import {
   CommunityAllArtistsPage,
   CommunityPage,
   CommunityArtistPage,
+  CommunityCommentsListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
   ArtistVideosPage,
@@ -45,7 +46,6 @@ import {
   DashboardFilterPage,
   DashboardGraphSalesPage,
   DashboardGraphSupporterPage,
-  ArtistGatewayPage,
   CommunityArtistDripsPage,
   FriendProfilePage
 } from '../pages';
@@ -69,11 +69,6 @@ export const routes: RouteInterface[] = [
     path: '/feed/',
     id: 'feedPage',
     component: FeedPage
-  },
-  {
-    path: '/profile/',
-    id: 'profilePage',
-    component: ProfilePage
   },
   {
     path: '/profile/:id',
@@ -121,29 +116,19 @@ export const routes: RouteInterface[] = [
     component: ArtistBiographyPage
   },
   {
-    path: '/artist/:id/event/:eventId',
-    id: 'artistEventDetail',
-    component: ArtistEventDetailPage
-  },
-  {
     path: '/artist/:id/event',
     id: 'artistEvents',
     component: ArtistEventsPage
   },
   {
-    path: '/community/comments/:id',
-    id: 'communityComments',
-    component: CommunityPostPage
-  },
-  {
-    path: '/community/post',
-    id: 'communityPost',
-    component: CommunityNewPostPage
-  },
-  {
     path: '/track/:reference/:referenceId/:id',
     id: 'tracklist',
     component: TrackListPage
+  },
+  {
+    path: '/community',
+    id: 'communityArtist',
+    component: CommunityPage
   },
   {
     path: '/community/artist/:artistId/daily-drip',
@@ -161,14 +146,24 @@ export const routes: RouteInterface[] = [
     component: CommunityAllArtistsPage
   },
   {
-    path: '/community',
-    id: 'communityArtist',
-    component: CommunityPage
-  },
-  {
     path: '/community/artist/:artistId',
     id: 'communityArtist',
     component: CommunityArtistPage
+  },
+  {
+    path: '/community/post',
+    id: 'communityPost',
+    component: CommunityNewPostPage
+  },
+  {
+    path: '/community/comments/:id',
+    id: 'communityComments',
+    component: CommunityPostPage
+  },
+  {
+    path: '/community/comments-list',
+    id: 'communityCommentsList',
+    component: CommunityCommentsListPage
   },
   {
     path: '/thank-you',
@@ -286,16 +281,6 @@ export const routes: RouteInterface[] = [
     component: VaultFilterSubEraPage
   },
   {
-    path: '/radio/:id',
-    id: 'radioArtist',
-    component: RadioArtistPage
-  },
-  {
-    path: '/radio/:id/history',
-    id: 'radioHistory',
-    component: RadioHistoryPage
-  },
-  {
     path: '/dashboard/menu/:artistId',
     id: 'artistDashboardMenu',
     component: DashboardMenuPage
@@ -349,10 +334,5 @@ export const routes: RouteInterface[] = [
     path: '/radio/view-all',
     id: 'viewAllStations',
     component: ViewAllStationsPage
-  },
-  {
-    path: '/artist/gateway/:artistId',
-    id: 'ArtistGatewayPage',
-    component: ArtistGatewayPage
   }
 ];

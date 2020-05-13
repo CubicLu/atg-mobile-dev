@@ -1,5 +1,8 @@
+import ContentLoader from 'react-content-loader';
+
 import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
+import InputChatComponent from './input/chat';
 import InputTextComponent from './input/text';
 import InputTextAreaComponent from './input/text-area';
 import InputCodeComponent from './input/code';
@@ -63,6 +66,16 @@ import ArrowTopIconComponent from './icon/arrow-top';
 import CardRadioComponent from './card/radio';
 import SliderRadiosComponent from './slider/custom-radio';
 
+import SplashScreenComponent from './splash-screen';
+
+import {
+  ButtonSupportIconComponent,
+  ButtonSupportComponent
+} from './button/support-button';
+import NavBarTwoButtonsComponent from './navbar-two-buttons';
+
+import ChatBalloonComponent from './chat/balloon';
+
 import PlayerProgressBarComponent from '../components/player/progress-bar';
 import PlayerVolumeComponent from '../components/player/volume-bar';
 import MiniPlayerBarComponent from '../components/player/mini-player-bar';
@@ -83,16 +96,6 @@ import MixtapeKnightImage from './../assets/img/mixtapes/knight.png';
 import MixtapeMoonLightImage from './../assets/img/mixtapes/moon-light.png';
 import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
 
-import SplashScreenComponent from '../components/splash-screen';
-
-import ContentLoader from 'react-content-loader';
-
-import {
-  ButtonSupportIconComponent,
-  ButtonSupportComponent
-} from './button/support-button';
-import NavBarTwoButtonsComponent from './navbar-two-buttons';
-
 export * from './icon';
 
 export {
@@ -100,6 +103,7 @@ export {
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
   InputTextAreaComponent as InputTextArea,
+  InputChatComponent as InputChat,
   ButtonIconComponent as ButtonIcon,
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
@@ -166,7 +170,8 @@ export {
   SplashScreenComponent as SplashScreen,
   ArrowTopIconComponent as ArrowTopIcon,
   CardRadioComponent as CardRadio,
-  SliderRadiosComponent as SliderRadios
+  SliderRadiosComponent as SliderRadios,
+  ChatBalloonComponent as ChatBalloon
 };
 
 export {

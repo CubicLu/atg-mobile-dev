@@ -5,6 +5,7 @@ export * from './api/authActions';
 export * from './playerActions';
 export * from './api/communityActions';
 export * from './api/searchActions';
+export * from './api/wizardActions';
 export * from './api/profileActions';
 export * from './api/radioActions';
 export * from './api/dashboardActions';

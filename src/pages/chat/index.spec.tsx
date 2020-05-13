@@ -8,8 +8,9 @@ import ReactDOM from 'react-dom';
 
 describe('ChatPage render', () => {
   it("render without crash", async () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<Provider store={store}><Router><ChatPage /></Router></Provider>, div);
-        ReactDOM.unmountComponentAtNode(div);
+    window.HTMLElement.prototype.scrollIntoView = function() {};
+    const div = document.createElement('div');
+    ReactDOM.render(<Provider store={store}><Router><ChatPage /></Router></Provider>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 });

@@ -6,6 +6,7 @@ interface Props {
   readonly placeholder: string;
   readonly className?: string;
   readonly defaultValue?: string;
+  readonly value?: string;
   readonly onChangeText?: (value) => void;
   readonly error?: boolean;
   readonly size?: Sizes;
@@ -24,6 +25,7 @@ class InputTextComponent extends React.Component<Props> {
       type,
       placeholder,
       defaultValue,
+      value,
       onChangeText,
       error,
       size,
@@ -39,6 +41,7 @@ class InputTextComponent extends React.Component<Props> {
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        value={value}
         onChange={(event): void => {
           let value = event.target.value;
           if (onChangeText) {

@@ -3,7 +3,8 @@ import {
   CommentCoverInterface,
   StorieInterface,
   CommunityArtistInterface,
-  PostInterface
+  PostInterface,
+  RecentPostInterface
 } from '../';
 
 export interface CommunityReducerType {
@@ -15,4 +16,5 @@ export interface CommunityReducerType {
   successMessage: string | null;
   currentPostComments: CommentInterface[] | null;
   currentPostCover: CommentCoverInterface;
+  commentsList: RecentPostInterface[];
 }

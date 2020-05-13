@@ -189,10 +189,12 @@ class MiniPlayerBarComponent extends React.PureComponent<Props> {
     const active = this.props.song ? 'active' : '';
     return (
       <div id="player" className={`mini-player ${active}`}>
-        {this.minibarElastic()}
-        {this.playerProgressRange()}
-        {this.playerCover()}
-        {this.playerContent()}
+        <div id="inner-player">
+          {this.minibarElastic()}
+          {this.playerProgressRange()}
+          {this.playerCover()}
+          {this.playerContent()}
+        </div>
       </div>
     );
   }

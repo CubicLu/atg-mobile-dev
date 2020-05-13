@@ -5,15 +5,13 @@ import {
   CommentCoverInterface,
   PostInterface
 } from '../../../models';
-import { Sizes, Colors } from '../../../types';
 import { IonPage, IonContent } from '@ionic/react';
 import {
   Header,
   CardPost,
   PostComment,
-  InputText,
-  Button,
-  HeaderOverlay
+  HeaderOverlay,
+  InputChat
 } from '../../../components';
 import {
   getCommunityCommentsAPI,
@@ -107,19 +105,7 @@ class CommunityPostPage extends React.Component<Props> {
     );
   }
   renderPostInput(): React.ReactNode {
-    return (
-      <div className="comment-input flex-align-items-center">
-        <InputText
-          size={Sizes.sm}
-          className="f7 dark"
-          type={'text'}
-          placeholder={'Start a message'}
-        />
-        <span className="mb-1">
-          <Button label="Post" color={Colors.grayTransparent} bold={true} />
-        </span>
-      </div>
-    );
+    return <InputChat label={'Post'} placeholder={'Start a message'} />;
   }
 }
 

@@ -24,6 +24,7 @@ import {
   playSong,
   loadNextSong,
   favoriteSong,
+  stopSong,
   pauseSong,
   resumeSong,
   seekSongPosition
@@ -64,6 +65,7 @@ interface DispatchProps {
   favoriteSong: () => void;
   playSong: (song: SongInterface, next?: SongInterface) => void;
   loadNextSong: (song: SongInterface) => void;
+  stopSong: () => void;
   pauseSong: () => void;
   resumeSong: () => void;
   seekSongPosition: (time: number, increase: boolean) => void;
@@ -82,6 +84,7 @@ interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class PlayerComponent extends React.Component<Props> {
   pullPlayerGesture: Gesture | undefined;
+  leftPlayerGesture: Gesture | undefined;
   pullingInProgress: boolean = false;
   expansePlayerAnimation: Animation | any;
   expansionInProgress: boolean = false;
@@ -358,17 +361,28 @@ class PlayerComponent extends React.Component<Props> {
   createPlayerGesture(): void {
     const mini = document.querySelector('#player');
     if (!mini) return;
-    const gestureConfigMini: GestureConfig = {
+    const gesturePull: GestureConfig = {
       el: mini,
       direction: 'y',
-      gestureName: 'playerMove',
+      gestureName: 'playerPull',
       gesturePriority: 20,
       passive: true,
-      onEnd: this.playerSwipe,
+      onEnd: this.playerSwipeUp,
       onMove: this.playerPull
     };
-    this.pullPlayerGesture = createGesture(gestureConfigMini);
+    const gestureLeft: GestureConfig = {
+      el: mini,
+      direction: 'x',
+      gestureName: 'playerClose',
+      gesturePriority: 20,
+      passive: true,
+      onEnd: this.playerSwipeLeftEnd,
+      onMove: this.playerSwipeLeft
+    };
+    this.pullPlayerGesture = createGesture(gesturePull);
+    this.leftPlayerGesture = createGesture(gestureLeft);
     this.pullPlayerGesture.enable();
+    this.leftPlayerGesture.enable();
   }
   createPlayerAnimation(): void {
     const player = document.querySelector('#full-player');
@@ -408,7 +422,22 @@ class PlayerComponent extends React.Component<Props> {
       );
     }
   };
-  playerSwipe = (gesture: any): void => {
+
+  playerSwipeLeft = (gesture: any): void => {
+    if (gesture.deltaX >= 0) return;
+    const mini = document.querySelector('#inner-player') as HTMLElement;
+    mini.style.transform = `translateX(${gesture.deltaX}px)`;
+    if (gesture.deltaX < -125) {
+      mini.style.transform = `translateX(${-125}px)`;
+      this.props.stopSong();
+    }
+  };
+  playerSwipeLeftEnd = (): void => {
+    const mini = document.querySelector('#inner-player') as HTMLElement;
+    mini.style.transform = `translateX(${0}px)`;
+    console.log('ended');
+  };
+  playerSwipeUp = (gesture: any): void => {
     const validSwipeUp = !this.props.expanded && gesture.deltaY < -250;
     this.pullingInProgress = false;
 
@@ -486,6 +515,7 @@ export default withRouter(
     playSong,
     loadNextSong,
     favoriteSong,
+    stopSong,
     pauseSong,
     resumeSong,
     seekSongPosition,

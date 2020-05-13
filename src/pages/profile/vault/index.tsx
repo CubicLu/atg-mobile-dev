@@ -13,7 +13,7 @@ class ProfileVaultPage extends React.Component<Props> {
   };
 
   handleArtistClick = (): void => {
-    this.props.history.push('/artist/gateway/pharrell-williams');
+    this.props.history.push('/artist/pharrell-williams');
   };
 
   render(): React.ReactNode {

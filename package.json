@@ -24,7 +24,6 @@
     "cordova-ios": "^5.1.1",
     "cordova-music-controls": "git+https://github.com/fenvalle/cordova-music-controls.git",
     "cordova-plugin-media": "git+https://github.com/fenvalle/cordova-plugin-media.git",
-    "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
@@ -134,8 +133,7 @@
       "cordova-music-controls": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
-      "cordova-plugin-background-mode": {}
+      }
     },
     "platforms": [
       "android",

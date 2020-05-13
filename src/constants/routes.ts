@@ -47,7 +47,9 @@ import {
   DashboardGraphSalesPage,
   DashboardGraphSupporterPage,
   CommunityArtistDripsPage,
-  FriendProfilePage
+  FriendProfilePage,
+  WizardPage,
+  ArtistGatewayPage
 } from '../pages';
 export const routes: RouteInterface[] = [
   {
@@ -334,5 +336,15 @@ export const routes: RouteInterface[] = [
     path: '/radio/view-all',
     id: 'viewAllStations',
     component: ViewAllStationsPage
+  },
+  {
+    path: '/artist/gateway/:artistId',
+    id: 'ArtistGatewayPage',
+    component: ArtistGatewayPage
+  },
+  {
+    path: '/wizard',
+    id: 'wizard',
+    component: WizardPage
   }
 ];

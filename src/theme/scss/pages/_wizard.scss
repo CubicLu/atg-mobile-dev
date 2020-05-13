@@ -1,0 +1,35 @@
+.wizard-page{
+    &--header{
+        display: flex;
+        align-items: center;
+        .default-button{
+            margin-top: 0;
+        }
+
+        .center{ 
+            position: relative;
+            top: 8px;
+            .avatar{
+                padding-right: 0;
+                margin-left: 8px !important;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    ion-header{
+        height: 90px;
+    }
+
+    &--header{
+        .end{
+            align-self: center;
+       }
+    }
+    &--header-overlay{
+        height: 135px;
+    }
+    &--content{
+       top:48px !important;
+       padding-bottom: 50px;
+    }
+}

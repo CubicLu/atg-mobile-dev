@@ -149,7 +149,7 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
                   color={Colors.primary}
                   type={ShapesSize.normal}
                   bold
-                  onClick={(): void => this.props.history.push('/chat')}
+                  onClick={(): void => this.props.history.push('/wizard')}
                 />
               </div>
             </div>
@@ -165,7 +165,7 @@ class MessageNotificationDetailPage extends React.Component<Props, State> {
     );
   }
 }
-// eslint-disable-next-line
+
 const mapStateToProps = ({
   settings,
   profileAPI

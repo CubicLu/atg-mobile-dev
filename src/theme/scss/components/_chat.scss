@@ -35,10 +35,16 @@
 
   &--balloon{
     margin-bottom: 16px;
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
+    display: inline-flex;
+    width: 100%;
+
+    .avatar{
+      margin-right: 8px;
+    }
+
     &.is-reply{
       align-items: flex-end;
       justify-content: flex-end;
@@ -46,22 +52,25 @@
         padding-left: 0;
       }
     }
-    .message{
-      border-radius: 0 5px 5px 5px;
+    .data{
       width: 70%;
-      padding: 8px;
-      background: #919296;
-      &.is-reply{ 
-        background: #00a957;
-        border-radius: 5px 5px 0px 5px;
+      .message{
+        border-radius: 0 5px 5px 5px;
+        width: 100%;
+        padding: 8px;
+        background: #919296;
+        &.is-reply{ 
+          background: #00a957;
+          border-radius: 5px 5px 0px 5px;
+        }
+        
       }
+      .date{
+        background: transparent;
+        margin-top: 3px;
+        padding-left: 8px;
+      }
+    }
       
-    }
-    .date{
-      background: transparent;
-      margin-top: 3px;
-      padding-left: 8px;
-    }
-    
   }
 }

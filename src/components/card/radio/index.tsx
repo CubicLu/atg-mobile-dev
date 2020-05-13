@@ -5,12 +5,11 @@ import { ButtonIcon, DotsThreeIcon, EditIcon } from '../..';
 import { IonRouterLink } from '@ionic/react';
 
 interface Props {
-  image: string | undefined;
+  image?: string;
   id: number;
   canEdit: boolean;
   type: ShapesSize;
   title?: string;
-  time: number | string;
   artist?: ArtistInterface;
   size?: Sizes;
   onClick?: Function;
@@ -25,13 +24,12 @@ class CardRadioComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { artist, type, image, time, title, size, id } = this.props;
+    const { artist, type, image, title, size, id } = this.props;
 
     return (
       <div className="row card-out-content">
         <div
           className={`card video ${type} ${size}`}
-          data-time={time}
           style={{ backgroundImage: `url(${image})` }}
         >
           {this.props.canEdit && (

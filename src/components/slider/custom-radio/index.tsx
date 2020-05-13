@@ -46,7 +46,6 @@ class SliderRadiosComponent extends React.Component<Props> {
                 type={type}
                 image={d.image}
                 title={d.title}
-                time={d.time}
                 artist={d.artist}
                 id={i}
                 size={size}

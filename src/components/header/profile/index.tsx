@@ -30,17 +30,30 @@ interface Props extends DispatchProps {
   showFilter?: boolean;
   currentFriend?: Nullable<FriendInterface>;
 }
-export default class HeaderProfileComponent extends React.Component<Props> {
+
+interface State {
+  isReady: boolean;
+}
+export default class HeaderProfileComponent extends React.Component<
+  Props,
+  State
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
+    };
+  }
+
   public static defaultProps = {
     showFilter: false
   };
-  isReady = false;
 
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      this.setState({
+        isReady: true
+      });
     }, 2000);
   };
   profileActions: GenericModalInterface[] = [
@@ -108,7 +121,7 @@ export default class HeaderProfileComponent extends React.Component<Props> {
     return this.props.currentFriend ? this.renderFriend() : this.renderMe();
   }
   renderFriend(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
     const { showFilter } = this.props;
     return (
       <div>
@@ -121,7 +134,7 @@ export default class HeaderProfileComponent extends React.Component<Props> {
           routerDirection="forward"
         />
         <div className="profile-center">
-          {!this.isReady ? (
+          {!this.state.isReady ? (
             <ContentLoader
               speed={2}
               width={400}
@@ -154,7 +167,7 @@ export default class HeaderProfileComponent extends React.Component<Props> {
     );
   }
   renderMe(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
     const { showFilter } = this.props;
     return (
       <div>
@@ -169,7 +182,7 @@ export default class HeaderProfileComponent extends React.Component<Props> {
           routerDirection="forward"
         />
         <div className="profile-center">
-          {!this.isReady ? (
+          {!this.state.isReady ? (
             <ContentLoader
               speed={2}
               width={400}

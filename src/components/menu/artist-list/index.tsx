@@ -60,7 +60,7 @@ class MenuArtistList extends React.Component<Props> {
                 return (
                   <IonRouterLink
                     key={i}
-                    routerLink={`/artist/gateway/${data.username}`}
+                    routerLink={`/artist/${data.username}`}
                   >
                     <li onClick={(): void => this.props.onClick()}>
                       <div className="artist">

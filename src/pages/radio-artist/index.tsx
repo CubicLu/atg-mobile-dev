@@ -59,7 +59,7 @@ class RadioArtistPage extends React.Component<Props> {
     this.props.getArtistAPI(artistRadioId);
     let supported = this.props.currentArtist?.support;
     if (this.props.currentArtist && !supported) {
-      this.props.history.push(`/artist/gateway/${this.props.match.params.id}`);
+      this.props.history.push(`/artist/${this.props.match.params.id}`);
     }
     this.props.getRadioArtistAPI(artistRadioId);
   }

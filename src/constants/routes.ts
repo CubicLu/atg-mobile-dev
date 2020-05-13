@@ -46,7 +46,6 @@ import {
   DashboardFilterPage,
   DashboardGraphSalesPage,
   DashboardGraphSupporterPage,
-  ArtistGatewayPage,
   CommunityArtistDripsPage,
   FriendProfilePage
 } from '../pages';
@@ -335,10 +334,5 @@ export const routes: RouteInterface[] = [
     path: '/radio/view-all',
     id: 'viewAllStations',
     component: ViewAllStationsPage
-  },
-  {
-    path: '/artist/gateway/:artistId',
-    id: 'ArtistGatewayPage',
-    component: ArtistGatewayPage
   }
 ];

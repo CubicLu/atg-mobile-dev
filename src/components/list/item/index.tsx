@@ -98,7 +98,7 @@ export default class ListItemComponent extends React.Component<Props> {
             <IonRouterLink
               ref={this.linkRef}
               routerLink={`/feed/${username}`}
-              routerDirection="root"
+              routerDirection="forward"
             >
               <ButtonIcon
                 className="no-padding"

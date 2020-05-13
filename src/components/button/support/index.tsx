@@ -61,7 +61,7 @@ class SupportComponent extends React.Component<ButtonProps> {
         <IonRouterLink
           ref={this.linkRef}
           routerLink={`/artist/${username}/support`}
-          routerDirection="root"
+          routerDirection="forward"
         />
       </Button>
     );

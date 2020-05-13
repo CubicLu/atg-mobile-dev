@@ -66,8 +66,8 @@ export default class CardArtistComponent extends React.Component<Props> {
             </div>
             <IonRouterLink
               ref={this.linkRef}
-              routerLink={`/artist/gateway/${artist?.username}`}
-              routerDirection="root"
+              routerLink={`/artist/${artist?.username}`}
+              routerDirection="forward"
             />
           </div>
         )}

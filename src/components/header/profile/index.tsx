@@ -53,7 +53,8 @@ export default class HeaderProfileComponent extends React.Component<Props> {
       url: '/settings'
     },
     {
-      name: 'Improve my public profile'
+      name: 'Improve my public profile',
+      url: '/wizard'
     }
   ];
   artistActions: GenericModalInterface[] = [

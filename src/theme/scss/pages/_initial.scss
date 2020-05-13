@@ -39,17 +39,17 @@
   .link {
     font-size: 16px;
     color: #6f6f6f;
-    font-family: "Helvetica";
+    font-family: 'Helvetica';
   }
   .input-div {
     p {
       font-size: pxToRem(18);
     }
 
-    input{
-        color: #757575;
-        letter-spacing: 0.2em;
-        text-align: center;
+    input {
+      color: #757575;
+      letter-spacing: 0.2em;
+      text-align: center;
     }
   }
   .center-align {
@@ -58,8 +58,8 @@
   .left-align {
     text-align: left;
   }
-  .right-align{
-      text-align: right;
+  .right-align {
+    text-align: right;
   }
   .terms {
     color: #5e7fb1;
@@ -67,7 +67,7 @@
   p {
     color: #5e7fb1;
     font-size: 16px;
-    font-family: "Helvetica";
+    font-family: 'Helvetica';
     &.didnt-receive {
       color: #9b9c9d;
     }
@@ -90,7 +90,7 @@
       font-size: 42px;
       margin-bottom: 10px;
       color: #000;
-      font-family: "Industria";
+      font-family: 'Industria';
       font-weight: 600;
     }
 
@@ -99,7 +99,7 @@
       padding: 0px 20px;
       color: #fff;
       border-radius: 50px;
-      font-family: "Helvetica";
+      font-family: 'Helvetica';
       font-size: 16px;
       font-weight: 500;
       line-height: 24px;
@@ -133,7 +133,7 @@
   color: #fff;
 }
 .panthr-splash {
-  background-image: url("../../../assets/img/panthr_splash3.gif");
+  background-image: url('../../../assets/img/panthr_splash4.gif');
   top: 0;
   bottom: 0;
   right: 0;
@@ -151,6 +151,10 @@
   animation-fill-mode: both;
   animation-iteration-count: 1;
   -webkit-animation-iteration-count: 1;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 @-webkit-keyframes fadeOut {
   0% {

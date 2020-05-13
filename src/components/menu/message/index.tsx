@@ -36,7 +36,7 @@ export default class MenuMessageComponent extends React.Component<Props> {
                 onClick={(): void => onClick(data)}
                 className={`div ${has} ${activeId === data.id ? 'active' : ''}`}
               >
-                <span className="label">{data.label}</span>
+                <div className="label">{data.label}</div>
               </div>
             );
           }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, HeaderOverlay } from './../../../components';
+import { ContentLoader, Header, HeaderOverlay } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
 
 import {
@@ -43,6 +43,24 @@ interface Props
 
 class ArtistGalleryGridPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
+
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (
+      nextProps.match.params.id !== this.props.match.params.id ||
+      nextProps.currentArtist === null
+    ) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    }
+  }
 
   componentDidMount(): void {
     const {
@@ -199,6 +217,8 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
 
   render(): React.ReactNode {
     const params = this.props.match.params;
+    if (!this.isReady) this.displayContent();
+
     let title =
       this.props.currentArtist?.gallery !== undefined
         ? this.props.currentArtist?.gallery[params.galleryId] !== undefined
@@ -227,9 +247,32 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
           leftBackAddAction={(): void => this.props.clearCurrentGallery()}
         />
         <HeaderOverlay ref={this.headerRef} />
-
+        <ContentLoader
+          speed={2}
+          viewBox="0 0 400 650"
+          baseUrl={window.location.pathname}
+          backgroundColor="rgb(0,0,0)"
+          foregroundColor="rgb(255,255,255)"
+          backgroundOpacity={0.15}
+          foregroundOpacity={0.25}
+          style={
+            this.isReady
+              ? { visibility: 'hidden', display: 'none' }
+              : { visibility: 'visible' }
+          }
+        >
+          <rect x="0" y="0" width="400" height="300" />
+          <rect x="0" y="305" width="200" height="150" />
+          <rect x="210" y="305" width="200" height="150" />
+          <rect x="0" y="460" width="200" height="150" />
+          <rect x="210" y="460" width="200" height="150" />
+        </ContentLoader>
         <IonContent
-          style={{ background: '#fff' }}
+          style={
+            this.isReady
+              ? { visibility: 'visible', background: '#fff' }
+              : { visibility: 'hidden' }
+          }
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
@@ -239,12 +282,13 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         >
           <div className={'artist-gallery-grid-page'}>
             <div className={'images'}>
-              {cover !== undefined && (
-                <div key={0} onClick={(): void => this.onOpenImage(cover)}>
-                  <IonImg src={cover} />
-                </div>
-              )}
-
+              <div>
+                {cover !== undefined && (
+                  <div key={0} onClick={(): void => this.onOpenImage(cover)}>
+                    <IonImg src={cover} />
+                  </div>
+                )}
+              </div>
               {items.map(
                 (data: any, i: number): React.ReactNode => {
                   let key = Object.keys(data) ? Object.keys(data)[0] : null;

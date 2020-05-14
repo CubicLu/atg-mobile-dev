@@ -39,49 +39,55 @@ export default class CardArtistComponent extends React.Component<Props, State> {
     const { cover, support, name } = artist;
     return (
       <div>
-        {!this.state.isReady ? (
-          <ContentLoader
-            className="mt-3"
-            speed={2}
-            viewBox="0 0 400 140"
-            baseUrl={window.location.pathname}
-            backgroundColor="rgb(255,255,255)"
-            foregroundColor="rgb(255,255,255)"
-            backgroundOpacity={0.05}
-            foregroundOpacity={0.15}
-          >
-            <rect x="20" y="0" rx="8" ry="8" width="360" height="140" />
-          </ContentLoader>
-        ) : (
-          <div
-            className="card-artist my-3 mx-2 pb-15"
-            style={{ backgroundImage: `url(${cover.main})` }}
-          >
-            <div className="flex-align-items-end h-100 px-2">
-              <div className="align-start">
-                {support && (
-                  <div className="star">
-                    <SupportStarIcon />
-                  </div>
-                )}
-                <div
-                  onClick={(): void => this.linkRef.current!.click()}
-                  className="h3 text-28 artist-card-name l12"
-                >
-                  {name}
+        <ContentLoader
+          className="mt-3"
+          speed={2}
+          viewBox="0 0 400 140"
+          baseUrl={window.location.pathname}
+          backgroundColor="rgb(255,255,255)"
+          foregroundColor="rgb(255,255,255)"
+          backgroundOpacity={0.05}
+          foregroundOpacity={0.15}
+          style={
+            this.state.isReady
+              ? { visibility: 'hidden', display: 'none' }
+              : { visibility: 'visible' }
+          }
+        >
+          <rect x="20" y="0" rx="8" ry="8" width="360" height="140" />
+        </ContentLoader>
+        <div
+          className="card-artist my-3 mx-2 pb-15"
+          style={
+            this.state.isReady
+              ? { visibility: 'visible', backgroundImage: `url(${cover.main})` }
+              : { visibility: 'hidden' }
+          }
+        >
+          <div className="flex-align-items-end h-100 px-2">
+            <div className="align-start">
+              {support && (
+                <div className="star">
+                  <SupportStarIcon />
                 </div>
-              </div>
-              <div className="align-end mb-05">
-                <ButtonSupportIcon artist={artist} supported={support} />
+              )}
+              <div
+                onClick={(): void => this.linkRef.current!.click()}
+                className="h3 text-28 artist-card-name l12"
+              >
+                {name}
               </div>
             </div>
-            <IonRouterLink
-              ref={this.linkRef}
-              routerLink={`/artist/${artist?.username}`}
-              routerDirection="forward"
-            />
+            <div className="align-end mb-05">
+              <ButtonSupportIcon artist={artist} supported={support} />
+            </div>
           </div>
-        )}
+          <IonRouterLink
+            ref={this.linkRef}
+            routerLink={`/artist/${artist?.username}`}
+            routerDirection="forward"
+          />
+        </div>
       </div>
     );
   }

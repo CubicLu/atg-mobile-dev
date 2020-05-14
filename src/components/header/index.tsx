@@ -68,6 +68,7 @@ interface Props {
   rightActionYellow?: boolean;
   rightClickGoBack?: boolean;
   likeButtonOnClick?: () => void;
+  style?: { [key: string]: any };
 }
 
 class HeaderComponent extends React.Component<Props> {
@@ -171,12 +172,13 @@ class HeaderComponent extends React.Component<Props> {
       rightConnectedButton,
       rightFanFeedButton,
       rightFilterButton,
-      likeButtonOnClick
+      likeButtonOnClick,
+      style
     } = this.props;
 
     const isFixed = fixed ? 'fixed' : '';
     return (
-      <IonHeader id="ion-header" className="ion-no-border">
+      <IonHeader id="ion-header" className="ion-no-border" style={style}>
         <div className={`atg-header ${isFixed} ${top} ${color} ${className}`}>
           <div className="start">
             {leftBackButton && (

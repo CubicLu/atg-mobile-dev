@@ -19,7 +19,8 @@ import {
   DefaultModal,
   CardImage,
   PopUpModal,
-  PremiumFeaturesModalContent
+  PremiumFeaturesModalContent,
+  ContentLoader
 } from './../../../components';
 import {
   updateSettingsProperty,
@@ -69,6 +70,15 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistBiographyPage extends React.Component<Props, State> {
+  isReady = false;
+
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
   private headerRef: React.RefObject<any> = React.createRef();
   private content?: React.RefObject<HTMLIonContentElement> = React.createRef();
   private slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
@@ -183,6 +193,8 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
   render(): React.ReactNode {
     if (!this.props.currentArtist) return this.renderEmpty();
+    if (!this.isReady) this.displayContent();
+
     const {
       currentArtist: artist,
       currentArtist: { biography }
@@ -235,6 +247,23 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           scrollX={false}
           onIonScroll={(e): void => this.handleScroll(e)}
         >
+          <ContentLoader
+            className="mt-3"
+            speed={2}
+            viewBox="0 0 400 650"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(0,0,0)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.15}
+            foregroundOpacity={0.25}
+            style={
+              this.isReady
+                ? { visibility: 'hidden', display: 'none' }
+                : { visibility: 'visible' }
+            }
+          >
+            <rect x="5" y="0" width="390" height="650" />
+          </ContentLoader>
           {biography && (
             <IonSlides
               ref={this.slides}
@@ -245,6 +274,11 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
               onIonSlideWillChange={(): Promise<void> | undefined =>
                 this.content?.current?.scrollToTop(700)
+              }
+              style={
+                this.isReady
+                  ? { visibility: 'visible' }
+                  : { visibility: 'hidden' }
               }
             >
               {biography?.map(

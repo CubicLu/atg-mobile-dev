@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShapesSize, RouterLinkDirection } from '../../../types';
 import { IonRouterLink, IonCheckbox } from '@ionic/react';
-import { CloseIcon } from '../..';
+import { CloseIcon, ContentLoader } from '../..';
 
 interface Props {
   image: string | undefined;
@@ -22,13 +22,25 @@ interface Props {
 }
 
 class CardImageComponent extends React.Component<Props> {
+  isReady = false;
+
   public static defaultProps = {
     type: ShapesSize.normal,
     col: 6,
     routerDirection: 'forward'
   };
 
+  displayContent = (): void => {
+    setTimeout((): void => {
+      let that = this;
+      that.isReady = true;
+      this.forceUpdate();
+    }, 2000);
+  };
+
   render(): React.ReactNode {
+    if (!this.isReady) this.displayContent();
+
     const {
       col,
       type,
@@ -48,13 +60,18 @@ class CardImageComponent extends React.Component<Props> {
         >
           <div
             className={`card image ${type} ${className}`}
-            style={{
-              backgroundImage: `url(${image})`,
-              height: diameter,
-              width: diameter,
-              minHeight: diameter,
-              minWidth: diameter
-            }}
+            style={
+              this.isReady
+                ? {
+                    backgroundImage: `url(${image})`,
+                    height: diameter,
+                    width: diameter,
+                    minHeight: diameter,
+                    minWidth: diameter,
+                    visibility: 'visible'
+                  }
+                : { visibility: 'hidden' }
+            }
           >
             {this.props.canRemove && (
               <div
@@ -82,6 +99,23 @@ class CardImageComponent extends React.Component<Props> {
 
             {this.props.innerContent}
           </div>
+          <ContentLoader
+            className="mt-3"
+            speed={2}
+            viewBox="0 0 400 400"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
+            style={
+              this.isReady
+                ? { visibility: 'hidden', display: 'none' }
+                : { visibility: 'visible' }
+            }
+          >
+            <rect x="20" y="0" rx="8" ry="8" width="500" height="500" />
+          </ContentLoader>
           <div
             className={`mt-15 f5 center-align ${labelClassName}`}
             style={{ width: diameter }}

@@ -10,6 +10,9 @@
     margin-top: 8px;
     margin-bottom: 0;
   }
+  .chat-message{
+    min-height: 80px;
+  }
   &.chat-expanded {
     opacity: 1;
     z-index: 2;

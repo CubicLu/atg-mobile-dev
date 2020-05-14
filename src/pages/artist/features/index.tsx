@@ -67,7 +67,9 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               viewAll={true}
               viewAllUrl={`/artist/${username}/video`}
             />
-            {newReleases && <SliderVideo data={newReleases} />}
+            {newReleases && (
+              <SliderVideo showFooter={true} data={newReleases} />
+            )}
           </div>
         )}
 

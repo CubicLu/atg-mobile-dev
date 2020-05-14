@@ -40,6 +40,7 @@ interface Props {
   node?: number;
   avatarImage?: string;
   artist: ArtistInterface | null;
+  isArtist: boolean;
   supported?: boolean;
   pendingButton: boolean;
   chatButton: boolean;
@@ -78,6 +79,7 @@ export default class ListItemComponent extends React.Component<Props> {
     avatarBadge: false,
     avatarSize: 48,
     avatarImage: undefined,
+    isArtist: false,
     pendingButton: false,
     connectButton: false,
     chatButton: false,
@@ -91,7 +93,7 @@ export default class ListItemComponent extends React.Component<Props> {
   ref: React.RefObject<HTMLIonItemSlidingElement> = React.createRef();
 
   sliding(item: React.ReactNode): React.ReactNode {
-    const { username } = this.props;
+    const { username, isArtist } = this.props;
     return (
       <IonItemSliding className={this.props.slidingClassName} ref={this.ref}>
         {item}
@@ -100,14 +102,18 @@ export default class ListItemComponent extends React.Component<Props> {
             <ButtonIcon
               className="no-padding"
               icon={<MessageBalloonIcon />}
-              url={'/chat/0'}
+              routerLink={'/chat/0'}
               color={Colors.transparent}
               type={ShapesSize.normal}
             />
           )}
           {this.props.communityFeedButton && (
             <ButtonIcon
-              url={`/community/feed/${username}`}
+              routerLink={
+                isArtist
+                  ? `/community/artist/${username}`
+                  : `/community/feed/${username}`
+              }
               className="no-padding"
               icon={<UserGroupIcon />}
               color={Colors.transparent}

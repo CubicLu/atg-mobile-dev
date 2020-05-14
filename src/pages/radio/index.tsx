@@ -60,13 +60,7 @@ export default class RadioPage extends React.Component<Props, State> {
           leftBackButton={false}
           rightActionButton={true}
           rightActionHref={'/radio/filter'}
-        >
-          <div className="absolute-logo-left">
-            <span className="brand-title text-48 l05">panthr</span>
-            <br />
-            <span className="h3 mx-2 l08">AI-POWERED RADIO</span>
-          </div>
-        </Header>
+        />
 
         <BackgroundImage
           gradientOverlay={true}
@@ -76,7 +70,12 @@ export default class RadioPage extends React.Component<Props, State> {
           backgroundBottom={false}
         />
 
-        <IonContent>
+        <IonContent fullscreen={true}>
+          <div className="absolute-logo-left">
+            <span className="brand-title text-48 l05">panthr</span>
+            <br />
+            <span className="h3 mx-2 l08">AI-POWERED RADIO</span>
+          </div>
           <div className="top-half flex-compass south center-align">
             <div className="flex left-align mx-auto">
               <div className="mt-1 mr-2">
@@ -93,7 +92,7 @@ export default class RadioPage extends React.Component<Props, State> {
             className="mt-2 mx-3"
             title="STATIONS"
             viewAll={true}
-            viewAllUrl="/radio/view-all"
+            //viewAllUrl="/radio/view-all"
           />
           <SliderRadio
             className="f6 l1"

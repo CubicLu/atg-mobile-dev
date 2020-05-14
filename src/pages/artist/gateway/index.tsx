@@ -57,7 +57,7 @@ export default class ArtistGatewayPage extends React.Component<Props> {
           <BackgroundImage
             gradient="180deg,#652ddd,#2c0d5c"
             backgroundImage={
-              currentArtist?.cover?.biography || currentArtist?.cover?.main
+              currentArtist?.cover?.gateway || currentArtist?.cover?.main
             }
           />
         )}

@@ -99,8 +99,6 @@ export const communityReducer = createReducer<CommunityReducerType>(
       return {
         ...state,
         loading: false,
-        posts: action.payload!.data.posts,
-        stories: action.payload!.data.stories,
         currentCommunityArtist: action.payload!.data
       };
     },

@@ -1,30 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import DashboardAnalyticDetailPage from './index';
-import { store } from './../../../../store';
+import FullScreenImageModal from './index';
+import { store } from './../../../store';
 import ReactDOM from 'react-dom';
 
 let props = {
-  location: { hash: '', pathname: '', search: '', state: '', key: '' },
-  match: {
-    params: { artistId: 'pharrell-williams' },
-    isExact: true,
-    path: '',
-    url: ''
-  },
-  history: {
-    goBack: (): void => {}
-  }
+  currentGallery: null,
+  galleryLength: 1,
+  changePage: (): void => {}
 };
 
-describe('DashboardAnalyticDetailPage render', () => {
+describe('ImageGalleryModal render', () => {
   it('render without crash', async () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Provider store={store}>
         <Router>
-          <DashboardAnalyticDetailPage {...props} />
+          <FullScreenImageModal {...props}>
+            <p>test</p>
+          </FullScreenImageModal>
         </Router>
       </Provider>,
       div

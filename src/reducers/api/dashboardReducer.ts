@@ -39,7 +39,7 @@ export const dashboardReducer = createReducer<DashboardReducerType>(
       };
     },
 
-    [DashboardActionType.GET_BY_ARTIST_API](
+    [DashboardActionType.GET_BY_DASH_ARTIST_API](
       state: DashboardReducerType
     ): DashboardReducerType {
       return {
@@ -48,10 +48,10 @@ export const dashboardReducer = createReducer<DashboardReducerType>(
       };
     },
 
-    [DashboardActionType.GET_BY_ARTIST_API_SUCCESS](
+    [DashboardActionType.GET_BY_DASH_ARTIST_API_SUCCESS](
       state: DashboardReducerType,
       action: Action<
-        DashboardActionType.GET_BY_ARTIST_API_SUCCESS,
+        DashboardActionType.GET_BY_DASH_ARTIST_API_SUCCESS,
         APIResponseInterface<DashboardInterface>
       >
     ): DashboardReducerType {
@@ -62,10 +62,10 @@ export const dashboardReducer = createReducer<DashboardReducerType>(
       };
     },
 
-    [DashboardActionType.GET_BY_ARTIST_API_FAILURE](
+    [DashboardActionType.GET_BY_DASH_ARTIST_API_FAILURE](
       state: DashboardReducerType,
       action: Action<
-        DashboardActionType.GET_BY_ARTIST_API_FAILURE,
+        DashboardActionType.GET_BY_DASH_ARTIST_API_FAILURE,
         APIErrorInterface<any>
       >
     ): DashboardReducerType {

@@ -251,7 +251,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightConnectedButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.routeNavigate('/message', 'forward')}
+                onClick={(): void => this.routeNavigate('/message', 'forward')}
               >
                 <UserGroupIcon width={20} height={15} />
               </div>
@@ -259,7 +259,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightChatButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.routeNavigate('/message', 'forward')}
+                onClick={(): void => this.routeNavigate('/chat/0', 'forward')}
               >
                 <BalloonIcon width={20} height={15} />
               </div>
@@ -267,7 +267,12 @@ class HeaderComponent extends React.Component<Props> {
             {rightFanFeedButton && (
               <div
                 className="default-button dark"
-                onClick={(): any => this.routeNavigate('/feed', 'forward')}
+                onClick={(): void =>
+                  this.routeNavigate(
+                    '/community/feed/pharrell-williams',
+                    'forward'
+                  )
+                }
               >
                 <StarIcon />
               </div>
@@ -275,7 +280,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightUserGroupButton && (
               <div
                 className="default-button"
-                onClick={(): any =>
+                onClick={(): void =>
                   this.routeNavigate('/community/comments-list', 'forward')
                 }
               >
@@ -285,7 +290,7 @@ class HeaderComponent extends React.Component<Props> {
             {rightNotificationButton && (
               <div
                 className="default-button"
-                onClick={(): any => this.routeNavigate('/message', 'forward')}
+                onClick={(): void => this.routeNavigate('/message', 'forward')}
               >
                 <ButtonIcon
                   color={Colors.transparent}

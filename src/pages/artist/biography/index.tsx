@@ -151,7 +151,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
       let next = this.state.currentPage + 1;
       const slide = this.props.currentArtist!.biography![next];
       if (slide.accessLevel > 0) return this.toggleSupportModal();
-      console.log(slide.accessLevel);
 
       slides.slideNext();
       this.props.updateSettingsModal(null);
@@ -184,7 +183,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     return (
       <IonPage id="artist-biography" className="artist-biography-page">
         <Header
-          leftBackOnClick={(): void => this.props.history.goBack()}
           rightActionButton={true}
           rightActionOnClick={(): void => this.openChapterModal()}
           centerContent={

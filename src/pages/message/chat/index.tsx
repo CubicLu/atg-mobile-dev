@@ -31,12 +31,12 @@ class MessageChatPage extends React.Component<Props> {
       <IonContent className="message-chat-page">
         <IonList lines="none">
           {this.props.messagesSearch.map(
-            (data, i): React.ReactNode => {
+            (user, i): React.ReactNode => {
               return (
                 <IonItemSliding key={i}>
                   <IonItem className="my-auto flex-align-items-center dark">
                     <RowChat
-                      data={data}
+                      user={user}
                       avatarSize={48}
                       showDate={true}
                       colInfo={9}

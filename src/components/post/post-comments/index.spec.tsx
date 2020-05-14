@@ -1,17 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import SearchPage from './index';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from '../../store';
+import PostComments from './index';
+import { store } from './../../../store';
+import ReactDOM from 'react-dom';
+import { CommentInterface } from '../../../models';
 
-describe('SearchPage render', () => {
+const comment: CommentInterface = {
+  text: '',
+  replies: null,
+  user: { username: '' } as any
+};
+
+describe('PostComments render', () => {
   it('render without crash', async () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Provider store={store}>
         <Router>
-          <SearchPage></SearchPage>
+          <PostComments comment={comment}></PostComments>
         </Router>
       </Provider>,
       div

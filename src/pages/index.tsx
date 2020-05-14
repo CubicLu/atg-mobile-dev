@@ -82,7 +82,7 @@ import DashboardGraphSalesPage from './dashboard/graphs/sales';
 import DashboardSupporterPage from './dashboard/supporter';
 
 import ChatPage from './chat';
-import WizardPage from './wizard';
+import WizardPage from './profile/wizard';
 
 export {
   NotFoundPage,

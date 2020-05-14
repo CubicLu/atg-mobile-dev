@@ -40,7 +40,7 @@ class ChatPage extends React.Component<Props> {
                   type={ShapesSize.circle}
                   width={48}
                   height={48}
-                  image={data.avatar}
+                  image={data.image}
                 />
               </li>
             );
@@ -62,7 +62,7 @@ class ChatPage extends React.Component<Props> {
                 message={message.message}
                 key={`${i}`}
                 date={message.date}
-                avatar={message.avatar}
+                avatar={message.image}
               />
             </React.Fragment>
           );

@@ -2,12 +2,13 @@ import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import { Header } from '../../../../components';
 import { analyticsMock } from './../../../../constants';
+import { RouteComponentProps } from 'react-router';
 
-interface Props {
-  history: {
-    goBack: Function;
-  };
+interface MatchParams {
+  artistId: string;
 }
+
+interface Props extends RouteComponentProps<MatchParams> {}
 
 class DashboardGraphSalesPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -28,7 +29,8 @@ class DashboardGraphSalesPage extends React.Component<Props> {
           }
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.history.goBack()}
+          rightClickGoBack={true}
+          rightCloseHref={`/dashboard/${this.props.match.params.artistId}`}
         />
         <IonContent>
           <div className="graph-placeholder chart">

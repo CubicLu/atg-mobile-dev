@@ -5,47 +5,57 @@ import {
   BackgroundImage,
   SectionTitle,
   SliderRadio,
-  HeaderOverlay,
-  SliderVideo,
   SliderRadios
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
-import { ChannelInterface } from '../../models';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { ChannelInterface, RadioInterface } from '../../models';
+import { RouteChildrenProps } from 'react-router';
+import { Nullable } from '../../types';
 
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteChildrenProps<MatchParams> {}
 interface MatchParams {
   genre: string;
 }
+interface State {
+  paramGenre: Nullable<string>;
+  currentGenre: Nullable<ChannelInterface>;
+}
 
-class RadioPage extends React.Component<Props> {
-  componentDidUpdate(): void {
-    this.getGenre();
+export default class RadioPage extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      paramGenre: null,
+      currentGenre: null
+    };
   }
+
   UNSAFE_componentWillMount(): void {
     this.getGenre();
   }
 
   getGenre(): void {
-    const { genre } = this.props.match.params;
-    this.currentGenre =
+    const { genre } = this.props.match?.params!;
+    if (!genre) {
+      return this.setState({ currentGenre: this.genres[0] });
+    }
+
+    const current = this.state.currentGenre?.name.toLocaleLowerCase();
+    if (genre?.toLocaleLowerCase() === current) return;
+
+    const currentGenre =
       this.genres.find(
         (a): boolean =>
           a?.name?.toLocaleLowerCase() === genre?.toLocaleLowerCase()
       ) || this.genres[0];
-    if (genre === this.paramGenre) return;
-    this.paramGenre = genre;
-    this.forceUpdate();
+
+    this.setState({ currentGenre });
   }
 
-  private headerRef: React.RefObject<any> = React.createRef();
-  private paramGenre?: string = undefined;
-  private currentGenre?: ChannelInterface = undefined;
   render(): React.ReactNode {
-    if (!this.currentGenre) this.getGenre();
     return (
       <IonPage id="radio-page">
-        <HeaderOverlay ref={this.headerRef} />
         <Header
           leftBackButton={false}
           rightActionButton={true}
@@ -60,28 +70,22 @@ class RadioPage extends React.Component<Props> {
 
         <BackgroundImage
           gradientOverlay={true}
-          gradient={this.currentGenre?.color}
-          backgroundImage={this.currentGenre?.image}
+          gradient={this.state.currentGenre?.color}
+          backgroundImage={this.state.currentGenre?.image}
           backgroundTop={false}
           backgroundBottom={false}
         />
 
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScroll={(e: CustomEvent): void =>
-            this.headerRef.current?.handleParentScroll(e)
-          }
-        >
+        <IonContent>
           <div className="top-half flex-compass south center-align">
             <div className="flex left-align mx-auto">
               <div className="mt-1 mr-2">
                 <RadioPlayButton />
               </div>
               <div>
-                <span className="h0">{this.currentGenre?.title}</span>
+                <span className="h0">{this.state.currentGenre?.title}</span>
                 <br />
-                <span className="h3">{this.currentGenre?.subtitle}</span>
+                <span className="h3">{this.state.currentGenre?.subtitle}</span>
               </div>
             </div>
           </div>
@@ -89,7 +93,7 @@ class RadioPage extends React.Component<Props> {
             className="mt-2 mx-3"
             title="STATIONS"
             viewAll={true}
-            onClickAll={(): void => this.props.history.push('/radio/view-all')}
+            viewAllUrl="/radio/view-all"
           />
           <SliderRadio
             className="f6 l1"
@@ -175,39 +179,43 @@ class RadioPage extends React.Component<Props> {
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/country.jpg'
     }
   ];
-  radios = [
+  radios: RadioInterface[] = [
     {
-      label: 'Pharrel Williams',
+      label: 'Pharrel',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
       id: 'pharrell-williams'
     },
     {
+      id: 'pharrell-williams',
       label: 'R&B',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Hip Hop',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Soul',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/soul.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Blues',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/blues.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Jazz',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Funk',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg'
     }
   ];
 }
-
-export default withRouter(RadioPage);

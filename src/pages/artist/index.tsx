@@ -39,7 +39,12 @@ interface Props
 
 const HEADER_ANIMATION_OFFSET = 200;
 
-class ArtistPage extends React.PureComponent<Props, {}> {
+interface State {
+  activeTab: string;
+  gateway: boolean;
+}
+
+class ArtistPage extends React.PureComponent<Props, State> {
   private lastOffset: number = 0;
   private lastOffsetA: number = 0;
   private custom: CustomAnimation = {
@@ -53,10 +58,20 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     loaded: false
   };
 
-  activeTab: string = 'featured';
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: 'featured',
+      gateway: false
+    };
+  }
+
   UNSAFE_componentWillReceiveProps(next: Props): void {
-    if (next.match.params.tab && this.activeTab !== next.match.params.tab) {
-      this.activeTab = next.match.params.tab;
+    if (
+      next.match.params.tab &&
+      this.state.activeTab !== next.match.params.tab
+    ) {
+      this.updateActiveTab(next.match.params.tab);
     }
     if (next.loading) return;
     if (this.props.loading) return;
@@ -65,11 +80,22 @@ class ArtistPage extends React.PureComponent<Props, {}> {
       this.setState({ gateway: true });
     }
   }
+
+  updateGateway(condition: boolean): void {
+    this.setState({
+      gateway: condition
+    });
+  }
+
+  updateActiveTab(tab: string): void {
+    this.setState({
+      activeTab: tab
+    });
+  }
   componentDidMount(): void {
     if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
   }
   componentWillUnmount(): void {
-    this.gateway = true;
     this.custom?.animation?.destroy();
     this.customAlpha?.animation?.destroy();
     this.custom.loaded = false;
@@ -215,29 +241,28 @@ class ArtistPage extends React.PureComponent<Props, {}> {
     } else if (event.onClick) {
       return event.onClick();
     }
-    this.activeTab = event.id;
-    this.forceUpdate();
+    this.updateActiveTab(event.id);
   };
 
   toggleGateway(): void {
-    this.gateway = false;
-    this.forceUpdate();
+    this.updateGateway(false);
   }
-  gateway = true;
   render(): React.ReactNode {
     if (!this.props.currentArtist) {
       return <IonPage style={artistBackground(null)} id="artist-page" />;
     }
 
     const { currentArtist: artist, artistTabs } = this.props;
-    const activeTab = artistTabs.find((x): boolean => x.id === this.activeTab)!;
+    const activeTab = artistTabs.find(
+      (x): boolean => x.id === this.state.activeTab
+    )!;
     return (
       <IonPage
         id="artist-page"
         style={artistBackground(artist)}
         className="saturate"
       >
-        {this.gateway && (
+        {this.state.gateway && (
           <ArtistGatewayPage
             currentArtist={this.props.currentArtist}
             gateway={(): void => this.toggleGateway()}
@@ -261,7 +286,7 @@ class ArtistPage extends React.PureComponent<Props, {}> {
           <Menu
             id="artist-menu"
             tabs={artistTabs}
-            activeId={this.activeTab}
+            activeId={this.state.activeTab}
             onClick={this.handleMenu}
           />
         </div>

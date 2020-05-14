@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { Colors, ShapesSize } from '../../../types';
+import { getFriendsAPI } from '../../../actions/api/friendsActions';
 import { MenuInterface, UserInterface } from '../../../models';
 import {
   Button,
@@ -13,76 +13,77 @@ import {
   MenuMessage,
   ListUser
 } from '../../../components';
-import {
-  updateProfileProperty,
-  updateSettingsProperty
-} from './../../../actions';
+import { updateSettingsProperty } from './../../../actions';
 
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
-  updateProfileProperty: (property, value) => void;
+  getFriendsAPI: () => void;
 }
 
 interface StateProps {
-  friends: UserInterface[];
-  friendsSearch: UserInterface[];
-  artists: UserInterface[];
-  artistsSearch: UserInterface[];
-  admins: UserInterface[];
-  adminsSearch: UserInterface[];
+  users: UserInterface[];
   activeSelectContactTab: string;
   selectContactTabs: MenuInterface[];
 }
 
 interface State {
   searchText: string;
+  friends: UserInterface[];
+  artists: UserInterface[];
+  admins: UserInterface[];
 }
-interface Props extends RouteComponentProps, StateProps, DispatchProps {}
-
-const variables = {
-  friends: 'friendsSearch',
-  artists: 'artistsSearch',
-  admins: 'adminsSearch'
-};
+interface Props extends StateProps, DispatchProps {}
 class SelectContactPage extends React.Component<Props, State> {
-  private selected: any[] = [];
+  UNSAFE_componentWillMount(): void {
+    this.props.getFriendsAPI();
+  }
+
+  componentDidMount(): void {
+    this.loadAdminsAndArtists();
+  }
+  componentDidUpdate(o: Props): void {
+    if (o.users.length === this.props.users.length) return;
+    this.loadAdminsAndArtists();
+  }
+  loadAdminsAndArtists(): void {
+    this.setState({
+      friends: this.props.users.filter((x): boolean => x.isFriend),
+      artists: this.props.users.filter((x): boolean => x.isArtist),
+      admins: this.props.users.filter((x): boolean =>
+        ['harold', 'gabriela'].includes(x.username)
+      )
+    });
+  }
+
+  private selected: UserInterface[] = [];
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      searchText: ''
+      searchText: '',
+      friends: [],
+      artists: [],
+      admins: []
     };
   }
 
   onSearch(e): void {
     this.setSearchText(e.detail.value);
-    let value = String(e.detail.value).toLocaleLowerCase();
-
-    let friendsSearch = this.props.friends.filter((data): boolean => {
-      return data.username.includes(value);
-    });
-    let adminsSearch = this.props.admins.filter((data): boolean => {
-      return data.username.includes(value);
-    });
-    let artistsSearch = this.props.artists.filter((data): boolean => {
-      return data.username.includes(value);
-    });
-
-    this.props.updateProfileProperty('artistsSearch', artistsSearch);
-    this.props.updateProfileProperty('friendsSearch', friendsSearch);
-    this.props.updateProfileProperty('adminsSearch', adminsSearch);
   }
 
   setSearchText(text = ''): void {
-    this.setState({
-      searchText: text
-    });
+    this.setState({ searchText: text });
   }
 
   getActiveTab(): React.ReactNode {
-    const menu = this.props.selectContactTabs.find(
-      (s): boolean => s.id === this.props.activeSelectContactTab
-    )!;
+    const t = this.props.activeSelectContactTab;
+    const menu = this.props.selectContactTabs.find((s): boolean => s.id === t)!;
+    const text = this.state.searchText.toLocaleLowerCase();
+    const list = this.state[menu.id];
+    const filter =
+      text.length > 2
+        ? list.filter((d): boolean => d?.username?.includes(text))
+        : list;
 
     return (
       <ListUser
@@ -90,15 +91,14 @@ class SelectContactPage extends React.Component<Props, State> {
         showButtonPending={menu.id === 'friends'}
         showRemove={false}
         sliding={false}
-        data={this.props[variables[menu.id]]}
+        users={filter}
+        selected={[]}
         onSelect={(event, data): void => this.toggleSelect(event, data)}
       />
     );
   }
   toggleSelect(event: CustomEvent, data: UserInterface): void {
-    const index = this.selected.findIndex(
-      (x): boolean => x.username === data.username
-    );
+    const index = this.selected.findIndex((x): boolean => x.name === data.name);
     if (event.detail.checked && index === -1) {
       this.selected.push(data);
     } else if (!event.detail.checked && index > -1) {
@@ -120,9 +120,7 @@ class SelectContactPage extends React.Component<Props, State> {
               label="Chat"
               className="text-18"
               color={Colors.transparent}
-              onClick={(): void => {
-                this.props.history.push('/chat/0');
-              }}
+              routerLink="/chat/0"
             />
           }
         />
@@ -161,32 +159,19 @@ class SelectContactPage extends React.Component<Props, State> {
 }
 // eslint-disable-next-line
 const mapStateToProps = ({
-  profileAPI,
-  settings
+  settings,
+  friendAPI
 }: ApplicationState): object => {
-  const {
-    artistsSearch,
-    friendsSearch,
-    adminsSearch,
-    admins,
-    friends,
-    artists
-  } = profileAPI;
   const { selectContactTabs, activeSelectContactTab } = settings;
+  const users = friendAPI.friends;
   return {
-    artistsSearch,
-    friendsSearch,
-    adminsSearch,
-    admins,
-    friends,
-    artists,
+    users,
     selectContactTabs,
     activeSelectContactTab
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { updateProfileProperty, updateSettingsProperty })(
-    SelectContactPage
-  )
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty,
+  getFriendsAPI
+})(SelectContactPage);

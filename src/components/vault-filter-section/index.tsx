@@ -41,8 +41,7 @@ class VaultFilterSectionComponent extends React.Component<Props> {
                   key={i}
                   label={chip}
                   action={(): void => {
-                    this.props.selectedChips?.splice(i, 1);
-                    this.forceUpdate();
+                    this.props.action(chip, i);
                   }}
                 />
               )

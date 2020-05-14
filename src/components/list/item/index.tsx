@@ -19,12 +19,14 @@ import {
   IonItemOptions,
   IonRouterLink
 } from '@ionic/react';
+import { ShareIcon } from '../../icon';
 
 interface Props {
   sliding: boolean;
   slidingClassName?: string;
   optionRemove?: boolean;
   optionAddPlaylist?: boolean;
+  optionShare?: boolean;
   bottomBorder: boolean;
   communityFeedButton: boolean;
   leftDisabled: boolean;
@@ -69,6 +71,7 @@ export default class ListItemComponent extends React.Component<Props> {
     artist: null,
     optionRemove: false,
     optionAddPlaylist: false,
+    optionShare: false,
     bottomBorder: false,
     leftDisabled: false,
     hasAvatar: false,
@@ -97,29 +100,33 @@ export default class ListItemComponent extends React.Component<Props> {
             <ButtonIcon
               className="no-padding"
               icon={<MessageBalloonIcon />}
+              url={'/chat/0'}
               color={Colors.transparent}
               type={ShapesSize.normal}
             />
           )}
           {this.props.communityFeedButton && (
-            <IonRouterLink
-              ref={this.linkRef}
-              routerLink={`/feed/${username}`}
-              routerDirection="forward"
-            >
-              <ButtonIcon
-                className="no-padding"
-                icon={<UserGroupIcon />}
-                color={Colors.transparent}
-                type={ShapesSize.normal}
-              ></ButtonIcon>
-            </IonRouterLink>
+            <ButtonIcon
+              url={`/community/feed/${username}`}
+              className="no-padding"
+              icon={<UserGroupIcon />}
+              color={Colors.transparent}
+              type={ShapesSize.normal}
+            ></ButtonIcon>
           )}
           {this.props.optionRemove && (
             <ButtonIcon
               icon={<CloseIcon strokeWidth={2} width={18} height={18} />}
               className="no-padding"
               color={Colors.red}
+              type={ShapesSize.normal}
+            />
+          )}
+          {this.props.optionShare && (
+            <ButtonIcon
+              icon={<ShareIcon />}
+              color={Colors.orange}
+              className="no-padding"
               type={ShapesSize.normal}
             />
           )}
@@ -151,7 +158,7 @@ export default class ListItemComponent extends React.Component<Props> {
         className={this.props.bottomBorder ? 'with-border' : ''}
         style={{ pointerEvents: 'all' }}
       >
-        <div className="my-1 mx-2 fluid flex-justify-content-end">
+        <div className="my-1 mx-15 fluid flex-justify-content-end">
           <div
             onClick={leftContentAction}
             className={`align-start ${leftDisabled ? 'opacity' : ''}`}
@@ -227,7 +234,8 @@ export default class ListItemComponent extends React.Component<Props> {
                 size={Sizes.md}
                 gradientDirection={GradientDirection.horizontal}
                 type={ShapesSize.rounded}
-                label="Connect"
+                label="CONNECT"
+                routerLink={`/profile/${username}`}
               />
             )}
 

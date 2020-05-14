@@ -39,7 +39,7 @@ class CommunityArtistDripsPage extends React.Component<Props> {
         <BackgroundImage default />
         <Header
           leftBackButton={false}
-          title={`${this.props.currentCommunityArtist.name} Daily Drips`}
+          title="Daily Drip"
           titleClassName="artist-name"
           rightCloseButton={true}
           rightCloseHref={`/community/artist/${this.props.currentCommunityArtist.username}`}

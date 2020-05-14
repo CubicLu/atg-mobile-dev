@@ -7,19 +7,17 @@ import moment from 'moment';
 interface State {
   show: boolean;
 }
-
 interface Props {
   id: number;
   data: EventInterface | null;
   artistUsername: string | undefined;
+  disableGoing?: boolean;
 }
 
 export default class CardEventComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      show: false
-    };
+    this.state = { show: false };
   }
 
   getColor(): any {
@@ -37,9 +35,7 @@ export default class CardEventComponent extends React.Component<Props, State> {
   }
 
   showMessage(condition = false): void {
-    this.setState({
-      show: condition
-    });
+    this.setState({ show: condition });
   }
 
   render(): React.ReactNode {
@@ -70,7 +66,13 @@ export default class CardEventComponent extends React.Component<Props, State> {
                   <div className="l15 f6 text-13 no-wrap">Share</div>
                 </li>
               </IonRouterLink>
-              <IonRouterLink routerLink={`/artist/${username}/event/${id}`}>
+              <IonRouterLink
+                routerLink={
+                  this.props.disableGoing
+                    ? undefined
+                    : `/artist/${username}/event/${id}`
+                }
+              >
                 <li>
                   <UserGroupIcon width={25} height={35} />
                   <div className="l15 f6 text-13 no-wrap">{"Who's Going"}</div>

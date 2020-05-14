@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import {
   Avatar,
   ButtonIcon,
@@ -19,7 +19,7 @@ interface Props {
   disableComment: boolean;
   clickToOpen: boolean;
   className?: string;
-  imageClassName?: string;
+  rounded: boolean;
 }
 
 export default class CardPostComponent extends React.Component<Props> {
@@ -34,113 +34,77 @@ export default class CardPostComponent extends React.Component<Props> {
   };
 
   public static defaultProps = {
-    showOptions: true,
+    showOptions: false,
     disableComment: false,
-    clickToOpen: false
+    clickToOpen: false,
+    rounded: true
   };
 
-  slideOpts = {
-    initialSlide: 1,
-    speed: 400
-  };
-
-  render(): React.ReactNode {
-    const { post, imageClassName } = this.props;
-    const className = this.props.className || '';
-    if (!this.isReady) this.displayContent();
-
+  renderSkeleton(): React.ReactNode {
     return (
-      <div>
-        {!this.isReady ? (
-          <ContentLoader
-            className="mt-3"
-            speed={2}
-            width={500}
-            height={300}
-            viewBox="0 0 500 300"
-            baseUrl={window.location.pathname}
-            backgroundColor="rgb(255,255,255)"
-            foregroundColor="rgb(255,255,255)"
-            backgroundOpacity={0.05}
-            foregroundOpacity={0.15}
-          >
-            <rect x="2" y="0" rx="8" ry="8" width="355" height="268" />
-          </ContentLoader>
-        ) : (
-          <div
-            className={`card post flex-column space-between overflow-x ${className}`}
-            style={{
-              height: '290px',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
-            <div>
-              {Array.isArray(post.image) ? (
-                <IonRouterLink
-                  routerLink={
-                    this.props.clickToOpen
-                      ? `/community/comments/${post.id || 1}`
-                      : undefined
-                  }
-                >
-                  <IonSlides
-                    pager={true}
-                    options={this.slideOpts}
-                    style={{
-                      height: '290px',
-                      position: 'relative',
-                      borderRadius: '20px'
-                    }}
-                  >
-                    {post.image.map(
-                      (image, index): React.ReactNode => (
-                        <IonSlide
-                          key={index}
-                          className={`flex-compass space-between ${imageClassName}`}
-                          style={{
-                            backgroundImage: `url(${image})`,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            width: 'auto'
-                          }}
-                        />
-                      )
-                    )}
-                  </IonSlides>
-                </IonRouterLink>
-              ) : (
-                <IonRouterLink
-                  routerLink={
-                    this.props.clickToOpen
-                      ? `/community/comments/${post.id || 1}`
-                      : undefined
-                  }
-                  routerDirection="forward"
-                >
-                  <div
-                    className={`post flex-column space-between ${imageClassName}`}
-                    style={{
-                      height: '290px',
-                      backgroundImage: `url(${post.image})`,
-                      backgroundSize: 'cover',
-                      backgroundRepeat: 'no-repeat',
-                      borderRadius: '20px'
-                    }}
-                  />
-                </IonRouterLink>
-              )}
-              {this.renderControls()}
-            </div>
-          </div>
-        )}
-      </div>
+      <ContentLoader
+        className="mt-3"
+        speed={2}
+        width={500}
+        height={290}
+        viewBox="0 0 500 290"
+        baseUrl={window.location.pathname}
+        backgroundColor="rgb(255,255,255)"
+        foregroundColor="rgb(255,255,255)"
+        backgroundOpacity={0.05}
+        foregroundOpacity={0.15}
+      >
+        <rect x="2" y="0" rx="8" ry="8" width="355" height="268" />
+      </ContentLoader>
     );
   }
 
+  stylizePost(url: string, rounded: boolean = true): CSSProperties {
+    return {
+      height: '290px',
+      position: 'relative',
+      backgroundImage: `url(${url})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      borderRadius: rounded ? '20px' : 0,
+      overflowY: 'hidden'
+    };
+  }
+
+  renderPostSingle(): React.ReactNode {
+    return (
+      <div
+        className={`flex-column space-between overflow-x ${this.props.className}`}
+        style={this.stylizePost(
+          this.props.post.image as string,
+          this.props.rounded
+        )}
+      />
+    );
+  }
+  renderPostSlideshow(): React.ReactNode {
+    const images = this.props.post.image as string[];
+    return (
+      <IonSlides
+        pager={true}
+        className={this.props.className}
+        style={this.stylizePost('', this.props.rounded)}
+      >
+        {images.map(
+          (image, index): React.ReactNode => (
+            <IonSlide
+              key={index}
+              className={`flex-compass space-between overflow-x ${this.props.className}`}
+              style={this.stylizePost(image, this.props.rounded)}
+            />
+          )
+        )}
+      </IonSlides>
+    );
+  }
   renderControls(): React.ReactNode {
     return (
-      <>
+      <React.Fragment>
         <div className="absolute-dots-top-right">
           {this.props.showOptions && (
             <div className="default-button dark btn large">
@@ -149,10 +113,9 @@ export default class CardPostComponent extends React.Component<Props> {
           )}
         </div>
         {this.renderPostInput()}
-      </>
+      </React.Fragment>
     );
   }
-
   renderPostInput(): React.ReactNode {
     const { showUser, post } = this.props;
     return (
@@ -204,6 +167,24 @@ export default class CardPostComponent extends React.Component<Props> {
 
           <ButtonIcon className="btn large" icon={<HeartIcon />} />
         </div>
+      </div>
+    );
+  }
+  render(): React.ReactNode {
+    const { post, clickToOpen } = this.props;
+    const url = clickToOpen ? `/community/comments/${post.id || 1}` : undefined;
+
+    if (!this.isReady) this.displayContent();
+    if (!this.isReady) return this.renderSkeleton();
+
+    return (
+      <div className="mb-4" style={{ position: 'relative' }}>
+        <IonRouterLink routerLink={url}>
+          {Array.isArray(post.image)
+            ? this.renderPostSlideshow()
+            : this.renderPostSingle()}
+        </IonRouterLink>
+        {this.renderControls()}
       </div>
     );
   }

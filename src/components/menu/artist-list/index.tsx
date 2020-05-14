@@ -37,7 +37,6 @@ class MenuArtistList extends React.Component<Props> {
       <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom={true}
-          backgroundBottomOrange={false}
           backgroundBottomDark={true}
           backgroundBottomOpacity={0.15}
         />

@@ -10,7 +10,7 @@ import { UserInterface } from '../../../models';
 import { ShapesSize, Colors, Sizes } from '../../../types';
 
 interface Props {
-  data: UserInterface;
+  user: UserInterface;
   showChat?: boolean;
   showComboBox?: boolean;
   showButtonConnect?: boolean;
@@ -30,7 +30,7 @@ class RowUserComponent extends React.Component<Props> {
   };
   render(): React.ReactNode {
     const {
-      data,
+      user,
       showButtonConnect,
       showButtonPending,
       showChat,
@@ -38,23 +38,23 @@ class RowUserComponent extends React.Component<Props> {
       selected,
       onSelect
     } = this.props;
-    let opacity = data.isFriend !== true ? 'opacity' : '';
+    let opacity = user.isFriend !== true ? 'opacity' : '';
     return (
       <div className="m-1 fluid flex-justify-content-end">
         <div className={`align-start ${opacity}`}>
           <div className="p-05 flex-align-items-center">
             <Avatar
-              avatarUrl={`/profile/${data.username}`}
+              avatarUrl={`/profile/${user.username}`}
               type={ShapesSize.circle}
               width={48}
               height={48}
-              image={data.avatar}
+              image={user.image}
             />
-            <span className="ml-2 f5">{data.username}</span>
+            <span className="ml-2 f5">{user.username}</span>
           </div>
         </div>
         <div className="align-end no-padding flex-align-items-center my-auto">
-          {data.isFriend !== true && showButtonPending && (
+          {user.isFriend !== true && showButtonPending && (
             <Button
               className="my-auto"
               size={Sizes.md}
@@ -81,10 +81,10 @@ class RowUserComponent extends React.Component<Props> {
               label="CONNECT"
             />
           )}
-          {showComboBox && data.isFriend === true && (
+          {showComboBox && user.isFriend === true && (
             <InputComboBox
               checked={selected}
-              onSelect={(e): void => (onSelect ? onSelect(e, data) : {})}
+              onSelect={(e): void => (onSelect ? onSelect(e, user) : {})}
             />
           )}
         </div>

@@ -61,7 +61,12 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
 
         {newReleases && (
           <div className="row">
-            <Section className="mx-3" title={'VIDEOS'} viewAll={true} />
+            <Section
+              className="mx-3"
+              title={'VIDEOS'}
+              viewAll={true}
+              viewAllUrl={`/artist/${username}/video`}
+            />
             {newReleases && <SliderVideo data={newReleases} />}
           </div>
         )}
@@ -78,7 +83,12 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
         <div className="row mb-5" />
         {radio && (
           <React.Fragment>
-            <Section className="mx-3" title={'PANTHR RADIO'} viewAll={true} />
+            <Section
+              className="mx-3"
+              title={'PANTHR RADIO'}
+              viewAll={true}
+              viewAllUrl={`/radio/${username}`}
+            />
             <SliderRadio diameter="110px" data={radio} />
           </React.Fragment>
         )}
@@ -90,6 +100,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               className="mx-3"
               title={'UPCOMING EVENTS'}
               viewAll={true}
+              viewAllUrl={`/artist/${username}/event`}
             />
             <SliderEvents data={[events![0]]} artistUsername={username} />
           </div>

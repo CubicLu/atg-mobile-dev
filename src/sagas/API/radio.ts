@@ -21,7 +21,7 @@ function* getRadioArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getRadioArtist(): any {
-  yield takeEvery(RadioActionType.GET_BY_ARTIST_API, getRadioArtistAPI);
+  yield takeEvery(RadioActionType.GET_BY_RADIO_ARTIST_API, getRadioArtistAPI);
 }
 
 export default function* rootSaga(): any {

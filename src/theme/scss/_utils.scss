@@ -145,6 +145,7 @@
 .ml-5{ margin-left: 40px;}
 .ml-6{ margin-left: 48px;}
 .ml-7{ margin-left: 56px;}
+.ml-8{ margin-left: 64px;}
 .mx-05{ margin-left: 4px;margin-right: 4px; }
 .mx-1{ margin-left: 8px;margin-right: 8px; }
 .mx-15{ margin-left: 12px;margin-right: 12px; }
@@ -618,14 +619,6 @@
   top: 44px;
   left: 24px;
   position: absolute;
-}
-.top-half {
-  width: 100%;
-  top: 0;
-  min-height: calc(50vh - 50px);
-  height: calc(50vh - 50px);
-  max-height: calc(50vh - 50px);
-  position: relative;
 }
 .flex-column {
   display: flex;

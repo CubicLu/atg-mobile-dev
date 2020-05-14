@@ -3,13 +3,7 @@ import { IonPage, IonContent } from '@ionic/react';
 import { Header } from '../../../components';
 import { analyticsMock } from './../../../constants';
 
-interface Props {
-  history: {
-    goBack: Function;
-  };
-}
-
-class DashboardAnalyticDetailPage extends React.Component<Props> {
+class DashboardAnalyticDetailPage extends React.Component<{}> {
   render(): React.ReactNode {
     return (
       <IonPage
@@ -28,7 +22,7 @@ class DashboardAnalyticDetailPage extends React.Component<Props> {
           }
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.history.goBack()}
+          rightClickGoBack={true}
         />
         <IonContent>
           <div className="graph-placeholder chart">

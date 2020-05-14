@@ -146,7 +146,7 @@ class FanFeedFilterPage extends React.Component<Props, State> {
               <ListUser
                 onSelect={(e, data): void => this.toggleSelect(e, data, false)}
                 sliding={false}
-                data={this.getRecent()}
+                users={this.getRecent()}
                 selected={this.props.recentSelected}
                 showComboBox
               />
@@ -156,7 +156,7 @@ class FanFeedFilterPage extends React.Component<Props, State> {
               <ListUser
                 onSelect={(e, data): void => this.toggleSelect(e, data, true)}
                 sliding={false}
-                data={this.getAll()}
+                users={this.getAll()}
                 selected={this.props.friendsSelected}
                 showComboBox
               />

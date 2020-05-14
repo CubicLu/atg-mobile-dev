@@ -1,88 +1,41 @@
 .artist-support-page{
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        background: transparent;
+    }
+    .background-plum{
+        background: #810d6e;
+    }
+    .background-light-red{
+        background: #db115f;
+    }
+    .background-lime{
+        background: #8dc53e;
+    }
+    .background-yellow{
+        background: #fcc505;
+    }
     &__header{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        letter-spacing: normal;
-        text-align: center;
-        line-height: 1.4;
-        color: #ffffff;
-        h1{
-            font-family: Industria, sans-serif;
-            font-size: 30px;
-            margin: 0;
-        }
-        h3{
-            font-family: Helvetica, sans-serif;
-            font-size: 14px;
-            line-height: 1.21;
-            margin: 0;
-        }
+        position: absolute;
+        top: 0;
     }
     &__content{
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        &--plans-container{
-            display: flex;
-            &:first-child{
-                margin-right: 15px;
-            }
+        justify-content: space-evenly;
+        &__empty{
+            height: 160px;
         }
-        &--explain{
-            font-family: Industria, sans-serif;
-            color: #ffffff;
-            text-decoration: underline;
-            font-size: 20px;
-            margin: 10px 0;
-        }
+        
         &--options{
             display: flex;
             flex-direction: column;
-            width: 70%;
-            h5{
-                font-family: Industria, sans-serif;
-                font-size: 48px;
-                margin: 0 0 25px 0;
-                line-height: 0.88;
-                color: #ffffff;
-                align-self: center;
-            }
-            &--items-block{
-                &--item{
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 16px;
-                    &--icon-container{
-                        width: 42px;
-                        height: 42px;
-                        background-color: #8dc53e;
-                        border-radius: 50%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-                    p{
-                        font-family: Helvetica, sans-serif;
-                        font-size: 18px;
-                        font-weight: normal;
-                        font-stretch: normal;
-                        font-style: normal;
-                        line-height: 1.67;
-                        color: #fff;
-                        margin: 0 0 0 20px;
-                    }
-                    .background-plum{
-                        background: #810d6e;
-                    }
-                    .background-light-red{
-                        background: #db115f;
-                    }
-                }
+            &--item{
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
             }
         }
     }

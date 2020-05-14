@@ -33,7 +33,7 @@ class SubGenreModalComponent extends React.Component<Props> {
     const allItems = this.subGenres.length;
     let selected = 0;
 
-    this.subGenres.map((item: SubGenreInterface): void => {
+    this.subGenres.forEach((item: SubGenreInterface): void => {
       if (item.selected) selected++;
     });
     if (selected > 0 && selected < allItems) {
@@ -71,8 +71,8 @@ class SubGenreModalComponent extends React.Component<Props> {
       <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.2}
+          backgroundBottomDark={true}
+          backgroundBottomOpacity={0.15}
         />
         <div className={`modal-header ${this.props.background}`}>
           <span className="h2 dark baskerville">{this.props.name}</span>

@@ -5,7 +5,7 @@ import { Colors, ShapesSize } from '../../../types';
 import { UserInterface } from './../../../models';
 
 interface Props {
-  data?: UserInterface[];
+  users: UserInterface[];
   showRemove?: boolean;
   sliding: boolean;
   checkSelected?: Function;
@@ -23,6 +23,7 @@ export default class ListComponent extends React.Component<Props> {
   public static defaultProps = {
     onSelect: (): void => {},
     checkSelected: (): void => {},
+    users: [],
     showRemove: false,
     sliding: true,
     showChat: false,
@@ -64,7 +65,7 @@ export default class ListComponent extends React.Component<Props> {
       <IonItem className={`my-auto flex-align-items-center ${itemClass}`}>
         <RowUser
           {...rest}
-          data={user}
+          user={user}
           selected={checked}
           onSelect={this.props.onSelect}
           showButtonConnect={showButtonConnect}
@@ -86,7 +87,7 @@ export default class ListComponent extends React.Component<Props> {
   }
   render = (): React.ReactNode => (
     <IonList lines="none" className="list user">
-      {this.props.data?.map(
+      {this.props.users?.map(
         (user, i): React.ReactNode => (
           <React.Fragment key={i}>
             {this.props.sliding

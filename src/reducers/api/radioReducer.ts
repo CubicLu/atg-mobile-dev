@@ -1,44 +1,35 @@
-import { Action, RadioActionType, RadioReducerType } from '../../models';
 import createReducer from '../createReducer';
+import { Action, RadioActionType, RadioReducerType } from '../../models';
 
 const defaultState: RadioReducerType = {
-  radioArtist: {
-    id: '',
-    type: 'Artist',
-    name: '',
-    icon: '',
-    image: '',
-    title: '',
-    subtitle: '',
-    color: '',
-    target: '',
-    tags: []
-  },
+  radioArtist: null,
   loading: false,
   errorMessage: null
 };
 
 export const radioReducer = createReducer<RadioReducerType>(defaultState, {
-  [RadioActionType.GET_BY_ARTIST_API](state: RadioReducerType): any {
+  [RadioActionType.GET_BY_RADIO_ARTIST_API](
+    state: RadioReducerType
+  ): RadioReducerType {
     return {
       ...state,
       loading: true
     };
   },
-  [RadioActionType.GET_BY_ARTIST_API_SUCCESS](
+  [RadioActionType.GET_BY_RADIO_ARTIST_API_SUCCESS](
     state: RadioReducerType,
-    action: Action<any>
-  ): any {
+    action: Action<RadioActionType.GET_BY_RADIO_ARTIST_API_SUCCESS>
+  ): RadioReducerType {
     return {
       ...state,
       loading: false,
       radioArtist: action.payload.data
     };
   },
-  [RadioActionType.GET_BY_ARTIST_API_FAILURE](
+  [RadioActionType.GET_BY_RADIO_ARTIST_API_FAILURE](
     state: RadioReducerType,
-    action: Action<any>
-  ): any {
+    action: Action<RadioActionType.GET_BY_RADIO_ARTIST_API_FAILURE>
+  ): RadioReducerType {
     return {
       ...state,
       loading: false,

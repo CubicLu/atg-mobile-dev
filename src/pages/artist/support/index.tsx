@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updatePopUpModal } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
 import { ArtistInterface, PlanInterface } from '../../../models';
 import {
   BackgroundImage,
@@ -13,7 +13,8 @@ import {
   CloseIcon,
   PopUpModal,
   PremiumFeaturesModalContent,
-  PauseIcon
+  PauseIcon,
+  ButtonIcon
 } from './../../../components';
 
 interface State {
@@ -22,7 +23,6 @@ interface State {
 }
 interface StateProps {
   currentArtist: ArtistInterface | null;
-  loading: boolean;
   plans: PlanInterface[];
   popUpModal: string | null;
 }
@@ -52,17 +52,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
     };
   }
   UNSAFE_componentWillReceiveProps(next: Props): void {
-    if (next.loading) return;
-    if (this.props.loading) return;
-    if (
-      this.props.currentArtist == null ||
-      this.props.currentArtist.username !== next.match.params.id
-    ) {
+    if (this.props.currentArtist?.username !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
     }
   }
-
-  handleGoBack = (): void => this.props.history.goBack();
 
   handlePlanChange(plan: PlanInterface | null = null): void {
     this.setState({ plan });
@@ -105,109 +98,106 @@ class ArtistSupportPage extends React.Component<Props, State> {
           leftBackButton={false}
           centerContent={
             <div className={'artist-support-page__header'}>
-              <h1>{currentArtist?.name}</h1>
-              <h3>Support packages</h3>
+              <div className="h2">{currentArtist?.name}</div>
+              <div className="f5">Support packages</div>
             </div>
           }
           rightCloseButton={true}
-          rightCloseOnClick={this.handleGoBack}
+          rightClickGoBack={true}
         />
-        <IonContent fullscreen={true} scrollY={true}>
+        <IonContent fullscreen={false} scrollY={false}>
           <div className={'artist-support-page__content h-100'}>
-            <div className="artist-support-page__content--plans-container">
-              {plans.map(
-                (data, i): React.ReactNode => {
-                  return (
-                    <div className={`col s6 ${i === 0 ? 'mr-12' : ''}`} key={i}>
-                      <ButtonPlan
-                        active={!!plan?.id && plan?.id === data?.id}
-                        plan={data}
-                        onClick={this.upgradeStatus(data)}
-                      />
-                    </div>
-                  );
-                }
-              )}
+            <div className="flex-compass south h-50 half">
+              <div className="flex">
+                {plans.map(
+                  (data, i): React.ReactNode => {
+                    return (
+                      <div
+                        className={`col s6 ${i === 0 ? 'mr-12' : ''}`}
+                        key={i}
+                      >
+                        <ButtonPlan
+                          active={!!plan?.id && plan?.id === data?.id}
+                          plan={data}
+                          onClick={this.upgradeStatus(data)}
+                        />
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+              <IonRouterLink routerLink={'/support-advantages'}>
+                <div className="mt-3 h3 underline">Why premium?</div>
+              </IonRouterLink>
             </div>
-            <Link
-              to={'/support-advantages'}
-              className={'artist-support-page__content--explain'}
-            >
-              Why premium?
-            </Link>
+
             <div className="artist-support-page__content--options">
-              <h5>Support Options</h5>
-              <div className="artist-support-page__content--options--items-block">
-                <div className="artist-support-page__content--options--items-block--item">
-                  <div
-                    className={`artist-support-page__content--options--items-block--item--icon-container ${
-                      !plan || plan?.id === 2 ? 'grey' : ''
-                    }`}
-                    {...(plan &&
-                      plan?.id === 1 && {
-                        onClick: this.upgradeStatus(plans[1])
-                      })}
-                  >
-                    <ArrowTopIcon />
-                  </div>
-                  <p>Upgrade</p>
-                </div>
-                <div className="artist-support-page__content--options--items-block--item">
-                  <div
-                    className={`artist-support-page__content--options--items-block--item--icon-container rotate-180 ${
-                      !plan || plan?.id === 1 ? 'grey' : 'background-plum'
-                    }`}
-                    {...(plan &&
-                      plan?.id === 2 && {
-                        onClick: this.upgradeStatus(plans[0])
-                      })}
-                  >
-                    <ArrowTopIcon />
-                  </div>
-                  <p>Downgrade</p>
-                </div>
-                <div className="artist-support-page__content--options--items-block--item">
-                  <div
-                    className={`artist-support-page__content--options--items-block--item--icon-container ${
-                      !plan ? 'grey' : 'background-light-red'
-                    }`}
-                    {...(plan && {
-                      onClick: this.upgradeStatus(null)
-                    })}
-                  >
-                    <PauseIcon color={'#fff'} opacity={1} />
-                  </div>
-                  <p>Pause</p>
-                </div>
-                <div className="artist-support-page__content--options--items-block--item">
-                  <div
-                    className={`artist-support-page__content--options--items-block--item--icon-container ${
-                      !plan ? 'grey' : 'background-light-red'
-                    }`}
-                    {...(plan && {
-                      onClick: this.upgradeStatus(null)
-                    })}
-                  >
-                    <CloseIcon />
-                  </div>
-                  <p>Cancel</p>
-                </div>
+              <div className="h00 mb-2">Support Options</div>
+
+              <div className="artist-support-page__content--options--item f4 disabled">
+                <ButtonIcon
+                  className="background-lime"
+                  onClick={this.upgradeStatus(plans[1])}
+                  icon={<ArrowTopIcon />}
+                />
+                <span className="ml-3">Upgrade</span>
+              </div>
+
+              <div
+                className="artist-support-page__content--options--item f4 disabled"
+                onClick={
+                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                }
+              >
+                <ButtonIcon
+                  className="background-plum rotate-180"
+                  onClick={this.upgradeStatus(plans[1])}
+                  icon={<ArrowTopIcon />}
+                />
+                <span className="ml-3">Downgrade</span>
+              </div>
+
+              <div
+                className="artist-support-page__content--options--item f4 disabled"
+                onClick={
+                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                }
+              >
+                <ButtonIcon
+                  className="background-yellow"
+                  onClick={this.upgradeStatus(null)}
+                  icon={<PauseIcon color={'#000'} opacity={1} />}
+                />
+                <span className="ml-3">Pause</span>
+              </div>
+
+              <div
+                className="artist-support-page__content--options--item f4"
+                onClick={(): void => this.props.history.goBack()}
+              >
+                <ButtonIcon
+                  className="background-light-red"
+                  onClick={this.upgradeStatus(plans[1])}
+                  icon={<CloseIcon />}
+                />
+                <span className="ml-3">Cancel</span>
               </div>
             </div>
-            {popUpModal === 'confirmPremiumModal' && (
-              <PopUpModal header={'PREMIUM FEATURES'}>
-                <PremiumFeaturesModalContent
-                  title={`${currentArtist?.name}`}
-                  description={<>Do you want to confirm this selection?</>}
-                  artistAvatar={currentArtist?.cover.event}
-                  onDoneClick={(): void => updatePopUpModal(null)}
-                  onSuccessClick={this.state.confirmHandler}
-                  confirmButtonContent={'YES'}
-                  cancelButtonContent={'NO'}
-                />
-              </PopUpModal>
-            )}
           </div>
+
+          {popUpModal === 'confirmPremiumModal' && (
+            <PopUpModal header={'PREMIUM FEATURES'}>
+              <PremiumFeaturesModalContent
+                title={`${currentArtist?.name}`}
+                description={<>Do you want to confirm this selection?</>}
+                artistAvatar={currentArtist?.cover.event}
+                onDoneClick={(): void => updatePopUpModal(null)}
+                onSuccessClick={this.state.confirmHandler}
+                confirmButtonContent={'YES'}
+                cancelButtonContent={'NO'}
+              />
+            </PopUpModal>
+          )}
         </IonContent>
       </IonPage>
     );
@@ -218,9 +208,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { plans, popUpModal } = settings;
-  return { currentArtist, loading, plans, popUpModal };
+  return { currentArtist, plans, popUpModal };
 };
 
 export default withRouter(

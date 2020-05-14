@@ -29,7 +29,7 @@ function* getDashboardByArtistAPI({ payload }: any): ReturnType<any> {
 
 export function* getDashboardByArtist(): any {
   yield takeEvery(
-    DashboardActionType.GET_BY_ARTIST_API,
+    DashboardActionType.GET_BY_DASH_ARTIST_API,
     getDashboardByArtistAPI
   );
 }

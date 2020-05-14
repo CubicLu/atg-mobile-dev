@@ -46,37 +46,107 @@ interface State {
 const editedStation = {
   stationName: 'All Pop',
   items: [
-    { artist: 'The Weeknd', selected: true },
-    { artist: 'Roddy Ricch', selected: false },
-    { artist: 'Dua Lipa', selected: true },
-    { artist: 'Post Malone', selected: false },
-    { artist: 'Future ft. Drake', selected: false },
-    { artist: 'Harry Styles', selected: true },
-    { artist: 'Doja Cat', selected: true },
-    { artist: 'Coldplay', selected: true },
-    { artist: 'Beyoncé', selected: false },
-    { artist: 'The Who', selected: true },
-    { artist: 'Black Eyed Peas', selected: false },
-    { artist: 'LMFAO', selected: false },
-    { artist: 'Justin Bieber', selected: true }
+    {
+      artist: 'Rival Sons',
+      selected: true,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg'
+    },
+    {
+      artist: 'Pharrell Williams',
+      selected: false,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg'
+    },
+    {
+      artist: 'Bono Vox',
+      selected: true,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_bono.jpg'
+    },
+    {
+      artist: 'LMFAO',
+      selected: false,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_lmfao.jpg'
+    },
+    {
+      artist: 'Future ft. Drake',
+      selected: false,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/ecfa926cd9d5369e98bbbc4eefd57a6b/264x264-000000-80-0-0.jpg'
+    },
+    {
+      artist: 'Harry Styles',
+      selected: true,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/379613019df276565895074c85ec9efa/264x264-000000-80-0-0.jpg'
+    },
+    {
+      artist: 'Doja Cat',
+      selected: true,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/64377279e24c6193fab373abf635a6dd/264x264-000000-80-0-0.jpg'
+    },
+    {
+      artist: 'Coldplay',
+      selected: true,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/fd3f599db05db84cf1392021daaf3a61/264x264-000000-80-0-0.jpg'
+    }
   ]
 };
 const newStation = {
   stationName: '',
   items: [
-    { artist: 'The Weeknd', selected: false },
-    { artist: 'Roddy Ricch', selected: false },
-    { artist: 'Dua Lipa', selected: false },
-    { artist: 'Post Malone', selected: false },
-    { artist: 'Future ft. Drake', selected: false },
-    { artist: 'Harry Styles', selected: false },
-    { artist: 'Doja Cat', selected: false },
-    { artist: 'Coldplay', selected: false },
-    { artist: 'Beyoncé', selected: false },
-    { artist: 'The Who', selected: false },
-    { artist: 'Black Eyed Peas', selected: false },
-    { artist: 'LMFAO', selected: false },
-    { artist: 'Justin Bieber', selected: false }
+    {
+      artist: 'Rival Sons',
+      selected: true,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg'
+    },
+    {
+      artist: 'Pharrell Williams',
+      selected: false,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg'
+    },
+    {
+      artist: 'Bono Vox',
+      selected: true,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_bono.jpg'
+    },
+    {
+      artist: 'LMFAO',
+      selected: false,
+      background:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_lmfao.jpg'
+    },
+    {
+      artist: 'Future ft. Drake',
+      selected: false,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/ecfa926cd9d5369e98bbbc4eefd57a6b/264x264-000000-80-0-0.jpg'
+    },
+    {
+      artist: 'Harry Styles',
+      selected: false,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/379613019df276565895074c85ec9efa/264x264-000000-80-0-0.jpg'
+    },
+    {
+      artist: 'Doja Cat',
+      selected: false,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/64377279e24c6193fab373abf635a6dd/264x264-000000-80-0-0.jpg'
+    },
+    {
+      artist: 'Coldplay',
+      selected: false,
+      background:
+        'https://e-cdns-images.dzcdn.net/images/cover/fd3f599db05db84cf1392021daaf3a61/264x264-000000-80-0-0.jpg'
+    }
   ]
 };
 
@@ -155,7 +225,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
   renderArtistRow(
     index: number,
     artistName: string,
-    artistImage?: string
+    image?: string
   ): React.ReactNode {
     return (
       <IonItem key={index} mode="ios" className="mx-0 f4">
@@ -166,7 +236,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
         />
         <span className="mx-1">
           <Avatar
-            image={artistImage}
+            image={image}
             type={ShapesSize.rounded}
             width={56}
             height={56}
@@ -205,7 +275,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
           {this.filteredList().map(
             (data, i): React.ReactNode => (
               <React.Fragment key={i}>
-                {this.renderArtistRow(i, data.artist, undefined)}
+                {this.renderArtistRow(i, data.artist, data.background)}
               </React.Fragment>
             )
           )}

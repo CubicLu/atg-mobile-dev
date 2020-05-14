@@ -43,7 +43,7 @@ export default class CardPostComponent extends React.Component<Props> {
   renderSkeleton(): React.ReactNode {
     return (
       <ContentLoader
-        className="mt-3"
+        className="mt-3 mx-3"
         speed={2}
         width={500}
         height={290}

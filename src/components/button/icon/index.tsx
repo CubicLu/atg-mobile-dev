@@ -13,10 +13,11 @@ interface Props {
   overlay?: number;
   className?: string;
   overlayClassName?: string;
-  url?: string;
+  routerLink?: string;
 }
 
 export default class ButtonIconComponent extends React.Component<Props> {
+  linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
   public static defaultProps = {
     onClick: (): any => {},
     color: Colors.transparentGray,
@@ -36,28 +37,34 @@ export default class ButtonIconComponent extends React.Component<Props> {
       label,
       overlay,
       overlayClassName,
-      className
+      className,
+      routerLink: url
     } = this.props;
     const custom = className ? className : '';
 
     return (
-      <IonRouterLink routerLink={this.props.url} routerDirection="forward">
-        <button
-          onClick={(): void => onClick()}
-          className={`btn icon ${type} ${color} ${isFixed} ${custom}`}
-          style={{ ...styles }}
-        >
-          {icon}
+      <button
+        onClick={(): void => (url ? this.linkRef.current?.click() : onClick())}
+        className={`btn icon ${type} ${color} ${isFixed} ${custom}`}
+        style={{ ...styles }}
+      >
+        {icon}
 
-          {label && <span>{label}</span>}
+        {label && <span>{label}</span>}
+        {url && (
+          <IonRouterLink
+            ref={this.linkRef}
+            routerLink={url}
+            routerDirection="forward"
+          />
+        )}
 
-          {!!overlay && overlay >= 0 && (
-            <div className={overlayClassName}>
-              {overlay > 999 ? overlay / 1000 + 'k' : overlay}
-            </div>
-          )}
-        </button>
-      </IonRouterLink>
+        {!!overlay && overlay >= 0 && (
+          <div className={overlayClassName}>
+            {overlay > 999 ? overlay / 1000 + 'k' : overlay}
+          </div>
+        )}
+      </button>
     );
   }
 }

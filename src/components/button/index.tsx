@@ -37,7 +37,7 @@ class ButtonComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { onClick, label, routerLink: link, routerDirection } = this.props;
+    const { onClick, label, routerLink: url, routerDirection } = this.props;
 
     let pattern = this.props.gradient ? 'gradient' : '';
     pattern += ' ';
@@ -60,15 +60,15 @@ class ButtonComponent extends React.Component<Props> {
       <button
         id={this.props.id}
         disabled={this.props.disabled}
-        onClick={(): void => (link ? this.linkRef.current?.click() : onClick())}
+        onClick={(): void => (url ? this.linkRef.current?.click() : onClick())}
         className={`btn ${pattern.trim()} `}
       >
         <span>
           {label}
-          {link && (
+          {url && (
             <IonRouterLink
               ref={this.linkRef}
-              routerLink={link}
+              routerLink={url}
               routerDirection={routerDirection}
             />
           )}

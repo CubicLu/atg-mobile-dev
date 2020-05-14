@@ -79,7 +79,7 @@ class CommunityPage extends React.Component<Props> {
             </div>
           }
           rightContent={
-            <IonRouterLink>
+            <IonRouterLink routerLink="/community/post">
               <div className="default-button dark">
                 <PlusIcon />
               </div>

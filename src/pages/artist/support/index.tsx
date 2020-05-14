@@ -16,6 +16,7 @@ import {
   PauseIcon,
   ButtonIcon
 } from './../../../components';
+import { plans } from '../../../constants';
 
 interface State {
   plan: PlanInterface | null;
@@ -52,6 +53,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
     };
   }
   UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (this.props.currentArtist?.support && !this.state.plan) {
+      this.setState({ plan: plans[0] });
+    }
     if (this.props.currentArtist?.username !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
     }
@@ -82,6 +86,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { currentArtist, popUpModal, updatePopUpModal, plans } = this.props;
     const { plan } = this.state;
 
+    const canUpgrade = plan?.id === 1 ? '' : ' disabled';
+    const canDowngrade = plan?.id === 2 ? '' : ' disabled';
+    const canPause = plan ? '' : ' disabled';
+
     return (
       <IonPage
         id="support-page"
@@ -105,19 +113,16 @@ class ArtistSupportPage extends React.Component<Props, State> {
           rightCloseButton={true}
           rightClickGoBack={true}
         />
-        <IonContent fullscreen={false} scrollY={false}>
+        <IonContent fullscreen={true} scrollY={true}>
           <div className={'artist-support-page__content h-100'}>
             <div className="flex-compass south h-50 half">
               <div className="flex">
                 {plans.map(
                   (data, i): React.ReactNode => {
                     return (
-                      <div
-                        className={`col s6 ${i === 0 ? 'mr-12' : ''}`}
-                        key={i}
-                      >
+                      <div className={'col s6 mx-15'} key={i}>
                         <ButtonPlan
-                          active={!!plan?.id && plan?.id === data?.id}
+                          active={plan?.id === data?.id}
                           plan={data}
                           onClick={this.upgradeStatus(data)}
                         />
@@ -126,7 +131,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   }
                 )}
               </div>
-              <IonRouterLink routerLink={'/support-advantages'}>
+              <IonRouterLink routerLink={undefined}>
                 <div className="mt-3 h3 underline">Why premium?</div>
               </IonRouterLink>
             </div>
@@ -134,7 +139,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
             <div className="artist-support-page__content--options">
               <div className="h00 mb-2">Support Options</div>
 
-              <div className="artist-support-page__content--options--item f4 disabled">
+              <div
+                className={`artist-support-page__content--options--item f4 ${canUpgrade}`}
+              >
                 <ButtonIcon
                   className="background-lime"
                   onClick={this.upgradeStatus(plans[1])}
@@ -144,7 +151,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
               </div>
 
               <div
-                className="artist-support-page__content--options--item f4 disabled"
+                className={`artist-support-page__content--options--item f4 ${canDowngrade}`}
                 onClick={
                   plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
                 }
@@ -158,7 +165,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
               </div>
 
               <div
-                className="artist-support-page__content--options--item f4 disabled"
+                className={`artist-support-page__content--options--item f4 ${canPause}`}
                 onClick={
                   plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
                 }

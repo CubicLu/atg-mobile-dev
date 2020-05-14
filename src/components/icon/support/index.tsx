@@ -15,7 +15,7 @@ class SupportIcon extends React.Component<Props> {
 
   render(): React.ReactNode {
     const white = '#fff';
-    const grad = 'url(#gr1)';
+    const grad = `url(${window.location.href}#gr1)`;
     const fillCircle = this.props.supported ? white : grad;
     const fillInner = !this.props.supported ? white : grad;
     return (
@@ -26,8 +26,18 @@ class SupportIcon extends React.Component<Props> {
       >
         <defs>
           <linearGradient id="gr1">
-            <stop offset="0" stopColor="#FF9766" stopOpacity="100%" />
-            <stop offset="100%" stopColor="#FC5F62" stopOpacity="100%" />
+            <stop
+              offset="0"
+              stopColor="#FF9766"
+              stopOpacity="100%"
+              style={{ stopColor: '#FF9766', stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              stopColor="#FC5F62"
+              stopOpacity="100%"
+              style={{ stopColor: '#FC5F62', stopOpacity: 1 }}
+            />
           </linearGradient>
         </defs>
         <circle fill={fillCircle} cx="18" cy="18" r="18" />

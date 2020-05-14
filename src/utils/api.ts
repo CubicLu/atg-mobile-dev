@@ -1,8 +1,14 @@
 import axios from 'axios';
+import { API_URL, API_URL_MOCK } from 'config';
 
 const API = axios.create({
-  baseURL: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks',
+  baseURL: API_URL,
   timeout: 10000
 });
 
-export { API };
+const API_MOCK = axios.create({
+  baseURL: API_URL_MOCK,
+  timeout: 10000
+});
+
+export { API, API_MOCK };

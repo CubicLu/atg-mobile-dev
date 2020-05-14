@@ -1,8 +1,8 @@
 import React from 'react';
-import { CardArtist } from './../../../components';
-import { getArtistsAPI } from './../../../actions';
-import { ArtistInterface } from '../../../models';
-import { ApplicationState } from '../../../reducers';
+import { CardArtist } from 'components';
+import { getArtistsAPI } from 'actions';
+import { ArtistInterface } from 'models';
+import { ApplicationState } from 'reducers';
 import { connect } from 'react-redux';
 interface StateProps {
   artists: ArtistInterface[];

@@ -20,26 +20,57 @@ interface DispatchProps {
   ) => void;
 }
 interface Props extends StateProps, DispatchProps {}
-class NavBarTwoButtonsComponent extends React.Component<Props> {
-  showDelete: boolean = false;
-  showComplete: boolean = false;
+
+interface State {
+  showDelete: boolean;
+  showComplete: boolean;
+}
+class NavBarTwoButtonsComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showDelete: false,
+      showComplete: false
+    };
+  }
+
+  updateShowDelete(condition: boolean): void {
+    this.setState({
+      showDelete: condition
+    });
+  }
+
+  updateShowComplete(condition: boolean): void {
+    this.setState({
+      showComplete: condition
+    });
+  }
+
+  updateShowCompleteAndDelete(
+    showDelete: boolean,
+    showComplete: boolean
+  ): void {
+    this.setState({
+      showComplete: showComplete,
+      showDelete: showDelete
+    });
+  }
+
   showMessage(item: number): void {
     if (item === 0) {
-      this.showDelete = true;
+      this.updateShowDelete(true);
     } else if (item === 1) {
-      this.showComplete = true;
+      this.updateShowComplete(true);
     }
-    this.forceUpdate();
   }
   hideMessage(): void {
-    this.showDelete = false;
-    this.showComplete = false;
-    this.forceUpdate();
+    this.updateShowCompleteAndDelete(false, false);
   }
   confirmComplete(): React.ReactNode {
     return (
       <IonAlert
-        isOpen={this.showComplete}
+        isOpen={this.state.showComplete}
         onDidDismiss={(): void => this.hideMessage()}
         header={this.props.rightLabel}
         message="Do you want to save changes?"
@@ -65,7 +96,7 @@ class NavBarTwoButtonsComponent extends React.Component<Props> {
   confirmDelete(): React.ReactNode {
     return (
       <IonAlert
-        isOpen={this.showDelete}
+        isOpen={this.state.showDelete}
         onDidDismiss={(): void => this.hideMessage()}
         header={this.props.leftLabel}
         message="Do you want to permanently delete?"

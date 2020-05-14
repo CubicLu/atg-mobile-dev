@@ -2,7 +2,8 @@ import {
   Action,
   SettingsActionType,
   SettingsReducerType,
-  ModalTypeInterface
+  ModalTypeInterface,
+  FilterItemInterface
 } from '../models';
 import createReducer from './createReducer';
 import {
@@ -59,7 +60,8 @@ const defaultState: SettingsReducerType = {
   genreFilters: [],
   selectedGenres: [],
   notifications: 10,
-  settingsMenu: settingsMenu
+  settingsMenu: settingsMenu,
+  selectedEras: []
 };
 
 export const settingsReducer = createReducer<SettingsReducerType>(
@@ -108,6 +110,30 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         showToast: false
+      };
+    },
+
+    [SettingsActionType.REMOVE_SELECTED_ERA](
+      state: SettingsReducerType,
+      action: Action<FilterItemInterface>
+    ): SettingsReducerType {
+      let eraFilters = [...state.eraFilters];
+      eraFilters.splice(action.payload.i, 1);
+      return {
+        ...state,
+        eraFilters: eraFilters
+      };
+    },
+
+    [SettingsActionType.REMOVE_SELECTED_GENRE](
+      state: SettingsReducerType,
+      action: Action<FilterItemInterface>
+    ): SettingsReducerType {
+      let selectedGenres = [...state.selectedGenres];
+      selectedGenres.splice(action.payload.i, 1);
+      return {
+        ...state,
+        selectedGenres: selectedGenres
       };
     }
   }

@@ -37,4 +37,5 @@ export interface SettingsReducerType {
   readonly notifications: number;
   readonly settingsMenu: MenuInterface[];
   readonly showToast: boolean;
+  readonly selectedEras: string[];
 }

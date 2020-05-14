@@ -1,5 +1,5 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
-import { API, APIBeta } from '../../utils/api';
+import { API, API_MOCK } from '../../utils/api';
 import { ChannelInterface, SubscriberActionType } from '../../models';
 import {
   getSubscriberArtistsAPISuccess,
@@ -9,7 +9,7 @@ import {
 export const getSubscriberArtistsRequest = async (
   id: string
 ): Promise<ChannelInterface> =>
-  await APIBeta.get(`subscribers/${id.toString()}/artists`);
+  await API_MOCK.get(`subscribers/${id.toString()}/artists`);
 
 function* getSubscriberArtistsAPI({ payload }: any): ReturnType<any> {
   try {

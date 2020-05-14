@@ -22,7 +22,8 @@ const defaultState: ArtistReducerType = {
   loading: false,
   successMessage: null,
   errorMessage: null,
-  event: null
+  event: null,
+  videos: null
 };
 
 export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
@@ -154,6 +155,43 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     state: ArtistReducerType,
     action: Action<
       ArtistActionType.GET_EVENT_API_FAILURE,
+      APIErrorInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload!.message
+    };
+  },
+
+  [ArtistActionType.GET_VIDEO_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+
+  [ArtistActionType.GET_VIDEO_API_SUCCESS](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_VIDEO_API_SUCCESS,
+      APIResponseInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      videos: action.payload!.data
+    };
+  },
+
+  [ArtistActionType.GET_VIDEO_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_VIDEO_API_FAILURE,
       APIErrorInterface<any>
     >
   ): ArtistReducerType {

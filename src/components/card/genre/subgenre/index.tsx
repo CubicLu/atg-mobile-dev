@@ -21,32 +21,56 @@ interface Props extends StateProps, DispatchProps {
   background?: string;
 }
 
-class SubGenreModalComponent extends React.Component<Props> {
-  indeterminateState: boolean = false;
-  selectAll: boolean = false;
-  subGenres = this.props.subGenres;
+interface State {
+  selectAll: boolean;
+  indeterminateState: boolean;
+  subGenres: SubGenreInterface[];
+}
+class SubGenreModalComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectAll: false,
+      indeterminateState: false,
+      subGenres: this.props.subGenres
+    };
+  }
   componentDidMount(): void {
     this.verifyCheckbox();
   }
+  updateStateSelectAll(condition): void {
+    let subgenres = this.state.subGenres;
+    subgenres.forEach((item: SubGenreInterface): void => {
+      item.selected = condition;
+    });
+
+    this.setState({
+      subGenres: subgenres
+    });
+  }
+
+  updateState(indeterminateState: boolean, selectAll: boolean): void {
+    this.setState({
+      indeterminateState: indeterminateState,
+      selectAll: selectAll
+    });
+  }
 
   verifyCheckbox(): void {
-    const allItems = this.subGenres.length;
+    const allItems = this.state.subGenres.length;
     let selected = 0;
 
-    this.subGenres.forEach((item: SubGenreInterface): void => {
+    this.state.subGenres.map((item: SubGenreInterface): void => {
       if (item.selected) selected++;
     });
+
     if (selected > 0 && selected < allItems) {
-      this.indeterminateState = true;
-      this.selectAll = false;
+      this.updateState(true, false);
     } else if (selected === allItems) {
-      this.selectAll = true;
-      this.indeterminateState = false;
+      this.updateState(false, true);
     } else {
-      this.indeterminateState = false;
-      this.selectAll = false;
+      this.updateState(false, false);
     }
-    this.forceUpdate();
   }
   selectGenre(): void {
     let selectedGenresArray = this.props.selectedGenres;
@@ -56,6 +80,13 @@ class SubGenreModalComponent extends React.Component<Props> {
     }
   }
 
+  updateStateSelected(i: number): void {
+    let subgenres = this.state.subGenres;
+    subgenres[i].selected = !subgenres[i].selected;
+    this.setState({
+      subGenres: subgenres
+    });
+  }
   unselectGenre(): void {
     let selectedGenresArray = this.props.selectedGenres;
     if (selectedGenresArray.includes(this.props.name)) {
@@ -85,29 +116,28 @@ class SubGenreModalComponent extends React.Component<Props> {
               <IonCheckbox
                 slot="end"
                 onClick={(): void => {
-                  this.indeterminateState = false;
-                  this.selectAll = !this.selectAll;
-                  this.subGenres.forEach((item: SubGenreInterface): void => {
-                    item.selected = this.selectAll;
-                  });
-                  this.selectAll ? this.selectGenre() : this.unselectGenre();
-                  this.forceUpdate();
+                  this.updateState(false, !this.state.selectAll);
+                  this.updateStateSelectAll(!this.state.selectAll);
+
+                  this.state.selectAll
+                    ? this.selectGenre()
+                    : this.unselectGenre();
                 }}
                 mode={'md'}
                 className={'checkbox-outline'}
-                checked={this.selectAll}
-                indeterminate={this.indeterminateState}
+                checked={this.state.selectAll}
+                indeterminate={this.state.indeterminateState}
               />
             </li>
-            {this.subGenres &&
-              this.subGenres.map(
+            {this.state.subGenres &&
+              this.state.subGenres.map(
                 (data, i): React.ReactNode => (
                   <li key={i}>
                     <div className="name">{data.name}</div>
                     <InputCheckbox
                       action={(): void => {
-                        this.subGenres[i].selected = !data.selected;
-                        this.subGenres[i].selected
+                        this.updateStateSelected(i);
+                        this.state.subGenres[i].selected
                           ? this.selectGenre()
                           : this.unselectGenre();
                         this.verifyCheckbox();

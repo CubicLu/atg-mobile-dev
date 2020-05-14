@@ -34,9 +34,19 @@ import '@ionic/react/css/display.css';
 import { hideKeyboard, showKeyboard, didShowKeyboard } from './utils';
 import { CordovaMedia, SplashScreen } from './components';
 
-export default class App extends React.Component {
-  authenticated: boolean = true;
-  enableMedia?: boolean = false;
+interface State {
+  authenticated: boolean;
+  enableMedia: boolean;
+}
+export default class App extends React.Component<{}, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authenticated: true,
+      enableMedia: false
+    };
+  }
 
   UNSAFE_componentWillMount(): void {
     this.loadCordova();
@@ -46,13 +56,24 @@ export default class App extends React.Component {
     });
   }
 
+  updateEnableMedia(condition: boolean): void {
+    this.setState({
+      enableMedia: condition
+    });
+  }
+
+  updateAuthenticated(condition: boolean): void {
+    this.setState({
+      authenticated: condition
+    });
+  }
+
   loadCordova(): void {
     document.addEventListener('deviceready', (): void => {
       console.log('cordova Loaded!');
       setTimeout((): void => (navigator as any).splashscreen.hide(), 200);
       (window as any).deviceready = true;
-      this.enableMedia = true;
-      this.forceUpdate();
+      this.updateEnableMedia(true);
     });
     window.addEventListener('keyboardWillHide', (): void => {
       window.Keyboard.isVisible && hideKeyboard();
@@ -67,20 +88,19 @@ export default class App extends React.Component {
 
   render(): React.ReactNode {
     store.subscribe((): void => {
-      if (this.authenticated) return; //temporary to debug
+      if (this.state.authenticated) return; //temporary to debug
       const { loggedUser } = store.getState().authAPI;
-      if (this.authenticated === !!loggedUser) return;
-      this.authenticated = !!loggedUser;
-      this.forceUpdate();
+      if (this.state.authenticated === !!loggedUser) return;
+      this.updateAuthenticated(!!loggedUser);
     });
 
-    if (this.authenticated) {
+    if (this.state.authenticated) {
       return (
         <Provider store={store}>
           <IonApp>
             <SplashScreen />
             <HomePage />
-            {this.enableMedia && <CordovaMedia />}
+            {this.state.enableMedia && <CordovaMedia />}
           </IonApp>
         </Provider>
       );

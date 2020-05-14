@@ -21,12 +21,14 @@ interface State {
   showCameraActions: boolean;
   errorMessage?: string;
   postText?: string;
+  cameraFiles: CameraFile[];
 }
 class CommunityNewPostPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      showCameraActions: false
+      showCameraActions: false,
+      cameraFiles: []
     };
   }
 
@@ -37,7 +39,6 @@ class CommunityNewPostPage extends React.Component<Props, State> {
     );
   }
   navCamera = (navigator as any).camera as Camera;
-  cameraFiles: CameraFile[] = [];
 
   getCameraOptions(sourceType: number = 2): CameraOptions {
     return {
@@ -52,14 +53,18 @@ class CommunityNewPostPage extends React.Component<Props, State> {
       destinationType: 1
     };
   }
+
   getCameraPicture(sourceType: number = 2): void {
     this.navCamera?.getPicture(
       (data: string): void => {
-        this.cameraFiles.push({
+        let cameraFiles = this.state.cameraFiles;
+        cameraFiles.push({
           fileUrl: convertIonicFileSrc(data),
           selected: true
         });
-        this.forceUpdate();
+        this.setState({
+          cameraFiles: cameraFiles
+        });
       },
       (error: string): void => console.log('Camera Error', error),
       this.getCameraOptions(sourceType)
@@ -86,21 +91,34 @@ class CommunityNewPostPage extends React.Component<Props, State> {
     this.setState({ showCameraActions: opt });
   }
   removeImage(data: string): void {
-    const idx = this.cameraFiles.findIndex((x): boolean => x.fileUrl === data);
-    this.cameraFiles.splice(idx, 1);
+    const idx = this.state.cameraFiles.findIndex(
+      (x): boolean => x.fileUrl === data
+    );
+    let cameraFiles = this.state.cameraFiles;
+    cameraFiles.splice(idx, 1);
+    this.setState({
+      cameraFiles: cameraFiles
+    });
     this.validatePost();
   }
   selectImage(data: string): void {
-    const file = this.cameraFiles.find((x): boolean => x.fileUrl === data);
-    if (!file) {
+    let cameraFiles = this.state.cameraFiles;
+    const id = cameraFiles.findIndex((x): boolean => x.fileUrl === data);
+    if (id !== -1) {
       return;
     }
-    file.selected = !file?.selected;
+
+    cameraFiles[id].selected = !cameraFiles[id].selected;
+
+    this.setState({
+      cameraFiles: cameraFiles
+    });
+
     this.validatePost();
   }
 
   get selectedFiles(): CameraFile[] {
-    return this.cameraFiles.filter((f): boolean => f.selected);
+    return this.state.cameraFiles.filter((f): boolean => f.selected);
   }
   validatePost(): void {
     const selected = this.selectedFiles;
@@ -142,7 +160,7 @@ class CommunityNewPostPage extends React.Component<Props, State> {
           />
         </div>
 
-        {this.cameraFiles.map(
+        {this.state.cameraFiles.map(
           (post, id): React.ReactNode => (
             <CardImage
               className="no-shadow"

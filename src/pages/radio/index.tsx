@@ -10,26 +10,28 @@ import {
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
 import { ChannelInterface, RadioInterface } from '../../models';
 import { RouteChildrenProps } from 'react-router';
+import { Nullable } from '../../types';
 
 interface Props extends RouteChildrenProps<MatchParams> {}
 interface MatchParams {
   genre: string;
 }
 interface State {
-  currentGenre?: ChannelInterface;
+  paramGenre: Nullable<string>;
+  currentGenre: Nullable<ChannelInterface>;
 }
 
 export default class RadioPage extends React.Component<Props, State> {
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = {
+      paramGenre: null,
+      currentGenre: null
+    };
   }
 
-  componentDidUpdate(o: Props): void {
-    if (o.match?.params.genre === this.props.match?.params.genre) return;
-    this.getGenre();
-  }
-  componentDidMount(): void {
+  UNSAFE_componentWillMount(): void {
     this.getGenre();
   }
 

@@ -5,4 +5,9 @@ const API = axios.create({
   timeout: 10000
 });
 
-export { API };
+const APIBeta = axios.create({
+  baseURL: 'http://api.mocked.panthr-music.com',
+  timeout: 10000
+});
+
+export { API, APIBeta };

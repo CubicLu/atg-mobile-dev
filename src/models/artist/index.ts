@@ -13,6 +13,7 @@ export interface ArtistInterface {
   readonly avatar?: string;
   readonly support?: boolean;
   readonly username: string;
+  readonly nickname: string;
   readonly backgroundGradient?: GradientColorsInterface | null;
   readonly featuredTracks?: FeaturedTrackInterface[];
   readonly newReleases?: NewRealeseInterface[];
@@ -137,4 +138,15 @@ export interface BandMemberInterface {
   readonly image: string;
   readonly name: string;
   readonly redirectUrl?: string;
+}
+
+/* BETA */
+export interface ArtistBetaInterface {
+  readonly name: string;
+  readonly id: string;
+  readonly nickname: string;
+  readonly thumbnail: string;
+  readonly cardImage: string;
+  readonly backgroundImage: string;
+  readonly primaryColor: string;
 }

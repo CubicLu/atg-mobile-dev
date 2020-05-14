@@ -4,17 +4,12 @@ import {
   Header,
   SliderStories,
   CardPost,
-  //ButtonIcon,
-  //Button,
-  //ChatMessageIcon,
-  SectionTitle,
-  HeaderOverlay
+  SectionTitle
 } from './../../../components';
 import { ApplicationState } from './../../../reducers';
 import { getCommunityByArtistUsernameAPI } from './../../../actions';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonContent, withIonLifeCycle } from '@ionic/react';
 import { connect } from 'react-redux';
-//import { ShapesSize, Colors } from '../../../types';
 import { CommunityArtistInterface } from '../../../models';
 import { RouteChildrenProps } from 'react-router-dom';
 interface MatchParams {
@@ -36,45 +31,19 @@ interface State {
 
 //USED WHEN WE DO HAVE ARTIST
 class CommunityArtistPage extends React.Component<Props, State> {
-  private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
     super(props);
     this.state = { joined: false };
   }
-  componentDidMount(): void {
-    this.loadPostsAndStories(this.props.match!.params);
-  }
-  loadPostsAndStories(p: MatchParams): void {
-    if (p.artistId !== this.props.currentCommunityArtist?.username) {
-      this.props.getCommunityByArtistUsernameAPI(p.artistId);
+  ionViewWillEnter(): void {
+    const artistId = this.props.match?.params.artistId;
+    console.log('ionViewDidLoad');
+    console.log(artistId);
+    if (!artistId) return;
+    console.log(this.props.currentCommunityArtist?.username);
+    if (artistId !== this.props.currentCommunityArtist?.username) {
+      this.props.getCommunityByArtistUsernameAPI(artistId);
     }
-  }
-  UNSAFE_componentWillReceiveProps(nProps: Props): void {
-    const newArtist = nProps.match!.params.artistId;
-    const currentArtist = this.props.currentCommunityArtist?.username;
-    if (newArtist === currentArtist) return;
-  }
-  renderTitleAndFilterPosts(): React.ReactNode {
-    return (
-      <div className="row filter mx-3 flex">
-        <div className="h1 p-0 letter-spacing-2 align-start my-auto">
-          {this.props.currentCommunityArtist?.name.toUpperCase()}
-        </div>
-        <div className="align-end my-auto">
-          {/* DISABLED FOR BETA */}
-          {/* <Button
-            type={ShapesSize.rounded}
-            color={Colors.transparentGray}
-            label={'Filter'}
-            onClick={(): void =>
-              this.props.history.push(
-                '/community/artist/pharrell-williams/filter'
-              )
-            }
-          /> */}
-        </div>
-      </div>
-    );
   }
 
   // renderJoinButton(): React.ReactNode {
@@ -91,102 +60,85 @@ class CommunityArtistPage extends React.Component<Props, State> {
   //   );
   // }
 
+  renderBackground(): React.ReactNode {
+    const art = this.props.currentCommunityArtist!;
+    let color1 =
+      art.backgroundGradient !== null ? art.backgroundGradient?.color1 : '';
+    let color2 =
+      art.backgroundGradient !== null ? art.backgroundGradient?.color1 : '';
+    const useArtistBackground = false;
+    return useArtistBackground && art.backgroundGradient !== null ? (
+      <BackgroundImage
+        gradient={`180deg,${color1},${color2}`}
+        backgroundTopDark
+        backgroundTop
+        backgroundTopOpacity={0.5}
+        backgroundBottom
+        backgroundBottomDark={false}
+        backgroundBottomOpacity={0.08}
+      />
+    ) : (
+      <BackgroundImage default />
+    );
+  }
+
   render(): React.ReactNode {
     //const { joined } = this.state;
     const { currentCommunityArtist } = this.props;
     if (!currentCommunityArtist) return <IonPage id="community-page" />;
 
-    let color1 =
-      currentCommunityArtist.backgroundGradient !== null
-        ? currentCommunityArtist.backgroundGradient?.color1
-        : '';
-    let color2 =
-      currentCommunityArtist.backgroundGradient !== null
-        ? currentCommunityArtist.backgroundGradient?.color1
-        : '';
-    const useArtistBackground = false;
-
     return (
       <IonPage id="community-page">
-        {useArtistBackground &&
-        currentCommunityArtist.backgroundGradient !== null ? (
-          <BackgroundImage
-            gradient={`180deg,${color1},${color2}`}
-            backgroundTopDark
-            backgroundTop
-            backgroundTopOpacity={0.5}
-            backgroundBottom
-            backgroundBottomDark={false}
-            backgroundBottomOpacity={0.08}
-          />
-        ) : (
-          <BackgroundImage default />
-        )}
-
+        {this.renderBackground()}
         <Header
-          leftBackButton={true}
-          leftBackHref="/community"
-          title={currentCommunityArtist.fullname}
-          titleClassName={'community-artist-name'}
-          rightActionButton={false}
-          // rightContent={
-          //   this.state.joined && (
-          //     <ButtonIcon
-          //       styles={{ width: 36, height: 36 }}
-          //       type={ShapesSize.circle}
-          //       color={Colors.support}
-          //       icon={<ChatMessageIcon />}
-          //     />
-          //   )
-          // }
-        >
-          <div className="community m-4">&nbsp;</div>
-        </Header>
-        <IonContent
-          onIonScroll={(e): void =>
-            this.headerRef.current?.handleParentScroll(e)
+          fixed={false}
+          leftContent={
+            <div className="h2 title-left-single">
+              {currentCommunityArtist.fullname}
+            </div>
           }
-        >
-          <HeaderOverlay ref={this.headerRef} />
-          <div className={'community-page mt-3 content'}>
-            {/* DISABLED FOR BETA */}
-            {/* {!joined && this.renderJoinButton()} */}
+        />
 
-            {currentCommunityArtist.stories &&
-              currentCommunityArtist.stories.length > 0 && (
-                <React.Fragment>
-                  <SectionTitle
-                    title={'DAILY DRIP'}
-                    viewAll={true}
-                    className="mt-1 mx-3"
-                    onClickAll={(): void => {
-                      this.props.history.push(
-                        `/community/artist/${currentCommunityArtist.username}/daily-drip`
-                      );
-                    }}
-                  />
-                  <SliderStories
-                    labelKey="label"
-                    imageKey="image"
-                    data={currentCommunityArtist.stories}
-                  />
-                </React.Fragment>
-              )}
+        <IonContent>
+          <div className={'mt-3'} />
+          {/* DISABLED FOR BETA */}
+          {/* {!joined && this.renderJoinButton()} */}
 
-            {this.renderTitleAndFilterPosts()}
-
-            {currentCommunityArtist.posts?.map(
-              (data, i): React.ReactNode => (
-                <CardPost
-                  clickToOpen={true}
-                  key={i}
-                  post={data}
-                  showUser={false}
-                  showOptions={false}
+          {currentCommunityArtist.stories &&
+            currentCommunityArtist.stories.length > 0 && (
+              <React.Fragment>
+                <SectionTitle
+                  title={'DAILY DRIP'}
+                  viewAll={true}
+                  className="mt-1 mx-3"
+                  viewAllUrl={`/community/artist/${currentCommunityArtist.username}/daily-drip`}
                 />
-              )
+
+                <SliderStories
+                  labelKey="label"
+                  imageKey="image"
+                  data={currentCommunityArtist.stories}
+                />
+              </React.Fragment>
             )}
+
+          <div className="row filter mx-3 flex">
+            <div className="h1 p-0 letter-spacing-2 align-start my-auto">
+              EXCLUSIVES
+            </div>
           </div>
+
+          {currentCommunityArtist.posts?.map(
+            (data, i): React.ReactNode => (
+              <CardPost
+                clickToOpen={true}
+                key={i}
+                post={data}
+                showUser={false}
+                showOptions={false}
+              />
+            )
+          )}
         </IonContent>
       </IonPage>
     );
@@ -200,4 +152,4 @@ const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
 
 export default connect(mapStateToProps, {
   getCommunityByArtistUsernameAPI
-})(CommunityArtistPage);
+})(withIonLifeCycle(CommunityArtistPage));

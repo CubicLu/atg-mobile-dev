@@ -20,7 +20,6 @@ import {
 import { RouteComponentProps, withRouter } from 'react-router';
 import {
   ChannelInterface,
-  ArtistInterface,
   PlaylistInterface,
   SongInterface
 } from '../../../models';
@@ -31,8 +30,7 @@ import { ApplicationState } from '../../../reducers';
 import { guitarPlaylist } from '../../../reducers/playerReducer';
 
 interface StateProps {
-  radioArtist: ChannelInterface;
-  currentArtist: ArtistInterface;
+  radioArtist: ChannelInterface | null;
 }
 
 interface DispatchProps {
@@ -40,7 +38,6 @@ interface DispatchProps {
 }
 
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
-
 class RadioHistoryPage extends React.Component<Props> {
   onSongClick = (artistId: string, album: string): void => {
     this.props.setPlaylist(guitarPlaylist, guitarPlaylist.items[0]);
@@ -51,7 +48,7 @@ class RadioHistoryPage extends React.Component<Props> {
     return (
       <IonPage id="radio-history-page">
         <HeaderOverlay ref={this.headerRef} />
-        <Header leftBackButton={true} title={this.props.radioArtist.title} />
+        <Header leftBackButton={true} title={this.props.radioArtist?.title} />
         <BackgroundImage
           gradient="180deg,#261546,#0c090b"
           backgroundTopDark
@@ -89,7 +86,7 @@ class RadioHistoryPage extends React.Component<Props> {
                           </div>
                           <div className="col s3 support">
                             <ButtonSupportIcon
-                              artist={this.props.currentArtist}
+                              artist={null}
                               id={data.artistId}
                               supported={data.isSupported}
                             />
@@ -169,10 +166,9 @@ class RadioHistoryPage extends React.Component<Props> {
   ];
 }
 
-const mapStateToProps = ({ radioAPI, artistAPI }: ApplicationState): object => {
+const mapStateToProps = ({ radioAPI }: ApplicationState): object => {
   const { radioArtist } = radioAPI;
-  const { currentArtist } = artistAPI;
-  return { radioArtist, currentArtist };
+  return { radioArtist };
 };
 
 export default withRouter(

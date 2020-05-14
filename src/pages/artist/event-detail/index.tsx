@@ -9,24 +9,23 @@ import {
   CardEvent,
   ListItem
 } from './../../../components';
-import { EventInterface } from './../../../models';
+import { EventInterface, FriendInterface } from './../../../models';
 import { ShapesSize, Colors, GradientDirection } from './../../../types';
 import { ApplicationState } from './../../../reducers';
-import {
-  getArtistEventAPI,
-  updateArtistSetInitialProperty
-} from './../../../actions';
+import { getArtistEventAPI } from './../../../actions';
+import { getFriendsAPI } from './../../../actions/api/friendsActions';
 
 interface State {
   willGo: boolean;
 }
 interface StateProps {
   event: EventInterface | null;
+  friends: FriendInterface[];
 }
 
 interface DispatchProps {
   getArtistEventAPI: (username: string, eventId: string) => void;
-  updateArtistSetInitialProperty: (property: string) => void;
+  getFriendsAPI: () => void;
 }
 
 interface MatchParams {
@@ -47,21 +46,19 @@ class EventDetailPage extends React.Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (this.props.event == null) {
-      this.props.getArtistEventAPI(
-        this.props.match.params.id,
-        this.props.match.params.eventId
-      );
-    } else if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.match.params.eventId !== this.props.match.params.eventId
-    ) {
-      this.props.getArtistEventAPI(
-        nextProps.match.params.id,
-        nextProps.match.params.eventId
-      );
+  artist = '';
+  eventId = '-1';
+  componentDidUpdate(): void {
+    if (!(this.props.friends && this.props.friends.length > 0)) {
+      this.props.getFriendsAPI();
     }
+
+    const { id, eventId } = this.props.match.params;
+    if (id === this.artist && eventId === this.eventId) return;
+
+    this.artist = this.props.match.params.id;
+    this.eventId = this.props.match.params.eventId;
+    this.props.getArtistEventAPI(this.artist, this.eventId);
   }
 
   render(): React.ReactNode {
@@ -70,11 +67,7 @@ class EventDetailPage extends React.Component<Props, State> {
         <Header
           rightCloseButton
           title="Who's going"
-          leftBackOnClick={(): void => this.props.history.goBack()}
           rightCloseHref={`/artist/${this.props.match.params.id}/event`}
-          rightCloseOnClick={(): void => {
-            this.props.updateArtistSetInitialProperty('event');
-          }}
         >
           <div className={'mt-12 flex-justify-content-center'}>
             <Button
@@ -92,20 +85,16 @@ class EventDetailPage extends React.Component<Props, State> {
             id={Number(this.props.match.params.eventId)}
             artistUsername={this.props.match.params.id}
             data={this.props.event}
+            disableGoing={true}
           />
         </Header>
 
-        <BackgroundImage
-          gradient={'180deg,#000,#20123a'}
-          backgroundBottom={true}
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.15}
-        />
+        <BackgroundImage default />
 
         <IonContent>
           <IonList lines="none">
-            {this.props.event?.whoIsGoing?.map(
-              (data, i): React.ReactNode => {
+            {this.props.friends.slice(2, 11).map(
+              (user, i): React.ReactNode => {
                 return (
                   <ListItem
                     key={i}
@@ -113,10 +102,10 @@ class EventDetailPage extends React.Component<Props, State> {
                     sliding={false}
                     bottomBorder={false}
                     hasAvatar={true}
-                    avatarImage={data.avatar}
+                    avatarImage={user.image}
                     avatarSize={48}
-                    username={data.username}
-                    connectButton={true}
+                    username={user.username}
+                    connectButton={!user.isFriend}
                   />
                 );
               }
@@ -128,14 +117,17 @@ class EventDetailPage extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
+const mapStateToProps = ({
+  friendAPI,
+  artistAPI
+}: ApplicationState): StateProps => {
+  const { friends } = friendAPI;
   const { event } = artistAPI;
-  return { event };
+  return { friends, event };
 };
 
 export default withRouter(
-  connect(mapStateToProps, {
-    getArtistEventAPI,
-    updateArtistSetInitialProperty
-  })(EventDetailPage)
+  connect(mapStateToProps, { getArtistEventAPI, getFriendsAPI })(
+    EventDetailPage
+  )
 );

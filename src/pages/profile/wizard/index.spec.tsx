@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import WizardPage from './index';
-import {store} from './../../store';
+import {store} from './../../../store';
 import ReactDOM from 'react-dom';
 
 describe('WizardPage render', () => {

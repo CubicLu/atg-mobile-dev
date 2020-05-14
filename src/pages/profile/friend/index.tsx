@@ -23,7 +23,6 @@ import { Nullable } from '../../../types';
 interface State {
   pending: boolean;
 }
-
 interface MatchParams {
   id: string;
 }
@@ -31,6 +30,7 @@ interface StateProps {
   profileFriendTabs: MenuInterface[];
   activeProfileFriendTab: string;
   currentFriend?: Nullable<FriendInterface>;
+  loading: boolean;
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
@@ -42,53 +42,44 @@ interface Props
     DispatchProps,
     RouteChildrenProps<MatchParams> {}
 
-class FriendProfilePage extends React.Component<Props, State> {
+class FriendProfilePage extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
-    this.state = {
-      pending: false
-    };
+    this.state = { pending: false };
   }
 
   ionViewWillEnter(): void {
-    this.props.getFriendAPI(this.props.match?.params.id || 'Amanda');
+    this.props.getFriendAPI(this.props.match!.params.id);
   }
 
-  changeProfileFriendTab = (event: MenuInterface): void => {
+  changeFriendTab = (event: MenuInterface): void => {
     if (event.id === this.props.activeProfileFriendTab) return;
     this.props.updateSettingsProperty('activeProfileFriendTab', event.id);
   };
 
-  renderActiveTab(tabs: MenuInterface[], activeId, isFriend): React.ReactNode {
-    const Tab = tabs.find((x): boolean => x.id === activeId)!.component;
-    return <Tab isFriend={isFriend} />;
-  }
+  friendBackground =
+    'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background-2.png';
+  nonFrdbackground =
+    'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background.png';
 
   renderProfileFriend(): React.ReactNode {
-    const { profileFriendTabs, activeProfileFriendTab } = this.props;
+    const tabs = this.props.profileFriendTabs;
+    const active = this.props.activeProfileFriendTab;
+    const Tab = tabs.find((x): boolean => x.id === active)!.component;
+
     return (
-      <>
+      <React.Fragment>
         <BackgroundImage
-          gradient="180deg,#652ddd,#2c0d5c"
-          backgroundImage={
-            'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background-2.png'
-          }
+          gradient="180deg,#652ddd99,#2c0d5c99"
+          gradientOverlay={true}
+          backgroundImage={this.props.currentFriend?.background}
         />
         <div className={'profile-page'}>
           <HeaderProfile currentFriend={this.props.currentFriend} />
-          <Menu
-            tabs={profileFriendTabs}
-            activeId={activeProfileFriendTab}
-            onClick={this.changeProfileFriendTab}
-          />
-          {this.renderActiveTab(
-            profileFriendTabs,
-            activeProfileFriendTab,
-            false
-          )}
-          ;
+          <Menu tabs={tabs} activeId={active} onClick={this.changeFriendTab} />
+          {<Tab />}
         </div>
-      </>
+      </React.Fragment>
     );
   }
 
@@ -97,14 +88,6 @@ class FriendProfilePage extends React.Component<Props, State> {
   };
 
   renderNonFriendProfile(): React.ReactNode {
-    const { currentFriend } = this.props;
-    const { pending } = this.state;
-    const name = currentFriend?.name || this.props.match?.params.id;
-    const city = currentFriend?.city || '';
-    const followers = currentFriend?.followers || 100;
-    const background =
-      currentFriend?.background ||
-      'https://frontend-mocks.s3-us-west-1.amazonaws.com/profile/background.png';
     return (
       <>
         <BackgroundImage
@@ -113,46 +96,64 @@ class FriendProfilePage extends React.Component<Props, State> {
           backgroundBottom
           backgroundBottomDark={false}
           backgroundBottomOpacity={0.1}
-          backgroundImage={background}
-        >
-          <div className={'fan-page-component'} id={'profile-page-non-friend'}>
-            <Header />
-            <div className="fan-page-component__ellipse">
-              <div className="fan-page-component__ellipse--content">
-                <h1>{name}</h1>
-                <p>{city}</p>
-                {!pending ? (
-                  <button
-                    className={'not-connected'}
-                    onClick={this.togglePendingState}
-                  >
-                    <span>CONNECT</span>
-                  </button>
-                ) : (
-                  <button
-                    className={'pending'}
-                    onClick={this.togglePendingState}
-                  >
-                    <span>PENDING</span>
-                  </button>
-                )}
-                <p>
-                  <span>{followers ? addEndingToNumber(followers) : '0'}</span>{' '}
-                  Followers
-                </p>
-              </div>
+          backgroundImage={this.props.currentFriend?.background}
+        />
+        <div className={'fan-page-component'} id={'profile-page-non-friend'}>
+          <Header />
+          <div className="fan-page-component__ellipse">
+            <div className="fan-page-component__ellipse--content">
+              <h1>{this.props.currentFriend?.name}</h1>
+              <p>{this.props.currentFriend?.city}</p>
+
+              {!this.state.pending ? (
+                <button
+                  className={'not-connected'}
+                  onClick={this.togglePendingState}
+                >
+                  <span>CONNECT</span>
+                </button>
+              ) : (
+                <button className={'pending'} onClick={this.togglePendingState}>
+                  <span>PENDING</span>
+                </button>
+              )}
+              <p>
+                <span>
+                  {addEndingToNumber(this.props.currentFriend?.followers || 0)}
+                </span>{' '}
+                Followers
+              </p>
             </div>
           </div>
-        </BackgroundImage>
+        </div>
       </>
     );
   }
 
+  renderLoading(): React.ReactNode {
+    return (
+      <div className="loader">
+        <div className="icon" />
+      </div>
+    );
+  }
   render(): React.ReactNode {
     return (
       <IonPage id="friend-profile-page">
         <IonContent id="friend-profile-page" scrollY={false}>
-          {this.props.currentFriend?.friend
+          {this.props.loading && this.renderLoading()}
+          {!this.props.currentFriend && (
+            <BackgroundImage
+              gradient="180deg,#652ddd,#2c0d5c"
+              backgroundTop={false}
+              backgroundBottom
+              backgroundBottomDark={false}
+              backgroundBottomOpacity={0.1}
+              backgroundImage={this.nonFrdbackground}
+            />
+          )}
+          {this.props.currentFriend !== null &&
+          this.props.currentFriend?.isFriend
             ? this.renderProfileFriend()
             : this.renderNonFriendProfile()}
         </IonContent>
@@ -165,8 +166,9 @@ const mapStateToProps = ({
   friendAPI
 }: ApplicationState): StateProps => {
   const { activeProfileFriendTab, profileFriendTabs } = settings;
-  const { currentFriend } = friendAPI;
+  const { loading, currentFriend } = friendAPI;
   return {
+    loading,
     activeProfileFriendTab,
     profileFriendTabs,
     currentFriend

@@ -102,8 +102,8 @@ class SubGenreModalComponent extends React.Component<Props, State> {
       <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.2}
+          backgroundBottomDark={true}
+          backgroundBottomOpacity={0.15}
         />
         <div className={`modal-header ${this.props.background}`}>
           <span className="h2 dark baskerville">{this.props.name}</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
   Header,
@@ -13,14 +13,12 @@ import {
 } from '../../components';
 import {
   ChannelInterface,
-  ArtistInterface,
   SongInterface,
   PlaylistInterface
 } from '../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ApplicationState } from '../../reducers';
 import {
-  getArtistAPI,
   getRadioArtistAPI,
   setPlaylist,
   playSong,
@@ -33,9 +31,7 @@ interface MatchParams {
 }
 
 interface StateProps {
-  loading: boolean;
-  radioArtist: ChannelInterface;
-  currentArtist: ArtistInterface | null;
+  radioArtist: ChannelInterface | null;
   playing: boolean;
   paused: boolean;
   song: SongInterface | undefined;
@@ -43,7 +39,6 @@ interface StateProps {
 
 interface DispatchProps {
   getRadioArtistAPI: (id: string) => void;
-  getArtistAPI: (id: string) => void;
   pauseSong: () => void;
   playSong: (song: SongInterface) => void;
   setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
@@ -54,47 +49,46 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class RadioArtistPage extends React.Component<Props> {
-  refreshRadio(): void {
-    let artistRadioId = this.props.match.params.id;
-    this.props.getArtistAPI(artistRadioId);
-    let supported = this.props.currentArtist?.support;
-    if (this.props.currentArtist && !supported) {
-      this.props.history.push(`/artist/${this.props.match.params.id}`);
-    }
-    this.props.getRadioArtistAPI(artistRadioId);
-  }
   componentDidMount(): void {
-    this.refreshRadio();
+    this.props.getRadioArtistAPI(this.props.match.params.id);
   }
-  componentDidUpdate(prevProps): void {
-    if (this.props.match.params.id !== prevProps.match.params.id)
-      this.refreshRadio();
+  componentDidUpdate(): void {
+    if (this.props.radioArtist?.id !== this.props.match.params.id) {
+      this.props.getRadioArtistAPI(this.props.match.params.id);
+    }
   }
+
   private headerRef: React.RefObject<any> = React.createRef();
+
   render(): React.ReactNode {
+    if (!this.props.radioArtist) {
+      return (
+        <IonPage id="radio-artist-page">
+          <BackgroundImage default />
+        </IonPage>
+      );
+    }
+
     return (
       <IonPage id="radio-artist-page">
         <HeaderOverlay ref={this.headerRef} />
         <Header
           leftBackButton={true}
           rightContent={
-            <div
-              className="mt-1 default-button gold"
-              onClick={(): void =>
-                this.props.history.push(
-                  `/artist/${this.props.match.params.id}/event`
-                )
-              }
+            <IonRouterLink
+              routerLink={`/artist/${this.props.match.params.id}/event`}
             >
-              <TicketIcon color="#000000" />
-            </div>
+              <div className="mt-1 default-button gold">
+                <TicketIcon color="#000000" />
+              </div>
+            </IonRouterLink>
           }
           rightActionButton={false}
         />
 
         <BackgroundImage
-          gradient={this.props.radioArtist.color}
-          backgroundImage={this.props.radioArtist.image}
+          gradient={this.props.radioArtist?.color}
+          backgroundImage={this.props.radioArtist?.image}
           backgroundTop={false}
           backgroundBottom={true}
           backgroundBottomOpacity={0.3}
@@ -107,7 +101,6 @@ class RadioArtistPage extends React.Component<Props> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <div className="row mt-4" />
           <div className="row mt-4" />
           <RadioPlayer
             onPlayClick={(): void =>
@@ -159,16 +152,12 @@ class RadioArtistPage extends React.Component<Props> {
 }
 const mapStateToProps = ({
   radioAPI,
-  artistAPI,
   player
 }: ApplicationState): StateProps => {
-  const { radioArtist, loading } = radioAPI;
-  const { currentArtist } = artistAPI;
+  const { radioArtist } = radioAPI;
   const { playing, paused, song } = player;
   return {
     radioArtist,
-    loading,
-    currentArtist,
     playing,
     paused,
     song
@@ -177,7 +166,6 @@ const mapStateToProps = ({
 
 export default withRouter(
   connect(mapStateToProps, {
-    getArtistAPI,
     getRadioArtistAPI,
     setPlaylist,
     playSong,

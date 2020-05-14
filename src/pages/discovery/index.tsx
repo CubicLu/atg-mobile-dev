@@ -7,16 +7,16 @@ import {
   ContentLoader
 } from './../../components';
 import { ApplicationState } from '../../reducers';
-import { getCommunityStoriesAPI } from '../../actions';
+import { getCommunityByArtistUsernameAPI } from '../../actions';
 import { IonPage, IonContent, IonImg } from '@ionic/react';
 import { connect } from 'react-redux';
-import { StorieInterface } from '../../models';
+import { CommunityArtistInterface } from '../../models';
 
 interface StateProps {
-  stories: StorieInterface[];
+  currentCommunityArtist: CommunityArtistInterface | null;
 }
 interface DispatchProps {
-  getCommunityStoriesAPI: () => void;
+  getCommunityByArtistUsernameAPI: (username: string) => void;
 }
 interface Props extends StateProps, DispatchProps {}
 
@@ -31,7 +31,7 @@ class DiscoveryPage extends React.Component<Props, State> {
     };
   }
   componentDidMount(): void {
-    this.props.getCommunityStoriesAPI();
+    this.props.getCommunityByArtistUsernameAPI('pharrell-williams');
   }
 
   displayContent = (): void => {
@@ -98,7 +98,7 @@ class DiscoveryPage extends React.Component<Props, State> {
               <SliderStories
                 labelKey="label"
                 imageKey="image"
-                data={this.props.stories}
+                data={this.props.currentCommunityArtist?.stories}
               />
               <SectionTitle
                 className="mt-4 mx-3"
@@ -133,10 +133,10 @@ class DiscoveryPage extends React.Component<Props, State> {
 }
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
-  const { stories } = communityAPI;
-  return { stories };
+  const { currentCommunityArtist } = communityAPI;
+  return { currentCommunityArtist };
 };
 
 export default connect(mapStateToProps, {
-  getCommunityStoriesAPI
+  getCommunityByArtistUsernameAPI
 })(DiscoveryPage);

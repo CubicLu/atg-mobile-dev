@@ -106,9 +106,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
               <ButtonIcon
                 icon={<CloseIcon />}
                 styles={{ width: 32, height: 32 }}
-                onClick={(): void =>
-                  this.props.history.push('/community/artist/pharrell-williams')
-                }
+                onClick={(): void => this.props.history.goBack()}
               />
             </div>
           </div>

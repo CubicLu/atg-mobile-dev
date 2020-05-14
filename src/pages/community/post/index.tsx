@@ -59,8 +59,7 @@ class CommunityPostPage extends React.Component<Props> {
           <div className="flex space-between h-100">
             <div className="scroll-post h-100">
               <CardPost
-                className="mt-0 no-top-border"
-                imageClassName="no-top-border"
+                rounded={false}
                 clickToOpen={false}
                 post={this.getPost()}
                 showUser={false}

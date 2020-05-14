@@ -5,7 +5,7 @@ import { ShapesSize } from '../../../types';
 import moment from 'moment';
 
 interface Props {
-  data: MessageInterface;
+  user: MessageInterface;
   avatarSize?: number;
   showAvatar?: boolean;
   showDate?: boolean;
@@ -28,8 +28,8 @@ class RowChatComponent extends React.Component<Props> {
     onClick: (): void => {}
   };
   render(): React.ReactNode {
-    const { avatarSize, data, showDate, onClick } = this.props;
-    const read = data.read ? '' : 'not-read';
+    const { avatarSize, user, showDate, onClick } = this.props;
+    const read = user.read ? '' : 'not-read';
     const grayUser = this.props.dark ? 'gray' : '';
     const darkText = this.props.dark ? 'dark' : '';
     return (
@@ -43,17 +43,18 @@ class RowChatComponent extends React.Component<Props> {
               width={avatarSize}
               height={avatarSize}
               type={ShapesSize.circle}
-              image={data.avatar}
+              image={user.image}
+              avatarUrl={`/profile/${user.username}`}
             />
           )}
           <div className={'ml-1 flex-column'}>
-            <span className={`f6 bold ${grayUser}`}>@{data.username}</span>
-            <span className={`f5 ${darkText}`}>{data.message}</span>
+            <span className={`f6 bold ${grayUser}`}>@{user.username}</span>
+            <span className={`f5 ${darkText}`}>{user.message}</span>
           </div>
         </div>
 
         <div className="align-end f7 timestamp">
-          {showDate && <span>{moment(data.sendAt).format('MM/DD/YY')}</span>}
+          {showDate && <span>{moment(user.sendAt).format('MM/DD/YY')}</span>}
         </div>
       </div>
     );

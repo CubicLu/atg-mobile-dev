@@ -5,26 +5,23 @@ import {
   BackgroundImage,
   SectionTitle,
   SliderRadio,
-  HeaderOverlay,
   SliderVideo
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
-import { ChannelInterface } from '../../models';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { ChannelInterface, RadioInterface } from '../../models';
+import { RouteChildrenProps } from 'react-router';
 import { Nullable } from '../../types';
 
-interface Props extends RouteComponentProps<MatchParams> {}
+interface Props extends RouteChildrenProps<MatchParams> {}
 interface MatchParams {
   genre: string;
 }
-
 interface State {
   paramGenre: Nullable<string>;
   currentGenre: Nullable<ChannelInterface>;
 }
 
-class RadioPage extends React.Component<Props, State> {
-  private headerRef: React.RefObject<any> = React.createRef();
+export default class RadioPage extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
@@ -39,23 +36,26 @@ class RadioPage extends React.Component<Props, State> {
   }
 
   getGenre(): void {
-    const { genre } = this.props.match.params;
-    let currentGenre =
+    const { genre } = this.props.match?.params!;
+    if (!genre) {
+      return this.setState({ currentGenre: this.genres[0] });
+    }
+
+    const current = this.state.currentGenre?.name.toLocaleLowerCase();
+    if (genre?.toLocaleLowerCase() === current) return;
+
+    const currentGenre =
       this.genres.find(
         (a): boolean =>
           a?.name?.toLocaleLowerCase() === genre?.toLocaleLowerCase()
       ) || this.genres[0];
 
-    this.setState({
-      currentGenre: currentGenre,
-      paramGenre: genre
-    });
+    this.setState({ currentGenre });
   }
 
   render(): React.ReactNode {
     return (
       <IonPage id="radio-page">
-        <HeaderOverlay ref={this.headerRef} />
         <Header
           leftBackButton={false}
           rightActionButton={true}
@@ -76,13 +76,7 @@ class RadioPage extends React.Component<Props, State> {
           backgroundBottom={false}
         />
 
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScroll={(e: CustomEvent): void =>
-            this.headerRef.current?.handleParentScroll(e)
-          }
-        >
+        <IonContent>
           <div className="top-half flex-compass south center-align">
             <div className="flex left-align mx-auto">
               <div className="mt-1 mr-2">
@@ -99,7 +93,7 @@ class RadioPage extends React.Component<Props, State> {
             className="mt-2 mx-3"
             title="STATIONS"
             viewAll={true}
-            onClickAll={(): void => this.props.history.push('/radio/view-all')}
+            viewAllUrl="/radio/view-all"
           />
           <SliderRadio
             className="f6 l1"
@@ -185,39 +179,43 @@ class RadioPage extends React.Component<Props, State> {
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/country.jpg'
     }
   ];
-  radios = [
+  radios: RadioInterface[] = [
     {
-      label: 'Pharrel Williams',
+      label: 'Pharrel',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
       id: 'pharrell-williams'
     },
     {
+      id: 'pharrell-williams',
       label: 'R&B',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Hip Hop',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Soul',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/soul.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Blues',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/blues.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Jazz',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
     },
     {
+      id: 'pharrell-williams',
       label: 'Funk',
       image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg'
     }
   ];
 }
-
-export default withRouter(RadioPage);

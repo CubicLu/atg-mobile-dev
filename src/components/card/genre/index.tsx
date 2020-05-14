@@ -28,7 +28,7 @@ class CardGenreComponent extends React.Component<Props> {
     const allItems = this.props.subGenres?.length;
     let selected = 0;
 
-    this.props.subGenres.map((item: SubGenreInterface): void => {
+    this.props.subGenres.forEach((item: SubGenreInterface): void => {
       if (item.selected) selected++;
     });
     if (selected > 0 && selected < allItems) {

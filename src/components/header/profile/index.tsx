@@ -66,7 +66,8 @@ export default class HeaderProfileComponent extends React.Component<
       url: '/settings'
     },
     {
-      name: 'Improve my public profile'
+      name: 'Improve my public profile',
+      url: '/wizard'
     }
   ];
   artistActions: GenericModalInterface[] = [
@@ -130,7 +131,6 @@ export default class HeaderProfileComponent extends React.Component<
           rightChatButton={!showFilter}
           rightConnectedButton={!showFilter}
           rightFanFeedButton={!showFilter}
-          leftBackHref={'/profile'}
           routerDirection="forward"
         />
         <div className="profile-center">

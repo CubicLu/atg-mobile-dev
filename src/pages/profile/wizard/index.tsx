@@ -2,28 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
-import { ApplicationState } from './../../reducers';
+import { ApplicationState } from './../../../reducers';
 import {
   getWizardQuestion,
   answerWizardQuestion,
   setAnswerValue
-} from '../../actions';
-import { wizardQuestions } from '../../constants/wizard';
+} from '../../../actions';
+import { wizardQuestions } from '../../../constants/wizard';
 import {
   Header,
   BackgroundImage,
-  Avatar,
   ChatBalloon,
   InputChat,
   InputChip,
-  HeaderOverlay
-} from '../../components';
-import { QuestionsWizardInterface } from '../../models';
-import { ShapesSize } from '../../types';
+  HeaderOverlay,
+  LogoIcon
+} from '../../../components';
+import { QuestionsWizardInterface } from '../../../models';
 
 interface StateProps {
   answer: string;
-  answers: any[];
+  answers: string[];
   activeQuestionIndex: number;
   activeQuestion: QuestionsWizardInterface;
 }
@@ -31,6 +30,11 @@ interface StateProps {
 interface DispatchProps {
   answerWizardQuestion: (answer: string) => void;
   setAnswerValue: (index: string) => void;
+}
+
+interface Options {
+  description: string;
+  value: string;
 }
 
 interface Props extends DispatchProps, StateProps, RouteComponentProps {}
@@ -58,7 +62,7 @@ class WizardPage extends React.Component<Props> {
     this.scrollToBottom();
     return false;
   }
-  handleOnChange = (value): void => {
+  handleOnChange = (value: string): void => {
     this.props.setAnswerValue(value);
   };
 
@@ -75,19 +79,28 @@ class WizardPage extends React.Component<Props> {
     });
   };
 
-  renderMessages(answers, wizardQuestions): React.ReactNode {
+  renderMessages(
+    answers: string[],
+    wizardQuestions: QuestionsWizardInterface[]
+  ): React.ReactNode {
     return (
       answers &&
       answers.map((answer: string, i: number): React.ReactNode | void => {
         if (answer === '') return null;
         return (
           <React.Fragment key={i}>
-            <ChatBalloon
-              isReply={false}
-              message={wizardQuestions[i].question}
-              key={`${i}question`}
-              date={new Date()}
-            />
+            {wizardQuestions[i].question.split('||').map(
+              (message: string, index: number): React.ReactNode => {
+                return (
+                  <ChatBalloon
+                    isReply={false}
+                    message={message}
+                    key={`${i}-${index}-question`}
+                    date={new Date()}
+                  />
+                );
+              }
+            )}
             <ChatBalloon
               isReply={true}
               message={answer[0].toUpperCase() + answer.slice(1)}
@@ -106,15 +119,21 @@ class WizardPage extends React.Component<Props> {
   ): React.ReactNode {
     return (
       <>
-        <ChatBalloon
-          isReply={false}
-          message={wizardQuestions[activeQuestionIndex].question}
-          key={activeQuestionIndex}
-          date={new Date()}
-        />
+        {wizardQuestions[activeQuestionIndex].question.split('||').map(
+          (message: string, index: number): React.ReactNode => {
+            return (
+              <ChatBalloon
+                isReply={false}
+                message={message}
+                key={`${activeQuestionIndex}-${index}`}
+                date={new Date()}
+              />
+            );
+          }
+        )}
         {wizardQuestions[activeQuestionIndex].type === 'multi-option' &&
           wizardQuestions[activeQuestionIndex].options?.map(
-            (option): React.ReactNode => {
+            (option: Options): React.ReactNode => {
               return (
                 <InputChip
                   key={`${option.value}`}
@@ -167,9 +186,9 @@ class WizardPage extends React.Component<Props> {
           rightCloseButton
           className="wizard-page--header"
           centerContent={
-            <div>
-              <Avatar type={ShapesSize.circle} width={56} height={56} />
-              <span className="f6">Miss Pinkie</span>
+            <div className="wizard-page--avatar">
+              <LogoIcon width={50} height={50} />
+              <span className="f6 wizard-page--avatar--span">Panthr Bot</span>
             </div>
           }
         />
@@ -205,7 +224,7 @@ class WizardPage extends React.Component<Props> {
         {!isLastQuestion &&
           wizardQuestions[activeQuestionIndex].type === 'text' && (
             <InputChat
-              label={'@'}
+              label={'Send'}
               placeholder={'Add a comment...'}
               onChange={this.handleOnChange}
               onClick={this.handleOnClick}

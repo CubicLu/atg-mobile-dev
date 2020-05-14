@@ -27,8 +27,8 @@ export default class DefaultModalComponent extends React.Component<Props> {
       <div className="menu-generic-list">
         <BackgroundImage
           backgroundBottom={true}
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.2}
+          backgroundBottomDark={true}
+          backgroundBottomOpacity={0.15}
         />
 
         <div className={'modal-header background-white-base'}>
@@ -45,11 +45,7 @@ export default class DefaultModalComponent extends React.Component<Props> {
           <ul>
             {this.props.data?.map(
               (data, i): React.ReactNode => (
-                <IonRouterLink
-                  key={i}
-                  routerLink={data.url}
-                  routerDirection="root"
-                >
+                <IonRouterLink key={i} routerLink={data.url}>
                   <li
                     key={i}
                     className="f6 dark"

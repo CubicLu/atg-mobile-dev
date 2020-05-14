@@ -6,7 +6,7 @@ export const wizardQuestions: QuestionsWizardInterface[] = [
     id: QuestionIdType.WHAT_REAL_NAME,
     type: 'text',
     question:
-      'What is your real name? (This will only be visible to your friends)'
+      "What's up Rosetta! Help us to create a brief bio for you. || What is your real name? (This will only be visible to your friends)"
   },
   {
     id: QuestionIdType.IDENTIFY_GENDER,
@@ -117,6 +117,11 @@ export const wizardQuestions: QuestionsWizardInterface[] = [
     type: 'text'
   },
   {
+    id: QuestionIdType.WHAT_CITY_AND_STATE_LIVE_CURRENTLY,
+    question: 'What city and state do you live in currently?',
+    type: 'text'
+  },
+  {
     id: QuestionIdType.ARE_YOU_MUSICIAN,
     question: 'Are you a musician?',
     type: 'multi-option',
@@ -171,7 +176,7 @@ export const wizardQuestions: QuestionsWizardInterface[] = [
     id: QuestionIdType.COULD_THREE_GENRES_STYLE_ERAS_OF_MUSIC,
     skip: true,
     question:
-      'If you could only listen to three genres/style/eras of music, what would they be? (in order of favorite)',
+      "Play 20 questions to help your new friends learn more about you! Answer any 20. || Plead the fifth (skip) any questions you don't want to answer. || Alright, let's get into some music! || If you could only listen to three genres/style/eras of music, what would they be? (in order of favorite)",
     type: 'text'
   },
   {
@@ -248,7 +253,7 @@ export const wizardQuestions: QuestionsWizardInterface[] = [
       QuestionIdType.WHAT_WAS_MOST_MEMORABLE_EXPERIENCE_MEETING_ARTIST_BACKSTAGE,
     skip: true,
     question:
-      'What was your most memorable experience meeting an artist backstage?',
+      'You’re doing good… a few more to go. || Let’s get a little more personal – well, not that personal! ||What was your most memorable experience meeting an artist backstage?',
     type: 'text'
   },
   {

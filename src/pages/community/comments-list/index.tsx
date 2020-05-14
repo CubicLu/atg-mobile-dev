@@ -8,7 +8,6 @@ import { Header, BackgroundImage, CommentIcon } from '../../../components';
 import { getCommunityRecentPostsAPI } from '../../../actions';
 
 interface StateProps {
-  loading: boolean;
   commentsList: RecentPostInterface[];
 }
 
@@ -28,11 +27,10 @@ class CommunityCommentsListPage extends React.Component<Props> {
     return (
       <IonPage id="comments-list-page" className="comments-list-page">
         <Header
-          leftBackHref="/profile"
           className="dashboard-page-header"
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseOnClick={(): void => this.props.history.goBack()}
+          rightClickGoBack={true}
         />
         <IonContent>
           <BackgroundImage default={true} />
@@ -41,14 +39,14 @@ class CommunityCommentsListPage extends React.Component<Props> {
               (data, i): React.ReactNode => (
                 <div
                   key={i}
-                  className="comment flex"
+                  className="mt-3 flex f5"
                   onClick={(): void => this.props.history.push(data.commentUrl)}
                 >
                   <div className="comment-avatar">
                     <img src={data.userAvatar} alt=" " />
                   </div>
                   <div className="comment-content pl-2">
-                    <div className="comment-top">
+                    <div className="comment-top l1">
                       <div>
                         {data.commentsCount > 0 && (
                           <div className="flex" key={data.commentsCount}>
@@ -79,8 +77,7 @@ class CommunityCommentsListPage extends React.Component<Props> {
 
 const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   const { commentsList } = communityAPI;
-  const loading = communityAPI.loading;
-  return { loading, commentsList };
+  return { commentsList };
 };
 
 export default connect(mapStateToProps, {

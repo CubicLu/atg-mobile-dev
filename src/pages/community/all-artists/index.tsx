@@ -34,7 +34,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
         <BackgroundImage default />
         <Header
           leftBackButton={true}
-          title="Exclusives"
+          title="Artist Communities"
           titleClassName="artist-name"
           rightCloseButton={true}
           rightCloseHref="/community"

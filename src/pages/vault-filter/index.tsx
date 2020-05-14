@@ -9,31 +9,31 @@ import {
 } from '../../components';
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
-import { updateSettingsProperty } from '../../actions';
+import {
+  updateSettingsProperty,
+  removeSelectedGenre,
+  removeSelectedEra
+} from '../../actions';
 import { Colors, ShapesSize, Sizes } from '../../types';
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
+  removeSelectedGenre: (item: string, i: number) => void;
+  removeSelectedEra: (item: string, i: number) => void;
 }
 
 interface StateProps {
   eraFilters: object[];
   genreFilters: object[];
+  selectedGenres: string[];
+  selectedEras: string[];
 }
 interface Props extends DispatchProps, StateProps {}
 
 class VaultFilterPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
-  selectedEras: string[] | undefined;
-  selectedGenres: string[] | undefined;
 
   render(): React.ReactNode {
-    // eslint-disable-next-line no-prototype-builtins
-    if (this.props.eraFilters.hasOwnProperty('undefined')) {
-      delete this.props.eraFilters['undefined'];
-    }
-    this.selectedEras = Object.keys(this.props.eraFilters);
-    this.selectedGenres = Object.assign(this.props.genreFilters);
     return (
       <IonPage id="vault-filter-page">
         <Header
@@ -74,12 +74,18 @@ class VaultFilterPage extends React.Component<Props> {
                 <VaultFilterSection
                   label={'Show by Genre'}
                   type={'chip'}
-                  selectedChips={this.selectedGenres}
+                  selectedChips={this.props.selectedGenres}
+                  action={(chip, i): void => {
+                    this.props.removeSelectedGenre(chip, i);
+                  }}
                 />
                 <VaultFilterSection
                   label={'Show by Era'}
                   type={'chip'}
-                  selectedChips={this.selectedEras}
+                  selectedChips={Object.keys(this.props.eraFilters)}
+                  action={(chip, i): void => {
+                    this.props.removeSelectedEra(chip, i);
+                  }}
                 />
                 <Button
                   size={Sizes.md}
@@ -98,10 +104,12 @@ class VaultFilterPage extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  const { eraFilters, genreFilters } = settings;
-  return { eraFilters, genreFilters };
+  const { eraFilters, genreFilters, selectedEras, selectedGenres } = settings;
+  return { eraFilters, genreFilters, selectedEras, selectedGenres };
 };
 
 export default connect(mapStateToProps, {
-  updateSettingsProperty
+  updateSettingsProperty,
+  removeSelectedGenre,
+  removeSelectedEra
 })(VaultFilterPage);

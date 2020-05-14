@@ -3,7 +3,8 @@ import {
   ModalTypeInterface,
   SettingsActionType,
   ActionProperty,
-  UpdateModalInterface
+  UpdateModalInterface,
+  FilterItemInterface
 } from './../models';
 
 export const updateSettingsProperty = (
@@ -37,4 +38,20 @@ export const updatePopUpModal = (
 ): Action<SettingsActionType.UPDATE_POPUP_MODAL, ModalTypeInterface> => ({
   type: SettingsActionType.UPDATE_POPUP_MODAL,
   payload: { modalType }
+});
+
+export const removeSelectedGenre = (
+  item: string,
+  i: number
+): Action<SettingsActionType.REMOVE_SELECTED_GENRE, FilterItemInterface> => ({
+  type: SettingsActionType.REMOVE_SELECTED_GENRE,
+  payload: { item, i }
+});
+
+export const removeSelectedEra = (
+  item: string,
+  i: number
+): Action<SettingsActionType.REMOVE_SELECTED_ERA, FilterItemInterface> => ({
+  type: SettingsActionType.REMOVE_SELECTED_ERA,
+  payload: { item, i }
 });

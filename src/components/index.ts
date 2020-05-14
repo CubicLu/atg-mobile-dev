@@ -63,6 +63,8 @@ import CardEraComponent from './card/era';
 import CardSubEraComponent from './card/era/sub-era';
 import CardGraphComponent from './card/graph';
 import ArrowTopIconComponent from './icon/arrow-top';
+import CardRadioComponent from './card/radio';
+import SliderRadiosComponent from './slider/custom-radio';
 
 import SplashScreenComponent from './splash-screen';
 
@@ -166,8 +168,10 @@ export {
   CardSubEraComponent as CardSubEra,
   CardGraphComponent as CardGraph,
   SplashScreenComponent as SplashScreen,
-  ChatBalloonComponent as ChatBalloon,
-  ArrowTopIconComponent as ArrowTopIcon
+  ArrowTopIconComponent as ArrowTopIcon,
+  CardRadioComponent as CardRadio,
+  SliderRadiosComponent as SliderRadios,
+  ChatBalloonComponent as ChatBalloon
 };
 
 export {

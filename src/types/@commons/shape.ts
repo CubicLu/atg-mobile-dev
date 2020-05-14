@@ -1,5 +1,6 @@
 export enum ShapesSize {
   rounded = 'rounded',
+  filter = 'rounded-filter',
   roundedFrame = 'rounded-frame',
   badge = 'badge',
   circle = 'circle',

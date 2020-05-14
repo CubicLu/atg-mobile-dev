@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShapesSize, Colors } from '../../../types';
+import { IonRouterLink } from '@ionic/react';
 
 interface Props {
   onClick: Function;
@@ -12,9 +13,10 @@ interface Props {
   overlay?: number;
   className?: string;
   overlayClassName?: string;
+  url?: string;
 }
 
-class ButtonIconComponent extends React.Component<Props> {
+export default class ButtonIconComponent extends React.Component<Props> {
   public static defaultProps = {
     onClick: (): any => {},
     color: Colors.transparentGray,
@@ -39,21 +41,23 @@ class ButtonIconComponent extends React.Component<Props> {
     const custom = className ? className : '';
 
     return (
-      <button
-        onClick={(): void => onClick()}
-        className={`btn icon ${type} ${color} ${isFixed} ${custom}`}
-        style={{ ...styles }}
-      >
-        {icon}
-        {label && <span>{label}</span>}
-        {!!overlay && overlay >= 0 && (
-          <div className={overlayClassName}>
-            {overlay > 999 ? overlay / 1000 + 'k' : overlay}
-          </div>
-        )}
-      </button>
+      <IonRouterLink routerLink={this.props.url} routerDirection="forward">
+        <button
+          onClick={(): void => onClick()}
+          className={`btn icon ${type} ${color} ${isFixed} ${custom}`}
+          style={{ ...styles }}
+        >
+          {icon}
+
+          {label && <span>{label}</span>}
+
+          {!!overlay && overlay >= 0 && (
+            <div className={overlayClassName}>
+              {overlay > 999 ? overlay / 1000 + 'k' : overlay}
+            </div>
+          )}
+        </button>
+      </IonRouterLink>
     );
   }
 }
-
-export default ButtonIconComponent;

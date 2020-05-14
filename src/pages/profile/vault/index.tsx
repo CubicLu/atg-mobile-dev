@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ListItem } from './../../../components';
 import { IonList, IonContent } from '@ionic/react';
-import { Colors } from '../../../types';
+import { Colors, ShapesSize } from '../../../types';
 
 export default class ProfileVaultPage extends React.Component<{}> {
   render(): React.ReactNode {
@@ -10,6 +10,7 @@ export default class ProfileVaultPage extends React.Component<{}> {
         <div className="profile-vault-page">
           <Button
             color={Colors.transparentGray}
+            type={ShapesSize.filter}
             className={'row mt-2 mb-2'}
             label="Filter"
             routerLink="/vault-filter"
@@ -160,6 +161,7 @@ export default class ProfileVaultPage extends React.Component<{}> {
                     avatarBadge={i % 3 === 0}
                     badgeColor={Colors.red}
                     optionAddPlaylist={true}
+                    optionShare={true}
                     songName={data.song}
                     artistName={data.artist.name}
                     artist={data.artist}

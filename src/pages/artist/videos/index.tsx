@@ -53,11 +53,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
     const { currentArtist } = this.props;
     return (
       <IonPage id="artist-videos-page">
-        <Header
-          title="Videos"
-          titleClassName="videos"
-          leftBackOnClick={(): void => this.props.history.goBack()}
-        />
+        <Header title="Videos" titleClassName="videos" />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
           scrollY={true}

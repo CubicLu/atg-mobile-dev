@@ -68,11 +68,6 @@ export const routes: RouteInterface[] = [
     component: ProfilePage
   },
   {
-    path: '/feed/',
-    id: 'feedPage',
-    component: FeedPage
-  },
-  {
     path: '/profile/:id',
     id: 'friendProfile',
     component: FriendProfilePage
@@ -129,8 +124,13 @@ export const routes: RouteInterface[] = [
   },
   {
     path: '/community',
-    id: 'communityArtist',
+    id: 'community',
     component: CommunityPage
+  },
+  {
+    path: '/community/feed/:id',
+    id: 'feedFanPage',
+    component: FeedPage
   },
   {
     path: '/community/artist/:artistId/daily-drip',
@@ -144,7 +144,7 @@ export const routes: RouteInterface[] = [
   },
   {
     path: '/community/artist',
-    id: 'communityArtist',
+    id: 'communityArtistList',
     component: CommunityAllArtistsPage
   },
   {
@@ -199,7 +199,7 @@ export const routes: RouteInterface[] = [
   },
   {
     path: '/radio/genre/:genre',
-    id: 'radioHome',
+    id: 'radioGenre',
     component: RadioPage
   },
   {
@@ -243,7 +243,7 @@ export const routes: RouteInterface[] = [
     component: RadioHistoryPage
   },
   {
-    path: '/fan-feed-filter',
+    path: '/community/fan-feed-filter',
     id: 'fan-feed-filter',
     component: FanFeedFilterPage
   },
@@ -301,11 +301,6 @@ export const routes: RouteInterface[] = [
     path: '/dashboard/filter',
     id: 'filterDashboard',
     component: DashboardFilterPage
-  },
-  {
-    path: '/feed/:id',
-    id: 'feedFan',
-    component: FeedPage
   },
   {
     path: '/dashboard/:artistId/supporter',

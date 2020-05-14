@@ -1,16 +1,17 @@
 import React from 'react';
 import { ArrowRightIcon } from '..';
+import { IonRouterLink } from '@ionic/react';
 interface Props {
   viewAll: boolean;
   title: string;
   className?: string;
   leftClassName?: string;
+  viewAllUrl?: string;
   leftContent?: React.ReactNode;
-  onClickAll?: Function;
 }
 
 export default class SectionTitleComponent extends React.Component<Props> {
-  public static defaultProps = { viewAll: false, onClickAll: (): void => {} };
+  public static defaultProps = { viewAll: false };
 
   render(): React.ReactNode {
     const { leftClassName, className } = this.props;
@@ -30,14 +31,11 @@ export default class SectionTitleComponent extends React.Component<Props> {
         </span>
 
         {this.props.viewAll && (
-          <span
-            className="f5 text-15 align-end"
-            onClick={(): void => {
-              this.props.onClickAll && this.props.onClickAll();
-            }}
-          >
-            View All&nbsp;
-            <ArrowRightIcon width={10} height={14} stroke={3} />
+          <span className="f5 text-15 align-end">
+            <IonRouterLink routerLink={this.props.viewAllUrl}>
+              <span className="f5 text-15 align-end mr-05">View All</span>
+              <ArrowRightIcon width={10} height={14} stroke={3} />
+            </IonRouterLink>
           </span>
         )}
       </div>

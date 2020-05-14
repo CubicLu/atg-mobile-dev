@@ -118,7 +118,6 @@ export default class HeaderProfileComponent extends React.Component<Props> {
           rightChatButton={!showFilter}
           rightConnectedButton={!showFilter}
           rightFanFeedButton={!showFilter}
-          leftBackHref={'/profile'}
           routerDirection="forward"
         />
         <div className="profile-center">

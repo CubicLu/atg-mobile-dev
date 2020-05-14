@@ -1,10 +1,10 @@
 import { RadioSection } from '../../types';
 
 export interface RadioInterface {
+  readonly id: string;
   readonly label: string;
-  readonly image: string | undefined;
+  readonly image: string;
 }
-
 export interface ChannelInterface {
   readonly id: string;
   readonly type: RadioSection;

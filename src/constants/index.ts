@@ -11,3 +11,4 @@ export * from './menu-tabs/profile-friend';
 export * from './menu-tabs/my-profile';
 export * from './menu-tabs/dashboard';
 export * from './menu-tabs/settings';
+export * from './radios';

@@ -54,9 +54,9 @@
   }
   &.blue {
     &.horizontal {
-      background: linear-gradient(90deg, #01aed4 0%, #1853e0 100%);
+      background: linear-gradient(90deg, #01aed4 0%, #1340a8 100%);
     }
-    background: linear-gradient(180deg, #01aed4 0%, #1853e0 100%);
+    background: linear-gradient(180deg, #01aed4 0%, #1340a8 100%);
   }
   &.primary {
     background: $primary;
@@ -183,6 +183,15 @@
   &.rounded {
     border-radius: 8px;
   }
+  &.rounded-filter{
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 0;
+    height: 30px;
+    width: 60px !important;
+    background: #0000004d;
+  }
+  
   &.fluid {
     padding: 0;
     margin: 0;

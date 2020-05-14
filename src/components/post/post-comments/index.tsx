@@ -11,7 +11,7 @@ export default class PostCommentsComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const { comment } = this.props;
     return (
-      <div className="mx-2 flex">
+      <div className="mx-2 flex chat-message">
         <Avatar
           avatarUrl={`/profile/${comment.user.username}`}
           image={comment.user.avatar}

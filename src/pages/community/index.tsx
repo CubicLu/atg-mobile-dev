@@ -5,8 +5,7 @@ import {
   SliderStories,
   CardPost,
   Button,
-  SectionTitle,
-  ContentLoader
+  SectionTitle
 } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { getCommunityPostsAPI, getCommunityStoriesAPI } from './../../actions';
@@ -30,43 +29,12 @@ interface Props extends StateProps, DispatchProps, RouteChildrenProps {}
 class CommunityPage extends React.Component<Props> {
   isReady = false;
 
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
-
   componentDidMount(): void {
     this.props.getCommunityPostsAPI();
     this.props.getCommunityStoriesAPI();
   }
 
-  renderSkeleton(): React.ReactNode {
-    return (
-      <IonPage id="community-page">
-        <BackgroundImage default={true} />(
-        <ContentLoader
-          className="mt-3"
-          speed={2}
-          viewBox="0 0 400 100"
-          baseUrl={window.location.pathname}
-          backgroundColor="rgb(255,255,255)"
-          foregroundColor="rgb(255,255,255)"
-          backgroundOpacity={0.05}
-          foregroundOpacity={0.15}
-        >
-          <rect x="20" y="20" width="110" height="30" />
-          <rect x="20" y="60" width="140" height="20" />
-        </ContentLoader>
-      </IonPage>
-    );
-  }
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
-    if (!this.isReady) return this.renderSkeleton();
-
     return (
       <IonPage id="community-page">
         <BackgroundImage default={true} />

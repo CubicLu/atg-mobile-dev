@@ -39,8 +39,8 @@ export function* getArtists(): any {
   yield takeEvery(ArtistActionType.GET_ALL_API, getArtistsAPI);
 }
 
-export const getArtistRequest = async (username): Promise<ArtistInterface> =>
-  await API.get(`artist/${username}.json?${new Date().getTime()}`);
+export const getArtistRequest = async (id): Promise<ArtistInterface> =>
+  await API.get(`artist/${id}.json?${new Date().getTime()}`);
 
 function* getArtistAPI({ payload }: any): ReturnType<any> {
   try {
@@ -52,7 +52,7 @@ function* getArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getArtist(): any {
-  yield takeEvery(ArtistActionType.GET_BY_USERNAME_API, getArtistAPI);
+  yield takeEvery(ArtistActionType.GET_BY_ID_API, getArtistAPI);
 }
 
 export const getArtistEventRequest = async (

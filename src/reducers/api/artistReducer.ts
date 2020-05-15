@@ -83,7 +83,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ArtistActionType.GET_BY_USERNAME_API](
+  [ArtistActionType.GET_BY_ID_API](
     state: ArtistReducerType
   ): ArtistReducerType {
     return {
@@ -92,10 +92,10 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ArtistActionType.GET_BY_USERNAME_API_SUCCESS](
+  [ArtistActionType.GET_BY_ID_API_SUCCESS](
     state: ArtistReducerType,
     action: Action<
-      ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+      ArtistActionType.GET_BY_ID_API_SUCCESS,
       APIResponseInterface<ArtistInterface>
     >
   ): ArtistReducerType {
@@ -115,10 +115,10 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ArtistActionType.GET_BY_USERNAME_API_FAILURE](
+  [ArtistActionType.GET_BY_ID_API_FAILURE](
     state: ArtistReducerType,
     action: Action<
-      ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+      ArtistActionType.GET_BY_ID_API_FAILURE,
       APIErrorInterface<string>
     >
   ): ArtistReducerType {

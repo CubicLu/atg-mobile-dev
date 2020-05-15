@@ -49,29 +49,29 @@ export const getArtistsAPISuccess = (
 });
 
 export const getArtistAPI = (
-  username: string
-): Action<ArtistActionType.GET_BY_USERNAME_API, string> => ({
-  type: ArtistActionType.GET_BY_USERNAME_API,
-  payload: username
+  artistId: string
+): Action<ArtistActionType.GET_BY_ID_API, string> => ({
+  type: ArtistActionType.GET_BY_ID_API,
+  payload: artistId
 });
 
 export const getArtistAPIFailure = (
   error: APIErrorInterface<string>
 ): Action<
-  ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+  ArtistActionType.GET_BY_ID_API_FAILURE,
   APIErrorInterface<string>
 > => ({
-  type: ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+  type: ArtistActionType.GET_BY_ID_API_FAILURE,
   payload: error
 });
 
 export const getArtistAPISuccess = (
   response: APIResponseInterface<ArtistInterface>
 ): Action<
-  ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+  ArtistActionType.GET_BY_ID_API_SUCCESS,
   APIResponseInterface<ArtistInterface>
 > => ({
-  type: ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+  type: ArtistActionType.GET_BY_ID_API_SUCCESS,
   payload: response
 });
 

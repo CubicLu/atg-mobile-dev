@@ -16,7 +16,7 @@ import {
   PauseIcon,
   ButtonIcon
 } from 'components';
-import { Nullable } from 'types';
+import { Nullable, Colors } from 'types';
 
 interface State {
   plan: Nullable<SupportLevelsInterface>;
@@ -28,7 +28,7 @@ interface StateProps {
   popUpModal: Nullable<string>;
 }
 interface DispatchProps {
-  getArtistAPI: (username: string) => void;
+  getArtistAPI: (artistId: string) => void;
   updateSettingsModal: (
     content: React.ReactNode,
     className?: string,
@@ -124,6 +124,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
               <div className="flex">
                 {supportLevels.map(
                   (data, i): React.ReactNode => {
+                    let color = i === 0 ? Colors.lightBlue : Colors.green;
                     return (
                       <div
                         className={`col s6 ${i === 0 ? 'mr-12' : ''}`}
@@ -133,6 +134,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
                           active={!!plan?.id && plan?.id === data?.id}
                           plan={data}
                           onClick={this.upgradeStatus(data)}
+                          color={color}
                         />
                       </div>
                     );

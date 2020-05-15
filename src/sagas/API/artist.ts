@@ -148,8 +148,7 @@ export function* getSupportLevels(): any {
 
 export const postSubscribeArtistRequest = async (
   data: PostSubscriptionInterface
-): Promise<SubscriptionInterface> =>
-  await API_MOCK.post('support-levels', data);
+): Promise<SubscriptionInterface> => await API_MOCK.post('subscriptions', data);
 
 function* postSubscribeArtistAPI({ payload }: any): any {
   try {

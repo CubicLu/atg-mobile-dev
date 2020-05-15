@@ -1,5 +1,6 @@
 import { MenuInterface } from '../../models';
 import {
+  MyBioPage,
   ProfileArtistsPage,
   ProfileMixtapesPage,
   ProfileVaultPage
@@ -7,10 +8,10 @@ import {
 
 export const profileFriendTabs: MenuInterface[] = [
   {
-    id: 'fan-profile',
-    label: 'Fan Profile',
+    id: 'my-bio',
+    label: 'My Bio',
     icon: 'f',
-    component: ProfileArtistsPage
+    component: MyBioPage
   },
   {
     id: 'artists',

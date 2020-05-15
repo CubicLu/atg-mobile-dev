@@ -207,11 +207,11 @@ export default class HeaderProfileComponent extends React.Component<
             <div>
               <Avatar
                 type={ShapesSize.circle}
-                image="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png"
+                image="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/eleonore.jpg"
                 onClick={this.showMenuListModal}
               />
-              <div className="f4 l15">Rosetta</div>
-              <div className="h00 l1 shadow">Musical Goddess</div>
+              <div className="f4 l15">Amanda</div>
+              <div className="h00 l1 shadow">Queen of Pop</div>
             </div>
           )}
         </div>

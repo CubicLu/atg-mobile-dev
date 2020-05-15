@@ -45,12 +45,21 @@ export default class CardEventComponent extends React.Component<Props, State> {
     const { name, city, where, date } = data;
     return (
       <div className="card-event row">
-        <div className="col s4 no-padding">
-          <div className={`calendar flex-column-center ${this.getColor()}`}>
-            <div className="f4 l1">{moment(date).format('MMM')}</div>
-            <div className="f00 l1">{moment(date).format('DD')}</div>
+        <IonRouterLink
+          routerLink={
+            this.props.disableGoing
+              ? undefined
+              : `/artist/${username}/event/${id}`
+          }
+        >
+          <div className="col s4 no-padding">
+            <div className={`calendar flex-column-center ${this.getColor()}`}>
+              <div className="f4 l1">{moment(date).format('MMM')}</div>
+              <div className="f00 l1">{moment(date).format('DD')}</div>
+            </div>
           </div>
-        </div>
+        </IonRouterLink>
+
         <div className="col s1" />
         <div className="col s7">
           <div className="row">

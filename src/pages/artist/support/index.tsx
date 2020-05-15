@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { getArtistAPI, updatePopUpModal, getSupportLevelsAPI } from 'actions';
+import {
+  getArtistAPI,
+  updatePopUpModal,
+  getSupportLevelsAPI,
+  postSubscribeArtistAPI
+} from 'actions';
 import { ApplicationState } from 'reducers';
 import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
-import { SupportLevelsInterface, ArtistBetaInterface } from 'models';
+import {
+  SupportLevelsInterface,
+  ArtistBetaInterface,
+  PostSubscriptionInterface
+} from 'models';
 import {
   BackgroundImage,
   Header,
@@ -36,6 +45,7 @@ interface DispatchProps {
   ) => void;
   updatePopUpModal: (string: Nullable<string>) => void;
   getSupportLevelsAPI: () => void;
+  postSubscribeArtistAPI: (data: PostSubscriptionInterface) => void;
 }
 interface MatchParams {
   id: string;
@@ -66,6 +76,11 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
   handlePlanChange(plan: Nullable<SupportLevelsInterface> = null): void {
     this.setState({ plan });
+    this.props.postSubscribeArtistAPI({
+      artistId: this.props.artist!.id,
+      subscriberId: '1',
+      subscriptionLevelId: plan!.id.toString()
+    });
   }
 
   upgradeStatus = (
@@ -232,6 +247,7 @@ export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
     updatePopUpModal,
-    getSupportLevelsAPI
+    getSupportLevelsAPI,
+    postSubscribeArtistAPI
   })(ArtistSupportPage)
 );

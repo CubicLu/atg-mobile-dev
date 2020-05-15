@@ -6,8 +6,8 @@ import {
   SupportLevelsInterface,
   VideosBetaInterface,
   ArtistBetaInterface
-} from './../';
-import { Nullable } from './../../types';
+} from 'models';
+import { Nullable } from 'types';
 
 export interface ArtistReducerType {
   readonly artists: ArtistInterface[];

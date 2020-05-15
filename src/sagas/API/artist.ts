@@ -1,11 +1,13 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
-import { API, API_MOCK } from '../../utils/api';
+import { API, API_MOCK } from 'utils/api';
 import {
   ArtistActionType,
   ArtistInterface,
   VideosBetaInterface,
-  APIResponseInterface
-} from '../../models';
+  APIResponseInterface,
+  PostSubscriptionInterface,
+  SubscriptionInterface
+} from 'models';
 import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,
@@ -18,8 +20,10 @@ import {
   getSupportLevelsAPISuccess,
   getSupportLevelsAPIFailure,
   getArtistVideosAPISuccess,
-  getArtistVideosAPIFailure
-} from '../../actions';
+  getArtistVideosAPIFailure,
+  postSubscribeArtistAPISuccess,
+  postSubscribeArtistAPIFailure
+} from 'actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
   await API.get(`artist/all.json?${new Date().getTime()}`);
@@ -142,6 +146,24 @@ export function* getSupportLevels(): any {
   yield takeEvery(ArtistActionType.GET_SUPPORT_LEVELS_API, getSupportLevelsAPI);
 }
 
+export const postSubscribeArtistRequest = async (
+  data: PostSubscriptionInterface
+): Promise<SubscriptionInterface> =>
+  await API_MOCK.post('support-levels', data);
+
+function* postSubscribeArtistAPI({ payload }: any): any {
+  try {
+    const request = yield call(postSubscribeArtistRequest, payload);
+    yield put(postSubscribeArtistAPISuccess(request));
+  } catch (error) {
+    yield put(postSubscribeArtistAPIFailure(error));
+  }
+}
+
+export function* postSubscribeArtist(): any {
+  yield takeEvery(ArtistActionType.POST_SUBSCRIBE_API, postSubscribeArtistAPI);
+}
+
 export default function* rootSaga(): any {
   yield all([
     fork(getArtists),
@@ -149,6 +171,7 @@ export default function* rootSaga(): any {
     fork(getArtistEvent),
     fork(getArtistGalleryComments),
     fork(getSupportLevels),
-    fork(getArtistVideos)
+    fork(getArtistVideos),
+    fork(postSubscribeArtist)
   ]);
 }

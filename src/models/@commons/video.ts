@@ -12,7 +12,7 @@ export interface VideosBetaInterface {
   readonly videos: VideoBetaInterface[];
 }
 
-interface VideoBetaInterface {
+export interface VideoBetaInterface {
   readonly id: string;
   readonly artistId: string;
   readonly name: string;

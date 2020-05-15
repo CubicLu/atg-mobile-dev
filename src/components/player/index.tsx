@@ -365,7 +365,7 @@ class PlayerComponent extends React.Component<Props> {
       el: mini,
       direction: 'y',
       gestureName: 'playerPull',
-      gesturePriority: 20,
+      gesturePriority: 21,
       passive: true,
       onEnd: this.playerSwipeUp,
       onMove: this.playerPull

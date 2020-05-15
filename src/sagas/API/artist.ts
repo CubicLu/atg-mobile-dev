@@ -127,7 +127,7 @@ export function* getArtistGalleryComments(): any {
 }
 
 export const getSupportLevelsRequest = async (): Promise<ArtistInterface[]> =>
-  await API.get('supportLevels');
+  await API_MOCK.get('support-levels');
 
 function* getSupportLevelsAPI(): any {
   try {

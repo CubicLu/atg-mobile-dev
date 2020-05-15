@@ -26,7 +26,7 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderIcon(): React.ReactNode {
     const { supported, className, id } = this.props;
-    const username = this.props.artist?.nickname || 'pharrell-williams';
+    const username = this.props.artist?.id || 'pharrell-williams';
     return (
       <div
         id={id}

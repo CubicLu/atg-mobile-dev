@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { getArtistAPI, updatePopUpModal } from './../../../actions';
-import { ApplicationState } from './../../../reducers';
+import { getArtistAPI, updatePopUpModal, getSupportLevelsAPI } from 'actions';
+import { ApplicationState } from 'reducers';
 import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
-import { ArtistInterface, SupportLevelsInterface } from '../../../models';
+import { ArtistInterface, SupportLevelsInterface } from 'models';
 import {
   BackgroundImage,
   Header,
@@ -15,8 +15,8 @@ import {
   PremiumFeaturesModalContent,
   PauseIcon,
   ButtonIcon
-} from './../../../components';
-import { Nullable } from '../../../types';
+} from 'components';
+import { Nullable } from 'types';
 
 interface State {
   plan: Nullable<SupportLevelsInterface>;
@@ -24,7 +24,7 @@ interface State {
 }
 interface StateProps {
   currentArtist: Nullable<ArtistInterface>;
-  supportLevels: Nullable<SupportLevelsInterface[]>;
+  supportLevels: SupportLevelsInterface[];
   popUpModal: Nullable<string>;
 }
 interface DispatchProps {
@@ -35,6 +35,7 @@ interface DispatchProps {
     height?: number
   ) => void;
   updatePopUpModal: (string: Nullable<string>) => void;
+  getSupportLevelsAPI: () => void;
 }
 interface MatchParams {
   id: string;
@@ -56,6 +57,10 @@ class ArtistSupportPage extends React.Component<Props, State> {
     if (this.props.currentArtist?.username !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
     }
+  }
+
+  componentDidMount(): void {
+    this.props.getSupportLevelsAPI();
   }
 
   handlePlanChange(plan: Nullable<SupportLevelsInterface> = null): void {
@@ -226,7 +231,9 @@ const mapStateToProps = ({
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, updatePopUpModal })(
-    ArtistSupportPage
-  )
+  connect(mapStateToProps, {
+    getArtistAPI,
+    updatePopUpModal,
+    getSupportLevelsAPI
+  })(ArtistSupportPage)
 );

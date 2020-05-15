@@ -3,13 +3,15 @@ import {
   GalleryImageInterface,
   EventInterface,
   CommentInterface,
-  SupportLevelsInterface
+  SupportLevelsInterface,
+  VideosBetaInterface
 } from './../';
 import { Nullable } from './../../types';
 
 export interface ArtistReducerType {
   readonly artists: ArtistInterface[];
   readonly event: Nullable<EventInterface>;
+  readonly videos: Nullable<VideosBetaInterface[]>;
   readonly currentGallery: Nullable<GalleryImageInterface[]>;
   readonly currentArtist: Nullable<ArtistInterface>;
   readonly fullScreenImage: Nullable<string>;

@@ -1,8 +1,9 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
-import { API } from '../../utils/api';
+import { API, API_MOCK } from '../../utils/api';
 import {
   ArtistActionType,
   ArtistInterface,
+  VideosBetaInterface,
   APIResponseInterface
 } from '../../models';
 import {
@@ -15,7 +16,9 @@ import {
   getArtistGalleryCommentsAPIFailure,
   getArtistGalleryCommentsAPISuccess,
   getSupportLevelsAPISuccess,
-  getSupportLevelsAPIFailure
+  getSupportLevelsAPIFailure,
+  getArtistVideosAPISuccess,
+  getArtistVideosAPIFailure
 } from '../../actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
@@ -77,6 +80,24 @@ export function* getArtistEvent(): any {
   yield takeEvery(ArtistActionType.GET_EVENT_API, getArtistEventAPI);
 }
 
+export const getArtistVideosRequest = async (
+  artistID
+): Promise<VideosBetaInterface> =>
+  await API_MOCK.get(`video-sections?artist=${artistID}`);
+
+function* getArtistVideosAPI({ payload }: any): ReturnType<any> {
+  try {
+    const request = yield call(getArtistVideosRequest, payload.artistID);
+    yield put(getArtistVideosAPISuccess(request));
+  } catch (error) {
+    yield put(getArtistVideosAPIFailure(error));
+  }
+}
+
+export function* getArtistVideos(): any {
+  yield takeEvery(ArtistActionType.GET_VIDEO_API, getArtistVideosAPI);
+}
+
 export const getArtistGalleryCommentsRequest = async (
   photoId: number,
   username: string
@@ -127,6 +148,7 @@ export default function* rootSaga(): any {
     fork(getArtist),
     fork(getArtistEvent),
     fork(getArtistGalleryComments),
-    fork(getSupportLevels)
+    fork(getSupportLevels),
+    fork(getArtistVideos)
   ]);
 }

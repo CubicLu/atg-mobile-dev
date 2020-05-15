@@ -8,19 +8,19 @@ import {
   CardVideo,
   SectionTitle
 } from '../../../components';
-import { Sizes, ShapesSize } from '../../../types';
-import { ArtistInterface } from '../../../models';
+import { Sizes, ShapesSize, Nullable } from '../../../types';
+import { VideosBetaInterface } from '../../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
-import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { getArtistVideosAPI, updateSettingsProperty } from './../../../actions';
 
 interface StateProps {
-  currentArtist: ArtistInterface | null;
+  videos: Nullable<VideosBetaInterface[]>;
 }
 
 interface DispatchProps {
-  getArtistAPI: (username: string) => void;
+  getArtistVideosAPI: (artistID: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
 }
 
@@ -35,12 +35,8 @@ interface Props
 class ArtistVideosPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.currentArtist == null) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    }
+  componentDidMount(): void {
+    this.props.getArtistVideosAPI('1');
   }
 
   onOpenVideo(id: number): void {
@@ -50,7 +46,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
   }
 
   render(): React.ReactNode {
-    const { currentArtist } = this.props;
+    const { videos } = this.props;
     return (
       <IonPage id="artist-videos-page">
         <Header title="Videos" titleClassName="videos" />
@@ -63,7 +59,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
           }
         >
           <BackgroundImage default />
-          <div className="content-container">
+          {/* <div className="content-container">
             {currentArtist?.videos?.recents && (
               <React.Fragment>
                 <SectionTitle
@@ -100,7 +96,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 }
               )}
             </div>
-          </div>
+          </div> */}
         </IonContent>
       </IonPage>
     );
@@ -108,13 +104,13 @@ class ArtistVideosPage extends React.Component<Props, {}> {
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  return { currentArtist };
+  const { videos } = artistAPI;
+  return { videos };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    getArtistAPI,
+    getArtistVideosAPI,
     updateSettingsProperty
   })(ArtistVideosPage)
 );

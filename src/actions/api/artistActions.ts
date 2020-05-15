@@ -7,7 +7,8 @@ import {
   ArtistInterface,
   APIResponseInterface,
   APIErrorInterface,
-  EventInterface
+  EventInterface,
+  VideosBetaInterface
 } from './../../models';
 import {} from './../../types';
 
@@ -137,6 +138,33 @@ export const getArtistGalleryCommentsAPISuccess = (
   APIResponseInterface<any>
 > => ({
   type: ArtistActionType.GET_GALLERY_COMMENTS_API_SUCCESS,
+  payload: response
+});
+
+export const getArtistVideosAPI = (
+  artistID: string
+): Action<ArtistActionType.GET_VIDEO_API, { artistID: string }> => ({
+  type: ArtistActionType.GET_VIDEO_API,
+  payload: { artistID }
+});
+
+export const getArtistVideosAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.GET_VIDEO_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: ArtistActionType.GET_VIDEO_API_FAILURE,
+  payload: error
+});
+
+export const getArtistVideosAPISuccess = (
+  response: APIResponseInterface<VideosBetaInterface>
+): Action<
+  ArtistActionType.GET_VIDEO_API_SUCCESS,
+  APIResponseInterface<VideosBetaInterface>
+> => ({
+  type: ArtistActionType.GET_VIDEO_API_SUCCESS,
   payload: response
 });
 

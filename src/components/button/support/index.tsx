@@ -57,6 +57,7 @@ class SupportComponent extends React.Component<ButtonProps> {
         label={supported ? 'SUPPORTED' : 'SUPPORT!'}
         bold={bold}
         onClick={this.handleLinkClick}
+        routerLink={`/artist/${username}/support`}
       >
         <IonRouterLink
           ref={this.linkRef}

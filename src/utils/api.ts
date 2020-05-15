@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, API_URL_MOCK } from 'config';
+import { API_URL, API_MOCK_URL, API_MOCK_USER, API_MOCK_PASS } from 'config';
 
 const API = axios.create({
   baseURL: API_URL,
@@ -7,8 +7,12 @@ const API = axios.create({
 });
 
 const API_MOCK = axios.create({
-  baseURL: API_URL_MOCK,
-  timeout: 10000
+  baseURL: API_MOCK_URL,
+  timeout: 10000,
+  auth: {
+    username: API_MOCK_USER,
+    password: API_MOCK_PASS
+  }
 });
 
 export { API, API_MOCK };

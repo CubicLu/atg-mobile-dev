@@ -55,7 +55,6 @@ class MiniPlayerBarComponent extends React.PureComponent<Props> {
           viewBox="0 0 400 10"
           style={{
             position: 'fixed',
-            bottom: 99,
             paddingLeft: 16,
             paddingRight: 16,
             overflow: 'visible',

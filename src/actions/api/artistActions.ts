@@ -8,9 +8,11 @@ import {
   APIResponseInterface,
   APIErrorInterface,
   EventInterface,
-  VideosBetaInterface
-} from './../../models';
-import {} from './../../types';
+  VideosBetaInterface,
+  PostSubscriptionInterface,
+  SubscriptionInterface
+} from 'models';
+import {} from 'types';
 
 export const updateArtistProperty = (
   property: string,
@@ -216,5 +218,32 @@ export const getSupportLevelsAPISuccess = (
   APIResponseInterface<EventInterface>
 > => ({
   type: ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+  payload: response
+});
+
+export const postSubscribeArtistAPI = (
+  data: PostSubscriptionInterface
+): Action<ArtistActionType.POST_SUBSCRIBE_API, PostSubscriptionInterface> => ({
+  type: ArtistActionType.POST_SUBSCRIBE_API,
+  payload: data
+});
+
+export const postSubscribeArtistAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.POST_SUBSCRIBE_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: ArtistActionType.POST_SUBSCRIBE_API_FAILURE,
+  payload: error
+});
+
+export const postSubscribeArtistAPISuccess = (
+  response: APIResponseInterface<SubscriptionInterface>
+): Action<
+  ArtistActionType.POST_SUBSCRIBE_API_SUCCESS,
+  APIResponseInterface<SubscriptionInterface>
+> => ({
+  type: ArtistActionType.POST_SUBSCRIBE_API_SUCCESS,
   payload: response
 });

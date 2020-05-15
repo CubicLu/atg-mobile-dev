@@ -321,5 +321,35 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
       loading: false,
       errorMessage: action.payload!.message
     };
+  },
+  [ArtistActionType.POST_SUBSCRIBE_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+  [ArtistActionType.POST_SUBSCRIBE_API_SUCCESS](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false
+    };
+  },
+
+  [ArtistActionType.POST_SUBSCRIBE_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.POST_SUBSCRIBE_API_FAILURE,
+      APIErrorInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload!.message
+    };
   }
 });

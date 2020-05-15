@@ -98,7 +98,7 @@ export default class App extends React.Component<{}, State> {
       return (
         <Provider store={store}>
           <IonApp>
-            <SplashScreen />
+            {/* <SplashScreen /> */}
             <HomePage />
             {this.state.enableMedia && <CordovaMedia />}
           </IonApp>

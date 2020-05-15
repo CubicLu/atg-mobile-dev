@@ -68,7 +68,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
         >
           <BackgroundImage default />
           <div className="content-container">
-            {videos && (
+            {videos?.length && (
               <React.Fragment>
                 <SectionTitle
                   className="mx-2"
@@ -87,7 +87,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
             )}
             <div className="row showcase ">
               <SectionTitle className="mx-2" title={'Showcase'} />
-              {videos &&
+              {videos?.length &&
                 videos[1].videos.map(
                   (video, i): React.ReactNode => {
                     return (

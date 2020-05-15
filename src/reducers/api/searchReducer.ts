@@ -9,6 +9,7 @@ export const searchReducer = createReducer<SearchReducerType>(defaultState, {
   [SearchActionType.GET_RESULT_API](state: SearchReducerType): any {
     return {
       ...state,
+      queryResult: '',
       loading: true
     };
   },

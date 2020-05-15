@@ -1,10 +1,10 @@
 import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
-import { API, API_MOCK } from '../../utils/api';
-import { ChannelInterface, SubscriberActionType } from '../../models';
+import { API_MOCK } from 'utils/api';
+import { ChannelInterface, SubscriberActionType } from 'models';
 import {
   getSubscriberArtistsAPISuccess,
   getSubscriberArtistsAPIFailure
-} from '../../actions';
+} from 'actions';
 
 export const getSubscriberArtistsRequest = async (
   id: string

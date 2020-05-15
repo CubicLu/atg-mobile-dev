@@ -23,6 +23,7 @@ const defaultState: ArtistReducerType = {
   successMessage: null,
   errorMessage: null,
   event: null,
+  supportLevels: [],
   videos: null
 };
 
@@ -281,6 +282,42 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       currentGallery: null
+    };
+  },
+  [ArtistActionType.GET_SUPPORT_LEVELS_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+
+  [ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+      APIResponseInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      supportLevels: action.payload!.data
+    };
+  },
+
+  [ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE,
+      APIErrorInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload!.message
     };
   }
 });

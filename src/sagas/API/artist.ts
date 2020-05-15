@@ -15,6 +15,8 @@ import {
   getArtistEventAPIFailure,
   getArtistGalleryCommentsAPIFailure,
   getArtistGalleryCommentsAPISuccess,
+  getSupportLevelsAPISuccess,
+  getSupportLevelsAPIFailure,
   getArtistVideosAPISuccess,
   getArtistVideosAPIFailure
 } from '../../actions';
@@ -124,12 +126,29 @@ export function* getArtistGalleryComments(): any {
   );
 }
 
+export const getSupportLevelsRequest = async (): Promise<ArtistInterface[]> =>
+  await API.get('supportLevels');
+
+function* getSupportLevelsAPI(): any {
+  try {
+    const request = yield call(getSupportLevelsRequest);
+    yield put(getSupportLevelsAPISuccess(request));
+  } catch (error) {
+    yield put(getSupportLevelsAPIFailure(error));
+  }
+}
+
+export function* getSupportLevels(): any {
+  yield takeEvery(ArtistActionType.GET_SUPPORT_LEVELS_API, getSupportLevelsAPI);
+}
+
 export default function* rootSaga(): any {
   yield all([
     fork(getArtists),
     fork(getArtist),
     fork(getArtistEvent),
-    fork(getArtistVideos),
-    fork(getArtistGalleryComments)
+    fork(getArtistGalleryComments),
+    fork(getSupportLevels),
+    fork(getArtistVideos)
   ]);
 }

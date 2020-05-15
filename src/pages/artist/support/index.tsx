@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updatePopUpModal } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
 import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
-import { ArtistInterface, PlanInterface } from '../../../models';
+import { ArtistInterface, SupportLevelsInterface } from '../../../models';
 import {
   BackgroundImage,
   Header,
@@ -16,15 +16,16 @@ import {
   PauseIcon,
   ButtonIcon
 } from './../../../components';
+import { Nullable } from '../../../types';
 
 interface State {
-  plan: PlanInterface | null;
+  plan: Nullable<SupportLevelsInterface>;
   confirmHandler: () => void;
 }
 interface StateProps {
-  currentArtist: ArtistInterface | null;
-  plans: PlanInterface[];
-  popUpModal: string | null;
+  currentArtist: Nullable<ArtistInterface>;
+  supportLevels: Nullable<SupportLevelsInterface[]>;
+  popUpModal: Nullable<string>;
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -33,7 +34,7 @@ interface DispatchProps {
     className?: string,
     height?: number
   ) => void;
-  updatePopUpModal: (string: string | null) => void;
+  updatePopUpModal: (string: Nullable<string>) => void;
 }
 interface MatchParams {
   id: string;
@@ -57,11 +58,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
     }
   }
 
-  handlePlanChange(plan: PlanInterface | null = null): void {
+  handlePlanChange(plan: Nullable<SupportLevelsInterface> = null): void {
     this.setState({ plan });
   }
 
-  upgradeStatus = (newPlan: PlanInterface | null): (() => void) => (): void => {
+  upgradeStatus = (
+    newPlan: Nullable<SupportLevelsInterface>
+  ): (() => void) => (): void => {
     const { updatePopUpModal } = this.props;
     const { plan } = this.state;
     if (newPlan?.id !== plan?.id || newPlan === null) {
@@ -79,7 +82,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
-    const { currentArtist, popUpModal, updatePopUpModal, plans } = this.props;
+    const {
+      currentArtist,
+      popUpModal,
+      updatePopUpModal,
+      supportLevels
+    } = this.props;
     const { plan } = this.state;
 
     return (
@@ -109,7 +117,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
           <div className={'artist-support-page__content h-100'}>
             <div className="flex-compass south h-50 half">
               <div className="flex">
-                {plans.map(
+                {supportLevels.map(
                   (data, i): React.ReactNode => {
                     return (
                       <div
@@ -137,7 +145,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
               <div className="artist-support-page__content--options--item f4 disabled">
                 <ButtonIcon
                   className="background-lime"
-                  onClick={this.upgradeStatus(plans[1])}
+                  onClick={this.upgradeStatus(supportLevels[1])}
                   icon={<ArrowTopIcon />}
                 />
                 <span className="ml-3">Upgrade</span>
@@ -146,12 +154,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
               <div
                 className="artist-support-page__content--options--item f4 disabled"
                 onClick={
-                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                  plan?.id === 2
+                    ? this.upgradeStatus(supportLevels[0])
+                    : undefined
                 }
               >
                 <ButtonIcon
                   className="background-plum rotate-180"
-                  onClick={this.upgradeStatus(plans[1])}
+                  onClick={this.upgradeStatus(supportLevels[1])}
                   icon={<ArrowTopIcon />}
                 />
                 <span className="ml-3">Downgrade</span>
@@ -160,7 +170,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
               <div
                 className="artist-support-page__content--options--item f4 disabled"
                 onClick={
-                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                  plan?.id === 2
+                    ? this.upgradeStatus(supportLevels[0])
+                    : undefined
                 }
               >
                 <ButtonIcon
@@ -177,7 +189,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
               >
                 <ButtonIcon
                   className="background-light-red"
-                  onClick={this.upgradeStatus(plans[1])}
+                  onClick={this.upgradeStatus(supportLevels[1])}
                   icon={<CloseIcon />}
                 />
                 <span className="ml-3">Cancel</span>
@@ -208,9 +220,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist } = artistAPI;
-  const { plans, popUpModal } = settings;
-  return { currentArtist, plans, popUpModal };
+  const { currentArtist, supportLevels } = artistAPI;
+  const { popUpModal } = settings;
+  return { currentArtist, supportLevels, popUpModal };
 };
 
 export default withRouter(

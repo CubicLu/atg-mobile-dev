@@ -6,7 +6,6 @@ import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 interface StateProps {
   artists: SubscriberArtistSupportedInterface[];
-  loading: boolean;
 }
 interface DispatchProps {
   getSubscriberArtistsAPI: (subscriberId: number) => any;
@@ -17,7 +16,7 @@ class ProfileArtistsPage extends React.PureComponent<Props> {
     this.props.getSubscriberArtistsAPI(1);
   }
   render(): React.ReactNode {
-    const { artists, loading } = this.props;
+    const { artists } = this.props;
     return (
       <div className="content">
         {artists.map(
@@ -31,8 +30,8 @@ class ProfileArtistsPage extends React.PureComponent<Props> {
 }
 
 const mapStateToProps = ({ subscriberAPI }: ApplicationState): StateProps => {
-  const { artists, loading } = subscriberAPI;
-  return { artists, loading };
+  const { artists } = subscriberAPI;
+  return { artists };
 };
 export default connect(mapStateToProps, { getSubscriberArtistsAPI })(
   ProfileArtistsPage

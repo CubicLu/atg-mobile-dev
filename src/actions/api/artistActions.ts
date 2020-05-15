@@ -194,3 +194,27 @@ export const clearFullscreenImage = (): Action<ArtistActionType.CLEAR_FULLSCREEN
 export const clearCurrentGallery = (): Action<ArtistActionType.CLEAR_CURRENT_GALLERY> => ({
   type: ArtistActionType.CLEAR_CURRENT_GALLERY
 });
+
+export const getSupportLevelsAPI = (): Action<ArtistActionType.GET_SUPPORT_LEVELS_API> => ({
+  type: ArtistActionType.GET_SUPPORT_LEVELS_API
+});
+
+export const getSupportLevelsAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE,
+  payload: error
+});
+
+export const getSupportLevelsAPISuccess = (
+  response: APIResponseInterface<EventInterface>
+): Action<
+  ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+  APIResponseInterface<EventInterface>
+> => ({
+  type: ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+  payload: response
+});

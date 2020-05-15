@@ -37,7 +37,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
 
   componentDidMount(): void {
-    this.props.getArtistVideosAPI('1');
+    this.props.getArtistVideosAPI(this.props.match.params.id);
   }
 
   /** NOTE: will avoid double render */

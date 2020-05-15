@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updatePopUpModal, getSupportLevelsAPI } from 'actions';
 import { ApplicationState } from 'reducers';
 import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
-import { ArtistInterface, SupportLevelsInterface } from 'models';
+import { SupportLevelsInterface, ArtistBetaInterface } from 'models';
 import {
   BackgroundImage,
   Header,
@@ -23,7 +23,7 @@ interface State {
   confirmHandler: () => void;
 }
 interface StateProps {
-  currentArtist: Nullable<ArtistInterface>;
+  artist: Nullable<ArtistBetaInterface>;
   supportLevels: SupportLevelsInterface[];
   popUpModal: Nullable<string>;
 }
@@ -54,12 +54,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
     };
   }
   UNSAFE_componentWillReceiveProps(next: Props): void {
-    if (this.props.currentArtist?.username !== next.match.params.id) {
+    if (this.props.artist?.id !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
     }
   }
 
   componentDidMount(): void {
+    this.props.getArtistAPI(this.props.match.params.id);
     this.props.getSupportLevelsAPI();
   }
 
@@ -87,12 +88,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
-    const {
-      currentArtist,
-      popUpModal,
-      updatePopUpModal,
-      supportLevels
-    } = this.props;
+    const { artist, popUpModal, updatePopUpModal, supportLevels } = this.props;
     const { plan } = this.state;
 
     return (
@@ -105,13 +101,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
       >
         <BackgroundImage
           gradient="180deg, #2814484d, #281448a8, #281448"
-          backgroundImage={currentArtist?.supportImages?.background}
+          backgroundImage={artist?.backgroundImage}
         />
         <Header
           leftBackButton={false}
           centerContent={
             <div className={'artist-support-page__header'}>
-              <div className="h2">{currentArtist?.name}</div>
+              <div className="h2">{artist?.name}</div>
               <div className="f5">Support packages</div>
             </div>
           }
@@ -207,9 +203,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
           {popUpModal === 'confirmPremiumModal' && (
             <PopUpModal header={'PREMIUM FEATURES'}>
               <PremiumFeaturesModalContent
-                title={`${currentArtist?.name}`}
+                title={`${artist?.name}`}
                 description={<>Do you want to confirm this selection?</>}
-                artistAvatar={currentArtist?.cover.event}
+                artistAvatar={artist?.thumbnail}
                 onDoneClick={(): void => updatePopUpModal(null)}
                 onSuccessClick={this.state.confirmHandler}
                 confirmButtonContent={'YES'}
@@ -227,9 +223,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, supportLevels } = artistAPI;
+  const { artist, supportLevels } = artistAPI;
   const { popUpModal } = settings;
-  return { currentArtist, supportLevels, popUpModal };
+  return { artist, supportLevels, popUpModal };
 };
 
 export default withRouter(

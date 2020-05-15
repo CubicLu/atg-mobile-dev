@@ -40,7 +40,7 @@ export function* getArtists(): any {
 }
 
 export const getArtistRequest = async (id): Promise<ArtistInterface> =>
-  await API.get(`artist/${id}.json?${new Date().getTime()}`);
+  await API_MOCK.get(`artists/${id}`);
 
 function* getArtistAPI({ payload }: any): ReturnType<any> {
   try {

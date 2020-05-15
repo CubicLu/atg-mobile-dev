@@ -24,7 +24,8 @@ const defaultState: ArtistReducerType = {
   errorMessage: null,
   event: null,
   supportLevels: [],
-  videos: null
+  videos: null,
+  artist: null
 };
 
 export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
@@ -102,7 +103,8 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       loading: false,
-      currentArtist: action.payload!.data
+      currentArtist: action.payload!.data,
+      artist: action.payload!.data
     };
   },
 

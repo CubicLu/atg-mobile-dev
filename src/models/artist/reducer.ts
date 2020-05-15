@@ -4,7 +4,8 @@ import {
   EventInterface,
   CommentInterface,
   SupportLevelsInterface,
-  VideosBetaInterface
+  VideosBetaInterface,
+  ArtistBetaInterface
 } from './../';
 import { Nullable } from './../../types';
 
@@ -21,4 +22,5 @@ export interface ArtistReducerType {
   readonly successMessage: Nullable<string>;
   readonly errorMessage: Nullable<string>;
   readonly supportLevels: SupportLevelsInterface[];
+  readonly artist: Nullable<ArtistBetaInterface>;
 }

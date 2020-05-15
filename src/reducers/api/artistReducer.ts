@@ -7,8 +7,7 @@ import {
   APIErrorInterface,
   APIResponseInterface,
   ArtistInterface,
-  ActionProperty,
-  SubscriptionInterface
+  ActionProperty
 } from '../../models';
 import createReducer from './../createReducer';
 import { transformGalleryToFlatArr } from '../../utils/normalizers';

@@ -2,7 +2,8 @@ import {
   ArtistInterface,
   GalleryImageInterface,
   EventInterface,
-  CommentInterface
+  CommentInterface,
+  SupportLevelsInterface
 } from './../';
 import { Nullable } from './../../types';
 
@@ -17,4 +18,5 @@ export interface ArtistReducerType {
   readonly loading: boolean;
   readonly successMessage: Nullable<string>;
   readonly errorMessage: Nullable<string>;
+  readonly supportLevels: SupportLevelsInterface[];
 }

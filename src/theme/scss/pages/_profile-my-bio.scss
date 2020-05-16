@@ -1,4 +1,13 @@
 .my-bio {
     color: #fff;
     font-size: 18px;
+
+    .question-row {
+        display: block;
+        font-weight: bold;
+    }
+    .answer-row {
+        display: block;
+        margin-bottom: 10px;
+    }
 }

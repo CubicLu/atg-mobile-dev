@@ -34,7 +34,7 @@ const defaultState: SettingsReducerType = {
   activeTab: 'profile',
   activeFanTab: 'artists',
   fanTabs: myProfileTabs,
-  activeProfileFriendTab: 'my-bio',
+  activeBioFriendTab: 'my-bio',
   profileFriendTabs: profileFriendTabs,
   artistTabs: artistTabs,
   plans: plans,

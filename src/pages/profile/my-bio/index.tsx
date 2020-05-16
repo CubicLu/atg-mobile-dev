@@ -2,9 +2,9 @@ import React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import { ArtistInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { ContentLoader } from './../../../components';
+import { userBioMock } from '../../../constants/mocks';
 import { connect } from 'react-redux';
 
 interface State {
@@ -42,15 +42,6 @@ class MyBioPage extends React.PureComponent<Props, State> {
       arrows: false
     };
 
-    const slides = [
-      `Hi, my name is Rosetta Thorp, but I generally go by Musical Goddes.
-      I am a female who grew up in Detroit. I went to My school and the Royal college.
-      I currently live in Alabama.`,
-      'My favorite festival is Woodstock. Once we get out of lockdown I am going to Rammstein concert in Berlin',
-      'I speak English, love red color and word "Love". I listen to music most when walking and do not listen when sleep',
-      'I lost my virginity on "A Matter of Trust". At AC/DC concert I first got high and got drunk '
-    ];
-
     return (
       <div className="content">
         <div className="my-bio my-3 mx-4">
@@ -70,10 +61,27 @@ class MyBioPage extends React.PureComponent<Props, State> {
           ) : (
             <div>
               <Slider {...settings}>
-                {slides.map(
-                  (slide, i): React.ReactNode => (
-                    <div key={i}>{slide}</div>
-                  )
+                {userBioMock.slides.map(
+                  (slide, i): React.ReactNode => {
+                    if (slide.text) {
+                      return <div key={i}>{slide.text}</div>;
+                    } else {
+                      return (
+                        <div key={i}>
+                          {slide.questionaire?.map(
+                            (q, c): React.ReactNode => (
+                              <div key={c}>
+                                <span className="question-row">
+                                  {q.question}
+                                </span>
+                                <span className="answer-row">{q.answer}</span>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      );
+                    }
+                  }
                 )}
               </Slider>
             </div>

@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import { FriendActionType, FriendInterface } from '../../models';
 import {
@@ -20,7 +20,7 @@ function* getFriendsAPI(): any {
   }
 }
 export function* getFriends(): any {
-  yield takeEvery(FriendActionType.GET_FRIENDS_ALL_API, getFriendsAPI);
+  yield takeLatest(FriendActionType.GET_FRIENDS_ALL_API, getFriendsAPI);
 }
 
 function* getCurrentFriendAPI({ payload: { friendId } }: any): ReturnType<any> {
@@ -37,7 +37,7 @@ function* getCurrentFriendAPI({ payload: { friendId } }: any): ReturnType<any> {
 }
 
 export function* getCurrentFriend(): any {
-  yield takeEvery(FriendActionType.GET_FRIEND_BY_ID_API, getCurrentFriendAPI);
+  yield takeLatest(FriendActionType.GET_FRIEND_BY_ID_API, getCurrentFriendAPI);
 }
 
 export default function* rootSaga(): any {

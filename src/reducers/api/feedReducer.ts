@@ -23,6 +23,7 @@ export const feedReducer = createReducer<FeedReducerType>(defaultState, {
   [FeedActionType.GET_ALL_POSTS_API](state: FeedReducerType): FeedReducerType {
     return {
       ...state,
+      queryResult: '',
       loading: true
     };
   },

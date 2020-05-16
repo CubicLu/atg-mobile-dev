@@ -13,6 +13,7 @@ export const radioReducer = createReducer<RadioReducerType>(defaultState, {
   ): RadioReducerType {
     return {
       ...state,
+      radioArtist: null,
       loading: true
     };
   },

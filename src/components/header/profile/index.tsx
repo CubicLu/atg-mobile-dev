@@ -211,7 +211,7 @@ export default class HeaderProfileComponent extends React.Component<
                 onClick={this.showMenuListModal}
               />
               <div className="f4 l15">Rosetta</div>
-              <div className="h00 l1 shadow">Musical Goddes</div>
+              <div className="h00 l1 shadow">Musical Goddess</div>
             </div>
           )}
         </div>

@@ -114,6 +114,13 @@
     width: 280px;
     @include background-style();
 
+    .play-button-container{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+
     &::after {
       content: attr(data-time);
       background: #000;

@@ -115,10 +115,11 @@
     border-radius: 50%;
     height: 95px;
     width: 95px;
+    padding: 0;
     color: #fff;
     border: 0px solid transparent;
     &.active {
-      border: 6px solid #ffd102cf;
+      border: 6px solid #fcc505;
     }
   }
   .price {
@@ -134,18 +135,6 @@
     .currency {
       font-size: 30px;
       vertical-align: middle;
-    }
-  }
-  @media screen and (max-height: 667px) {
-    &.circle {
-      border-radius: 50%;
-      height: 128px;
-      width: 128px;
-      margin-bottom: 16px;
-      border: 7px solid transparent;
-      &.active {
-        border: 7px solid #fff;
-      }
     }
   }
 }

@@ -123,7 +123,7 @@ export default class HeaderProfileComponent extends React.Component<
   }
   renderFriend(): React.ReactNode {
     if (!this.state.isReady) this.displayContent();
-    const { showFilter } = this.props;
+    const { showFilter, currentFriend } = this.props;
     return (
       <div>
         <Header
@@ -131,6 +131,11 @@ export default class HeaderProfileComponent extends React.Component<
           rightChatButton={!showFilter}
           rightConnectedButton={!showFilter}
           rightFanFeedButton={!showFilter}
+          rightFanFeedUrl={
+            currentFriend?.isArtist
+              ? `/community/artist/${currentFriend?.username}`
+              : `/community/feed/${currentFriend?.username}`
+          }
           routerDirection="forward"
         />
         <div className="profile-center">

@@ -60,7 +60,7 @@ class SubGenreModalComponent extends React.Component<Props, State> {
     const allItems = this.state.subGenres.length;
     let selected = 0;
 
-    this.state.subGenres.map((item: SubGenreInterface): void => {
+    this.state.subGenres.forEach((item: SubGenreInterface): void => {
       if (item.selected) selected++;
     });
 

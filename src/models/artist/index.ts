@@ -36,6 +36,7 @@ export interface ArtistCoverInterface {
   readonly background: string | undefined;
   readonly event: string | undefined;
   readonly biography: string | undefined;
+  readonly gateway: string | undefined;
   readonly deepDive: string | undefined;
   readonly dashboard?: string;
   readonly videoCover?: string;

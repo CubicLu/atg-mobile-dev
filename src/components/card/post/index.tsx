@@ -43,7 +43,7 @@ export default class CardPostComponent extends React.Component<Props> {
   renderSkeleton(): React.ReactNode {
     return (
       <ContentLoader
-        className="mt-3"
+        className="mt-3 px-1"
         speed={2}
         width={500}
         height={290}
@@ -63,7 +63,7 @@ export default class CardPostComponent extends React.Component<Props> {
     return {
       height: '290px',
       position: 'relative',
-      backgroundImage: `url(${url})`,
+      backgroundImage: `url(${url}), linear-gradient(#5f5f5f80, #8f8f8f80)`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       borderRadius: rounded ? '20px' : 0,

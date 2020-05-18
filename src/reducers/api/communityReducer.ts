@@ -48,6 +48,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
     ): CommunityReducerType {
       return {
         ...state,
+        posts: [],
         loading: true
       };
     },
@@ -85,6 +86,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
     ): CommunityReducerType {
       return {
         ...state,
+        currentCommunityArtist: null,
         loading: true
       };
     },
@@ -120,6 +122,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
     [CommunityActionType.GET_STORIES_API](state: CommunityReducerType): any {
       return {
         ...state,
+        stories: [],
         loading: true
       };
     },
@@ -157,6 +160,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
     ): CommunityReducerType {
       return {
         ...state,
+        currentPostComments: [],
         loading: true
       };
     },
@@ -192,6 +196,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
     ): CommunityReducerType {
       return {
         ...state,
+        currentPostCover: { url: '' },
         loading: true
       };
     },
@@ -227,6 +232,7 @@ export const communityReducer = createReducer<CommunityReducerType>(
     ): any {
       return {
         ...state,
+        commentsList: [],
         loading: true
       };
     },

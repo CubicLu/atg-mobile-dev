@@ -89,6 +89,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   ): ArtistReducerType {
     return {
       ...state,
+      currentArtist: null,
       loading: true
     };
   },
@@ -136,6 +137,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   ): ArtistReducerType {
     return {
       ...state,
+      event: null,
       loading: true
     };
   },
@@ -210,6 +212,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
   ): ArtistReducerType {
     return {
       ...state,
+      currentGalleryComments: [],
       loading: true
     };
   },

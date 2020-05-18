@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import {
   DashboardActionType,
@@ -28,7 +28,7 @@ function* getDashboardByArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getDashboardByArtist(): any {
-  yield takeEvery(
+  yield takeLatest(
     DashboardActionType.GET_BY_DASH_ARTIST_API,
     getDashboardByArtistAPI
   );

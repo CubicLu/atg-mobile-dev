@@ -22,7 +22,6 @@ import { Nullable } from '../../types';
 interface StateProps {
   currentArtist: Nullable<ArtistInterface>;
   artistTabs: MenuInterface[];
-  loading: boolean;
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -67,35 +66,28 @@ class ArtistPage extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       activeTab: 'featured',
-      gateway: false
+      gateway: true
     };
   }
 
-  UNSAFE_componentWillReceiveProps(next: Props): void {
-    if (
-      next.match.params.tab &&
-      this.state.activeTab !== next.match.params.tab
-    ) {
-      this.updateActiveTab(next.match.params.tab);
-    }
-    if (next.loading) return;
-    if (this.props.loading) return;
-    if (this.props.currentArtist?.nickname !== next.match.params.id) {
-      this.props.getArtistAPI(next.match.params.id);
-      this.setState({ gateway: true });
+  componentDidUpdate(): void {
+    //navigate to specific tab
+    const hasTab = this.props.match.params.tab;
+    if (hasTab && this.state.activeTab !== hasTab) this.updateActiveTab(hasTab);
+    //load new artist
+    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+      this.props.getArtistAPI(this.props.match.params.id);
+      //gateway update
+      !this.state.gateway && this.updateGateway(true);
     }
   }
 
   updateGateway(condition: boolean): void {
-    this.setState({
-      gateway: condition
-    });
+    this.setState({ gateway: condition });
   }
 
   updateActiveTab(tab: string): void {
-    this.setState({
-      activeTab: tab
-    });
+    this.setState({ activeTab: tab });
   }
   componentDidMount(): void {
     if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
@@ -316,9 +308,9 @@ const mapStateToProps = ({
   artistAPI,
   settings
 }: ApplicationState): StateProps => {
-  const { currentArtist, loading } = artistAPI;
+  const { currentArtist } = artistAPI;
   const { artistTabs } = settings;
-  return { currentArtist, artistTabs, loading };
+  return { currentArtist, artistTabs };
 };
 
 export default connect(mapStateToProps, { getArtistAPI, clearCurrentArtist })(

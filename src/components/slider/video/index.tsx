@@ -9,6 +9,7 @@ import { VideoBetaInterface } from 'models';
 
 interface Props {
   viewAll?: boolean;
+  showFooter: boolean;
   scroll?: boolean;
   canEdit: boolean;
   data?: any[];
@@ -20,6 +21,8 @@ interface Props {
 class SliderVideoComponent extends React.Component<Props> {
   public static defaultProps = {
     scroll: false,
+    viewAll: false,
+    showFooter: false,
     canEdit: false,
     size: Sizes.md,
     type: ShapesSize.rounded

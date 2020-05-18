@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import {
   CommunityActionType,
@@ -36,7 +36,7 @@ function* getCommunityPostsAPI(): ReturnType<any> {
 }
 
 export function* getCommunityPosts(): any {
-  yield takeEvery(CommunityActionType.GET_POSTS_API, getCommunityPostsAPI);
+  yield takeLatest(CommunityActionType.GET_POSTS_API, getCommunityPostsAPI);
 }
 
 export const getCommunityRecentPostsRequest = async (): Promise<RecentPostInterface[]> =>
@@ -52,7 +52,7 @@ function* getCommunityRecentPostsAPI(): ReturnType<any> {
 }
 
 export function* getCommunityRecentPosts(): any {
-  yield takeEvery(
+  yield takeLatest(
     CommunityActionType.GET_COMMUNITY_RECENT_POSTS_API,
     getCommunityRecentPostsAPI
   );
@@ -73,7 +73,7 @@ function* getCommunityByArtistUsernameAPI({ payload }): ReturnType<any> {
 }
 
 export function* getCommunityByArtistUsername(): any {
-  yield takeEvery<any>(
+  yield takeLatest<any>(
     CommunityActionType.GET_BY_ARTIST_USERNAME_API,
     getCommunityByArtistUsernameAPI
   );
@@ -92,7 +92,7 @@ function* getCommunityStoriesAPI(): ReturnType<any> {
 }
 
 export function* getCommunityStories(): any {
-  yield takeEvery(CommunityActionType.GET_STORIES_API, getCommunityStoriesAPI);
+  yield takeLatest(CommunityActionType.GET_STORIES_API, getCommunityStoriesAPI);
 }
 
 export const getCommunityCommentsRequest = async (
@@ -112,7 +112,7 @@ function* getCommunityCommentsAPI({ payload }: any): any {
 }
 
 export function* getCommunityComments(): any {
-  yield takeEvery(
+  yield takeLatest(
     CommunityActionType.GET_COMMENTARIES_API,
     getCommunityCommentsAPI
   );
@@ -133,7 +133,7 @@ function* getCommunityCommentsCoverAPI({ payload }: any): any {
 }
 
 export function* getCommunityCover(): any {
-  yield takeEvery(
+  yield takeLatest(
     CommunityActionType.GET_COMMENTARIES_COVER_API,
     getCommunityCommentsCoverAPI
   );

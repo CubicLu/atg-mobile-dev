@@ -36,6 +36,7 @@ class ProfileFriendsPage extends React.Component<Props> {
                   optionRemove={true}
                   optionAddPlaylist={false}
                   leftDisabled={!friend.isFriend}
+                  isArtist={friend.isArtist}
                   username={friend.username}
                   hasAvatar={true}
                   avatarImage={friend.image}

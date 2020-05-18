@@ -11,7 +11,6 @@ import {
   CloseIcon,
   SettingsIcon,
   UserGroupIcon,
-  SupportIcon,
   BalloonIcon,
   ChatMessageIcon,
   DashboardIcon,
@@ -44,6 +43,7 @@ interface Props {
   leftBackHref?: string;
   rightActionHref?: string;
   rightCloseHref?: string;
+  rightFanFeedUrl?: string;
   translucent?: boolean;
   ios?: boolean;
   fixed?: boolean;
@@ -61,7 +61,6 @@ interface Props {
   rightActionButton?: boolean;
   rightCloseButton?: boolean;
   rightSettingsButton?: boolean;
-  rightSupportButton?: boolean;
   rightInfoButton?: boolean;
   rightAddButton?: boolean;
   rightFilterButton?: boolean;
@@ -82,7 +81,6 @@ class HeaderComponent extends React.Component<Props> {
     rightActionYellow: false,
     top: false,
     rightSettingsButton: false,
-    rightSupportButton: false,
     rightAddButton: false,
     rightFilterButton: false,
     rightUserGroupButton: false,
@@ -157,7 +155,6 @@ class HeaderComponent extends React.Component<Props> {
       rightActionOnClick,
       rightSettingsButton,
       rightSettingsOnClick,
-      rightSupportButton,
       rightUserGroupButton,
       rightNotificationButton,
       rightDashboardButton,
@@ -220,11 +217,6 @@ class HeaderComponent extends React.Component<Props> {
           <div className="end">
             {rightContent}
 
-            {rightSupportButton && (
-              <div className="default-button dark">
-                <SupportIcon />
-              </div>
-            )}
             {rightActionButton && (
               <div
                 className={`default-button ${
@@ -264,14 +256,11 @@ class HeaderComponent extends React.Component<Props> {
                 <BalloonIcon width={20} height={15} />
               </div>
             )}
-            {rightFanFeedButton && (
+            {rightFanFeedButton && this.props.rightFanFeedUrl && (
               <div
                 className="default-button dark"
                 onClick={(): void =>
-                  this.routeNavigate(
-                    '/community/feed/pharrell-williams',
-                    'forward'
-                  )
+                  this.routeNavigate(this.props.rightFanFeedUrl!, 'forward')
                 }
               >
                 <StarIcon />

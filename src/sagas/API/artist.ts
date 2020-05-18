@@ -1,4 +1,11 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  all,
+  fork
+} from 'redux-saga/effects';
 import { API, API_MOCK } from 'utils/api';
 import {
   ArtistActionType,
@@ -40,7 +47,7 @@ function* getArtistsAPI(): any {
 }
 
 export function* getArtists(): any {
-  yield takeEvery(ArtistActionType.GET_ALL_API, getArtistsAPI);
+  yield takeLatest(ArtistActionType.GET_ALL_API, getArtistsAPI);
 }
 
 export const getArtistRequest = async (id): Promise<ArtistInterface> =>
@@ -81,7 +88,7 @@ function* getArtistEventAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getArtistEvent(): any {
-  yield takeEvery(ArtistActionType.GET_EVENT_API, getArtistEventAPI);
+  yield takeLatest(ArtistActionType.GET_EVENT_API, getArtistEventAPI);
 }
 
 export const getArtistVideosRequest = async (
@@ -124,7 +131,7 @@ function* getArtistGalleryCommentsAPI({ payload }: any): any {
 }
 
 export function* getArtistGalleryComments(): any {
-  yield takeEvery(
+  yield takeLatest(
     ArtistActionType.GET_GALLERY_COMMENTS_API,
     getArtistGalleryCommentsAPI
   );

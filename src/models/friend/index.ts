@@ -7,6 +7,7 @@ export interface FriendInterface {
   readonly background?: string;
   readonly followers: number;
   readonly isFriend: boolean;
+  readonly isArtist?: boolean;
 }
 
 export interface GetFriendAPIInterface {

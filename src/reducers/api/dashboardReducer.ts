@@ -44,6 +44,7 @@ export const dashboardReducer = createReducer<DashboardReducerType>(
     ): DashboardReducerType {
       return {
         ...state,
+        dashboard: null,
         loading: true
       };
     },

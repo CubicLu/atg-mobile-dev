@@ -1,7 +1,9 @@
 import React from 'react';
-import { ShapesSize, Sizes } from '../../../types';
-import { EditIcon } from '../..';
+import { Nullable, ShapesSize, Sizes } from '../../../types';
+import { EditIcon, RadioPauseButton } from '../..';
 import { IonRouterLink } from '@ionic/react';
+import { SongInterface } from '../../../models';
+import { RadioPlayButton } from '../../icon/player';
 
 interface Props {
   image?: string;
@@ -9,6 +11,14 @@ interface Props {
   canEdit: boolean;
   type: ShapesSize;
   size?: Sizes;
+  playButton?: boolean;
+  playing?: boolean;
+  paused?: boolean;
+  song?: SongInterface;
+  onPlayClick?: Function;
+  onPauseClick?: Function;
+  onResumeClick?: Function;
+  playingRadioIndex?: Nullable<number>;
 }
 
 class CardRadioComponent extends React.Component<Props> {
@@ -18,9 +28,28 @@ class CardRadioComponent extends React.Component<Props> {
     canEdit: false
   };
 
+  togglePlayPause = (): void => {
+    const {
+      song,
+      playing,
+      onPlayClick,
+      onPauseClick,
+      onResumeClick,
+      paused,
+      playingRadioIndex
+    } = this.props;
+    if ((!song || song?.id !== playingRadioIndex) && onPlayClick) {
+      onPlayClick();
+    }
+    if (playing && onPauseClick) {
+      onPauseClick();
+    } else if (paused && onResumeClick) {
+      onResumeClick(song);
+    }
+  };
+
   render(): React.ReactNode {
     const { type, image, size, id } = this.props;
-
     return (
       <div className="row card-out-content">
         <div
@@ -36,6 +65,14 @@ class CardRadioComponent extends React.Component<Props> {
                 <EditIcon opacity={0.33} />
               </div>
             </IonRouterLink>
+          )}
+          {this.props.playButton && (
+            <div
+              className={'play-button-container'}
+              onClick={this.togglePlayPause}
+            >
+              {this.props.playing ? <RadioPauseButton /> : <RadioPlayButton />}
+            </div>
           )}
         </div>
       </div>

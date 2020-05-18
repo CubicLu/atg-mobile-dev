@@ -8,20 +8,49 @@ import {
   SliderRadios
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
-import { ChannelInterface, RadioInterface } from '../../models';
-import { RouteChildrenProps } from 'react-router';
+import {
+  ArtistInterface,
+  ChannelInterface,
+  PlaylistInterface,
+  RadioInterface,
+  SongInterface
+} from '../../models';
+import { guitarPlaylist as playlist } from '../../reducers/playerReducer';
+import { RouteComponentProps, withRouter } from 'react-router';
 import { Nullable } from '../../types';
+import { ApplicationState } from '../../reducers';
+import { connect } from 'react-redux';
+import { pauseSong, playSong, setPlaylist } from '../../actions';
 
-interface Props extends RouteChildrenProps<MatchParams> {}
 interface MatchParams {
   genre: string;
 }
+
+interface StateProps {
+  loading: boolean;
+  radioArtist: Nullable<ChannelInterface>;
+  currentArtist: Nullable<ArtistInterface>;
+  playing: boolean;
+  paused: boolean;
+  song: SongInterface | undefined;
+}
+
+interface DispatchProps {
+  pauseSong: () => void;
+  playSong: (song: SongInterface) => void;
+  setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
+}
+interface Props
+  extends StateProps,
+    DispatchProps,
+    RouteComponentProps<MatchParams> {}
+
 interface State {
   paramGenre: Nullable<string>;
   currentGenre: Nullable<ChannelInterface>;
 }
 
-export default class RadioPage extends React.Component<Props, State> {
+class RadioPage extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
@@ -60,13 +89,7 @@ export default class RadioPage extends React.Component<Props, State> {
           leftBackButton={false}
           rightActionButton={true}
           rightActionHref={'/radio/filter'}
-        >
-          <div className="absolute-logo-left">
-            <span className="brand-title text-48 l05">panthr</span>
-            <br />
-            <span className="h3 mx-2 l08">AI-POWERED RADIO</span>
-          </div>
-        </Header>
+        />
 
         <BackgroundImage
           gradientOverlay={true}
@@ -76,7 +99,12 @@ export default class RadioPage extends React.Component<Props, State> {
           backgroundBottom={false}
         />
 
-        <IonContent>
+        <IonContent fullscreen={true}>
+          <div className="absolute-logo-left">
+            <span className="brand-title text-48 l05">panthr</span>
+            <br />
+            <span className="h3 mx-2 l08">AI-POWERED RADIO</span>
+          </div>
           <div className="top-half flex-compass south center-align">
             <div className="flex left-align mx-auto">
               <div className="mt-1 mr-2">
@@ -93,7 +121,7 @@ export default class RadioPage extends React.Component<Props, State> {
             className="mt-2 mx-3"
             title="STATIONS"
             viewAll={true}
-            viewAllUrl="/radio/view-all"
+            //viewAllUrl="/radio/view-all"
           />
           <SliderRadio
             className="f6 l1"
@@ -114,7 +142,19 @@ export default class RadioPage extends React.Component<Props, State> {
             />
           </IonRouterLink>
           <div className="card-station">
-            <SliderRadios canEdit={true} data={this.radios} />
+            <SliderRadios
+              canEdit={true}
+              data={this.radios}
+              onPlayClick={(): void => {
+                this.props.setPlaylist(playlist, playlist.items[0]);
+              }}
+              onPauseClick={(): void => this.props.pauseSong()}
+              onResumeClick={(): void => this.props.playSong(this.props.song!)}
+              playing={this.props.playing}
+              song={this.props.song}
+              paused={this.props.paused}
+              playButton={true}
+            />
           </div>
         </IonContent>
       </IonPage>
@@ -219,3 +259,29 @@ export default class RadioPage extends React.Component<Props, State> {
     }
   ];
 }
+
+const mapStateToProps = ({
+  radioAPI,
+  artistAPI,
+  player
+}: ApplicationState): StateProps => {
+  const { radioArtist, loading } = radioAPI;
+  const { currentArtist } = artistAPI;
+  const { playing, paused, song } = player;
+  return {
+    radioArtist,
+    loading,
+    currentArtist,
+    playing,
+    paused,
+    song
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, {
+    setPlaylist,
+    playSong,
+    pauseSong
+  })(RadioPage)
+);

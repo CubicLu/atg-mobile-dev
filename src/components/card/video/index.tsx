@@ -8,6 +8,7 @@ interface Props {
   image: string | undefined;
   id: number;
   canEdit: boolean;
+  showFooter: boolean;
   type: ShapesSize;
   video: string | undefined;
   title?: string;
@@ -20,6 +21,7 @@ interface Props {
 class CardVideoComponent extends React.Component<Props> {
   public static defaultProps = {
     type: ShapesSize.normal,
+    showFooter: false,
     size: Sizes.md,
     canEdit: false,
     onClick: (): void => {}
@@ -50,9 +52,9 @@ class CardVideoComponent extends React.Component<Props> {
 
         {title && <span className="f4 my-1">{title}</span>}
         <br />
-        {artist && (
+        {this.props.showFooter && (
           <div className={'f6 l11 flex-align-items-center'}>
-            <span className="align-start">{artist.name}</span>
+            <span className="align-start">{artist?.name}</span>
             <span className="align-end">
               <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
             </span>

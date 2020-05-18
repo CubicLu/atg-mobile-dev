@@ -615,10 +615,21 @@
 .p-10 {
   padding: 10px;
 }
+.default-offset-content{
+  --offset-top: -90px !important;
+}
 .absolute-logo-left {
   top: 44px;
   left: 24px;
   position: absolute;
+  &.dual{
+    left: 60px;
+    top: 32px;
+  }
+  &.single{
+    left: 60px;
+    top: 42px;
+  }
 }
 .flex-column {
   display: flex;

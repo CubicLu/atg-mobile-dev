@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import { SearchActionType, SearchInterface } from '../../models';
 import {
@@ -20,7 +20,7 @@ function* getSearchResultAPI({ query }: any): ReturnType<any> {
 }
 
 export function* getSearchResult(): any {
-  yield takeEvery(SearchActionType.GET_RESULT_API, getSearchResultAPI);
+  yield takeLatest(SearchActionType.GET_RESULT_API, getSearchResultAPI);
 }
 
 export default function* rootSaga(): any {

@@ -30,7 +30,6 @@ interface StateProps {
   profileFriendTabs: MenuInterface[];
   activeProfileFriendTab: string;
   currentFriend?: Nullable<FriendInterface>;
-  loading: boolean;
 }
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
@@ -130,18 +129,10 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
     );
   }
 
-  renderLoading(): React.ReactNode {
-    return (
-      <div className="loader">
-        <div className="icon" />
-      </div>
-    );
-  }
   render(): React.ReactNode {
     return (
       <IonPage id="friend-profile-page">
         <IonContent id="friend-profile-page" scrollY={false}>
-          {this.props.loading && this.renderLoading()}
           {!this.props.currentFriend && (
             <BackgroundImage
               gradient="180deg,#652ddd,#2c0d5c"
@@ -166,9 +157,8 @@ const mapStateToProps = ({
   friendAPI
 }: ApplicationState): StateProps => {
   const { activeProfileFriendTab, profileFriendTabs } = settings;
-  const { loading, currentFriend } = friendAPI;
+  const { currentFriend } = friendAPI;
   return {
-    loading,
     activeProfileFriendTab,
     profileFriendTabs,
     currentFriend

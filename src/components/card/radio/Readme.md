@@ -7,6 +7,7 @@ import '../../../theme/scss/_styles.scss';
   id={0}
   canEdit
   image={'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png'}
+  playButton
 />
 </div>
 ```

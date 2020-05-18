@@ -1,14 +1,13 @@
 import React from 'react';
 import { DotsThreeIcon } from './../../';
 import { Colors } from '../../../types';
-import { SupportLevelsInterface } from './../../../models';
+import { PlanInterface } from './../../../models';
 interface Props {
   onClick: Function;
   onClickDetail?: Function;
   styles?: object;
-  plan: SupportLevelsInterface;
+  plan: PlanInterface;
   active: boolean;
-  color: Colors;
 }
 
 class ButtonPlanComponent extends React.Component<Props> {
@@ -19,8 +18,8 @@ class ButtonPlanComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { onClick, active, styles, plan, color } = this.props;
-    const { name, value } = plan;
+    const { onClick, active, styles, plan } = this.props;
+    const { color, price, name } = plan;
     if (!plan) return <div />;
 
     return (
@@ -33,7 +32,7 @@ class ButtonPlanComponent extends React.Component<Props> {
           <div>
             <span className="h0 l1 ">
               <span className="currency">{'$'}</span>
-              {value}
+              {price}
             </span>
           </div>
           <span className="f7 mb-05">{name}</span>

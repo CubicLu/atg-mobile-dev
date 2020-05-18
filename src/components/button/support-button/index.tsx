@@ -1,13 +1,12 @@
 import React from 'react';
-import { ArtistBetaInterface } from '../../../models';
+import { ArtistInterface } from '../../../models';
 import SupportComponent from '../../button/support';
-import { Nullable } from '../../../types';
 interface Props {
   supported: boolean;
   bold?: boolean;
   className?: string;
   id?: string;
-  artist: Nullable<ArtistBetaInterface>;
+  artist: ArtistInterface | null;
 }
 export class ButtonSupportIconComponent extends React.Component<Props> {
   public static defaultProps = { supported: false };

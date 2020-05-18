@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, SupportIcon } from './../../../components';
-import { ArtistBetaInterface } from '../../../models';
-import { Colors, Nullable } from '../../../types';
+import { ArtistInterface } from '../../../models';
+import { Colors } from '../../../types';
 import { IonRouterLink } from '@ionic/react';
 
 interface ButtonProps {
@@ -10,7 +10,7 @@ interface ButtonProps {
   className?: string;
   bold?: boolean;
   id: string;
-  artist: Nullable<ArtistBetaInterface>;
+  artist: ArtistInterface | null;
 }
 
 class SupportComponent extends React.Component<ButtonProps> {
@@ -26,7 +26,7 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderIcon(): React.ReactNode {
     const { supported, className, id } = this.props;
-    const username = this.props.artist?.id || 'pharrell-williams';
+    const username = this.props.artist?.username || 'pharrell-williams';
     return (
       <div
         id={id}
@@ -48,7 +48,7 @@ class SupportComponent extends React.Component<ButtonProps> {
 
   renderButton(): React.ReactNode {
     const { supported, bold, id } = this.props;
-    const username = this.props.artist?.nickname || 'pharrell-williams';
+    const username = this.props.artist?.username || 'pharrell-williams';
     return (
       <Button
         id={id}

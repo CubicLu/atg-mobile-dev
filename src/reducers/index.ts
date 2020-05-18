@@ -12,7 +12,6 @@ import { profileReducer } from './api/profileReducer';
 import { radioReducer } from './api/radioReducer';
 import { navbarReducer } from './navbarReducer';
 import { dashboardReducer } from './api/dashboardReducer';
-import { subscriberReducer } from './api/subscriberReducer';
 import {
   SettingsReducerType,
   AuthReducerType,
@@ -26,8 +25,7 @@ import {
   FeedReducerType,
   RadioReducerType,
   NavbarReducerType,
-  DashboardReducerType,
-  SubscriberReducerType
+  DashboardReducerType
 } from '../models';
 
 export interface ApplicationState {
@@ -44,7 +42,6 @@ export interface ApplicationState {
   feedAPI: FeedReducerType;
   radioAPI: RadioReducerType;
   dashboardAPI: DashboardReducerType;
-  subscriberAPI: SubscriberReducerType;
 }
 
 export const rootReducers = combineReducers<ApplicationState>({
@@ -60,6 +57,5 @@ export const rootReducers = combineReducers<ApplicationState>({
   friendAPI: friendReducer,
   feedAPI: feedReducer,
   radioAPI: radioReducer,
-  dashboardAPI: dashboardReducer,
-  subscriberAPI: subscriberReducer
+  dashboardAPI: dashboardReducer
 });

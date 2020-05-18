@@ -1,12 +1,6 @@
 import React from 'react';
-import { ArtistInterface, ArtistBetaInterface } from '../../../models';
-import {
-  Colors,
-  ShapesSize,
-  Sizes,
-  GradientDirection,
-  Nullable
-} from '../../../types';
+import { ArtistInterface } from '../../../models';
+import { Colors, ShapesSize, Sizes, GradientDirection } from '../../../types';
 import {
   ButtonIcon,
   CloseIcon,
@@ -45,7 +39,7 @@ interface Props {
   avatarSize?: number;
   node?: number;
   avatarImage?: string;
-  artist: Nullable<ArtistBetaInterface | ArtistInterface>;
+  artist: ArtistInterface | null;
   isArtist: boolean;
   supported?: boolean;
   pendingButton: boolean;
@@ -230,13 +224,13 @@ export default class ListItemComponent extends React.Component<Props> {
               />
             )}
 
-            {/* {this.props.supportButtonIcon && (
+            {this.props.supportButtonIcon && (
               <ButtonSupportIcon
                 className="mr-05 hide-on-slide"
                 artist={artist}
-                supported={supported}
+                supported={supported || artist?.support}
               />
-            )} */}
+            )}
 
             {this.props.connectButton && (
               <Button

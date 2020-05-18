@@ -99,7 +99,7 @@ class TrackListPage extends React.Component<Props> {
     return (
       this.props.currentArtist && (
         <div className="center player-support">
-          {/* <ButtonSupport artist={this.props.currentArtist} /> */}
+          <ButtonSupport artist={this.props.currentArtist} />
         </div>
       )
     );

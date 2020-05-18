@@ -1,20 +1,10 @@
-import {
-  call,
-  put,
-  takeEvery,
-  takeLatest,
-  all,
-  fork
-} from 'redux-saga/effects';
-import { API, API_MOCK } from 'utils/api';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
+import { API } from '../../utils/api';
 import {
   ArtistActionType,
   ArtistInterface,
-  VideosBetaInterface,
-  APIResponseInterface,
-  PostSubscriptionInterface,
-  SubscriptionInterface
-} from 'models';
+  APIResponseInterface
+} from '../../models';
 import {
   getArtistsAPIFailure,
   getArtistsAPISuccess,
@@ -23,14 +13,8 @@ import {
   getArtistEventAPISuccess,
   getArtistEventAPIFailure,
   getArtistGalleryCommentsAPIFailure,
-  getArtistGalleryCommentsAPISuccess,
-  getSupportLevelsAPISuccess,
-  getSupportLevelsAPIFailure,
-  getArtistVideosAPISuccess,
-  getArtistVideosAPIFailure,
-  postSubscribeArtistAPISuccess,
-  postSubscribeArtistAPIFailure
-} from 'actions';
+  getArtistGalleryCommentsAPISuccess
+} from '../../actions';
 
 export const getArtistsRequest = async (): Promise<ArtistInterface[]> =>
   await API.get(`artist/all.json?${new Date().getTime()}`);
@@ -50,8 +34,8 @@ export function* getArtists(): any {
   yield takeLatest(ArtistActionType.GET_ALL_API, getArtistsAPI);
 }
 
-export const getArtistRequest = async (id): Promise<ArtistInterface> =>
-  await API_MOCK.get(`artists/${id}`);
+export const getArtistRequest = async (username): Promise<ArtistInterface> =>
+  await API.get(`artist/${username}.json?${new Date().getTime()}`);
 
 function* getArtistAPI({ payload }: any): ReturnType<any> {
   try {
@@ -63,7 +47,7 @@ function* getArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getArtist(): any {
-  yield takeEvery(ArtistActionType.GET_BY_ID_API, getArtistAPI);
+  yield takeLatest(ArtistActionType.GET_BY_USERNAME_API, getArtistAPI);
 }
 
 export const getArtistEventRequest = async (
@@ -89,24 +73,6 @@ function* getArtistEventAPI({ payload }: any): ReturnType<any> {
 
 export function* getArtistEvent(): any {
   yield takeLatest(ArtistActionType.GET_EVENT_API, getArtistEventAPI);
-}
-
-export const getArtistVideosRequest = async (
-  artistID
-): Promise<VideosBetaInterface> =>
-  await API_MOCK.get(`video-sections?artist=${artistID}`);
-
-function* getArtistVideosAPI({ payload }: any): ReturnType<any> {
-  try {
-    const request = yield call(getArtistVideosRequest, payload.artistID);
-    yield put(getArtistVideosAPISuccess(request));
-  } catch (error) {
-    yield put(getArtistVideosAPIFailure(error));
-  }
-}
-
-export function* getArtistVideos(): any {
-  yield takeEvery(ArtistActionType.GET_VIDEO_API, getArtistVideosAPI);
 }
 
 export const getArtistGalleryCommentsRequest = async (
@@ -137,47 +103,11 @@ export function* getArtistGalleryComments(): any {
   );
 }
 
-export const getSupportLevelsRequest = async (): Promise<ArtistInterface[]> =>
-  await API_MOCK.get('support-levels');
-
-function* getSupportLevelsAPI(): any {
-  try {
-    const request = yield call(getSupportLevelsRequest);
-    yield put(getSupportLevelsAPISuccess(request));
-  } catch (error) {
-    yield put(getSupportLevelsAPIFailure(error));
-  }
-}
-
-export function* getSupportLevels(): any {
-  yield takeEvery(ArtistActionType.GET_SUPPORT_LEVELS_API, getSupportLevelsAPI);
-}
-
-export const postSubscribeArtistRequest = async (
-  data: PostSubscriptionInterface
-): Promise<SubscriptionInterface> => await API_MOCK.post('subscriptions', data);
-
-function* postSubscribeArtistAPI({ payload }: any): any {
-  try {
-    const request = yield call(postSubscribeArtistRequest, payload);
-    yield put(postSubscribeArtistAPISuccess(request));
-  } catch (error) {
-    yield put(postSubscribeArtistAPIFailure(error));
-  }
-}
-
-export function* postSubscribeArtist(): any {
-  yield takeEvery(ArtistActionType.POST_SUBSCRIBE_API, postSubscribeArtistAPI);
-}
-
 export default function* rootSaga(): any {
   yield all([
     fork(getArtists),
     fork(getArtist),
     fork(getArtistEvent),
-    fork(getArtistGalleryComments),
-    fork(getSupportLevels),
-    fork(getArtistVideos),
-    fork(postSubscribeArtist)
+    fork(getArtistGalleryComments)
   ]);
 }

@@ -7,21 +7,20 @@ import {
   SliderVideo,
   CardVideo,
   SectionTitle
-} from 'components';
-import { Sizes, ShapesSize, Nullable } from 'types';
-import { VideosBetaInterface } from 'models';
+} from '../../../components';
+import { Sizes, ShapesSize } from '../../../types';
+import { ArtistInterface } from '../../../models';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { ApplicationState } from 'reducers';
-import { getArtistVideosAPI, updateSettingsProperty } from 'actions';
+import { ApplicationState } from '../../../reducers';
+import { getArtistAPI, updateSettingsProperty } from './../../../actions';
 
 interface StateProps {
-  videos: Nullable<VideosBetaInterface[]>;
-  loading: boolean;
+  currentArtist: ArtistInterface | null;
 }
 
 interface DispatchProps {
-  getArtistVideosAPI: (artistID: string) => void;
+  getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
 }
 
@@ -36,14 +35,12 @@ interface Props
 class ArtistVideosPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
 
-  componentDidMount(): void {
-    this.props.getArtistVideosAPI(this.props.match.params.id);
-  }
-
-  /** NOTE: will avoid double render */
-  shouldComponentUpdate(nextProps): boolean {
-    if (this.props.videos || nextProps.videos) return true;
-    return false;
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (nextProps.currentArtist == null) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    } else if (nextProps.match.params.id !== this.props.match.params.id) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    }
   }
 
   onOpenVideo(id: number): void {
@@ -53,8 +50,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
   }
 
   render(): React.ReactNode {
-    const { videos, loading } = this.props;
-    if (loading) return <div />;
+    const { currentArtist } = this.props;
     return (
       <IonPage id="artist-videos-page">
         <Header title="Videos" titleClassName="videos" />
@@ -68,7 +64,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
         >
           <BackgroundImage default />
           <div className="content-container">
-            {videos?.length && (
+            {currentArtist?.videos?.recents && (
               <React.Fragment>
                 <SectionTitle
                   className="mx-2"
@@ -77,7 +73,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 />
                 <div className="slick-list-no-margin">
                   <SliderVideo
-                    data={videos[0].videos}
+                    data={currentArtist?.videos?.recents}
                     size={Sizes.sm}
                     type={ShapesSize.normal}
                     onClick={this.onOpenVideo.bind(this)}
@@ -87,24 +83,22 @@ class ArtistVideosPage extends React.Component<Props, {}> {
             )}
             <div className="row showcase ">
               <SectionTitle className="mx-2" title={'Showcase'} />
-              {videos?.length &&
-                videos[1].videos.map(
-                  (video, i): React.ReactNode => {
-                    return (
-                      <CardVideo
-                        onClick={this.onOpenVideo.bind(this, i)}
-                        id={i}
-                        key={i}
-                        size={Sizes.full}
-                        type={ShapesSize.full}
-                        title={video.description}
-                        time={video.duration}
-                        video={video.url}
-                        image={video.thumbnail}
-                      />
-                    );
-                  }
-                )}
+              {currentArtist?.videos?.showcase.map(
+                (value, i): React.ReactNode => {
+                  return (
+                    <CardVideo
+                      onClick={this.onOpenVideo.bind(this, i)}
+                      id={i}
+                      key={i}
+                      size={Sizes.full}
+                      type={ShapesSize.full}
+                      time={value.time}
+                      video={value.video}
+                      image={value.image}
+                    />
+                  );
+                }
+              )}
             </div>
           </div>
         </IonContent>
@@ -114,13 +108,13 @@ class ArtistVideosPage extends React.Component<Props, {}> {
 }
 
 const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
-  const { videos, loading } = artistAPI;
-  return { videos, loading };
+  const { currentArtist } = artistAPI;
+  return { currentArtist };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    getArtistVideosAPI,
+    getArtistAPI,
     updateSettingsProperty
   })(ArtistVideosPage)
 );

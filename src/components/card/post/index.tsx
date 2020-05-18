@@ -22,14 +22,23 @@ interface Props {
   rounded: boolean;
 }
 
-export default class CardPostComponent extends React.Component<Props> {
-  isReady = false;
+interface State {
+  isReady: boolean;
+}
+
+export default class CardPostComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
+    };
+  }
 
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      this.setState({
+        isReady: true
+      });
     }, 2000);
   };
 
@@ -170,8 +179,8 @@ export default class CardPostComponent extends React.Component<Props> {
     const { post, clickToOpen } = this.props;
     const url = clickToOpen ? `/community/comments/${post.id || 1}` : undefined;
 
-    if (!this.isReady) this.displayContent();
-    if (!this.isReady) this.renderSkeleton();
+    if (!this.state.isReady) this.displayContent();
+    if (!this.state.isReady) return this.renderSkeleton();
 
     return (
       <div className="mb-4" style={{ position: 'relative' }}>

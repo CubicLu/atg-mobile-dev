@@ -62,6 +62,7 @@ interface MatchParams {
 interface State {
   currentPage: number;
   blur: boolean;
+  biographyIsReady: boolean;
 }
 
 interface Props
@@ -70,22 +71,13 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistBiographyPage extends React.Component<Props, State> {
-  isReady = false;
-
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
   private headerRef: React.RefObject<any> = React.createRef();
   private content?: React.RefObject<HTMLIonContentElement> = React.createRef();
   private slides?: React.RefObject<HTMLIonSlidesElement> = React.createRef();
   private titleRef: React.RefObject<CreateAnimation> = React.createRef();
   constructor(props: Props) {
     super(props);
-    this.state = { currentPage: 0, blur: false };
+    this.state = { currentPage: 0, blur: false, biographyIsReady: false };
   }
 
   UNSAFE_componentWillReceiveProps(next: Props): void {
@@ -193,7 +185,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
   render(): React.ReactNode {
     if (!this.props.currentArtist) return this.renderEmpty();
-    if (!this.isReady) this.displayContent();
 
     const {
       currentArtist: artist,
@@ -247,60 +238,68 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           scrollX={false}
           onIonScroll={(e): void => this.handleScroll(e)}
         >
+          <IonImg
+            src={biography[0].cover}
+            onIonImgDidLoad={(): void => {
+              this.setState({
+                biographyIsReady: true
+              });
+              this.forceUpdate();
+            }}
+            style={{ width: 0, height: 0, visibility: 'hidden' }}
+          />
           <ContentLoader
             className="mt-3"
             speed={2}
-            viewBox="0 0 400 650"
+            viewBox="0 0 405 650"
             baseUrl={window.location.pathname}
             backgroundColor="rgb(0,0,0)"
             foregroundColor="rgb(255,255,255)"
             backgroundOpacity={0.15}
             foregroundOpacity={0.25}
             style={
-              this.isReady
+              this.state.biographyIsReady
                 ? { visibility: 'hidden', display: 'none' }
                 : { visibility: 'visible' }
             }
           >
-            <rect x="5" y="0" width="390" height="650" />
+            <rect x="0" y="0" width="390" height="650" />
           </ContentLoader>
-          {biography && (
-            <IonSlides
-              ref={this.slides}
-              mode="ios"
-              scrollbar={false}
-              options={{ autoHeight: true }}
-              onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
-              onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
-              onIonSlideWillChange={(): Promise<void> | undefined =>
-                this.content?.current?.scrollToTop(700)
-              }
-              style={
-                this.isReady
-                  ? { visibility: 'visible' }
-                  : { visibility: 'hidden' }
-              }
-            >
-              {biography?.map(
-                (b: BiographyInterface): React.ReactFragment => (
-                  <IonSlide
-                    key={b.chapter}
-                    style={{ display: 'block' }}
-                    className={b.template}
-                  >
-                    {this.coverPage(b)}
-                    {this.headline(b)}
-                    {this.gallery(b.items)}
-                    {this.readMore(b)}
-                    {this.bandMembers()}
-                    {this.bioFooter()}
-                    {this.supportModal()}
-                    <BottomTilesComponent tiles={artist.tiles} />
-                  </IonSlide>
-                )
-              )}
-            </IonSlides>
-          )}
+            {biography && (
+          <IonSlides
+            ref={this.slides}
+            mode="ios"
+            scrollbar={false}
+            options={{ autoHeight: true }}
+            onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
+            onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
+            onIonSlideWillChange={(): Promise<void> | undefined =>
+              this.content?.current?.scrollToTop(700)
+            }
+            style={
+              this.state.biographyIsReady
+                ? { visibility: 'visible' }
+                : { visibility: 'hidden' }
+            }
+          >
+            {biography.map((b: BiographyInterface): React.ReactFragment => (
+              <IonSlide
+                key={b.chapter}
+                style={{ display: 'block' }}
+                className={b.template}
+              >
+                {this.coverPage(b)}
+                {this.headline(b)}
+                {this.gallery(b.items)}
+                {this.readMore(b)}
+                {this.bandMembers()}
+                {this.bioFooter()}
+                {this.supportModal()}
+                <BottomTilesComponent tiles={artist.tiles} />
+              </IonSlide>
+            ))}
+          </IonSlides>
+            )}
         </IonContent>
       </IonPage>
     );

@@ -37,7 +37,7 @@ class CardAlbumGalleryComponent extends React.Component<Props, State> {
     return (
       <div className={`col s${col} card album-gallery`}>
         <IonImg
-          onIonImgDidLoad={() => {
+          onIonImgDidLoad={(): void => {
             this.setState({
               isReady: true
             });

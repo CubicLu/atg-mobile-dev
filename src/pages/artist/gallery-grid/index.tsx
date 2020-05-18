@@ -120,17 +120,17 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
                 onClick={(): void => this.onOpenImage(item.image)}
               >
                 <IonImg
-                  onIonImgWillLoad={() => {
+                  onIonImgWillLoad={(): void => {
                     this.setState({
                       galleryRow1IsReady: false
                     });
                   }}
-                  onIonImgDidLoad={() => {
+                  onIonImgDidLoad={(): void => {
                     this.setState({
                       galleryRow1IsReady: true
                     });
                   }}
-                  onIonError={() => {
+                  onIonError={(): void => {
                     this.setState({
                       galleryRow1IsReady: true
                     });
@@ -284,7 +284,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
                 {cover !== undefined && (
                   <div key={0} onClick={(): void => this.onOpenImage(cover)}>
                     <IonImg
-                      onIonImgDidLoad={() => {
+                      onIonImgDidLoad={(): void => {
                         this.setState({
                           coverIsReady: true
                         });

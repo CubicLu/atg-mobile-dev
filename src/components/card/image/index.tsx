@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShapesSize, RouterLinkDirection } from '../../../types';
-import { IonRouterLink, IonCheckbox } from '@ionic/react';
+import { IonRouterLink, IonCheckbox, IonImg } from '@ionic/react';
 import { CloseIcon, ContentLoader } from '../..';
 
 interface Props {
@@ -21,8 +21,17 @@ interface Props {
   removeAction?: Function;
 }
 
-class CardImageComponent extends React.Component<Props> {
-  isReady = false;
+interface State {
+  albumIsReady: boolean;
+}
+
+class CardImageComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      albumIsReady: false
+    };
+  }
 
   public static defaultProps = {
     type: ShapesSize.normal,
@@ -30,17 +39,7 @@ class CardImageComponent extends React.Component<Props> {
     routerDirection: 'forward'
   };
 
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
-
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
-
     const {
       col,
       type,
@@ -54,6 +53,15 @@ class CardImageComponent extends React.Component<Props> {
     } = this.props;
     return (
       <div className={`col s${col}`}>
+        <IonImg
+          onIonImgDidLoad={(): void => {
+            this.setState({
+              albumIsReady: true
+            });
+          }}
+          src={image}
+          style={{ width: 0, height: 0, visibility: 'hidden' }}
+        />
         <IonRouterLink
           routerLink={this.props.routerLink}
           routerDirection={this.props.routerDirection}
@@ -61,7 +69,7 @@ class CardImageComponent extends React.Component<Props> {
           <div
             className={`card image ${type} ${className}`}
             style={
-              this.isReady
+              this.state.albumIsReady
                 ? {
                     backgroundImage: `url(${image})`,
                     height: diameter,
@@ -109,7 +117,7 @@ class CardImageComponent extends React.Component<Props> {
             backgroundOpacity={0.05}
             foregroundOpacity={0.15}
             style={
-              this.isReady
+              this.state.albumIsReady
                 ? { visibility: 'hidden', display: 'none' }
                 : { visibility: 'visible' }
             }

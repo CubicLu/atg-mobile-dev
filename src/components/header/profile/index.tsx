@@ -23,9 +23,7 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
-interface StateProps {
-  loading?: boolean;
-}
+
 interface Props extends DispatchProps {
   showFilter?: boolean;
   currentFriend?: Nullable<FriendInterface>;

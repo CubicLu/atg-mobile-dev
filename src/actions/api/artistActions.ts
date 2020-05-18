@@ -7,9 +7,12 @@ import {
   ArtistInterface,
   APIResponseInterface,
   APIErrorInterface,
-  EventInterface
-} from './../../models';
-import {} from './../../types';
+  EventInterface,
+  VideosBetaInterface,
+  PostSubscriptionInterface,
+  SubscriptionInterface
+} from 'models';
+import {} from 'types';
 
 export const updateArtistProperty = (
   property: string,
@@ -48,29 +51,29 @@ export const getArtistsAPISuccess = (
 });
 
 export const getArtistAPI = (
-  username: string
-): Action<ArtistActionType.GET_BY_USERNAME_API, string> => ({
-  type: ArtistActionType.GET_BY_USERNAME_API,
-  payload: username
+  artistId: string
+): Action<ArtistActionType.GET_BY_ID_API, string> => ({
+  type: ArtistActionType.GET_BY_ID_API,
+  payload: artistId
 });
 
 export const getArtistAPIFailure = (
   error: APIErrorInterface<string>
 ): Action<
-  ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+  ArtistActionType.GET_BY_ID_API_FAILURE,
   APIErrorInterface<string>
 > => ({
-  type: ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+  type: ArtistActionType.GET_BY_ID_API_FAILURE,
   payload: error
 });
 
 export const getArtistAPISuccess = (
   response: APIResponseInterface<ArtistInterface>
 ): Action<
-  ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+  ArtistActionType.GET_BY_ID_API_SUCCESS,
   APIResponseInterface<ArtistInterface>
 > => ({
-  type: ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+  type: ArtistActionType.GET_BY_ID_API_SUCCESS,
   payload: response
 });
 
@@ -140,6 +143,33 @@ export const getArtistGalleryCommentsAPISuccess = (
   payload: response
 });
 
+export const getArtistVideosAPI = (
+  artistID: string
+): Action<ArtistActionType.GET_VIDEO_API, { artistID: string }> => ({
+  type: ArtistActionType.GET_VIDEO_API,
+  payload: { artistID }
+});
+
+export const getArtistVideosAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.GET_VIDEO_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: ArtistActionType.GET_VIDEO_API_FAILURE,
+  payload: error
+});
+
+export const getArtistVideosAPISuccess = (
+  response: APIResponseInterface<VideosBetaInterface>
+): Action<
+  ArtistActionType.GET_VIDEO_API_SUCCESS,
+  APIResponseInterface<VideosBetaInterface>
+> => ({
+  type: ArtistActionType.GET_VIDEO_API_SUCCESS,
+  payload: response
+});
+
 export const setCurrentGallery = (
   galleryId: number
 ): Action<ArtistActionType.SET_CURRENT_GALLERY, GalleryIdInterface> => ({
@@ -165,4 +195,55 @@ export const clearFullscreenImage = (): Action<ArtistActionType.CLEAR_FULLSCREEN
 
 export const clearCurrentGallery = (): Action<ArtistActionType.CLEAR_CURRENT_GALLERY> => ({
   type: ArtistActionType.CLEAR_CURRENT_GALLERY
+});
+
+export const getSupportLevelsAPI = (): Action<ArtistActionType.GET_SUPPORT_LEVELS_API> => ({
+  type: ArtistActionType.GET_SUPPORT_LEVELS_API
+});
+
+export const getSupportLevelsAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE,
+  payload: error
+});
+
+export const getSupportLevelsAPISuccess = (
+  response: APIResponseInterface<EventInterface>
+): Action<
+  ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+  APIResponseInterface<EventInterface>
+> => ({
+  type: ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+  payload: response
+});
+
+export const postSubscribeArtistAPI = (
+  data: PostSubscriptionInterface
+): Action<ArtistActionType.POST_SUBSCRIBE_API, PostSubscriptionInterface> => ({
+  type: ArtistActionType.POST_SUBSCRIBE_API,
+  payload: data
+});
+
+export const postSubscribeArtistAPIFailure = (
+  error: APIErrorInterface<string>
+): Action<
+  ArtistActionType.POST_SUBSCRIBE_API_FAILURE,
+  APIErrorInterface<string>
+> => ({
+  type: ArtistActionType.POST_SUBSCRIBE_API_FAILURE,
+  payload: error
+});
+
+export const postSubscribeArtistAPISuccess = (
+  response: APIResponseInterface<SubscriptionInterface>
+): Action<
+  ArtistActionType.POST_SUBSCRIBE_API_SUCCESS,
+  APIResponseInterface<SubscriptionInterface>
+> => ({
+  type: ArtistActionType.POST_SUBSCRIBE_API_SUCCESS,
+  payload: response
 });

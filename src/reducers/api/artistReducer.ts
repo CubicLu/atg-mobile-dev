@@ -22,7 +22,10 @@ const defaultState: ArtistReducerType = {
   loading: false,
   successMessage: null,
   errorMessage: null,
-  event: null
+  event: null,
+  supportLevels: [],
+  videos: null,
+  artist: null
 };
 
 export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
@@ -81,7 +84,7 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ArtistActionType.GET_BY_USERNAME_API](
+  [ArtistActionType.GET_BY_ID_API](
     state: ArtistReducerType
   ): ArtistReducerType {
     return {
@@ -91,17 +94,18 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ArtistActionType.GET_BY_USERNAME_API_SUCCESS](
+  [ArtistActionType.GET_BY_ID_API_SUCCESS](
     state: ArtistReducerType,
     action: Action<
-      ArtistActionType.GET_BY_USERNAME_API_SUCCESS,
+      ArtistActionType.GET_BY_ID_API_SUCCESS,
       APIResponseInterface<ArtistInterface>
     >
   ): ArtistReducerType {
     return {
       ...state,
       loading: false,
-      currentArtist: action.payload!.data
+      currentArtist: action.payload!.data,
+      artist: action.payload!.data
     };
   },
 
@@ -114,10 +118,10 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     };
   },
 
-  [ArtistActionType.GET_BY_USERNAME_API_FAILURE](
+  [ArtistActionType.GET_BY_ID_API_FAILURE](
     state: ArtistReducerType,
     action: Action<
-      ArtistActionType.GET_BY_USERNAME_API_FAILURE,
+      ArtistActionType.GET_BY_ID_API_FAILURE,
       APIErrorInterface<string>
     >
   ): ArtistReducerType {
@@ -156,6 +160,43 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     state: ArtistReducerType,
     action: Action<
       ArtistActionType.GET_EVENT_API_FAILURE,
+      APIErrorInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload!.message
+    };
+  },
+
+  [ArtistActionType.GET_VIDEO_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+
+  [ArtistActionType.GET_VIDEO_API_SUCCESS](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_VIDEO_API_SUCCESS,
+      APIResponseInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      videos: action.payload!.data
+    };
+  },
+
+  [ArtistActionType.GET_VIDEO_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_VIDEO_API_FAILURE,
       APIErrorInterface<any>
     >
   ): ArtistReducerType {
@@ -246,6 +287,72 @@ export const artistReducer = createReducer<ArtistReducerType>(defaultState, {
     return {
       ...state,
       currentGallery: null
+    };
+  },
+  [ArtistActionType.GET_SUPPORT_LEVELS_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+
+  [ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_SUPPORT_LEVELS_API_SUCCESS,
+      APIResponseInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      supportLevels: action.payload!.data
+    };
+  },
+
+  [ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.GET_SUPPORT_LEVELS_API_FAILURE,
+      APIErrorInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload!.message
+    };
+  },
+  [ArtistActionType.POST_SUBSCRIBE_API](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: true
+    };
+  },
+  [ArtistActionType.POST_SUBSCRIBE_API_SUCCESS](
+    state: ArtistReducerType
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false
+    };
+  },
+
+  [ArtistActionType.POST_SUBSCRIBE_API_FAILURE](
+    state: ArtistReducerType,
+    action: Action<
+      ArtistActionType.POST_SUBSCRIBE_API_FAILURE,
+      APIErrorInterface<any>
+    >
+  ): ArtistReducerType {
+    return {
+      ...state,
+      loading: false,
+      errorMessage: action.payload!.message
     };
   }
 });

@@ -1,12 +1,13 @@
 import React from 'react';
 import { ButtonSupportIcon, ContentLoader } from './../../../components';
-import { ArtistInterface } from '../../../models';
+import { ArtistBetaInterface } from '../../../models';
 import { IonRouterLink } from '@ionic/react';
 import SupportStarIcon from '../../icon/support-star';
 
 interface Props {
-  artist: ArtistInterface;
+  artist: ArtistBetaInterface;
   key: number;
+  support: boolean;
 }
 
 interface State {
@@ -36,7 +37,8 @@ export default class CardArtistComponent extends React.Component<Props, State> {
 
     const { artist } = this.props;
     if (!artist) return <div />;
-    const { cover, support, name } = artist;
+    const { support } = this.props;
+    const { cardImage, name } = artist;
     return (
       <div>
         {!this.state.isReady ? (
@@ -55,7 +57,7 @@ export default class CardArtistComponent extends React.Component<Props, State> {
         ) : (
           <div
             className="card-artist my-3 mx-2 pb-15"
-            style={{ backgroundImage: `url(${cover.main})` }}
+            style={{ backgroundImage: `url(${cardImage})` }}
           >
             <div className="flex-align-items-end h-100 px-2">
               <div className="align-start">
@@ -77,7 +79,7 @@ export default class CardArtistComponent extends React.Component<Props, State> {
             </div>
             <IonRouterLink
               ref={this.linkRef}
-              routerLink={`/artist/${artist?.username}`}
+              routerLink={`/artist/${artist.id}`}
               routerDirection="forward"
             />
           </div>

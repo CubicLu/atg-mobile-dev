@@ -1,26 +1,27 @@
 import React from 'react';
 import { CardArtist } from './../../../components';
-import { getArtistsAPI } from './../../../actions';
-import { ArtistInterface } from '../../../models';
+import { getSubscriberArtistsAPI } from './../../../actions';
+import { SubscriberArtistSupportedInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 interface StateProps {
-  artists: ArtistInterface[];
+  artists: SubscriberArtistSupportedInterface[];
 }
 interface DispatchProps {
-  getArtistsAPI: () => any;
+  getSubscriberArtistsAPI: (subscriberId: number) => any;
 }
 interface Props extends StateProps, DispatchProps {}
 class ProfileArtistsPage extends React.PureComponent<Props> {
   componentDidMount(): void {
-    this.props.artists.length === 0 && this.props.getArtistsAPI();
+    this.props.getSubscriberArtistsAPI(1);
   }
   render(): React.ReactNode {
+    const { artists } = this.props;
     return (
       <div className="content">
-        {this.props.artists?.map(
+        {artists.map(
           (data, i): React.ReactNode => (
-            <CardArtist key={i} artist={data} />
+            <CardArtist key={i} artist={data.artist} support={true} />
           )
         )}
       </div>
@@ -28,8 +29,10 @@ class ProfileArtistsPage extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = ({ artistAPI }: ApplicationState): object => {
-  const { artists } = artistAPI;
+const mapStateToProps = ({ subscriberAPI }: ApplicationState): StateProps => {
+  const { artists } = subscriberAPI;
   return { artists };
 };
-export default connect(mapStateToProps, { getArtistsAPI })(ProfileArtistsPage);
+export default connect(mapStateToProps, { getSubscriberArtistsAPI })(
+  ProfileArtistsPage
+);

@@ -10,12 +10,17 @@ import {
 import { Menu, SupportBy, ButtonSupport, Header } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { artistBackground, getFixedTranslatePoints } from '../../utils';
-import { ArtistInterface, MenuInterface } from '../../models';
+import {
+  MenuInterface,
+  ArtistBetaInterface,
+  ArtistInterface
+} from '../../models';
 import { clearCurrentArtist, getArtistAPI } from './../../actions';
 import ArtistGatewayPage from './gateway';
+import { Nullable } from '../../types';
 
 interface StateProps {
-  currentArtist: ArtistInterface | null;
+  currentArtist: Nullable<ArtistInterface>;
   artistTabs: MenuInterface[];
 }
 interface DispatchProps {
@@ -269,11 +274,11 @@ class ArtistPage extends React.PureComponent<Props, State> {
             {artist.name}
           </h2>
           <br />
-          <ButtonSupport
+          {/* <ButtonSupport
             id="support-button"
             artist={artist}
             supported={artist.support}
-          />
+          /> */}
 
           <Menu
             id="artist-menu"

@@ -172,7 +172,7 @@ export default class ProfileVaultPage extends React.Component<{}> {
                     optionShare={true}
                     songName={data.song}
                     artistName={data.artist.name}
-                    artist={data.artist}
+                    artist={null}
                     supported={data.artist.support}
                     supportButtonIcon={!data.artist.support}
                   />

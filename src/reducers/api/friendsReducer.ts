@@ -22,6 +22,7 @@ export const friendReducer = createReducer<FriendReducerType>(defaultState, {
   ): FriendReducerType {
     return {
       ...state,
+      friends: [],
       loading: true
     };
   },
@@ -56,6 +57,7 @@ export const friendReducer = createReducer<FriendReducerType>(defaultState, {
   ): FriendReducerType {
     return {
       ...state,
+      currentFriend: null,
       loading: true
     };
   },

@@ -1,0 +1,21 @@
+.discovery-page {
+    .fresh-one {
+        background-color: #73F7DD;
+    }
+    .fresh-two {
+        background-color: #FFFF9D;
+    }
+    .discovery-fresh {
+        height: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .discovery-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    ion-img + ion-img {
+        margin-top: 8px;
+    }
+}

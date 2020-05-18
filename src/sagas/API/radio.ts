@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import { RadioActionType, ChannelInterface } from '../../models';
 import {
@@ -21,7 +21,7 @@ function* getRadioArtistAPI({ payload }: any): ReturnType<any> {
 }
 
 export function* getRadioArtist(): any {
-  yield takeEvery(RadioActionType.GET_BY_RADIO_ARTIST_API, getRadioArtistAPI);
+  yield takeLatest(RadioActionType.GET_BY_RADIO_ARTIST_API, getRadioArtistAPI);
 }
 
 export default function* rootSaga(): any {

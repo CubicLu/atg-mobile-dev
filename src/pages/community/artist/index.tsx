@@ -90,14 +90,11 @@ class CommunityArtistPage extends React.Component<Props, State> {
     return (
       <IonPage id="community-page">
         {this.renderBackground()}
-        <Header
-          fixed={false}
-          leftContent={
-            <div className="h2 title-left-single">
-              {currentCommunityArtist.fullname}
-            </div>
-          }
-        />
+        <Header fixed={false}>
+          <div className="h2 absolute-logo-left single">
+            {currentCommunityArtist.fullname}
+          </div>
+        </Header>
 
         <IonContent>
           <div className={'mt-3'} />

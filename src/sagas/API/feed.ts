@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import { API } from '../../utils/api';
 import { FeedActionType, FanFeedInterface } from '../../models';
 import { getFeedPostsAPISuccess, getFeedPostsAPIFailure } from '../../actions';
@@ -16,7 +16,7 @@ function* getFeedPostsAPI(): ReturnType<any> {
 }
 
 export function* getFeedPosts(): any {
-  yield takeEvery(FeedActionType.GET_ALL_POSTS_API, getFeedPostsAPI);
+  yield takeLatest(FeedActionType.GET_ALL_POSTS_API, getFeedPostsAPI);
 }
 
 export default function* rootSaga(): any {

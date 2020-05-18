@@ -276,7 +276,7 @@ export default class ListItemComponent extends React.Component<Props> {
   loadContent(): React.ReactNode {
     return (
       <ContentLoader
-        className="mt-3"
+        className="my-05"
         speed={2}
         viewBox="0 0 400 60"
         baseUrl={window.location.pathname}
@@ -286,7 +286,7 @@ export default class ListItemComponent extends React.Component<Props> {
         foregroundOpacity={0.15}
       >
         <circle cx="60" cy="30" r="30" />
-        <rect x="100" y="20" rx="3" ry="3" width="180" height="20" />
+        <rect x="100" y="20" rx="3" ry="3" width="240" height="20" />
       </ContentLoader>
     );
   }

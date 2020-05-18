@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import {
   BackgroundImage,
   Header,
@@ -8,7 +8,7 @@ import {
 } from './../../components';
 import { ApplicationState } from '../../reducers';
 import { getCommunityByArtistUsernameAPI } from '../../actions';
-import { IonPage, IonContent, IonImg } from '@ionic/react';
+import { IonPage, IonContent, IonImg, IonSlides, IonSlide } from '@ionic/react';
 import { connect } from 'react-redux';
 import { CommunityArtistInterface } from '../../models';
 
@@ -42,6 +42,18 @@ class DiscoveryPage extends React.Component<Props, State> {
     }, 2000);
   };
 
+  stylizePost(url: string, rounded: boolean = true): CSSProperties {
+    return {
+      height: '290px',
+      position: 'relative',
+      backgroundImage: `url(${url}), linear-gradient(#5f5f5f80, #8f8f8f80)`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      borderRadius: rounded ? '20px' : 0,
+      overflowY: 'hidden'
+    };
+  }
+
   render(): React.ReactNode {
     if (!this.state.isReady) this.displayContent();
     return (
@@ -49,8 +61,7 @@ class DiscoveryPage extends React.Component<Props, State> {
         <BackgroundImage default={true} />
 
         {!this.state.isReady && (
-          <div style={{ position: 'fixed', left: 0, right: 0 }}>
-            <ContentLoader
+          <ContentLoader
               speed={2}
               width={'100vw'}
               height={'100vh'}
@@ -78,9 +89,8 @@ class DiscoveryPage extends React.Component<Props, State> {
                 width="42.5%"
                 height="14.5%"
               />
-              <rect x="52%" y="539" rx="0" ry="0" width="42.5%" height="17%" />
+              <rect x="52%" y="539" rx="0" ry="0" width="42.5%" height="18%" />
             </ContentLoader>
-          </div>
         )}
         {this.state.isReady && (
           <React.Fragment>
@@ -105,24 +115,71 @@ class DiscoveryPage extends React.Component<Props, State> {
                 title="WHAT'S HOT"
                 viewAll={false}
               />
-              <div className="row px-2 pb-0">
-                <div className="col s6 p-1">
+              <div className="row px-2 pb-0 flex">
+                <div className="col s6 p-1 discovery-col">
                   <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/1.png" />
                 </div>
-                <div className="col s6 p-1">
+                <div className="col s6 p-1 discovery-col">
                   <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/2.png" />
-                </div>
-                <div className="col s6 p-1">
                   <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/3.png" />
                 </div>
               </div>
-              <div className="row px-2 pb-0">
-                <div className="col s6 p-1">
+              <div className="row px-2 pb-0 flex">
+                <div className="col s6 p-1 discovery-col">
                   <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/4.png" />
+                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/6.png" />
                 </div>
-                <div className="col s6 p-1">
+                <div className="col s6 p-1 discovery-col">
                   <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/5.png" />
                 </div>
+              </div>
+              <SectionTitle
+                className="mt-4 mx-3"
+                title="FRESH & NEW"
+                viewAll={false}
+              />
+              <div className="row px-2 pb-0 flex">
+                <div className="col s6 p-1 discovery-col">
+                  <div className="discovery-fresh fresh-one">
+                    <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/9.png" />
+                    <div className="p-10">Critics are raving LMAO new release as the epitome of “woke” culture. Hitting the airwaves this week.</div>
+                  </div>
+                </div>
+                <div className="col s6 p-1 discovery-col">
+                  <div className="discovery-fresh fresh-two">
+                    <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/8.png" />
+                    <div className="p-10">On the record with Rival Sons. The band speaks out on music, politics and a new mix of sound that is pure chaos & creation.</div>
+                  </div>
+                </div>
+              </div>
+              <SectionTitle
+                className="mt-4 mx-3"
+                title="VIDEOS"
+                viewAll={false}
+              />
+              <div className="row px-2 pb-0">
+                {/*<IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/10.png" />*/}
+                <IonSlides
+                  pager={true}
+                  style={this.stylizePost('', true)}
+                >
+                  {['https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/10.png', 'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/10.png'].map(
+                    (image, index): React.ReactNode => (
+                      <IonSlide
+                        key={index}
+                        style={this.stylizePost(image, true)}
+                      />
+                    )
+                  )}
+                </IonSlides>
+              </div>
+              <SectionTitle
+                className="mt-4 mx-3"
+                title="WHAT IS PANTHR?"
+                viewAll={false}
+              />
+              <div className="row px-2 pb-0">
+                <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/11.png" />
               </div>
             </IonContent>
           </React.Fragment>

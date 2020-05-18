@@ -43,11 +43,10 @@ export default class CardPostComponent extends React.Component<Props> {
   renderSkeleton(): React.ReactNode {
     return (
       <ContentLoader
-        className="mt-3 px-1"
+        className="mt-3 px-3 fluid"
         speed={2}
-        width={500}
+        width={'100%'}
         height={290}
-        viewBox="0 0 500 290"
         baseUrl={window.location.pathname}
         backgroundColor="rgb(255,255,255)"
         foregroundColor="rgb(255,255,255)"
@@ -139,10 +138,7 @@ export default class CardPostComponent extends React.Component<Props> {
         )}
 
         <div className="align-end flex">
-          <IonRouterLink
-            routerDirection="forward"
-            routerLink={'/community/share'}
-          >
+          <IonRouterLink routerDirection="forward" routerLink={'/share'}>
             <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
           </IonRouterLink>
 

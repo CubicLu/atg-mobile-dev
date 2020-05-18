@@ -1,6 +1,11 @@
 import React from 'react';
 import { ShapesSize } from '../../../types';
 import { ContentLoader } from '../../index';
+import { IonImg } from '@ionic/react';
+
+interface State {
+  isReady: boolean;
+}
 
 interface Props {
   image: string | undefined;
@@ -12,8 +17,14 @@ interface Props {
   onClick: () => void;
 }
 
-class CardAlbumGalleryComponent extends React.Component<Props> {
-  isReady = false;
+class CardAlbumGalleryComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isReady: false
+    };
+  }
 
   public static defaultProps = {
     type: ShapesSize.rounded,
@@ -21,19 +32,19 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
     quantity: 0
   };
 
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
-
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
     const { col, onClick, type, image, label, quantity } = this.props;
     return (
       <div className={`col s${col} card album-gallery`}>
+        <IonImg
+          onIonImgDidLoad={() => {
+            this.setState({
+              isReady: true
+            });
+          }}
+          src={image}
+          style={{ width: 0, height: 0, visibility: 'hidden' }}
+        />
         <ContentLoader
           className="mt-3"
           speed={2}
@@ -44,7 +55,7 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
           backgroundOpacity={0.05}
           foregroundOpacity={0.15}
           style={
-            this.isReady
+            this.state.isReady
               ? { visibility: 'hidden', display: 'none' }
               : { visibility: 'visible' }
           }
@@ -56,7 +67,9 @@ class CardAlbumGalleryComponent extends React.Component<Props> {
         <div
           onClick={(): void => onClick()}
           style={
-            this.isReady ? { visibility: 'visible' } : { visibility: 'hidden' }
+            this.state.isReady
+              ? { visibility: 'visible' }
+              : { visibility: 'hidden' }
           }
         >
           <div

@@ -65,7 +65,6 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
     const tabs = this.props.profileFriendTabs;
     const active = this.props.activeBioFriendTab;
     const Tab = tabs.find((x): boolean => x.id === active)!.component;
-
     return (
       <React.Fragment>
         <BackgroundImage
@@ -76,7 +75,7 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
         <div className={'profile-page'}>
           <HeaderProfile currentFriend={this.props.currentFriend} />
           <Menu tabs={tabs} activeId={active} onClick={this.changeFriendTab} />
-          {<Tab />}
+          {<Tab friendNickName={this.props.match?.params.id} />}
         </div>
       </React.Fragment>
     );

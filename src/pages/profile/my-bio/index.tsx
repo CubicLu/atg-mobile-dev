@@ -1,10 +1,11 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import { FriendInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { ContentLoader } from './../../../components';
-import { userBioMock } from '../../../constants/mocks';
 import { connect } from 'react-redux';
 
 interface State {
@@ -12,10 +13,12 @@ interface State {
 }
 
 interface StateProps {
-  answers: string[];
+  friends: FriendInterface[];
 }
 
-interface Props extends StateProps {}
+interface Props extends RouteComponentProps, StateProps {
+  friendNickName?: string;
+}
 
 class MyBioPage extends React.PureComponent<Props, State> {
   constructor(props) {
@@ -35,6 +38,7 @@ class MyBioPage extends React.PureComponent<Props, State> {
 
   render(): React.ReactNode {
     if (!this.state.isReady) this.displayContent();
+    const { friends, friendNickName } = this.props;
     const settings: any = {
       dots: true,
       infinite: false,
@@ -42,10 +46,14 @@ class MyBioPage extends React.PureComponent<Props, State> {
       arrows: false
     };
 
+    const friendInfo = friends?.find(
+      (item): boolean => item.username === friendNickName
+    );
+
     return (
       <div className="content">
         <div className="my-bio my-3 mx-4">
-          {!this.state.isReady ? (
+          {!this.state.isReady && friends ? (
             <ContentLoader
               speed={2}
               width={'100%'}
@@ -61,27 +69,14 @@ class MyBioPage extends React.PureComponent<Props, State> {
           ) : (
             <div>
               <Slider {...settings}>
-                {userBioMock.slides.map(
-                  (slide, i): React.ReactNode => {
-                    if (slide.text) {
-                      return <div key={i}>{slide.text}</div>;
-                    } else {
-                      return (
-                        <div key={i}>
-                          {slide.questionaire?.map(
-                            (q, c): React.ReactNode => (
-                              <div key={c}>
-                                <span className="question-row">
-                                  {q.question}
-                                </span>
-                                <span className="answer-row">{q.answer}</span>
-                              </div>
-                            )
-                          )}
-                        </div>
-                      );
-                    }
-                  }
+                <div key={'ss'}>{friendInfo?.shortBio}</div>
+                {friendInfo?.slides.map(
+                  (slide, i): React.ReactNode => (
+                    <div key={i}>
+                      <span className="question-row">{slide.question}</span>
+                      <span className="answer-row">{slide.answer}</span>
+                    </div>
+                  )
                 )}
               </Slider>
             </div>
@@ -92,10 +87,10 @@ class MyBioPage extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = ({ wizardAPI }: ApplicationState): object => {
-  const { answers } = wizardAPI;
+const mapStateToProps = ({ friendAPI }: ApplicationState): object => {
+  const { friends } = friendAPI;
   return {
-    answers
+    friends
   };
 };
 export default connect(mapStateToProps, null)(MyBioPage);

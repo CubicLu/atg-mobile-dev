@@ -25,7 +25,7 @@ class ProfileFriendsPage extends React.Component<Props> {
     return (
       <IonContent className="profile-friends-page">
         <IonList lines="none">
-          {this.props.friends?.map(
+          {this.props.friends?.slice(1).map(
             (friend, i): React.ReactNode => {
               return (
                 <ListItem

@@ -98,7 +98,7 @@ export default class App extends React.Component<{}, State> {
       return (
         <Provider store={store}>
           <IonApp>
-            <SplashScreen />
+            {/*<SplashScreen />*/}
             <HomePage />
             {this.state.enableMedia && <CordovaMedia />}
           </IonApp>
@@ -109,7 +109,7 @@ export default class App extends React.Component<{}, State> {
     return (
       <Provider store={store}>
         <IonApp>
-          <SplashScreen />
+          {/*<SplashScreen />*/}
           <IonReactRouter>
             <IonRouterOutlet id="notLogged" mode="ios">
               <Route exact path="/initial" component={InitialPage} />

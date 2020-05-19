@@ -244,14 +244,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               this.setState({
                 biographyIsReady: true
               });
-              this.forceUpdate();
             }}
             style={{ width: 0, height: 0, visibility: 'hidden' }}
           />
           <ContentLoader
             className="mt-3"
             speed={2}
-            viewBox="0 0 405 650"
+            viewBox="0 0 400 650"
             baseUrl={window.location.pathname}
             backgroundColor="rgb(0,0,0)"
             foregroundColor="rgb(255,255,255)"
@@ -263,7 +262,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                 : { visibility: 'visible' }
             }
           >
-            <rect x="0" y="0" width="390" height="650" />
+            <rect x="0" y="0" width="400" height="650" />
           </ContentLoader>
             {biography && (
           <IonSlides

@@ -10,7 +10,7 @@ import {
 } from './../../../components';
 import { PostInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
-import { IonRouterLink, IonSlides, IonSlide } from '@ionic/react';
+import { IonRouterLink, IonSlides, IonSlide, IonImg } from '@ionic/react';
 
 interface Props {
   post: PostInterface;
@@ -23,24 +23,16 @@ interface Props {
 }
 
 interface State {
-  isReady: boolean;
+  communityIsReady: boolean;
 }
 
 export default class CardPostComponent extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false
+      communityIsReady: false
     };
   }
-
-  displayContent = (): void => {
-    setTimeout((): void => {
-      this.setState({
-        isReady: true
-      });
-    }, 2000);
-  };
 
   public static defaultProps = {
     showOptions: false,
@@ -48,24 +40,6 @@ export default class CardPostComponent extends React.Component<Props, State> {
     clickToOpen: false,
     rounded: true
   };
-
-  renderSkeleton(): React.ReactNode {
-    return (
-      <ContentLoader
-        className="mt-3 px-3 fluid"
-        speed={2}
-        width={'100%'}
-        height={290}
-        baseUrl={window.location.pathname}
-        backgroundColor="rgb(255,255,255)"
-        foregroundColor="rgb(255,255,255)"
-        backgroundOpacity={0.05}
-        foregroundOpacity={0.15}
-      >
-        <rect x="2" y="0" rx="8" ry="8" width="355" height="268" />
-      </ContentLoader>
-    );
-  }
 
   stylizePost(url: string, rounded: boolean = true): CSSProperties {
     return {
@@ -81,13 +55,50 @@ export default class CardPostComponent extends React.Component<Props, State> {
 
   renderPostSingle(): React.ReactNode {
     return (
-      <div
-        className={`flex-column space-between overflow-x ${this.props.className}`}
-        style={this.stylizePost(
-          this.props.post.image as string,
-          this.props.rounded
-        )}
-      />
+      <div>
+        <IonImg
+          className={`flex-column space-between overflow-x ${this.props.className}`}
+          // @ts-ignore
+          src={this.props.post.image}
+          onIonImgDidLoad={(): void => {
+            console.log('foi');
+            this.setState({
+              communityIsReady: true
+            });
+          }}
+          style={{
+            height: '290px',
+            position: 'relative',
+            backgroundImage: 'linear-gradient(#5f5f5f80, #8f8f8f80)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            borderRadius: this.props.rounded ? '20px' : 0,
+            overflowY: 'hidden',
+            objectFit: 'cover'
+          }}
+        />
+        <ContentLoader
+          className="fluid"
+          speed={2}
+          width={'100%'}
+          height={290}
+          baseUrl={window.location.pathname}
+          backgroundColor="rgb(255,255,255)"
+          foregroundColor="rgb(255,255,255)"
+          backgroundOpacity={0.05}
+          foregroundOpacity={0.15}
+          style={
+            this.state.communityIsReady
+              ? {
+                  visibility: 'hidden',
+                  display: 'none'
+                }
+              : { visibility: 'visible' }
+          }
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="100%" height="268" />
+        </ContentLoader>
+      </div>
     );
   }
   renderPostSlideshow(): React.ReactNode {
@@ -178,9 +189,6 @@ export default class CardPostComponent extends React.Component<Props, State> {
   render(): React.ReactNode {
     const { post, clickToOpen } = this.props;
     const url = clickToOpen ? `/community/comments/${post.id || 1}` : undefined;
-
-    if (!this.state.isReady) this.displayContent();
-    if (!this.state.isReady) return this.renderSkeleton();
 
     return (
       <div className="mb-4" style={{ position: 'relative' }}>

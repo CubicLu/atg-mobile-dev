@@ -61,27 +61,30 @@ export default class CardPostComponent extends React.Component<Props, State> {
           // @ts-ignore
           src={this.props.post.image}
           onIonImgDidLoad={(): void => {
-            console.log('foi');
             this.setState({
               communityIsReady: true
             });
           }}
-          style={{
-            height: '290px',
-            position: 'relative',
-            backgroundImage: 'linear-gradient(#5f5f5f80, #8f8f8f80)',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            borderRadius: this.props.rounded ? '20px' : 0,
-            overflowY: 'hidden',
-            objectFit: 'cover'
-          }}
+          style={
+            this.state.communityIsReady
+              ? {
+                  height: '290px',
+                  position: 'relative',
+                  backgroundImage: 'linear-gradient(#5f5f5f80, #8f8f8f80)',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  borderRadius: this.props.rounded ? '20px' : 0,
+                  overflowY: 'hidden',
+                  objectFit: 'cover'
+                }
+              : { visibility: 'hidden', width: 0, height: 0 }
+          }
         />
         <ContentLoader
           className="fluid"
           speed={2}
           width={'100%'}
-          height={290}
+          height={400}
           baseUrl={window.location.pathname}
           backgroundColor="rgb(255,255,255)"
           foregroundColor="rgb(255,255,255)"

@@ -43,7 +43,6 @@ interface Props
 interface State {
   coverIsReady: boolean;
   galleryRow1IsReady: boolean;
-  shouldDisplayGalleryRow1: boolean;
 }
 
 class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
@@ -52,8 +51,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
 
     this.state = {
       coverIsReady: false,
-      galleryRow1IsReady: false,
-      shouldDisplayGalleryRow1: true
+      galleryRow1IsReady: false
     };
   }
   private headerRef: React.RefObject<any> = React.createRef();

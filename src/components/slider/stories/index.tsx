@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, ContentLoader } from './../../../components';
 import { ShapesSize } from '../../../types';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { IonImg } from '@ionic/react';
 interface Props extends RouteComponentProps<MatchParams> {
   scroll?: boolean;
   data?: any[];
@@ -13,16 +14,18 @@ interface MatchParams {
   id: string;
 }
 
-class SliderStoriesComponent extends React.Component<Props> {
-  isReady = false;
+interface State {
+  storiesIsReady: boolean;
+}
 
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
+class SliderStoriesComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      storiesIsReady: false
+    };
+  }
+
   public static defaultProps = {
     scroll: false,
     labelKey: 'label',
@@ -31,10 +34,8 @@ class SliderStoriesComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
-
     return (
-      <div className="row slider stories">
+      <div className="row slider stories" style={{ height: 140 }}>
         <ContentLoader
           className="mt-3"
           speed={2}
@@ -45,7 +46,7 @@ class SliderStoriesComponent extends React.Component<Props> {
           backgroundOpacity={0.05}
           foregroundOpacity={0.15}
           style={
-            this.isReady
+            this.state.storiesIsReady
               ? { visibility: 'hidden', display: 'none' }
               : { visibility: 'visible' }
           }
@@ -61,13 +62,24 @@ class SliderStoriesComponent extends React.Component<Props> {
         <ul
           className="list inline"
           style={
-            this.isReady ? { visibility: 'visible' } : { visibility: 'hidden' }
+            this.state.storiesIsReady
+              ? { visibility: 'visible' }
+              : { visibility: 'hidden' }
           }
         >
           {this.props.data?.slice(0, 5).map(
             (d, i): React.ReactNode => {
               return (
                 <li key={i}>
+                  <IonImg
+                    onIonImgDidLoad={(): void => {
+                      this.setState({
+                        storiesIsReady: true
+                      });
+                    }}
+                    src={d.image}
+                    style={{ width: 0, height: 0, visibility: 'hidden' }}
+                  />
                   <Avatar
                     image={d.image}
                     type={ShapesSize.circle}

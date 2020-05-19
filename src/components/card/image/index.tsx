@@ -78,7 +78,7 @@ class CardImageComponent extends React.Component<Props, State> {
                     minWidth: diameter,
                     visibility: 'visible'
                   }
-                : { visibility: 'hidden' }
+                : { visibility: 'hidden', height: 0, width: 0, display: 'none' }
             }
           >
             {this.props.canRemove && (

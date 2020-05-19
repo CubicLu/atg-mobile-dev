@@ -264,41 +264,43 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           >
             <rect x="0" y="0" width="400" height="650" />
           </ContentLoader>
-            {biography && (
-          <IonSlides
-            ref={this.slides}
-            mode="ios"
-            scrollbar={false}
-            options={{ autoHeight: true }}
-            onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
-            onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
-            onIonSlideWillChange={(): Promise<void> | undefined =>
-              this.content?.current?.scrollToTop(700)
-            }
-            style={
-              this.state.biographyIsReady
-                ? { visibility: 'visible' }
-                : { visibility: 'hidden' }
-            }
-          >
-            {biography.map((b: BiographyInterface): React.ReactFragment => (
-              <IonSlide
-                key={b.chapter}
-                style={{ display: 'block' }}
-                className={b.template}
-              >
-                {this.coverPage(b)}
-                {this.headline(b)}
-                {this.gallery(b.items)}
-                {this.readMore(b)}
-                {this.bandMembers()}
-                {this.bioFooter()}
-                {this.supportModal()}
-                <BottomTilesComponent tiles={artist.tiles} />
-              </IonSlide>
-            ))}
-          </IonSlides>
-            )}
+          {biography && (
+            <IonSlides
+              ref={this.slides}
+              mode="ios"
+              scrollbar={false}
+              options={{ autoHeight: true }}
+              onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
+              onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
+              onIonSlideWillChange={(): Promise<void> | undefined =>
+                this.content?.current?.scrollToTop(700)
+              }
+              style={
+                this.state.biographyIsReady
+                  ? { visibility: 'visible' }
+                  : { visibility: 'hidden' }
+              }
+            >
+              {biography.map(
+                (b: BiographyInterface): React.ReactFragment => (
+                  <IonSlide
+                    key={b.chapter}
+                    style={{ display: 'block' }}
+                    className={b.template}
+                  >
+                    {this.coverPage(b)}
+                    {this.headline(b)}
+                    {this.gallery(b.items)}
+                    {this.readMore(b)}
+                    {this.bandMembers()}
+                    {this.bioFooter()}
+                    {this.supportModal()}
+                    <BottomTilesComponent tiles={artist.tiles} />
+                  </IonSlide>
+                )
+              )}
+            </IonSlides>
+          )}
         </IonContent>
       </IonPage>
     );

@@ -23,7 +23,7 @@ export interface SettingsReducerType {
   readonly messageTabs: MenuInterface[];
   readonly activeMessageTab: string;
   readonly activeFanTab: string;
-  readonly activeProfileFriendTab: string;
+  readonly activeBioFriendTab: string;
   readonly profileFriendTabs: MenuInterface[];
   readonly selectContactTabs: MenuInterface[];
   readonly activeSelectContactTab: string;

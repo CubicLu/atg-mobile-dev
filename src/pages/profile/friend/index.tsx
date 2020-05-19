@@ -28,7 +28,7 @@ interface MatchParams {
 }
 interface StateProps {
   profileFriendTabs: MenuInterface[];
-  activeProfileFriendTab: string;
+  activeBioFriendTab: string;
   currentFriend?: Nullable<FriendInterface>;
 }
 interface DispatchProps {
@@ -52,8 +52,8 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
   }
 
   changeFriendTab = (event: MenuInterface): void => {
-    if (event.id === this.props.activeProfileFriendTab) return;
-    this.props.updateSettingsProperty('activeProfileFriendTab', event.id);
+    if (event.id === this.props.activeBioFriendTab) return;
+    this.props.updateSettingsProperty('activeBioFriendTab', event.id);
   };
 
   friendBackground =
@@ -63,9 +63,8 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
 
   renderProfileFriend(): React.ReactNode {
     const tabs = this.props.profileFriendTabs;
-    const active = this.props.activeProfileFriendTab;
+    const active = this.props.activeBioFriendTab;
     const Tab = tabs.find((x): boolean => x.id === active)!.component;
-
     return (
       <React.Fragment>
         <BackgroundImage
@@ -76,7 +75,7 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
         <div className={'profile-page'}>
           <HeaderProfile currentFriend={this.props.currentFriend} />
           <Menu tabs={tabs} activeId={active} onClick={this.changeFriendTab} />
-          {<Tab />}
+          {<Tab friendNickName={this.props.match?.params.id} />}
         </div>
       </React.Fragment>
     );
@@ -156,10 +155,10 @@ const mapStateToProps = ({
   settings,
   friendAPI
 }: ApplicationState): StateProps => {
-  const { activeProfileFriendTab, profileFriendTabs } = settings;
+  const { activeBioFriendTab, profileFriendTabs } = settings;
   const { currentFriend } = friendAPI;
   return {
-    activeProfileFriendTab,
+    activeBioFriendTab,
     profileFriendTabs,
     currentFriend
   };

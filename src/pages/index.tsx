@@ -13,6 +13,7 @@ import FriendPage from './friend';
 import SearchPage from './search';
 
 import ProfilePage from './profile';
+import MyBioPage from './profile/my-bio';
 import FriendProfilePage from './profile/friend';
 import ProfileArtistsPage from './profile/artists';
 import ProfileFriendsPage from './profile/friends';
@@ -97,6 +98,7 @@ export {
   FeedPage,
   SearchPage,
   ProfilePage,
+  MyBioPage,
   FriendProfilePage,
   ProfileArtistsPage,
   ProfileFriendsPage,

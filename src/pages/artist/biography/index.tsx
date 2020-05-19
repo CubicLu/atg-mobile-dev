@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
 import {
   IonContent,
   IonSlides,
@@ -38,6 +37,7 @@ import {
 import { Colors, ShapesSize } from './../../../types';
 import { validateScrollHeader } from '../../../utils';
 import BottomTilesComponent from '../../../components/bottom-tiles';
+import { RouteComponentProps } from 'react-router';
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -52,7 +52,6 @@ interface DispatchProps {
 interface StateProps {
   currentArtist: ArtistInterface | null;
   modal: ModalSlideInterface;
-  loading: boolean;
   popUpModal: string | null;
 }
 interface MatchParams {
@@ -78,13 +77,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     super(props);
     this.state = { currentPage: 0, blur: false };
   }
+
   UNSAFE_componentWillReceiveProps(next: Props): void {
-    if (next.loading) return;
-    if (this.props.loading) return;
     if (this.props.currentArtist?.username !== next.match.params.id) {
       this.props.getArtistAPI(next.match.params.id);
     }
   }
+
   handleScroll(event: CustomEvent<any>): void {
     const currentScroll = validateScrollHeader(event, 180, 180);
     if (!currentScroll.validScroll) return;
@@ -171,17 +170,33 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     }
   }
 
+  renderEmpty(): React.ReactNode {
+    return (
+      <IonPage
+        style={{ background: '#2d0758' }}
+        id="artist-biography"
+        className="artist-biography-page"
+      >
+        <IonContent />
+      </IonPage>
+    );
+  }
   render(): React.ReactNode {
-    if (!this.props.currentArtist) return <IonPage />;
+    if (!this.props.currentArtist) return this.renderEmpty();
     const {
       currentArtist: artist,
       currentArtist: { biography }
     } = this.props;
-    if (!biography) return <IonPage />;
+    if (!biography) return this.renderEmpty();
+
     const bio = biography[this.state.currentPage];
 
     return (
-      <IonPage id="artist-biography" className="artist-biography-page">
+      <IonPage
+        style={{ background: '#fff' }}
+        id="artist-biography"
+        className="artist-biography-page"
+      >
         <Header
           rightActionButton={true}
           rightActionOnClick={(): void => this.openChapterModal()}
@@ -220,34 +235,38 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           scrollX={false}
           onIonScroll={(e): void => this.handleScroll(e)}
         >
-          <IonSlides
-            ref={this.slides}
-            mode="ios"
-            scrollbar={false}
-            options={{ autoHeight: true }}
-            onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
-            onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
-            onIonSlideWillChange={(): Promise<void> | undefined =>
-              this.content?.current?.scrollToTop(700)
-            }
-          >
-            {biography.map((b: BiographyInterface): any => (
-              <IonSlide
-                key={b.chapter}
-                style={{ display: 'block' }}
-                className={b.template}
-              >
-                {this.coverPage(b)}
-                {this.headline(b)}
-                {this.gallery(b.items)}
-                {this.readMore(b)}
-                {this.bandMembers()}
-                {this.bioFooter()}
-                {this.supportModal()}
-                <BottomTilesComponent tiles={artist.tiles} />
-              </IonSlide>
-            ))}
-          </IonSlides>
+          {biography && (
+            <IonSlides
+              ref={this.slides}
+              mode="ios"
+              scrollbar={false}
+              options={{ autoHeight: true }}
+              onIonSlidesDidLoad={(): Promise<void> => this.updateSlide(false)}
+              onIonSlideDidChange={(): Promise<void> => this.updateSlide()}
+              onIonSlideWillChange={(): Promise<void> | undefined =>
+                this.content?.current?.scrollToTop(700)
+              }
+            >
+              {biography?.map(
+                (b: BiographyInterface): React.ReactFragment => (
+                  <IonSlide
+                    key={b.chapter}
+                    style={{ display: 'block' }}
+                    className={b.template}
+                  >
+                    {this.coverPage(b)}
+                    {this.headline(b)}
+                    {this.gallery(b.items)}
+                    {this.readMore(b)}
+                    {this.bandMembers()}
+                    {this.bioFooter()}
+                    {this.supportModal()}
+                    <BottomTilesComponent tiles={artist.tiles} />
+                  </IonSlide>
+                )
+              )}
+            </IonSlides>
+          )}
         </IonContent>
       </IonPage>
     );
@@ -465,15 +484,13 @@ const mapStateToProps = ({
   artistAPI
 }: ApplicationState): StateProps => {
   const { modal, popUpModal } = settings;
-  const { currentArtist, loading } = artistAPI;
-  return { currentArtist, modal, loading, popUpModal };
+  const { currentArtist } = artistAPI;
+  return { currentArtist, modal, popUpModal };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty,
-    updateSettingsModal,
-    getArtistAPI,
-    updatePopUpModal
-  })(ArtistBiographyPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty,
+  updateSettingsModal,
+  getArtistAPI,
+  updatePopUpModal
+})(ArtistBiographyPage);

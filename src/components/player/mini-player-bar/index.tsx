@@ -16,8 +16,7 @@ import {
   showToastAction,
   updateSettingsProperty
 } from '../../../actions';
-import { withRouter } from 'react-router';
-import { RouteComponentProps } from 'react-router-dom';
+import { HistoryProps } from '../../../models/@commons/routeProps';
 
 //from state
 interface StateProps {
@@ -37,7 +36,7 @@ interface DispatchProps {
 }
 
 //from parent
-interface Props extends StateProps, DispatchProps, RouteComponentProps {
+interface Props extends StateProps, DispatchProps, HistoryProps {
   togglePlayer: () => void;
   favoriteSong: () => void;
   clickNextSong: () => void;
@@ -215,10 +214,8 @@ const mapStateToProps = ({
     showToast
   };
 };
-export default withRouter(
-  connect(mapStateToProps, {
-    hideToastAction,
-    updateSettingsProperty,
-    showToastAction
-  })(MiniPlayerBarComponent)
-);
+export default connect(mapStateToProps, {
+  hideToastAction,
+  updateSettingsProperty,
+  showToastAction
+})(MiniPlayerBarComponent);

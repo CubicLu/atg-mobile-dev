@@ -113,6 +113,7 @@ export default class DashboardGraphSupporterPage extends React.Component<
                       sliding={false}
                       bottomBorder={false}
                       hasAvatar={true}
+                      avatarImage={d.image}
                       avatarSize={48}
                       username={d.name}
                       rightContent={<span className="f6 dark">{d.time}</span>}

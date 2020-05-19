@@ -7,10 +7,9 @@ import { RouteComponentProps } from 'react-router';
 interface MatchParams {
   artistId: string;
 }
-
 interface Props extends RouteComponentProps<MatchParams> {}
 
-class DashboardGraphSalesPage extends React.Component<Props> {
+export default class DashboardGraphSalesPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonPage
@@ -18,7 +17,6 @@ class DashboardGraphSalesPage extends React.Component<Props> {
         className="dashboard-analytics-page"
       >
         <Header
-          leftBackHref="/profile"
           className="dashboard-page-header"
           centerContent={
             <div>
@@ -30,7 +28,6 @@ class DashboardGraphSalesPage extends React.Component<Props> {
           leftBackButton={false}
           rightCloseButton={true}
           rightClickGoBack={true}
-          rightCloseHref={`/dashboard/${this.props.match.params.artistId}`}
         />
         <IonContent>
           <div className="graph-placeholder chart">
@@ -47,5 +44,3 @@ class DashboardGraphSalesPage extends React.Component<Props> {
     );
   }
 }
-
-export default DashboardGraphSalesPage;

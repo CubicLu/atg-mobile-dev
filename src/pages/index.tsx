@@ -9,7 +9,6 @@ import HomeRouterPage from './home/router';
 
 import DiscoveryPage from './discovery';
 import FeedPage from './feed';
-import FriendPage from './friend';
 import SearchPage from './search';
 
 import ProfilePage from './profile';
@@ -142,7 +141,6 @@ export {
   FanFeedFilterPage,
   MessageSelectContactPage,
   MessageNotificationDetailPage,
-  FriendPage,
   VaultFilterPage,
   RadioArtistPage,
   RadioHistoryPage,

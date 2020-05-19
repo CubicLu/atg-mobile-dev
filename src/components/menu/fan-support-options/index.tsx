@@ -8,7 +8,7 @@ import {
   AddPlaylistIcon,
   NetworkIcon
 } from '../../icon';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 
 interface Props extends RouteComponentProps {
   artist: ArtistInterface;
@@ -73,4 +73,4 @@ class MenuFanSupportOptionsComponent extends React.Component<Props> {
   }
 }
 
-export default withRouter(MenuFanSupportOptionsComponent);
+export default MenuFanSupportOptionsComponent;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../reducers';
 import {
@@ -12,6 +11,7 @@ import {
 } from '../../components';
 import { UserInterface } from './../../models';
 import { updateProfileProperty } from './../../actions';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   friendsSelected: UserInterface[];
@@ -28,7 +28,7 @@ interface DispatchProps {
   updateProfileProperty: (property, value) => void;
 }
 
-interface Props extends RouteComponentProps, StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class FanFeedFilterPage extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -125,7 +125,7 @@ class FanFeedFilterPage extends React.Component<Props, State> {
       <IonPage id="fan-feed-filter-page">
         <Header
           rightCloseButton={true}
-          rightCloseHref={'/community'}
+          rightClickGoBack={true}
           leftBackButton={false}
           title="Fan Feed"
         />
@@ -180,6 +180,6 @@ const mapStateToProps = ({ profileAPI }: ApplicationState): StateProps => {
   return { friends, friendsSearch, friendsSelected, recentSelected };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { updateProfileProperty })(FanFeedFilterPage)
+export default connect(mapStateToProps, { updateProfileProperty })(
+  FanFeedFilterPage
 );

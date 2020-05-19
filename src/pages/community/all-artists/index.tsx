@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import {
   BackgroundImage,
@@ -12,6 +11,7 @@ import {
 import { getCommunityStoriesAPI } from './../../../actions';
 import { StorieInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   stories: StorieInterface[];
@@ -37,7 +37,7 @@ class CommunityAllArtistsPage extends React.Component<Props> {
           title="Artist Communities"
           titleClassName="artist-name"
           rightCloseButton={true}
-          rightCloseHref="/community"
+          rightClickGoBack={true}
         />
         <HeaderOverlay ref={this.hRef} />
         <IonContent
@@ -55,19 +55,21 @@ class CommunityAllArtistsPage extends React.Component<Props> {
               {this.props.stories.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <IonRouterLink key={i} routerLink={data.url}>
-                      <div className="col s4 no-padding">
-                        <div>
-                          <Avatar
-                            image={data.image}
-                            type={ShapesSize.circle}
-                            width={96}
-                            height={96}
-                          />
-                          <label>{data.label}</label>
-                        </div>
+                    <div
+                      key={i}
+                      className="col s4 no-padding"
+                      onClick={(): void => this.props.history.push(data.url)}
+                    >
+                      <div>
+                        <Avatar
+                          image={data.image}
+                          type={ShapesSize.circle}
+                          width={96}
+                          height={96}
+                        />
+                        <label>{data.label}</label>
                       </div>
-                    </IonRouterLink>
+                    </div>
                   );
                 }
               )}
@@ -84,8 +86,6 @@ const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   return { stories };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getCommunityStoriesAPI
-  })(CommunityAllArtistsPage)
-);
+export default connect(mapStateToProps, {
+  getCommunityStoriesAPI
+})(CommunityAllArtistsPage);

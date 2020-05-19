@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   Header,
   BackgroundImage,
@@ -16,11 +16,11 @@ import {
   SongInterface
 } from '../../models';
 import { guitarPlaylist as playlist } from '../../reducers/playerReducer';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { Nullable } from '../../types';
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
 import { pauseSong, playSong, setPlaylist } from '../../actions';
+import { RouteComponentProps } from 'react-router';
 
 interface MatchParams {
   genre: string;
@@ -60,15 +60,15 @@ class RadioPage extends React.Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillMount(): void {
+  componentDidMount(): void {
     this.getGenre();
   }
 
   getGenre(): void {
-    const { genre } = this.props.match?.params!;
-    if (!genre) {
+    if (!this.props.match?.params.genre) {
       return this.setState({ currentGenre: this.genres[0] });
     }
+    const { genre } = this.props.match.params;
 
     const current = this.state.currentGenre?.name.toLocaleLowerCase();
     if (genre?.toLocaleLowerCase() === current) return;
@@ -121,7 +121,7 @@ class RadioPage extends React.Component<Props, State> {
             className="mt-2 mx-3"
             title="STATIONS"
             viewAll={true}
-            //viewAllUrl="/radio/view-all"
+            viewAllUrl="/radio/view-all"
           />
           <SliderRadio
             className="f6 l1"
@@ -129,9 +129,10 @@ class RadioPage extends React.Component<Props, State> {
             data={this.radios}
           />
 
-          <IonRouterLink
-            routerDirection="forward"
-            routerLink="/radio/station/create"
+          <div
+            onClick={(): void =>
+              this.props.history.push('/radio/station/create')
+            }
           >
             <SectionTitle
               className="mt-2 mx-3"
@@ -140,7 +141,7 @@ class RadioPage extends React.Component<Props, State> {
               title="MY CUSTOM STATIONS"
               viewAll={false}
             />
-          </IonRouterLink>
+          </div>
           <div className="card-station">
             <SliderRadios
               canEdit={true}
@@ -227,9 +228,10 @@ class RadioPage extends React.Component<Props, State> {
       id: 'pharrell-williams'
     },
     {
-      id: 'pharrell-williams',
-      label: 'R&B',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg'
+      id: 'rival-sons',
+      label: 'Rival Sons',
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg'
     },
     {
       id: 'pharrell-williams',
@@ -278,10 +280,8 @@ const mapStateToProps = ({
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    setPlaylist,
-    playSong,
-    pauseSong
-  })(RadioPage)
-);
+export default connect(mapStateToProps, {
+  setPlaylist,
+  playSong,
+  pauseSong
+})(RadioPage);

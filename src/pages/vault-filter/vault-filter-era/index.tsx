@@ -6,8 +6,9 @@ import {
   HeaderOverlay,
   CardEra
 } from '../../../components';
+import { RouteComponentProps } from 'react-router';
 
-interface Props {}
+interface Props extends RouteComponentProps {}
 
 class VaultFilterEraPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -321,6 +322,7 @@ class VaultFilterEraPage extends React.Component<Props> {
                     return (
                       <div className={'col s6'} key={i}>
                         <CardEra
+                          history={this.props.history}
                           name={data.name}
                           key={i}
                           backgroundColor={data.color}

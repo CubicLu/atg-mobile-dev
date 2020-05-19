@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState } from './../../../reducers';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { getArtistAPI, setPlaylist } from './../../../actions';
 import {
   ArtistInterface,
@@ -26,6 +25,7 @@ import {
   rivalSonsPlaylist
 } from '../../../reducers/playerReducer';
 import BottomTilesComponent from '../../../components/bottom-tiles';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -52,18 +52,18 @@ class TrackListPage extends React.Component<Props> {
   playlist: PlaylistInterface = lists[0];
   isArtist: boolean = false;
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    this.getPlaylistFromAPI(nextProps.match.params.referenceId);
+  UNSAFE_componentWillReceiveProps(n: Props): void {
+    this.getPlaylistFromAPI(n.match.params.referenceId);
     this.isArtist = this.props.match.params.reference === 'artist';
     if (!this.isArtist) {
       return;
     }
-    if (nextProps.currentArtist == null) {
+    if (n.currentArtist == null) {
       this.props.getArtistAPI(this.props.match.params.referenceId);
     } else if (
-      nextProps.match.params.referenceId !== this.props.match.params.referenceId
+      n.match.params.referenceId !== this.props.match.params.referenceId
     ) {
-      this.props.getArtistAPI(nextProps.match.params.referenceId);
+      this.props.getArtistAPI(n.match.params.referenceId);
     }
   }
 
@@ -181,6 +181,6 @@ const mapStateToProps = ({
   return { currentArtist, player };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, setPlaylist })(TrackListPage)
+export default connect(mapStateToProps, { getArtistAPI, setPlaylist })(
+  TrackListPage
 );

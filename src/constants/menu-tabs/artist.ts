@@ -66,7 +66,7 @@ export const artistTabs: MenuInterface[] = [
     label: 'Radio',
     icon: 'r',
     isPage: true,
-    route: '/radio/:id'
+    route: '/radio/artist/:id'
   },
   {
     id: 'matches',

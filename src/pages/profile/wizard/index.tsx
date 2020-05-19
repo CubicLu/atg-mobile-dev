@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import {
@@ -37,7 +36,7 @@ interface Options {
   value: string;
 }
 
-interface Props extends DispatchProps, StateProps, RouteComponentProps {}
+interface Props extends DispatchProps, StateProps {}
 
 class WizardPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -246,10 +245,8 @@ const mapStateToProps = ({ wizardAPI }: ApplicationState): StateProps => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getWizardQuestion,
-    answerWizardQuestion,
-    setAnswerValue
-  })(WizardPage)
-);
+export default connect(mapStateToProps, {
+  getWizardQuestion,
+  answerWizardQuestion,
+  setAnswerValue
+})(WizardPage);

@@ -1,10 +1,10 @@
 import React from 'react';
 import { InputCheckbox } from '../../../components';
 import { SubEraInterface } from '../../../models';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 import { updateSettingsProperty } from '../../../actions';
+import { HistoryProps } from '../../../models/@commons/routeProps';
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
@@ -15,7 +15,7 @@ interface StateProps {
   era: string;
 }
 
-interface Props extends RouteComponentProps, StateProps, DispatchProps {
+interface Props extends StateProps, DispatchProps, HistoryProps {
   name: string;
   backgroundColor: string;
   subEra: SubEraInterface[];
@@ -84,8 +84,6 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   return { eraFilters, era };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty
-  })(CardEraComponent)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(CardEraComponent);

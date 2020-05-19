@@ -1,16 +1,18 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { InputChip, InputToggle } from '../../components';
 import { ArrowRightIcon } from '../icon';
+import { HistoryProps } from '../../models/@commons/routeProps';
 
-interface Props extends RouteComponentProps {
+interface Props extends HistoryProps {
   label?: string;
   action?: any;
   type: 'chip' | 'toggle';
   selectedChips?: string[];
 }
 
-class VaultFilterSectionComponent extends React.Component<Props> {
+export default class VaultFilterSectionComponent extends React.PureComponent<
+  Props
+> {
   render(): React.ReactNode {
     return (
       <div className={'vault-filter row'}>
@@ -52,5 +54,3 @@ class VaultFilterSectionComponent extends React.Component<Props> {
     );
   }
 }
-
-export default withRouter(VaultFilterSectionComponent);

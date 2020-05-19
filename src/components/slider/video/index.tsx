@@ -14,7 +14,6 @@ interface Props {
   data?: any[];
   size?: Sizes;
   type?: ShapesSize;
-  onClick?: (id: number) => void;
 }
 
 class SliderVideoComponent extends React.Component<Props> {
@@ -28,7 +27,7 @@ class SliderVideoComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { data, size, type, onClick, canEdit } = this.props;
+    const { data, size, type, canEdit } = this.props;
     if (!data) return <div />;
 
     const settings: Settings = {
@@ -46,11 +45,14 @@ class SliderVideoComponent extends React.Component<Props> {
             (d, i): React.ReactNode => (
               <IonRouterLink
                 key={i}
-                routerLink={`/artist/${d.artist?.username}/video/${i}`}
+                routerLink={
+                  d.artist?.username
+                    ? `/artist/${d.artist?.username}/video/${i}`
+                    : undefined
+                }
               >
                 <CardVideo
                   canEdit={canEdit}
-                  onClick={(id): void => onClick && onClick(id)}
                   type={type}
                   video={d.video}
                   image={d.image}

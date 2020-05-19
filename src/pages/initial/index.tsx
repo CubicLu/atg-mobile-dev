@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonRouterLink } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import {
   BackgroundImage,
   BackgroundInitialImage,
@@ -43,25 +43,25 @@ class InitialPage extends React.Component<Props> {
 
             <div className="footer fluid h-16">
               <div className="pb-1">
-                <IonRouterLink routerLink="/sign-in" routerDirection="forward">
-                  <Button
-                    size={Sizes.lg}
-                    color={Colors.primary}
-                    gradient={true}
-                    label="Sign In"
-                    type={ShapesSize.full}
-                  />
-                </IonRouterLink>
+                <Button
+                  routerLink="/sign-in"
+                  routerDirection="forward"
+                  size={Sizes.lg}
+                  color={Colors.primary}
+                  gradient={true}
+                  label="Sign In"
+                  type={ShapesSize.full}
+                />
               </div>
               <div className="pb-2">
-                <IonRouterLink routerLink="/sign-up" routerDirection="forward">
-                  <Button
-                    size={Sizes.lg}
-                    label="Create an account"
-                    type={ShapesSize.full}
-                    color={Colors.transparent}
-                  />
-                </IonRouterLink>
+                <Button
+                  routerLink="/sign-up"
+                  routerDirection="forward"
+                  size={Sizes.lg}
+                  label="Create an account"
+                  type={ShapesSize.full}
+                  color={Colors.transparent}
+                />
               </div>
             </div>
           </div>

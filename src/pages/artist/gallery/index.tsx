@@ -6,7 +6,7 @@ import {
   HeaderOverlay
 } from './../../../components';
 import { IonContent, IonPage } from '@ionic/react';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import { ArtistInterface } from '../../../models';
 import {
   getArtistAPI,
@@ -15,6 +15,7 @@ import {
 } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -54,7 +55,7 @@ class ArtistGalleryPage extends React.Component<Props> {
   }
 
   handleOnClick = (index: number): (() => void) => (): void => {
-    this.props.history.replace(
+    this.props.history.push(
       `/artist/${this.props.currentArtist?.username}/gallery/${index}`
     );
     return this.props.setCurrentGallery(index);
@@ -101,10 +102,8 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty,
-    setCurrentGallery
-  })(ArtistGalleryPage)
-);
+export default connect(mapStateToProps, {
+  getArtistAPI,
+  updateSettingsProperty,
+  setCurrentGallery
+})(ArtistGalleryPage);

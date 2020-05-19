@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { getArtistAPI, updatePopUpModal } from './../../../actions';
 import { ApplicationState } from './../../../reducers';
-import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import { ArtistInterface, PlanInterface } from '../../../models';
 import {
   BackgroundImage,
@@ -17,6 +16,7 @@ import {
   ButtonIcon
 } from './../../../components';
 import { plans } from '../../../constants';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   plan: PlanInterface | null;
@@ -52,12 +52,13 @@ class ArtistSupportPage extends React.Component<Props, State> {
       confirmHandler: (): void => {}
     };
   }
-  UNSAFE_componentWillReceiveProps(next: Props): void {
+
+  componentDidUpdate(): void {
+    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+      return this.props.getArtistAPI(this.props.match.params.id);
+    }
     if (this.props.currentArtist?.support && !this.state.plan) {
       this.setState({ plan: plans[0] });
-    }
-    if (this.props.currentArtist?.username !== next.match.params.id) {
-      this.props.getArtistAPI(next.match.params.id);
     }
   }
 
@@ -76,6 +77,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
           confirmHandler: (): void => {
             this.handlePlanChange(newPlan);
             updatePopUpModal(null);
+            this.props.history.goBack();
           }
         })
       );
@@ -131,9 +133,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   }
                 )}
               </div>
-              <IonRouterLink routerLink={undefined}>
-                <div className="mt-3 h3 underline">Why premium?</div>
-              </IonRouterLink>
+              <div
+                //onClick={(): void => this.props.history.push('')}
+                className="mt-3 h3 underline"
+              >
+                Why premium?
+              </div>
             </div>
 
             <div className="artist-support-page__content--options">
@@ -180,7 +185,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
               <div
                 className="artist-support-page__content--options--item f4"
-                onClick={(): void => this.props.history.goBack()}
+                onClick={
+                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                }
               >
                 <ButtonIcon
                   className="background-light-red"
@@ -220,8 +227,6 @@ const mapStateToProps = ({
   return { currentArtist, plans, popUpModal };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { getArtistAPI, updatePopUpModal })(
-    ArtistSupportPage
-  )
+export default connect(mapStateToProps, { getArtistAPI, updatePopUpModal })(
+  ArtistSupportPage
 );

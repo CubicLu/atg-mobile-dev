@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { IonPage, IonRouterLink } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import {
   BackgroundImage,
   BackgroundSignUpConfirmImage,
@@ -53,14 +53,14 @@ class SignUpConfirmPage extends React.Component<Props> {
             </div>
 
             <div className="footer mt-5 margin-footer">
-              <IonRouterLink routerLink="/sign-in" routerDirection="back">
-                <Button
-                  size={Sizes.lg}
-                  gradient={true}
-                  label="Sign In"
-                  type={ShapesSize.full}
-                />
-              </IonRouterLink>
+              <Button
+                routerLink="/sign-in"
+                routerDirection="back"
+                size={Sizes.lg}
+                gradient={true}
+                label="Sign In"
+                type={ShapesSize.full}
+              />
             </div>
           </div>
         </div>

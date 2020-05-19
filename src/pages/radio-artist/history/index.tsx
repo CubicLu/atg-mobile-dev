@@ -17,7 +17,7 @@ import {
   AddPlaylistIcon,
   Avatar
 } from '../../../components';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import {
   ChannelInterface,
   PlaylistInterface,
@@ -28,9 +28,10 @@ import { setPlaylist } from './../../../actions';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { guitarPlaylist } from '../../../reducers/playerReducer';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
-  radioArtist: ChannelInterface | null;
+  radioArtist?: ChannelInterface | null;
 }
 
 interface DispatchProps {
@@ -171,6 +172,4 @@ const mapStateToProps = ({ radioAPI }: ApplicationState): object => {
   return { radioArtist };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { setPlaylist })(RadioHistoryPage)
-);
+export default connect(mapStateToProps, { setPlaylist })(RadioHistoryPage);

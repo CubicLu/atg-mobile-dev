@@ -10,10 +10,11 @@ import {
 } from '../../../components';
 import { Sizes, ShapesSize } from '../../../types';
 import { ArtistInterface } from '../../../models';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { getArtistAPI, updateSettingsProperty } from './../../../actions';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -43,12 +44,6 @@ class ArtistVideosPage extends React.Component<Props, {}> {
     }
   }
 
-  onOpenVideo(id: number): void {
-    this.props.history.push(
-      `/artist/${this.props.match.params.id}/video/${id}`
-    );
-  }
-
   render(): React.ReactNode {
     const { currentArtist } = this.props;
     return (
@@ -76,7 +71,6 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                     data={currentArtist?.videos?.recents}
                     size={Sizes.sm}
                     type={ShapesSize.normal}
-                    onClick={this.onOpenVideo.bind(this)}
                   />
                 </div>
               </React.Fragment>
@@ -87,7 +81,11 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 (value, i): React.ReactNode => {
                   return (
                     <CardVideo
-                      onClick={this.onOpenVideo.bind(this, i)}
+                      onClick={(): void =>
+                        this.props.history.push(
+                          `/artist/${this.props.match.params.id}/video/${i}`
+                        )
+                      }
                       id={i}
                       key={i}
                       size={Sizes.full}
@@ -112,9 +110,7 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty
-  })(ArtistVideosPage)
-);
+export default connect(mapStateToProps, {
+  getArtistAPI,
+  updateSettingsProperty
+})(ArtistVideosPage);

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonList } from '@ionic/react';
 import {
   Header,
@@ -14,6 +13,7 @@ import { ShapesSize, Colors, GradientDirection } from './../../../types';
 import { ApplicationState } from './../../../reducers';
 import { getArtistEventAPI } from './../../../actions';
 import { getFriendsAPI } from './../../../actions/api/friendsActions';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   willGo: boolean;
@@ -48,11 +48,11 @@ class EventDetailPage extends React.Component<Props, State> {
 
   artist = '';
   eventId = '-1';
-  componentDidUpdate(): void {
-    if (!(this.props.friends && this.props.friends.length > 0)) {
-      this.props.getFriendsAPI();
-    }
 
+  componentDidMount(): void {
+    this.props.getFriendsAPI();
+  }
+  componentDidUpdate(): void {
     const { id, eventId } = this.props.match.params;
     if (id === this.artist && eventId === this.eventId) return;
 
@@ -64,11 +64,7 @@ class EventDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <IonPage id="event-detail-page" className={'artist-event-detail-page'}>
-        <Header
-          rightCloseButton
-          title="Who's going"
-          rightCloseHref={`/artist/${this.props.match.params.id}/event`}
-        >
+        <Header rightCloseButton title="Who's going" rightClickGoBack={true}>
           <div className={'mt-12 flex-justify-content-center'}>
             <Button
               label={this.state.willGo ? "Can't go" : "I'm going"}
@@ -126,8 +122,6 @@ const mapStateToProps = ({
   return { friends, event };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { getArtistEventAPI, getFriendsAPI })(
-    EventDetailPage
-  )
+export default connect(mapStateToProps, { getArtistEventAPI, getFriendsAPI })(
+  EventDetailPage
 );

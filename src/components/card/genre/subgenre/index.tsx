@@ -4,7 +4,6 @@ import { SubGenreInterface } from '../../../../models';
 import { IonCheckbox } from '@ionic/react';
 import { updateSettingsProperty } from '../../../../actions';
 import { ApplicationState } from '../../../../reducers';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 interface DispatchProps {
@@ -159,9 +158,6 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   return { selectedGenres };
 };
 
-export default withRouter(
-  // @ts-ignore
-  connect(mapStateToProps, {
-    updateSettingsProperty
-  })(SubGenreModalComponent)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(SubGenreModalComponent);

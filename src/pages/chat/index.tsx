@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter, RouteChildrenProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import {
   Header,
@@ -11,14 +10,9 @@ import {
 } from '../../components';
 import { ShapesSize } from '../../types';
 import { chatFriends } from '../../constants';
-import { ApplicationState } from '../../reducers';
-import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
-interface StateProps {}
-
-interface DispatchProps {}
-
-interface Props extends DispatchProps, StateProps, RouteChildrenProps {}
+interface Props extends RouteComponentProps {}
 
 class ChatPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -33,7 +27,7 @@ class ChatPage extends React.Component<Props> {
               <li
                 key={i}
                 onClick={(): void =>
-                  this.props.history.push(`/profile/${data.username}`)
+                  this.props.history.push(`/profile/friend/${data.username}`)
                 }
               >
                 <Avatar
@@ -109,9 +103,5 @@ class ChatPage extends React.Component<Props> {
     );
   }
 }
-// eslint-disable-next-line
-const mapStateToProps = ({}: ApplicationState): StateProps => {
-  return {};
-};
 
-export default withRouter(connect(mapStateToProps, {})(ChatPage));
+export default ChatPage;

@@ -3,19 +3,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import DashboardAnalyticDetailPage from './index';
 import { store } from './../../../../store';
+import { createMemoryHistory } from 'history';
 import ReactDOM from 'react-dom';
 
 let props = {
-  location: { hash: '', pathname: '', search: '', state: '', key: '' },
-  match: {
-    params: { artistId: 'pharrell-williams' },
-    isExact: true,
-    path: '',
-    url: ''
-  },
-  history: {
-    goBack: (): void => {}
-  }
+  match: { params: { artistId: 'pharrell-williams' }, isExact: true, path: "", url: ""}, location: {hash: "", pathname: "", search: "", state: "", key: ""},
+  history: createMemoryHistory()
 };
 
 describe('DashboardAnalyticDetailPage render', () => {

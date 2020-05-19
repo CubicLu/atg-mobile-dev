@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   IonContent,
   IonList,
@@ -23,7 +22,7 @@ interface StateProps {
   readonly messagesSearch: MessageInterface[];
 }
 
-interface Props extends RouteComponentProps, StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps {}
 
 class MessageChatPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -41,9 +40,7 @@ class MessageChatPage extends React.Component<Props> {
                       showDate={true}
                       colInfo={9}
                       colAvatar={3}
-                      onClick={(): void =>
-                        this.props.history.push(`/chat/${i}`)
-                      }
+                      routerLink={`/chat/${i}`}
                     />
                   </IonItem>
                   <IonItemOptions side="end">
@@ -76,8 +73,6 @@ const mapStateToProps = ({
   return { messageTabs, activeMessageTab, messagesSearch };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty
-  })(MessageChatPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(MessageChatPage);

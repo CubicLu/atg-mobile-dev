@@ -2,7 +2,6 @@ import React from 'react';
 import { CardGraph } from '../../../components';
 import { walletMock } from './../../../constants';
 import { RouteComponentProps, withRouter } from 'react-router';
-
 interface MatchParams {
   artistId: string;
 }
@@ -34,5 +33,4 @@ class DashboardAnalyticPage extends React.Component<Props> {
     );
   }
 }
-
 export default withRouter(DashboardAnalyticPage);

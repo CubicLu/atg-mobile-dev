@@ -40,10 +40,22 @@ class HomeRouterPage extends React.PureComponent<Props> {
       >
         <IonRouterOutlet>
           {tabs.map((p: TabsInterface, i: number): any => (
-            <Route exact path={p.path} component={p.component} key={i} />
+            <Route
+              key={i}
+              exact
+              path={p.path}
+              render={(route): any => <p.component path={p.path} {...route} />}
+            />
           ))}
           {routes.map((p: RouteInterface, i: number): any => (
-            <Route exact path={p.path} component={p.component} key={i} />
+            <Route
+              key={i}
+              exact
+              path={p.path}
+              render={(route): any => (
+                <p.component path={p.path} {...route} parentTab={p.parentTab} />
+              )}
+            />
           ))}
           <Redirect exact path="/" to="/profile/" />
           <Route path="*" component={NotFoundPage} />

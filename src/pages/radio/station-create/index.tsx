@@ -22,12 +22,13 @@ import {
   updateNavBarTwoActions,
   toggleNavBarTwoActions
 } from '../../../actions';
-import { RouteChildrenProps } from 'react-router';
+
 import { hideTabs, preventChangeTabbar } from '../../../utils';
+import { RouteComponentProps } from 'react-router';
 interface MatchParams {
   id: string;
 }
-interface Props extends RouteChildrenProps<MatchParams> {
+interface Props extends RouteComponentProps<MatchParams> {
   toggleNavBarTwoActions: (activate: boolean) => void;
   updateNavBarTwoActions: (
     leftLabel: string,
@@ -154,7 +155,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
   isEdit: boolean = false;
   editId?: string;
   componentDidMount(): void {
-    const isEdit = !!this.props.match?.params?.id;
+    const isEdit = !!this.props.match?.params.id;
     this.setState(isEdit ? { ...editedStation } : { ...newStation });
   }
   ionViewWillEnter(): void {
@@ -326,7 +327,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
-    const pageTitle = !this.props.match?.params?.id
+    const pageTitle = !this.props.match?.params.id
       ? 'Create Station'
       : 'Edit Station';
     const parentScroll = (e): void => {
@@ -339,8 +340,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
           titleLeft={true}
           leftBackButton={false}
           rightCloseButton={true}
-          rightCloseHref={'/radio'}
-          routerDirection="back"
+          rightClickGoBack={true}
         />
         <HeaderOverlay ref={this.headerRef} />
         <BackgroundImage

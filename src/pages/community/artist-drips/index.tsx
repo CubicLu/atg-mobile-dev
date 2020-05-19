@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { BackgroundImage, Header, Avatar } from '../../../components';
 import { getCommunityByArtistUsernameAPI } from './../../../actions';
 import { CommunityArtistInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
+import { RouteComponentProps } from 'react-router';
 
 interface MatchParams {
   artistId: string;
@@ -24,7 +24,7 @@ interface DispatchProps {
 
 class CommunityArtistDripsPage extends React.Component<Props> {
   componentDidMount(): void {
-    this.loadPostsAndStories(this.props.match!.params);
+    this.loadPostsAndStories(this.props.match.params);
   }
   loadPostsAndStories(p: MatchParams): void {
     if (p.artistId !== this.props.currentCommunityArtist?.username) {
@@ -42,7 +42,7 @@ class CommunityArtistDripsPage extends React.Component<Props> {
           title="Daily Drip"
           titleClassName="artist-name"
           rightCloseButton={true}
-          rightCloseHref={`/community/artist/${this.props.currentCommunityArtist.username}`}
+          rightClickGoBack={true}
         />
         <IonContent scrollY={false}>
           <div
@@ -54,19 +54,18 @@ class CommunityArtistDripsPage extends React.Component<Props> {
               {this.props.currentCommunityArtist.stories.map(
                 (data, i): React.ReactNode => {
                   return (
-                    <IonRouterLink key={i} routerLink={data.url}>
-                      <div className="col s4 no-padding">
-                        <div>
-                          <Avatar
-                            image={data.image}
-                            type={ShapesSize.circle}
-                            width={96}
-                            height={96}
-                          />
-                          <label>{data.label}</label>
-                        </div>
+                    <div key={i} className="col s4 no-padding">
+                      <div>
+                        <Avatar
+                          avatarUrl={`/daily-drip/${i}`}
+                          image={data.image}
+                          type={ShapesSize.circle}
+                          width={96}
+                          height={96}
+                        />
+                        <label>{data.label}</label>
                       </div>
-                    </IonRouterLink>
+                    </div>
                   );
                 }
               )}
@@ -83,8 +82,6 @@ const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   return { currentCommunityArtist };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getCommunityByArtistUsernameAPI
-  })(CommunityArtistDripsPage)
-);
+export default connect(mapStateToProps, {
+  getCommunityByArtistUsernameAPI
+})(CommunityArtistDripsPage);

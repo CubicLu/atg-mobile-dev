@@ -48,6 +48,8 @@ class CordovaMediaComponent extends React.Component<Props> {
         return this.actionResumeSong();
       case PlayerActionType.PAUSE_SONG:
         return this.actionPauseSong();
+      case PlayerActionType.STOP_SONG:
+        return this.actionStopSong();
       case PlayerActionType.LOAD_NEXT_SONG:
         return this.actionLoadNextSong();
       case PlayerActionType.SEEK_TO_SONG:
@@ -77,7 +79,11 @@ class CordovaMediaComponent extends React.Component<Props> {
 
   actionPauseSong(): void {
     window.Media.list().forEach((song): void => song.pause());
-    this.updatePlayingMusicControls();
+    this.updatePlayingMusicControls(false);
+  }
+  actionStopSong(): void {
+    window.Media.list().forEach((song): void => song.stop());
+    this.updatePlayingMusicControls(false);
   }
   actionResumeSong(): void {
     if (!this.props.song) return;
@@ -152,12 +158,13 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
       case MediaStatusCallback.MEDIA_PAUSED:
         console.log('Media Paused', media.id, media.src);
-        this.updateElapsedMusicControls();
+        this.updatePlayingMusicControls(false);
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
         console.log('song stopped', media.getMediaId(), media.src);
         this.mediaCallbackCheckRunning();
-        this.updateElapsedMusicControls();
+        this.updatePlayingMusicControls(false);
+        window.MusicControls.destroy();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         console.log('song ended naturally', media.getMediaId(), media.src);
@@ -250,9 +257,9 @@ class CordovaMediaComponent extends React.Component<Props> {
     this.activeMusicControls = true;
   }
 
-  updatePlayingMusicControls(): void {
+  updatePlayingMusicControls(state: boolean = this.props.playing): void {
     setTimeout(
-      (): void => window.MusicControls.updateIsPlaying(this.props.playing),
+      (): void => window.MusicControls.updateIsPlaying(state),
       MUSIC_CONTROLS_DELAY
     );
   }
@@ -267,19 +274,24 @@ class CordovaMediaComponent extends React.Component<Props> {
     const { message } = JSON.parse(action);
     switch (message) {
       case 'music-controls-next':
+      case 'music-controls-media-button-next':
         return this.props.nextSong();
 
+      case 'music-controls-media-button-previous':
       case 'music-controls-previous':
         return this.props.prevSong();
 
       case 'music-controls-pause':
+      case 'music-controls-media-button-pause':
         return this.props.pauseSong();
 
       case 'music-controls-play':
+      case 'music-controls-media-button-play':
         return this.props.resumeSong();
 
+      case 'music-controls-media-button-stop':
       case 'music-controls-destroy':
-        return this.props.pauseSong();
+        return this.props.stopSong();
 
       // External controls (iOS only)
       case 'music-controls-toggle-play-pause':
@@ -293,14 +305,14 @@ class CordovaMediaComponent extends React.Component<Props> {
           this.mainSong!.seekTo(JSON.parse(action).position * 1000)
         );
 
-      case 'music-controls-media-button':
-        return this.props.pauseSong();
-
-      case 'music-controls-headset-unplugged':
-        return this.props.pauseSong();
-
+      case 'music-controls-media-button-music':
       case 'music-controls-headset-plugged':
-        return this.props.pauseSong();
+      case 'music-controls-headset-unplugged':
+      case 'music-controls-media-button-play-pause':
+      case 'music-controls-media-button':
+        return this.props.paused
+          ? this.props.resumeSong()
+          : this.props.stopSong();
 
       default:
         return;

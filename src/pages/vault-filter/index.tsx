@@ -15,6 +15,7 @@ import {
   removeSelectedEra
 } from '../../actions';
 import { Colors, ShapesSize, Sizes } from '../../types';
+import { RouteComponentProps } from 'react-router';
 
 interface DispatchProps {
   updateSettingsProperty: (property: string, value: any) => void;
@@ -28,7 +29,7 @@ interface StateProps {
   selectedGenres: string[];
   selectedEras: string[];
 }
-interface Props extends DispatchProps, StateProps {}
+interface Props extends DispatchProps, StateProps, RouteComponentProps {}
 
 class VaultFilterPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -41,7 +42,6 @@ class VaultFilterPage extends React.Component<Props> {
           titleClassName="filter"
           rightCloseButton
           leftBackButton={false}
-          rightCloseHref="/profile"
         />
         <HeaderOverlay ref={this.headerRef} />
         <IonContent
@@ -67,11 +67,28 @@ class VaultFilterPage extends React.Component<Props> {
                 style={{ marginTop: 16, marginBottom: 16 }}
               />
               <div className={'row'}>
-                <VaultFilterSection label={'View Tracks'} type={'toggle'} />
-                <VaultFilterSection label={'View Videos'} type={'toggle'} />
-                <VaultFilterSection label={'View Photos'} type={'toggle'} />
-                <VaultFilterSection label={'Show Supported'} type={'toggle'} />
                 <VaultFilterSection
+                  history={this.props.history}
+                  label={'View Tracks'}
+                  type={'toggle'}
+                />
+                <VaultFilterSection
+                  history={this.props.history}
+                  label={'View Videos'}
+                  type={'toggle'}
+                />
+                <VaultFilterSection
+                  history={this.props.history}
+                  label={'View Photos'}
+                  type={'toggle'}
+                />
+                <VaultFilterSection
+                  history={this.props.history}
+                  label={'Show Supported'}
+                  type={'toggle'}
+                />
+                <VaultFilterSection
+                  history={this.props.history}
                   label={'Show by Genre'}
                   type={'chip'}
                   selectedChips={this.props.selectedGenres}
@@ -80,6 +97,7 @@ class VaultFilterPage extends React.Component<Props> {
                   }}
                 />
                 <VaultFilterSection
+                  history={this.props.history}
                   label={'Show by Era'}
                   type={'chip'}
                   selectedChips={Object.keys(this.props.eraFilters)}

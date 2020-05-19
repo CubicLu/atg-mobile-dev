@@ -6,11 +6,12 @@ import {
   HeaderOverlay
 } from './../../../components';
 import { IonContent, IonPage } from '@ionic/react';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import { ArtistInterface } from '../../../models';
 import { getArtistAPI } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -31,6 +32,7 @@ interface Props
 
 class ArtistEventsPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
+
   UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.currentArtist == null) {
       this.props.getArtistAPI(nextProps.match.params.id);
@@ -79,6 +81,4 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { getArtistAPI })(ArtistEventsPage)
-);
+export default connect(mapStateToProps, { getArtistAPI })(ArtistEventsPage);

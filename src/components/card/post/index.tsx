@@ -122,11 +122,11 @@ export default class CardPostComponent extends React.Component<Props> {
         {showUser && (
           <IonRouterLink
             routerDirection="forward"
-            routerLink={`/profile/${post.username}`}
+            routerLink={`/profile/friend/${post.username}`}
           >
             <div className="align-start flex">
               <Avatar
-                avatarUrl={`/profile/${post.username}`}
+                avatarUrl={`/profile/friend/${post.username}`}
                 image={post.avatar}
                 type={ShapesSize.circle}
                 width={40}
@@ -171,7 +171,7 @@ export default class CardPostComponent extends React.Component<Props> {
     const url = clickToOpen ? `/community/comments/${post.id || 1}` : undefined;
 
     if (!this.isReady) this.displayContent();
-    if (!this.isReady) return this.renderSkeleton();
+    if (!this.isReady) this.renderSkeleton();
 
     return (
       <div className="mb-4" style={{ position: 'relative' }}>

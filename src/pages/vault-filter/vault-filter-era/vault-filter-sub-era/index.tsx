@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
@@ -23,7 +22,9 @@ interface StateProps {
   subEra: SubEraInterface[];
 }
 
-interface Props extends RouteComponentProps, StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps {
+  history: any;
+}
 
 class VaultFilterSubEraPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
@@ -137,8 +138,6 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   return { eraFilters, era, subEra };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty
-  })(VaultFilterSubEraPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(VaultFilterSubEraPage);

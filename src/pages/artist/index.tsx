@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
 import {
   IonContent,
   IonPage,
@@ -13,6 +12,7 @@ import { artistBackground, getFixedTranslatePoints } from '../../utils';
 import { ArtistInterface, MenuInterface } from '../../models';
 import { clearCurrentArtist, getArtistAPI } from './../../actions';
 import ArtistGatewayPage from './gateway';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -69,14 +69,20 @@ class ArtistPage extends React.PureComponent<Props, State> {
     //navigate to specific tab
     const hasTab = this.props.match.params.tab;
     if (hasTab && this.state.activeTab !== hasTab) this.updateActiveTab(hasTab);
-    //load new artist
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
-      this.props.getArtistAPI(this.props.match.params.id);
-      //gateway update
-      !this.state.gateway && this.updateGateway(true);
-    }
+    this.fetchArtist();
+  }
+  ionViewDidEnter(): void {
+    if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
+    this.fetchArtist();
   }
 
+  fetchArtist(): void {
+    const artist = this.props.currentArtist;
+    const ok = artist == null || artist.username !== this.props.match.params.id;
+    if (!ok) return;
+    !this.state.gateway && this.updateGateway(true);
+    this.props.getArtistAPI(this.props.match.params.id);
+  }
   updateGateway(condition: boolean): void {
     this.setState({ gateway: condition });
   }
@@ -84,14 +90,14 @@ class ArtistPage extends React.PureComponent<Props, State> {
   updateActiveTab(tab: string): void {
     this.setState({ activeTab: tab });
   }
+
   componentDidMount(): void {
-    if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
-  }
-  componentWillUnmount(): void {
     this.custom?.animation?.destroy();
     this.customAlpha?.animation?.destroy();
     this.custom.loaded = false;
     this.customAlpha.loaded = false;
+    this.lastOffset = 0;
+    this.lastOffsetA = 0;
   }
   loadAnimationsAlpha(): void {
     const normalMenu = document.querySelector('#artist-menu');
@@ -228,6 +234,7 @@ class ArtistPage extends React.PureComponent<Props, State> {
 
   handleMenu = (event: MenuInterface): void => {
     const { match, history } = this.props;
+
     if (event.route && event.isPage === true) {
       return history.push(event.route.replace(':id', match.params.id));
     } else if (event.onClick) {
@@ -236,7 +243,7 @@ class ArtistPage extends React.PureComponent<Props, State> {
     this.updateActiveTab(event.id);
   };
 
-  toggleGateway(): void {
+  noGateway(): void {
     this.updateGateway(false);
   }
   render(): React.ReactNode {
@@ -257,7 +264,7 @@ class ArtistPage extends React.PureComponent<Props, State> {
         {this.state.gateway && (
           <ArtistGatewayPage
             currentArtist={this.props.currentArtist}
-            gateway={(): void => this.toggleGateway()}
+            gateway={(): void => this.noGateway()}
           />
         )}
 

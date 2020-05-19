@@ -1,8 +1,7 @@
 import React from 'react';
 import { ArtistInterface } from '../../../models';
 import { ShapesSize, Colors, Sizes } from '../../../types';
-import { ButtonIcon, DotsThreeIcon, EditIcon } from '../..';
-import { IonRouterLink } from '@ionic/react';
+import { ButtonIcon, DotsThreeIcon } from '../..';
 
 interface Props {
   image: string | undefined;
@@ -18,7 +17,7 @@ interface Props {
   onClick?: Function;
 }
 
-class CardVideoComponent extends React.Component<Props> {
+export default class CardVideoComponent extends React.Component<Props> {
   public static defaultProps = {
     type: ShapesSize.normal,
     showFooter: false,
@@ -28,27 +27,16 @@ class CardVideoComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { artist, type, image, time, title, size, id, onClick } = this.props;
+    const { artist, type, image, time, title, size, onClick } = this.props;
 
     return (
       <div className="row card-out-content">
         <div
-          onClick={(): void => onClick && onClick(id)}
+          onClick={(): void => onClick && onClick()}
           className={`card video ${type} ${size}`}
           data-time={time}
           style={{ backgroundImage: `url(${image})` }}
-        >
-          {this.props.canEdit && (
-            <IonRouterLink
-              routerDirection="forward"
-              routerLink={`/radio/station/edit/${id}`}
-            >
-              <div className="flex-justify-content-end pt-1 mr-1">
-                <EditIcon opacity={0.33} />
-              </div>
-            </IonRouterLink>
-          )}
-        </div>
+        />
 
         {title && <span className="f4 my-1">{title}</span>}
         <br />
@@ -64,5 +52,3 @@ class CardVideoComponent extends React.Component<Props> {
     );
   }
 }
-
-export default CardVideoComponent;

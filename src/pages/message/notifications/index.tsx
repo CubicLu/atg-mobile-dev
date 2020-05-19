@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonList, IonItem } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { MenuInterface, NotificationInterface } from '../../../models';
 import { updateSettingsProperty } from './../../../actions';
 import moment from 'moment';
+import { RouteComponentProps, withRouter } from 'react-router';
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
 }
@@ -15,7 +15,7 @@ interface StateProps {
   readonly notificationsSearch: NotificationInterface[];
 }
 
-interface Props extends RouteComponentProps, StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class MessageNotificationsPage extends React.Component<Props> {
   render(): React.ReactNode {
@@ -29,11 +29,11 @@ class MessageNotificationsPage extends React.Component<Props> {
                 <IonItem
                   key={i}
                   style={{ maxHeight: 84, height: 84 }}
-                  onClick={(): void => {
+                  onClick={(): void =>
                     this.props.history.push(`/message/notification/${i}`, {
                       needAccept: needAccept
-                    });
-                  }}
+                    })
+                  }
                 >
                   <div className={`row w-100 ${data.read ? '' : 'not-read'}`}>
                     <div className={'col s12 info'}>

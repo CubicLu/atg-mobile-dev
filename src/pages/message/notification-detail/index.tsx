@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage, IonAlert } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { MenuInterface, NotificationInterface } from '../../../models';
@@ -14,6 +13,7 @@ import {
   HeaderOverlay,
   ButtonIcon
 } from '../../../components';
+import { HistoryProps } from '../../../models/@commons/routeProps';
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
 }
@@ -22,12 +22,10 @@ interface StateProps {
   readonly activeMessageTab: string;
   readonly notificationsSearch: NotificationInterface[];
 }
-
 interface State {
   readonly showAlert: boolean;
 }
-
-interface Props extends RouteComponentProps, StateProps, DispatchProps {
+interface Props extends StateProps, DispatchProps, HistoryProps {
   readonly needAccept?: boolean;
 }
 
@@ -175,8 +173,6 @@ const mapStateToProps = ({
   return { messageTabs, activeMessageTab, notificationsSearch };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty
-  })(MessageNotificationDetailPage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty
+})(MessageNotificationDetailPage);

@@ -6,10 +6,11 @@ import {
   getArtistAPI
 } from './../../../actions';
 import { IonContent, IonPage } from '@ionic/react';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { ArtistInterface, MenuInterface } from '../../../models';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -44,12 +45,9 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
       scrolling: false
     };
   }
-
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.currentArtist == null) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    } else if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.props.getArtistAPI(nextProps.match.params.id);
+  componentDidUpdate(old: Props): void {
+    if (old.match.params.id !== this.props.match.params.id) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 
@@ -132,10 +130,8 @@ const mapStateToProps = ({
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateArtistProperty,
-    updateSettingsProperty,
-    getArtistAPI
-  })(ArtistDeepDivePage)
-);
+export default connect(mapStateToProps, {
+  updateArtistProperty,
+  updateSettingsProperty,
+  getArtistAPI
+})(ArtistDeepDivePage);

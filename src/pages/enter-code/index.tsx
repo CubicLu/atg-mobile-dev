@@ -1,15 +1,15 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { BackgroundImage, InputCode, Header } from './../../components';
 
 import { IonPage } from '@ionic/react';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   isValid: boolean;
 }
 interface Props extends RouteComponentProps {}
 
-class EnterCodePage extends React.Component<Props, State> {
+export default class EnterCodePage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -41,11 +41,7 @@ class EnterCodePage extends React.Component<Props, State> {
           backgroundBottomDark={false}
           backgroundBottomOpacity={0.13}
         />
-        <Header
-          leftBackButton={true}
-          rightCloseButton={true}
-          rightCloseHref="/profile"
-        />
+        <Header leftBackButton={true} rightCloseButton={true} />
         <div className="initial-page-fullscreen double-top">
           <div className="space-between h-100">
             <div className="row">
@@ -87,5 +83,3 @@ class EnterCodePage extends React.Component<Props, State> {
     );
   }
 }
-
-export default EnterCodePage;

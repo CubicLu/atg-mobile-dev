@@ -11,7 +11,7 @@ import {
 } from '../../../components';
 import { ArtistInterface, CommentInterface } from '../../../models';
 import { Colors } from '../../../types';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import BottomTilesComponent from '../../../components/bottom-tiles';
@@ -23,6 +23,7 @@ import {
   updateSettingsProperty
 } from '../../../actions';
 import ToastComponent from '../../../components/toast';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -144,12 +145,10 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <div />;
     const {
-      match: {
-        params: { videoId }
-      },
+      match,
       currentArtist: { videos }
     } = this.props;
-    const videoUrl = videos?.recents[videoId];
+    const videoUrl = videos?.recents[match.params.videoId];
     return (
       <IonPage id="artist-videos-page">
         <BackgroundImage default />
@@ -163,7 +162,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <div className="mt-5" />
           <VideoPlayer
             onClickClose={(): void => this.props.history.goBack()}
-            videoUrl={videoUrl.video}
+            videoUrl={videoUrl?.video}
           />
           {this.renderContent()}
           {!this.state.chatOpened && (
@@ -190,12 +189,10 @@ const mapStateToProps = ({
   return { currentArtist, currentGalleryComments, showToast };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    getArtistGalleryCommentsAPI,
-    hideToastAction,
-    updateSettingsProperty,
-    showToastAction
-  })(ArtistVideoDetailPage)
-);
+export default connect(mapStateToProps, {
+  getArtistAPI,
+  getArtistGalleryCommentsAPI,
+  hideToastAction,
+  updateSettingsProperty,
+  showToastAction
+})(ArtistVideoDetailPage);

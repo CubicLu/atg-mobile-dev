@@ -1,7 +1,6 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import { getSearchResultAPI } from '../../actions';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import {
   BackgroundImage,
   Header,
@@ -11,11 +10,11 @@ import {
 } from '../../components';
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
 interface DispatchProps {
   getSearchResultAPI: (query: string) => void;
 }
-
 interface StateProps {
   queryResult: string;
 }
@@ -38,7 +37,7 @@ class SearchPage extends React.Component<Props> {
         <Header
           leftTitle="Search"
           titleClassName="search"
-          rightCloseButton
+          rightCloseButton={false}
           leftBackButton={false}
           rightClickGoBack={true}
         />
@@ -100,8 +99,6 @@ const mapStateToProps = ({ searchAPI }: ApplicationState): StateProps => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getSearchResultAPI
-  })(SearchPage)
-);
+export default connect(mapStateToProps, {
+  getSearchResultAPI
+})(SearchPage);

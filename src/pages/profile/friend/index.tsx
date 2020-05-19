@@ -17,8 +17,9 @@ import {
 import { updateSettingsProperty } from '../../../actions';
 import { getFriendAPI } from '../../../actions/api/friendsActions';
 import { addEndingToNumber } from '../../../utils';
-import { RouteChildrenProps } from 'react-router';
+
 import { Nullable } from '../../../types';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   pending: boolean;
@@ -39,7 +40,7 @@ interface DispatchProps {
 interface Props
   extends StateProps,
     DispatchProps,
-    RouteChildrenProps<MatchParams> {}
+    RouteComponentProps<MatchParams> {}
 
 class FriendProfilePage extends React.PureComponent<Props, State> {
   constructor(props) {
@@ -48,7 +49,7 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
   }
 
   ionViewWillEnter(): void {
-    this.props.getFriendAPI(this.props.match!.params.id);
+    this.props.getFriendAPI(this.props.match.params.id);
   }
 
   changeFriendTab = (event: MenuInterface): void => {
@@ -130,20 +131,11 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="friend-profile-page">
+      <IonPage id="friend-profile-page" style={{ background: '#2d0758' }}>
         <IonContent id="friend-profile-page" scrollY={false}>
-          {!this.props.currentFriend && (
-            <BackgroundImage
-              gradient="180deg,#652ddd,#2c0d5c"
-              backgroundTop={false}
-              backgroundBottom
-              backgroundBottomDark={false}
-              backgroundBottomOpacity={0.1}
-              backgroundImage={this.nonFrdbackground}
-            />
-          )}
-          {this.props.currentFriend !== null &&
-          this.props.currentFriend?.isFriend
+          {this.props.currentFriend === null || !this.props.currentFriend
+            ? null
+            : this.props.currentFriend.isFriend
             ? this.renderProfileFriend()
             : this.renderNonFriendProfile()}
         </IonContent>

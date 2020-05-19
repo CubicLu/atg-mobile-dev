@@ -22,7 +22,9 @@ export default class ArtistGatewayPage extends React.Component<Props> {
         <div className="artist-gateway__content">
           <div className="artist-gateway__content--info-block">
             <div className="artist-gateway__content--info-block--buttons">
-              <IonRouterLink routerLink={`/radio/${currentArtist.username}`}>
+              <IonRouterLink
+                routerLink={`/radio/artist/${currentArtist.username}`}
+              >
                 <div
                   className={
                     'artist-gateway__content--info-block--buttons-radio default-button dark'

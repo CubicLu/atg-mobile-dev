@@ -11,19 +11,23 @@ import { ShapesSize, Colors } from '../../../types';
 import { CameraOptions, Camera } from '../../../models';
 import CameraImage from '../../../components/icon/camera';
 import { convertIonicFileSrc } from '../../../utils';
-import { RouteChildrenProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
+
 interface CameraFile {
   fileUrl: string;
   selected: boolean;
 }
-interface Props extends RouteChildrenProps {}
+interface Props extends RouteComponentProps {}
 interface State {
   showCameraActions: boolean;
   errorMessage?: string;
   postText?: string;
   cameraFiles: CameraFile[];
 }
-class CommunityNewPostPage extends React.Component<Props, State> {
+export default class CommunityNewPostPage extends React.Component<
+  Props,
+  State
+> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -236,4 +240,3 @@ class CommunityNewPostPage extends React.Component<Props, State> {
     );
   }
 }
-export default CommunityNewPostPage;

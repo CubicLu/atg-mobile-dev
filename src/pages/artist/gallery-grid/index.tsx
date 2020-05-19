@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, HeaderOverlay } from './../../../components';
 import { IonContent, IonPage, IonImg } from '@ionic/react';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import {
   getArtistAPI,
   setCurrentGallery,
@@ -15,6 +15,7 @@ import {
   ArtistInterface,
   GalleryImageInterface
 } from '../../../models';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
@@ -42,14 +43,6 @@ interface Props
 
 class ArtistGalleryGridPage extends React.Component<Props, {}> {
   private headerRef: React.RefObject<any> = React.createRef();
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist === null
-    ) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    }
-  }
 
   componentDidMount(): void {
     const {
@@ -81,19 +74,15 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
 
   onOpenImage(image: string): void {
     const { match, currentGallery } = this.props;
-    let index;
     const current = currentGallery?.find(
       (item): boolean => item.image === image
     );
-    if (current) {
-      index = currentGallery?.indexOf(current);
-    }
-    this.props.history.replace({
-      pathname: `/artist/${match.params.id}/gallery/${
-        match.params.galleryId
-      }/image/${index ? index : 0}`,
-      state: { image: image }
-    });
+
+    const artistId = match.params.id;
+    const galleryId = match.params.galleryId;
+    const index = current ? currentGallery?.indexOf(current) : 0;
+    const url = `/artist/${artistId}/gallery/${galleryId}/image/${index}`;
+    this.props.history.push({ pathname: url, state: { image: image } });
   }
 
   renderRow1Col3(data, i): React.ReactNode {
@@ -208,35 +197,26 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
     }
   }
 
-  backToGalleryPage = (): void => {
-    const { match, history, clearCurrentGallery } = this.props;
-    clearCurrentGallery();
-    history.replace(`/artist/${match.params.id}/gallery`);
-  };
-
   render(): React.ReactNode {
-    const { match } = this.props;
+    const params = this.props.match.params;
     let title =
       this.props.currentArtist?.gallery !== undefined
-        ? this.props.currentArtist?.gallery[match.params.galleryId] !==
-          undefined
-          ? this.props.currentArtist?.gallery[match.params.galleryId].name
+        ? this.props.currentArtist?.gallery[params.galleryId] !== undefined
+          ? this.props.currentArtist?.gallery[params.galleryId].name
           : 'Gallery'
         : 'Gallery';
 
     let items =
       this.props.currentArtist?.gallery !== undefined
-        ? this.props.currentArtist?.gallery[match.params.galleryId] !==
-          undefined
-          ? this.props.currentArtist?.gallery[match.params.galleryId].items
+        ? this.props.currentArtist?.gallery[params.galleryId] !== undefined
+          ? this.props.currentArtist?.gallery[params.galleryId].items
           : []
         : [];
 
     let cover =
       this.props.currentArtist?.gallery !== undefined
-        ? this.props.currentArtist?.gallery[match.params.galleryId] !==
-          undefined
-          ? this.props.currentArtist?.gallery[match.params.galleryId].cover
+        ? this.props.currentArtist?.gallery[params.galleryId] !== undefined
+          ? this.props.currentArtist?.gallery[params.galleryId].cover
           : undefined
         : undefined;
     return (
@@ -244,7 +224,7 @@ class ArtistGalleryGridPage extends React.Component<Props, {}> {
         <Header
           title={title}
           rightActionButton={true}
-          leftBackOnClick={this.backToGalleryPage}
+          leftBackAddAction={(): void => this.props.clearCurrentGallery()}
         />
         <HeaderOverlay ref={this.headerRef} />
 
@@ -284,11 +264,9 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   return { currentArtist, currentGallery };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty,
-    setCurrentGallery,
-    clearCurrentGallery
-  })(ArtistGalleryGridPage)
-);
+export default connect(mapStateToProps, {
+  getArtistAPI,
+  updateSettingsProperty,
+  setCurrentGallery,
+  clearCurrentGallery
+})(ArtistGalleryGridPage);

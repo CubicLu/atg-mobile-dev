@@ -1,12 +1,11 @@
 import React from 'react';
-import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import {
   Header,
   BackgroundImage,
   SectionTitle,
   SliderRadio,
-  HeaderOverlay,
   RadioPlayer,
   TicketIcon,
   ArrowRightIcon
@@ -24,7 +23,7 @@ import {
   pauseSong
 } from './../../actions';
 import { guitarPlaylist as playlist } from '../../reducers/playerReducer';
-import { RouteChildrenProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 
 interface MatchParams {
   id: string;
@@ -44,55 +43,47 @@ interface DispatchProps {
   setPlaylist: (playlist: PlaylistInterface, song: SongInterface) => void;
 }
 interface Props
-  extends StateProps,
+  extends RouteComponentProps<MatchParams>,
     DispatchProps,
-    RouteChildrenProps<MatchParams> {}
+    StateProps {}
 
 class RadioArtistPage extends React.Component<Props> {
   componentDidUpdate(): void {
     if (this.props.radioArtist === null) {
-      return this.props.getRadioArtistAPI(this.props.match!.params.id);
+      return this.props.getRadioArtistAPI(this.props.match.params.id);
     }
-    if (this.props.radioArtist?.id !== this.props.match!.params.id) {
-      return this.props.getRadioArtistAPI(this.props.match!.params.id);
+    if (this.props.radioArtist?.id !== this.props.match.params.id) {
+      return this.props.getRadioArtistAPI(this.props.match.params.id);
     }
   }
 
-  private headerRef: React.RefObject<any> = React.createRef();
-
   render(): React.ReactNode {
+    const historyUrl = `/radio/${this.props.match.params.id}/history`;
+    const artistEvent = `/artist/${this.props.match.params.id}/event`;
     return (
       <IonPage id="radio-artist-page">
-        <HeaderOverlay ref={this.headerRef} />
         <Header
           leftBackButton={true}
           rightContent={
-            <IonRouterLink
-              routerLink={`/artist/${this.props.match!.params.id}/event`}
+            <div
+              className="mt-1 default-button gold"
+              onClick={(): void => this.props.history.push(artistEvent)}
             >
-              <div className="mt-1 default-button gold">
-                <TicketIcon color="#000000" />
-              </div>
-            </IonRouterLink>
+              <TicketIcon color="#000000" />
+            </div>
           }
           rightActionButton={false}
         />
 
         <BackgroundImage
-          gradient={this.props.radioArtist?.color}
+          gradient={this.props.radioArtist?.color || '180deg,#652ddd,#2c0d5c'}
           backgroundImage={this.props.radioArtist?.image}
           backgroundTop={false}
           backgroundBottom={true}
           backgroundBottomOpacity={0.3}
         />
 
-        <IonContent
-          scrollY={true}
-          scrollEvents={true}
-          onIonScroll={(e: CustomEvent): void =>
-            this.headerRef.current?.handleParentScroll(e)
-          }
-        >
+        <IonContent>
           <div className="row mt-4" />
           <RadioPlayer
             onPlayClick={(): void =>
@@ -112,17 +103,21 @@ class RadioArtistPage extends React.Component<Props> {
                 <div>Previous Song </div>
                 <span>River Runs Deep </span>
               </div>
-              <IonRouterLink
-                routerLink={`/radio/${this.props.match!.params.id}/history`}
+
+              <span
+                className="mx-3 mt-2 f6"
+                onClick={(): void => this.props.history.push(historyUrl)}
               >
                 <span className="mx-3 mt-2 f6">
                   View History&nbsp;
                   <ArrowRightIcon width={10} height={14} stroke={3} />
                 </span>
-              </IonRouterLink>
+              </span>
             </div>
           </div>
+
           <div className="row mt-4" />
+
           <SectionTitle
             className="mt-2 mx-3 mb-05"
             leftClassName="text-30"

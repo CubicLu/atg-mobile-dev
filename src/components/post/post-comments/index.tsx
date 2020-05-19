@@ -13,7 +13,7 @@ export default class PostCommentsComponent extends React.Component<Props> {
     return (
       <div className="mx-2 flex chat-message">
         <Avatar
-          avatarUrl={`/profile/${comment.user.username}`}
+          avatarUrl={`/profile/friend/${comment.user.username}`}
           image={comment.user.avatar}
           type={ShapesSize.circle}
           width={48}

@@ -39,7 +39,7 @@ interface Props {
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
   rightInfoOnClick?: any;
-  leftBackOnClick?: any;
+  leftBackAddAction?: any;
   leftBackHref?: string;
   rightActionHref?: string;
   rightCloseHref?: string;
@@ -100,9 +100,8 @@ class HeaderComponent extends React.Component<Props> {
 
   goBackClick = (ev): void => {
     ev?.preventDefault();
-    if (this.props.leftBackOnClick) {
-      return this.props.leftBackOnClick(ev);
-    }
+    this.props.leftBackAddAction && this.props.leftBackAddAction(ev);
+
     const back = this.props.leftBackHref;
     return back
       ? (this.context as NavContextState).navigate(back, 'back')
@@ -110,7 +109,8 @@ class HeaderComponent extends React.Component<Props> {
   };
   rightCloseBtn = (): void => {
     const { rightCloseHref, routerDirection, rightCloseOnClick } = this.props;
-    if (rightCloseHref) {
+    if (this.props.rightClickGoBack) this.goBackClick(null);
+    else if (rightCloseHref) {
       return this.routeNavigate(rightCloseHref, routerDirection);
     } else if (rightCloseOnClick) {
       this.props.rightCloseOnClick();
@@ -270,7 +270,7 @@ class HeaderComponent extends React.Component<Props> {
               <div
                 className="default-button"
                 onClick={(): void =>
-                  this.routeNavigate('/community/comments-list', 'forward')
+                  this.routeNavigate('/comments-list', 'forward')
                 }
               >
                 <UserGroupIcon color={'#FFF'} height={23} width={23} />

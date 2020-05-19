@@ -79,7 +79,6 @@ declare global {
     Media: MediaType | any;
   }
 }
-
 interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class PlayerComponent extends React.Component<Props> {
@@ -347,6 +346,7 @@ class PlayerComponent extends React.Component<Props> {
       <React.Fragment>
         {this.fullPlayer()}
         <MiniPlayerBar
+          history={this.props.history}
           togglePlayer={(): void => this.togglePlayer()}
           favoriteSong={(): void => this.props.favoriteSong()}
           clickNextSong={(): void => this.clickNextSong()}

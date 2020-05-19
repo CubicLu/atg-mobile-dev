@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonPage, IonRouterLink } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import { BackgroundImage, Header, Avatar } from '../../../components';
 import { ShapesSize } from '../../../types';
 import { radios } from '../../../constants/radios';
@@ -17,24 +17,23 @@ export default class ViewAllStationsPage extends React.PureComponent<{}> {
           rightClickGoBack={true}
         />
         <IonContent scrollY={false}>
-          ABC
-          <div className="row">
+          <div className="row p-3 mt-10">
             {radios.map(
-              (data, i): React.ReactNode => {
+              (d, i): React.ReactNode => {
                 return (
-                  <IonRouterLink key={i} routerLink={`/radio/${data.id}`}>
-                    <div className="col s4 no-padding">
-                      <div>
-                        <Avatar
-                          image={data.image}
-                          type={ShapesSize.circle}
-                          width={96}
-                          height={96}
-                        />
-                        <label>{data.label}</label>
-                      </div>
-                    </div>
-                  </IonRouterLink>
+                  <div
+                    key={i}
+                    className="col s4 no-padding my-2 flex-column-center"
+                  >
+                    <Avatar
+                      image={d.image}
+                      type={ShapesSize.circle}
+                      width={96}
+                      height={96}
+                      avatarUrl={`/radio/artist/${d.id}`}
+                    />
+                    <div className="f6">{d.label}</div>
+                  </div>
                 );
               }
             )}

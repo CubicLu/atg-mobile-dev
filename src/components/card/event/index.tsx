@@ -69,7 +69,7 @@ export default class CardEventComponent extends React.Component<Props, State> {
           </div>
           <div className="row m-0">
             <ul className="list inline white-text">
-              <IonRouterLink routerLink={'/event/share'}>
+              <IonRouterLink routerLink={'/share'}>
                 <li>
                   <ShareIcon width={20} height={35} />
                   <div className="l15 f6 text-13 no-wrap">Share</div>

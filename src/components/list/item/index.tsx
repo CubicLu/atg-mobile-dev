@@ -178,11 +178,11 @@ export default class ListItemComponent extends React.Component<Props> {
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}
                   height={this.props.avatarSize}
-                  avatarUrl={`/profile/${username}`}
+                  avatarUrl={`/profile/friend/${username}`}
                 />
               )}
               {username && (
-                <IonRouterLink routerLink={`/profile/${username}`}>
+                <IonRouterLink routerLink={`/profile/friend/${username}`}>
                   <span className="ml-2 f5">{username}</span>
                 </IonRouterLink>
               )}
@@ -241,7 +241,7 @@ export default class ListItemComponent extends React.Component<Props> {
                 gradientDirection={GradientDirection.horizontal}
                 type={ShapesSize.rounded}
                 label="CONNECT"
-                routerLink={`/profile/${username}`}
+                routerLink={`/profile/friend/${username}`}
               />
             )}
 

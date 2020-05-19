@@ -1,14 +1,16 @@
 import React from 'react';
 import { Avatar, ContentLoader } from './../../../components';
 import { ShapesSize } from '../../../types';
-import { IonRouterLink } from '@ionic/react';
-
-interface Props {
+import { RouteComponentProps, withRouter } from 'react-router';
+interface Props extends RouteComponentProps<MatchParams> {
   scroll?: boolean;
   data?: any[];
   labelKey?: string;
   imageKey?: string;
   onClickViewAll?: Function;
+}
+interface MatchParams {
+  id: string;
 }
 
 class SliderStoriesComponent extends React.Component<Props> {
@@ -30,11 +32,6 @@ class SliderStoriesComponent extends React.Component<Props> {
 
   render(): React.ReactNode {
     if (!this.isReady) this.displayContent();
-
-    const { data, imageKey, labelKey } = this.props;
-    if (!data) return <div />;
-    const image = imageKey ? 'image' : '';
-    const label = labelKey ? 'label' : '';
 
     return (
       <div className="row slider stories">
@@ -59,21 +56,18 @@ class SliderStoriesComponent extends React.Component<Props> {
           </ContentLoader>
         ) : (
           <ul className="list inline">
-            {data.slice(0, 5).map(
+            {this.props.data?.slice(0, 5).map(
               (d, i): React.ReactNode => {
                 return (
                   <li key={i}>
-                    <IonRouterLink routerLink={d.url}>
-                      <div key={i}>
-                        <Avatar
-                          image={d[image]}
-                          type={ShapesSize.circle}
-                          width={110}
-                          height={110}
-                        />
-                        <label>{d[label]}</label>
-                      </div>
-                    </IonRouterLink>
+                    <Avatar
+                      image={d.image}
+                      type={ShapesSize.circle}
+                      width={110}
+                      height={110}
+                      avatarUrl={`/daily-drip/${d.id}`}
+                    />
+                    <label>{d.label}</label>
                   </li>
                 );
               }
@@ -84,4 +78,4 @@ class SliderStoriesComponent extends React.Component<Props> {
     );
   }
 }
-export default SliderStoriesComponent;
+export default withRouter(SliderStoriesComponent);

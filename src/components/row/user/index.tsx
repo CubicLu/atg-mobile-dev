@@ -44,7 +44,7 @@ class RowUserComponent extends React.Component<Props> {
         <div className={`align-start ${opacity}`}>
           <div className="p-05 flex-align-items-center">
             <Avatar
-              avatarUrl={`/profile/${user.username}`}
+              avatarUrl={`/profile/friend/${user.username}`}
               type={ShapesSize.circle}
               width={48}
               height={48}

@@ -1,25 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router,  RouteChildrenProps } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import CommunityArtistPage from './index';
 import { store } from '../../../store';
 import ReactDOM from 'react-dom';
-import { PostInterface, StorieInterface, CommunityArtistInterface } from '../../../models';
+import { RouteComponentProps } from 'react-router';
 
 interface MatchParams {
   artistId: string;
 }
-interface Props
-  extends
-  RouteChildrenProps<MatchParams> { }
+interface Props extends RouteComponentProps<MatchParams> { }
 
 const propsComponent: Props = {
-  match: { params: { artistId: 'pharrell-williams' }, isExact: true, path: "", url: ""},
-  history: createMemoryHistory(),
-  location: {hash: "", pathname: "", search: "", state: "", key: ""}
-  
+  match: { params: { artistId: 'pharrell-williams' }, isExact: true, path: "", url: ""}, location: {hash: "", pathname: "", search: "", state: "", key: ""},
+  history: createMemoryHistory()
 }
 describe('CommunityArtistPage render', () => {
   it("render without crash", async () => {

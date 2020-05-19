@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   Header,
   HeaderOverlay,
@@ -10,7 +10,8 @@ import {
 } from '../../../components';
 import { ChannelInterface, StationInterface } from '../../../models';
 import Slider, { Settings } from 'react-slick';
-interface Props {}
+import { HistoryProps } from '../../../models/@commons/routeProps';
+interface Props extends HistoryProps {}
 interface State {
   searchText: string;
   selectedChannel?: ChannelInterface;
@@ -236,27 +237,25 @@ class RadioFilterPage extends React.Component<Props, State> {
             (station): React.ReactNode => (
               <div
                 key={station.id}
+                onClick={(): void =>
+                  this.props.history.push(
+                    `/radio/genre/${station.genre.toLocaleLowerCase()}`
+                  )
+                }
                 className={
                   'col s4 no-padding p-1 flex-column-center mb-2 center-align'
                 }
               >
-                <IonRouterLink
-                  routerLink={`/radio/genre/${station.genre.toLocaleLowerCase()}`}
-                  routerDirection="forward"
-                >
-                  <>
-                    <div
-                      onClick={this.resetSearch}
-                      className={'station circle'}
-                      style={{
-                        backgroundImage: `url(${station.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    <div className="mt-1 mb-2 f7 l1">{station.name}</div>
-                  </>
-                </IonRouterLink>
+                <div
+                  onClick={this.resetSearch}
+                  className={'station circle'}
+                  style={{
+                    backgroundImage: `url(${station.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
+                <div className="mt-1 mb-2 f7 l1">{station.name}</div>
               </div>
             )
           )}
@@ -279,11 +278,10 @@ class RadioFilterPage extends React.Component<Props, State> {
           title={pageTitle}
           titleLeft={true}
           titleClassName={classTitle}
-          leftBackOnClick={this.selectChannel.bind(this, undefined)}
+          leftBackAddAction={(): void => this.selectChannel(undefined)}
           leftBackButton={!!selectedChannel}
           rightCloseButton={true}
-          rightCloseHref={'/radio'}
-          routerDirection="back"
+          rightClickGoBack={true}
         />
         <HeaderOverlay ref={this.headerRef} />
         <BackgroundImage

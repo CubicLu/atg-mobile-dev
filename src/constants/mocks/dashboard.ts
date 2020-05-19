@@ -38,41 +38,53 @@ export const analyticsMock = [
 export const dashboardSupporters = [
   {
     name: 'Amanda',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/amanda.jpg',
     time: '24 months',
     city: 'London, UK',
     country: 'GB',
     followers: 100
   },
   {
-    name: 'Berkgamp',
+    name: 'Brian',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/brian.jpg',
     time: '18 months',
     city: 'Toronto, CA',
     country: 'CA',
     followers: 80
   },
   {
-    name: 'Carlton',
+    name: 'Chris',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/dexter.jpg',
     time: '16 months',
     city: 'California, US',
     country: 'US',
     followers: 60
   },
   {
-    name: 'Danny',
+    name: 'Damiana',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/chris.jpg',
     time: '24 months',
     city: 'New York, US',
     country: 'US',
     followers: 100
   },
   {
-    name: 'van der Ley',
+    name: 'Eleonore',
     time: '18 months',
     city: 'Montreal, CA',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/eleonore.jpg',
     country: 'CA',
     followers: 80
   },
   {
-    name: 'Simpson',
+    name: 'Gabriela',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/gabriela.jpg',
     time: '16 months',
     city: 'Michigan, US',
     country: 'US',
@@ -80,6 +92,8 @@ export const dashboardSupporters = [
   },
   {
     name: 'Felipe',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/harold.jpg',
     time: '10 months',
     city: 'Miami, US',
     country: 'US',

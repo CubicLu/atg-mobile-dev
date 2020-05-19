@@ -36,7 +36,7 @@ class SliderRadioComponent extends React.Component<Props> {
                 type={ShapesSize.circle}
                 key={i}
                 diameter={diameter}
-                routerLink={`/radio/${d.id}`}
+                routerLink={`/radio/artist/${d.id}`}
                 col={2}
                 label={d.label}
               />

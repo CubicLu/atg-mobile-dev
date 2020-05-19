@@ -32,7 +32,6 @@ import {
   RadioHistoryPage,
   FanFeedFilterPage,
   SettingsPage,
-  FriendPage,
   VaultFilterPage,
   VaultFilterGenrePage,
   VaultFilterEraPage,
@@ -41,7 +40,6 @@ import {
   FeedPage,
   CommunitySharePage,
   CommunityArtistFilterPage,
-  ViewAllStationsPage,
   ChatPage,
   DashboardFilterPage,
   DashboardGraphSalesPage,
@@ -49,297 +47,331 @@ import {
   CommunityArtistDripsPage,
   FriendProfilePage,
   WizardPage,
-  ArtistGatewayPage
+  ViewAllStationsPage
 } from '../pages';
+
 export const routes: RouteInterface[] = [
-  {
-    path: '/artist/:id',
-    id: 'artistPage',
-    component: ArtistPage
-  },
-  {
-    path: '/artist/:id/tab/:tab',
-    id: 'artistPageAlbum',
-    component: ArtistPage
-  },
+  //PROFILE
   {
     path: '/',
     id: 'profilePageInitial',
-    component: ProfilePage
-  },
-  {
-    path: '/profile/:id',
-    id: 'friendProfile',
-    component: FriendProfilePage
+    component: ProfilePage,
+    parentTab: 'profile'
   },
   {
     path: '/profile',
     id: 'fanProfile',
-    component: ProfilePage
+    component: ProfilePage,
+    parentTab: 'profile'
+  },
+  {
+    path: '/profile/friend/:id',
+    id: 'friendProfile',
+    component: FriendProfilePage,
+    parentTab: 'profile'
+  },
+  {
+    path: '/artist/:id',
+    id: 'artistPage',
+    component: ArtistPage,
+    parentTab: 'profile'
+  },
+  {
+    path: '/artist/:id/tab/:tab',
+    id: 'artistPageAlbum',
+    component: ArtistPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/support',
     id: 'artistSupport',
-    component: ArtistSupportPage
+    component: ArtistSupportPage,
+    parentTab: 'profile'
+  },
+  {
+    path: '/artist/thank-you',
+    id: 'thankYou',
+    component: ThankYouPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/gallery/:galleryId/image/:imageId',
     id: 'profileGallery',
-    component: ArtistGalleryPhotoPage
+    component: ArtistGalleryPhotoPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/gallery/:galleryId',
     id: 'profileGalleryGrid',
-    component: ArtistGalleryGridPage
+    component: ArtistGalleryGridPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/deep-dive',
     id: 'artistDeepDive',
-    component: ArtistDeepDivePage
+    component: ArtistDeepDivePage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/event/:eventId',
     id: 'artistEvent',
-    component: ArtistEventDetailPage
+    component: ArtistEventDetailPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/gallery',
     id: 'artistGallery',
-    component: ArtistGalleryPage
+    component: ArtistGalleryPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/biography',
     id: 'artistBiography',
-    component: ArtistBiographyPage
+    component: ArtistBiographyPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/event',
     id: 'artistEvents',
-    component: ArtistEventsPage
+    component: ArtistEventsPage,
+    parentTab: 'profile'
   },
   {
     path: '/track/:reference/:referenceId/:id',
     id: 'tracklist',
-    component: TrackListPage
-  },
-  {
-    path: '/community',
-    id: 'community',
-    component: CommunityPage
-  },
-  {
-    path: '/community/feed/:id',
-    id: 'feedFanPage',
-    component: FeedPage
-  },
-  {
-    path: '/community/artist/:artistId/daily-drip',
-    id: 'communityArtistDrip',
-    component: CommunityArtistDripsPage
-  },
-  {
-    path: '/community/artist/:artistId/daily-drip/:dailyDripId',
-    id: 'communityArtistDailyDrip',
-    component: CommunityDailyDripPage
-  },
-  {
-    path: '/community/artist',
-    id: 'communityArtistList',
-    component: CommunityAllArtistsPage
-  },
-  {
-    path: '/community/artist/:artistId',
-    id: 'communityArtist',
-    component: CommunityArtistPage
-  },
-  {
-    path: '/community/post',
-    id: 'communityPost',
-    component: CommunityNewPostPage
-  },
-  {
-    path: '/community/comments/:id',
-    id: 'communityComments',
-    component: CommunityPostPage
-  },
-  {
-    path: '/community/comments-list',
-    id: 'communityCommentsList',
-    component: CommunityCommentsListPage
-  },
-  {
-    path: '/thank-you',
-    id: 'thankYou',
-    component: ThankYouPage
+    component: TrackListPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/video/:videoId',
     id: 'artistVideo',
-    component: ArtistVideoDetailPage
+    component: ArtistVideoDetailPage,
+    parentTab: 'profile'
   },
   {
     path: '/artist/:id/video',
     id: 'artistVideos',
-    component: ArtistVideosPage
-  },
-  {
-    path: '/radio/filter',
-    id: 'radioFilter',
-    component: RadioFilterPage
-  },
-  {
-    path: '/radio/station/edit/:id',
-    id: 'radioStationEdit',
-    component: RadioStationEditPage
-  },
-  {
-    path: '/radio/station/create',
-    id: 'radioStationEdit',
-    component: RadioStationEditPage
-  },
-  {
-    path: '/radio/genre/:genre',
-    id: 'radioGenre',
-    component: RadioPage
+    component: ArtistVideosPage,
+    parentTab: 'profile'
   },
   {
     path: '/message/notification/:id',
     id: 'message-notification',
-    component: MessageNotificationDetailPage
+    component: MessageNotificationDetailPage,
+    parentTab: 'profile'
   },
   {
     path: '/message/chat/new',
     id: 'message-chat-new',
-    component: MessageSelectContactPage
+    component: MessageSelectContactPage,
+    parentTab: 'profile'
   },
   {
     path: '/message/chat/:id',
     id: 'message-chat-by-id',
-    component: MessageSelectContactPage
+    component: MessageSelectContactPage,
+    parentTab: 'profile'
   },
   {
     path: '/message/select-contact',
     id: 'message-select-contact',
-    component: MessageSelectContactPage
+    component: MessageSelectContactPage,
+    parentTab: 'profile'
   },
   {
     path: '/message',
     id: 'message',
-    component: MessagePage
+    component: MessagePage,
+    parentTab: 'profile'
   },
   {
     path: '/chat/:id',
     id: 'chat',
-    component: ChatPage
+    component: ChatPage,
+    parentTab: 'profile'
   },
   {
-    path: '/radio/:id',
-    id: 'radioArtist',
-    component: RadioArtistPage
-  },
-  {
-    path: '/radio/:id/history',
-    id: 'radioHistory',
-    component: RadioHistoryPage
-  },
-  {
-    path: '/community/fan-feed-filter',
-    id: 'fan-feed-filter',
-    component: FanFeedFilterPage
-  },
-  {
-    path: '/settings',
+    path: '/profile/settings',
     id: 'settings',
-    component: SettingsPage
+    component: SettingsPage,
+    parentTab: 'profile'
   },
   {
-    path: '/me',
-    id: 'settings',
-    component: SettingsPage
-  },
-  {
-    path: '/friend',
-    id: 'friend',
-    component: FriendPage
+    path: '/profile/wizard',
+    id: 'wizard',
+    component: WizardPage,
+    parentTab: 'profile'
   },
   {
     path: '/vault-filter',
     id: 'vault-filter',
-    component: VaultFilterPage
+    component: VaultFilterPage,
+    parentTab: 'profile'
   },
   {
     path: '/vault-filter/genre',
     id: 'vault-filter-genre',
-    component: VaultFilterGenrePage
+    component: VaultFilterGenrePage,
+    parentTab: 'profile'
   },
   {
     path: '/vault-filter/era',
     id: 'vault-filter-era',
-    component: VaultFilterEraPage
+    component: VaultFilterEraPage,
+    parentTab: 'profile'
   },
   {
     path: '/vault-filter/era/sub-era',
     id: 'vault-filter-sub-era',
-    component: VaultFilterSubEraPage
+    component: VaultFilterSubEraPage,
+    parentTab: 'profile'
   },
   {
     path: '/dashboard/menu/:artistId',
     id: 'artistDashboardMenu',
-    component: DashboardMenuPage
+    component: DashboardMenuPage,
+    parentTab: 'profile'
   },
   {
     path: '/dashboard/:artistId',
     id: 'artistDashboard',
-    component: DashboardPage
+    component: DashboardPage,
+    parentTab: 'profile'
   },
   {
     path: '/dashboard/:artistId/sales',
     id: 'analyticDetailDashboard',
-    component: DashboardGraphSalesPage
+    component: DashboardGraphSalesPage,
+    parentTab: 'profile'
   },
   {
     path: '/dashboard/filter',
     id: 'filterDashboard',
-    component: DashboardFilterPage
+    component: DashboardFilterPage,
+    parentTab: 'profile'
   },
   {
     path: '/dashboard/:artistId/supporter',
     id: 'supporterDashboard',
-    component: DashboardGraphSupporterPage
-  },
-  {
-    path: '/community/share',
-    id: 'communityShare',
-    component: CommunitySharePage
-  },
-  {
-    path: '/event/share',
-    id: 'communityShare',
-    component: CommunitySharePage
-  },
-  {
-    path: '/community/artist/:artistId/filter',
-    id: 'communityArtistFilter',
-    component: CommunityArtistFilterPage
+    component: DashboardGraphSupporterPage,
+    parentTab: 'profile'
   },
   {
     path: '/share',
     id: 'communityShare',
-    component: CommunitySharePage
+    component: CommunitySharePage,
+    parentTab: 'profile'
+  },
+
+  //COMMUNITY
+  {
+    path: '/community',
+    id: 'community',
+    component: CommunityPage,
+    parentTab: 'community'
   },
   {
-    path: '/radio/view-all',
+    path: '/community/feed/:id',
+    id: 'feedFanPage',
+    component: FeedPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/artist/:artistId/daily-drip',
+    id: 'communityArtistDrip',
+    component: CommunityArtistDripsPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/daily-drip/:id',
+    id: 'communityArtistDailyDrip',
+    component: CommunityDailyDripPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/artist',
+    id: 'communityArtistList',
+    component: CommunityAllArtistsPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/artist/:artistId',
+    id: 'communityArtist',
+    component: CommunityArtistPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/post',
+    id: 'communityPost',
+    component: CommunityNewPostPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/comments/:id',
+    id: 'communityComments',
+    component: CommunityPostPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/comments-list',
+    id: 'communityCommentsList',
+    component: CommunityCommentsListPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/fan-feed-filter',
+    id: 'fan-feed-filter',
+    component: FanFeedFilterPage,
+    parentTab: 'community'
+  },
+  {
+    path: '/community/artist/:artistId/filter',
+    id: 'communityArtistFilter',
+    component: CommunityArtistFilterPage,
+    parentTab: 'community'
+  },
+
+  //RADIO
+  {
+    path: '/radio/filter',
+    id: 'radioFilter',
+    component: RadioFilterPage,
+    parentTab: 'radio'
+  },
+  {
+    path: '/radio/station/edit/:id',
+    id: 'radioStationEdit',
+    component: RadioStationEditPage,
+    parentTab: 'radio'
+  },
+  {
+    path: '/radio/station/create',
+    id: 'radioStationCreate',
+    component: RadioStationEditPage,
+    parentTab: 'radio'
+  },
+  {
+    path: '/radio/genre/:genre',
+    id: 'radioGenre',
+    component: RadioPage,
+    parentTab: 'radio'
+  },
+  {
+    path: '/radio/artist/:id',
+    id: 'radioArtist',
+    component: RadioArtistPage,
+    parentTab: 'radio'
+  },
+  {
+    path: '/radio/:id/history',
+    id: 'radioHistory',
+    component: RadioHistoryPage,
+    parentTab: 'radio'
+  },
+  {
+    path: '/radio/view-all/',
     id: 'viewAllStations',
-    component: ViewAllStationsPage
-  },
-  {
-    path: '/artist/gateway/:artistId',
-    id: 'ArtistGatewayPage',
-    component: ArtistGatewayPage
-  },
-  {
-    path: '/wizard',
-    id: 'wizard',
-    component: WizardPage
+    component: ViewAllStationsPage,
+    parentTab: 'radio'
   }
 ];

@@ -2,19 +2,19 @@ import React from 'react';
 import {
   BackgroundImage,
   Header,
-  SliderStories,
   CardPost,
   Button,
-  SectionTitle
+  SectionTitle,
+  Avatar
 } from './../../components';
 import { ApplicationState } from './../../reducers';
 import { getCommunityPostsAPI, getCommunityStoriesAPI } from './../../actions';
-import { IonPage, IonContent, IonRouterLink } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import { connect } from 'react-redux';
 import PlusIcon from '../../components/icon/plus';
 import { PostInterface, StorieInterface } from '../../models';
 import { Colors, ShapesSize } from '../../types';
-import { RouteChildrenProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   posts: PostInterface[];
@@ -24,11 +24,9 @@ interface DispatchProps {
   getCommunityPostsAPI: () => void;
   getCommunityStoriesAPI: () => void;
 }
-interface Props extends StateProps, DispatchProps, RouteChildrenProps {}
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class CommunityPage extends React.Component<Props> {
-  isReady = false;
-
   componentDidMount(): void {
     this.props.getCommunityPostsAPI();
     this.props.getCommunityStoriesAPI();
@@ -36,9 +34,10 @@ class CommunityPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="community-page">
+      <IonPage id="community-page" style={{ Background: '#2d0758' }}>
         <BackgroundImage default={true} />
         <Header
+          leftBackButton={false}
           fixed={false}
           leftContent={
             <div className="title-left-dual">
@@ -47,31 +46,18 @@ class CommunityPage extends React.Component<Props> {
             </div>
           }
           rightContent={
-            <IonRouterLink routerLink="/community/post">
-              <div className="default-button dark">
-                <PlusIcon />
-              </div>
-            </IonRouterLink>
+            <div
+              onClick={(): void => this.props.history.push('/community/post')}
+              className="default-button dark"
+            >
+              <PlusIcon />
+            </div>
           }
         />
 
         <IonContent>
           <div className={'mt-3'} />
-          {this.props.stories.length > 0 && (
-            <React.Fragment>
-              <SectionTitle
-                title="ARTIST COMMUNITIES"
-                viewAll={true}
-                className="mt-1 mx-3"
-                viewAllUrl="/community/artist"
-              />
-              <SliderStories
-                labelKey="label"
-                imageKey="image"
-                data={this.props.stories}
-              />
-            </React.Fragment>
-          )}
+          {this.renderArtistCommunities()}
 
           <div className="row filter mx-3 flex">
             <div className="h1 p-0 letter-spacing-2 align-start my-auto">
@@ -102,6 +88,35 @@ class CommunityPage extends React.Component<Props> {
           )}
         </IonContent>
       </IonPage>
+    );
+  }
+  renderArtistCommunities(): React.ReactNode {
+    if (this.props.stories.length === 0) return null;
+    return (
+      <React.Fragment>
+        <SectionTitle
+          title="ARTIST COMMUNITIES"
+          viewAll={true}
+          className="mt-1 mx-3"
+          viewAllUrl="/community/artist"
+        />
+        <ul className="list inline ml-3 pb-3">
+          {this.props.stories?.map(
+            (d, i): React.ReactNode => (
+              <li key={i} className="text-center pr-2">
+                <Avatar
+                  image={d.image}
+                  type={ShapesSize.circle}
+                  width={110}
+                  height={110}
+                  avatarUrl={d.url}
+                />
+                <label className="f6">{d.label}</label>
+              </li>
+            )
+          )}
+        </ul>
+      </React.Fragment>
     );
   }
 }

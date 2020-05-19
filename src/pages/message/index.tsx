@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../reducers';
 import {
@@ -18,6 +17,7 @@ import {
 import { ShapesSize, Colors } from '../../types';
 import { updateSettingsProperty, updateProfileProperty } from './../../actions';
 import PlusIcon from '../../components/icon/plus';
+import { RouteComponentProps } from 'react-router';
 
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
@@ -30,7 +30,7 @@ interface StateProps {
   readonly notifications: NotificationInterface[];
 }
 
-interface Props extends RouteComponentProps, StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps, RouteComponentProps {}
 
 class MessagePage extends React.Component<Props> {
   onSearchOnNotificationsAndChat(e): void {
@@ -62,7 +62,6 @@ class MessagePage extends React.Component<Props> {
       <IonPage id="message-page">
         <Header
           title="Messages"
-          leftBackHref={'/profile'}
           rightContent={
             activeMessageTab === 'chat' ? (
               <ButtonIcon
@@ -126,9 +125,7 @@ const mapStateToProps = ({
   return { messageTabs, activeMessageTab, messages, notifications };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    updateSettingsProperty,
-    updateProfileProperty
-  })(MessagePage)
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty,
+  updateProfileProperty
+})(MessagePage);

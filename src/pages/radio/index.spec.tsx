@@ -7,14 +7,8 @@ import ReactDOM from 'react-dom';
 import { createMemoryHistory } from 'history';
 
 const props = {
-  match: {
-    params: { genre: 'pharrell-williams' },
-    isExact: true,
-    path: '',
-    url: ''
-  },
-  history: createMemoryHistory(),
-  location: { hash: '', pathname: '', search: '', state: '', key: '' }
+  match: { params: { genre: 'pharrell-williams' }, isExact: true, path: "", url: ""}, location: {hash: "", pathname: "", search: "", state: "", key: ""},
+  history: createMemoryHistory()
 };
 
 describe('RadioPage render', () => {

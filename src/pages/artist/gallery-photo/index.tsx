@@ -12,7 +12,7 @@ import {
   Gesture,
   GestureConfig
 } from '@ionic/react';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 import {
   getArtistAPI,
   updateSettingsProperty,
@@ -36,6 +36,7 @@ import { validateScrollHeader } from '../../../utils';
 import FullScreenImageModal from '../../../components/modal/image-gallery';
 import { createGesture } from '@ionic/react';
 import ToastComponent from '../../../components/toast';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   displayChat: boolean;
@@ -130,11 +131,10 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
 
   changePage = (increase: boolean = true): void => {
     const { match, history, setFullscreenImage } = this.props;
-    const resultIndex = increase
-      ? +match.params.imageId + 1
-      : +match.params.imageId - 1;
-    history.push(
-      `/artist/${match.params.id}/gallery/${match.params.galleryId}/image/${resultIndex}`
+    const params = match.params;
+    const resultIndex = increase ? +params.imageId + 1 : +params.imageId - 1;
+    history.replace(
+      `/artist/${params.id}/gallery/${params.galleryId}/image/${resultIndex}`
     );
     setFullscreenImage(resultIndex);
   };
@@ -171,6 +171,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
 
   componentDidUpdate(): void {
     const { setCurrentGallery, currentGallery, match } = this.props;
+    const params = match.params;
     const node = this.image.current;
     if (!this.state.gestureSet && node) {
       const gesture = createGesture({
@@ -185,7 +186,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
       this.setState((prevState): State => ({ ...prevState, gestureSet: true }));
     }
     if (!currentGallery) {
-      setCurrentGallery(+match.params.galleryId);
+      setCurrentGallery(+params.galleryId);
     }
   }
 
@@ -216,6 +217,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
 
   showFullScreenModal = (): void => {
     const { currentGallery, setFullscreenImage, match } = this.props;
+    const params = match.params;
     window.deviceready && window.screen?.orientation?.unlock();
     this.props.updateSettingsModal(
       <FullScreenImageModal
@@ -226,20 +228,12 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
       'background-black-base',
       100
     );
-    setFullscreenImage(+match.params.imageId);
+    setFullscreenImage(+params.imageId);
     //@ts-ignore
     if (window.deviceready && window.StatusBar) {
       //@ts-ignore
       window.StatusBar.hide();
     }
-  };
-
-  backToGalleryGrid = (): void => {
-    const { match, history } = this.props;
-    this.props.clearFullscreenImage();
-    history.replace(
-      `/artist/${match.params.id}/gallery/${match.params.galleryId}`
-    );
   };
 
   callbackFunction = (childData: boolean, showHeader?: boolean): void => {
@@ -255,7 +249,6 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
-    const { match } = this.props;
     const imageSrc = this.getImage();
     return (
       <IonPage id="gallery-photo-page">
@@ -265,8 +258,7 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
               rightButtonGroup
               parentCallback={this.callbackFunction}
               overlay={this.props.currentGalleryComments.length}
-              leftBackHref={`/artist/${match.params.id}/gallery/${match.params.galleryId}`}
-              leftBackOnClick={this.backToGalleryGrid}
+              leftBackAddAction={(): void => this.props.clearFullscreenImage()}
               likeButtonOnClick={this.props.showToastAction}
             />
           )}
@@ -329,16 +321,14 @@ const mapStateToProps = ({
   return { currentGalleryComments, currentArtist, currentGallery, showToast };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getArtistAPI,
-    updateSettingsProperty,
-    getArtistGalleryCommentsAPI,
-    updateSettingsModal,
-    setCurrentGallery,
-    setFullscreenImage,
-    clearFullscreenImage,
-    hideToastAction,
-    showToastAction
-  })(ArtistGalleryPhotoPage)
-);
+export default connect(mapStateToProps, {
+  getArtistAPI,
+  updateSettingsProperty,
+  getArtistGalleryCommentsAPI,
+  updateSettingsModal,
+  setCurrentGallery,
+  setFullscreenImage,
+  clearFullscreenImage,
+  hideToastAction,
+  showToastAction
+})(ArtistGalleryPhotoPage);

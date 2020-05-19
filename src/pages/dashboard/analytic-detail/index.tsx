@@ -11,7 +11,6 @@ class DashboardAnalyticDetailPage extends React.Component<{}> {
         className="dashboard-analytics-page"
       >
         <Header
-          leftBackHref="/profile"
           className="dashboard-page-header"
           centerContent={
             <div>
@@ -20,7 +19,6 @@ class DashboardAnalyticDetailPage extends React.Component<{}> {
               <span className="text-14 f0 l1">Wallet</span>
             </div>
           }
-          leftBackButton={false}
           rightCloseButton={true}
           rightClickGoBack={true}
         />

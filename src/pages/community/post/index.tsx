@@ -18,7 +18,7 @@ import {
   getCommunityCommentsCoverAPI
 } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
-import { RouteChildrenProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentPostComments: CommentInterface[] | null;
@@ -34,12 +34,12 @@ interface MatchParams {
 interface Props
   extends DispatchProps,
     StateProps,
-    RouteChildrenProps<MatchParams> {}
+    RouteComponentProps<MatchParams> {}
 class CommunityPostPage extends React.Component<Props> {
   private hRef: React.RefObject<any> = React.createRef();
   componentDidMount(): void {
-    this.props.getCommunityCommentsAPI(this.props.match?.params.id);
-    this.props.getCommunityCommentsCoverAPI(this.props.match?.params.id);
+    this.props.getCommunityCommentsAPI(this.props.match.params.id);
+    this.props.getCommunityCommentsCoverAPI(this.props.match.params.id);
   }
   render(): React.ReactNode {
     return (
@@ -77,7 +77,7 @@ class CommunityPostPage extends React.Component<Props> {
   }
   getPost(): PostInterface {
     return {
-      id: this.props.match?.params.id || '1',
+      id: this.props.match.params.id || '1',
       username: '',
       artist: true,
       avatar: '',

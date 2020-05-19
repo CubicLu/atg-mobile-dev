@@ -1,33 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router, RouteChildrenProps } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import RadioHistoryPage from '../index';
-import { store } from '../../../store';
+import {store} from './../../../store';
 import ReactDOM from 'react-dom';
 import { createMemoryHistory } from 'history';
+import { RouteComponentProps } from 'react-router';
+import { RadioHistoryPage } from '../..';
+
 interface MatchParams {
   id: string;
 }
-interface Props
-  extends
-  RouteChildrenProps<MatchParams> { }
-const propsComponent: Props = {
-  match: { params: { id: 'pharrell-williams' }, isExact: true, path: "", url: ""},
-  history: createMemoryHistory(),
-  location: {hash: "", pathname: "", search: "", state: "", key: ""} 
+interface Props extends RouteComponentProps<MatchParams> { 
 }
 
-describe('RadioHistory render', () => {
-  it('render without crash', async () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <Provider store={store}>
-        <Router>
-          <RadioHistoryPage {...propsComponent} />
-        </Router>
-      </Provider>,
-      div
-    );
-    ReactDOM.unmountComponentAtNode(div);
+const propsComponent: Props = {
+  match: { params: { id: 'pharrell-williams', }, isExact: true, path: "", url: ""}, location: {hash: "", pathname: "", search: "", state: "", key: ""},
+  history: createMemoryHistory()
+}
+
+describe('RadioHistoryPage render', () => {
+  it("render without crash", async () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Provider store={store}><Router><RadioHistoryPage {...propsComponent} /></Router></Provider>, div);
+        ReactDOM.unmountComponentAtNode(div);
   });
 });

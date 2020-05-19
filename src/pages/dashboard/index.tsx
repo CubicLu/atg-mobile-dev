@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { IonContent, IonPage } from '@ionic/react';
 import { ApplicationState } from './../../reducers';
 import { BackgroundImage, Header, Menu } from '../../components';
@@ -9,6 +8,7 @@ import {
   updateSettingsProperty
 } from './../../actions';
 import { DashboardInterface, MenuInterface } from '../../models';
+import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   dashboard: DashboardInterface | null;
@@ -75,8 +75,6 @@ class DashboardPage extends React.Component<Props> {
           backgroundBottom={dashboard.artist.cover.dashboard === undefined}
         />
         <Header
-          leftBackHref="/profile"
-          routerDirection="root"
           className="dashboard-page-header"
           centerContent={
             <div>
@@ -110,9 +108,7 @@ const mapStateToProps = ({
   return { dashboard, activeDashboardTab, dashboardTabs };
 };
 
-export default withRouter(
-  connect(mapStateToProps, {
-    getDashboardByArtistAPI,
-    updateSettingsProperty
-  })(DashboardPage)
-);
+export default connect(mapStateToProps, {
+  getDashboardByArtistAPI,
+  updateSettingsProperty
+})(DashboardPage);

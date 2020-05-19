@@ -59,15 +59,15 @@ export default class HeaderProfileComponent extends React.Component<
   profileActions: GenericModalInterface[] = [
     {
       name: 'View my public profile',
-      url: '/profile/Rosetta'
+      url: '/profile/friend/Rosetta'
     },
     {
       name: 'Edit my public profile',
-      url: '/settings'
+      url: '/profile/settings'
     },
     {
       name: 'Improve my public profile',
-      url: '/wizard'
+      url: '/profile/wizard'
     }
   ];
   artistActions: GenericModalInterface[] = [
@@ -177,12 +177,13 @@ export default class HeaderProfileComponent extends React.Component<
     return (
       <div>
         <Header
+          leftBackButton={false}
           rightSettingsButton={!showFilter}
           rightUserGroupButton={!showFilter}
           rightNotificationButton={!showFilter}
           rightDashboardButton={!showFilter}
           rightDashboardOnClick={this.showArtistListModal}
-          rightActionHref={'/settings'}
+          rightActionHref={'/profile/settings'}
           notificationsNumber={10}
           routerDirection="forward"
         />

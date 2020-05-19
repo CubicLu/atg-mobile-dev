@@ -21,16 +21,17 @@ import {
   CommunityDailyDripType,
   CommunityDailyDripItem
 } from '../../../models';
-import { RouteChildrenProps } from 'react-router';
+
 import { hideTabs } from '../../../utils';
+import { RouteComponentProps } from 'react-router';
 interface MatchParams {
-  artistId: string;
-  dailyDripId: string;
+  id: string;
 }
 interface State {
   dailyDrip?: CommunityDailyDripType;
 }
-interface Props extends RouteChildrenProps<MatchParams> {}
+
+interface Props extends RouteComponentProps<MatchParams> {}
 class CommunityDailyDripPage extends React.Component<Props, State> {
   private slider: React.RefObject<HTMLIonSlidesElement> = React.createRef();
   private dailyDripAnimation: Animation | any;
@@ -44,7 +45,7 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
   ionViewWillEnter(): void {
     hideTabs(true);
   }
-  ionViewWillLeave(): void {
+  ionViewDidLeave(): void {
     hideTabs(false);
     this.setState({ dailyDrip: undefined });
     this.resetProgress();
@@ -60,21 +61,19 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
       .onFinish((): void => this.renderNextSlide());
   }
   ionViewDidEnter(): void {
-    this.loadDrip(this.props.match!.params);
+    this.loadDrip(this.props.match.params);
   }
   UNSAFE_componentWillUpdate(next: Props): void {
-    const params = next.match!.params;
-    if (params.dailyDripId !== this.props.match!.params.dailyDripId) {
-      this.loadDrip(next.match!.params);
+    const params = next.match.params;
+    if (params.id !== this.props.match.params.id) {
+      this.loadDrip(next.match.params);
     }
   }
 
   loadDrip(newP: MatchParams): void {
-    if (this.state.dailyDrip?.id === newP.dailyDripId) return;
-    const current = this.drips.find((x): boolean => x.id === newP.dailyDripId)!;
-    if (!current) {
-      return this.props.history.push(`/community/artist/${newP.artistId}`);
-    }
+    if (this.state.dailyDrip?.id === newP.id) return;
+    const current = this.drips.find((x): boolean => x.id === newP.id)!;
+    if (!current) return this.props.history.goBack();
     this.setState({ dailyDrip: current }, (): void => {
       this.last = false;
       this.first = true;
@@ -162,13 +161,12 @@ class CommunityDailyDripPage extends React.Component<Props, State> {
   navigateOtherDrip(next: boolean = true): void {
     this.last = false;
     this.first = true;
-    const params = this.props.match!.params!;
-    const nextDrip = Number(params.dailyDripId) + (next ? 1 : -1);
-    const url =
-      nextDrip < 0 || nextDrip > 2
-        ? `/community/artist/${params.artistId}`
-        : `/community/artist/${params.artistId}/daily-drip/${nextDrip}`;
-    return this.props.history.push(url);
+    const params = this.props.match.params;
+    const nextDrip = Number(params.id) + (next ? 1 : -1);
+    if (nextDrip < 0 || nextDrip > 2) return this.props.history.goBack();
+
+    const url = `/daily-drip/${nextDrip}`;
+    return this.props.history.replace(url);
   }
 
   render(): React.ReactNode {

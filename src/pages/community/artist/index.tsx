@@ -11,7 +11,8 @@ import { getCommunityByArtistUsernameAPI } from './../../../actions';
 import { IonPage, IonContent, withIonLifeCycle } from '@ionic/react';
 import { connect } from 'react-redux';
 import { CommunityArtistInterface } from '../../../models';
-import { RouteChildrenProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+
 interface MatchParams {
   artistId: string;
 }
@@ -24,7 +25,7 @@ interface DispatchProps {
 interface Props
   extends StateProps,
     DispatchProps,
-    RouteChildrenProps<MatchParams> {}
+    RouteComponentProps<MatchParams> {}
 interface State {
   joined: boolean;
 }
@@ -37,28 +38,12 @@ class CommunityArtistPage extends React.Component<Props, State> {
   }
   ionViewWillEnter(): void {
     const artistId = this.props.match?.params.artistId;
-    console.log('ionViewDidLoad');
-    console.log(artistId);
     if (!artistId) return;
-    console.log(this.props.currentCommunityArtist?.username);
+
     if (artistId !== this.props.currentCommunityArtist?.username) {
       this.props.getCommunityByArtistUsernameAPI(artistId);
     }
   }
-
-  // renderJoinButton(): React.ReactNode {
-  //   return (
-  //     <div className="flex-justify-content-center mb-2">
-  //       <ButtonIcon
-  //         color={Colors.support}
-  //         type={ShapesSize.rounded}
-  //         icon={<ChatMessageIcon />}
-  //         label={'\u00A0 JOIN CHAT'}
-  //         onClick={(): void => this.setState({ joined: true })}
-  //       />
-  //     </div>
-  //   );
-  // }
 
   renderBackground(): React.ReactNode {
     const art = this.props.currentCommunityArtist!;
@@ -88,7 +73,7 @@ class CommunityArtistPage extends React.Component<Props, State> {
     if (!currentCommunityArtist) return <IonPage id="community-page" />;
 
     return (
-      <IonPage id="community-page">
+      <IonPage id="community-page" style={{ Background: '#2d0758' }}>
         {this.renderBackground()}
         <Header fixed={false}>
           <div className="h2 absolute-logo-left single">

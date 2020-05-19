@@ -89,7 +89,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               className="mx-3"
               title={'PANTHR RADIO'}
               viewAll={true}
-              viewAllUrl={`/radio/${username}`}
+              viewAllUrl={`/radio/artist/${username}`}
             />
             <SliderRadio diameter="110px" data={radio} />
           </React.Fragment>

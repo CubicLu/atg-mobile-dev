@@ -112,8 +112,6 @@ class SelectContactPage extends React.Component<Props, State> {
       <IonPage id="message-select-contact-page">
         <Header
           title="Select Contact"
-          leftBackButton
-          leftBackHref="/message"
           rightContent={
             <Button
               type={ShapesSize.normal}

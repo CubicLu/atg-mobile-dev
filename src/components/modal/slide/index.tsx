@@ -29,35 +29,45 @@ class ModalSlideComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { modalType, content, height, className } = this.props.modal;
+    const {
+      modalType,
+      content,
+      height,
+      className,
+      wrapperClassName
+    } = this.props.modal;
     const type = modalType || 'bottom';
     const background = className || 'background-white-base';
     const size = setHeight(height || 40);
     const isOpen = !!content;
     return (
-      <SlidingPanel
-        type={type}
-        panelContainerClassName={`${'bottom'} ${background}`}
-        className={`${'bottom'} ${background}`}
-        size={height || size}
-        isOpen={isOpen}
-        onClick={(): void => {}}
-        backdropClicked={(): void => this.props.updateSettingsModal(null)}
-      >
-        <>
-          <Header
-            leftBackButton={false}
-            rightCloseButton={true}
-            rightCloseOnClick={this.rightCloseOnClick}
-          />
-          {content}
-        </>
-      </SlidingPanel>
+      <div className={`${wrapperClassName ?? ''}`}>
+        <SlidingPanel
+          type={type}
+          panelContainerClassName={`${'bottom'} ${background} zzz`}
+          className={`${'bottom'} ${background}`}
+          size={height || size}
+          isOpen={isOpen}
+          onClick={(): void => {}}
+          backdropClicked={(): void => this.props.updateSettingsModal(null)}
+        >
+          <>
+            <Header
+              leftBackButton={false}
+              rightCloseButton={true}
+              rightCloseOnClick={this.rightCloseOnClick}
+            />
+            {content}
+          </>
+        </SlidingPanel>
+      </div>
     );
   }
 }
 const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
-  return { modal: settings.modal };
+  return {
+    modal: settings.modal
+  };
 };
 export default connect(mapStateToProps, { updateSettingsModal })(
   ModalSlideComponent

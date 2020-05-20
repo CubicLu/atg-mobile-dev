@@ -12,6 +12,7 @@ interface Props {
   displayChat: boolean;
   parentCallback?: Function;
   currentPostComments?: CommentInterface[];
+  className?: string;
 }
 interface State {
   chatExpanded: boolean;
@@ -75,7 +76,10 @@ export default class PhotoChatComponent extends React.Component<Props, State> {
     const chatExpanded = this.state.chatExpanded ? 'chat-expanded' : '';
     return (
       <React.Fragment>
-        <div className={`photo chat-component ${chatExpanded}`}>
+        <div
+          className={`photo chat-component ${chatExpanded} ${this.props
+            .className ?? ''}`}
+        >
           {this.renderHeader()}
           {this.renderComments()}
         </div>

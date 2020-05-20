@@ -1,54 +1,156 @@
-.video-player-component{
+.video-player-component {
+  position: relative;
+  background: #000;
+
+  .progress-bar {
+    ion-range {
+      height: 20px;
+      padding: 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      --bar-background: #ffffff;
+      --bar-background-active: #00baff;
+      --knob-background: #fff;
+      --knob-box-shadow: 2px 2px 3px 0 #00000099;
+      --knob-size: 16px;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    background: #000;
+    .video {
+      width: 100%;
+      max-height: $video-player-height;
+      min-height: $video-player-height;
+    }
+  }
 
-    .progress-bar{
-        ion-range{
-            height: 20px;
-            padding: 0;
-            margin-left: 8px;
-            margin-right: 8px;
-            --bar-background: #ffffff;
-            --bar-background-active: #00baff;
-            --knob-background: #fff;
-            --knob-box-shadow: 2px 2px 3px 0 #00000099;
-            --knob-size: 16px;
-        }
+  .video-controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    .play-button,
+    .pause-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      svg {
+        margin-left: 5px;
+      }
     }
 
-    .container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-         .video{
-            width: 100%;
-            max-height: $video-player-height;
-            min-height: $video-player-height;
-        }
+    .pause-button {
+      svg {
+        margin-left: 0;
+      }
     }
+  }
+}
 
-    .video-controls{
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        .play-button, .pause-button{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-
-            svg{
-                margin-left: 5px;
-            }
-        }
-
-        .pause-button{
-            svg{
-                margin-left: 0;
-            }
-        }
+.vertical-video-player {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 102;
+  background-color: #000;
+  height: 100%;
+  .progress-bar {
+    ion-range {
+      height: 20px;
+      padding: 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      --bar-background: #ffffff;
+      --bar-background-active: #00baff;
+      --knob-background: #fff;
+      --knob-box-shadow: 2px 2px 3px 0 #00000099;
+      --knob-size: 16px;
     }
+  }
+  .container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    video {
+      width: 100%;
+      height: auto;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 200;
+    }
+    .video-controls {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 201;
+    }
+  }
+
+  .progress-bar {
+    position: absolute;
+    bottom: 13%;
+    z-index: 202;
+  }
+  video[poster] {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.vertical-video-modal-content {
+  padding: 1em 1em 0;
+}
+
+.vertical-video-buttons {
+  position: absolute;
+  z-index: 202;
+  bottom: 3%;
+  width: 89%;
+}
+
+.panel-content {
+  p {
+    color: black;
+  }
+}
+
+.vertical-video-chat {
+  position: absolute;
+  z-index: 210;
+  bottom: 48px;
+}
+
+.vertical-video-controls{
+  position: absolute;
+  z-index: 210;
+  top: 5%;
+  right: 2%;
+  width: 86%;
+}
+
+.video-detail-overlay{
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  height: 100%;
+  z-index: 215;
 }

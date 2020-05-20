@@ -4,7 +4,8 @@ import {
   SettingsActionType,
   ActionProperty,
   UpdateModalInterface,
-  FilterItemInterface
+  FilterItemInterface,
+  UpdateModalWrapperClassName
 } from './../models';
 
 export const updateSettingsProperty = (
@@ -19,10 +20,21 @@ export const updateSettingsModal = (
   content: React.ReactNode,
   className?: string,
   height?: number,
-  onClick?: Function
+  onClick?: Function,
+  wrapperClassName?: string
 ): Action<SettingsActionType.UPDATE_MODAL, UpdateModalInterface> => ({
   type: SettingsActionType.UPDATE_MODAL,
-  payload: { content, className, height, onClick }
+  payload: { content, className, height, onClick, wrapperClassName }
+});
+
+export const updateSettingsModalClassName = (
+  wrapperClassName: string
+): Action<
+  SettingsActionType.UPDATE_MODAL_WRAPPER_CLASSNAME,
+  UpdateModalWrapperClassName
+> => ({
+  type: SettingsActionType.UPDATE_MODAL_WRAPPER_CLASSNAME,
+  payload: { wrapperClassName }
 });
 
 export const showToastAction = (): Action<SettingsActionType.SHOW_TOAST> => ({

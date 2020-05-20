@@ -44,8 +44,15 @@ class ArtistVideosPage extends React.Component<Props, {}> {
     }
   }
 
+  onOpenVideo(id: number): void {
+    this.props.history.push(
+      `/artist/${this.props.match.params.id}/video/${id}`
+    );
+  }
+
   render(): React.ReactNode {
     const { currentArtist } = this.props;
+
     return (
       <IonPage id="artist-videos-page">
         <Header title="Videos" titleClassName="videos" />
@@ -81,11 +88,7 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 (value, i): React.ReactNode => {
                   return (
                     <CardVideo
-                      onClick={(): void =>
-                        this.props.history.push(
-                          `/artist/${this.props.match.params.id}/video/${i}`
-                        )
-                      }
+                      onClick={(): void => this.onOpenVideo(i)}
                       id={i}
                       key={i}
                       size={Sizes.full}

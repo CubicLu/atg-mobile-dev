@@ -15,12 +15,12 @@
   }
   &.chat-expanded {
     opacity: 1;
-    z-index: 2;
     position: absolute;
     top: 90px;
     bottom: 50px;
     left: 0;
     right: 0;
+    z-index: 210;
     .chat-section {
       overflow-y: scroll;
       max-height: 80vh;

@@ -7,10 +7,13 @@ import {
   ButtonIcon,
   StarIcon,
   ChatMessageIcon,
-  PhotoChat
+  PhotoChat,
+  OutlinedButton,
+  ContentLoader
 } from '../../../components';
 import { ArtistInterface, CommentInterface } from '../../../models';
-import { Colors } from '../../../types';
+import { Colors, Nullable } from '../../../types';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
@@ -20,19 +23,22 @@ import {
   getArtistGalleryCommentsAPI,
   hideToastAction,
   showToastAction,
-  updateSettingsProperty
+  updateSettingsProperty,
+  updateSettingsModal,
+  updateSettingsModalClassName
 } from '../../../actions';
 import ToastComponent from '../../../components/toast';
-import { RouteComponentProps } from 'react-router';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   currentGalleryComments: CommentInterface[];
   showToast: boolean;
+  playing: boolean;
 }
 interface State {
   readonly chatOpened: boolean;
   readonly chatExpanded: boolean;
+  readonly orientation: Nullable<string>;
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
@@ -40,6 +46,14 @@ interface DispatchProps {
   hideToastAction: () => void;
   showToastAction: () => void;
   updateSettingsProperty: (property: string, value: string) => void;
+  updateSettingsModal: (
+    content: React.ReactNode,
+    className?: string,
+    height?: number,
+    onClick?: Function,
+    wrapperClassName?: string
+  ) => void;
+  updateSettingsModalClassName: (wrapperClassName: string) => void;
 }
 interface MatchParams {
   id: string;
@@ -56,7 +70,8 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     super(props);
     this.state = {
       chatOpened: false,
-      chatExpanded: false
+      chatExpanded: false,
+      orientation: null
     };
   }
 
@@ -76,6 +91,12 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     }
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.playing && !this.props.playing) {
+      this.props.updateSettingsModalClassName('vertical-video-modal-container');
+    }
+  }
+
   setChat(condition = false): void {
     this.setState({ chatOpened: condition, chatExpanded: false });
   }
@@ -92,8 +113,15 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
 
   renderButtons(): React.ReactNode {
     const { showToast } = this.props;
+    const isPortrait = this.state.orientation === 'portrait';
     return (
-      <div className="flex-justify-content-center buttons">
+      <div
+        className={`${
+          isPortrait
+            ? 'flex-align-items-baseline buttons vertical-video-buttons'
+            : 'flex-justify-content-center'
+        }`}
+      >
         <ButtonIcon
           color={Colors.orange}
           icon={<StarIcon width={28} height={28} />}
@@ -109,6 +137,33 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           onClick={(): void => this.setChat(!this.state.chatOpened)}
           overlay={50}
         />
+        {isPortrait && (
+          <OutlinedButton
+            onClick={(): void =>
+              this.props.updateSettingsModal(
+                <>
+                  <div className="vertical-video-modal-content">
+                    {this.renderVideoInfo()}
+                  </div>
+                  <BottomTilesComponent
+                    tiles={this.props.currentArtist?.tiles}
+                    onClick={(): void => this.props.updateSettingsModal(null)}
+                  />
+                </>,
+                undefined,
+                undefined,
+                undefined,
+                `${
+                  this.props.playing
+                    ? 'sliding-panel-with-player-container'
+                    : 'vertical-video-modal-container'
+                }`
+              )
+            }
+            style={{ marginLeft: 'auto' }}
+            text={'More'}
+          />
+        )}
         {showToast && (
           <ToastComponent
             clickId={'toastClick'}
@@ -116,39 +171,82 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             message={
               '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
             }
-            hideToast={hideToastAction}
+            hideToast={this.props.hideToastAction}
             classNames={'custom-toast'}
           />
         )}
       </div>
     );
   }
-  renderContent(): React.ReactNode {
+
+  renderVideoInfo(): React.ReactNode {
     return (
       <>
-        <div className="row mt-2 mb-3 mx-3">
-          {this.renderButtons()}
-          <p className="f3">Happy</p>
-          <p className="f6">
-            Williams provided vocals for French duo Daft Punk’s 2013 album
-            Random Access Memories, on the songs “Lose Yourself to Dance” and
-            “Get Lucky”. After returning from the recording sessions in Paris,
-            he attended a meeting with record label managers who said that the
-            results were “spectacular” and that “Get Lucky” would be Daft Punk’s
-            next single.
-          </p>
-        </div>
+        <p className="f3">Happy</p>
+        <p className="f6">
+          Williams provided vocals for French duo Daft Punk’s 2013 album Random
+          Access Memories, on the songs “Lose Yourself to Dance” and “Get
+          Lucky”. After returning from the recording sessions in Paris, he
+          attended a meeting with record label managers who said that the
+          results were “spectacular” and that “Get Lucky” would be Daft Punk’s
+          next single.
+        </p>
       </>
+    );
+  }
+
+  renderContent(): React.ReactNode {
+    const isPortrait = this.state.orientation === 'portrait';
+    return (
+      <div className={'row mt-2 mb-3 mx-3'}>
+        {this.renderButtons()}
+        {!isPortrait && this.renderVideoInfo()}
+      </div>
+    );
+  }
+
+  changeVideoOrientation = (value: string): void => {
+    this.setState((prevState): State => ({ ...prevState, orientation: value }));
+  };
+
+  renderSkeleton(): React.ReactNode {
+    return (
+      <ContentLoader
+        className="mt-3 px-1"
+        speed={2}
+        width={370}
+        height={800}
+        viewBox="0 0 370 800"
+        baseUrl={window.location.pathname}
+        backgroundColor="rgb(255,255,255)"
+        foregroundColor="rgb(255,255,255)"
+        backgroundOpacity={0.05}
+        foregroundOpacity={0.15}
+      >
+        <rect x="-13" y="492" rx="3" ry="3" width="431" height="6" />
+        <rect x="0" y="512" rx="3" ry="3" width="423" height="6" />
+        <rect x="-34" y="531" rx="3" ry="3" width="453" height="7" />
+        <rect x="-6" y="472" rx="3" ry="3" width="426" height="6" />
+        <rect x="1" y="63" rx="0" ry="0" width="406" height="343" />
+        <rect x="6" y="594" rx="0" ry="0" width="104" height="104" />
+        <rect x="126" y="594" rx="0" ry="0" width="113" height="104" />
+        <rect x="254" y="592" rx="0" ry="0" width="108" height="105" />
+      </ContentLoader>
     );
   }
 
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <div />;
     const {
-      match,
+      match: {
+        params: { videoId }
+      },
       currentArtist: { videos }
     } = this.props;
-    const videoUrl = videos?.recents[match.params.videoId];
+    const { orientation } = this.state;
+    const videoUrl =
+      videos?.recents[videoId] || videos?.showcase[videoId].video;
+    const isPortrait = orientation === 'portrait';
     return (
       <IonPage id="artist-videos-page">
         <BackgroundImage default />
@@ -162,11 +260,16 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           <div className="mt-5" />
           <VideoPlayer
             onClickClose={(): void => this.props.history.goBack()}
-            videoUrl={videoUrl?.video}
+            videoUrl={videoUrl?.video || videoUrl}
+            changeVideoOrientation={this.changeVideoOrientation}
+            isPortrait={isPortrait}
           />
           {this.renderContent()}
-          {!this.state.chatOpened && (
+          {!this.state.chatOpened && !isPortrait && (
             <BottomTilesComponent tiles={this.props.currentArtist?.tiles} />
+          )}
+          {!orientation && (
+            <div className="video-detail-overlay">{this.renderSkeleton()}</div>
           )}
         </IonContent>
 
@@ -174,6 +277,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           displayChat={this.state.chatOpened}
           parentCallback={(): void => this.setChat(false)}
           currentPostComments={this.props.currentGalleryComments}
+          className={'vertical-video-chat'}
         />
       </IonPage>
     );
@@ -182,17 +286,23 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
 
 const mapStateToProps = ({
   artistAPI,
-  settings
+  settings,
+  player
 }: ApplicationState): StateProps => {
   const { currentArtist, currentGalleryComments } = artistAPI;
   const { showToast } = settings;
-  return { currentArtist, currentGalleryComments, showToast };
+  const { playing } = player;
+  return { currentArtist, currentGalleryComments, showToast, playing };
 };
 
-export default connect(mapStateToProps, {
-  getArtistAPI,
-  getArtistGalleryCommentsAPI,
-  hideToastAction,
-  updateSettingsProperty,
-  showToastAction
-})(ArtistVideoDetailPage);
+export default withRouter(
+  connect(mapStateToProps, {
+    getArtistAPI,
+    getArtistGalleryCommentsAPI,
+    hideToastAction,
+    updateSettingsProperty,
+    showToastAction,
+    updateSettingsModal,
+    updateSettingsModalClassName
+  })(ArtistVideoDetailPage)
+);

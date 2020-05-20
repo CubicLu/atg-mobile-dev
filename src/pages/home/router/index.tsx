@@ -4,7 +4,7 @@ import { TabsInterface, RouteInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { Route, Redirect } from 'react-router-dom';
 import { NotFoundPage } from '../..';
-import { updateSettingsProperty } from '../../../actions';
+import { updateSettingsModal, updateSettingsProperty } from '../../../actions';
 import {
   IonTabs,
   IonTabBar,
@@ -22,6 +22,7 @@ interface StateProps {
 }
 interface Props extends StateProps {
   updateSettingsProperty: (property: string, value: string) => void;
+  updateSettingsModal: (content: React.ReactNode, className?: string) => void;
 }
 class HomeRouterPage extends React.PureComponent<Props> {
   render(): React.ReactNode {
@@ -30,13 +31,15 @@ class HomeRouterPage extends React.PureComponent<Props> {
       routes,
       activeTab,
       updateSettingsProperty,
-      notifications
+      notifications,
+      updateSettingsModal
     } = this.props;
     return (
       <IonTabs
-        onIonTabsDidChange={(e): void =>
-          updateSettingsProperty('activeTab', e.detail.tab)
-        }
+        onIonTabsDidChange={(e): void => {
+          updateSettingsProperty('activeTab', e.detail.tab);
+          updateSettingsModal(null);
+        }}
       >
         <IonRouterOutlet>
           {tabs.map((p: TabsInterface, i: number): any => (
@@ -89,6 +92,7 @@ const mapStateToProps = ({ settings }: ApplicationState): StateProps => {
   const { tabs, routes, activeTab, notifications } = settings;
   return { tabs, routes, activeTab, notifications };
 };
-export default connect(mapStateToProps, { updateSettingsProperty })(
-  HomeRouterPage
-);
+export default connect(mapStateToProps, {
+  updateSettingsProperty,
+  updateSettingsModal
+})(HomeRouterPage);

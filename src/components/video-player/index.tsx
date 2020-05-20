@@ -18,7 +18,9 @@ interface DispatchProps {
 
 interface Props extends DispatchProps, StateProps {
   readonly onClickClose: Function;
+  readonly changeVideoOrientation: (value: string) => void;
   videoUrl: string;
+  isPortrait: boolean;
 }
 interface State {
   readonly showControls: boolean;
@@ -68,6 +70,25 @@ class VideoPlayerComponent extends React.Component<Props, State> {
       this.showControl(true);
     }
   }
+
+  detectOrientation = (video: Nullable<HTMLVideoElement>): void => {
+    const { changeVideoOrientation } = this.props;
+    if (
+      video?.videoWidth &&
+      video?.videoWidth > video?.videoHeight &&
+      video?.videoHeight
+    ) {
+      changeVideoOrientation('landscape');
+    } else if (
+      video?.videoWidth &&
+      video?.videoWidth < video?.videoHeight &&
+      video?.videoHeight
+    ) {
+      changeVideoOrientation('portrait');
+    } else {
+      changeVideoOrientation('even');
+    }
+  };
 
   showControl(condition = false): void {
     this.setState({
@@ -187,9 +208,14 @@ class VideoPlayerComponent extends React.Component<Props, State> {
   }
 
   renderTopButtons(): React.ReactNode {
+    const { isPortrait } = this.props;
     return (
-      <div className="flex-wrap mx-2 pt-05">
-        <div className="align-start">
+      <div
+        className={`flex-wrap mx-2 pt-05 ${
+          isPortrait ? 'vertical-video-controls' : ''
+        }`}
+      >
+        <div className={`${!isPortrait ? 'align-start' : ''}`}>
           <ButtonIcon
             type={ShapesSize.small}
             icon={<FullscreenIcon />}
@@ -268,9 +294,19 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     );
   }
 
+  handleLoadMetadata = (): void => {
+    this.updateTotalTime();
+    this.detectOrientation(this.video);
+  };
+
   render(): React.ReactNode {
+    const { isPortrait } = this.props;
     return (
-      <div className="video-player-component">
+      <div
+        className={`${
+          !isPortrait ? 'video-player-component' : 'vertical-video-player'
+        }`}
+      >
         {this.renderTopButtons()}
         <div className="container">
           <video
@@ -278,12 +314,12 @@ class VideoPlayerComponent extends React.Component<Props, State> {
             className="video"
             id="video"
             preload="metadata"
-            poster="poster.jpg"
             ref={(ref): HTMLVideoElement | null => (this.video = ref)}
             playsInline
-            onLoadedMetadata={this.updateTotalTime.bind(this)}
+            onClick={(): void => (isPortrait ? this.togglePlay() : undefined)}
+            onLoadedMetadata={this.handleLoadMetadata}
           >
-            <source src={this.props.videoUrl} type="video/mp4" />
+            <source src={`${this.props.videoUrl}#t=0.5`} type="video/mp4" />
           </video>
           {this.renderControls()}
         </div>

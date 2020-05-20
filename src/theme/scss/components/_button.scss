@@ -326,3 +326,17 @@
     }
   }
 }
+
+.outlined-button{
+  border: 2px solid white;
+  border-radius: 5px;
+  display: flex;
+  padding: 0.2em 0.5em;
+  &__back-container{
+    transform: rotate(90deg);
+    margin-right: 10px;
+  }
+  span{
+    color: white;
+  }
+}

@@ -73,6 +73,7 @@ import {
   ButtonSupportComponent
 } from './button/support-button';
 import NavBarTwoButtonsComponent from './navbar-two-buttons';
+import OutlinedButtonComponent from './button/outlined-button';
 
 import ChatBalloonComponent from './chat/balloon';
 
@@ -171,7 +172,8 @@ export {
   ArrowTopIconComponent as ArrowTopIcon,
   CardRadioComponent as CardRadio,
   SliderRadiosComponent as SliderRadios,
-  ChatBalloonComponent as ChatBalloon
+  ChatBalloonComponent as ChatBalloon,
+  OutlinedButtonComponent as OutlinedButton
 };
 
 export {

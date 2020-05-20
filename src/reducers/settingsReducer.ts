@@ -3,7 +3,8 @@ import {
   SettingsActionType,
   SettingsReducerType,
   ModalTypeInterface,
-  FilterItemInterface
+  FilterItemInterface,
+  UpdateModalWrapperClassName
 } from '../models';
 import createReducer from './createReducer';
 import {
@@ -27,7 +28,8 @@ const defaultState: SettingsReducerType = {
     onClick: (): void => {},
     onClose: (): void => {},
     onClosing: (): void => {},
-    onOpen: (): void => {}
+    onOpen: (): void => {},
+    wrapperClassName: null
   },
   showToast: false,
   popUpModal: null,
@@ -94,6 +96,18 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         popUpModal: action.payload.modalType
+      };
+    },
+    [SettingsActionType.UPDATE_MODAL_WRAPPER_CLASSNAME](
+      state: SettingsReducerType,
+      action: Action<UpdateModalWrapperClassName>
+    ): SettingsReducerType {
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          wrapperClassName: action.payload.wrapperClassName
+        }
       };
     },
     [SettingsActionType.SHOW_TOAST](

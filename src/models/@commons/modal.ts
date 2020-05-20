@@ -1,4 +1,4 @@
-import { ModalType } from '../../types';
+import { ModalType, Nullable } from '../../types';
 
 export interface ModalSlideInterface {
   readonly modalType?: ModalType;
@@ -9,6 +9,7 @@ export interface ModalSlideInterface {
   readonly onClose?: Function;
   readonly onClosing?: Function;
   readonly onOpen?: Function;
+  readonly wrapperClassName?: Nullable<string>;
 }
 
 export interface ModalTypeInterface {
@@ -25,4 +26,9 @@ export interface UpdateModalInterface {
   readonly className?: string;
   readonly height?: number;
   readonly onClick?: Function;
+  readonly wrapperClassName?: string;
+}
+
+export interface UpdateModalWrapperClassName {
+  readonly wrapperClassName: string;
 }

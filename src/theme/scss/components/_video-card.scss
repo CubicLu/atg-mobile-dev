@@ -1,0 +1,36 @@
+.video-card-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  &:after {
+    content: attr(data-time);
+    background: #000;
+    height: 20px;
+    width: 100%;
+    font-size: 12px;
+    white-space: nowrap;
+    max-width: 48px;
+    padding: 1px 4px;
+    text-align: center;
+    color: #fff;
+    display: block;
+    position: absolute;
+    bottom: 6px;
+    right: 0;
+  }
+  &.sm{
+    width: 190px;
+    img{
+      height: auto;
+    }
+  }
+}
+
+.vertical-video-image-container {
+  img {
+    height: 190px;
+    width: auto;
+  }
+}

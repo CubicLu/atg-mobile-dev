@@ -52,7 +52,6 @@ class SliderVideoComponent extends React.Component<Props> {
                 }
               >
                 <CardVideo
-                  canEdit={canEdit}
                   type={type}
                   video={d.video}
                   image={d.image}

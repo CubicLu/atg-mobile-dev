@@ -3,12 +3,15 @@ import { ArtistInterface } from '../../../models';
 import { ShapesSize, Colors, Sizes } from '../../../types';
 import { ButtonIcon, DotsThreeIcon } from '../..';
 
+interface State {
+  orientation: string;
+}
+
 interface Props {
   image: string | undefined;
   id: number;
-  canEdit: boolean;
-  showFooter: boolean;
-  type: ShapesSize;
+  showFooter?: boolean;
+  type?: ShapesSize;
   video: string | undefined;
   title?: string;
   time: number | string;
@@ -17,27 +20,27 @@ interface Props {
   onClick?: Function;
 }
 
-export default class CardVideoComponent extends React.Component<Props> {
-  public static defaultProps = {
-    type: ShapesSize.normal,
-    showFooter: false,
-    size: Sizes.md,
-    canEdit: false,
-    onClick: (): void => {}
-  };
+export default class CardVideoComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      orientation: ''
+    };
+  }
 
   render(): React.ReactNode {
-    const { artist, type, image, time, title, size, onClick } = this.props;
-
+    const { artist, type, image, time, title, size, id, onClick } = this.props;
     return (
       <div className="row card-out-content">
         <div
-          onClick={(): void => onClick && onClick()}
-          className={`card video ${type} ${size}`}
+          onClick={(): void => onClick && onClick(id)}
+          className={`video-card-container video ${type} ${size}`}
           data-time={time}
-          style={{ backgroundImage: `url(${image})` }}
-        />
-
+        >
+          <div className="vertical-video-image-container">
+            <img src={image} alt="" />
+          </div>
+        </div>
         {title && <span className="f4 my-1">{title}</span>}
         <br />
         {this.props.showFooter && (

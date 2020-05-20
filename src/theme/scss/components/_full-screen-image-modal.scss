@@ -40,12 +40,6 @@
   }
   &__rightIcon {
     right: 2%;
-    svg{
-      overflow: visible;
-      top: 2px;
-      position: absolute;
-      bottom: 0;
-      left: 11px;
-    }
+    transform: scale(-1);
   }
 }

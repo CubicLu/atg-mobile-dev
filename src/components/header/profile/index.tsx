@@ -127,7 +127,6 @@ export default class HeaderProfileComponent extends React.Component<
         <Header
           rightFilterButton={showFilter}
           rightChatButton={!showFilter}
-          rightConnectedButton={!showFilter}
           rightFanFeedButton={!showFilter}
           rightFanFeedUrl={
             currentFriend?.isArtist

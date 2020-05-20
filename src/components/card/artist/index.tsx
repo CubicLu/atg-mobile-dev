@@ -27,7 +27,7 @@ export default class CardArtistComponent extends React.Component<Props, State> {
     if (!artist) return <div />;
     const { cover, support, name } = artist;
     return (
-      <div>
+      <div style={{ height: 160 }}>
         <IonImg
           onIonImgDidLoad={(): void => {
             this.setState({
@@ -38,7 +38,6 @@ export default class CardArtistComponent extends React.Component<Props, State> {
           style={{ width: 0, height: 0, visibility: 'hidden' }}
         />
         <ContentLoader
-          className="mt-3"
           speed={2}
           viewBox="0 0 400 140"
           baseUrl={window.location.pathname}

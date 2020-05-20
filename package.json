@@ -73,7 +73,9 @@
     "simulate:android": "simulate android --target=chrome",
     "simulate:ios": "simulate ios --target=chrome --device=iPhone8",
     "build ios": "ionic build && cordova build ios --prod --release",
-    "build:ionic": "ionic build"
+    "build:ionic": "ionic build",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
   "eslintConfig": {
     "extends": "react-app"

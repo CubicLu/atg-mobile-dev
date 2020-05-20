@@ -27,7 +27,7 @@ class SliderRadioComponent extends React.Component<Props> {
     };
 
     return (
-      <div className={`slider radio ${className}`} style={{ height: 120 }}>
+      <div className={`slider radio ${className}`}>
         <Slider {...settings}>
           {data.map(
             (d, i): React.ReactNode => (

@@ -1,8 +1,16 @@
 import React from 'react';
-import { ButtonSupportIcon, ContentLoader } from './../../../components';
+import {
+  ButtonSupportIcon,
+  ContentLoader,
+  ButtonIcon
+} from './../../../components';
 import { ArtistInterface } from '../../../models';
 import { IonImg, IonRouterLink } from '@ionic/react';
 import SupportStarIcon from '../../icon/support-star';
+import { CloseIcon } from '../../icon';
+import { Colors } from '../../../types';
+import { store } from '../../../store';
+import { updateActionSheet } from '../../../actions';
 
 interface Props {
   artist: ArtistInterface;
@@ -22,12 +30,20 @@ export default class CardArtistComponent extends React.Component<Props, State> {
   }
 
   linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
+  confirmDelete(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Remove this Artist?',
+        confirmButtons: true
+      })
+    );
+  }
   render(): React.ReactNode {
     const { artist } = this.props;
     if (!artist) return <div />;
     const { cover, support, name } = artist;
     return (
-      <div style={{ height: 160 }}>
+      <div className="my-3">
         <IonImg
           onIonImgDidLoad={(): void => {
             this.setState({
@@ -54,7 +70,7 @@ export default class CardArtistComponent extends React.Component<Props, State> {
           <rect x="20" y="0" rx="8" ry="8" width="360" height="140" />
         </ContentLoader>
         <div
-          className="card-artist my-3 mx-2 pb-15"
+          className="card-artist mx-2 pb-15"
           style={
             this.state.artistIsReady
               ? { visibility: 'visible', backgroundImage: `url(${cover.main})` }
@@ -64,9 +80,17 @@ export default class CardArtistComponent extends React.Component<Props, State> {
           <div className="flex-align-items-end h-100 px-2">
             <div className="align-start">
               {support && (
-                <div className="star">
-                  <SupportStarIcon />
-                </div>
+                <React.Fragment>
+                  <div className="star">
+                    <SupportStarIcon />
+                  </div>
+                  <div
+                    className="close"
+                    onClick={(): void => this.confirmDelete()}
+                  >
+                    <ButtonIcon color={Colors.red} icon={<CloseIcon />} />
+                  </div>
+                </React.Fragment>
               )}
               <div
                 onClick={(): void => this.linkRef.current!.click()}

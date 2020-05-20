@@ -5,6 +5,7 @@ import RadioIcon from './radio';
 import ProfileIcon from './profile';
 import SearchIcon from './search';
 import CloseIcon from './close';
+import CopyIcon from './copy';
 import SettingsIcon from './settings';
 import DotsThreeIcon from './dots-three';
 import SupportIcon from './support';
@@ -36,6 +37,8 @@ import CommentIcon from './comment';
 import NotificationIcon from './notification';
 import MinimizeIcon from './minimize';
 import EditIcon from './edit';
+import DeleteIcon from './delete';
+import ConfirmIcon from './confirm';
 
 export {
   MessageIcon,
@@ -45,6 +48,7 @@ export {
   ProfileIcon,
   SearchIcon,
   CloseIcon,
+  CopyIcon,
   SettingsIcon,
   DotsThreeIcon,
   SupportIcon,
@@ -75,5 +79,7 @@ export {
   CommentIcon,
   NotificationIcon,
   MinimizeIcon,
-  EditIcon
+  EditIcon,
+  DeleteIcon,
+  ConfirmIcon
 };

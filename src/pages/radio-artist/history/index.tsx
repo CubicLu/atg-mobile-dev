@@ -24,11 +24,12 @@ import {
   SongInterface
 } from '../../../models';
 import { ShapesSize, Colors } from '../../../types';
-import { setPlaylist } from './../../../actions';
+import { setPlaylist, updateActionSheet } from './../../../actions';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../reducers';
 import { guitarPlaylist } from '../../../reducers/playerReducer';
 import { RouteComponentProps } from 'react-router';
+import { store } from '../../../store';
 
 interface StateProps {
   radioArtist?: ChannelInterface | null;
@@ -97,12 +98,14 @@ class RadioHistoryPage extends React.Component<Props> {
                       <IonItemOptions side="end">
                         <ButtonIcon
                           icon={<AddPlaylistIcon />}
+                          onClick={(): void => this.confirmShare()}
                           color={Colors.green}
                           className="no-padding"
                           type={ShapesSize.normal}
                         />
                         <ButtonIcon
                           icon={<CloseIcon strokeWidth={2} />}
+                          onClick={(): void => this.confirmDelete()}
                           color={Colors.red}
                           className="no-padding"
                           type={ShapesSize.normal}
@@ -116,6 +119,23 @@ class RadioHistoryPage extends React.Component<Props> {
           </div>
         </IonContent>
       </IonPage>
+    );
+  }
+  confirmDelete(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Delete Item',
+        confirmButtons: true
+      })
+    );
+  }
+  confirmShare(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Share',
+        confirmButtons: false,
+        shareOption: true
+      })
     );
   }
   historySongs = [

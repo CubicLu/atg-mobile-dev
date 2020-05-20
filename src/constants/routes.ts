@@ -37,7 +37,6 @@ import {
   VaultFilterSubEraPage,
   DashboardMenuPage,
   FeedPage,
-  CommunitySharePage,
   CommunityArtistFilterPage,
   ChatPage,
   DashboardFilterPage,
@@ -253,12 +252,6 @@ export const routes: RouteInterface[] = [
     path: '/dashboard/:artistId/supporter',
     id: 'supporterDashboard',
     component: DashboardGraphSupporterPage,
-    parentTab: 'profile'
-  },
-  {
-    path: '/share',
-    id: 'communityShare',
-    component: CommunitySharePage,
     parentTab: 'profile'
   },
 

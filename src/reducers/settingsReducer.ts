@@ -4,7 +4,8 @@ import {
   SettingsReducerType,
   ModalTypeInterface,
   FilterItemInterface,
-  UpdateModalWrapperClassName
+  UpdateModalWrapperClassName,
+  ActionSheetInterface
 } from '../models';
 import createReducer from './createReducer';
 import {
@@ -22,6 +23,7 @@ import {
 } from './../constants';
 
 const defaultState: SettingsReducerType = {
+  actionSheet: null,
   modal: {
     content: null,
     height: 40,
@@ -76,6 +78,16 @@ export const settingsReducer = createReducer<SettingsReducerType>(
       return {
         ...state,
         [action.payload.property]: action.payload.value
+      };
+    },
+
+    [SettingsActionType.UPDATE_ACTIONSHEET](
+      state: SettingsReducerType,
+      action: Action<ActionSheetInterface>
+    ): SettingsReducerType {
+      return {
+        ...state,
+        actionSheet: action.payload
       };
     },
 

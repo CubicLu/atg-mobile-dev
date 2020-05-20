@@ -1,17 +1,18 @@
 import React from 'react';
-import { ButtonIcon, ContentLoader } from './../../../components';
+import { ButtonIcon, ContentLoader, FavoriteIcon } from './../../../components';
 import { MixtapeInterface } from '../../../models';
 import { Colors } from '../../../types';
 import {
   PlayIcon,
   DotsThreeIcon,
-  StarIcon,
   CloseIcon,
   AddPlaylistIcon,
   ShareIcon,
   TrashIcon
 } from './../../icon';
 import { IonRouterLink } from '@ionic/react';
+import { store } from '../../../store';
+import { updateActionSheet } from '../../../actions';
 
 interface Props {
   mixtape: MixtapeInterface;
@@ -50,6 +51,24 @@ class CardMixtapesComponent extends React.Component<Props, State> {
     this.setState({
       openMenu: !this.state.openMenu
     });
+  }
+
+  confirmDelete(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Delete Item',
+        confirmButtons: true
+      })
+    );
+  }
+  confirmShare(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Share',
+        confirmButtons: false,
+        shareOption: true
+      })
+    );
   }
 
   render(): React.ReactNode {
@@ -116,6 +135,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                   <li>
                     <ButtonIcon
                       color={Colors.red}
+                      onClick={(): void => this.confirmDelete()}
                       icon={<TrashIcon width={15} height={15} />}
                     />
                   </li>
@@ -129,6 +149,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                   <li>
                     <ButtonIcon
                       color={Colors.green}
+                      onClick={(): void => this.confirmShare()}
                       icon={<ShareIcon width={17} height={22} />}
                     />
                   </li>
@@ -139,10 +160,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
                     />
                   </li>
                   <li>
-                    <ButtonIcon
-                      styles={{ backgroundColor: '#F78330' }}
-                      icon={<StarIcon width={23} height={23} />}
-                    />
+                    <FavoriteIcon />
                   </li>
                 </ul>
               </div>

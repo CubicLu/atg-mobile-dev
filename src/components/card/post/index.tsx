@@ -4,13 +4,15 @@ import {
   ButtonIcon,
   BalloonIcon,
   ShareLineIcon,
-  HeartIcon,
   DotsThreeIcon,
-  ContentLoader
+  ContentLoader,
+  FavoriteIcon
 } from './../../../components';
 import { PostInterface } from '../../../models';
-import { ShapesSize } from '../../../types';
+import { ShapesSize, Colors } from '../../../types';
 import { IonRouterLink, IonSlides, IonSlide, IonImg } from '@ionic/react';
+import { store } from '../../../store';
+import { updateActionSheet } from '../../../actions';
 
 interface Props {
   post: PostInterface;
@@ -138,6 +140,15 @@ export default class CardPostComponent extends React.Component<Props, State> {
       </React.Fragment>
     );
   }
+  confirmShare(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Share',
+        confirmButtons: false,
+        shareOption: true
+      })
+    );
+  }
   renderPostInput(): React.ReactNode {
     const { showUser, post } = this.props;
     return (
@@ -161,9 +172,11 @@ export default class CardPostComponent extends React.Component<Props, State> {
         )}
 
         <div className="align-end flex">
-          <IonRouterLink routerDirection="forward" routerLink={'/share'}>
-            <ButtonIcon className="btn large" icon={<ShareLineIcon />} />
-          </IonRouterLink>
+          <ButtonIcon
+            onClick={(): void => this.confirmShare()}
+            className="btn large"
+            icon={<ShareLineIcon />}
+          />
 
           <span className="mx-05" />
 
@@ -184,7 +197,7 @@ export default class CardPostComponent extends React.Component<Props, State> {
 
           <span className="mx-05" />
 
-          <ButtonIcon className="btn large" icon={<HeartIcon />} />
+          <FavoriteIcon icon="heart" color={Colors.transparentGray} />
         </div>
       </div>
     );

@@ -1,5 +1,7 @@
 export * from './@commons';
 
+export * from './action-sheet';
+
 export * from './artist';
 export * from './artist/action-type';
 export * from './artist/reducer';

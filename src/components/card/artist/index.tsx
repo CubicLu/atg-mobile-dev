@@ -45,7 +45,7 @@ export default class CardArtistComponent extends React.Component<Props, State> {
     if (!artist) return <div />;
     const { cover, support, name } = artist;
     return (
-      <div className="my-3" style={{ height: 160 }}>
+      <div className="my-3">
         <IonImg
           onIonImgDidLoad={(): void => {
             this.setState({

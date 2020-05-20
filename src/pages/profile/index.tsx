@@ -31,7 +31,7 @@ class ProfilePage extends React.Component<Props> {
 
   renderActiveTab(tabs: MenuInterface[], activeId, isFriend): React.ReactNode {
     const Tab = tabs.find((x): boolean => x.id === activeId)!.component;
-    return <Tab isFriend={isFriend} />;
+    return <Tab canRemove={true} isFriend={isFriend} />;
   }
 
   render(): React.ReactNode {

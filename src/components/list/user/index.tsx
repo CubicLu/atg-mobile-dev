@@ -3,6 +3,8 @@ import { RowUser, ButtonIcon, CloseIcon } from './../../../components';
 import { IonList, IonItemSliding, IonItem, IonItemOptions } from '@ionic/react';
 import { Colors, ShapesSize } from '../../../types';
 import { UserInterface } from './../../../models';
+import { store } from '../../../store';
+import { updateActionSheet } from '../../../actions';
 
 interface Props {
   users: UserInterface[];
@@ -32,6 +34,16 @@ export default class ListComponent extends React.Component<Props> {
     showButtonPending: false
   };
 
+  confirmDelete(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Remove Item',
+        confirmButtons: true,
+        cannotDismiss: true
+      })
+    );
+  }
+
   ionSlide(item: React.ReactNode): React.ReactNode {
     return (
       <IonItemSliding>
@@ -39,6 +51,7 @@ export default class ListComponent extends React.Component<Props> {
         <IonItemOptions side="end">
           {this.props.showRemove && (
             <ButtonIcon
+              onClick={(): void => this.confirmDelete()}
               icon={<CloseIcon strokeWidth={2} />}
               className="no-padding"
               color={Colors.red}

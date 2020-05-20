@@ -15,7 +15,7 @@ export default class OutlinedButtonComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const { onClick, text, style } = this.props;
     return (
-      <div className={'outlined-button'} onClick={onClick} style={style}>
+      <div className="outlined-button my-auto" onClick={onClick} style={style}>
         <div className="outlined-button__back-container">
           <BackIcon />
         </div>

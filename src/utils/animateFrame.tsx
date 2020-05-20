@@ -69,7 +69,7 @@ export default class VigilAnimator {
     elm.style.position = 'fixed';
     elm.style.top = this.element.getBoundingClientRect().top + 'px';
     elm.style.left = this.element.getBoundingClientRect().left + 'px';
-    elm.style.zIndex = '10';
+    elm.style.zIndex = '20';
   }
   removeFixed(): void {
     const elm = this.element as HTMLElement;

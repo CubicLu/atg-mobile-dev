@@ -107,7 +107,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 30;
+  z-index: 11;
   width: 100%;
   padding-left: 2px;
   padding-right: 2px;
@@ -146,7 +146,7 @@
   position: absolute;
   overflow: hidden;
   height: 100%;
-  z-index: 20;
+  z-index: 11;
   transform: translateY(100%);
   .main-controls {
     min-height: 50px;
@@ -255,7 +255,7 @@
   }
   background: linear-gradient(180deg, #22022f, #070707);
   position: absolute;
-  z-index: 15001;
+  z-index: 10;
   width: 100%;
   bottom: 50px;
   .cover {

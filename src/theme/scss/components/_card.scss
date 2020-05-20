@@ -17,8 +17,22 @@
 
   .align-start {
     .star {
+      left: 8px;
       top: 10px;
       position: absolute;
+      button{
+        width: 24px;
+        height: 24px;
+      }
+    }
+    .close {
+      top: 10px;
+      left: 8px;
+      position: absolute;
+      button{
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 }

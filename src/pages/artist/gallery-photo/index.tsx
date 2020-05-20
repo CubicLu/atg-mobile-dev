@@ -3,7 +3,10 @@ import {
   ButtonIcon,
   FullscreenIcon,
   Header,
-  PhotoChat
+  PhotoChat,
+  FavoriteIcon,
+  ShareIcon,
+  ChatMessageIcon
 } from './../../../components';
 import {
   IonContent,
@@ -21,21 +24,20 @@ import {
   updateSettingsModal,
   setFullscreenImage,
   clearFullscreenImage,
-  hideToastAction,
-  showToastAction
+  updateActionSheet
 } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 import {
   ArtistInterface,
   CommentInterface,
-  GalleryImageInterface
+  GalleryImageInterface,
+  ActionSheetInterface
 } from '../../../models';
-import { ShapesSize } from '../../../types';
+import { ShapesSize, Colors } from '../../../types';
 import { validateScrollHeader } from '../../../utils';
 import FullScreenImageModal from '../../../components/modal/image-gallery';
 import { createGesture } from '@ionic/react';
-import ToastComponent from '../../../components/toast';
 import { RouteComponentProps } from 'react-router';
 
 interface State {
@@ -49,11 +51,11 @@ interface StateProps {
   currentArtist: ArtistInterface | null;
   currentGalleryComments: CommentInterface[];
   currentGallery: GalleryImageInterface[] | null;
-  showToast: boolean;
 }
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
+  updateActionSheet: (property: ActionSheetInterface) => void;
   getArtistGalleryCommentsAPI: (photoId: number, username: string) => void;
   updateSettingsModal: (
     content: React.ReactNode,
@@ -63,8 +65,6 @@ interface DispatchProps {
   setCurrentGallery: (galleryId: number) => void;
   setFullscreenImage: (index: number) => void;
   clearFullscreenImage: () => void;
-  hideToastAction: () => void;
-  showToastAction: () => void;
   updateSettingsProperty: (property: string, value: string) => void;
 }
 
@@ -130,13 +130,16 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
   }
 
   changePage = (increase: boolean = true): void => {
-    const { match, history, setFullscreenImage } = this.props;
-    const params = match.params;
-    const resultIndex = increase ? +params.imageId + 1 : +params.imageId - 1;
-    history.replace(
+    const params = this.props.match.params;
+    const resultIndex = increase
+      ? Number(params.imageId) + 1
+      : Number(params.imageId) - 1;
+
+    console.log(resultIndex, params.imageId);
+    this.props.history.replace(
       `/artist/${params.id}/gallery/${params.galleryId}/image/${resultIndex}`
     );
-    setFullscreenImage(resultIndex);
+    this.props.setFullscreenImage(resultIndex);
   };
 
   onSwipe = (gesture: any): void => {
@@ -240,13 +243,43 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
     this.setState({ displayChat: childData });
     if (showHeader) this.setState({ displayHeader: true });
   };
+  openChatPanel(shouldDisplay: boolean): void {
+    this.callbackFunction(shouldDisplay);
+  }
+  confirmShare(): void {
+    this.props.updateActionSheet({
+      title: 'Share',
+      confirmButtons: false,
+      shareOption: true
+    });
+  }
 
-  toastClickHandler = (e): void => {
-    const { updateSettingsProperty, history } = this.props;
-    e.preventDefault();
-    updateSettingsProperty('activeFanTab', 'vault');
-    history.push('/profile');
-  };
+  rightButtonsGroup(): React.ReactNode {
+    return (
+      <ul className="list inline">
+        <li className="mt-15">
+          <FavoriteIcon />
+        </li>
+        <li>
+          <ButtonIcon
+            onClick={(): void => this.confirmShare()}
+            className="mt-15"
+            color={Colors.green}
+            icon={<ShareIcon width={22} height={20} />}
+          />
+        </li>
+        <li>
+          <ButtonIcon
+            className="mt-15"
+            color={Colors.cyan}
+            icon={<ChatMessageIcon />}
+            onClick={(): void => this.openChatPanel(true)}
+            overlay={this.props.currentGalleryComments.length}
+          />
+        </li>
+      </ul>
+    );
+  }
 
   render(): React.ReactNode {
     const imageSrc = this.getImage();
@@ -255,11 +288,8 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
         <div>
           {this.state.displayHeader && (
             <Header
-              rightButtonGroup
-              parentCallback={this.callbackFunction}
-              overlay={this.props.currentGalleryComments.length}
+              rightContent={this.rightButtonsGroup()}
               leftBackAddAction={(): void => this.props.clearFullscreenImage()}
-              likeButtonOnClick={this.props.showToastAction}
             />
           )}
         </div>
@@ -296,29 +326,14 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
           parentCallback={this.callbackFunction}
           currentPostComments={this.props.currentGalleryComments}
         />
-        {this.props.showToast && (
-          <ToastComponent
-            clickId={'toastClick'}
-            clickHandler={this.toastClickHandler}
-            message={
-              '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
-            }
-            hideToast={this.props.hideToastAction}
-            classNames={'custom-toast'}
-          />
-        )}
       </IonPage>
     );
   }
 }
 
-const mapStateToProps = ({
-  artistAPI,
-  settings
-}: ApplicationState): StateProps => {
+const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
   const { currentArtist, currentGalleryComments, currentGallery } = artistAPI;
-  const { showToast } = settings;
-  return { currentGalleryComments, currentArtist, currentGallery, showToast };
+  return { currentGalleryComments, currentArtist, currentGallery };
 };
 
 export default connect(mapStateToProps, {
@@ -329,6 +344,5 @@ export default connect(mapStateToProps, {
   setCurrentGallery,
   setFullscreenImage,
   clearFullscreenImage,
-  hideToastAction,
-  showToastAction
+  updateActionSheet
 })(ArtistGalleryPhotoPage);

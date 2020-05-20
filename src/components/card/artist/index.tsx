@@ -1,12 +1,21 @@
 import React from 'react';
-import { ButtonSupportIcon, ContentLoader } from './../../../components';
+import {
+  ButtonSupportIcon,
+  ContentLoader,
+  ButtonIcon
+} from './../../../components';
 import { ArtistInterface } from '../../../models';
 import { IonImg, IonRouterLink } from '@ionic/react';
 import SupportStarIcon from '../../icon/support-star';
+import { CloseIcon } from '../../icon';
+import { Colors } from '../../../types';
+import { store } from '../../../store';
+import { updateActionSheet } from '../../../actions';
 
 interface Props {
   artist: ArtistInterface;
   key: number;
+  canRemove?: boolean;
 }
 
 interface State {
@@ -22,6 +31,15 @@ export default class CardArtistComponent extends React.Component<Props, State> {
   }
 
   linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
+  confirmDelete(): void {
+    store.dispatch(
+      updateActionSheet({
+        cannotDismiss: true,
+        title: 'Remove this Artist?',
+        confirmButtons: true
+      })
+    );
+  }
   render(): React.ReactNode {
     const { artist } = this.props;
     if (!artist) return <div />;
@@ -66,6 +84,11 @@ export default class CardArtistComponent extends React.Component<Props, State> {
               {support && (
                 <div className="star">
                   <SupportStarIcon />
+                </div>
+              )}
+              {this.props.canRemove && !support && (
+                <div className="close" onClick={this.confirmDelete}>
+                  <ButtonIcon color={Colors.red} icon={<CloseIcon />} />
                 </div>
               )}
               <div

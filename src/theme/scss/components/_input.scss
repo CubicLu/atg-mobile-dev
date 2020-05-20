@@ -75,6 +75,13 @@ input[type="search"]:not(.browser-default) {
 .comment-input, .input-chat {
   border: solid 1px #bbc5d4;
   background: #fff;
+  z-index: 10;
+}
+.input-chat {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 210;
 }
 

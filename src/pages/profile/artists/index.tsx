@@ -6,6 +6,7 @@ import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 interface StateProps {
   artists: ArtistInterface[];
+  canRemove?: boolean;
 }
 interface DispatchProps {
   getArtistsAPI: () => any;
@@ -20,7 +21,11 @@ class ProfileArtistsPage extends React.PureComponent<Props> {
       <div className="content">
         {this.props.artists?.map(
           (data, i): React.ReactNode => (
-            <CardArtist key={i} artist={data} />
+            <CardArtist
+              canRemove={this.props.canRemove}
+              key={i}
+              artist={data}
+            />
           )
         )}
       </div>

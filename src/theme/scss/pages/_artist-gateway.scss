@@ -5,13 +5,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 102;
+    z-index: 11;
     background-color: #000;
   &__header {
     display: flex;
     justify-content: center;
     height: max-content;
-    z-index: 102;
     position: absolute;
     left: 0;
     right: 0;

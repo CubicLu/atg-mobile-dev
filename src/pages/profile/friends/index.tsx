@@ -13,7 +13,9 @@ interface DispatchProps {
   getFriendsAPI: () => void;
 }
 
-interface Props extends StateProps, DispatchProps {}
+interface Props extends StateProps, DispatchProps {
+  canRemove?: boolean;
+}
 class ProfileFriendsPage extends React.Component<Props> {
   UNSAFE_componentWillMount(): void {
     if (!(this.props.friends && this.props.friends.length > 0)) {

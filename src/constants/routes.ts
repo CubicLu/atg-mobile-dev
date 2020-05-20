@@ -18,7 +18,6 @@ import {
   CommunityAllArtistsPage,
   CommunityPage,
   CommunityArtistPage,
-  CommunityCommentsListPage,
   ThankYouPage,
   ArtistVideoDetailPage,
   ArtistVideosPage,
@@ -310,12 +309,6 @@ export const routes: RouteInterface[] = [
     path: '/community/comments/:id',
     id: 'communityComments',
     component: CommunityPostPage,
-    parentTab: 'community'
-  },
-  {
-    path: '/comments-list',
-    id: 'communityCommentsList',
-    component: CommunityCommentsListPage,
     parentTab: 'community'
   },
   {

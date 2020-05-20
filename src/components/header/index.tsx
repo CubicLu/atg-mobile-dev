@@ -156,7 +156,6 @@ class HeaderComponent extends React.Component<Props> {
       rightActionOnClick,
       rightSettingsButton,
       rightSettingsOnClick,
-      rightUserGroupButton,
       rightNotificationButton,
       rightDashboardButton,
       rightInfoButton,
@@ -266,16 +265,6 @@ class HeaderComponent extends React.Component<Props> {
                 }
               >
                 <StarIcon />
-              </div>
-            )}
-            {rightUserGroupButton && (
-              <div
-                className="default-button"
-                onClick={(): void =>
-                  this.routeNavigate('/comments-list', 'forward')
-                }
-              >
-                <UserGroupIcon color={'#FFF'} height={23} width={23} />
               </div>
             )}
             {rightNotificationButton && (

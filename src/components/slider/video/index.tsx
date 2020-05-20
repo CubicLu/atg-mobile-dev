@@ -27,7 +27,7 @@ class SliderVideoComponent extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    const { data, size, type, canEdit } = this.props;
+    const { data, size, type } = this.props;
     if (!data) return <div />;
 
     const settings: Settings = {

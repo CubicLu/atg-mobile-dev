@@ -1,10 +1,10 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RecentPostInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
-import { Header, BackgroundImage, CommentIcon } from '../../../components';
+import { BackgroundImage, CommentIcon } from '../../../components';
 import { getCommunityRecentPostsAPI } from '../../../actions';
 
 interface StateProps {
@@ -25,52 +25,44 @@ class CommunityCommentsListPage extends React.Component<Props> {
     if (!this.props.commentsList) return <IonPage />;
     const { commentsList } = this.props;
     return (
-      <IonPage id="comments-list-page" className="comments-list-page">
-        <Header
-          className="dashboard-page-header"
-          leftBackButton={false}
-          rightCloseButton={true}
-          rightClickGoBack={true}
-        />
-        <IonContent>
-          <BackgroundImage default={true} />
-          <div className="comments px-2">
-            {commentsList?.map(
-              (data, i): React.ReactNode => (
-                <div
-                  key={i}
-                  className="mt-3 flex f5"
-                  onClick={(): void => this.props.history.push(data.commentUrl)}
-                >
-                  <div className="comment-avatar">
-                    <img src={data.userAvatar} alt=" " />
+      <IonContent className="comments-list-component">
+        <BackgroundImage default={true} />
+        <div className="comments px-2">
+          {commentsList?.map(
+            (data, i): React.ReactNode => (
+              <div
+                key={i}
+                className="mt-3 flex f5"
+                onClick={(): void => this.props.history.push(data.commentUrl)}
+              >
+                <div className="comment-avatar">
+                  <img src={data.userAvatar} alt=" " />
+                </div>
+                <div className="comment-content pl-2">
+                  <div className="comment-top l1">
+                    <div>
+                      {data.commentsCount > 0 && (
+                        <div className="flex" key={data.commentsCount}>
+                          <CommentIcon />
+                          <span className="comment-counter text-12">
+                            {data.commentsCount} comments
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <span className="comment-date text-12 grey-color">
+                      {data.date}
+                    </span>
                   </div>
-                  <div className="comment-content pl-2">
-                    <div className="comment-top l1">
-                      <div>
-                        {data.commentsCount > 0 && (
-                          <div className="flex" key={data.commentsCount}>
-                            <CommentIcon />
-                            <span className="comment-counter text-12">
-                              {data.commentsCount} comments
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <span className="comment-date text-12 grey-color">
-                        {data.date}
-                      </span>
-                    </div>
-                    <div className="text-16 white-color red-icon">
-                      {data.comment}
-                    </div>
+                  <div className="text-16 white-color red-icon">
+                    {data.comment}
                   </div>
                 </div>
-              )
-            )}
-          </div>
-        </IonContent>
-      </IonPage>
+              </div>
+            )
+          )}
+        </div>
+      </IonContent>
     );
   }
 }
@@ -80,6 +72,8 @@ const mapStateToProps = ({ communityAPI }: ApplicationState): StateProps => {
   return { commentsList };
 };
 
-export default connect(mapStateToProps, {
-  getCommunityRecentPostsAPI
-})(CommunityCommentsListPage);
+export default withRouter(
+  connect(mapStateToProps, {
+    getCommunityRecentPostsAPI
+  })(CommunityCommentsListPage)
+);

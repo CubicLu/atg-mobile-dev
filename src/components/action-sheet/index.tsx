@@ -29,11 +29,10 @@ class ModalSlideComponent extends React.Component<Props, State> {
     this.props.actionSheet?.onConfirm && this.props.actionSheet.onConfirm();
     this.setState({
       showToast: true,
-      toastMessage: 'Item deleted'
+      toastMessage: 'Removed Successfully'
     });
   }
   clickCopy(): void {
-    this.props.actionSheet?.onConfirm && this.props.actionSheet.onConfirm();
     this.setState({
       showToast: true,
       toastMessage: 'Link copied to pasteboard'
@@ -78,10 +77,16 @@ class ModalSlideComponent extends React.Component<Props, State> {
       description,
       content,
       confirmButtons,
-      shareOption
+      shareOption,
+      cannotDismiss
     } = this.props.actionSheet;
     return (
-      <div className={`action-sheet ${className}`}>
+      <div
+        onClick={(): void =>
+          cannotDismiss ? undefined : this.props.updateActionSheet(undefined)
+        }
+        className={`action-sheet ${className}`}
+      >
         <div className="action-sheet__container">
           <div className="dark row f2 center-align my-3 mx-3">{title}</div>
 
@@ -114,7 +119,7 @@ class ModalSlideComponent extends React.Component<Props, State> {
         <IonToast
           isOpen={this.state.showToast}
           message={this.state.toastMessage}
-          duration={1000}
+          duration={600}
           onDidDismiss={(): void => this.closeActionSheet()}
         />
       </div>

@@ -34,7 +34,8 @@ import {
   SongInterface,
   PlaylistInterface,
   PlayerActionType,
-  MediaType
+  MediaType,
+  ActionSheetInterface
 } from '../../models';
 import {
   PlayButton,
@@ -54,7 +55,8 @@ import ToastComponent from '../toast';
 import {
   hideToastAction,
   showToastAction,
-  updateSettingsProperty
+  updateSettingsProperty,
+  updateActionSheet
 } from '../../actions';
 import { RouteComponentProps, withRouter } from 'react-router';
 
@@ -72,6 +74,7 @@ interface DispatchProps {
   showToastAction: () => void;
   hideToastAction: () => void;
   updateSettingsProperty: (property: string, value: string) => void;
+  updateActionSheet: (property: ActionSheetInterface) => void;
 }
 
 declare global {
@@ -217,6 +220,16 @@ class PlayerComponent extends React.Component<Props> {
     this.togglePlayer();
   };
 
+  confirmShare(): void {
+    store.dispatch(
+      updateActionSheet({
+        title: 'Share',
+        confirmButtons: false,
+        shareOption: true
+      })
+    );
+  }
+
   playerNavbar(): React.ReactNode {
     return (
       <div id="player-navbar-buttons" className="player-navbar-buttons">
@@ -246,14 +259,20 @@ class PlayerComponent extends React.Component<Props> {
           <LikeButton color={this.getSelected(!!this.props.song?.favorite)} />
           <span className="f8 l1 my-05">Like</span>
         </div>
+
         <div className="navbar-button flex-column mt-05">
           <MixTapeButton />
           <span className="f8 l1 my-05">Mixtape</span>
         </div>
-        <div className="navbar-button flex-column mt-05">
+
+        <div
+          onClick={(): void => this.confirmShare()}
+          className="navbar-button flex-column mt-05"
+        >
           <ShareButton />
           <span className="f8 l1 my-05">Share</span>
         </div>
+
         {this.props.song && this.props.showToast && (
           <ToastComponent
             clickId={'toastClick'}
@@ -521,6 +540,7 @@ export default withRouter(
     seekSongPosition,
     hideToastAction,
     showToastAction,
-    updateSettingsProperty
+    updateSettingsProperty,
+    updateActionSheet
   })(PlayerComponent)
 );

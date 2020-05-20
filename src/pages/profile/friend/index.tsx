@@ -76,7 +76,7 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
         <div className={'profile-page'}>
           <HeaderProfile currentFriend={this.props.currentFriend} />
           <Menu tabs={tabs} activeId={active} onClick={this.changeFriendTab} />
-          {<Tab friendNickName={this.props.match?.params.id} />}
+          {<Tab isFriend={true} friendNickName={this.props.match?.params.id} />}
         </div>
       </React.Fragment>
     );

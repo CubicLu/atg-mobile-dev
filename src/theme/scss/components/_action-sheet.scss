@@ -4,11 +4,12 @@
   height: 100%;
   background-color: #00000050;
   backdrop-filter: blur(7px);
-  z-index: 1;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
   &__container{
+    z-index: 2;
     width: 300px;
     min-height: 150px;
     max-height: 400px;
@@ -16,5 +17,12 @@
     border-radius: 20px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     background-color: #ffffff;
+  }
+  .share-input{
+    border: 2px solid #b3b3b3;
+    border-radius: 10px;
+    background: transparent;
+    margin: 2px;
+    overflow: auto;
   }
 }

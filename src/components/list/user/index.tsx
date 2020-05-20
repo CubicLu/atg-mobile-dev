@@ -37,8 +37,9 @@ export default class ListComponent extends React.Component<Props> {
   confirmDelete(): void {
     store.dispatch(
       updateActionSheet({
-        title: 'Delete Item',
-        confirmButtons: true
+        title: 'Remove Item',
+        confirmButtons: true,
+        cannotDismiss: true
       })
     );
   }

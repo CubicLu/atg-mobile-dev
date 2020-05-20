@@ -1,6 +1,7 @@
 ion-toast::part(container) {
   background: white;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 ion-toast::part(message) {

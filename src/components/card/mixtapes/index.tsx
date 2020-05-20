@@ -56,8 +56,9 @@ class CardMixtapesComponent extends React.Component<Props, State> {
   confirmDelete(): void {
     store.dispatch(
       updateActionSheet({
-        title: 'Delete Item',
-        confirmButtons: true
+        title: 'Remove Mixtape',
+        confirmButtons: true,
+        cannotDismiss: true
       })
     );
   }

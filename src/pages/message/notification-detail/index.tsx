@@ -83,8 +83,9 @@ class MessageNotificationDetailPage extends React.Component<Props> {
   }
   confirmDelete(): void {
     this.props.updateActionSheet({
-      title: 'Delete Item',
-      confirmButtons: true
+      title: 'Remove Notification',
+      confirmButtons: true,
+      cannotDismiss: true
     });
   }
   render(): React.ReactNode {

@@ -53,6 +53,14 @@ class ArtistSupportPage extends React.Component<Props, State> {
     };
   }
 
+  componentDidMount(): void {
+    if (this.props.currentArtist === null) {
+      return this.props.getArtistAPI(this.props.match.params.id);
+    }
+    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+      return this.props.getArtistAPI(this.props.match.params.id);
+    }
+  }
   componentDidUpdate(old): void {
     if (this.props.currentArtist === null) {
       return this.props.getArtistAPI(this.props.match.params.id);

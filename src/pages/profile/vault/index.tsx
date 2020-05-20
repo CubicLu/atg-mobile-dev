@@ -3,7 +3,10 @@ import { Button, ListItem } from './../../../components';
 import { IonList, IonContent } from '@ionic/react';
 import { Colors, ShapesSize } from '../../../types';
 
-export default class ProfileVaultPage extends React.Component<{}> {
+interface Props {
+  canRemove?: boolean;
+}
+export default class ProfileVaultPage extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <IonContent>
@@ -162,7 +165,7 @@ export default class ProfileVaultPage extends React.Component<{}> {
                     sliding={true}
                     expandArrow={true}
                     bottomBorder={true}
-                    optionRemove={true}
+                    optionRemove={this.props.canRemove}
                     hasAvatar={true}
                     avatarSize={48}
                     avatarImage={data.artist.cover.background}

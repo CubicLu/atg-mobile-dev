@@ -15,6 +15,7 @@ import { updateActionSheet } from '../../../actions';
 interface Props {
   artist: ArtistInterface;
   key: number;
+  canRemove?: boolean;
 }
 
 interface State {
@@ -33,6 +34,7 @@ export default class CardArtistComponent extends React.Component<Props, State> {
   confirmDelete(): void {
     store.dispatch(
       updateActionSheet({
+        cannotDismiss: true,
         title: 'Remove this Artist?',
         confirmButtons: true
       })
@@ -80,17 +82,14 @@ export default class CardArtistComponent extends React.Component<Props, State> {
           <div className="flex-align-items-end h-100 px-2">
             <div className="align-start">
               {support && (
-                <React.Fragment>
-                  <div className="star">
-                    <SupportStarIcon />
-                  </div>
-                  <div
-                    className="close"
-                    onClick={(): void => this.confirmDelete()}
-                  >
-                    <ButtonIcon color={Colors.red} icon={<CloseIcon />} />
-                  </div>
-                </React.Fragment>
+                <div className="star">
+                  <SupportStarIcon />
+                </div>
+              )}
+              {this.props.canRemove && !support && (
+                <div className="close" onClick={this.confirmDelete}>
+                  <ButtonIcon color={Colors.red} icon={<CloseIcon />} />
+                </div>
               )}
               <div
                 onClick={(): void => this.linkRef.current!.click()}

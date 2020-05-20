@@ -29,8 +29,9 @@ class MessageChatPage extends React.Component<Props> {
   confirmDelete(): void {
     store.dispatch(
       updateActionSheet({
-        title: 'Delete Item',
-        confirmButtons: true
+        title: 'Remove Conversation',
+        confirmButtons: true,
+        cannotDismiss: true
       })
     );
   }

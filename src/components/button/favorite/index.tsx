@@ -50,8 +50,8 @@ class FavoriteIconComponent extends React.Component<Props> {
   }
   toastClickHandler = (e): void => {
     e.preventDefault();
-    store.dispatch(hideToastAction());
     store.dispatch(updateSettingsProperty('activeFanTab', 'vault'));
+    store.dispatch(hideToastAction());
     this.linkRef.current?.click();
   };
 

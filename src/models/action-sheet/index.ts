@@ -3,6 +3,7 @@ export interface ActionSheetInterface {
   readonly description?: string;
   readonly confirmButtons?: boolean;
   readonly shareOption?: boolean;
+  readonly cannotDismiss?: boolean;
   readonly onCancel?: Function;
   readonly onConfirm?: Function;
   readonly content?: React.ReactNode;

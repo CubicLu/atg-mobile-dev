@@ -1,6 +1,6 @@
 import React from 'react';
-import { ShapesSize, RouterLinkDirection } from '../../../types';
-import { IonRouterLink, IonCheckbox, IonImg } from '@ionic/react';
+import { RouterLinkDirection, ShapesSize } from '../../../types';
+import { IonCheckbox, IonImg, IonRouterLink } from '@ionic/react';
 import { CloseIcon, ContentLoader } from '../..';
 
 interface Props {
@@ -108,9 +108,8 @@ class CardImageComponent extends React.Component<Props, State> {
             {this.props.innerContent}
           </div>
           <ContentLoader
-            className="mt-3"
             speed={2}
-            viewBox="0 0 400 400"
+            viewBox="0 0 110 110"
             baseUrl={window.location.pathname}
             backgroundColor="rgb(255,255,255)"
             foregroundColor="rgb(255,255,255)"
@@ -122,7 +121,11 @@ class CardImageComponent extends React.Component<Props, State> {
                 : { visibility: 'visible' }
             }
           >
-            <rect x="20" y="0" rx="8" ry="8" width="500" height="500" />
+            {type === ShapesSize.circle ? (
+              <circle cx="55" cy="55" r="55" />
+            ) : (
+              <rect x="20" y="0" rx="8" ry="8" width="500" height="500" />
+            )}
           </ContentLoader>
           <div
             className={`mt-15 f5 center-align ${labelClassName}`}

@@ -46,9 +46,8 @@ class CardAlbumGalleryComponent extends React.Component<Props, State> {
           style={{ width: 0, height: 0, visibility: 'hidden' }}
         />
         <ContentLoader
-          className="mt-3"
           speed={2}
-          viewBox="0 0 200 300"
+          viewBox="0 0 161 215"
           baseUrl={window.location.pathname}
           backgroundColor="rgb(255,255,255)"
           foregroundColor="rgb(255,255,255)"
@@ -60,9 +59,9 @@ class CardAlbumGalleryComponent extends React.Component<Props, State> {
               : { visibility: 'visible' }
           }
         >
-          <rect x="20" y="0" rx="8" ry="8" width="180" height="200" />
-          <rect x="20" y="220" width="180" height="20" />
-          <rect x="20" y="250" width="150" height="10" />
+          <rect x="0" y="6" rx="8" ry="8" width="161" height="165" />
+          <rect x="0" y="180" width="180" height="15" />
+          <rect x="0" y="200" width="80" height="15" />
         </ContentLoader>
         <div
           onClick={(): void => onClick()}

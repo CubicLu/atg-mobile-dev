@@ -3,6 +3,10 @@ import { Avatar, ContentLoader } from '../../components';
 import { ShapesSize } from '../../types';
 import { IonRouterLink } from '@ionic/react';
 
+interface State {
+  searchIsReady: boolean;
+}
+
 interface SearchResult {
   name?: string;
   avatar?: string;
@@ -14,19 +18,24 @@ interface Props {
   content: SearchResult[];
 }
 
-class SearchResultSectionComponent extends React.Component<Props> {
-  isReady = false;
+class SearchResultSectionComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchIsReady: false
+    };
+  }
 
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      this.setState({
+        searchIsReady: true
+      });
     }, 2000);
   };
 
   render(): React.ReactNode {
-    if (!this.isReady) this.displayContent();
+    if (!this.state.searchIsReady) this.displayContent();
 
     return (
       <div>
@@ -40,7 +49,7 @@ class SearchResultSectionComponent extends React.Component<Props> {
           backgroundOpacity={0.05}
           foregroundOpacity={0.15}
           style={
-            this.isReady
+            this.state.searchIsReady
               ? { visibility: 'hidden', display: 'none' }
               : { visibility: 'visible' }
           }
@@ -51,7 +60,9 @@ class SearchResultSectionComponent extends React.Component<Props> {
         <div
           className={'search-result mt-3'}
           style={
-            this.isReady ? { visibility: 'visible' } : { visibility: 'hidden' }
+            this.state.searchIsReady
+              ? { visibility: 'visible' }
+              : { visibility: 'hidden' }
           }
         >
           <span className={'section-name'}>{this.props.title}</span>

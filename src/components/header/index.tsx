@@ -1,10 +1,18 @@
 import React from 'react';
-import { BackIcon, ButtonIcon, DotsThreeIcon, StarIcon, Button } from './../';
+import {
+  BackIcon,
+  ButtonIcon,
+  DotsThreeIcon,
+  ShareIcon,
+  StarIcon,
+  Button
+} from './../';
 import {
   CloseIcon,
   SettingsIcon,
   UserGroupIcon,
   BalloonIcon,
+  ChatMessageIcon,
   DashboardIcon,
   NotificationIcon,
   MinimizeIcon
@@ -41,6 +49,7 @@ interface Props {
   fixed?: boolean;
   leftTitle?: string;
   routerDirection?: RouterLinkDirection;
+  rightButtonGroup?: boolean;
   parentCallback?: Function;
   overlay?: number;
   notificationsNumber?: number;
@@ -55,13 +64,14 @@ interface Props {
   rightInfoButton?: boolean;
   rightAddButton?: boolean;
   rightFilterButton?: boolean;
+  rightUserGroupButton?: boolean;
   rightActionYellow?: boolean;
   rightClickGoBack?: boolean;
   likeButtonOnClick?: () => void;
   style?: { [key: string]: any };
 }
 
-export default class HeaderComponent extends React.PureComponent<Props> {
+class HeaderComponent extends React.Component<Props> {
   static contextType = NavContext; //retrieving ionic context
   public static defaultProps = {
     routerDirection: 'back',
@@ -74,6 +84,8 @@ export default class HeaderComponent extends React.PureComponent<Props> {
     rightSettingsButton: false,
     rightAddButton: false,
     rightFilterButton: false,
+    rightUserGroupButton: false,
+    rightButtonGroup: false,
     rightNotificationButton: false,
     rightDashboardButton: false,
     centerContent: null,
@@ -118,6 +130,12 @@ export default class HeaderComponent extends React.PureComponent<Props> {
     );
   }
 
+  openChatPanel = (shouldDisplay: boolean): Function => {
+    return this.props.parentCallback
+      ? this.props.parentCallback(shouldDisplay)
+      : null;
+  };
+
   render(): React.ReactNode {
     const top = this.props.top ? 'header-top' : '';
     const {
@@ -144,13 +162,16 @@ export default class HeaderComponent extends React.PureComponent<Props> {
       rightInfoOnClick,
       rightActionYellow,
       leftTitle,
+      rightButtonGroup,
       children,
+      overlay,
       notificationsNumber,
       rightActionHref,
       rightChatButton,
       rightConnectedButton,
       rightFanFeedButton,
       rightFilterButton,
+      likeButtonOnClick,
       style
     } = this.props;
 
@@ -290,6 +311,35 @@ export default class HeaderComponent extends React.PureComponent<Props> {
                 className="btn filter"
               />
             )}
+
+            {rightButtonGroup && (
+              <ul className="list inline">
+                <li onClick={likeButtonOnClick}>
+                  <ButtonIcon
+                    className="mt-15"
+                    color={Colors.orange}
+                    icon={<StarIcon width={24} height={24} />}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    className="mt-15"
+                    color={Colors.green}
+                    icon={<ShareIcon width={22} height={20} />}
+                    onClick={(): void => this.routeNavigate('/share')}
+                  />
+                </li>
+                <li>
+                  <ButtonIcon
+                    className="mt-15"
+                    color={Colors.cyan}
+                    icon={<ChatMessageIcon />}
+                    onClick={this.openChatPanel.bind(this, true)}
+                    overlay={overlay}
+                  />
+                </li>
+              </ul>
+            )}
           </div>
         </div>
         <div>{children}</div>
@@ -297,3 +347,4 @@ export default class HeaderComponent extends React.PureComponent<Props> {
     );
   }
 }
+export default HeaderComponent;

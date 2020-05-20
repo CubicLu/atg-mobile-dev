@@ -5,8 +5,7 @@ import {
   ActionProperty,
   UpdateModalInterface,
   FilterItemInterface,
-  UpdateModalWrapperClassName,
-  ActionSheetInterface
+  UpdateModalWrapperClassName
 } from './../models';
 
 export const updateSettingsProperty = (
@@ -15,13 +14,6 @@ export const updateSettingsProperty = (
 ): Action<SettingsActionType.UPDATE_PROPERTY, ActionProperty<any>> => ({
   type: SettingsActionType.UPDATE_PROPERTY,
   payload: { property, value }
-});
-
-export const updateActionSheet = (
-  actionSheet?: ActionSheetInterface
-): Action<SettingsActionType.UPDATE_ACTIONSHEET, ActionSheetInterface> => ({
-  type: SettingsActionType.UPDATE_ACTIONSHEET,
-  payload: actionSheet
 });
 
 export const updateSettingsModal = (

@@ -158,9 +158,6 @@
 .mx-3{ margin-left: 24px;margin-right: 24px; }
 .mx-35{ margin-left: 28px;margin-right: 28px; }
 .mx-4{ margin-left: 32px;margin-right: 32px; }
-.mx-5{ margin-left: 40px;margin-right: 40px; }
-.mx-6{ margin-left: 48px;margin-right: 48px; }
-.mx-7{ margin-left: 56px;margin-right: 56px; }
 .my-0{ margin-top: 0px;margin-bottom: 0px; }
 .my-05{ margin-top: 4px;margin-bottom: 4px; }
 .my-1{ margin-top: 8px;margin-bottom: 8px; }
@@ -570,9 +567,6 @@
 .pt-1 {
   padding-top: 8px;
 }
-.pt-15 {
-  padding-top: 12px;
-}
 .pt-2 {
   padding-top: 16px;
 }
@@ -772,12 +766,4 @@
 
 .rotate-180{
   transform: rotate(180deg);
-}
-
-.share-input{
-  border: 2px solid #b3b3b3;
-  border-radius: 10px;
-  background: transparent;
-  margin: 2px;
-  overflow: auto;
 }

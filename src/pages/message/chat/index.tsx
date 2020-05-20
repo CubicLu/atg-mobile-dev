@@ -11,8 +11,7 @@ import { ApplicationState } from './../../../reducers';
 import { RowChat, ButtonIcon, CloseIcon } from '../../../components';
 import { MenuInterface, MessageInterface } from '../../../models';
 import { Colors, ShapesSize } from '../../../types';
-import { updateSettingsProperty, updateActionSheet } from './../../../actions';
-import { store } from '../../../store';
+import { updateSettingsProperty } from './../../../actions';
 
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
@@ -26,14 +25,6 @@ interface StateProps {
 interface Props extends StateProps, DispatchProps {}
 
 class MessageChatPage extends React.Component<Props> {
-  confirmDelete(): void {
-    store.dispatch(
-      updateActionSheet({
-        title: 'Delete Item',
-        confirmButtons: true
-      })
-    );
-  }
   render(): React.ReactNode {
     return (
       <IonContent className="message-chat-page">
@@ -57,7 +48,6 @@ class MessageChatPage extends React.Component<Props> {
                       className="no-padding"
                       icon={<CloseIcon strokeWidth={2} />}
                       color={Colors.red}
-                      onClick={(): void => this.confirmDelete()}
                       type={ShapesSize.normal}
                     />
                   </IonItemOptions>

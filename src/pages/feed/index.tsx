@@ -57,8 +57,8 @@ class FeedPage extends React.Component<Props> {
             (data, i): React.ReactNode => (
               <CardPost
                 key={i}
-                showUser={false}
                 post={data}
+                showUser={true}
                 showOptions={false}
                 clickToOpen={true}
               />

@@ -20,8 +20,6 @@ import {
   IonRouterLink
 } from '@ionic/react';
 import { ShareIcon } from '../../icon';
-import { store } from '../../../store';
-import { updateActionSheet } from '../../../actions';
 
 interface Props {
   sliding: boolean;
@@ -102,24 +100,6 @@ export default class ListItemComponent extends React.Component<Props, State> {
   };
   ref: React.RefObject<HTMLIonItemSlidingElement> = React.createRef();
 
-  confirmDelete(): void {
-    store.dispatch(
-      updateActionSheet({
-        title: 'Delete Item',
-        confirmButtons: true
-      })
-    );
-  }
-  confirmShare(): void {
-    store.dispatch(
-      updateActionSheet({
-        title: 'Share',
-        confirmButtons: false,
-        shareOption: true
-      })
-    );
-  }
-
   sliding(item: React.ReactNode): React.ReactNode {
     const { username, isArtist } = this.props;
     return (
@@ -150,7 +130,6 @@ export default class ListItemComponent extends React.Component<Props, State> {
           )}
           {this.props.optionRemove && (
             <ButtonIcon
-              onClick={(): void => this.confirmDelete()}
               icon={<CloseIcon strokeWidth={2} width={18} height={18} />}
               className="no-padding"
               color={Colors.red}
@@ -159,7 +138,6 @@ export default class ListItemComponent extends React.Component<Props, State> {
           )}
           {this.props.optionShare && (
             <ButtonIcon
-              onClick={(): void => this.confirmShare()}
               icon={<ShareIcon />}
               color={Colors.orange}
               className="no-padding"
@@ -169,7 +147,6 @@ export default class ListItemComponent extends React.Component<Props, State> {
           {this.props.optionAddPlaylist && (
             <ButtonIcon
               icon={<AddPlaylistIcon />}
-              onClick={(): void => this.confirmShare()}
               color={Colors.green}
               className="no-padding"
               type={ShapesSize.normal}

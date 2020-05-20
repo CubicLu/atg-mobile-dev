@@ -8,6 +8,7 @@ interface Props {
   color?: Colors;
   type?: ShapesSize;
   styles?: object;
+  fixed: boolean;
   label?: string | number;
   overlay?: number;
   className?: string;
@@ -21,10 +22,12 @@ export default class ButtonIconComponent extends React.Component<Props> {
     onClick: (): any => {},
     color: Colors.transparentGray,
     type: ShapesSize.circle,
+    fixed: false,
     overlayClassName: 'overlay'
   };
 
   render(): React.ReactNode {
+    const isFixed = (this.props.fixed && ' fixed') || '';
     const {
       onClick,
       type,
@@ -42,7 +45,7 @@ export default class ButtonIconComponent extends React.Component<Props> {
     return (
       <button
         onClick={(): void => (url ? this.linkRef.current?.click() : onClick())}
-        className={`btn icon ${type} ${color} ${custom}`}
+        className={`btn icon ${type} ${color} ${isFixed} ${custom}`}
         style={{ ...styles }}
       >
         {icon}

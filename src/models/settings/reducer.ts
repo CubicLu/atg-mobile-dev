@@ -4,8 +4,7 @@ import {
   MenuInterface,
   ModalSlideInterface,
   PlanInterface,
-  SubEraInterface,
-  ActionSheetInterface
+  SubEraInterface
 } from '../';
 import { Nullable } from './../../types';
 
@@ -16,7 +15,6 @@ export interface SettingsReducerType {
   readonly fanTabs: MenuInterface[];
   readonly artistTabs: MenuInterface[];
   readonly modal: ModalSlideInterface;
-  readonly actionSheet: Nullable<ActionSheetInterface>;
   readonly popUpModal: Nullable<string>;
   readonly plans: PlanInterface[];
   readonly selectedPlan: Nullable<PlanInterface>;

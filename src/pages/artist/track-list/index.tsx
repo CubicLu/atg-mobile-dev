@@ -9,7 +9,7 @@ import {
   PlayerReducerType,
   DiscographyInterface
 } from '../../../models';
-import { IonPage, IonContent, withIonLifeCycle } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import {
   BackgroundImage,
   ButtonSupport,
@@ -42,60 +42,79 @@ interface MatchParams {
   referenceId: string;
   id: string;
 }
-interface State {
-  playlist: PlaylistInterface;
-}
 interface Props
   extends StateProps,
     DispatchProps,
     RouteComponentProps<MatchParams> {}
 
 const lists = [popPlaylist, bluesPlaylist, guitarPlaylist, rivalSonsPlaylist];
-class TrackListPage extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { playlist: lists[0] };
-  }
+class TrackListPage extends React.Component<Props> {
+  playlist: PlaylistInterface = lists[0];
+  isArtist: boolean = false;
 
-  ionViewWillEnter(): void {
-    this.fetchArtist();
-    this.fetchPlaylist();
-  }
-  componentDidUpdate(): void {
-    this.fetchArtist();
-  }
-  fetchArtist(): void {
-    if (!this.isArtist) return;
-    const params = this.props.match.params;
-    if (params.referenceId !== this.props.currentArtist?.username) {
-      this.props.getArtistAPI(params.referenceId);
+  UNSAFE_componentWillReceiveProps(n: Props): void {
+    this.getPlaylistFromAPI(n.match.params.referenceId);
+    this.isArtist = this.props.match.params.reference === 'artist';
+    if (!this.isArtist) {
+      return;
+    }
+    if (n.currentArtist == null) {
+      this.props.getArtistAPI(this.props.match.params.referenceId);
+    } else if (
+      n.match.params.referenceId !== this.props.match.params.referenceId
+    ) {
+      this.props.getArtistAPI(n.match.params.referenceId);
     }
   }
-  fetchPlaylist(): void {
-    const params = this.props.match.params;
-    let id = this.isArtist ? params.id : params.referenceId;
-    if (this.props.match.params.referenceId === 'rival-sons') id = '7516755396';
 
-    const playlist = lists.find((x): boolean => x.id.toString() === id);
-    playlist && this.setState({ playlist });
+  getPlaylistFromAPI(id: string): void {
+    if (id === this.playlist.id.toString()) return;
+    const found = lists.find((x): boolean => x.id.toString() === id);
+    this.playlist = found || lists[0];
   }
+  renderBackground(): React.ReactNode {
+    const artist = this.isArtist ? this.props.currentArtist : null;
+    const color1 =
+      artist?.backgroundGradient?.color1 || this.playlist.color1 || '#aed8e5';
+    const color2 =
+      artist?.backgroundGradient?.color2 || this.playlist.color2 || '#039e4a';
 
-  get isArtist(): boolean {
-    return this.props.match.params.reference === 'artist';
+    return (
+      <React.Fragment>
+        {artist && <div className="fade-background blur" />}
+        <BackgroundImage
+          gradient={`180deg,${color1},${color2}`}
+          styles={artist ? artistBackground(artist, true) : {}}
+          backgroundTop
+          backgroundTopDark={true}
+          backgroundTopOpacity={0.2}
+          backgroundBottom
+          backgroundBottomOrange={true}
+          backgroundBottomOpacity={0.6}
+        />
+      </React.Fragment>
+    );
+  }
+  renderSupportButton(): React.ReactNode {
+    return (
+      this.props.currentArtist && (
+        <div className="center player-support">
+          <ButtonSupport artist={this.props.currentArtist} />
+        </div>
+      )
+    );
   }
   renderTracks(): React.ReactNode {
     const { playing, song } = this.props.player;
     const songId = (playing && song?.id) || -1;
     return (
       <div id="songs" className="mt-3">
-        {this.state.playlist.items.map(
+        {this.playlist.items.map(
           (song: SongInterface, i: number): React.ReactNode => (
             <div
               key={i}
               className="flex-align-items-center row"
-              onClick={(): void =>
-                this.props.setPlaylist(this.state.playlist, song)
-              }
+              onClick={(): void => this.props.setPlaylist(this.playlist, song)}
             >
               <div className="f5 list-track-number">
                 {songId === song.id ? <PulsatingDot /> : i + 1}
@@ -118,11 +137,9 @@ class TrackListPage extends React.Component<Props, State> {
       this.props.currentArtist?.discography &&
       this.props.currentArtist.discography[this.props.match.params.id];
 
-    const coverUrl = disco ? disco.cover : this.state.playlist.cover;
-    const playlist = disco ? disco.name : this.state.playlist.name;
-    const owner = disco
-      ? this.props.currentArtist!.name
-      : this.state.playlist.owner;
+    const coverUrl = disco ? disco.cover : this.playlist.cover;
+    const playlist = disco ? disco.name : this.playlist.name;
+    const owner = disco ? this.props.currentArtist!.name : this.playlist.owner;
 
     return (
       <div className="player-upper-half center-align track-list m-4 mt-0">
@@ -139,60 +156,11 @@ class TrackListPage extends React.Component<Props, State> {
     );
   }
 
-  renderArtistBackground(): React.ReactNode {
-    const artist = this.props.currentArtist;
-    const color1 = artist?.backgroundGradient?.color1 || '#aed8e5';
-    const color2 = artist?.backgroundGradient?.color2 || '#039e4a';
-
-    return (
-      <React.Fragment>
-        {artist && <div className="fade-background blur" />}
-        <BackgroundImage
-          gradient={`180deg,${color1},${color2}`}
-          styles={artist ? artistBackground(artist, true) : {}}
-          backgroundTop
-          backgroundTopDark={true}
-          backgroundTopOpacity={0.2}
-          backgroundBottom
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.6}
-        />
-      </React.Fragment>
-    );
-  }
-  renderPlainBackground(): React.ReactNode {
-    const color1 = this.state.playlist.color1 || '#aed8e5';
-    const color2 = this.state.playlist.color2 || '#039e4a';
-
-    return (
-      <React.Fragment>
-        <BackgroundImage
-          gradient={`180deg,${color1},${color2}`}
-          backgroundTop
-          backgroundTopDark={true}
-          backgroundTopOpacity={0.2}
-          backgroundBottom
-          backgroundBottomOrange={true}
-          backgroundBottomOpacity={0.6}
-        />
-      </React.Fragment>
-    );
-  }
-
-  renderArtist(): React.ReactNode {
+  render(): React.ReactNode {
     return (
       <IonPage id="track-list-page">
-        {this.renderArtistBackground()}
-        <Header
-          centerContent={
-            this.isArtist && (
-              <div className="center player-support">
-                <ButtonSupport artist={this.props.currentArtist} />
-              </div>
-            )
-          }
-        />
-
+        {this.renderBackground()}
+        <Header centerContent={this.renderSupportButton()} />
         <IonContent scrollY={true} className="track-header">
           <div className="track-list-page mx-25">
             {this.renderCover()}
@@ -202,24 +170,6 @@ class TrackListPage extends React.Component<Props, State> {
         </IonContent>
       </IonPage>
     );
-  }
-
-  renderPlain(): React.ReactNode {
-    return (
-      <IonPage id="track-list-page">
-        {this.renderPlainBackground()}
-        <Header />
-        <IonContent scrollY={true} className="track-header">
-          <div className="track-list-page mx-25">
-            {this.renderCover()}
-            {this.renderTracks()}
-          </div>
-        </IonContent>
-      </IonPage>
-    );
-  }
-  render(): React.ReactNode {
-    return this.isArtist ? this.renderArtist() : this.renderPlain();
   }
 }
 
@@ -232,5 +182,5 @@ const mapStateToProps = ({
 };
 
 export default connect(mapStateToProps, { getArtistAPI, setPlaylist })(
-  withIonLifeCycle(TrackListPage)
+  TrackListPage
 );

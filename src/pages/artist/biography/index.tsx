@@ -11,6 +11,7 @@ import {
 import {
   Header,
   ButtonIcon,
+  StarIcon,
   ShareIcon,
   ArrowRightIcon,
   HeaderOverlay,
@@ -19,14 +20,12 @@ import {
   CardImage,
   PopUpModal,
   PremiumFeaturesModalContent,
-  ContentLoader,
-  FavoriteIcon
+  ContentLoader
 } from './../../../components';
 import {
   updateSettingsProperty,
   updateSettingsModal,
   getArtistAPI,
-  updateActionSheet,
   updatePopUpModal
 } from '../../../actions';
 import { ApplicationState } from '../../../reducers';
@@ -34,8 +33,7 @@ import {
   ArtistInterface,
   ModalSlideInterface,
   BiographyInterface,
-  AlbumInterface,
-  ActionSheetInterface
+  AlbumInterface
 } from '../../../models';
 import { Colors, ShapesSize } from './../../../types';
 import { validateScrollHeader } from '../../../utils';
@@ -45,7 +43,6 @@ import { RouteComponentProps } from 'react-router';
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
   updateSettingsProperty: (property: string, value: any) => void;
-  updateActionSheet: (property: ActionSheetInterface) => void;
   updateSettingsModal: (
     content: React.ReactNode,
     className?: string,
@@ -83,12 +80,9 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.state = { currentPage: 0, blur: false, biographyIsReady: false };
   }
 
-  componentDidUpdate(): void {
-    if (this.props.currentArtist === null) {
-      return this.props.getArtistAPI(this.props.match.params.id);
-    }
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
-      this.props.getArtistAPI(this.props.match.params.id);
+  UNSAFE_componentWillReceiveProps(next: Props): void {
+    if (this.props.currentArtist?.username !== next.match.params.id) {
+      this.props.getArtistAPI(next.match.params.id);
     }
   }
 
@@ -442,10 +436,12 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   bioFooter(): React.ReactNode {
     return (
       <div className="footer flex p-3 fluid mt-2 mb-2">
-        <FavoriteIcon />
+        <ButtonIcon
+          color={Colors.orange}
+          icon={<StarIcon width={24} height={24} />}
+        />
         <span className="mx-3" />
         <ButtonIcon
-          onClick={(): void => this.confirmShare()}
           color={Colors.green}
           icon={<ShareIcon width={22} height={20} />}
         />
@@ -459,14 +455,6 @@ class ArtistBiographyPage extends React.Component<Props, State> {
       </div>
     );
   }
-  confirmShare(): void {
-    this.props.updateActionSheet({
-      title: 'Share',
-      confirmButtons: false,
-      shareOption: true
-    });
-  }
-
   supportModal(): React.ReactNode {
     const { popUpModal } = this.props;
     const { currentArtist } = this.props;
@@ -537,7 +525,6 @@ const mapStateToProps = ({
 export default connect(mapStateToProps, {
   updateSettingsProperty,
   updateSettingsModal,
-  updateActionSheet,
   getArtistAPI,
   updatePopUpModal
 })(ArtistBiographyPage);

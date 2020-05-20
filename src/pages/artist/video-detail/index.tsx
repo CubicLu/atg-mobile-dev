@@ -5,17 +5,13 @@ import {
   VideoPlayer,
   ShareIcon,
   ButtonIcon,
+  StarIcon,
   ChatMessageIcon,
   PhotoChat,
   OutlinedButton,
-  ContentLoader,
-  FavoriteIcon
+  ContentLoader
 } from '../../../components';
-import {
-  ArtistInterface,
-  CommentInterface,
-  ActionSheetInterface
-} from '../../../models';
+import { ArtistInterface, CommentInterface } from '../../../models';
 import { Colors, Nullable } from '../../../types';
 import { RouteComponentProps, withRouter } from 'react-router';
 
@@ -25,15 +21,18 @@ import BottomTilesComponent from '../../../components/bottom-tiles';
 import {
   getArtistAPI,
   getArtistGalleryCommentsAPI,
+  hideToastAction,
+  showToastAction,
   updateSettingsProperty,
   updateSettingsModal,
-  updateSettingsModalClassName,
-  updateActionSheet
+  updateSettingsModalClassName
 } from '../../../actions';
+import ToastComponent from '../../../components/toast';
 
 interface StateProps {
   currentArtist: ArtistInterface | null;
   currentGalleryComments: CommentInterface[];
+  showToast: boolean;
   playing: boolean;
 }
 interface State {
@@ -43,8 +42,9 @@ interface State {
 }
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
-  updateActionSheet: (property: ActionSheetInterface) => void;
   getArtistGalleryCommentsAPI: (videoId: number, username: string) => void;
+  hideToastAction: () => void;
+  showToastAction: () => void;
   updateSettingsProperty: (property: string, value: string) => void;
   updateSettingsModal: (
     content: React.ReactNode,
@@ -75,6 +75,11 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     };
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      this.props.getArtistAPI(nextProps.match.params.id);
+    }
+  }
   componentDidMount(): void {
     const {
       currentArtist,
@@ -87,12 +92,6 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (this.props.currentArtist === null) {
-      return this.props.getArtistAPI(this.props.match.params.id);
-    }
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
     if (prevProps.playing && !this.props.playing) {
       this.props.updateSettingsModalClassName('vertical-video-modal-container');
     }
@@ -104,14 +103,16 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   expandChat(): void {
     this.setState({ chatExpanded: !this.state.chatExpanded });
   }
-  confirmShare(): void {
-    this.props.updateActionSheet({
-      title: 'Share',
-      confirmButtons: false,
-      shareOption: true
-    });
-  }
+
+  toastClickHandler = (e): void => {
+    const { updateSettingsProperty, history } = this.props;
+    e.preventDefault();
+    updateSettingsProperty('activeFanTab', 'vault');
+    history.push('/profile');
+  };
+
   renderButtons(): React.ReactNode {
+    const { showToast } = this.props;
     const isPortrait = this.state.orientation === 'portrait';
     return (
       <div
@@ -121,15 +122,13 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             : 'flex-justify-content-center'
         }`}
       >
-        <FavoriteIcon />
-        <div className="mx-1" />
-
         <ButtonIcon
-          onClick={(): void => this.confirmShare()}
-          color={Colors.green}
-          icon={<ShareIcon />}
+          color={Colors.orange}
+          icon={<StarIcon width={28} height={28} />}
+          onClick={this.props.showToastAction}
         />
-
+        <div className="mx-1" />
+        <ButtonIcon color={Colors.green} icon={<ShareIcon />} />
         <div className="mx-1" />
         <ButtonIcon
           styles={{ position: 'relative' }}
@@ -138,7 +137,6 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
           onClick={(): void => this.setChat(!this.state.chatOpened)}
           overlay={50}
         />
-
         {isPortrait && (
           <OutlinedButton
             onClick={(): void =>
@@ -164,6 +162,17 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
             }
             style={{ marginLeft: 'auto' }}
             text={'More'}
+          />
+        )}
+        {showToast && (
+          <ToastComponent
+            clickId={'toastClick'}
+            clickHandler={this.toastClickHandler}
+            message={
+              '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
+            }
+            hideToast={this.props.hideToastAction}
+            classNames={'custom-toast'}
           />
         )}
       </div>
@@ -277,20 +286,23 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
 
 const mapStateToProps = ({
   artistAPI,
+  settings,
   player
 }: ApplicationState): StateProps => {
   const { currentArtist, currentGalleryComments } = artistAPI;
+  const { showToast } = settings;
   const { playing } = player;
-  return { currentArtist, currentGalleryComments, playing };
+  return { currentArtist, currentGalleryComments, showToast, playing };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
     getArtistAPI,
     getArtistGalleryCommentsAPI,
+    hideToastAction,
     updateSettingsProperty,
+    showToastAction,
     updateSettingsModal,
-    updateSettingsModalClassName,
-    updateActionSheet
+    updateSettingsModalClassName
   })(ArtistVideoDetailPage)
 );

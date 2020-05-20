@@ -171,8 +171,8 @@ export default class ProfileVaultPage extends React.Component<Props> {
                     avatarImage={data.artist.cover.background}
                     avatarBadge={i % 3 === 0}
                     badgeColor={Colors.red}
-                    optionAddPlaylist={true}
-                    optionShare={true}
+                    optionAddPlaylist={data.artist.support}
+                    optionShare={data.artist.support}
                     songName={data.song}
                     artistName={data.artist.name}
                     artist={data.artist}

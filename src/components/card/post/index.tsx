@@ -10,7 +10,7 @@ import {
 } from './../../../components';
 import { PostInterface } from '../../../models';
 import { ShapesSize } from '../../../types';
-import { IonRouterLink, IonSlides, IonSlide } from '@ionic/react';
+import { IonRouterLink, IonSlides, IonSlide, IonImg } from '@ionic/react';
 
 interface Props {
   post: PostInterface;
@@ -22,16 +22,17 @@ interface Props {
   rounded: boolean;
 }
 
-export default class CardPostComponent extends React.Component<Props> {
-  isReady = false;
+interface State {
+  communityIsReady: boolean;
+}
 
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
+export default class CardPostComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      communityIsReady: false
+    };
+  }
 
   public static defaultProps = {
     showOptions: false,
@@ -39,24 +40,6 @@ export default class CardPostComponent extends React.Component<Props> {
     clickToOpen: false,
     rounded: true
   };
-
-  renderSkeleton(): React.ReactNode {
-    return (
-      <ContentLoader
-        className="mt-3 px-3 fluid"
-        speed={2}
-        width={'100%'}
-        height={290}
-        baseUrl={window.location.pathname}
-        backgroundColor="rgb(255,255,255)"
-        foregroundColor="rgb(255,255,255)"
-        backgroundOpacity={0.05}
-        foregroundOpacity={0.15}
-      >
-        <rect x="2" y="0" rx="8" ry="8" width="355" height="268" />
-      </ContentLoader>
-    );
-  }
 
   stylizePost(url: string, rounded: boolean = true): CSSProperties {
     return {
@@ -72,13 +55,53 @@ export default class CardPostComponent extends React.Component<Props> {
 
   renderPostSingle(): React.ReactNode {
     return (
-      <div
-        className={`flex-column space-between overflow-x ${this.props.className}`}
-        style={this.stylizePost(
-          this.props.post.image as string,
-          this.props.rounded
-        )}
-      />
+      <div>
+        <IonImg
+          className={`flex-column space-between overflow-x ${this.props.className}`}
+          // @ts-ignore
+          src={this.props.post.image}
+          onIonImgDidLoad={(): void => {
+            this.setState({
+              communityIsReady: true
+            });
+          }}
+          style={
+            this.state.communityIsReady
+              ? {
+                  height: '290px',
+                  position: 'relative',
+                  backgroundImage: 'linear-gradient(#5f5f5f80, #8f8f8f80)',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  borderRadius: this.props.rounded ? '20px' : 0,
+                  overflowY: 'hidden',
+                  objectFit: 'cover'
+                }
+              : { visibility: 'hidden', width: 0, height: 0 }
+          }
+        />
+        <ContentLoader
+          className="fluid"
+          speed={2}
+          width={'100%'}
+          height={400}
+          baseUrl={window.location.pathname}
+          backgroundColor="rgb(255,255,255)"
+          foregroundColor="rgb(255,255,255)"
+          backgroundOpacity={0.05}
+          foregroundOpacity={0.15}
+          style={
+            this.state.communityIsReady
+              ? {
+                  visibility: 'hidden',
+                  display: 'none'
+                }
+              : { visibility: 'visible' }
+          }
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="100%" height="268" />
+        </ContentLoader>
+      </div>
     );
   }
   renderPostSlideshow(): React.ReactNode {
@@ -169,9 +192,6 @@ export default class CardPostComponent extends React.Component<Props> {
   render(): React.ReactNode {
     const { post, clickToOpen } = this.props;
     const url = clickToOpen ? `/community/comments/${post.id || 1}` : undefined;
-
-    if (!this.isReady) this.displayContent();
-    if (!this.isReady) this.renderSkeleton();
 
     return (
       <div className="mb-4" style={{ position: 'relative' }}>

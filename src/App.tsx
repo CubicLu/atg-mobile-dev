@@ -98,7 +98,8 @@ export default class App extends React.Component<{}, State> {
       return (
         <Provider store={store}>
           <IonApp>
-            <SplashScreen />
+            {/* eslint-disable-next-line no-undef */}
+            {process.env.NODE_ENV !== 'development' ? <SplashScreen /> : null}
             <HomePage />
             {this.state.enableMedia && <CordovaMedia />}
           </IonApp>
@@ -109,7 +110,8 @@ export default class App extends React.Component<{}, State> {
     return (
       <Provider store={store}>
         <IonApp>
-          <SplashScreen />
+          {/* eslint-disable-next-line no-undef */}
+          {process.env.NODE_ENV !== 'development' ? <SplashScreen /> : null}
           <IonReactRouter>
             <IonRouterOutlet id="notLogged" mode="ios">
               <Route exact path="/initial" component={InitialPage} />

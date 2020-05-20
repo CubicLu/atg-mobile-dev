@@ -19,7 +19,8 @@ import {
   DefaultModal,
   CardImage,
   PopUpModal,
-  PremiumFeaturesModalContent
+  PremiumFeaturesModalContent,
+  ContentLoader
 } from './../../../components';
 import {
   updateSettingsProperty,
@@ -61,6 +62,7 @@ interface MatchParams {
 interface State {
   currentPage: number;
   blur: boolean;
+  biographyIsReady: boolean;
 }
 
 interface Props
@@ -75,7 +77,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   private titleRef: React.RefObject<CreateAnimation> = React.createRef();
   constructor(props: Props) {
     super(props);
-    this.state = { currentPage: 0, blur: false };
+    this.state = { currentPage: 0, blur: false, biographyIsReady: false };
   }
 
   UNSAFE_componentWillReceiveProps(next: Props): void {
@@ -183,6 +185,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
   }
   render(): React.ReactNode {
     if (!this.props.currentArtist) return this.renderEmpty();
+
     const {
       currentArtist: artist,
       currentArtist: { biography }
@@ -235,6 +238,32 @@ class ArtistBiographyPage extends React.Component<Props, State> {
           scrollX={false}
           onIonScroll={(e): void => this.handleScroll(e)}
         >
+          <IonImg
+            src={biography[0].cover}
+            onIonImgDidLoad={(): void => {
+              this.setState({
+                biographyIsReady: true
+              });
+            }}
+            style={{ width: 0, height: 0, visibility: 'hidden' }}
+          />
+          <ContentLoader
+            className="mt-3"
+            speed={2}
+            viewBox="0 0 400 650"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(0,0,0)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.15}
+            foregroundOpacity={0.25}
+            style={
+              this.state.biographyIsReady
+                ? { visibility: 'hidden', display: 'none' }
+                : { visibility: 'visible' }
+            }
+          >
+            <rect x="0" y="0" width="400" height="650" />
+          </ContentLoader>
           {biography && (
             <IonSlides
               ref={this.slides}
@@ -246,8 +275,13 @@ class ArtistBiographyPage extends React.Component<Props, State> {
               onIonSlideWillChange={(): Promise<void> | undefined =>
                 this.content?.current?.scrollToTop(700)
               }
+              style={
+                this.state.biographyIsReady
+                  ? { visibility: 'visible' }
+                  : { visibility: 'hidden' }
+              }
             >
-              {biography?.map(
+              {biography.map(
                 (b: BiographyInterface): React.ReactFragment => (
                   <IonSlide
                     key={b.chapter}

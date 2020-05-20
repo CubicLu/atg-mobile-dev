@@ -23,9 +23,7 @@ interface DispatchProps {
     onClick?: Function
   ) => void;
 }
-interface StateProps {
-  loading?: boolean;
-}
+
 interface Props extends DispatchProps {
   showFilter?: boolean;
   currentFriend?: Nullable<FriendInterface>;
@@ -139,34 +137,42 @@ export default class HeaderProfileComponent extends React.Component<
           routerDirection="forward"
         />
         <div className="profile-center">
-          {!this.state.isReady ? (
-            <ContentLoader
-              speed={2}
-              width={400}
-              height={160}
-              viewBox="0 0 400 160"
-              baseUrl={window.location.pathname}
-              backgroundColor="rgb(255,255,255)"
-              foregroundColor="rgb(255,255,255)"
-              backgroundOpacity={0.05}
-              foregroundOpacity={0.15}
-            >
-              <circle cx="30" cy="30" r="30" />
-              <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
-              <rect x="0" y="100" rx="3" ry="3" width="200" height="31" />
-            </ContentLoader>
-          ) : (
-            <div>
-              <Avatar
-                type={ShapesSize.circle}
-                image={this.props.currentFriend?.image}
-              />
-              <div className="f4 l15">{this.props.currentFriend?.name}</div>
-              <div className="h00 l1 shadow">
-                {this.props.currentFriend?.nickname}
-              </div>
+          <ContentLoader
+            speed={2}
+            width={400}
+            height={160}
+            viewBox="0 0 400 160"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
+            style={
+              this.state.isReady
+                ? { visibility: 'hidden', display: 'none' }
+                : { visibility: 'visible' }
+            }
+          >
+            <circle cx="30" cy="30" r="30" />
+            <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
+            <rect x="0" y="100" rx="3" ry="3" width="200" height="31" />
+          </ContentLoader>
+          <div
+            style={
+              this.state.isReady
+                ? { visibility: 'visible' }
+                : { visibility: 'hidden' }
+            }
+          >
+            <Avatar
+              type={ShapesSize.circle}
+              image={this.props.currentFriend?.image}
+            />
+            <div className="f4 l15">{this.props.currentFriend?.name}</div>
+            <div className="h00 l1 shadow">
+              {this.props.currentFriend?.nickname}
             </div>
-          )}
+          </div>
         </div>
       </div>
     );
@@ -188,33 +194,41 @@ export default class HeaderProfileComponent extends React.Component<
           routerDirection="forward"
         />
         <div className="profile-center">
-          {!this.state.isReady ? (
-            <ContentLoader
-              speed={2}
-              width={400}
-              height={160}
-              viewBox="0 0 400 160"
-              baseUrl={window.location.pathname}
-              backgroundColor="rgb(255,255,255)"
-              foregroundColor="rgb(255,255,255)"
-              backgroundOpacity={0.05}
-              foregroundOpacity={0.15}
-            >
-              <circle cx="30" cy="30" r="30" />
-              <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
-              <rect x="0" y="100" rx="3" ry="3" width="200" height="31" />
-            </ContentLoader>
-          ) : (
-            <div>
-              <Avatar
-                type={ShapesSize.circle}
-                image="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png"
-                onClick={this.showMenuListModal}
-              />
-              <div className="f4 l15">Rosetta</div>
-              <div className="h00 l1 shadow">Musical Goddess</div>
-            </div>
-          )}
+          <ContentLoader
+            speed={2}
+            width={400}
+            height={160}
+            viewBox="0 0 400 160"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
+            style={
+              this.state.isReady
+                ? { visibility: 'hidden', display: 'none' }
+                : { visibility: 'visible' }
+            }
+          >
+            <circle cx="30" cy="30" r="30" />
+            <rect x="0" y="65" rx="3" ry="3" width="164" height="20" />
+            <rect x="0" y="100" rx="3" ry="3" width="200" height="31" />
+          </ContentLoader>
+          <div
+            style={
+              this.state.isReady
+                ? { visibility: 'visible' }
+                : { visibility: 'hidden' }
+            }
+          >
+            <Avatar
+              type={ShapesSize.circle}
+              image="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/rosetta.png"
+              onClick={this.showMenuListModal}
+            />
+            <div className="f4 l15">Rosetta</div>
+            <div className="h00 l1 shadow">Musical Goddess</div>
+          </div>
         </div>
       </div>
     );

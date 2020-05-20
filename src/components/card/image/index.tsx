@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShapesSize, RouterLinkDirection } from '../../../types';
-import { IonRouterLink, IonCheckbox } from '@ionic/react';
-import { CloseIcon } from '../..';
+import { IonRouterLink, IonCheckbox, IonImg } from '@ionic/react';
+import { CloseIcon, ContentLoader } from '../..';
 
 interface Props {
   image: string | undefined;
@@ -21,7 +21,18 @@ interface Props {
   removeAction?: Function;
 }
 
-class CardImageComponent extends React.Component<Props> {
+interface State {
+  albumIsReady: boolean;
+}
+
+class CardImageComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      albumIsReady: false
+    };
+  }
+
   public static defaultProps = {
     type: ShapesSize.normal,
     col: 6,
@@ -42,19 +53,33 @@ class CardImageComponent extends React.Component<Props> {
     } = this.props;
     return (
       <div className={`col s${col}`}>
+        <IonImg
+          onIonImgDidLoad={(): void => {
+            this.setState({
+              albumIsReady: true
+            });
+          }}
+          src={image}
+          style={{ width: 0, height: 0, visibility: 'hidden' }}
+        />
         <IonRouterLink
           routerLink={this.props.routerLink}
           routerDirection={this.props.routerDirection}
         >
           <div
             className={`card image ${type} ${className}`}
-            style={{
-              backgroundImage: `url(${image})`,
-              height: diameter,
-              width: diameter,
-              minHeight: diameter,
-              minWidth: diameter
-            }}
+            style={
+              this.state.albumIsReady
+                ? {
+                    backgroundImage: `url(${image})`,
+                    height: diameter,
+                    width: diameter,
+                    minHeight: diameter,
+                    minWidth: diameter,
+                    visibility: 'visible'
+                  }
+                : { visibility: 'hidden', height: 0, width: 0, display: 'none' }
+            }
           >
             {this.props.canRemove && (
               <div
@@ -82,6 +107,23 @@ class CardImageComponent extends React.Component<Props> {
 
             {this.props.innerContent}
           </div>
+          <ContentLoader
+            className="mt-3"
+            speed={2}
+            viewBox="0 0 400 400"
+            baseUrl={window.location.pathname}
+            backgroundColor="rgb(255,255,255)"
+            foregroundColor="rgb(255,255,255)"
+            backgroundOpacity={0.05}
+            foregroundOpacity={0.15}
+            style={
+              this.state.albumIsReady
+                ? { visibility: 'hidden', display: 'none' }
+                : { visibility: 'visible' }
+            }
+          >
+            <rect x="20" y="0" rx="8" ry="8" width="500" height="500" />
+          </ContentLoader>
           <div
             className={`mt-15 f5 center-align ${labelClassName}`}
             style={{ width: diameter }}

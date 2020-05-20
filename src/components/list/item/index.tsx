@@ -55,16 +55,24 @@ interface Props {
   leftContentAction?: () => void;
   rightContentAction?: () => void;
 }
+interface State {
+  isReady: boolean;
+}
+export default class ListItemComponent extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
+    };
+  }
 
-export default class ListItemComponent extends React.Component<Props> {
   linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
-  isReady = false;
 
   displayContent = (): void => {
     setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
+      this.setState({
+        isReady: true
+      });
     }, 2000);
   };
   public static defaultProps = {
@@ -292,7 +300,7 @@ export default class ListItemComponent extends React.Component<Props> {
   }
 
   render(): React.ReactNode {
-    if (!this.isReady) {
+    if (!this.state.isReady) {
       this.displayContent();
       return this.loadContent();
     } else {

@@ -32,7 +32,9 @@ class ModalSlideComponent extends React.Component<Props, State> {
       toastMessage: 'Removed Successfully'
     });
   }
+  lockDismiss = false;
   clickCopy(): void {
+    this.lockDismiss = true;
     this.setState({
       showToast: true,
       toastMessage: 'Link copied to pasteboard'
@@ -43,6 +45,12 @@ class ModalSlideComponent extends React.Component<Props, State> {
       showToast: false,
       toastMessage: ''
     });
+    this.props.updateActionSheet(undefined);
+  }
+  dismissActionSheet(e): void {
+    e?.preventDefault();
+    if (this.lockDismiss) return;
+    if (this.props.actionSheet?.cannotDismiss) return;
     this.props.updateActionSheet(undefined);
   }
   renderShare(): React.ReactNode {
@@ -77,14 +85,12 @@ class ModalSlideComponent extends React.Component<Props, State> {
       description,
       content,
       confirmButtons,
-      shareOption,
-      cannotDismiss
+      shareOption
     } = this.props.actionSheet;
+
     return (
       <div
-        onClick={(): void =>
-          cannotDismiss ? undefined : this.props.updateActionSheet(undefined)
-        }
+        onClick={(e): void => this.dismissActionSheet(e)}
         className={`action-sheet ${className}`}
       >
         <div className="action-sheet__container">

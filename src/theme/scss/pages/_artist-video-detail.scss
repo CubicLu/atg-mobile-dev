@@ -1,12 +1,14 @@
 .vertical-video-modal-container{
   .sliding-panel-container{
     top: -50px;
+    z-index: 10;
   }
 }
 
 .sliding-panel-with-player-container{
   .sliding-panel-container{
     top: -100px;
+    z-index: 10;
   }
   .mini-player{
     z-index: 11;

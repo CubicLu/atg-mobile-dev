@@ -184,7 +184,6 @@ export default class HeaderProfileComponent extends React.Component<
         <Header
           leftBackButton={false}
           rightSettingsButton={!showFilter}
-          rightUserGroupButton={!showFilter}
           rightNotificationButton={!showFilter}
           rightDashboardButton={!showFilter}
           rightDashboardOnClick={this.showArtistListModal}

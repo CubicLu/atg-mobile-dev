@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, IonAlert } from '@ionic/react';
 import { ApplicationState } from './../../../reducers';
 import { MenuInterface, NotificationInterface } from '../../../models';
 import { Colors, ShapesSize } from '../../../types';
-import { updateSettingsProperty, updateActionSheet } from './../../../actions';
+import { updateSettingsProperty } from './../../../actions';
 import {
   BackgroundImage,
   Header,
@@ -16,18 +16,20 @@ import {
 import { HistoryProps } from '../../../models/@commons/routeProps';
 interface DispatchProps {
   updateSettingsProperty: (property, value) => void;
-  updateActionSheet: (e) => void;
 }
 interface StateProps {
   readonly messageTabs: MenuInterface[];
   readonly activeMessageTab: string;
   readonly notificationsSearch: NotificationInterface[];
 }
+interface State {
+  readonly showAlert: boolean;
+}
 interface Props extends StateProps, DispatchProps, HistoryProps {
   readonly needAccept?: boolean;
 }
 
-class MessageNotificationDetailPage extends React.Component<Props> {
+class MessageNotificationDetailPage extends React.Component<Props, State> {
   private headerRef: React.RefObject<any> = React.createRef();
   public static defaultProps = {
     needAccept: false
@@ -38,6 +40,13 @@ class MessageNotificationDetailPage extends React.Component<Props> {
       showAlert: false
     };
   }
+
+  setAlert = (condition = false): void => {
+    this.setState({
+      showAlert: condition
+    });
+  };
+
   renderNeedAccept(): React.ReactNode {
     return (
       <div className="row">
@@ -81,14 +90,9 @@ class MessageNotificationDetailPage extends React.Component<Props> {
       </>
     );
   }
-  confirmDelete(): void {
-    this.props.updateActionSheet({
-      title: 'Delete Item',
-      confirmButtons: true
-    });
-  }
   render(): React.ReactNode {
-    let props: any = this.props.history.location.state || {};
+    const { showAlert } = this.state;
+    let props: any = this.props.history.location.state;
     let labelButton = props.needAccept ? 'Start Chat' : 'Start';
 
     return (
@@ -99,7 +103,7 @@ class MessageNotificationDetailPage extends React.Component<Props> {
             <ButtonIcon
               icon={<TrashIcon />}
               color={Colors.transparent}
-              onClick={(): void => this.confirmDelete()}
+              onClick={(): void => this.setAlert(true)}
             />
           }
         />
@@ -148,6 +152,12 @@ class MessageNotificationDetailPage extends React.Component<Props> {
               </div>
             </div>
           </div>
+          <IonAlert
+            isOpen={showAlert}
+            onDidDismiss={(): void => this.setAlert(false)}
+            header={'Are you sure?'}
+            buttons={['Yes', 'No']}
+          />
         </IonContent>
       </IonPage>
     );
@@ -164,6 +174,5 @@ const mapStateToProps = ({
 };
 
 export default connect(mapStateToProps, {
-  updateSettingsProperty,
-  updateActionSheet
+  updateSettingsProperty
 })(MessageNotificationDetailPage);

@@ -7,7 +7,6 @@ import InputTextComponent from './input/text';
 import InputTextAreaComponent from './input/text-area';
 import InputCodeComponent from './input/code';
 import ButtonIconComponent from './button/icon';
-import FavoriteIconComponent from './button/favorite';
 import HeaderProfileComponent from './header/profile';
 import AvatarComponent from './avatar';
 import CardArtistComponent from './card/artist';
@@ -28,7 +27,6 @@ import SliderMembersComponent from './slider/members';
 import BottomTilesComponent from './bottom-tiles';
 import CardEventComponent from './card/event';
 import ModalSlideComponent from './modal/slide';
-import ActionSheetComponent from './action-sheet';
 import MenuFanSupportOptionsComponent from './menu/fan-support-options';
 import ButtonPlanComponent from './button/plan';
 import ListItemComponent from './list/item';
@@ -69,7 +67,6 @@ import CardRadioComponent from './card/radio';
 import SliderRadiosComponent from './slider/custom-radio';
 
 import SplashScreenComponent from './splash-screen';
-import ToastComponent from './toast';
 
 import {
   ButtonSupportIconComponent,
@@ -109,7 +106,6 @@ export {
   InputTextAreaComponent as InputTextArea,
   InputChatComponent as InputChat,
   ButtonIconComponent as ButtonIcon,
-  FavoriteIconComponent as FavoriteIcon,
   InputCodeComponent as InputCode,
   HeaderProfileComponent as HeaderProfile,
   AvatarComponent as Avatar,
@@ -131,7 +127,6 @@ export {
   CardEventComponent as CardEvent,
   BottomTilesComponent as BottomTiles,
   ModalSlideComponent as ModalSlide,
-  ActionSheetComponent as ActionSheet,
   MenuFanSupportOptionsComponent as MenuFanSupportOptions,
   ButtonPlanComponent as ButtonPlan,
   ListItemComponent as ListItem,
@@ -178,8 +173,7 @@ export {
   CardRadioComponent as CardRadio,
   SliderRadiosComponent as SliderRadios,
   ChatBalloonComponent as ChatBalloon,
-  OutlinedButtonComponent as OutlinedButton,
-  ToastComponent as Toast
+  OutlinedButtonComponent as OutlinedButton
 };
 
 export {

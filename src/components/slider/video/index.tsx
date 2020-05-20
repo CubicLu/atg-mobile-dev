@@ -10,6 +10,7 @@ interface Props {
   viewAll?: boolean;
   showFooter: boolean;
   scroll?: boolean;
+  canEdit: boolean;
   data?: any[];
   size?: Sizes;
   type?: ShapesSize;
@@ -20,6 +21,7 @@ class SliderVideoComponent extends React.Component<Props> {
     scroll: false,
     viewAll: false,
     showFooter: false,
+    canEdit: false,
     size: Sizes.md,
     type: ShapesSize.rounded
   };

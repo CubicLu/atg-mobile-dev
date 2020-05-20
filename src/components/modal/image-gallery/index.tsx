@@ -1,6 +1,6 @@
 import React from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import { BackIcon } from '../../icon';
+import { BackIcon, ArrowRightIcon } from '../../icon';
 import { GalleryImageInterface } from '../../../models';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
@@ -26,8 +26,11 @@ interface Props extends StateProps, DispatchProps, OwnProps {}
 
 class FullScreenImageModalComponent extends React.Component<Props, State> {
   changePageHandler = (reset, increase?: boolean): (() => void) => (): void => {
-    this.props.changePage(increase);
-    setTimeout((): void => reset(), 50);
+    const { changePage } = this.props;
+    changePage(increase);
+    setTimeout((): void => {
+      reset();
+    }, 100);
   };
 
   render(): React.ReactNode {
@@ -49,7 +52,7 @@ class FullScreenImageModalComponent extends React.Component<Props, State> {
               {fullScreenImageIndex > 0 && (
                 <div
                   className="full-screen-image-icons__leftIcon"
-                  onClick={this.changePageHandler(resetTransform, false)}
+                  onClick={this.changePageHandler(resetTransform)}
                 >
                   <BackIcon />
                 </div>
@@ -59,7 +62,7 @@ class FullScreenImageModalComponent extends React.Component<Props, State> {
                   className="full-screen-image-icons__rightIcon"
                   onClick={this.changePageHandler(resetTransform, true)}
                 >
-                  <BackIcon />
+                  <ArrowRightIcon />
                 </div>
               )}
             </div>

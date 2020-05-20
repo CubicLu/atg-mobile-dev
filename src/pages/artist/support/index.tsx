@@ -53,18 +53,11 @@ class ArtistSupportPage extends React.Component<Props, State> {
     };
   }
 
-  componentDidUpdate(old): void {
-    if (this.props.currentArtist === null) {
-      return this.props.getArtistAPI(this.props.match.params.id);
-    }
+  componentDidUpdate(): void {
     if (this.props.currentArtist?.username !== this.props.match.params.id) {
       return this.props.getArtistAPI(this.props.match.params.id);
     }
-    if (
-      this.props.currentArtist?.username !== old.currentArtist?.username &&
-      this.props.currentArtist?.support &&
-      !this.state.plan
-    ) {
+    if (this.props.currentArtist?.support && !this.state.plan) {
       this.setState({ plan: plans[0] });
     }
   }
@@ -73,16 +66,18 @@ class ArtistSupportPage extends React.Component<Props, State> {
     this.setState({ plan });
   }
 
-  upgradeStatus = (newPlan?: PlanInterface): (() => void) => (): void => {
-    if (newPlan?.id !== this.state.plan?.id) {
-      this.props.updatePopUpModal('confirmPremiumModal');
+  upgradeStatus = (newPlan: PlanInterface | null): (() => void) => (): void => {
+    const { updatePopUpModal } = this.props;
+    const { plan } = this.state;
+    if (newPlan?.id !== plan?.id || newPlan === null) {
+      updatePopUpModal('confirmPremiumModal');
       this.setState(
         (prevState: State): State => ({
           ...prevState,
           confirmHandler: (): void => {
             this.handlePlanChange(newPlan);
-            this.props.updatePopUpModal(null);
-            //this.props.history.goBack();
+            updatePopUpModal(null);
+            this.props.history.goBack();
           }
         })
       );
@@ -93,9 +88,9 @@ class ArtistSupportPage extends React.Component<Props, State> {
     const { currentArtist, popUpModal, updatePopUpModal, plans } = this.props;
     const { plan } = this.state;
 
-    const canUpgrade = plan !== null && plan?.id === 1 ? '' : ' disabled';
-    const canDowngrade = plan !== null && plan?.id === 2 ? '' : ' disabled';
-    const canPause = plan !== null && plan ? '' : ' disabled';
+    const canUpgrade = plan?.id === 1 ? '' : ' disabled';
+    const canDowngrade = plan?.id === 2 ? '' : ' disabled';
+    const canPause = plan ? '' : ' disabled';
 
     return (
       <IonPage
@@ -106,8 +101,7 @@ class ArtistSupportPage extends React.Component<Props, State> {
         className={'artist-support-page'}
       >
         <BackgroundImage
-          gradientOverlay
-          gradient="180deg, #2814484d 0%, #281448ee 50%, #281448 100%"
+          gradient="180deg, #2814484d, #281448a8, #281448"
           backgroundImage={currentArtist?.supportImages?.background}
         />
         <Header
@@ -139,8 +133,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
                   }
                 )}
               </div>
-
-              <div className="mt-3 h3 underline">Why premium?</div>
+              <div
+                //onClick={(): void => this.props.history.push('')}
+                className="mt-3 h3 underline"
+              >
+                Why premium?
+              </div>
             </div>
 
             <div className="artist-support-page__content--options">
@@ -148,11 +146,6 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
               <div
                 className={`artist-support-page__content--options--item f4 ${canUpgrade}`}
-                onClick={
-                  plan !== null && plan?.id === 1
-                    ? this.upgradeStatus(plans[1])
-                    : undefined
-                }
               >
                 <ButtonIcon
                   className="background-lime"
@@ -165,14 +158,12 @@ class ArtistSupportPage extends React.Component<Props, State> {
               <div
                 className={`artist-support-page__content--options--item f4 ${canDowngrade}`}
                 onClick={
-                  plan !== null && plan?.id === 2
-                    ? this.upgradeStatus(plans[0])
-                    : undefined
+                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
                 }
               >
                 <ButtonIcon
                   className="background-plum rotate-180"
-                  onClick={this.upgradeStatus(plans[0])}
+                  onClick={this.upgradeStatus(plans[1])}
                   icon={<ArrowTopIcon />}
                 />
                 <span className="ml-3">Downgrade</span>
@@ -180,23 +171,27 @@ class ArtistSupportPage extends React.Component<Props, State> {
 
               <div
                 className={`artist-support-page__content--options--item f4 ${canPause}`}
-                onClick={plan?.id ? this.upgradeStatus() : undefined}
+                onClick={
+                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                }
               >
                 <ButtonIcon
                   className="background-yellow"
-                  onClick={this.upgradeStatus()}
+                  onClick={this.upgradeStatus(null)}
                   icon={<PauseIcon color={'#000'} opacity={1} />}
                 />
                 <span className="ml-3">Pause</span>
               </div>
 
               <div
-                className={`artist-support-page__content--options--item f4 ${canPause}`}
-                onClick={plan?.id ? this.upgradeStatus() : undefined}
+                className="artist-support-page__content--options--item f4"
+                onClick={
+                  plan?.id === 2 ? this.upgradeStatus(plans[0]) : undefined
+                }
               >
                 <ButtonIcon
                   className="background-light-red"
-                  onClick={this.upgradeStatus()}
+                  onClick={this.upgradeStatus(plans[1])}
                   icon={<CloseIcon />}
                 />
                 <span className="ml-3">Cancel</span>

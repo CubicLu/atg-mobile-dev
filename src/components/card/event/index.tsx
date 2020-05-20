@@ -3,8 +3,6 @@ import { EventInterface } from '../../../models';
 import { ShareIcon, UserGroupIcon, TicketIcon } from '../../icon';
 import { IonAlert, IonRouterLink } from '@ionic/react';
 import moment from 'moment';
-import { store } from '../../../store';
-import { updateActionSheet } from '../../../actions';
 
 interface State {
   show: boolean;
@@ -39,15 +37,6 @@ export default class CardEventComponent extends React.Component<Props, State> {
   showMessage(condition = false): void {
     this.setState({ show: condition });
   }
-  confirmShare(): void {
-    store.dispatch(
-      updateActionSheet({
-        title: 'Share',
-        confirmButtons: false,
-        shareOption: true
-      })
-    );
-  }
 
   render(): React.ReactNode {
     const { artistUsername: username, id, data } = this.props;
@@ -80,11 +69,12 @@ export default class CardEventComponent extends React.Component<Props, State> {
           </div>
           <div className="row m-0">
             <ul className="list inline white-text">
-              <li onClick={(): void => this.confirmShare()}>
-                <ShareIcon width={20} height={35} />
-                <div className="l15 f6 text-13 no-wrap">Share</div>
-              </li>
-
+              <IonRouterLink routerLink={'/share'}>
+                <li>
+                  <ShareIcon width={20} height={35} />
+                  <div className="l15 f6 text-13 no-wrap">Share</div>
+                </li>
+              </IonRouterLink>
               <IonRouterLink
                 routerLink={
                   this.props.disableGoing

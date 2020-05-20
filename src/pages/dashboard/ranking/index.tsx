@@ -1,8 +1,12 @@
 import React from 'react';
 import { IonContent } from '@ionic/react';
 
-export default class DashboardRankingPage extends React.Component<{}> {
+interface Props {}
+
+class DashboardRankingPage extends React.Component<Props> {
   render(): React.ReactNode {
     return <IonContent>blank</IonContent>;
   }
 }
+
+export default DashboardRankingPage;

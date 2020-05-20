@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  ModalSlide,
-  Player,
-  NavbarTwoButtons,
-  ActionSheet
-} from './../../components';
+import { ModalSlide, Player, NavbarTwoButtons } from './../../components';
 import { HomeRouterPage } from './..';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -14,7 +9,6 @@ export default class HomePage extends React.PureComponent<{}> {
       <>
         <IonReactRouter>
           <ModalSlide />
-          <ActionSheet />
           <Player />
           <HomeRouterPage />
           <NavbarTwoButtons />

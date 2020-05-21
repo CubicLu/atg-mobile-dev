@@ -7,7 +7,7 @@ interface Props {
   opacity?: number;
 }
 
-class BlankIcon extends React.Component<Props> {
+export default class PauseIcon extends React.Component<Props> {
   public static defaultProps = {
     color: '#000',
     width: 16,
@@ -16,27 +16,27 @@ class BlankIcon extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
-    let size = this.props.width ? this.props.width - 10 : 6;
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={this.props.width}
         height={this.props.height}
-        viewBox={`1 0 ${this.props.width} ${this.props.height}`}
+        viewBox={'0 0 16 20'}
       >
-        <g>
+        <g transform="translate(-11 -9)">
           <rect
-            width={size}
-            height={this.props.height}
+            width="5"
+            height="20"
             rx="3"
+            transform="translate(22 9)"
             opacity={this.props.opacity}
             fill={this.props.color}
           />
           <rect
-            width={size}
-            height={this.props.height}
+            width="5"
+            height="20"
             rx="3"
-            transform="translate(10 0)"
+            transform="translate(11 9)"
             opacity={this.props.opacity}
             fill={this.props.color}
           />
@@ -45,5 +45,3 @@ class BlankIcon extends React.Component<Props> {
     );
   }
 }
-
-export default BlankIcon;

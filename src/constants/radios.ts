@@ -2,24 +2,33 @@ import { RadioInterface } from '../models/radio';
 
 export const radios: RadioInterface[] = [
   {
-    label: 'Pharrel',
+    id: 'rival-sons',
+    label: 'Rival Sons',
     image:
-      'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
-    id: 'pharrell-williams'
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg'
   },
   {
-    id: 'rival-sons',
-    label: 'R&B',
-    image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/reb.jpg'
+    id: 'lmfao',
+    label: 'LMFAO',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_lmfao.jpg'
   },
   {
     id: 'pharrell-williams',
-    label: 'Hip Hop',
+    label: 'Pharrel',
     image:
-      'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg'
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg'
   },
   {
-    id: 'rival-sons',
+    id: 'bono-vox',
+    label: 'Bono Vox',
+    image:
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_bono.jpg'
+  }
+];
+export const customRadios: RadioInterface[] = [
+  {
+    id: 'pharrell-williams',
     label: 'Soul',
     image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/soul.jpg'
   },
@@ -29,7 +38,7 @@ export const radios: RadioInterface[] = [
     image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/blues.jpg'
   },
   {
-    id: 'rival-sons',
+    id: 'pharrell-williams',
     label: 'Jazz',
     image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
   },

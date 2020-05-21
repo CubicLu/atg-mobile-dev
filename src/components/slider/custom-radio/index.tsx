@@ -14,7 +14,7 @@ interface Props {
   viewAll?: boolean;
   scroll?: boolean;
   canEdit: boolean;
-  data?: { image: string }[];
+  data?: { image: string; label: string }[];
   size?: Sizes;
   type?: ShapesSize;
   onClick?: (id: number) => void;
@@ -81,14 +81,15 @@ class SliderRadiosComponent extends React.Component<Props, State> {
       <div className="slider video">
         <Slider {...settings}>
           {data.map(
-            (d, i): React.ReactNode => (
+            (radio, i): React.ReactNode => (
               <CardRadio
                 key={i}
                 canEdit={canEdit}
                 type={type}
-                image={d.image}
+                image={radio.image}
                 id={i}
                 size={size}
+                label={radio.label}
                 playButton={playButton}
                 playing={playingRadioIndex === i && playing}
                 onPlayClick={this.handleOnPlayClick(i)}

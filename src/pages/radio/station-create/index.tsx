@@ -299,7 +299,7 @@ class RadioStationEditPage extends React.Component<Props, State> {
             size={Sizes.md}
             defaultValue={this.state.stationName}
             type={'text'}
-            placeholder={'Name your playlist'}
+            placeholder={'Name your station'}
           />
         </div>
 

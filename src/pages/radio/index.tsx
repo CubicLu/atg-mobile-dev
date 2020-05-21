@@ -5,7 +5,8 @@ import {
   BackgroundImage,
   SectionTitle,
   SliderRadio,
-  SliderRadios
+  SliderRadios,
+  RadioPauseButton
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
 import {
@@ -21,6 +22,7 @@ import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
 import { pauseSong, playSong, setPlaylist } from '../../actions';
 import { RouteComponentProps } from 'react-router';
+import { radios, customRadios } from '../../constants/radios';
 
 interface MatchParams {
   genre: string;
@@ -82,6 +84,20 @@ class RadioPage extends React.Component<Props, State> {
     this.setState({ currentGenre });
   }
 
+  togglePlayPause = (): void => {
+    const { song, playing, paused } = this.props;
+    if (!song) this.onPlayClick();
+    else if (song && playing) this.onPauseClick();
+    else if (song && paused) this.onResumeClick();
+  };
+
+  onPlayClick = (): void => {
+    this.props.setPlaylist(playlist, playlist.items[0]);
+  };
+  onPauseClick = (): void => this.props.pauseSong();
+  onResumeClick = (): void =>
+    this.props.song && this.props.playSong(this.props.song);
+
   render(): React.ReactNode {
     return (
       <IonPage id="radio-page">
@@ -107,13 +123,17 @@ class RadioPage extends React.Component<Props, State> {
           </div>
           <div className="top-half flex-compass south center-align">
             <div className="flex left-align mx-auto">
-              <div className="mt-1 mr-2">
-                <RadioPlayButton />
+              <div onClick={this.togglePlayPause} className="mt-1 mr-2">
+                {this.props.playing ? (
+                  <RadioPauseButton />
+                ) : (
+                  <RadioPlayButton />
+                )}
               </div>
               <div>
-                <span className="h0">{this.state.currentGenre?.title}</span>
+                <span className="h0 text-44">PANTHR RADIO</span>
                 <br />
-                <span className="h3">{this.state.currentGenre?.subtitle}</span>
+                <span className="h3 text-26">PERSONALIZED FOR ROSETTA</span>
               </div>
             </div>
           </div>
@@ -123,11 +143,7 @@ class RadioPage extends React.Component<Props, State> {
             viewAll={true}
             viewAllUrl="/radio/view-all"
           />
-          <SliderRadio
-            className="f6 l1"
-            diameter={'110px'}
-            data={this.radios}
-          />
+          <SliderRadio className="f6 l1" diameter={'110px'} data={radios} />
 
           <div
             onClick={(): void =>
@@ -145,7 +161,7 @@ class RadioPage extends React.Component<Props, State> {
           <div className="card-station">
             <SliderRadios
               canEdit={true}
-              data={this.radios}
+              data={customRadios}
               onPlayClick={(): void => {
                 this.props.setPlaylist(playlist, playlist.items[0]);
               }}
@@ -218,46 +234,6 @@ class RadioPage extends React.Component<Props, State> {
       color: '180deg,#7A41FF00,#1B0334',
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/country.jpg'
-    }
-  ];
-  radios: RadioInterface[] = [
-    {
-      label: 'Pharrel',
-      image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/playlist.png',
-      id: 'pharrell-williams'
-    },
-    {
-      id: 'rival-sons',
-      label: 'Rival Sons',
-      image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg'
-    },
-    {
-      id: 'pharrell-williams',
-      label: 'Hip Hop',
-      image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/geners/hip-hop.jpg'
-    },
-    {
-      id: 'pharrell-williams',
-      label: 'Soul',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/soul.jpg'
-    },
-    {
-      id: 'pharrell-williams',
-      label: 'Blues',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/blues.jpg'
-    },
-    {
-      id: 'pharrell-williams',
-      label: 'Jazz',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/jazz.jpg'
-    },
-    {
-      id: 'pharrell-williams',
-      label: 'Funk',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/genre/funk.jpg'
     }
   ];
 }

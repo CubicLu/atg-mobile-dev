@@ -269,7 +269,9 @@ class RadioFilterPage extends React.Component<Props, State> {
   }
   render(): React.ReactNode {
     const { selectedChannel } = this.state;
-    const pageTitle = selectedChannel ? `${selectedChannel.name}` : 'Filter';
+    const pageTitle = selectedChannel
+      ? selectedChannel.name
+      : 'Find New Stations';
     const classTitle = selectedChannel ? 'ml-2' : '';
 
     return (

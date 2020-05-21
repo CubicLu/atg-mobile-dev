@@ -12,6 +12,7 @@ interface Props {
   type: ShapesSize;
   size?: Sizes;
   playButton?: boolean;
+  label?: string;
   playing?: boolean;
   paused?: boolean;
   song?: SongInterface;
@@ -75,6 +76,9 @@ class CardRadioComponent extends React.Component<Props> {
             </div>
           )}
         </div>
+        {this.props.label && (
+          <div className={'mt-15 f5 center-align'}>{this.props.label}</div>
+        )}
       </div>
     );
   }

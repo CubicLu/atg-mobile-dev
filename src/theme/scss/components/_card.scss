@@ -129,6 +129,8 @@
     @include background-style();
 
     .play-button-container{
+      height: 64px;
+      width: 64px;
       position: absolute;
       left: 50%;
       top: 50%;

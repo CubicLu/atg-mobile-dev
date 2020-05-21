@@ -9,25 +9,24 @@ interface Props {
   buttons?: (string | ToastButton)[] | undefined;
   duration?: number;
   classNames?: string | string[];
-  clickId: string;
 }
 
-class ToastComponent extends React.Component<Props> {
+export default class ToastComponent extends React.Component<Props> {
   public static defaultProps = {
     duration: 3000,
-    showToast: true
+    showToast: true,
+    message:
+      'Added to your <span style="text-decoration: underline" id="link">VAULT</span>'
   };
 
   setClickHandler = (): void => {
-    const { clickId, clickHandler } = this.props;
-    const superUltraRoot = document.querySelector('ion-toast')?.shadowRoot;
-    if (superUltraRoot) {
-      const el = superUltraRoot.getElementById(clickId);
-      if (el) {
-        el.addEventListener('click', clickHandler);
-      }
-    }
+    const el = this.toastRef.current?.shadowRoot?.getElementById('link');
+    if (!el) return;
+    el.style.textDecoration = 'underline';
+    el.onclick = this.props.clickHandler;
   };
+
+  toastRef: React.RefObject<HTMLIonToastElement> = React.createRef();
 
   render(): React.ReactNode {
     const {
@@ -41,6 +40,7 @@ class ToastComponent extends React.Component<Props> {
 
     return (
       <IonToast
+        ref={this.toastRef}
         isOpen={showToast}
         onDidPresent={this.setClickHandler}
         onDidDismiss={hideToast}
@@ -52,5 +52,3 @@ class ToastComponent extends React.Component<Props> {
     );
   }
 }
-
-export default ToastComponent;

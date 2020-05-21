@@ -15,14 +15,16 @@ export default class ToastComponent extends React.Component<Props> {
   public static defaultProps = {
     duration: 3000,
     showToast: true,
-    message:
-      'Added to your <span style="text-decoration: underline" id="link">VAULT</span>'
+    message: 'Added to your <span id="vault-toast-link">VAULT</span>'
   };
 
   setClickHandler = (): void => {
-    const el = this.toastRef.current?.shadowRoot?.getElementById('link');
+    const el = this.toastRef.current?.shadowRoot?.getElementById(
+      'vault-toast-link'
+    );
     if (!el) return;
     el.style.textDecoration = 'underline';
+    el.style.color = '#0000EE';
     el.onclick = this.props.clickHandler;
   };
 

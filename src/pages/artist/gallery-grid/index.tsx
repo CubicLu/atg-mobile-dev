@@ -56,15 +56,6 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
   }
   private headerRef: React.RefObject<any> = React.createRef();
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (
-      nextProps.match.params.id !== this.props.match.params.id ||
-      nextProps.currentArtist === null
-    ) {
-      this.props.getArtistAPI(nextProps.match.params.id);
-    }
-  }
-
   componentDidMount(): void {
     const {
       currentArtist,
@@ -76,18 +67,33 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
     if (currentArtist === null) {
       getArtistAPI(match.params.id);
     }
+    if (currentArtist?.username !== match.params.id) {
+      getArtistAPI(this.props.match.params.id);
+    }
     if (currentArtist && !currentGallery) {
       setCurrentGallery(+match.params.galleryId);
     }
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate(prevProps): void {
     const {
       currentArtist,
       currentGallery,
       match,
       setCurrentGallery
     } = this.props;
+
+    if (this.props.currentArtist === null) {
+      return this.props.getArtistAPI(this.props.match.params.id);
+    }
+
+    if (
+      prevProps.match.params.id !== match.params.id &&
+      currentArtist?.username !== match.params.id
+    ) {
+      getArtistAPI(match.params.id);
+    }
+
     if (currentArtist && !currentGallery) {
       setCurrentGallery(+match.params.galleryId);
     }

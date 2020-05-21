@@ -21,143 +21,197 @@ export default class ProfileVaultPage extends React.Component<Props> {
           <IonList lines="none">
             {[
               {
-                song: 'Blinding Lights',
+                asset: 'Hollow Bones',
+                assetUrl: '/track/artist/rival-sons/0',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg',
                 artist: {
-                  name: 'The Weeknd',
                   cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/0d5408c64d06cd7abda744bdd5d3168d/264x264-000000-80-0-0.jpg',
+                    deepDive: '',
+                    background: '',
                     main: '',
                     event: '',
                     gateway: '',
-                    biography: '',
-                    support: false,
-                    deepDive: ''
+                    biography: ''
                   },
-                  username: 'pharrell-williams'
-                }
-              },
-              {
-                song: 'The Box',
-                artist: {
-                  username: 'pharrell-williams',
-                  cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/15cad877f93e8fda50c6cb347e1e85a5/264x264-000000-80-0-0.jpg',
-                    main: '',
-                    event: '',
-                    gateway: '',
-                    biography: '',
-                    deepDive: ''
-                  },
-                  name: 'Roddy Ricch',
+                  name: 'Rival Sons',
+                  username: 'rival-sons',
                   support: true
                 }
               },
               {
-                song: 'Don´t Start Now',
+                asset: 'New Promo Video',
+                assetUrl: '/artist/pharrell-williams/video/9',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_bono.jpg',
                 artist: {
-                  username: 'pharrell-williams',
                   cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/423ad64a66ebc7b179a27ca68ca45b40/264x264-000000-80-0-0.jpg',
+                    deepDive: '',
+                    background: '',
                     main: '',
                     event: '',
                     gateway: '',
-                    biography: '',
-                    deepDive: ''
+                    biography: ''
                   },
-                  name: 'Dua Lipa',
-                  support: true
-                }
-              },
-              {
-                song: 'Circles',
-                artist: {
-                  username: 'pharrell-williams',
-                  cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
-                    main: '',
-                    event: '',
-                    gateway: '',
-                    biography: '',
-                    deepDive: ''
-                  },
-                  name: 'Post Malone',
-                  support: true
-                }
-              },
-              {
-                song: 'Life is Good',
-                artist: {
-                  username: 'pharrell-williams',
-                  cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/ecfa926cd9d5369e98bbbc4eefd57a6b/264x264-000000-80-0-0.jpg',
-                    main: '',
-                    event: '',
-                    gateway: '',
-                    biography: '',
-                    deepDive: ''
-                  },
-                  name: 'Future ft. Drake',
+                  name: 'Bono Vox',
+                  username: 'bono-vox',
                   support: false
                 }
               },
               {
-                song: 'Adore You',
+                asset: 'Pharrell Art',
+                assetUrl: '/artist/pharrell-williams/gallery/4',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/gallery/untitled-folder-2/cover.png',
                 artist: {
-                  username: 'pharrell-williams',
                   cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/379613019df276565895074c85ec9efa/264x264-000000-80-0-0.jpg',
+                    deepDive: '',
+                    background: '',
                     main: '',
                     event: '',
                     gateway: '',
-                    biography: '',
-                    deepDive: ''
+                    biography: ''
                   },
-                  name: 'Harry Styles',
+                  name: 'Pharrell Williams',
+                  username: 'pharrell-williams',
                   support: true
                 }
               },
               {
-                song: 'Say So',
+                asset: 'Hollow Bones',
+                assetUrl: '/track/artist/rival-sons/0',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg',
                 artist: {
-                  username: 'pharrell-williams',
                   cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/64377279e24c6193fab373abf635a6dd/264x264-000000-80-0-0.jpg',
+                    deepDive: '',
+                    background: '',
                     main: '',
                     event: '',
                     gateway: '',
-                    biography: '',
-                    deepDive: ''
+                    biography: ''
                   },
-                  name: 'Doja Cat',
-                  support: false
+                  name: 'Rival Sons',
+                  username: 'rival-sons',
+                  support: true
                 }
               },
               {
-                song: 'Intentions',
+                asset: 'Guitas & Grit',
+                assetUrl: '/track/mixtape/7516727864/0',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/guitar-playlist.jpg',
                 artist: {
-                  username: 'pharrell-williams',
                   cover: {
-                    background:
-                      'https://e-cdns-images.dzcdn.net/images/cover/fd3f599db05db84cf1392021daaf3a61/264x264-000000-80-0-0.jpg',
+                    deepDive: '',
+                    background: '',
                     main: '',
                     event: '',
                     gateway: '',
-                    biography: '',
-                    deepDive: ''
+                    biography: ''
                   },
-                  name: 'Justin Bieber',
+                  name: 'Mixtape',
+                  username: '',
+                  support: true
+                }
+              },
+              {
+                asset: 'Some Memories from our ...',
+                assetUrl: '/community/comments/103',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg',
+                artist: {
+                  cover: {
+                    deepDive: '',
+                    background: '',
+                    main: '',
+                    event: '',
+                    gateway: '',
+                    biography: ''
+                  },
+                  name: 'Rival Sons',
+                  username: 'rival-sons',
+                  support: true
+                }
+              },
+              {
+                asset: 'Metalica🔥🤘 #metallica ...',
+                assetUrl: '/community/comments/109',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/profile/harold.jpg',
+                artist: {
+                  cover: {
+                    deepDive: '',
+                    background: '',
+                    main: '',
+                    event: '',
+                    gateway: '',
+                    biography: ''
+                  },
+                  name: 'Harold',
+                  username: 'harold',
+                  support: true
+                }
+              },
+              {
+                asset: 'Freedom',
+                assetUrl: '/track/artist/pharrell-williams/1',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg',
+                artist: {
+                  cover: {
+                    deepDive: '',
+                    background: '',
+                    main: '',
+                    event: '',
+                    gateway: '',
+                    biography: ''
+                  },
+                  name: 'Pharrell Williams',
+                  username: 'pharrell-williams',
+                  support: true
+                }
+              },
+              {
+                asset: 'Happy - Official Music Video',
+                assetUrl: '/artist/pharrell-williams/video/0',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg',
+                artist: {
+                  cover: {
+                    deepDive: '',
+                    background: '',
+                    main: '',
+                    event: '',
+                    gateway: '',
+                    biography: ''
+                  },
+                  name: 'Pharrell Williams',
+                  username: 'pharrell-williams',
+                  support: true
+                }
+              },
+              {
+                asset: 'Blues & Bass',
+                assetUrl: '/track/mixtape/7516744044/0',
+                avatar:
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/blues-playlist.jpg',
+                artist: {
+                  cover: {
+                    deepDive: '',
+                    background: '',
+                    main: '',
+                    event: '',
+                    gateway: '',
+                    biography: ''
+                  },
+                  name: 'Mixtape',
+                  username: 'pharrell-williams',
                   support: true
                 }
               }
             ].map(
-              (data, i): React.ReactNode => {
+              (file, i): React.ReactNode => {
                 return (
                   <ListItem
                     key={i}
@@ -168,16 +222,17 @@ export default class ProfileVaultPage extends React.Component<Props> {
                     optionRemove={this.props.canRemove}
                     hasAvatar={true}
                     avatarSize={48}
-                    avatarImage={data.artist.cover.background}
+                    avatarImage={file.avatar}
                     avatarBadge={i % 3 === 0}
                     badgeColor={Colors.red}
-                    optionAddPlaylist={data.artist.support}
-                    optionShare={data.artist.support}
-                    songName={data.song}
-                    artistName={data.artist.name}
-                    artist={data.artist}
-                    supported={data.artist.support}
-                    supportButtonIcon={!data.artist.support}
+                    routeLink={file.assetUrl}
+                    optionAddPlaylist={file.artist.support}
+                    optionShare={file.artist.support}
+                    songName={file.asset}
+                    artistName={file.artist.name}
+                    artist={file.artist}
+                    supported={file.artist.support}
+                    supportButtonIcon={!file.artist.support}
                   />
                 );
               }

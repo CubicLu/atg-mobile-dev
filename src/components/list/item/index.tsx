@@ -32,6 +32,7 @@ interface Props {
   bottomBorder: boolean;
   communityFeedButton: boolean;
   leftDisabled: boolean;
+  routeLink?: string;
   username?: string;
   songName?: string;
   artistName?: string;
@@ -187,7 +188,8 @@ export default class ListItemComponent extends React.Component<Props, State> {
       artist,
       leftContentAction,
       username,
-      supported
+      supported,
+      routeLink
     } = this.props;
     const expand = this.props.expandArrow ? '' : '';
 
@@ -210,7 +212,9 @@ export default class ListItemComponent extends React.Component<Props, State> {
                   type={ShapesSize.circle}
                   width={this.props.avatarSize}
                   height={this.props.avatarSize}
-                  avatarUrl={`/profile/friend/${username}`}
+                  avatarUrl={
+                    username ? `/profile/friend/${username}` : routeLink
+                  }
                 />
               )}
               {username && (
@@ -220,14 +224,16 @@ export default class ListItemComponent extends React.Component<Props, State> {
               )}
 
               {this.props.songName && this.props.artistName && (
-                <div className="ml-2 flex-column">
-                  <span className="song f5" onClick={this.props.songAction}>
-                    {this.props.songName}
-                  </span>
-                  <span className="artist f6" onClick={this.props.songAction}>
-                    {this.props.artistName}
-                  </span>
-                </div>
+                <IonRouterLink routerLink={routeLink}>
+                  <div className="ml-2 flex-column">
+                    <span className="song f5" onClick={this.props.songAction}>
+                      {this.props.songName}
+                    </span>
+                    <span className="artist f6" onClick={this.props.songAction}>
+                      {this.props.artistName}
+                    </span>
+                  </div>
+                </IonRouterLink>
               )}
 
               {this.props.leftContent}

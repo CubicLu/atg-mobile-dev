@@ -81,6 +81,10 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     if (this.props.currentArtist === null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
+    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+      this.props.getArtistGalleryCommentsAPI(0, 'pharrell-williams');
+      this.props.getArtistAPI(this.props.match.params.id);
+    }
   }
   componentDidUpdate(prevProps: Readonly<Props>): void {
     if (prevProps.playing && !this.props.playing) {
@@ -239,7 +243,8 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     } = this.props;
     const { orientation } = this.state;
     const videoUrl =
-      videos?.recents[videoId] || videos?.showcase[videoId].video;
+      videos?.recents[videoId] ||
+      (videos?.showcase && videos?.showcase[videoId]?.video);
     const isPortrait = orientation === 'portrait';
     return (
       <IonPage id="artist-videos-page">

@@ -39,11 +39,14 @@ interface Props
 class ArtistGalleryPage extends React.Component<Props> {
   private headerRef: React.RefObject<any> = React.createRef();
 
-  componentDidUpdate(): void {
+  componentDidUpdate(prevProps): void {
     if (this.props.currentArtist === null) {
       return this.props.getArtistAPI(this.props.match.params.id);
     }
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+    if (
+      prevProps.match.params.id !== this.props.match.params.id &&
+      this.props.currentArtist?.username !== this.props.match.params.id
+    ) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }

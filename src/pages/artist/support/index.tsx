@@ -61,17 +61,20 @@ class ArtistSupportPage extends React.Component<Props, State> {
       return this.props.getArtistAPI(this.props.match.params.id);
     }
   }
-  componentDidUpdate(old): void {
+  componentDidUpdate(prevProps): void {
     if (this.props.currentArtist === null) {
-      return this.props.getArtistAPI(this.props.match.params.id);
+      this.props.getArtistAPI(this.props.match.params.id);
+    } else if (
+      prevProps.match.params.id !== this.props.match.params.id &&
+      this.props.currentArtist?.username !== this.props.match.params.id
+    ) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
-      return this.props.getArtistAPI(this.props.match.params.id);
-    }
+
     if (
-      this.props.currentArtist?.username !== old.currentArtist?.username &&
+      !this.state.plan &&
       this.props.currentArtist?.support &&
-      !this.state.plan
+      this.props.currentArtist?.username !== prevProps.currentArtist?.username
     ) {
       this.setState({ plan: plans[0] });
     }
@@ -90,7 +93,6 @@ class ArtistSupportPage extends React.Component<Props, State> {
           confirmHandler: (): void => {
             this.handlePlanChange(newPlan);
             this.props.updatePopUpModal(null);
-            //this.props.history.goBack();
           }
         })
       );

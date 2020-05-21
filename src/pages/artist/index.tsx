@@ -65,11 +65,13 @@ class ArtistPage extends React.PureComponent<Props, State> {
     };
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate(prevProps): void {
     //navigate to specific tab
     const hasTab = this.props.match.params.tab;
     if (hasTab && this.state.activeTab !== hasTab) this.updateActiveTab(hasTab);
-    this.fetchArtist();
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.fetchArtist();
+    }
   }
   ionViewDidEnter(): void {
     if (!this.customAlpha.loaded) this.loadAnimationsAlpha();

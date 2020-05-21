@@ -77,25 +77,22 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    const {
-      currentArtist,
-      match: { params }
-    } = this.props;
     this.props.getArtistGalleryCommentsAPI(0, 'pharrell-williams');
-    if (currentArtist === null || currentArtist.username !== params.id) {
+    if (this.props.currentArtist === null) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }
-
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (this.props.currentArtist === null) {
-      return this.props.getArtistAPI(this.props.match.params.id);
-    }
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
-      this.props.getArtistAPI(this.props.match.params.id);
-    }
     if (prevProps.playing && !this.props.playing) {
       this.props.updateSettingsModalClassName('vertical-video-modal-container');
+    }
+
+    if (
+      prevProps.match.params.id !== this.props.match.params.id &&
+      this.props.currentArtist?.username !== this.props.match.params.id
+    ) {
+      this.props.getArtistGalleryCommentsAPI(0, 'pharrell-williams');
+      this.props.getArtistAPI(this.props.match.params.id);
     }
   }
 

@@ -29,7 +29,7 @@ declare global {
 
 const FADEOUT_NEXT = 1; //fadeout time when click on next song
 const FADEOUT_DEFAULT = 6; // fadeout when song ends naturally
-const MUSIC_CONTROLS_DELAY = 25; //time in ms - needed to reflect update on android/ios
+const MUSIC_CONTROLS_DELAY = 50; //time in ms - needed to reflect update on android/ios
 
 class CordovaMediaComponent extends React.Component<Props> {
   playOptions = {
@@ -79,11 +79,11 @@ class CordovaMediaComponent extends React.Component<Props> {
 
   actionPauseSong(): void {
     window.Media.list().forEach((song): void => song.pause());
-    this.updatePlayingMusicControls(false);
+    this.updatePlayingMusicControls();
   }
   actionStopSong(): void {
     window.Media.list().forEach((song): void => song.stop());
-    this.updatePlayingMusicControls(false);
+    this.updatePlayingMusicControls();
   }
   actionResumeSong(): void {
     if (!this.props.song) return;
@@ -158,13 +158,12 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
       case MediaStatusCallback.MEDIA_PAUSED:
         console.log('Media Paused', media.id, media.src);
-        this.updatePlayingMusicControls(false);
+        this.updatePlayingMusicControls();
         break;
       case MediaStatusCallback.MEDIA_STOPPED:
         console.log('song stopped', media.getMediaId(), media.src);
         this.mediaCallbackCheckRunning();
-        this.updatePlayingMusicControls(false);
-        window.MusicControls.destroy();
+        window.MusicControls.updateIsPlaying();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         console.log('song ended naturally', media.getMediaId(), media.src);
@@ -257,9 +256,9 @@ class CordovaMediaComponent extends React.Component<Props> {
     this.activeMusicControls = true;
   }
 
-  updatePlayingMusicControls(state: boolean = this.props.playing): void {
+  updatePlayingMusicControls(): void {
     setTimeout(
-      (): void => window.MusicControls.updateIsPlaying(state),
+      (): void => window.MusicControls.updateIsPlaying(this.props.playing),
       MUSIC_CONTROLS_DELAY
     );
   }
@@ -310,9 +309,9 @@ class CordovaMediaComponent extends React.Component<Props> {
       case 'music-controls-headset-unplugged':
       case 'music-controls-media-button-play-pause':
       case 'music-controls-media-button':
-        return this.props.paused
-          ? this.props.resumeSong()
-          : this.props.stopSong();
+        return this.props.playing
+          ? this.props.pauseSong()
+          : this.props.resumeSong();
 
       default:
         return;

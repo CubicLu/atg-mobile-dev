@@ -253,7 +253,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
           style={
             this.state.coverIsReady && this.state.galleryRow1IsReady
               ? { visibility: 'hidden', display: 'none' }
-              : { visibility: 'visible' }
+              : { position: 'absolute', visibility: 'visible' }
           }
         >
           <rect x="0" y="0" width="400" height="400" />

@@ -42,10 +42,9 @@ export default class CardArtistComponent extends React.Component<Props, State> {
   }
   render(): React.ReactNode {
     const { artist } = this.props;
-    if (!artist) return <div />;
     const { cover, support, name } = artist;
     return (
-      <div style={{ height: 160 }}>
+      <div className="my-3" style={{ height: 140, maxHeight: 140 }}>
         <IonImg
           onIonImgDidLoad={(): void => {
             this.setState({
@@ -65,14 +64,14 @@ export default class CardArtistComponent extends React.Component<Props, State> {
           foregroundOpacity={0.15}
           style={
             this.state.artistIsReady
-              ? { visibility: 'hidden', display: 'none' }
-              : { visibility: 'visible' }
+              ? { visibility: 'hidden', display: 'none', position: 'absolute' }
+              : { visibility: 'visible', position: 'absolute' }
           }
         >
           <rect x="20" y="0" rx="8" ry="8" width="360" height="140" />
         </ContentLoader>
         <div
-          className="card-artist my-3 mx-2 pb-15"
+          className="card-artist mx-2 pb-15"
           style={
             this.state.artistIsReady
               ? { visibility: 'visible', backgroundImage: `url(${cover.main})` }

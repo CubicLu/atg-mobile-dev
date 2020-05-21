@@ -61,8 +61,10 @@ class TrackListPage extends React.Component<Props, State> {
     this.fetchArtist();
     this.fetchPlaylist();
   }
-  componentDidUpdate(): void {
-    this.fetchArtist();
+  componentDidUpdate(prevProps): void {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.fetchArtist();
+    }
   }
   fetchArtist(): void {
     if (!this.isArtist) return;

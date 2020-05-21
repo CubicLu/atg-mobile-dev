@@ -135,7 +135,6 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
       ? Number(params.imageId) + 1
       : Number(params.imageId) - 1;
 
-    console.log(resultIndex, params.imageId);
     this.props.history.replace(
       `/artist/${params.id}/gallery/${params.galleryId}/image/${resultIndex}`
     );

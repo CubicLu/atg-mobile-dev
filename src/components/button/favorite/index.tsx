@@ -33,12 +33,8 @@ class FavoriteIconComponent extends React.Component<Props> {
     if (!this.props.showToast) return null;
     return (
       <ToastComponent
-        clickId={'toastClick'}
         clickHandler={this.toastClickHandler}
         hideToast={(): any => store.dispatch(hideToastAction())}
-        message={
-          '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
-        }
         classNames={'custom-toast'}
       />
     );

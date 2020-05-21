@@ -132,11 +132,7 @@ class MiniPlayerBarComponent extends React.PureComponent<Props> {
           </div>
           {song && showToast && (
             <ToastComponent
-              clickId={'toastClick'}
               clickHandler={this.toastClickHandler}
-              message={
-                '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
-              }
               hideToast={hideToastAction}
               classNames={'custom-toast'}
             />
@@ -167,7 +163,7 @@ class MiniPlayerBarComponent extends React.PureComponent<Props> {
                 className="mini-player-toggle p-0"
                 onClick={(): void => this.props.pauseSong()}
               >
-                <PauseIcon width={13} height={18} color="#fff" opacity={0.75} />
+                <PauseIcon color="#fff" opacity={0.75} />
               </button>
             ) : (
               <button

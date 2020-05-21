@@ -11,11 +11,11 @@ export default class RadioPauseButtonComponent extends React.Component<Props> {
         style={{
           width: '64px',
           height: '64px',
-          backgroundColor: '#0202025c',
+          backgroundColor: '#02020280',
           borderRadius: '50%'
         }}
       >
-        <PauseIcon color="#ffffff" opacity={1} />
+        <PauseIcon color="#ffffff" width={24} height={30} opacity={1} />
       </div>
     );
   }

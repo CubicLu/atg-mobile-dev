@@ -7,11 +7,7 @@ describe('ToastComponent render', (): void => {
     const div = document.createElement('div');
     ReactDOM.render(
       <ToastComponent
-        clickId={'toastClick'}
         clickHandler={(): void => {}}
-        message={
-          '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
-        }
         hideToast={(): void => {}}
         classNames={'custom-toast'}
       />,

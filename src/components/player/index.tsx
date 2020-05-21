@@ -275,11 +275,7 @@ class PlayerComponent extends React.Component<Props> {
 
         {this.props.song && this.props.showToast && (
           <ToastComponent
-            clickId={'toastClick'}
             clickHandler={this.toastClickHandler}
-            message={
-              '<span>Added to your <a href="#" id="toastClick">VAULT</a></span>'
-            }
             hideToast={this.props.hideToastAction}
             classNames={'custom-toast'}
           />

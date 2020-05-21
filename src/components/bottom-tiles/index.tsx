@@ -56,7 +56,7 @@ export default class BottomTilesComponent extends React.Component<Props> {
       image:
         'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/rival-sons/t3.jpg',
       name: 'Artist Radio',
-      redirectUrl: '/artist/rival-sons'
+      redirectUrl: '/radio'
     }
   ];
 }

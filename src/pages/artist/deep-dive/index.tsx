@@ -45,8 +45,14 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
       scrolling: false
     };
   }
-  componentDidUpdate(old: Props): void {
-    if (old.match.params.id !== this.props.match.params.id) {
+  componentDidUpdate(prevProps: Props): void {
+    if (this.props.currentArtist === null) {
+      return this.props.getArtistAPI(this.props.match.params.id);
+    }
+    if (
+      prevProps.match.params.id !== this.props.match.params.id &&
+      this.props.currentArtist?.username !== this.props.match.params.id
+    ) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }

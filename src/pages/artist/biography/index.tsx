@@ -83,11 +83,14 @@ class ArtistBiographyPage extends React.Component<Props, State> {
     this.state = { currentPage: 0, blur: false, biographyIsReady: false };
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate(prevProps): void {
     if (this.props.currentArtist === null) {
       return this.props.getArtistAPI(this.props.match.params.id);
     }
-    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+    if (
+      prevProps.match.params.id !== this.props.match.params.id &&
+      this.props.currentArtist?.username !== this.props.match.params.id
+    ) {
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }

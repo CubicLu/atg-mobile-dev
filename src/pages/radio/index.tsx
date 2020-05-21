@@ -13,7 +13,6 @@ import {
   ArtistInterface,
   ChannelInterface,
   PlaylistInterface,
-  RadioInterface,
   SongInterface
 } from '../../models';
 import { guitarPlaylist as playlist } from '../../reducers/playerReducer';

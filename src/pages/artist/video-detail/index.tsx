@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonContent, NavContext, NavContextState } from '@ionic/react';
 import {
   BackgroundImage,
   VideoPlayer,
@@ -65,6 +65,7 @@ interface Props
     RouteComponentProps<MatchParams> {}
 
 class ArtistVideoDetailPage extends React.Component<Props, State> {
+  static contextType = NavContext;
   private headerRef: React.RefObject<any> = React.createRef();
   constructor(props: Props) {
     super(props);
@@ -226,6 +227,11 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
     );
   }
 
+  goBackClick = (ev): void => {
+    ev?.preventDefault();
+    (this.context as NavContextState).goBack();
+  };
+
   render(): React.ReactNode {
     if (!this.props.currentArtist) return <div />;
     const {
@@ -250,7 +256,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
         >
           <div className="mt-5" />
           <VideoPlayer
-            onClickClose={(): void => this.props.history.goBack()}
+            onClickClose={this.goBackClick}
             videoUrl={videoUrl?.video || videoUrl}
             changeVideoOrientation={this.changeVideoOrientation}
             isPortrait={isPortrait}

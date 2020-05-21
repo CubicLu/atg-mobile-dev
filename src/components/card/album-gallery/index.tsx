@@ -56,7 +56,7 @@ class CardAlbumGalleryComponent extends React.Component<Props, State> {
           style={
             this.state.isReady
               ? { visibility: 'hidden', display: 'none' }
-              : { visibility: 'visible' }
+              : { position: 'absolute', visibility: 'visible' }
           }
         >
           <rect x="0" y="6" rx="8" ry="8" width="161" height="165" />

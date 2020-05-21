@@ -76,8 +76,8 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
+    this.props.getArtistGalleryCommentsAPI(0, 'pharrell-williams');
     if (this.props.currentArtist === null) {
-      this.props.getArtistGalleryCommentsAPI(0, 'pharrell-williams');
       this.props.getArtistAPI(this.props.match.params.id);
     }
   }

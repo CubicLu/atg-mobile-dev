@@ -168,9 +168,11 @@ class VideoPlayerComponent extends React.Component<Props, State> {
     if (this.video) {
       this.video.currentTime = event;
       const time = this.formatTime(Math.round(event));
+
       currentTimeNumber = Math.round(event);
       value = `${time.minutes}:${time.seconds}`;
     }
+    if (currentTimeNumber === this.state.currentTimeNumber) return;
     this.setState({
       currentTime: value,
       currentTimeNumber: currentTimeNumber
@@ -185,6 +187,7 @@ class VideoPlayerComponent extends React.Component<Props, State> {
       currentTimeNumber = Math.round(this.video.currentTime);
       value = `${time.minutes}:${time.seconds}`;
     }
+    if (currentTimeNumber === this.state.currentTimeNumber) return;
     this.setState({
       currentTime: value,
       currentTimeNumber: currentTimeNumber

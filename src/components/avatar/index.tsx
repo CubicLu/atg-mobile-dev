@@ -2,6 +2,7 @@
 import React from 'react';
 import { ShapesSize, Colors } from '../../types';
 import { IonRouterLink } from '@ionic/react';
+import { ImageSkeleton } from '..';
 
 interface Props {
   image: string | undefined;
@@ -37,17 +38,14 @@ class AvatarComponent extends React.Component<Props> {
     } = this.props;
     return (
       <IonRouterLink routerLink={this.props.avatarUrl}>
-        <div
-          onClick={onClick}
-          style={{
-            backgroundImage: `url(${image})`,
-            width: width,
-            height: height,
-            minWidth: width,
-            minHeight: height
-          }}
-          className={`avatar ${type}`}
-        >
+        <div className={`avatar ${type}`} onClick={onClick}>
+          <ImageSkeleton
+            className={`avatar ${type}`}
+            src={image || ''}
+            width={width}
+            height={height}
+            useSkeleton={true}
+          />
           {badge && (
             <div className={`badge ${badgeColor}`}>
               {badgeText && <span>{badgeText}</span>}

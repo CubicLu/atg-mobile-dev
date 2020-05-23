@@ -5,10 +5,10 @@ import {
   Header,
   BackgroundImage,
   SliderVideo,
-  CardVideo,
-  SectionTitle
+  SectionTitle,
+  ImageSkeleton
 } from '../../../components';
-import { Sizes, ShapesSize } from '../../../types';
+import { ShapesSize } from '../../../types';
 import { ArtistInterface } from '../../../models';
 
 import { connect } from 'react-redux';
@@ -80,27 +80,30 @@ class ArtistVideosPage extends React.Component<Props, {}> {
                 <div className="slick-list-no-margin">
                   <SliderVideo
                     data={currentArtist?.videos?.recents}
-                    size={Sizes.sm}
                     type={ShapesSize.normal}
+                    width={196}
+                    height={110}
                   />
                 </div>
               </React.Fragment>
             )}
-            <div className="row showcase ">
+            <div className="row showcase">
               <SectionTitle className="mx-2" title={'Showcase'} />
               {currentArtist?.videos?.showcase.map(
                 (value, i): React.ReactNode => {
                   return (
-                    <CardVideo
+                    <div
                       onClick={(): void => this.onOpenVideo(i)}
-                      id={i}
                       key={i}
-                      size={Sizes.full}
-                      type={ShapesSize.full}
-                      time={value.time}
-                      video={value.video}
-                      image={value.image}
-                    />
+                      className="video-card-container mb-2 fluid"
+                      data-time={value.time}
+                    >
+                      <ImageSkeleton
+                        height={190}
+                        divClassName="vertical-container"
+                        src={value.image!}
+                      />
+                    </div>
                   );
                 }
               )}

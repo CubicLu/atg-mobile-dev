@@ -4,11 +4,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
 import { ShapesSize, Sizes } from '../../../types';
-import { IonRouterLink } from '@ionic/react';
 
 interface Props {
   viewAll?: boolean;
   showFooter: boolean;
+  width: number;
+  height: number;
   scroll?: boolean;
   data?: any[];
   size?: Sizes;
@@ -41,26 +42,24 @@ class SliderVideoComponent extends React.Component<Props> {
         <Slider {...settings}>
           {data.map(
             (d, i): React.ReactNode => (
-              <IonRouterLink
+              <CardVideo
                 key={i}
+                type={type}
+                video={d.video}
+                image={d.image}
+                title={d.title}
+                height={this.props.height}
+                width={this.props.width}
+                time={d.time}
+                name={d.artist?.name}
+                showFooter={this.props.showFooter}
+                size={size}
                 routerLink={
                   d.artist?.username
                     ? `/artist/${d.artist?.username}/video/${i}`
                     : undefined
                 }
-              >
-                <CardVideo
-                  type={type}
-                  video={d.video}
-                  image={d.image}
-                  title={d.title}
-                  time={d.time}
-                  artist={d.artist}
-                  showFooter={this.props.showFooter}
-                  id={i}
-                  size={size}
-                />
-              </IonRouterLink>
+              />
             )
           )}
         </Slider>

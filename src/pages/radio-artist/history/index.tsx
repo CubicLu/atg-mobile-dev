@@ -73,7 +73,7 @@ class RadioHistoryPage extends React.Component<Props> {
                               this.onSongClick(data.artistId, data.album)
                             }
                           >
-                            <div className="col s3 image">
+                            <div className="col s2 image">
                               <Avatar
                                 image={data.image}
                                 type={ShapesSize.circle}
@@ -81,12 +81,12 @@ class RadioHistoryPage extends React.Component<Props> {
                                 height={50}
                               />
                             </div>
-                            <div className="col s6 info">
+                            <div className="col s8 info">
                               <span className="song">{data.song}</span>
                               <span className="artist">{data.artist}</span>
                             </div>
                           </div>
-                          <div className="col s3 support">
+                          <div className="col s2 support">
                             <ButtonSupportIcon
                               artist={null}
                               id={data.artistId}

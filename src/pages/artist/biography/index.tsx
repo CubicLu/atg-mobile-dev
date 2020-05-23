@@ -431,7 +431,7 @@ class ArtistBiographyPage extends React.Component<Props, State> {
                 image={d.image}
                 type={ShapesSize.rounded}
                 key={i}
-                diameter="100px"
+                width={100}
                 routerLink={d.redirectUrl}
                 col={4}
                 label={d.name}

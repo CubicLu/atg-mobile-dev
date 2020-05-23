@@ -1,9 +1,9 @@
 ```js
-import SliderRadios from "./index";
+import SliderRadioCard from "./index";
 import '../../../theme/scss/_styles.scss';
 
 <div className="card-station">
-  <SliderRadios
+  <SliderRadioCard
     canEdit={true}
     data={[
       {

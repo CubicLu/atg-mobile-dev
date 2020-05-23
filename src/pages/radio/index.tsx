@@ -5,7 +5,7 @@ import {
   BackgroundImage,
   SectionTitle,
   SliderRadio,
-  SliderRadios,
+  SliderRadioCard,
   RadioPauseButton
 } from '../../components';
 import { RadioPlayButton, PlusButton } from '../../components/icon/player';
@@ -142,7 +142,7 @@ class RadioPage extends React.Component<Props, State> {
             viewAll={true}
             viewAllUrl="/radio/view-all"
           />
-          <SliderRadio className="f6 l1" diameter={'110px'} data={radios} />
+          <SliderRadio className="f6 l1" width={110} data={radios} />
 
           <div
             onClick={(): void =>
@@ -158,7 +158,7 @@ class RadioPage extends React.Component<Props, State> {
             />
           </div>
           <div className="card-station">
-            <SliderRadios
+            <SliderRadioCard
               canEdit={true}
               data={customRadios}
               onPlayClick={(): void => {

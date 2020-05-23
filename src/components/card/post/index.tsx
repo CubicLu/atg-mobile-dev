@@ -5,12 +5,12 @@ import {
   BalloonIcon,
   ShareLineIcon,
   DotsThreeIcon,
-  ContentLoader,
-  FavoriteIcon
+  FavoriteIcon,
+  ImageSkeleton
 } from './../../../components';
 import { PostInterface } from '../../../models';
 import { ShapesSize, Colors } from '../../../types';
-import { IonRouterLink, IonSlides, IonSlide, IonImg } from '@ionic/react';
+import { IonRouterLink, IonSlides, IonSlide } from '@ionic/react';
 import { store } from '../../../store';
 import { updateActionSheet } from '../../../actions';
 
@@ -24,18 +24,7 @@ interface Props {
   rounded: boolean;
 }
 
-interface State {
-  communityIsReady: boolean;
-}
-
-export default class CardPostComponent extends React.Component<Props, State> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      communityIsReady: false
-    };
-  }
-
+export default class CardPostComponent extends React.Component<Props> {
   public static defaultProps = {
     showOptions: false,
     disableComment: false,
@@ -56,54 +45,17 @@ export default class CardPostComponent extends React.Component<Props, State> {
   }
 
   renderPostSingle(): React.ReactNode {
+    if (typeof this.props.post.image !== 'string') return;
+    if (this.props.post.image.length === 0) return;
     return (
-      <div>
-        <IonImg
-          className={`flex-column space-between overflow-x ${this.props.className}`}
-          // @ts-ignore
-          src={this.props.post.image}
-          onIonImgDidLoad={(): void => {
-            this.setState({
-              communityIsReady: true
-            });
-          }}
-          style={
-            this.state.communityIsReady
-              ? {
-                  height: '290px',
-                  position: 'relative',
-                  backgroundImage: 'linear-gradient(#5f5f5f80, #8f8f8f80)',
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  borderRadius: this.props.rounded ? '20px' : 0,
-                  overflowY: 'hidden',
-                  objectFit: 'cover'
-                }
-              : { visibility: 'hidden', width: 0, height: 0 }
-          }
-        />
-        <ContentLoader
-          className="fluid"
-          speed={2}
-          width={'100%'}
-          height={400}
-          baseUrl={window.location.pathname}
-          backgroundColor="rgb(255,255,255)"
-          foregroundColor="rgb(255,255,255)"
-          backgroundOpacity={0.05}
-          foregroundOpacity={0.15}
-          style={
-            this.state.communityIsReady
-              ? {
-                  visibility: 'hidden',
-                  display: 'none'
-                }
-              : { visibility: 'visible' }
-          }
-        >
-          <rect x="0" y="0" rx="8" ry="8" width="100%" height="268" />
-        </ContentLoader>
-      </div>
+      <ImageSkeleton
+        className={`flex-column space-between overflow-x ${this.props.className}`}
+        src={this.props.post.image}
+        width={'100%'}
+        height={290}
+        useSkeleton={true}
+        style={this.stylizePost('', this.props.rounded)}
+      />
     );
   }
   renderPostSlideshow(): React.ReactNode {

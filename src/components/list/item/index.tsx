@@ -64,18 +64,16 @@ interface State {
 export default class ListItemComponent extends React.Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = {
-      isReady: false
-    };
+    this.state = { isReady: false };
   }
-
   linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
-
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   displayContent = (): void => {
     setTimeout((): void => {
-      this.setState({
-        isReady: true
-      });
+      !this._unmounted && this.setState({ isReady: true });
     }, 2000);
   };
   public static defaultProps = {

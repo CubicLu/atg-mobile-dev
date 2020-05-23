@@ -16,16 +16,15 @@ export default class MenuComponent extends React.Component<Props, State> {
   public static defaultProps = { onClick: (): void => {}, id: '' };
   constructor(props) {
     super(props);
-    this.state = {
-      isReady: false
-    };
+    this.state = { isReady: false };
   }
-
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   displayContent = (): void => {
     setTimeout((): void => {
-      this.setState({
-        isReady: true
-      });
+      !this._unmounted && this.setState({ isReady: true });
     }, 2000);
   };
   render(): React.ReactNode {

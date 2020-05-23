@@ -1,5 +1,5 @@
 import ContentLoader from 'react-content-loader';
-
+import ImageSkeletonComponent from './image-skeleton';
 import ButtonComponent from './button';
 import BackgroundImageComponent from './background-image';
 import InputChatComponent from './input/chat';
@@ -21,6 +21,7 @@ import MenuComponent from './menu';
 import DefaultModalComponent from './modal/default';
 import SliderVideoComponent from './slider/video';
 import CardImageComponent from './card/image';
+import CardCameraComponent from './card/camera';
 import CardVideoComponent from './card/video';
 import SliderRadioComponent from './slider/radio';
 import SliderEventsComponent from './slider/events';
@@ -66,7 +67,7 @@ import CardSubEraComponent from './card/era/sub-era';
 import CardGraphComponent from './card/graph';
 import ArrowTopIconComponent from './icon/arrow-top';
 import CardRadioComponent from './card/radio';
-import SliderRadiosComponent from './slider/custom-radio';
+import SliderRadioCardComponent from './slider/custom-radio';
 
 import SplashScreenComponent from './splash-screen';
 import ToastComponent from './toast';
@@ -103,6 +104,7 @@ import MixtapeRebelRockImage from './../assets/img/mixtapes/rebel-rock.png';
 export * from './icon';
 
 export {
+  ImageSkeletonComponent as ImageSkeleton,
   ButtonComponent as Button,
   BackgroundImageComponent as BackgroundImage,
   InputTextComponent as InputText,
@@ -124,6 +126,7 @@ export {
   DefaultModalComponent as DefaultModal,
   SliderVideoComponent as SliderVideo,
   CardImageComponent as CardImage,
+  CardCameraComponent as CardCamera,
   CardVideoComponent as CardVideo,
   SliderRadioComponent as SliderRadio,
   SliderMembersComponent as SliderMembers,
@@ -176,7 +179,7 @@ export {
   SplashScreenComponent as SplashScreen,
   ArrowTopIconComponent as ArrowTopIcon,
   CardRadioComponent as CardRadio,
-  SliderRadiosComponent as SliderRadios,
+  SliderRadioCardComponent as SliderRadioCard,
   ChatBalloonComponent as ChatBalloon,
   OutlinedButtonComponent as OutlinedButton,
   ToastComponent as Toast

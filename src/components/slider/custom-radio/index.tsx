@@ -27,7 +27,7 @@ interface Props {
   onResumeClick?: Function;
 }
 
-class SliderRadiosComponent extends React.Component<Props, State> {
+class SliderRadioCardComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { playingRadioIndex: null };
@@ -103,4 +103,4 @@ class SliderRadiosComponent extends React.Component<Props, State> {
     );
   }
 }
-export default SliderRadiosComponent;
+export default SliderRadioCardComponent;

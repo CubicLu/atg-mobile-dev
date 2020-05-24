@@ -6,15 +6,10 @@ import {
   PhotoChat,
   FavoriteIcon,
   ShareIcon,
-  ChatMessageIcon
+  ChatMessageIcon,
+  ImageSkeleton
 } from './../../../components';
-import {
-  IonContent,
-  IonPage,
-  IonImg,
-  Gesture,
-  GestureConfig
-} from '@ionic/react';
+import { IonContent, IonPage, Gesture, GestureConfig } from '@ionic/react';
 
 import {
   getArtistAPI,
@@ -231,11 +226,8 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
       100
     );
     setFullscreenImage(+params.imageId);
-    //@ts-ignore
-    if (window.deviceready && window.StatusBar) {
-      //@ts-ignore
-      window.StatusBar.hide();
-    }
+
+    window.deviceready && window.StatusBar?.hide();
   };
 
   callbackFunction = (childData: boolean, showHeader?: boolean): void => {
@@ -294,28 +286,32 @@ class ArtistGalleryPhotoPage extends React.Component<Props, State> {
         </div>
         <IonContent
           fullscreen={true}
-          scrollY={true}
-          scrollEvents={true}
-          onIonScroll={this.handleScroll.bind(this)}
-          style={{
-            overflow: 'auto',
-            zIndex: 1,
-            backgroundColor: '#000'
-          }}
+          scrollY={false}
+          style={{ overflow: 'auto', zIndex: 1, backgroundColor: '#000' }}
         >
           <div
             className={'artist-gallery-photo-page'}
             ref={this.image}
             id="gallery-image-gesture"
+            style={{ marginTop: 110 }}
           >
-            <div style={{ marginTop: 100 }}>
-              {imageSrc && <IonImg src={imageSrc} alt={''} />}
-            </div>
             <ButtonIcon
               type={ShapesSize.normal}
               icon={<FullscreenIcon />}
               onClick={this.showFullScreenModal}
-              styles={{ top: '15px', position: 'absolute', left: '20px' }}
+              styles={{
+                top: '15px',
+                position: 'absolute',
+                left: '20px',
+                zIndex: 2
+              }}
+            />
+
+            <ImageSkeleton
+              width={'100vw'}
+              height={'100vw'}
+              src={imageSrc}
+              skeletonHeight={360}
             />
           </div>
         </IonContent>

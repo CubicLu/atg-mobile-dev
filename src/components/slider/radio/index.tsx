@@ -9,13 +9,13 @@ interface Props {
   scroll?: boolean;
   data?: any[];
   className?: string;
-  diameter?: string;
+  width?: number;
 }
 
-class SliderRadioComponent extends React.Component<Props> {
+export default class SliderRadioComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    const { data, className, diameter } = this.props;
-    if (!data) return <div />;
+    if (!this.props.data) return null;
+
     const settings: any = {
       dots: false,
       infinite: false,
@@ -27,18 +27,18 @@ class SliderRadioComponent extends React.Component<Props> {
     };
 
     return (
-      <div className={`slider radio ${className}`}>
+      <div className={`slider radio ${this.props.className}`}>
         <Slider {...settings}>
-          {data.map(
-            (d, i): React.ReactNode => (
+          {this.props.data.map(
+            (item, i): React.ReactNode => (
               <CardImage
-                image={d.image}
+                image={item.image}
                 type={ShapesSize.circle}
                 key={i}
-                diameter={diameter}
-                routerLink={`/radio/artist/${d.id}`}
+                width={this.props.width}
+                routerLink={`/radio/artist/${item.id}`}
                 col={2}
-                label={d.label}
+                label={item.label}
               />
             )
           )}
@@ -47,4 +47,3 @@ class SliderRadioComponent extends React.Component<Props> {
     );
   }
 }
-export default SliderRadioComponent;

@@ -125,7 +125,7 @@ class RadioArtistPage extends React.Component<Props> {
             viewAll={false}
           />
           <SliderRadio
-            diameter={'72px'}
+            width={72}
             className="f6 l1"
             data={this.props.radioArtist?.similarStations}
           />

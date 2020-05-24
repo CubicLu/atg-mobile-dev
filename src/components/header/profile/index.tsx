@@ -47,13 +47,16 @@ export default class HeaderProfileComponent extends React.Component<
     showFilter: false
   };
 
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   displayContent = (): void => {
     setTimeout((): void => {
-      this.setState({
-        isReady: true
-      });
+      !this._unmounted && this.setState({ isReady: true });
     }, 2000);
   };
+
   profileActions: GenericModalInterface[] = [
     {
       name: 'View my public profile',

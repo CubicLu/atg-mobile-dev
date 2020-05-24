@@ -1,51 +1,44 @@
 import React from 'react';
-import { ArtistInterface } from '../../../models';
 import { ShapesSize, Colors, Sizes } from '../../../types';
-import { ButtonIcon, DotsThreeIcon } from '../..';
-
-interface State {
-  orientation: string;
-}
-
+import { ButtonIcon, DotsThreeIcon, ImageSkeleton } from '../..';
 interface Props {
   image: string | undefined;
-  id: number;
+  width: number;
+  height: number;
   showFooter?: boolean;
   type?: ShapesSize;
   video: string | undefined;
   title?: string;
   time: number | string;
-  artist?: ArtistInterface;
+  name?: string;
+  routerLink?: string;
   size?: Sizes;
-  onClick?: Function;
 }
 
-export default class CardVideoComponent extends React.Component<Props, State> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      orientation: ''
-    };
-  }
-
+export default class CardVideoComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    const { artist, type, image, time, title, size, id, onClick } = this.props;
+    const { type, image, time, title, size } = this.props;
     return (
       <div className="row card-out-content">
         <div
-          onClick={(): void => onClick && onClick(id)}
-          className={`video-card-container video ${type} ${size}`}
+          className={`video-card-container video ${type} ${size} mb-1`}
           data-time={time}
+          style={{ width: this.props.width, height: this.props.height }}
         >
-          <div className="vertical-video-image-container">
-            <img src={image} alt="" />
-          </div>
+          <ImageSkeleton
+            routerLink={this.props.routerLink}
+            className="vertical-container"
+            src={image!}
+            width={this.props.width}
+            height={this.props.height}
+          />
         </div>
+
         {title && <span className="f4 my-1">{title}</span>}
-        <br />
+
         {this.props.showFooter && (
           <div className={'f6 l11 flex-align-items-center'}>
-            <span className="align-start">{artist?.name}</span>
+            <span className="align-start">{this.props.name}</span>
             <span className="align-end">
               <ButtonIcon icon={<DotsThreeIcon />} color={Colors.transparent} />
             </span>

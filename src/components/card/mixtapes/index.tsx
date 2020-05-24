@@ -22,35 +22,31 @@ interface Props {
 }
 
 interface State {
-  openMenu: any;
+  readonly openMenu: boolean;
+  readonly isReady: boolean;
 }
 
-class CardMixtapesComponent extends React.Component<Props, State> {
-  isReady = false;
-
-  displayContent = (): void => {
-    setTimeout((): void => {
-      let that = this;
-      that.isReady = true;
-      this.forceUpdate();
-    }, 2000);
-  };
-
-  public static defaultProps = {
-    menu: true
-  };
+export default class CardMixtapesComponent extends React.Component<
+  Props,
+  State
+> {
+  private _unmounted: boolean = false;
+  public static defaultProps = { menu: true };
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      openMenu: false
-    };
+    this.state = { openMenu: false, isReady: false };
   }
 
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
+  displayContent = (): void => {
+    setTimeout((): void => {
+      !this._unmounted && this.setState({ isReady: true });
+    }, 2000);
+  };
   setMenu(): void {
-    this.setState({
-      openMenu: !this.state.openMenu
-    });
+    this.setState({ openMenu: !this.state.openMenu });
   }
 
   confirmDelete(): void {
@@ -75,7 +71,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
   render(): React.ReactNode {
     const { index, menu, mixtape } = this.props;
     if (!mixtape) return <div />;
-    if (!this.isReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
 
     return (
       <div>
@@ -89,7 +85,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
           backgroundOpacity={0.05}
           foregroundOpacity={0.15}
           style={
-            this.isReady
+            this.state.isReady
               ? { visibility: 'hidden', display: 'none' }
               : { visibility: 'visible' }
           }
@@ -98,10 +94,13 @@ class CardMixtapesComponent extends React.Component<Props, State> {
           <rect x="90" y="330" rx="3" ry="3" width="200" height="35" />
           <rect x="120" y="370" rx="3" ry="3" width="130" height="20" />
         </ContentLoader>
+
         <div
           className="card mixtapes"
           style={
-            this.isReady ? { visibility: 'visible' } : { visibility: 'hidden' }
+            this.state.isReady
+              ? { visibility: 'visible' }
+              : { visibility: 'hidden' }
           }
         >
           <div
@@ -167,6 +166,7 @@ class CardMixtapesComponent extends React.Component<Props, State> {
               </div>
             )}
           </div>
+
           <IonRouterLink
             routerDirection="forward"
             routerLink={`/track/mixtape/${mixtape.playlist?.id || 0}/0`}
@@ -183,5 +183,3 @@ class CardMixtapesComponent extends React.Component<Props, State> {
     );
   }
 }
-
-export default CardMixtapesComponent;

@@ -450,7 +450,6 @@ class PlayerComponent extends React.Component<Props> {
   playerSwipeLeftEnd = (): void => {
     const mini = document.querySelector('#inner-player') as HTMLElement;
     mini.style.transform = `translateX(${0}px)`;
-    console.log('ended');
   };
   playerSwipeUp = (gesture: any): void => {
     const validSwipeUp = !this.props.expanded && gesture.deltaY < -250;

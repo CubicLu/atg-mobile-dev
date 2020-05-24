@@ -4,7 +4,7 @@ import { ShapesSize } from '../../types';
 import { IonRouterLink } from '@ionic/react';
 
 interface State {
-  searchIsReady: boolean;
+  isReady: boolean;
 }
 
 interface SearchResult {
@@ -21,21 +21,20 @@ interface Props {
 class SearchResultSectionComponent extends React.Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = {
-      searchIsReady: false
-    };
+    this.state = { isReady: false };
   }
-
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   displayContent = (): void => {
     setTimeout((): void => {
-      this.setState({
-        searchIsReady: true
-      });
+      !this._unmounted && this.setState({ isReady: true });
     }, 2000);
   };
 
   render(): React.ReactNode {
-    if (!this.state.searchIsReady) this.displayContent();
+    if (!this.state.isReady) this.displayContent();
 
     return (
       <div>
@@ -49,7 +48,7 @@ class SearchResultSectionComponent extends React.Component<Props, State> {
           backgroundOpacity={0.05}
           foregroundOpacity={0.15}
           style={
-            this.state.searchIsReady
+            this.state.isReady
               ? { visibility: 'hidden', display: 'none' }
               : { visibility: 'visible' }
           }
@@ -60,7 +59,7 @@ class SearchResultSectionComponent extends React.Component<Props, State> {
         <div
           className={'search-result mt-3'}
           style={
-            this.state.searchIsReady
+            this.state.isReady
               ? { visibility: 'visible' }
               : { visibility: 'hidden' }
           }

@@ -28,11 +28,13 @@ class MyBioPage extends React.PureComponent<Props, State> {
     };
   }
 
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   displayContent = (): void => {
     setTimeout((): void => {
-      this.setState({
-        isReady: true
-      });
+      !this._unmounted && this.setState({ isReady: true });
     }, 2000);
   };
 

@@ -1,4 +1,5 @@
 .video-card-container {
+  border-radius: 8px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -17,8 +18,16 @@
     color: #fff;
     display: block;
     position: absolute;
-    bottom: 6px;
+    bottom: 0px;
+    border-radius: 0 0 8px 0;
     right: 0;
+  }
+  &.fluid{
+    height: 190px;
+    width: 100%;
+  }
+  &.slider{
+    width: 250px;
   }
   &.sm{
     width: 190px;
@@ -26,11 +35,13 @@
       height: auto;
     }
   }
-}
-
-.vertical-video-image-container {
-  img {
-    height: 190px;
-    width: auto;
+  .vertical-container {
+    border-radius: 8px;
+    text-align: center;
+    img {
+      border-radius: 8px;
+      height: 190px;
+      width: auto;
+    }
   }
 }

@@ -9,13 +9,12 @@ interface Props {
   data: any[];
   className?: string;
   labelClassName?: string;
-  size?: string;
+  width: number;
 }
 
 export default class SliderMembersComponent extends React.Component<Props> {
   render(): React.ReactNode {
-    const { data, className, size } = this.props;
-    if (!data) return <div />;
+    if (!this.props.data) return <div />;
     const settings: any = {
       dots: false,
       infinite: false,
@@ -27,19 +26,19 @@ export default class SliderMembersComponent extends React.Component<Props> {
     };
 
     return (
-      <div className={`slider members ${className}`}>
+      <div className={`slider members ${this.props.className}`}>
         <Slider {...settings}>
-          {data.map(
-            (d, i): React.ReactNode => (
+          {this.props.data.map(
+            (member, i): React.ReactNode => (
               <CardImage
                 labelClassName={this.props.labelClassName}
-                image={d.image}
+                image={member.image}
                 type={ShapesSize.rounded}
                 key={i}
-                diameter={size}
-                routerLink={d.redirectUrl}
+                width={this.props.width}
+                routerLink={member.redirectUrl}
                 col={5}
-                label={d.name}
+                label={member.name}
               />
             )
           )}

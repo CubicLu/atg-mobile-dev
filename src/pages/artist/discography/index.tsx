@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CardImage } from './../../../components';
+import { ImageSkeleton } from './../../../components';
 import { ApplicationState } from './../../../reducers';
 import { ArtistInterface } from '../../../models';
 
@@ -14,21 +14,19 @@ class ArtistDiscographyPage extends React.Component<StateProps> {
     const { discography } = currentArtist;
 
     return (
-      <div className={'artist-discography-page'}>
-        <div className="row">
-          {discography?.map(
-            (d, i): React.ReactNode => (
-              <div key={i}>
-                <CardImage
-                  key={i}
-                  routerLink={`/track/artist/${currentArtist.username}/${d.albumId}`}
-                  routerDirection="forward"
-                  image={d.cover}
-                />
-              </div>
-            )
-          )}
-        </div>
+      <div className="artist-discography-page row">
+        {discography?.map(
+          (d, i): React.ReactNode => (
+            <div key={i} className="col s6">
+              <ImageSkeleton
+                style={{ minHeight: 165, minWidth: 140 }}
+                routerLink={`/track/artist/${currentArtist.username}/${d.albumId}`}
+                imgClassName="card-image"
+                src={d.cover!}
+              />
+            </div>
+          )
+        )}
       </div>
     );
   }

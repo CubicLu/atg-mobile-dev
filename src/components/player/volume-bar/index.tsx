@@ -13,7 +13,6 @@ class PlayerVolumeComponent extends React.Component<Props> {
       return;
     }
     this.props.updateVolume(e.detail.value);
-    console.log('seeking', this.seeking, ' volume', this.props.masterVolume);
     this.seeking = true;
     setTimeout((): boolean => (this.seeking = false), 100);
   }

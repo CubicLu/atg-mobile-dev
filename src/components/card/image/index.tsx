@@ -1,36 +1,38 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { RouterLinkDirection, ShapesSize } from '../../../types';
-import { IonCheckbox, IonImg, IonRouterLink } from '@ionic/react';
-import { CloseIcon, ContentLoader } from '../..';
+import { IonRouterLink } from '@ionic/react';
+import { ContentLoader } from '../..';
 
 interface Props {
   image: string | undefined;
   className?: string;
   labelClassName?: string;
-  key: number;
   type: ShapesSize;
   col: number;
   label?: string;
-  innerContent?: React.ReactNode;
   routerLink?: string;
   routerDirection: RouterLinkDirection;
-  diameter?: string;
-  selected?: boolean;
-  selectAction?: Function;
-  canRemove?: boolean;
-  removeAction?: Function;
+  width?: number;
 }
-
 interface State {
-  albumIsReady: boolean;
+  isReady: boolean;
 }
 
-class CardImageComponent extends React.Component<Props, State> {
+export default class CardImageComponent extends React.Component<Props, State> {
+  private _unmounted: boolean = false;
   constructor(props) {
     super(props);
-    this.state = {
-      albumIsReady: false
-    };
+    this.state = { isReady: false };
+  }
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
+  componentDidMount(): void {
+    setTimeout((): void => {
+      this.state.isReady === false &&
+        this._unmounted === false &&
+        this.setState({ isReady: true });
+    }, 4000);
   }
 
   public static defaultProps = {
@@ -38,6 +40,40 @@ class CardImageComponent extends React.Component<Props, State> {
     col: 6,
     routerDirection: 'forward'
   };
+  cardStyle(): CSSProperties {
+    return {
+      backgroundImage: `url(${this.props.image})`,
+      height: this.props.width,
+      width: this.props.width,
+      minHeight: this.props.width,
+      minWidth: this.props.width,
+      visibility: 'visible'
+    };
+  }
+  renderSkeleton(): React.ReactNode {
+    if (this.state.isReady) return null;
+
+    const size = this.props.width || 110;
+    const half = size / 2;
+    return (
+      <ContentLoader
+        speed={2}
+        viewBox={`0 0 ${size} ${size}`}
+        baseUrl={window.location.pathname}
+        backgroundColor="rgb(255,255,255)"
+        foregroundColor="rgb(255,255,255)"
+        backgroundOpacity={0.05}
+        foregroundOpacity={0.15}
+        style={{ position: 'absolute', top: 0, left: 0 }}
+      >
+        {this.props.type === ShapesSize.circle ? (
+          <circle cx={half} cy={half} r={half} />
+        ) : (
+          <rect x="0" y="0" rx="8" ry="8" width={size} height={size} />
+        )}
+      </ContentLoader>
+    );
+  }
 
   render(): React.ReactNode {
     const {
@@ -45,91 +81,35 @@ class CardImageComponent extends React.Component<Props, State> {
       type,
       image,
       label,
-      diameter,
-      selectAction,
-      removeAction,
+      width,
       className,
       labelClassName
     } = this.props;
     return (
       <div className={`col s${col}`}>
-        <IonImg
-          onIonImgDidLoad={(): void => {
-            this.setState({
-              albumIsReady: true
-            });
-          }}
+        <img
+          style={{ width: 1, height: 1, visibility: 'hidden' }}
+          decoding={'async'}
           src={image}
-          style={{ width: 0, height: 0, visibility: 'hidden' }}
+          alt=""
+          onLoad={(): void => this.setLoaded()}
+          onError={(): void => this.setLoaded()}
         />
+
         <IonRouterLink
           routerLink={this.props.routerLink}
           routerDirection={this.props.routerDirection}
         >
           <div
             className={`card image ${type} ${className}`}
-            style={
-              this.state.albumIsReady
-                ? {
-                    backgroundImage: `url(${image})`,
-                    height: diameter,
-                    width: diameter,
-                    minHeight: diameter,
-                    minWidth: diameter,
-                    visibility: 'visible'
-                  }
-                : { visibility: 'hidden', height: 0, width: 0, display: 'none' }
-            }
+            style={this.cardStyle()}
           >
-            {this.props.canRemove && (
-              <div
-                className="flex-compass north east p-1 btn-close"
-                onClick={(): void => removeAction && removeAction()}
-              >
-                <CloseIcon />
-              </div>
-            )}
-
-            {this.props.selected !== undefined && (
-              <div className={'flex-compass south east p-1 mt-1'}>
-                <IonCheckbox
-                  mode="ios"
-                  color="secondary"
-                  checked={this.props.selected}
-                  onClick={(e): void => selectAction && selectAction(e.target)}
-                  style={{
-                    '--checkmark-width': '3px',
-                    '--background': '#ffffff30'
-                  }}
-                />
-              </div>
-            )}
-
-            {this.props.innerContent}
+            {this.renderSkeleton()}
           </div>
-          <ContentLoader
-            speed={2}
-            viewBox="0 0 110 110"
-            baseUrl={window.location.pathname}
-            backgroundColor="rgb(255,255,255)"
-            foregroundColor="rgb(255,255,255)"
-            backgroundOpacity={0.05}
-            foregroundOpacity={0.15}
-            style={
-              this.state.albumIsReady
-                ? { visibility: 'hidden', display: 'none' }
-                : { visibility: 'visible' }
-            }
-          >
-            {type === ShapesSize.circle ? (
-              <circle cx="55" cy="55" r="55" />
-            ) : (
-              <rect x="20" y="0" rx="8" ry="8" width="500" height="500" />
-            )}
-          </ContentLoader>
+
           <div
             className={`mt-15 f5 center-align ${labelClassName}`}
-            style={{ width: diameter }}
+            style={{ width: width }}
           >
             {label}
           </div>
@@ -137,6 +117,7 @@ class CardImageComponent extends React.Component<Props, State> {
       </div>
     );
   }
+  setLoaded(): void {
+    !this.state.isReady && !this._unmounted && this.setState({ isReady: true });
+  }
 }
-
-export default CardImageComponent;

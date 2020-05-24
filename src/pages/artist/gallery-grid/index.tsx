@@ -1,6 +1,11 @@
 import React from 'react';
-import { ContentLoader, Header, HeaderOverlay } from './../../../components';
-import { IonContent, IonPage, IonImg } from '@ionic/react';
+import {
+  ContentLoader,
+  Header,
+  HeaderOverlay,
+  ImageSkeleton
+} from './../../../components';
+import { IonContent, IonPage } from '@ionic/react';
 import { RouteComponentProps } from 'react-router';
 import {
   getArtistAPI,
@@ -39,63 +44,47 @@ interface Props
     RouteComponentProps<MatchParams> {
   album: GalleryInterface;
 }
-
 interface State {
-  coverIsReady: boolean;
-  galleryRow1IsReady: boolean;
+  isReady: boolean;
 }
-
-class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
+class ArtistGalleryGridPage extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
-
-    this.state = {
-      coverIsReady: false,
-      galleryRow1IsReady: false
-    };
+    this.state = { isReady: false };
   }
   private headerRef: React.RefObject<any> = React.createRef();
-
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   componentDidMount(): void {
-    const {
-      currentArtist,
-      getArtistAPI,
-      match,
-      currentGallery,
-      setCurrentGallery
-    } = this.props;
-    if (currentArtist === null) {
-      getArtistAPI(match.params.id);
+    setTimeout((): void => {
+      !this._unmounted && this.setState({ isReady: true });
+    }, 2000);
+    if (this.props.currentArtist === null) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
-    if (currentArtist?.username !== match.params.id) {
-      getArtistAPI(this.props.match.params.id);
+    if (this.props.currentArtist?.username !== this.props.match.params.id) {
+      this.props.getArtistAPI(this.props.match.params.id);
     }
-    if (currentArtist && !currentGallery) {
-      setCurrentGallery(+match.params.galleryId);
+    if (this.props.currentArtist && !this.props.currentGallery) {
+      this.props.setCurrentGallery(+this.props.match.params.galleryId);
     }
   }
 
   componentDidUpdate(prevProps): void {
-    const {
-      currentArtist,
-      currentGallery,
-      match,
-      setCurrentGallery
-    } = this.props;
-
     if (this.props.currentArtist === null) {
-      return this.props.getArtistAPI(this.props.match.params.id);
+      this.props.getArtistAPI(this.props.match.params.id);
     }
-
     if (
-      prevProps.match.params.id !== match.params.id &&
-      currentArtist?.username !== match.params.id
+      prevProps.match.params.id !== this.props.match.params.id &&
+      this.props.currentArtist?.username !== this.props.match.params.id
     ) {
-      getArtistAPI(match.params.id);
+      this.props.getArtistAPI(this.props.match.params.id);
     }
 
-    if (currentArtist && !currentGallery) {
-      setCurrentGallery(+match.params.galleryId);
+    if (this.props.currentArtist && !this.props.currentGallery) {
+      this.props.setCurrentGallery(+this.props.match.params.galleryId);
     }
   }
 
@@ -115,35 +104,16 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
   renderRow1Col3(data, i): React.ReactNode {
     return (
       <div className="row row1-col3" key={`row1-col3-${i}`}>
-        {data.map(
-          (item, i): React.ReactNode => {
-            return (
-              <div
-                className="col s4 img"
-                key={i}
-                onClick={(): void => this.onOpenImage(item.image)}
-              >
-                <IonImg
-                  onIonImgWillLoad={(): void => {
-                    this.setState({
-                      galleryRow1IsReady: false
-                    });
-                  }}
-                  onIonImgDidLoad={(): void => {
-                    this.setState({
-                      galleryRow1IsReady: true
-                    });
-                  }}
-                  onIonError={(): void => {
-                    this.setState({
-                      galleryRow1IsReady: true
-                    });
-                  }}
-                  src={item.image}
-                />
-              </div>
-            );
-          }
+        {data?.map(
+          (photo, j): React.ReactNode => (
+            <div key={j} className="col s4">
+              <ImageSkeleton
+                height={window.innerWidth / 3}
+                onClick={(): void => this.onOpenImage(photo.image)}
+                src={photo.image}
+              />
+            </div>
+          )
         )}
       </div>
     );
@@ -157,27 +127,32 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
       <div className="row row2-col2" key={`row2-col2-${i}`}>
         <div className="col s4 col1">
           <div className="row">
-            <div
-              className="col s12 img"
-              onClick={(): void => this.onOpenImage(image0)}
-            >
-              <IonImg src={image0} />
+            <div className="col s12">
+              <ImageSkeleton
+                onClick={(): void => this.onOpenImage(image0)}
+                height={0.33 * window.innerWidth}
+                src={image0}
+              />
             </div>
           </div>
+
           <div className="row">
-            <div
-              className="col s12 img"
-              onClick={(): void => this.onOpenImage(image1)}
-            >
-              <IonImg src={image1} />
+            <div className="col s12">
+              <ImageSkeleton
+                onClick={(): void => this.onOpenImage(image1)}
+                height={0.33 * window.innerWidth}
+                src={image1}
+              />
             </div>
           </div>
         </div>
-        <div
-          className="col s8 col2 img"
-          onClick={(): void => this.onOpenImage(image2)}
-        >
-          <IonImg src={image2} />
+
+        <div className="col s8 col2" style={{ height: '67vw' }}>
+          <ImageSkeleton
+            onClick={(): void => this.onOpenImage(image2)}
+            height={0.66 * window.innerWidth}
+            src={image2}
+          />
         </div>
       </div>
     );
@@ -188,17 +163,17 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
     let image1 = data[1] !== undefined ? data[1].image : null;
     return (
       <div className="row row1-col2" key={`row1-col2-${i}`}>
-        <div
-          className="col s8 img"
-          onClick={(): void => this.onOpenImage(image0)}
-        >
-          <IonImg src={image0} />
+        <div className="col s8">
+          <ImageSkeleton
+            onClick={(): void => this.onOpenImage(image0)}
+            src={image0}
+          />
         </div>
-        <div
-          className="col s4 img"
-          onClick={(): void => this.onOpenImage(image1)}
-        >
-          <IonImg src={image1} />
+        <div className="col s4">
+          <ImageSkeleton
+            onClick={(): void => this.onOpenImage(image1)}
+            src={image1}
+          />
         </div>
       </div>
     );
@@ -215,6 +190,29 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
       default:
         return null;
     }
+  }
+
+  renderSkeleton(): React.ReactNode {
+    if (this.state.isReady) return null;
+    return (
+      <ContentLoader
+        speed={2}
+        viewBox="0 0 400 800"
+        baseUrl={window.location.pathname}
+        backgroundColor="rgb(0,0,0)"
+        foregroundColor="rgb(255,255,255)"
+        backgroundOpacity={0.15}
+        foregroundOpacity={0.25}
+        style={{ overflow: 'auto' }}
+      >
+        <rect x="0" y="0" width="400" height="400" />
+        <rect x="0" y="405" width="133" height="150" />
+        <rect x="140" y="405" width="133" height="150" />
+        <rect x="280" y="405" width="133" height="150" />
+        <rect x="0" y="560" width="200" height="350" />
+        <rect x="210" y="560" width="200" height="350" />
+      </ContentLoader>
+    );
   }
 
   render(): React.ReactNode {
@@ -240,6 +238,7 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
           ? this.props.currentArtist?.gallery[params.galleryId].cover
           : undefined
         : undefined;
+
     return (
       <IonPage id="gallery-grid-page">
         <Header
@@ -248,33 +247,8 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
           leftBackAddAction={(): void => this.props.clearCurrentGallery()}
         />
         <HeaderOverlay ref={this.headerRef} />
-        <ContentLoader
-          speed={2}
-          viewBox="0 0 400 650"
-          baseUrl={window.location.pathname}
-          backgroundColor="rgb(0,0,0)"
-          foregroundColor="rgb(255,255,255)"
-          backgroundOpacity={0.15}
-          foregroundOpacity={0.25}
-          style={
-            this.state.coverIsReady && this.state.galleryRow1IsReady
-              ? { visibility: 'hidden', display: 'none' }
-              : { position: 'absolute', visibility: 'visible' }
-          }
-        >
-          <rect x="0" y="0" width="400" height="400" />
-          <rect x="0" y="405" width="133" height="150" />
-          <rect x="140" y="405" width="133" height="150" />
-          <rect x="280" y="405" width="133" height="150" />
-          <rect x="0" y="560" width="200" height="350" />
-          <rect x="210" y="560" width="200" height="350" />
-        </ContentLoader>
+
         <IonContent
-          style={
-            this.state.coverIsReady && this.state.galleryRow1IsReady
-              ? { visibility: 'visible' }
-              : { visibility: 'hidden' }
-          }
           fullscreen={true}
           scrollY={true}
           scrollEvents={true}
@@ -282,26 +256,25 @@ class ArtistGalleryGridPage extends React.Component<Props, State, {}> {
             this.headerRef.current?.handleParentScroll(e)
           }
         >
-          <div className={'artist-gallery-grid-page'}>
+          {this.renderSkeleton()}
+          <div
+            style={{ visibility: this.state.isReady ? 'visible' : 'hidden' }}
+            className={'artist-gallery-grid-page'}
+          >
             <div className={'images'}>
-              <div>
-                {cover !== undefined && (
-                  <div key={0} onClick={(): void => this.onOpenImage(cover)}>
-                    <IonImg
-                      onIonImgDidLoad={(): void => {
-                        this.setState({
-                          coverIsReady: true
-                        });
-                      }}
-                      src={cover}
-                    />
-                  </div>
-                )}
+              <div key={0} onClick={(): void => this.onOpenImage(cover)}>
+                <ImageSkeleton
+                  width={'100%'}
+                  height={'100%'}
+                  src={cover}
+                  style={{ minHeight: '100vw', maxHeight: '100vw' }}
+                />
               </div>
+
               {items.map(
-                (data: any, i: number): React.ReactNode => {
-                  let key = Object.keys(data) ? Object.keys(data)[0] : null;
-                  return !!key && this.renderTemplate(key, data[key], i);
+                (photo: any, i: number): React.ReactNode => {
+                  let key = Object.keys(photo) ? Object.keys(photo)[0] : null;
+                  return !!key && this.renderTemplate(key, photo[key], i);
                 }
               )}
             </div>

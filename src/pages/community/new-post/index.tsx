@@ -6,7 +6,7 @@ import {
   IonActionSheet,
   ActionSheetButton
 } from '@ionic/react';
-import { Button, CardImage, InputTextArea } from '../../../components';
+import { Button, CardCamera, InputTextArea } from '../../../components';
 import { ShapesSize, Colors } from '../../../types';
 import { CameraOptions, Camera } from '../../../models';
 import CameraImage from '../../../components/icon/camera';
@@ -153,29 +153,27 @@ export default class CommunityNewPostPage extends React.Component<
     return (
       <div id="images" className="mx-2 fluid flex row overflow-x">
         <div onClick={(): any => this.toggleCameraActions(true)}>
-          <CardImage
+          <CardCamera
             className="no-shadow"
             key={0}
-            diameter="105px"
+            width={105}
+            frame={true}
             type={ShapesSize.roundedFrame}
-            col={0}
-            image={undefined}
             innerContent={<CameraImage />}
           />
         </div>
 
         {this.state.cameraFiles.map(
           (post, id): React.ReactNode => (
-            <CardImage
+            <CardCamera
+              key={id}
               className="no-shadow"
               canRemove={false}
               removeAction={(): void => this.removeImage(post.fileUrl)}
               selected={post.selected}
               selectAction={(): void => this.selectImage(post.fileUrl)}
-              diameter="105px"
-              key={id}
+              width={105}
               type={ShapesSize.rounded}
-              col={0}
               image={post.fileUrl}
             />
           )

@@ -1,11 +1,11 @@
 import React from 'react';
-import SliderRadiosComponent from './index';
+import SliderRadioCardComponent from './index';
 import ReactDOM from 'react-dom';
 
-describe('SliderRadiosComponent render', () => {
+describe('SliderRadioCardComponent render', () => {
     it("render without crash", async () => {
         const div = document.createElement('div');
-        ReactDOM.render(<SliderRadiosComponent/>, div);
+        ReactDOM.render(<SliderRadioCardComponent/>, div);
         ReactDOM.unmountComponentAtNode(div);
     });
 });

@@ -5,7 +5,7 @@ import {
   ButtonIcon
 } from './../../../components';
 import { ArtistInterface } from '../../../models';
-import { IonImg, IonRouterLink } from '@ionic/react';
+import { IonRouterLink } from '@ionic/react';
 import SupportStarIcon from '../../icon/support-star';
 import { CloseIcon } from '../../icon';
 import { Colors } from '../../../types';
@@ -19,18 +19,21 @@ interface Props {
 }
 
 interface State {
-  artistIsReady: boolean;
+  isReady: boolean;
 }
 export default class CardArtistComponent extends React.Component<Props, State> {
+  linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
+  private _unmounted: boolean = false;
   constructor(props) {
     super(props);
-
-    this.state = {
-      artistIsReady: false
-    };
+    this.state = { isReady: false };
   }
-
-  linkRef: React.RefObject<HTMLIonRouterLinkElement> = React.createRef();
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
+  componentDidMount(): void {
+    setTimeout((): void => this.setLoaded(), 2000);
+  }
   confirmDelete(): void {
     store.dispatch(
       updateActionSheet({
@@ -45,35 +48,24 @@ export default class CardArtistComponent extends React.Component<Props, State> {
     const { cover, support, name } = artist;
     return (
       <div className="my-3" style={{ height: 140, maxHeight: 140 }}>
-        <IonImg
-          onIonImgDidLoad={(): void => {
-            this.setState({
-              artistIsReady: true
-            });
-          }}
+        <img
+          alt=""
           src={cover.main}
-          style={{ width: 0, height: 0, visibility: 'hidden' }}
+          decoding="async"
+          style={{
+            width: 1,
+            height: 1,
+            visibility: 'hidden',
+            position: 'absolute'
+          }}
+          onLoad={(): void => this.setLoaded()}
+          onError={(): void => this.setLoaded()}
         />
-        <ContentLoader
-          speed={2}
-          viewBox="0 0 400 140"
-          baseUrl={window.location.pathname}
-          backgroundColor="rgb(255,255,255)"
-          foregroundColor="rgb(255,255,255)"
-          backgroundOpacity={0.05}
-          foregroundOpacity={0.15}
-          style={
-            this.state.artistIsReady
-              ? { visibility: 'hidden', display: 'none', position: 'absolute' }
-              : { visibility: 'visible', position: 'absolute' }
-          }
-        >
-          <rect x="20" y="0" rx="8" ry="8" width="360" height="140" />
-        </ContentLoader>
+        {this.renderSkeleton()}
         <div
           className="card-artist mx-2 pb-15"
           style={
-            this.state.artistIsReady
+            this.state.isReady
               ? { visibility: 'visible', backgroundImage: `url(${cover.main})` }
               : { visibility: 'hidden' }
           }
@@ -109,5 +101,29 @@ export default class CardArtistComponent extends React.Component<Props, State> {
         </div>
       </div>
     );
+  }
+  renderSkeleton(): React.ReactNode {
+    if (this.state.isReady) return null;
+    return (
+      <ContentLoader
+        speed={2}
+        viewBox="0 0 400 140"
+        baseUrl={window.location.pathname}
+        backgroundColor="rgb(255,255,255)"
+        foregroundColor="rgb(255,255,255)"
+        backgroundOpacity={0.05}
+        foregroundOpacity={0.15}
+        style={
+          this.state.isReady
+            ? { visibility: 'hidden', display: 'none', position: 'absolute' }
+            : { visibility: 'visible', position: 'absolute' }
+        }
+      >
+        <rect x="20" y="0" rx="8" ry="8" width="360" height="140" />
+      </ContentLoader>
+    );
+  }
+  setLoaded(): void {
+    !this.state.isReady && !this._unmounted && this.setState({ isReady: true });
   }
 }

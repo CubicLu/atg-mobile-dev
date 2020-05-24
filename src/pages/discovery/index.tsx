@@ -9,7 +9,7 @@ import {
 } from './../../components';
 import { ApplicationState } from '../../reducers';
 import { getCommunityByArtistUsernameAPI } from '../../actions';
-import { IonPage, IonContent, IonImg, IonSlides, IonSlide } from '@ionic/react';
+import { IonPage, IonContent, IonSlides, IonSlide } from '@ionic/react';
 import { connect } from 'react-redux';
 import { CommunityArtistInterface } from '../../models';
 import { discoveryMock } from '../../constants/mocks';
@@ -36,11 +36,13 @@ class DiscoveryPage extends React.Component<Props, State> {
     this.props.getCommunityByArtistUsernameAPI('pharrell-williams');
   }
 
+  private _unmounted: boolean = false;
+  componentWillUnmount(): void {
+    this._unmounted = true;
+  }
   displayContent = (): void => {
     setTimeout((): void => {
-      this.setState({
-        isReady: true
-      });
+      !this._unmounted && this.setState({ isReady: true });
     }, 2000);
   };
 
@@ -112,20 +114,44 @@ class DiscoveryPage extends React.Component<Props, State> {
               />
               <div className="row px-2 pb-0 flex">
                 <div className="col s6 p-1 discovery-col">
-                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/1.png" />
+                  <img
+                    decoding="async"
+                    alt=""
+                    src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/1.png"
+                  />
                 </div>
                 <div className="col s6 p-1 discovery-col">
-                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/2.png" />
-                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/3.png" />
+                  <img
+                    decoding="async"
+                    alt=""
+                    src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/2.png"
+                  />
+                  <img
+                    decoding="async"
+                    alt=""
+                    src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/3.png"
+                  />
                 </div>
               </div>
               <div className="row px-2 pb-0 flex">
                 <div className="col s6 p-1 discovery-col">
-                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/4.png" />
-                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/6.png" />
+                  <img
+                    decoding="async"
+                    alt=""
+                    src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/4.png"
+                  />
+                  <img
+                    decoding="async"
+                    alt=""
+                    src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/6.png"
+                  />
                 </div>
                 <div className="col s6 p-1 discovery-col">
-                  <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/5.png" />
+                  <img
+                    decoding="async"
+                    alt=""
+                    src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/5.png"
+                  />
                 </div>
               </div>
               <SectionTitle
@@ -136,7 +162,11 @@ class DiscoveryPage extends React.Component<Props, State> {
               <div className="row px-2 pb-0 flex">
                 <div className="col s6 p-1 discovery-col">
                   <div className="discovery-fresh fresh-one">
-                    <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/9.png" />
+                    <img
+                      decoding="async"
+                      alt=""
+                      src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/9.png"
+                    />
                     <div className="p-10">
                       Critics are raving LMAO new release as the epitome of
                       “woke” culture. Hitting the airwaves this week.
@@ -145,7 +175,11 @@ class DiscoveryPage extends React.Component<Props, State> {
                 </div>
                 <div className="col s6 p-1 discovery-col">
                   <div className="discovery-fresh fresh-two">
-                    <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/8.png" />
+                    <img
+                      decoding="async"
+                      alt=""
+                      src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/8.png"
+                    />
                     <div className="p-10">
                       On the record with Rival Sons. The band speaks out on
                       music, politics and a new mix of sound that is pure chaos
@@ -178,7 +212,11 @@ class DiscoveryPage extends React.Component<Props, State> {
                 viewAll={false}
               />
               <div className="row px-2 pb-0">
-                <IonImg src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/11.png" />
+                <img
+                  decoding="async"
+                  alt=""
+                  src="https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/discovery/11.png"
+                />
               </div>
             </IonContent>
           </React.Fragment>

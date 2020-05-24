@@ -68,7 +68,12 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               viewAllUrl={`/artist/${username}/video`}
             />
             {newReleases && (
-              <SliderVideo showFooter={true} data={newReleases} />
+              <SliderVideo
+                showFooter={true}
+                data={newReleases}
+                width={250}
+                height={140}
+              />
             )}
           </div>
         )}
@@ -91,7 +96,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               viewAll={true}
               viewAllUrl={`/radio/artist/${username}`}
             />
-            <SliderRadio diameter="110px" data={radio} />
+            <SliderRadio width={110} data={radio} />
           </React.Fragment>
         )}
         <div className="row mx-05 mb-5" />
@@ -115,11 +120,7 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
               title={'BAND MEMBER BIOS'}
               viewAll={false}
             />
-            <SliderMembers
-              data={bandMembers}
-              size="100px"
-              labelClassName="f6"
-            />
+            <SliderMembers data={bandMembers} width={100} labelClassName="f6" />
           </div>
         )}
       </div>

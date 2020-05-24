@@ -8,11 +8,7 @@ import {
 import { IonContent, IonPage } from '@ionic/react';
 
 import { ArtistInterface } from '../../../models';
-import {
-  getArtistAPI,
-  setCurrentGallery,
-  updateSettingsProperty
-} from './../../../actions';
+import { getArtistAPI, setCurrentGallery } from './../../../actions';
 import { ApplicationState } from '../../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
@@ -23,7 +19,6 @@ interface StateProps {
 
 interface DispatchProps {
   getArtistAPI: (username: string) => void;
-  updateSettingsProperty: (property: string, value: any) => void;
   setCurrentGallery: (galleryId: number) => void;
 }
 
@@ -107,6 +102,5 @@ const mapStateToProps = ({ artistAPI }: ApplicationState): StateProps => {
 
 export default connect(mapStateToProps, {
   getArtistAPI,
-  updateSettingsProperty,
   setCurrentGallery
 })(ArtistGalleryPage);

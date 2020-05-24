@@ -1,4 +1,8 @@
+ion-toast::part(container):focus {
+  outline: none;
+}
 ion-toast::part(container) {
+  outline: none;
   background: white;
   border-radius: 5px;
   overflow: hidden;
@@ -16,4 +20,7 @@ ion-toast::part(message) {
 
 ion-toast::part(button) {
   text-decoration: underline;
+}
+.custom-toaster,.custom-toaster:focus,.custom-toaster:hover,.custom-toaster:active {
+  outline: none;
 }

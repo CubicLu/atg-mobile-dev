@@ -44,14 +44,17 @@ interface State {
 }
 
 class ArtistPage extends React.PureComponent<Props, State> {
-  private lastOffset: number = 0;
+  private finishing: boolean = false;
+  private directionTop: boolean = true;
+  private scrollTop: number = 0;
+  private kineticOffset: number = 0;
   private lastOffsetA: number = 0;
-  private custom: CustomAnimation = {
+  private kinetic: CustomAnimation = {
     animation: undefined,
     progressStarted: false,
     loaded: false
   };
-  private customAlpha: CustomAnimation = {
+  private linearScroll: CustomAnimation = {
     animation: undefined,
     progressStarted: false,
     loaded: false
@@ -65,26 +68,29 @@ class ArtistPage extends React.PureComponent<Props, State> {
     };
   }
 
-  componentDidUpdate(prevProps): void {
-    //navigate to specific tab
-    const hasTab = this.props.match.params.tab;
+  UNSAFE_componentWillUpdate(newProps): void {
+    const hasTab = newProps.match.params.tab;
     if (hasTab && this.state.activeTab !== hasTab) this.updateActiveTab(hasTab);
-    if (prevProps.match.params.id !== this.props.match.params.id) {
-      this.fetchArtist();
+
+    if (newProps.match.params.id !== this.props.match.params.id) {
+      this.fetchArtist(newProps);
     }
   }
   ionViewDidEnter(): void {
-    if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
-    this.fetchArtist();
+    if (!this.linearScroll.loaded) this.loadLinearScroll();
+    this.fetchArtist(this.props);
   }
 
-  fetchArtist(): void {
-    const artist = this.props.currentArtist;
-    const ok = artist == null || artist.username !== this.props.match.params.id;
+  fetchArtist(props: Props): void {
+    const artist = props.currentArtist;
+    const ok = artist == null || artist.username !== props.match.params.id;
     if (!ok) return;
+
+    props.getArtistAPI(props.match.params.id);
     !this.state.gateway && this.updateGateway(true);
-    this.props.getArtistAPI(this.props.match.params.id);
+    this.resetAnimation();
   }
+
   updateGateway(condition: boolean): void {
     this.setState({ gateway: condition });
   }
@@ -93,19 +99,26 @@ class ArtistPage extends React.PureComponent<Props, State> {
     this.setState({ activeTab: tab });
   }
 
-  componentDidMount(): void {
-    this.custom?.animation?.destroy();
-    this.customAlpha?.animation?.destroy();
-    this.custom.loaded = false;
-    this.customAlpha.loaded = false;
-    this.lastOffset = 0;
-    this.lastOffsetA = 0;
+  resetAnimation(): void {
+    this.kinetic?.animation?.destroy();
+    this.kinetic = {
+      animation: undefined,
+      progressStarted: false,
+      loaded: false
+    };
+    this.linearScroll?.animation?.destroy();
+    this.linearScroll = {
+      animation: undefined,
+      progressStarted: false,
+      loaded: false
+    };
   }
-  loadAnimationsAlpha(): void {
+
+  loadLinearScroll(): void {
     const normalMenu = document.querySelector('#artist-menu');
     if (!normalMenu) return;
-    this.customAlpha.loaded = true;
-    this.customAlpha.animation = createAnimation('customAlpha')
+    this.linearScroll.loaded = true;
+    this.linearScroll.animation = createAnimation('linearScroll')
       .easing('linear')
       .duration(1600)
       .addAnimation([
@@ -120,18 +133,18 @@ class ArtistPage extends React.PureComponent<Props, State> {
             `translateY(-${HEADER_ANIMATION_OFFSET}px)`
           )
       ]);
-    this.customAlpha.progressStarted = true;
-    this.customAlpha.animation.progressStart(true);
+    this.linearScroll.progressStarted = true;
+    this.linearScroll.animation.progressStart(true);
   }
-  loadAnimations(): void {
-    this.custom.loaded = true;
+  loadKineticAnimation(): void {
+    this.kinetic.loaded = true;
     const normalMenu = document.querySelector('#artist-menu')!;
     const supportButton = document.querySelector('#support-button')!;
     const artistTitle = document.querySelector('#artist-title')!;
     const aT = getFixedTranslatePoints(supportButton!, 16, 46, true);
     const bT = getFixedTranslatePoints(artistTitle, 22, 38);
     const menu = getFixedTranslatePoints(normalMenu!, 0, 80);
-    this.custom.animation = createAnimation('customAnime')
+    this.kinetic.animation = createAnimation('customAnime')
       .easing('ease-in')
       .duration(400)
       .addAnimation([
@@ -163,76 +176,58 @@ class ArtistPage extends React.PureComponent<Props, State> {
       ]);
   }
 
-  handleScrollEnd = (): void => {
-    if (!this.custom.progressStarted) {
-      return;
-    }
+  handleScrollEnd(): void {
     if (this.finishing) return;
-    const ionContent = document.querySelector(
-      'ion-content'
-    )! as HTMLIonContentElement;
+    if (!this.kinetic.progressStarted) return;
+    if (this.lastOffsetA !== 1) return;
+    if (this.directionTop && this.kineticOffset === 1) return;
+    if (!this.directionTop && this.kineticOffset === 0) return;
 
-    ionContent.scrollEvents = false;
-    ionContent.scrollY = false;
-    const shouldComplete = this.lastOffset > 0.5;
-    this.custom.animation
-      .progressEnd(shouldComplete ? 1 : 0, this.lastOffset)
-      .onFinish((): void => {
-        this.setFinishing();
-        ionContent.scrollY = true;
-        ionContent.scrollEvents = true;
-      });
-    this.lastOffset = shouldComplete ? 1 : 0;
-    this.custom.progressStarted = false;
-    this.customAlpha.progressStarted = false;
-  };
+    const finishUp = this.directionTop && this.kineticOffset > 0.15;
+    const finishDown = this.directionTop === false && this.kineticOffset < 0.85;
+    if (!finishDown && !finishUp) return;
 
-  finishing = false;
+    this.kinetic.animation
+      .progressEnd(finishUp ? 1 : 0, this.kineticOffset)
+      .onFinish((): void => this.setFinishing());
+    this.kineticOffset = finishUp ? 1 : 0;
+    this.kinetic.progressStarted = false;
+  }
   setFinishing(): void {
-    if (this.finishing) return;
     this.finishing = true;
-    setTimeout((): void => {
-      if (this.finishing) this.finishing = false;
-    }, 200);
+    setTimeout((): boolean => (this.finishing = false), 1000);
   }
 
-  handleScroll = (event: CustomEvent): void => {
-    if (!this.customAlpha.loaded) this.loadAnimationsAlpha();
-
-    if (!this.customAlpha.progressStarted) {
-      this.customAlpha.animation.progressStart();
-      this.customAlpha.progressStarted = true;
+  handleScroll(detail): void {
+    if (!this.linearScroll.loaded) this.loadLinearScroll();
+    if (!this.linearScroll.progressStarted) {
+      this.linearScroll.animation.progressStart();
+      this.linearScroll.progressStarted = true;
     }
-
-    //use values between 100 and 200 on divisor to throttle
-    const offsetA = Number(
-      Math.min(event.detail.scrollTop / 200, 1).toFixed(2)
-    );
-    this.customAlpha.animation.progressStep(offsetA);
+    this.directionTop = detail.deltaY > 0;
+    this.scrollTop = detail.scrollTop;
+    const offsetA = Math.trunc(1000 * Math.min(this.scrollTop / 200, 1)) / 1000;
+    this.linearScroll.animation.progressStep(offsetA);
     this.lastOffsetA = offsetA;
 
-    if (
-      event.detail.scrollTop >= HEADER_ANIMATION_OFFSET &&
-      !this.custom.loaded
-    ) {
-      this.loadAnimations();
+    if (this.scrollTop >= HEADER_ANIMATION_OFFSET && !this.kinetic.loaded) {
+      this.loadKineticAnimation();
     }
-    if (!this.custom.loaded) return;
+    if (!this.kinetic.loaded) return;
+    this.handleScrollKinetic();
+  }
+  handleScrollKinetic(): void {
     if (this.finishing) return;
-
-    if (!this.custom.progressStarted) {
-      this.custom.animation.progressStart();
-      this.custom.progressStarted = true;
+    if (!this.kinetic.progressStarted) {
+      this.kinetic.animation.progressStart();
+      this.kinetic.progressStarted = true;
     }
-    const topOffSet = Math.max(
-      0,
-      event.detail.scrollTop - HEADER_ANIMATION_OFFSET
-    );
-
-    const offset = Number(Math.min(topOffSet / 100, 1).toFixed(2));
-    this.custom.animation.progressStep(offset);
-    this.lastOffset = offset;
-  };
+    const topOffSet = Math.max(0, this.scrollTop - HEADER_ANIMATION_OFFSET);
+    const kineticOffset = Math.min(topOffSet / 100, 1);
+    //kineticOffset means % of bottom or top - 0 is bottom and 1 is top
+    this.kinetic.animation.progressStep(kineticOffset);
+    this.kineticOffset = kineticOffset;
+  }
 
   handleMenu = (event: MenuInterface): void => {
     const { match, history } = this.props;
@@ -296,8 +291,8 @@ class ArtistPage extends React.PureComponent<Props, State> {
           scrollEvents={true}
           forceOverscroll={false}
           fullscreen={false}
-          onIonScroll={this.handleScroll}
-          onIonScrollEnd={this.handleScrollEnd}
+          onIonScroll={(e): void => this.handleScroll(e.detail)}
+          onIonScrollEnd={(): void => this.handleScrollEnd()}
         >
           <div className="offset-content" />
 

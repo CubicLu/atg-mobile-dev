@@ -99,10 +99,10 @@ export default class ImageSkeletonComponent extends React.PureComponent<
             ...this.props.imgStyle
           }}
           decoding={this.props.decoding}
-          src={src}
           alt={this.props.alt}
           onLoad={this.onLoad}
           onError={this.onError}
+          src={src}
         />
       </div>
     );

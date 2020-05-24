@@ -166,14 +166,12 @@ class ArtistGalleryGridPage extends React.PureComponent<Props, State> {
         <div className="col s8">
           <ImageSkeleton
             onClick={(): void => this.onOpenImage(image0)}
-            height={'inherit'}
             src={image0}
           />
         </div>
         <div className="col s4">
           <ImageSkeleton
             onClick={(): void => this.onOpenImage(image1)}
-            height={'inherit'}
             src={image1}
           />
         </div>

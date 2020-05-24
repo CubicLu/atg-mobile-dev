@@ -31,25 +31,17 @@ export default class ToastComponent extends React.Component<Props> {
   toastRef: React.RefObject<HTMLIonToastElement> = React.createRef();
 
   render(): React.ReactNode {
-    const {
-      message,
-      showToast,
-      duration,
-      buttons,
-      hideToast,
-      classNames
-    } = this.props;
+    const { message, showToast, duration, buttons, hideToast } = this.props;
 
     return (
       <IonToast
         ref={this.toastRef}
         isOpen={showToast}
-        onDidPresent={this.setClickHandler}
-        onDidDismiss={hideToast}
+        onWillPresent={this.setClickHandler}
+        onWillDismiss={hideToast}
         message={message}
         duration={duration}
         buttons={buttons}
-        cssClass={classNames}
       />
     );
   }

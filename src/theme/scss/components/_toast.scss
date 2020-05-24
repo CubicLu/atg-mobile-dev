@@ -2,6 +2,10 @@ ion-toast::part(container) {
   background: white;
   border-radius: 5px;
   overflow: hidden;
+  --max-width: 300px;
+  width: 100%;
+  position: absolute;
+  top: -105px;
 }
 
 ion-toast::part(message) {
@@ -12,10 +16,4 @@ ion-toast::part(message) {
 
 ion-toast::part(button) {
   text-decoration: underline;
-}
-
-.custom-toast {
-  --max-width: 300px;
-  position: fixed;
-  top: -105px;
 }

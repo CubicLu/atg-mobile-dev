@@ -6,6 +6,7 @@ export interface SongInterface {
   readonly title: string;
   readonly album: string;
   readonly artist: string;
+  readonly artistUrl?: string;
   readonly duration: number;
   readonly cover: string;
   readonly coverArtist?: string;

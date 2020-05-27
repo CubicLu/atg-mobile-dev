@@ -7,6 +7,7 @@ interface Props {
   className?: string;
   id?: string;
   artist: ArtistInterface | null;
+  username?: string;
 }
 export class ButtonSupportIconComponent extends React.Component<Props> {
   public static defaultProps = { supported: false };
@@ -18,6 +19,7 @@ export class ButtonSupportIconComponent extends React.Component<Props> {
         className={this.props.className}
         supported={this.props.supported}
         bold={this.props.bold}
+        username={this.props.username}
         id="support-button-circle"
       />
     );
@@ -33,6 +35,7 @@ export class ButtonSupportComponent extends React.Component<Props> {
         className={this.props.className}
         supported={this.props.supported}
         bold={this.props.bold}
+        username={this.props.username}
         id={this.props.id}
       />
     );

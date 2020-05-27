@@ -11,6 +11,7 @@ interface ButtonProps {
   bold?: boolean;
   id: string;
   artist: ArtistInterface | null;
+  username?: string;
 }
 
 class SupportComponent extends React.Component<ButtonProps> {
@@ -47,8 +48,8 @@ class SupportComponent extends React.Component<ButtonProps> {
   }
 
   renderButton(): React.ReactNode {
-    const { supported, bold, id } = this.props;
-    const username = this.props.artist?.username || 'pharrell-williams';
+    const { supported, bold, id, username } = this.props;
+    const user = this.props.artist?.username || username || 'pharrell-williams';
     return (
       <Button
         id={id}
@@ -57,11 +58,11 @@ class SupportComponent extends React.Component<ButtonProps> {
         label={supported ? 'SUPPORTED' : 'SUPPORT!'}
         bold={bold}
         onClick={this.handleLinkClick}
-        routerLink={`/artist/${username}/support`}
+        routerLink={`/artist/${user}/support`}
       >
         <IonRouterLink
           ref={this.linkRef}
-          routerLink={`/artist/${username}/support`}
+          routerLink={`/artist/${user}/support`}
           routerDirection="forward"
         />
       </Button>

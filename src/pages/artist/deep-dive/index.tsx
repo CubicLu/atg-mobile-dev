@@ -81,16 +81,16 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
     const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;
     const fixed = this.state.fixed ? 'absolute' : '';
     return (
-      <IonPage id="artist-deep-dive-dive-page" className="background-white">
-        <BackgroundImage
-          backgroundImage={currentArtist?.cover.deepDive}
-          blur={this.state.fixed}
-        />
+      <IonPage id="artist-deep-dive-dive-page">
         <IonContent
           scrollY={true}
           scrollEvents={true}
           onIonScroll={(e): void => this.handleScroll(e)}
         >
+          <BackgroundImage
+            backgroundImage={currentArtist?.cover.deepDive}
+            blur={this.state.fixed}
+          />
           <div className={'artist-deep-dive-page'}>
             <div className={this.state.fixed ? 'row header-fixed' : 'row'}>
               <Header

@@ -63,16 +63,15 @@ class DashboardPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { dashboard, dashboardTabs, activeDashboardTab } = this.props;
-    if (!dashboard) return <IonPage id="dashboard-page" />;
     return (
       <IonPage id="dashboard-page" className={'dashboard-page'}>
         <BackgroundImage
           gradient="180deg, #101041a6, #101041a6"
           gradientOverlay={true}
-          backgroundImage={dashboard.artist.cover.dashboard}
-          default={dashboard.artist.cover.dashboard === undefined}
-          backgroundTop={dashboard.artist.cover.dashboard === undefined}
-          backgroundBottom={dashboard.artist.cover.dashboard === undefined}
+          backgroundImage={dashboard?.artist.cover.dashboard}
+          default={dashboard?.artist.cover.dashboard === undefined}
+          backgroundTop={dashboard?.artist.cover.dashboard === undefined}
+          backgroundBottom={dashboard?.artist.cover.dashboard === undefined}
         />
         <Header
           className="dashboard-page-header"
@@ -80,7 +79,7 @@ class DashboardPage extends React.Component<Props> {
             <div>
               <span className="title text-30 h0 l1">Dashboard</span>
               <br />
-              <span className="text-14 f0 l1">{dashboard.artist.name}</span>
+              <span className="text-14 f0 l1">{dashboard?.artist.name}</span>
             </div>
           }
           leftBackButton={true}

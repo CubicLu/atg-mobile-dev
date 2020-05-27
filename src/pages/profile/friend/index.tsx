@@ -131,7 +131,7 @@ class FriendProfilePage extends React.PureComponent<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="friend-profile-page" style={{ background: '#2d0758' }}>
+      <IonPage id="friend-profile-page">
         <IonContent id="friend-profile-page" scrollY={false}>
           {this.props.currentFriend === null || !this.props.currentFriend
             ? null

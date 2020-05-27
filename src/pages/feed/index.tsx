@@ -25,7 +25,7 @@ class FeedPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="feed-page" style={{ Background: '#2d0758' }}>
+      <IonPage id="feed-page">
         <BackgroundImage default />
         <Header
           fixed={false}

@@ -211,8 +211,8 @@ export default class CommunityNewPostPage extends React.Component<
   }
   render(): React.ReactNode {
     return (
-      <IonPage id="community-new-post-page">
-        <IonContent style={{ backgroundColor: '#fff' }}>
+      <IonPage id="community-new-post-page" className="background-white">
+        <IonContent fullscreen={true}>
           {this.renderHeaderBar()}
 
           <div className="mx-2 mb-1 center-align">

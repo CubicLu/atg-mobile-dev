@@ -247,7 +247,7 @@ class ArtistVideoDetailPage extends React.Component<Props, State> {
       (videos?.showcase && videos?.showcase[videoId]?.video);
     const isPortrait = orientation === 'portrait';
     return (
-      <IonPage id="artist-videos-page">
+      <IonPage id="artist-video-detail-page">
         <BackgroundImage default />
         <IonContent
           scrollY={true}

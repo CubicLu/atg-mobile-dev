@@ -47,7 +47,7 @@ class VaultFilterSubEraPage extends React.Component<Props> {
       });
     }
     return (
-      <IonPage id="vault-filter-genre-page">
+      <IonPage id="vault-filter-sub-era-page">
         <Header
           leftTitle={state?.era}
           titleClassName="sub-era"

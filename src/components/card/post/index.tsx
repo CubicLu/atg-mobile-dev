@@ -159,7 +159,13 @@ export default class CardPostComponent extends React.Component<Props> {
     const url = clickToOpen ? `/community/comments/${post.id || 1}` : undefined;
 
     return (
-      <div className="mb-4" style={{ position: 'relative' }}>
+      <div
+        className="mb-4"
+        style={{
+          position: 'relative',
+          minHeight: 290
+        }}
+      >
         <IonRouterLink routerLink={url}>
           {Array.isArray(post.image)
             ? this.renderPostSlideshow()

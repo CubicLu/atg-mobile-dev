@@ -240,7 +240,7 @@ class ArtistGalleryGridPage extends React.PureComponent<Props, State> {
         : undefined;
 
     return (
-      <IonPage id="gallery-grid-page">
+      <IonPage id="gallery-grid-page" className="background-white">
         <Header
           title={title}
           rightActionButton={true}

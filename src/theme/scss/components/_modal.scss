@@ -7,6 +7,7 @@
     }
 }
 .sliding-panel-container{
+    height: 100%;
     .background-white-base{
         background-color: #FFF;
     }
@@ -25,12 +26,17 @@
         margin-bottom: 0;
         margin-right: 24px;
         margin-left: 24px;
-
     }
     .leaving{
         opacity: 0;
     }
     .panel{
+        &.bottom{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+        }
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         .background-bottom{

@@ -70,16 +70,23 @@ class CommunityArtistPage extends React.Component<Props, State> {
   render(): React.ReactNode {
     //const { joined } = this.state;
     const { currentCommunityArtist } = this.props;
-    if (!currentCommunityArtist) return <IonPage id="community-page" />;
+    if (!currentCommunityArtist)
+      return (
+        <IonPage id="community-page-artist" className="background-transparent">
+          <BackgroundImage default />
+          <Header fixed={false} />
+          <IonContent fullscreen={true} />
+        </IonPage>
+      );
 
     return (
-      <IonPage id="community-page" style={{ Background: '#2d0758' }}>
-        {this.renderBackground()}
+      <IonPage id="community-page-artist" className="background-transparent">
         <Header fixed={false}>
           <div className="h2 absolute-logo-left single">
             {currentCommunityArtist.fullname}
           </div>
         </Header>
+        {this.renderBackground()}
 
         <IonContent>
           <div className={'mt-3'} />

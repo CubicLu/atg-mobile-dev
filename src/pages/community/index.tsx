@@ -34,11 +34,11 @@ class CommunityPage extends React.Component<Props> {
 
   render(): React.ReactNode {
     return (
-      <IonPage id="community-page" style={{ Background: '#2d0758' }}>
-        <BackgroundImage default={true} />
+      <IonPage id="community-page">
         <Header
           leftBackButton={false}
           fixed={false}
+          className="minimum-height"
           leftContent={
             <div className="title-left-dual">
               <div className="h2 community">Community</div>
@@ -55,6 +55,7 @@ class CommunityPage extends React.Component<Props> {
           }
         />
 
+        <BackgroundImage default={true} />
         <IonContent>
           <div className={'mt-3'} />
           {this.renderArtistCommunities()}

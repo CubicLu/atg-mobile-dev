@@ -44,7 +44,7 @@ class ModalSlideComponent extends React.Component<Props> {
       <div className={`${wrapperClassName ?? ''}`}>
         <SlidingPanel
           type={type}
-          panelContainerClassName={`${'bottom'} ${background} zzz`}
+          panelContainerClassName={`${'bottom'} ${background}`}
           className={`${'bottom'} ${background}`}
           size={height || size}
           isOpen={isOpen}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { BackIcon, ButtonIcon, DotsThreeIcon, StarIcon, Button } from './../';
 import {
   CloseIcon,
@@ -31,6 +31,7 @@ interface Props {
   leftMinimizeOnClick?: any;
   rightSettingsOnClick?: any;
   rightInfoOnClick?: any;
+  centerInfoOnClick?: any;
   leftBackAddAction?: any;
   leftBackHref?: string;
   rightActionHref?: string;
@@ -58,7 +59,7 @@ interface Props {
   rightActionYellow?: boolean;
   rightClickGoBack?: boolean;
   likeButtonOnClick?: () => void;
-  style?: { [key: string]: any };
+  style?: CSSProperties;
 }
 
 export default class HeaderComponent extends React.PureComponent<Props> {
@@ -154,10 +155,15 @@ export default class HeaderComponent extends React.PureComponent<Props> {
       style
     } = this.props;
 
-    const isFixed = fixed ? 'fixed' : '';
+    let customHeaderClass = 'atg-header ';
+    customHeaderClass += fixed ? 'fixed' : ' ';
+    customHeaderClass += top ? top : ' ';
+    customHeaderClass += color ? color : ' ';
+    customHeaderClass += className ? className : ' ';
+
     return (
       <IonHeader id="ion-header" className="ion-no-border" style={style}>
-        <div className={`atg-header ${isFixed} ${top} ${color} ${className}`}>
+        <div className={`${customHeaderClass.trim()}`}>
           <div className="start">
             {leftBackButton && (
               <div className="default-button dark" onClick={this.goBackClick}>
@@ -180,7 +186,10 @@ export default class HeaderComponent extends React.PureComponent<Props> {
             {leftContent}
           </div>
 
-          <div className="center">
+          <div
+            onClick={(): void => this.props.centerInfoOnClick()}
+            className="center"
+          >
             {centerContent}
 
             {title && (

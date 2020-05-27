@@ -78,10 +78,10 @@ export default class ProfileVaultPage extends React.Component<Props> {
                 }
               },
               {
-                asset: 'Hollow Bones',
-                assetUrl: '/track/artist/rival-sons/0',
+                asset: 'GIRL',
+                assetUrl: '/track/artist/pharrell-williams/2',
                 avatar:
-                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_rivalsons.jpg',
+                  'https://frontend-mocks.s3-us-west-1.amazonaws.com/mocks/community/stories/avatar_pharrell.jpg',
                 artist: {
                   cover: {
                     deepDive: '',

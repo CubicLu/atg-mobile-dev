@@ -6,6 +6,7 @@ import { shadowTitle } from '../../utils';
 interface Props {
   tiles?: AlbumInterface[];
   onClick?: () => void;
+  hidden?: boolean;
 }
 
 export default class BottomTilesComponent extends React.Component<Props> {
@@ -15,7 +16,10 @@ export default class BottomTilesComponent extends React.Component<Props> {
     if (tiles.length < 3) tiles = this.default;
 
     return (
-      <div className="bottom-tiles fluid">
+      <div
+        style={{ visibility: this.props.hidden ? 'hidden' : 'visible' }}
+        className="bottom-tiles fluid"
+      >
         {tiles.map(
           (tile, i): React.ReactNode => (
             <IonRouterLink

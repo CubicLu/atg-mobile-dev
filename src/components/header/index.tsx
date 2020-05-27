@@ -187,7 +187,9 @@ export default class HeaderComponent extends React.PureComponent<Props> {
           </div>
 
           <div
-            onClick={(): void => this.props.centerInfoOnClick()}
+            onClick={(): void =>
+              this.props.centerInfoOnClick && this.props.centerInfoOnClick()
+            }
             className="center"
           >
             {centerContent}

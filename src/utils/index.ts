@@ -134,7 +134,23 @@ export function artistBackground(
     backgroundRepeat: 'no-repeat'
   };
 }
+export function radioBackground(
+  url?: string,
+  color: string = '#36bafc'
+): CSSProperties {
+  let backgroundImageArray: string[] = [];
+  const gradient = `180deg, #000 0%, #000 10%, ${color}00 20%, ${color}0d 33%, ${color}ed 51%, ${color} 100%`;
+  backgroundImageArray.push(`linear-gradient(${gradient})`);
+  url && backgroundImageArray.push(`url(${url})`);
+  const backgroundImage = backgroundImageArray.filter(Boolean).join(', ');
 
+  return {
+    backgroundColor: '#000',
+    backgroundImage,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
+  };
+}
 interface Coordinates {
   translateX: number;
   translateY: number;

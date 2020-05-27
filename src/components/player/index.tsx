@@ -7,7 +7,8 @@ import {
   ReplayIcon,
   PlayerProgress,
   PlayerVolume,
-  MiniPlayerBar
+  MiniPlayerBar,
+  DefaultModal
 } from './../../components';
 import {
   createGesture,
@@ -27,7 +28,8 @@ import {
   stopSong,
   pauseSong,
   resumeSong,
-  seekSongPosition
+  seekSongPosition,
+  updateSettingsModal
 } from './../../actions';
 import { ApplicationState } from '../../reducers';
 import {
@@ -35,7 +37,8 @@ import {
   PlaylistInterface,
   PlayerActionType,
   MediaType,
-  ActionSheetInterface
+  ActionSheetInterface,
+  ModalSlideInterface
 } from '../../models';
 import {
   PlayButton,
@@ -213,12 +216,76 @@ class PlayerComponent extends React.Component<Props> {
   }
 
   toastClickHandler = (e): void => {
-    const { updateSettingsProperty, history } = this.props;
     e.preventDefault();
-    updateSettingsProperty('activeFanTab', 'vault');
-    history.push('/profile');
-    this.togglePlayer();
+    this.props.updateSettingsProperty('activeFanTab', 'vault');
+    this.navigateTo('/profile');
   };
+
+  loadAlbumInfo(): void {
+    store.dispatch(
+      updateSettingsModal(
+        <DefaultModal
+          title="Album Info"
+          content={this.renderAlbumContent()}
+          onClick={(): void => {}}
+          data={[]}
+          overrideClick={true}
+        />,
+        undefined,
+        70,
+        (): void => {},
+        undefined
+      )
+    );
+  }
+  renderAlbumContent(): React.ReactNode {
+    const { playlist, song } = this.props;
+    if (!song) return null;
+    const to = (url): (() => void) => (): void => {
+      store.dispatch(updateSettingsModal(null));
+      this.navigateTo(url);
+    };
+    const albumUrl = song.artistUrl
+      ? `/track/artist/${song.artistUrl}/${playlist!.id}`
+      : undefined;
+    const artistUrl = song.artistUrl ? `/artist/${song.artistUrl}` : undefined;
+    return (
+      <ul className="dual-list">
+        <li onClick={to(albumUrl)} className="bold">
+          Track Title
+        </li>
+        <li>{song?.title}</li>
+
+        <li onClick={to(albumUrl)} className="bold">
+          Album Title
+        </li>
+        <li onClick={to(albumUrl)}>{song?.album}</li>
+
+        <li onClick={to(artistUrl)} className="bold">
+          Artist
+        </li>
+        <li onClick={to(artistUrl)}>{song.artist}</li>
+
+        <li className="bold">Featured Artists</li>
+        <li className="answer">{'-'}</li>
+
+        <li className="bold">Label</li>
+        <li className="answer">{'-'}</li>
+
+        <li className="bold">Publisher</li>
+        <li className="answer">{song?.ISRC}</li>
+
+        <li className="bold">Genre(s)</li>
+        <li className="answer">{playlist?.owner}</li>
+
+        <li className="bold">Era(s)</li>
+        <li className="answer">{playlist?.owner}</li>
+
+        <li className="bold">Language</li>
+        <li className="answer">{'English'}</li>
+      </ul>
+    );
+  }
 
   confirmShare(): void {
     store.dispatch(
@@ -283,37 +350,78 @@ class PlayerComponent extends React.Component<Props> {
       </div>
     );
   }
+  navigateTo(url?: string): void {
+    if (!url) return;
+    this.togglePlayer();
+    return this.props.history.push(url);
+  }
+  navigateSource(): void {
+    const { playlist, song, history } = this.props;
+    switch (playlist?.source) {
+      case 'artist':
+        song?.artistUrl &&
+          history.push(`/track/artist/${song.artistUrl}/${playlist!.id}`);
+        return this.togglePlayer();
+      case 'mixtape':
+      case 'playlist':
+        playlist && history.push(`/track/mixtape/${playlist?.id}/0`);
+        return this.togglePlayer();
+      case 'radio':
+        song?.artistUrl === undefined
+          ? history.push('/radio')
+          : history.push(`/radio/${song?.artistUrl}`);
+        return this.togglePlayer();
+      default:
+        return;
+    }
+  }
+
   mainCover(): React.ReactNode {
     const { song, playlist } = this.props;
     return (
       <React.Fragment>
         <div
           className="image radius"
+          onClick={(): void => {
+            song?.artistUrl &&
+              this.navigateTo(
+                `/track/artist/${song.artistUrl}/${playlist!.id}`
+              );
+          }}
           style={{
-            backgroundImage: `url(${song?.cover})`,
+            backgroundImage: `url(${song?.cover || playlist?.cover})`,
             backgroundSize: 'cover'
           }}
         />
         <div className="cover-infos mt-2">
-          <div className="f5 l2 mt-0">{song?.title}&nbsp;</div>
+          <div
+            className="f5 l2 mt-0"
+            onClick={(): void => {
+              song?.artistUrl &&
+                this.navigateTo(
+                  `/track/artist/${song.artistUrl}/${playlist!.id}`
+                );
+            }}
+          >
+            {song?.title}&nbsp;
+          </div>
           <div className="f6 l1">{song?.artist}&nbsp;</div>
           <div className="text-10 l2">&nbsp;</div>
-          <div className="f6 l1">Source: {playlist?.name}&nbsp;</div>
+          <div onClick={(): void => this.navigateSource()} className="f6 l1">
+            Source: {playlist?.name}&nbsp;
+          </div>
         </div>
       </React.Fragment>
     );
   }
   fullPlayer(): React.ReactNode {
     const { song } = this.props;
-    let color1 =
-      song?.backgroundGradient !== undefined
-        ? song.backgroundGradient.color1
-        : '';
-
-    let color2 =
-      song?.backgroundGradient !== undefined
-        ? song.backgroundGradient.color1
-        : '';
+    const visible =
+      song?.artistUrl ||
+      this.props.playlist?.source === 'artist' ||
+      !!this.props.song?.artistUrl;
+    const color1 = song?.backgroundGradient?.color1 || '';
+    const color2 = song?.backgroundGradient?.color2 || '';
     return (
       <div id="full-player" className="full-player">
         <BackgroundImage
@@ -331,8 +439,13 @@ class PlayerComponent extends React.Component<Props> {
             <Header
               leftBackButton={false}
               rightInfoButton={true}
-              rightInfoOnClick={(): void => {}}
-              centerContent={<ButtonSupport artist={null} />}
+              rightInfoOnClick={(): void => this.loadAlbumInfo()}
+              centerInfoOnClick={(): void => this.togglePlayer()}
+              centerContent={
+                visible && (
+                  <ButtonSupport artist={null} username={song?.artistUrl} />
+                )
+              }
               leftMinimizeButton={true}
               leftMinimizeOnClick={(): void => this.togglePlayer()}
             />
@@ -344,11 +457,15 @@ class PlayerComponent extends React.Component<Props> {
               <div className="flex compass south center m-4 mt-2 mb-2">
                 {this.mainControls()}
               </div>
+
               <BottomTilesComponent
                 onClick={(): void => this.togglePlayer()}
                 tiles={[]}
+                artistUrl={this.props.song?.artistUrl}
+                hidden={!visible}
               />
             </div>
+
             {this.playerNavbar()}
           </React.Fragment>
         )}
@@ -487,6 +604,7 @@ interface StateProps {
   next?: SongInterface;
   playlist?: PlaylistInterface;
   showToast: boolean;
+  modal: ModalSlideInterface;
 }
 const mapStateToProps = ({
   player,
@@ -505,7 +623,7 @@ const mapStateToProps = ({
     playerAction
   } = player;
 
-  const { showToast } = settings;
+  const { showToast, modal } = settings;
 
   return {
     expanded,
@@ -518,7 +636,8 @@ const mapStateToProps = ({
     shuffle,
     repeat,
     playerAction,
-    showToast
+    showToast,
+    modal
   };
 };
 export default withRouter(

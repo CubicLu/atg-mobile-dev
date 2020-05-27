@@ -15,7 +15,7 @@ import {
   PlaylistInterface,
   SongInterface
 } from '../../models';
-import { guitarPlaylist as playlist } from '../../reducers/playerReducer';
+import { radioPlaylist } from '../../reducers/playerReducer';
 import { Nullable } from '../../types';
 import { ApplicationState } from '../../reducers';
 import { connect } from 'react-redux';
@@ -91,7 +91,7 @@ class RadioPage extends React.Component<Props, State> {
   };
 
   onPlayClick = (): void => {
-    this.props.setPlaylist(playlist, playlist.items[0]);
+    this.props.setPlaylist(radioPlaylist, radioPlaylist.items[0]);
   };
   onPauseClick = (): void => this.props.pauseSong();
   onResumeClick = (): void =>
@@ -162,7 +162,7 @@ class RadioPage extends React.Component<Props, State> {
               canEdit={true}
               data={customRadios}
               onPlayClick={(): void => {
-                this.props.setPlaylist(playlist, playlist.items[0]);
+                this.props.setPlaylist(radioPlaylist, radioPlaylist.items[0]);
               }}
               onPauseClick={(): void => this.props.pauseSong()}
               onResumeClick={(): void => this.props.playSong(this.props.song!)}

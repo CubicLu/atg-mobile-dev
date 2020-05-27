@@ -44,6 +44,7 @@ export const guitarPlaylist: PlaylistInterface = {
       id: 16309292,
       title: 'Pressure And Time',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Pressure & Time',
       duration: 208,
       cover:
@@ -149,6 +150,7 @@ export const guitarPlaylist: PlaylistInterface = {
       id: 920223762,
       title: 'Face of Light',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Pressure & Time',
       duration: 264,
       cover:
@@ -186,7 +188,7 @@ export const bluesPlaylist: PlaylistInterface = {
   sourceId: 7516744044,
   cover:
     'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/blues-playlist.jpg',
-  owner: 'Chris',
+  owner: 'Blues & Bass Mixtape',
   items: [
     {
       id: 421785532,
@@ -223,6 +225,7 @@ export const bluesPlaylist: PlaylistInterface = {
       title: 'Change Clothes (Made Famous by Jay-Z feat. Pharrell)',
       artist: 'Hip Hop DJs United',
       album: 'The Ultimate Salute To Jay-Z',
+      artistUrl: 'pharrell-williams',
       duration: 283,
       cover:
         'https://e-cdns-images.dzcdn.net/images/cover/15cad877f93e8fda50c6cb347e1e85a5/264x264-000000-80-0-0.jpg',
@@ -397,7 +400,8 @@ export const popPlaylist: PlaylistInterface = {
     {
       id: 3119438,
       title: 'Can I Have It Like That',
-      artist: 'Pharrell',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
       album: 'In My Mind',
       duration: 236,
       cover:
@@ -428,6 +432,7 @@ export const popPlaylist: PlaylistInterface = {
       id: 701326572,
       title: 'Come Get It Bae',
       artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
       album: 'G I R L',
       duration: 209,
       cover:
@@ -460,17 +465,16 @@ export const rivalSonsPlaylist: PlaylistInterface = {
   name: 'Rival Sons',
   id: 7516755396,
   source: 'artist',
-  // color1: '#ffc90d',
-  // color2: '#034627',
-  sourceId: 7516755384,
+  sourceId: 'rival-sons',
   cover:
-    'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rival-sons-playlist.jpg',
-  owner: 'Chris',
+    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/rival-sons/album/hollow-bones.png',
+  owner: 'Hollow Bones',
   items: [
     {
       id: 12565421,
       title: 'All Over The Road',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Pressure & Time',
       duration: 174,
       cover:
@@ -486,6 +490,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       id: 12565422,
       title: 'Do Your Worst',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Do Your Worst',
       duration: 211,
       cover:
@@ -501,6 +506,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       id: 12565423,
       title: 'Face Of Light',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Pressure & Time',
       duration: 269,
       cover:
@@ -516,6 +522,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       id: 12565424,
       title: 'Keep On Swinging',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Head Down',
       duration: 332,
       cover:
@@ -531,6 +538,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       id: 12565425,
       title: 'Open My Eyes',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Great Western Valkyrie',
       duration: 223,
       cover:
@@ -546,6 +554,7 @@ export const rivalSonsPlaylist: PlaylistInterface = {
       id: 12565426,
       title: 'Until the Sun Comes',
       artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
       album: 'Head Down',
       duration: 162,
       cover:
@@ -559,6 +568,323 @@ export const rivalSonsPlaylist: PlaylistInterface = {
     }
   ]
 };
+export const pharrellGirl: PlaylistInterface = {
+  name: 'Girl',
+  id: 2,
+  source: 'artist',
+  sourceId: 'pharrell-williams',
+  cover:
+    'https://frontend-mocks.s3-us-west-1.amazonaws.com/artists/pharrell-williams/album/my-girl.png',
+  owner: 'Pharrell Williams',
+  items: [
+    {
+      id: 54119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 5501326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 513119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 5301326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 523119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 511326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 503119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 491326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    }
+  ]
+};
+export const radioPlaylist: PlaylistInterface = {
+  name: 'Panthr Radio',
+  id: 4516755396,
+  source: 'radio',
+  sourceId: 4516755396,
+  color1: '#2d0758',
+  color2: '#0F0915',
+  cover: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/default.jpg',
+  owner: 'Rosetta Stone´s Station',
+  items: [
+    {
+      id: 12565419,
+      title: 'Sorry For Party Rocking',
+      artist: 'LMFAO',
+      album: 'Sorry For Party Rocking',
+      duration: 439,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/63278375978f200fb751cd63624151bb/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/d02486ca2c8b585d3490d66e0cf58d15/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C4+LMFAO+-+Sorry+For+Party+Rocking.mp3'
+    },
+    {
+      id: 133062636,
+      title: 'Horizon',
+      artist: 'Tycho',
+      album: 'Epoch',
+      duration: 249,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/0d5408c64d06cd7abda744bdd5d3168d/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/016623f914d27e1699b1128efc64a745/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C5+Tycho+-+horizon.mp3',
+      ISRC: 'US2J71607902'
+    },
+    {
+      id: 12565421,
+      title: 'All Over The Road',
+      artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
+      album: 'Pressure & Time',
+      duration: 174,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/trackCover1.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover1.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/All+Over+The+Road.mp3',
+      ISRC: 'GBBPB1100027'
+    },
+    {
+      id: 3119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 12565422,
+      title: 'Do Your Worst',
+      artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
+      album: 'Do Your Worst',
+      duration: 211,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/trackCover2.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover1.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Do+Your+Worst.mp3',
+      ISRC: 'USAT21810416'
+    },
+    {
+      id: 12565423,
+      title: 'Face Of Light',
+      artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
+      album: 'Pressure & Time',
+      duration: 269,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/trackCover3.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover1.jpg',
+      trackNumber: 3,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Face+Of+Light.mp3',
+      ISRC: 'GBBPB1100349'
+    },
+    {
+      id: 701326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 12565424,
+      title: 'Keep On Swinging',
+      artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
+      album: 'Head Down',
+      duration: 332,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/defaultTrackCover.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover2.jpg',
+      trackNumber: 4,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Keep+On+Swinging.mp3',
+      ISRC: 'GBBPB1201568'
+    },
+    {
+      id: 12565425,
+      title: 'Open My Eyes',
+      artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
+      album: 'Great Western Valkyrie',
+      duration: 223,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/defaultTrackCover.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover3.jpg',
+      trackNumber: 5,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Open+My+Eyes.mp3',
+      ISRC: 'USDY41651904'
+    },
+    {
+      id: 12565426,
+      title: 'Until the Sun Comes',
+      artist: 'Rival Sons',
+      artistUrl: 'rival-sons',
+      album: 'Head Down',
+      duration: 162,
+      cover:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/defaultTrackCover.jpg',
+      coverArtist:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/covers/albumCover2.jpg',
+      trackNumber: 6,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/rivalsons/Until+The+Sun+Comes.mp3',
+      ISRC: 'GBBPB1201635'
+    }
+  ]
+};
+
+export const playlists: PlaylistInterface[] = [
+  guitarPlaylist,
+  bluesPlaylist,
+  popPlaylist,
+  rivalSonsPlaylist,
+  pharrellGirl,
+  radioPlaylist
+];
 
 const defaultState: PlayerReducerType = {
   starting: false,

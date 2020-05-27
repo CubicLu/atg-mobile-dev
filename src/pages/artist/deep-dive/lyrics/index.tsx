@@ -6,7 +6,7 @@ interface Props {}
 
 class ArtistDeepDiveLyricsPage extends React.Component<Props> {
   render(): React.ReactNode {
-    return <div className="artist-deep-dive-lyrics-page">Lyric</div>;
+    return <div className="artist-deep-dive-lyrics-page"></div>;
   }
 }
 

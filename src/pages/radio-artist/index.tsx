@@ -22,7 +22,7 @@ import {
   playSong,
   pauseSong
 } from './../../actions';
-import { guitarPlaylist as playlist } from '../../reducers/playerReducer';
+import { radioPlaylist } from '../../reducers/playerReducer';
 import { RouteComponentProps } from 'react-router';
 
 interface MatchParams {
@@ -87,7 +87,7 @@ class RadioArtistPage extends React.Component<Props> {
           <div className="row mt-4" />
           <RadioPlayer
             onPlayClick={(): void =>
-              this.props.setPlaylist(playlist, playlist.items[0])
+              this.props.setPlaylist(radioPlaylist, radioPlaylist.items[0])
             }
             onPauseClick={(): void => this.props.pauseSong()}
             onResumeClick={(): void => this.props.playSong(this.props.song!)}

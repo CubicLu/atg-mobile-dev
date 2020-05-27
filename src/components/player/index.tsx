@@ -355,6 +355,27 @@ class PlayerComponent extends React.Component<Props> {
     this.togglePlayer();
     return this.props.history.push(url);
   }
+  navigateSource(): void {
+    const { playlist, song, history } = this.props;
+    switch (playlist?.source) {
+      case 'artist':
+        song?.artistUrl &&
+          history.push(`/track/artist/${song.artistUrl}/${playlist!.id}`);
+        return this.togglePlayer();
+      case 'mixtape':
+      case 'playlist':
+        playlist && history.push(`/track/mixtape/${playlist?.id}/0`);
+        return this.togglePlayer();
+      case 'radio':
+        song?.artistUrl === undefined
+          ? history.push('/radio')
+          : history.push(`/radio/${song?.artistUrl}`);
+        return this.togglePlayer();
+      default:
+        return;
+    }
+  }
+
   mainCover(): React.ReactNode {
     const { song, playlist } = this.props;
     return (
@@ -386,15 +407,7 @@ class PlayerComponent extends React.Component<Props> {
           </div>
           <div className="f6 l1">{song?.artist}&nbsp;</div>
           <div className="text-10 l2">&nbsp;</div>
-          <div
-            onClick={(): void =>
-              playlist &&
-              this.navigateTo(
-                `/track/${playlist.source}/${playlist.sourceId}/${playlist.id}`
-              )
-            }
-            className="f6 l1"
-          >
+          <div onClick={(): void => this.navigateSource()} className="f6 l1">
             Source: {playlist?.name}&nbsp;
           </div>
         </div>
@@ -448,6 +461,7 @@ class PlayerComponent extends React.Component<Props> {
               <BottomTilesComponent
                 onClick={(): void => this.togglePlayer()}
                 tiles={[]}
+                artistUrl={this.props.song?.artistUrl}
                 hidden={!visible}
               />
             </div>

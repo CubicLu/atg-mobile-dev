@@ -16,7 +16,10 @@ import {
   SliderMembers
 } from './../../../components';
 import { setPlaylist } from './../../../actions/playerActions';
-import { guitarPlaylist as playlist } from '../../../reducers/playerReducer';
+import {
+  rivalSonsPlaylist,
+  pharrellGirl
+} from '../../../reducers/playerReducer';
 interface StateProps {
   currentArtist: ArtistInterface | null;
 }
@@ -37,6 +40,11 @@ class ArtistFeaturesPage extends React.Component<DispatchProps> {
       username,
       bandMembers
     } = currentArtist;
+
+    const playlist =
+      this.props.currentArtist?.username === 'rival-sons'
+        ? rivalSonsPlaylist
+        : pharrellGirl;
 
     return (
       <div className={'artist-features-page mb-3'}>

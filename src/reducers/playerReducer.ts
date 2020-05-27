@@ -578,7 +578,7 @@ export const pharrellGirl: PlaylistInterface = {
   owner: 'Pharrell Williams',
   items: [
     {
-      id: 3119438,
+      id: 54119438,
       title: 'Can I Have It Like That',
       artist: 'Pharrell Williams',
       artistUrl: 'pharrell-williams',
@@ -594,7 +594,103 @@ export const pharrellGirl: PlaylistInterface = {
       ISRC: 'USUM70503814'
     },
     {
-      id: 701326572,
+      id: 5501326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 513119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 5301326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 523119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 511326572,
+      title: 'Come Get It Bae',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'G I R L',
+      duration: 209,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/481a67e19a5d59c6dd4eab0785e7bdb7/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/67f517c99b8b6ca8d9bde94db363b887/264x264-000000-80-0-0.jpg',
+      trackNumber: 2,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USSM11400861'
+    },
+    {
+      id: 503119438,
+      title: 'Can I Have It Like That',
+      artist: 'Pharrell Williams',
+      artistUrl: 'pharrell-williams',
+      album: 'In My Mind',
+      duration: 236,
+      cover:
+        'https://e-cdns-images.dzcdn.net/images/cover/7712f6129ff723645f8a46d7e5f2b3cf/264x264-000000-80-0-0.jpg',
+      coverArtist:
+        'https://e-cdns-images.dzcdn.net/images/cover/91a5e323f739fea83478eae246213862/264x264-000000-80-0-0.jpg',
+      trackNumber: 1,
+      url:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/player/pop/C7+Gwen+Stefani%2C+Pharrell+Williams+-+Can+I+Have+It+Like+That.mp3',
+      ISRC: 'USUM70503814'
+    },
+    {
+      id: 491326572,
       title: 'Come Get It Bae',
       artist: 'Pharrell Williams',
       artistUrl: 'pharrell-williams',

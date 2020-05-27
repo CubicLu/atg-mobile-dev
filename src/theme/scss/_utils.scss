@@ -87,6 +87,9 @@
 .h-75 {
   height: 75%;
 }
+.w-50 {
+  width: 50%;
+}
 .message {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -637,6 +640,16 @@
     top: 42px;
   }
 }
+.title-left-dual-fixed{
+  position: fixed;
+  left: 60px;
+  top: 32px;
+}
+.title-left-single-fixed{
+  position: fixed;
+  left: 60px;
+  top: 42px;
+}
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -780,4 +793,10 @@
   background: transparent;
   margin: 2px;
   overflow: auto;
+}
+.dual-list{
+  li{
+    width: 50% !important;
+    line-height: 1.75;
+  }
 }

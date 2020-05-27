@@ -81,7 +81,7 @@ class ArtistDeepDivePage extends React.Component<Props, State> {
     const { currentArtist, deepDiveTabs, activeDeepDiveTab } = this.props;
     const fixed = this.state.fixed ? 'absolute' : '';
     return (
-      <IonPage id="artist-deep-dive-dive-page" style={{ Background: '#000' }}>
+      <IonPage id="artist-deep-dive-dive-page" className="background-white">
         <BackgroundImage
           backgroundImage={currentArtist?.cover.deepDive}
           blur={this.state.fixed}

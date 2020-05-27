@@ -188,6 +188,18 @@ ion-reorder {
 *::-webkit-scrollbar {
   display: none;
 }
+.ion-page{
+  background: #2d0758;
+  .background-white{
+    background: #fff;
+  }
+  .background-black{
+    background: #000;
+  }
+  .background-transparent{
+    background: transparent;
+  }
+}
 .ion-page,
 ion-content {
   scrollbar-width: none !important;

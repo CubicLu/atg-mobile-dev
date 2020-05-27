@@ -56,20 +56,17 @@ class CommunityPostPage extends React.Component<Props> {
           scrollEvents={true}
           onIonScroll={(e): void => this.hRef.current?.handleParentScroll(e)}
         >
-          <div className="flex space-between h-100">
-            <div className="scroll-post h-100">
-              <CardPost
-                rounded={false}
-                clickToOpen={false}
-                post={this.getPost()}
-                showUser={false}
-                showOptions={false}
-                disableComment={true}
-              />
-              {this.renderPostDescription()}
-              {this.renderPostComments()}
-            </div>
-          </div>
+          <CardPost
+            rounded={false}
+            clickToOpen={false}
+            post={this.getPost()}
+            showUser={false}
+            showOptions={false}
+            disableComment={true}
+          />
+
+          {this.renderPostDescription()}
+          {this.renderPostComments()}
         </IonContent>
         {this.renderPostInput()}
       </IonPage>

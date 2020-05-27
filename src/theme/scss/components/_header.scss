@@ -4,6 +4,12 @@
   margin-left: $header-margin-left;
   margin-right: $header-margin-right;
   margin-bottom: $header-margin-bottom;
+  &.default-height{
+    height: 90px;
+  }
+  &.minimum-height{
+    height: 44px;
+  }
   .title-left-dual{
     position: absolute;
     left: 60px;

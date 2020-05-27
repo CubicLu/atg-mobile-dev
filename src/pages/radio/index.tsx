@@ -2,7 +2,6 @@ import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import {
   Header,
-  BackgroundImage,
   SectionTitle,
   SliderRadio,
   SliderRadioCard,
@@ -22,6 +21,7 @@ import { connect } from 'react-redux';
 import { pauseSong, playSong, setPlaylist } from '../../actions';
 import { RouteComponentProps } from 'react-router';
 import { radios, customRadios } from '../../constants/radios';
+import { radioBackground } from '../../utils';
 
 interface MatchParams {
   genre: string;
@@ -96,22 +96,15 @@ class RadioPage extends React.Component<Props, State> {
   onPauseClick = (): void => this.props.pauseSong();
   onResumeClick = (): void =>
     this.props.song && this.props.playSong(this.props.song);
-
   render(): React.ReactNode {
+    const img =
+      'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg';
     return (
-      <IonPage id="radio-page">
+      <IonPage id="radio-page" style={radioBackground(img, '#36BAFC')}>
         <Header
           leftBackButton={false}
           rightActionButton={true}
           rightActionHref={'/radio/filter'}
-        />
-
-        <BackgroundImage
-          gradientOverlay={true}
-          gradient={this.state.currentGenre?.color}
-          backgroundImage={this.state.currentGenre?.image}
-          backgroundTop={false}
-          backgroundBottom={false}
         />
 
         <IonContent fullscreen={true}>
@@ -185,7 +178,7 @@ class RadioPage extends React.Component<Props, State> {
       subtitle: 'BEATS OF THE ISLANDS',
       color: '180deg,#7A41FF00,#1B0334',
       image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/default.jpg'
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg'
     },
     {
       id: '1',
@@ -194,7 +187,8 @@ class RadioPage extends React.Component<Props, State> {
       title: 'KING BLACK ACID',
       subtitle: 'ROCKING YOUR SOUL',
       color: '180deg,#00000021,#000',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/blues.jpg'
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg'
     },
     {
       id: '4',
@@ -203,7 +197,8 @@ class RadioPage extends React.Component<Props, State> {
       title: 'FOREVER JAZZ',
       subtitle: 'FREE PREVIEW',
       color: '180deg,#ffffff70,#000',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/jazz.jpg'
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg'
     },
     {
       id: '2',
@@ -212,7 +207,8 @@ class RadioPage extends React.Component<Props, State> {
       title: 'FUNK YOU UP!',
       subtitle: 'Listen Now',
       color: '180deg, #ff966600, #ae7005',
-      image: 'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/funk.jpg'
+      image:
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg'
     },
     {
       id: '3',
@@ -222,7 +218,7 @@ class RadioPage extends React.Component<Props, State> {
       subtitle: 'BEATS OF THE ISLANDS',
       color: '180deg,#bb9b00b5,#034627',
       image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/reggae.jpg'
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg'
     },
     {
       id: '6',
@@ -232,7 +228,7 @@ class RadioPage extends React.Component<Props, State> {
       subtitle: 'Free Preview',
       color: '180deg,#7A41FF00,#1B0334',
       image:
-        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/country.jpg'
+        'https://frontend-mocks.s3-us-west-1.amazonaws.com/radio/top-header.jpg'
     }
   ];
 }

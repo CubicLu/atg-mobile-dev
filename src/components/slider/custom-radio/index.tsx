@@ -16,7 +16,6 @@ interface Props {
   canEdit: boolean;
   data?: { image: string; label: string }[];
   size?: Sizes;
-  type?: ShapesSize;
   onClick?: (id: number) => void;
   playButton?: boolean;
   playing?: boolean;
@@ -51,7 +50,6 @@ class SliderRadioCardComponent extends React.Component<Props, State> {
     const {
       data,
       size,
-      type,
       canEdit,
       song,
       playing,
@@ -85,7 +83,7 @@ class SliderRadioCardComponent extends React.Component<Props, State> {
               <CardRadio
                 key={i}
                 canEdit={canEdit}
-                type={type}
+                type={ShapesSize.square}
                 image={radio.image}
                 id={i}
                 size={size}

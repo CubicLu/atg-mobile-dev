@@ -132,6 +132,11 @@
     margin: 0.5rem 0 0.5rem 0 !important;
     height: 170px;
     width: 280px;
+    &.square{
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+    }
     @include background-style();
 
     .play-button-container{

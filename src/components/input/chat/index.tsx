@@ -9,6 +9,7 @@ interface Props {
   label: string;
   defaultValue?: string;
   value?: string;
+  className?: string;
 }
 
 class InputChatComponent extends React.Component<Props> {
@@ -25,10 +26,11 @@ class InputChatComponent extends React.Component<Props> {
       placeholder,
       label,
       defaultValue,
-      value
+      value,
+      className
     } = this.props;
     return (
-      <div className="input-chat flex-align-items-center">
+      <div className={`input-chat flex-align-items-center ${className}`}>
         <InputText
           size={Sizes.sm}
           className="f7 dark"

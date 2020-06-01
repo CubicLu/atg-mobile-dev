@@ -223,8 +223,9 @@ class WizardPage extends React.Component<Props> {
         {!isLastQuestion &&
           wizardQuestions[activeQuestionIndex].type === 'text' && (
             <InputChat
+              className={'wizard-page--chat-input'}
               label={'Send'}
-              placeholder={'Add a comment...'}
+              placeholder={'Type the answer here'}
               onChange={this.handleOnChange}
               onClick={this.handleOnClick}
               value={this.props.answer}

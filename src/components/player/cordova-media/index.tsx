@@ -58,6 +58,10 @@ class CordovaMediaComponent extends React.Component<Props> {
         return this.updateMediaVolume();
     }
   }
+  destroyMusicControls(): void {
+    window.MusicControls.destroy();
+    this.activeMusicControls = false;
+  }
   actionLoadNextSong(): void {
     this.props.next && this.cordovaMedia(this.props.next!);
   }
@@ -83,7 +87,7 @@ class CordovaMediaComponent extends React.Component<Props> {
   }
   actionStopSong(): void {
     window.Media.list().forEach((song): void => song.stop());
-    this.updatePlayingMusicControls();
+    this.destroyMusicControls();
   }
   actionResumeSong(): void {
     if (!this.props.song) return;
@@ -161,7 +165,6 @@ class CordovaMediaComponent extends React.Component<Props> {
       case MediaStatusCallback.MEDIA_STOPPED:
         //console.log('song stopped', media.getMediaId(), media.src);
         this.mediaCallbackCheckRunning();
-        window.MusicControls.updateIsPlaying();
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         //console.log('song ended naturally', media.getMediaId(), media.src);
@@ -177,8 +180,8 @@ class CordovaMediaComponent extends React.Component<Props> {
   }
   mediaCallbackCheckRunning(): void {
     if (this.hasRunningSongs === false) {
-      //console.log('no Running songs! pausing player');
       this.props.pauseSong();
+      this.destroyMusicControls();
     }
   }
 
@@ -227,9 +230,11 @@ class CordovaMediaComponent extends React.Component<Props> {
     return newInstance;
   }
   createMusicControls(): void {
-    if (!this.props.song) return;
+    if (!this.props.song) return this.destroyMusicControls();
+    if (!window.onunload) window.onunload = this.destroyMusicControls;
+
     const options = {
-      dismissable: false,
+      dismissable: true,
       artist: this.props.song.artist,
       track: this.props.song.title,
       album: this.props.song.album,
@@ -243,8 +248,7 @@ class CordovaMediaComponent extends React.Component<Props> {
       pauseIcon: 'media_pause',
       prevIcon: 'media_prev',
       nextIcon: 'media_next',
-      closeIcon: 'media_close',
-      notificationIcon: 'notification'
+      closeIcon: 'media_close'
     };
 
     window.MusicControls.create(options, null, null);
@@ -257,7 +261,7 @@ class CordovaMediaComponent extends React.Component<Props> {
   updatePlayingMusicControls(): void {
     setTimeout(
       (): void => window.MusicControls.updateIsPlaying(this.props.playing),
-      MUSIC_CONTROLS_DELAY
+      MUSIC_CONTROLS_DELAY / 2
     );
   }
   updateElapsedMusicControls(): void {

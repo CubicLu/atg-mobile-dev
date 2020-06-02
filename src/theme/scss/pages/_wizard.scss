@@ -33,7 +33,9 @@
         height: 135px;
     }
     &--content{
-       top:48px !important;
-       padding-bottom: 50px;
+       padding-top:48px !important;
+    }
+    &--chat-input{
+        position: unset;
     }
 }

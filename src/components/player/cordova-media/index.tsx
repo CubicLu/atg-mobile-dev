@@ -32,7 +32,6 @@ const FADEOUT_DEFAULT = 6; // fadeout when song ends naturally
 const MUSIC_CONTROLS_DELAY = 50; //time in ms - needed to reflect update on android/ios
 
 class CordovaMediaComponent extends React.Component<Props> {
-  private lastSwitch: number = 0;
   private playOptions = {
     playAudioWhenScreenIsLocked: true,
     numberOfLoops: 1

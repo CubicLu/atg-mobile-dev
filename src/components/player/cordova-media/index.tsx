@@ -32,7 +32,8 @@ const FADEOUT_DEFAULT = 6; // fadeout when song ends naturally
 const MUSIC_CONTROLS_DELAY = 50; //time in ms - needed to reflect update on android/ios
 
 class CordovaMediaComponent extends React.Component<Props> {
-  playOptions = {
+  private lastSwitch: number = 0;
+  private playOptions = {
     playAudioWhenScreenIsLocked: true,
     numberOfLoops: 1
   };
@@ -98,11 +99,16 @@ class CordovaMediaComponent extends React.Component<Props> {
   //Play Song is called when I click next or previous;
   actionPlaySong(): void {
     this.runningSong.forEach((song): void => {
+      if (song.getMediaId() === this.props.song?.id) return;
+      if (song.getMediaId() === this.props.next?.id) return;
+
       if (song.getPosition() > 3) {
+        if (song.getFadingOut()) return;
         song.setFadeTime(FADEOUT_NEXT);
         song.setForceFadeOut(true);
       } else {
-        song.stop();
+        song.pause();
+        song.seekTo(0);
       }
     });
 
@@ -112,6 +118,7 @@ class CordovaMediaComponent extends React.Component<Props> {
     //PLAY SONG
     this.cordovaMedia(song, this.hasRunningSongs).play(this.playOptions);
     this.createMusicControls();
+    this.updatePlayingMusicControls();
     //BUFFER NEXT SONG but not PLAY
     this.props.next && this.cordovaMedia(this.props.next!, true);
   }

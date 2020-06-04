@@ -97,11 +97,13 @@ class CordovaMediaComponent extends React.Component<Props> {
 
   //Play Song is called when I click next or previous;
   actionPlaySong(): void {
+    let fade = false;
+    const lastId = this.props.last?.id;
     this.runningSong.forEach((song): void => {
-      if (song.getPosition() > 3) {
-        if (song.getFadingOut()) return;
+      if (song.getMediaId() === lastId && song.getPosition() > 3 && !fade) {
         song.setFadeTime(FADEOUT_NEXT);
         song.setForceFadeOut(true);
+        fade = true;
       } else {
         song.pause();
         song.seekTo(0);
@@ -348,6 +350,7 @@ interface StateProps {
   canSkip: boolean;
   shuffle: boolean;
   repeat: boolean;
+  last?: SongInterface;
   song?: SongInterface;
   next?: SongInterface;
   playlist?: PlaylistInterface;
@@ -362,6 +365,7 @@ const mapStateToProps = ({ player }: ApplicationState): StateProps => {
     timeElapsed,
     duration,
     paused,
+    last,
     song,
     next,
     playlist,
@@ -376,6 +380,7 @@ const mapStateToProps = ({ player }: ApplicationState): StateProps => {
     firstIndex,
     playing,
     paused,
+    last,
     song,
     next,
     playlist,

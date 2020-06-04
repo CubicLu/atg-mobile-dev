@@ -940,9 +940,10 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       ...getRunningStatus('PLAY'),
       playlist: playlist,
       firstIndex: songIdx,
+      last: undefined,
       song: playlist.items[songIdx],
-      duration: playlist.items[songIdx].duration,
       next: playlist.items[nextIdx],
+      duration: playlist.items[songIdx].duration,
       timeElapsed: 0,
       playerAction: PlayerActionType.SET_PLAYLIST
     };
@@ -983,7 +984,9 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
     return {
       ...state,
       ...getRunningStatus('STOP'),
+      last: undefined,
       song: undefined,
+      next: undefined,
       expanded: false,
       playerAction: PlayerActionType.STOP_SONG
     };
@@ -993,6 +996,7 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
   ): PlayerReducerType {
     return {
       ...state,
+      last: state.song,
       song: state.next,
       next: undefined,
       playing: true,
@@ -1008,6 +1012,7 @@ export const playerReducer = createReducer<PlayerReducerType>(defaultState, {
       ...state,
       starting: true,
       ...getRunningStatus('PLAY'),
+      last: state.song,
       song: action.payload.song,
       next: action.payload.nextSong,
       timeElapsed: 0,

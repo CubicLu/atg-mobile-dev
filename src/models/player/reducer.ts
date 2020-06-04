@@ -14,6 +14,7 @@ export interface PlayerReducerType {
   readonly masterVolume: number;
   readonly timeElapsed: number;
   readonly duration: number;
+  readonly last?: SongInterface;
   readonly song?: SongInterface;
   readonly next?: SongInterface;
   readonly playlist?: PlaylistInterface;

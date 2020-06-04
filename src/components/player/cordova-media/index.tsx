@@ -99,9 +99,6 @@ class CordovaMediaComponent extends React.Component<Props> {
   //Play Song is called when I click next or previous;
   actionPlaySong(): void {
     this.runningSong.forEach((song): void => {
-      if (song.getMediaId() === this.props.song?.id) return;
-      if (song.getMediaId() === this.props.next?.id) return;
-
       if (song.getPosition() > 3) {
         if (song.getFadingOut()) return;
         song.setFadeTime(FADEOUT_NEXT);
@@ -175,8 +172,8 @@ class CordovaMediaComponent extends React.Component<Props> {
         break;
       case MediaStatusCallback.MEDIA_ENDED:
         //console.log('song ended naturally', media.getMediaId(), media.src);
-        this.mediaCallbackCheckRunning();
         this.updateElapsedMusicControls();
+        this.mediaCallbackCheckRunning();
         break;
       case MediaStatusCallback.MEDIA_FADING_OUT:
         this.mediaCallbackFadingOut(media);
@@ -187,8 +184,7 @@ class CordovaMediaComponent extends React.Component<Props> {
   }
   mediaCallbackCheckRunning(): void {
     if (this.hasRunningSongs === false) {
-      this.props.pauseSong();
-      this.destroyMusicControls();
+      this.actionStopSong();
     }
   }
 
